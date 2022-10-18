@@ -1,31 +1,14 @@
+# 魔导绪论
+
+[AI 魔咒生成器](https://magic-tag.netlify.app/#/), 使用由 B 站 UP 主 [十二今天也很可爱](https://www.bilibili.com/video/BV1m84y1B7Ny/?p=1&t=285&vd_source=a2ecd44ec8a0a62c70f8b98747f4aa56) 提供的 4 万个 tag 并提供中文检索，方便魔法师们直接使用。
+
+中文翻译为谷歌机翻，可能比较水，就当英文翻译题好了。
+
 # 打包流程
 
 ```sh
+pnpm i
 pnpm dev # 开发者模式查看
-
-pnpm build # 打包 lite 版本
-pnpm build:full # 打包 full 版本
-
-pnpm preview # 使用 lite 版本查看
-pnpm preview:full # 使用 full 版本查看
+pnpm build # 打包版本
 
 ```
-
-# 借鉴插件
-
--   [x] swiper
--   [x] https://www.npmjs.com/package/viewerjs
--   [x] https://github.com/itaditya/solid-command-palette
--   [x] Tippy.js
--   [x] 中国地区 https://vant-contrib.gitee.io/vant/#/zh-CN/area
--   [x] 借鉴 https://github.com/upload-io/uploader#installation
--   [x] 借鉴 https://www.npmjs.com/package/solid-split-component
--   [x] 高亮库 lowlight
--   [x] 图片裁剪库 https://fengyuanchen.github.io/cropperjs/
--   [x] 可拖拽组件 http://sortablejs.github.io/Sortable/
--   [ ] 时间选择器 https://github.com/haoxins/react-flatpickr/blob/master/lib/index.js
--   [ ] 瀑布流布局 https://github.com/callmecavs/bricks.js
--   [ ] 视觉引导 driver.js
--   [ ] 3D 动态效果 https://micku7zu.github.io/vanilla-tilt.js/
--   [ ] spinners https://github.com/craigjennings11/wc-spinners
--   [ ] https://perfectscrollbar.com/#section-intro

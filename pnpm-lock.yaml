@@ -17,6 +17,7 @@ importers:
       browserslist: ^4.21.4
       copy-to-clipboard: ^3.3.2
       fuse.js: ^6.6.2
+      lodash-es: ^4.17.21
       postcss: ^8.4.16
       prettier: 2.6.0
       prettier-plugin-tailwindcss: ^0.1.13
@@ -35,6 +36,7 @@ importers:
       '@solidjs/router': 0.5.0_solid-js@1.5.7
       copy-to-clipboard: 3.3.2
       fuse.js: 6.6.2
+      lodash-es: 4.17.21
       solid-js: 1.5.7
       tailwindcss: 3.1.8_postcss@8.4.16
       tippy.js: 6.3.7
@@ -1121,6 +1123,10 @@ packages:
   /lilconfig/2.0.6:
     resolution: {integrity: sha512-9JROoBW7pobfsx+Sq2JsASvCo6Pfo6WWoUW79HuB1BCoBXD4PLWJPqDF6fNj67pqBYTbAHkE57M1kS/+L1neOg==}
     engines: {node: '>=10'}
+
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: false
 
   /lower-case/2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}

@@ -1,0 +1,29 @@
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-sans-condensed/index.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/cormorant-sc/index.css');
+body {
+    margin: 0;
+    overflow: hidden;
+}
+#app {
+    height: 100vh;
+    width: 100vw;
+}
+.TextFont {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+}
+.HeaderFont {
+    font-family: 'Cormorant SC', sans-serif;
+}
+.bg-grid {
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px !important;
+    background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px !important;
+    background-blend-mode: difference !important;
+    background-image: linear-gradient(rgb(130 130 130 / 35%) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(130 130 130 / 28%) 1px, transparent 1px),
+        linear-gradient(rgb(130 130 130 / 37%) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(130 130 130 / 38%) 1px, transparent 1px) !important;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;

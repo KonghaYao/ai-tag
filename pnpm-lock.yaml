@@ -16,6 +16,7 @@ importers:
       babel-preset-solid: ^1.4.6
       browserslist: ^4.21.4
       copy-to-clipboard: ^3.3.2
+      fuse.js: ^6.6.2
       postcss: ^8.4.16
       prettier: 2.6.0
       prettier-plugin-tailwindcss: ^0.1.13
@@ -33,6 +34,7 @@ importers:
       '@fontsource/material-icons-rounded': 4.5.4
       '@solidjs/router': 0.5.0_solid-js@1.5.7
       copy-to-clipboard: 3.3.2
+      fuse.js: 6.6.2
       solid-js: 1.5.7
       tailwindcss: 3.1.8_postcss@8.4.16
       tippy.js: 6.3.7
@@ -1022,6 +1024,11 @@ packages:
 
   /function-bind/1.1.1:
     resolution: {integrity: sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==}
+
+  /fuse.js/6.6.2:
+    resolution: {integrity: sha512-cJaJkxCCxC8qIIcPBF9yGxY0W/tVZS3uEISDxhYIdtk8OL93pe+6Zj7LjCqVV4dzbqcriOZ+kQ/NE4RXZHsIGA==}
+    engines: {node: '>=10'}
+    dev: false
 
   /gensync/1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}

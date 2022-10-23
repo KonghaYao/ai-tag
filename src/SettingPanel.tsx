@@ -5,7 +5,6 @@ import { Panel } from './components/Panel';
 
 export const SettingPanel = () => {
     const { r18Mode, settingVisible, showCount } = useContext(Data);
-    let container: HTMLDivElement;
 
     const list = [
         { title: '青少年模式', bind: r18Mode.reflux(!r18Mode(), (i) => !i) },

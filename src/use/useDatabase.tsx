@@ -1,7 +1,7 @@
 /** @ts-ignore */
 import * as XLSX from 'https://unpkg.com/xlsx/xlsx.mjs';
-import { createEffect, createMemo, createResource, untrack } from 'solid-js';
-import { atom, createIgnoreFirst, reflect } from '@cn-ui/use';
+import { createEffect, createMemo, createResource, createSignal, untrack } from 'solid-js';
+import { Atom, atom, createIgnoreFirst, reflect } from '@cn-ui/use';
 import Fuse from 'fuse.js';
 import { useSearchParams } from '@solidjs/router';
 import { IData } from '../App';
@@ -54,7 +54,24 @@ export function useDatabase() {
             return lists()?.slice(0, 100) || [];
         }
     });
-    const usersCollection = atom<IData[]>([]);
+    const [U, setU] = createSignal<IData[]>([]);
+    // 添加去重功能，但是实现极其不行
+    const usersCollection: Atom<IData[]> = (...args) => {
+        if (args.length === 0) {
+            return U();
+        } else {
+            let [data] = args;
+            if (typeof data === 'function') {
+                data = data(U());
+            }
+            return setU(
+                data.filter(
+                    (item, index) =>
+                        (data as IData[]).findIndex((next) => next.en === item.en) === index
+                )
+            );
+        }
+    };
     const [searchParams, setSearchParams] = useSearchParams();
 
     createMemo(() => {

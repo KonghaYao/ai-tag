@@ -32,31 +32,28 @@ export const App = () => {
 
     const enMode = atom<boolean>(false);
     const r18Mode = atom<boolean>(false);
-    const settingVisible = atom<boolean>(true);
+    const settingVisible = atom<boolean>(false);
     const deleteMode = atom<boolean>(false);
     const showCount = atom<boolean>(true);
 
-    const { recover, tracking } = useStorage({
+    const storageSetting = {
         enMode,
         r18Mode,
         settingVisible,
         deleteMode,
         showCount,
-    });
+    };
+    const { recover, tracking } = useStorage(storageSetting);
     recover();
     tracking();
     return (
         <Data.Provider
             value={{
-                deleteMode,
-                enMode,
                 usersCollection,
                 result,
                 lists,
-                showCount,
-                settingVisible,
-                r18Mode,
                 searchText,
+                ...storageSetting,
             }}
         >
             <div class="flex h-screen w-screen flex-col bg-black p-4 text-gray-400">

@@ -1,4 +1,5 @@
 import { Atom, atomization } from '@cn-ui/use';
+import copy from 'copy-to-clipboard';
 import { Component, useContext } from 'solid-js';
 import { Data, IData } from '../App';
 
@@ -8,7 +9,7 @@ export const TagButton: Component<{
     en?: Atom<boolean>;
     cn?: Atom<boolean>;
 }> = (props) => {
-    const { showCount } = useContext(Data);
+    const { showCount, enMode } = useContext(Data);
     const en = atomization(props.en ?? true);
     const cn = atomization(props.cn ?? true);
     const item = props.data;
@@ -24,6 +25,10 @@ export const TagButton: Component<{
             class="text-col relative mx-2 my-3 flex cursor-pointer select-none flex-col rounded-md bg-gray-600 px-2 py-1 text-center transition-colors active:bg-gray-700"
             onclick={() => {
                 props.onClick && props.onClick(item);
+            }}
+            onDblClick={() => {
+                copy(enMode() ? item.en : item.cn);
+                console.log('双击复制成功');
             }}
         >
             {cn() && <div>{item.cn}</div>}

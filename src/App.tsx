@@ -3,7 +3,7 @@ import { createContext, Show, untrack } from 'solid-js';
 import { Atom, atom, createIgnoreFirst } from '@cn-ui/use';
 import { SearchBox } from './SearchBox';
 import { UserSelected } from './UserSelected';
-import { useDatabase } from './useDatabase';
+import { useDatabase } from './use/useDatabase';
 import { SettingPanel } from './SettingPanel';
 import { useStorage } from './use/useStorage';
 

@@ -1,11 +1,11 @@
 import { For, useContext } from 'solid-js';
 import copy from 'copy-to-clipboard';
 import { Data } from './App';
-import { TagButton } from './TagButton';
+import { TagButton } from './components/TagButton';
 import { reflect } from '@cn-ui/use';
 
 export const UserSelected = () => {
-    const { deleteMode, enMode, usersCollection, showCount, settingVisible } = useContext(Data);
+    const { deleteMode, enMode, usersCollection, settingVisible } = useContext(Data);
     return (
         <main class="my-2 flex w-full flex-col rounded-xl border border-solid border-gray-600 p-2">
             <header class="flex py-2  text-sm font-bold">

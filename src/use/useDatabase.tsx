@@ -4,8 +4,8 @@ import { createEffect, createMemo, createResource, untrack } from 'solid-js';
 import { atom, createIgnoreFirst, reflect } from '@cn-ui/use';
 import Fuse from 'fuse.js';
 import { useSearchParams } from '@solidjs/router';
-import { IData } from './App';
-import { getTagInURL } from './utils/getTagInURL';
+import { IData } from '../App';
+import { getTagInURL } from '../utils/getTagInURL';
 import { debounce } from 'lodash-es';
 
 export function useDatabase() {

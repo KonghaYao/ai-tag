@@ -1,6 +1,6 @@
 import { Atom, atomization } from '@cn-ui/use';
 import { Component, useContext } from 'solid-js';
-import { Data, IData } from './App';
+import { Data, IData } from '../App';
 
 export const TagButton: Component<{
     data: IData;

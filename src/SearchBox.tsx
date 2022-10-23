@@ -2,7 +2,7 @@ import { For, useContext } from 'solid-js';
 import debounce from 'lodash-es/debounce';
 import sampleSize from 'lodash-es/sampleSize';
 import { Data } from './App';
-import { TagButton } from './TagButton';
+import { TagButton } from './components/TagButton';
 import { reflect } from '@cn-ui/use';
 
 export const SearchBox = () => {

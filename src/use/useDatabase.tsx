@@ -75,11 +75,10 @@ export function useDatabase() {
     };
     const [searchParams, setSearchParams] = useSearchParams();
 
-    createMemo(() => {
+    createIgnoreFirst(() => {
         const tags = usersCollection()
             .map((i) => i.en)
             .join(',');
-
         setSearchParams(
             {
                 ...untrack(() => searchParams),
@@ -87,7 +86,7 @@ export function useDatabase() {
             },
             { replace: true, resolve: false }
         );
-        // console.log('写入 URL ');
+        console.log('写入 URL ');
     }, [usersCollection]);
 
     return { result, lists, searchText, usersCollection };

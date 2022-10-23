@@ -14,6 +14,7 @@ export const getTagInURL = (lists: IData[]) => {
             }) ?? []
         );
     } catch (e) {
+        console.warn(e);
         return [];
     }
 };

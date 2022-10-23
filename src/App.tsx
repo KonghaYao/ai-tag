@@ -27,14 +27,18 @@ export const Data = createContext<{
 export const getTagInURL = (lists: IData[]) => {
     const [{ tags }] = useSearchParams();
     if (!tags) return [];
-    return (
-        tags.split(',').map((i) => {
-            return (
-                lists.find((item) => item.en === i) ??
-                ({ en: i, cn: i, r18: 0, count: Infinity } as IData)
-            );
-        }) ?? []
-    );
+    try {
+        return (
+            tags.split(',').map((i) => {
+                return (
+                    lists.find((item) => item.en === i) ??
+                    ({ en: i, cn: i, r18: 0, count: Infinity } as IData)
+                );
+            }) ?? []
+        );
+    } catch (e) {
+        return [];
+    }
 };
 
 export const App = () => {

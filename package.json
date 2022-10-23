@@ -5,7 +5,8 @@
     "description": "",
     "scripts": {
         "dev": "vite dev",
-        "build": "vite build"
+        "build": "vite build",
+        "analyze": "vite build --mode analyze"
     },
     "license": "MIT",
     "devDependencies": {
@@ -19,6 +20,7 @@
         "postcss": "^8.4.16",
         "prettier": "2.6.0",
         "prettier-plugin-tailwindcss": "^0.1.13",
+        "rollup-plugin-visualizer": "^5.8.3",
         "solid-js": "^1.5.7",
         "tailwindcss": "^3.1.8",
         "upload-js": "^2.1.0",

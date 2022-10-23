@@ -1,9 +1,11 @@
+/** @ts-ignore */
 import * as XLSX from 'https://unpkg.com/xlsx/xlsx.mjs';
-import { createResource } from 'solid-js';
+import { createEffect, createMemo, createResource, untrack } from 'solid-js';
 import { atom, createIgnoreFirst, reflect } from '@cn-ui/use';
 import Fuse from 'fuse.js';
 import { useSearchParams } from '@solidjs/router';
 import { IData, getTagInURL } from './App';
+import { debounce } from 'lodash-es';
 
 export function useDatabase() {
     const [data] = createResource<ArrayBuffer>(() =>
@@ -13,7 +15,10 @@ export function useDatabase() {
         if (data()) {
             const workbook = XLSX.read(data());
             const json = XLSX.utils.sheet_to_json(workbook.Sheets.Sheet1);
-            usersCollection(getTagInURL(json));
+            // 防止重复渲染
+            untrack(() => {
+                usersCollection(getTagInURL(json));
+            });
             return json;
         }
     });
@@ -50,19 +55,20 @@ export function useDatabase() {
     });
     const usersCollection = atom<IData[]>([]);
     const [searchParams, setSearchParams] = useSearchParams();
-    createIgnoreFirst(() => {
+
+    createMemo(() => {
         const tags = usersCollection()
             .map((i) => i.en)
             .join(',');
 
-        // TODO 会造成卡顿
-        // setSearchParams(
-        //     {
-        //         ...untrack(() => searchParams),
-        //         tags,
-        //     },
-        //     { replace: true, resolve: false }
-        // );
+        setSearchParams(
+            {
+                ...untrack(() => searchParams),
+                tags,
+            },
+            { replace: true, resolve: false }
+        );
+        // console.log('写入 URL ');
     }, [usersCollection]);
 
     return { result, lists, searchText, usersCollection };

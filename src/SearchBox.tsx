@@ -66,7 +66,6 @@ export const SearchBox = () => {
                     </For>
                 </section>
             </section>
-            {/* <noscript class="bg-red-900 bg-pink-900 bg-blue-900"></noscript> */}
         </>
     );
 };

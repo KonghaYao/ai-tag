@@ -1,10 +1,11 @@
 /** @ts-ignore */
-import { createContext, createEffect, untrack } from 'solid-js';
-import { Atom, atom } from '@cn-ui/use';
+import { createContext, Show, untrack } from 'solid-js';
+import { Atom, atom, createIgnoreFirst } from '@cn-ui/use';
 import { SearchBox } from './SearchBox';
 import { UserSelected } from './UserSelected';
-import { useSearchParams } from '@solidjs/router';
 import { useDatabase } from './useDatabase';
+import { SettingPanel } from './SettingPanel';
+import { useStorage } from './use/useStorage';
 
 export interface IData {
     en: string;
@@ -19,36 +20,31 @@ export const Data = createContext<{
     enMode: Atom<boolean>;
     r18Mode: Atom<boolean>;
     showCount: Atom<boolean>;
+    settingVisible: Atom<boolean>;
     searchText: Atom<string>;
     usersCollection: Atom<IData[]>;
     result: Atom<IData[]>;
     lists: Atom<IData[]>;
 }>();
 
-export const getTagInURL = (lists: IData[]) => {
-    const [{ tags }] = useSearchParams();
-    if (!tags) return [];
-    try {
-        return (
-            tags.split(',').map((i) => {
-                return (
-                    lists.find((item) => item.en === i) ??
-                    ({ en: i, cn: i, r18: 0, count: Infinity } as IData)
-                );
-            }) ?? []
-        );
-    } catch (e) {
-        return [];
-    }
-};
-
 export const App = () => {
     const { result, lists, searchText, usersCollection } = useDatabase();
 
     const enMode = atom<boolean>(false);
     const r18Mode = atom<boolean>(false);
+    const settingVisible = atom<boolean>(true);
     const deleteMode = atom<boolean>(false);
     const showCount = atom<boolean>(true);
+
+    const { recover, tracking } = useStorage({
+        enMode,
+        r18Mode,
+        settingVisible,
+        deleteMode,
+        showCount,
+    });
+    recover();
+    tracking();
     return (
         <Data.Provider
             value={{
@@ -58,6 +54,7 @@ export const App = () => {
                 result,
                 lists,
                 showCount,
+                settingVisible,
                 r18Mode,
                 searchText,
             }}
@@ -68,14 +65,15 @@ export const App = () => {
                     <a
                         href="https://github.com/KonghaYao/ai-tag"
                         target="_blank"
-                        class="mx-2 text-sm"
+                        class="mx-2 text-sm text-blue-700 "
                     >
                         KongHaYao
                     </a>
-                    <sup class="text-xs">{__version__}</sup>
+                    <sup class="text-xs text-blue-700 ">{__version__}</sup>
                 </h2>
                 <UserSelected></UserSelected>
                 <SearchBox></SearchBox>
+                <SettingPanel></SettingPanel>
             </div>
         </Data.Provider>
     );

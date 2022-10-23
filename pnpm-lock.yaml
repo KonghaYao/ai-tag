@@ -6,8 +6,7 @@ importers:
     specifiers:
       '@cn-ui/sortable': ^2.1.0
       '@cn-ui/split': ^1.0.0
-      '@cn-ui/use': ^1.0.0
-      '@coffeeandfun/google-profanity-words': ^1.0.4
+      '@cn-ui/use': ^1.7.0
       '@fontsource/material-icons-rounded': ^4.5.4
       '@solidjs/router': ^0.5.0
       '@tailwindcss/line-clamp': ^0.4.2
@@ -32,10 +31,9 @@ importers:
       vite-plugin-solid: ^2.3.9
       xlsx: ^0.18.5
     dependencies:
-      '@cn-ui/sortable': 2.1.0_jo4xcdkpilvy5sdbnzmiq57nfi
-      '@cn-ui/split': 1.1.0_jo4xcdkpilvy5sdbnzmiq57nfi
-      '@cn-ui/use': 1.6.1_solid-js@1.5.7
-      '@coffeeandfun/google-profanity-words': 1.0.4
+      '@cn-ui/sortable': 2.1.0_i42qvq4mljjlaxfcf3qisrig4u
+      '@cn-ui/split': 1.1.0_i42qvq4mljjlaxfcf3qisrig4u
+      '@cn-ui/use': 1.7.0_solid-js@1.5.7
       '@fontsource/material-icons-rounded': 4.5.4
       '@solidjs/router': 0.5.0_solid-js@1.5.7
       copy-to-clipboard: 3.3.2
@@ -385,38 +383,34 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@cn-ui/sortable/2.1.0_jo4xcdkpilvy5sdbnzmiq57nfi:
+  /@cn-ui/sortable/2.1.0_i42qvq4mljjlaxfcf3qisrig4u:
     resolution: {integrity: sha512-jhWYp1sdJgiquHjVVTiqtCRv9ROy1j6S4Gi49/mwZVIr0xkZSOcs0fdLr1Ynzm1pJu1rIY5a0GlyqIWWfOKCGQ==}
     peerDependencies:
       '@cn-ui/use': ^1.5.0
       solid-js: ^1.5.7
     dependencies:
-      '@cn-ui/use': 1.6.1_solid-js@1.5.7
+      '@cn-ui/use': 1.7.0_solid-js@1.5.7
       solid-js: 1.5.7
       sortablejs: 1.15.0
     dev: false
 
-  /@cn-ui/split/1.1.0_jo4xcdkpilvy5sdbnzmiq57nfi:
+  /@cn-ui/split/1.1.0_i42qvq4mljjlaxfcf3qisrig4u:
     resolution: {integrity: sha512-V6G6sKfhGB9Uwobztwjgc2vkOfOlOxxg+U0seY/eW0b0iN/sIeo14pQ2A2EgRplNI6qf09nHv5GgED/ViQIHqQ==}
     peerDependencies:
       '@cn-ui/use': ^1.5.0
       solid-js: ^1.5.7
     dependencies:
-      '@cn-ui/use': 1.6.1_solid-js@1.5.7
+      '@cn-ui/use': 1.7.0_solid-js@1.5.7
       solid-js: 1.5.7
       split.js: 1.6.5
     dev: false
 
-  /@cn-ui/use/1.6.1_solid-js@1.5.7:
-    resolution: {integrity: sha512-jA0YCBneZq8nMMsMHR53w6dSXCW0SCbyYchiM4366JUs08tcvK3fUrxRJizP2LOTkarmhlU7DNkkZFVAZEJoTg==}
+  /@cn-ui/use/1.7.0_solid-js@1.5.7:
+    resolution: {integrity: sha512-5dtAD+8MT7H09Ajh+dFPFHaLgdm2lWanPOFyF6Bm7Evv/OobznOYNkIzs6GTnFUwoQkU37PkqtkivlLRtZadMw==}
     peerDependencies:
       solid-js: ^1.5.7
     dependencies:
       solid-js: 1.5.7
-    dev: false
-
-  /@coffeeandfun/google-profanity-words/1.0.4:
-    resolution: {integrity: sha512-SJRzBxtCOMVqyLgJmESOm8z7jLKAn9uh/37zBwKX7R9ZmHiAr8CLQaMHpOeXJU6rLYfrXpNMVH80Mjmb9WoZEA==}
     dev: false
 
   /@esbuild/android-arm/0.15.10:

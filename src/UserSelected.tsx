@@ -5,7 +5,7 @@ import { TagButton } from './TagButton';
 import { reflect } from '@cn-ui/use';
 
 export const UserSelected = () => {
-    const { deleteMode, enMode, usersCollection, showCount } = useContext(Data);
+    const { deleteMode, enMode, usersCollection, showCount, settingVisible } = useContext(Data);
     return (
         <main class="my-2 flex w-full flex-col rounded-xl border border-solid border-gray-600 p-2">
             <header class="flex py-2  text-sm font-bold">
@@ -19,7 +19,7 @@ export const UserSelected = () => {
                     删除模式
                 </span>
                 <span class="btn" onclick={() => enMode((i) => !i)}>
-                    {enMode() ? '英文模式' : '中文模式'}
+                    {enMode() ? '英文' : '中文'}
                 </span>
                 <span
                     class="btn"
@@ -36,14 +36,9 @@ export const UserSelected = () => {
                 >
                     一键复制
                 </span>
-                <span
-                    class="btn"
-                    classList={{
-                        'bg-gray-700 border-gray-800': showCount(),
-                    }}
-                    onclick={() => showCount((i) => !i)}
-                >
-                    数值
+
+                <span class="btn" onclick={() => settingVisible((i) => !i)}>
+                    设置
                 </span>
             </header>
             <div class="flex flex-wrap">

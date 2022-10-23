@@ -5,6 +5,8 @@ import { TagButton } from './components/TagButton';
 import { reflect } from '@cn-ui/use';
 import { untrack } from 'solid-js/web';
 import { sampleSize as _sampleSize } from 'lodash-es';
+
+/** 重新设计的随机函数 */
 const sampleSize = (list: IData[], size: number) => {
     const one = _sampleSize(list.slice(0, 1000), Math.ceil(size / 4));
     const two = _sampleSize(list.slice(1000, 10000), Math.ceil(size / 4));
@@ -30,11 +32,16 @@ export const SearchBox = () => {
             <nav class="flex w-full items-center">
                 <input
                     class="my-4 mr-4 flex-1 rounded-lg bg-gray-700 px-4 py-1 text-gray-200 shadow-md outline-none"
+                    value={searchText()}
                     placeholder="搜索关键词，中文也可以"
                     oninput={debounce((e) => {
                         searchText(e.target.value);
                     }, 300)}
                 ></input>
+
+                <span class="btn" onclick={() => searchText('')}>
+                    清除
+                </span>
                 <span
                     class="btn"
                     onclick={() => {

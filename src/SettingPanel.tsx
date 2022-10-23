@@ -41,6 +41,7 @@ export const SettingPanel = () => {
                         <nav class="mx-4 my-2 flex justify-between">
                             <label>{item.title}</label>
                             <input
+                                class="w-32 appearance-none rounded-md border border-solid border-gray-600 bg-gray-800 px-6 text-center text-gray-500 outline-none"
                                 value={item.bind()}
                                 type="number"
                                 onChange={(e) => {

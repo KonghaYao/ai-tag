@@ -7,6 +7,8 @@ const createList = () => {
     return json.map((i) => i.swear);
 };
 
+// 向 public/tags 自动填写 r18 列
+// 违禁词在 swearList 内填写
 const swearList = createList();
 
 const a = xlsx.readFile('./public/tags.csv', {

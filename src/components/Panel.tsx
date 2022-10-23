@@ -18,8 +18,8 @@ export const Panel: Component<{ children?: JSXElement; visible: Atom<boolean> }>
                 // console.log(e);
             }}
         >
-            {/*  本来不应该有背景色的，但是部署出现了问题 */}
-            <main class="flex h-full w-full max-w-sm flex-col overflow-auto rounded-2xl border border-solid border-slate-700 bg-gray-700/60 shadow-xl backdrop-blur transition-all">
+            {/*    */}
+            <main class="flex h-full w-full max-w-sm flex-col overflow-auto rounded-2xl border border-solid border-slate-700 bg-gray-700/60 shadow-xl transition-all">
                 {props.children}
             </main>
         </nav>

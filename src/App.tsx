@@ -1,65 +1,48 @@
 /** @ts-ignore */
-import * as XLSX from 'https://unpkg.com/xlsx/xlsx.mjs';
-import { createContext, createResource } from 'solid-js';
-import { Atom, atom, reflect } from '@cn-ui/use';
-import Fuse from 'fuse.js';
+import { createContext, createEffect, untrack } from 'solid-js';
+import { Atom, atom } from '@cn-ui/use';
 import { SearchBox } from './SearchBox';
 import { UserSelected } from './UserSelected';
+import { useSearchParams } from '@solidjs/router';
+import { useDatabase } from './useDatabase';
+
+export interface IData {
+    en: string;
+    cn: string;
+    // 暂时没有打上
+    r18: 0 | 1;
+    count: number;
+}
+
 export const Data = createContext<{
     deleteMode: Atom<boolean>;
     enMode: Atom<boolean>;
+    showCount: Atom<boolean>;
     searchText: Atom<string>;
-    usersCollection: Atom<{ en: string; cn: string }[]>;
-    result: Atom<{ en: string; cn: string }[]>;
-    lists: Atom<{ en: string; cn: string }[]>;
+    usersCollection: Atom<IData[]>;
+    result: Atom<IData[]>;
+    lists: Atom<IData[]>;
 }>();
 
-export const App = () => {
-    const [data] = createResource<ArrayBuffer>(() =>
-        fetch('/tags.csv').then((res) => res.arrayBuffer())
+export const getTagInURL = (lists: IData[]) => {
+    const [{ tags }] = useSearchParams();
+    if (!tags) return [];
+    return (
+        tags.split(',').map((i) => {
+            return (
+                lists.find((item) => item.en === i) ??
+                ({ en: i, cn: i, r18: 0, count: Infinity } as IData)
+            );
+        }) ?? []
     );
-    const lists = reflect<{ cn: string; en: string }[]>(() => {
-        if (data()) {
-            const workbook = XLSX.read(data());
-            const json = XLSX.utils.sheet_to_json(workbook.Sheets.Sheet1);
-            return json;
-        }
-    });
-    const query = reflect(() => {
-        if (lists()) {
-            return new Fuse(lists(), {
-                // isCaseSensitive: false,
-                // includeScore: false,
-                // shouldSort: true,
-                // includeMatches: false,
-                // findAllMatches: false,
-                // minMatchCharLength: 1,
-                // location: 0,
-                threshold: 1,
-                distance: 100,
-                useExtendedSearch: true,
-                // ignoreLocation: false,
-                // ignoreFieldNorm: false,
-                // fieldNormWeight: 1,
-                keys: ['cn', 'en'],
-            });
-        }
-    });
-    const searchText = atom<string>('');
+};
 
-    const result = reflect(() => {
-        const text = searchText();
-        if (text) {
-            const result = query().search(text);
-            // console.log(result);
-            return result.map((i) => i.item);
-        } else {
-            return lists()?.slice(0, 100) || [];
-        }
-    });
-    const usersCollection = atom<{ cn: string; en: string }[]>([]);
+export const App = () => {
+    const { result, lists, searchText, usersCollection } = useDatabase();
+
     const enMode = atom<boolean>(false);
     const deleteMode = atom<boolean>(false);
+    const showCount = atom<boolean>(true);
     return (
         <Data.Provider
             value={{
@@ -68,6 +51,7 @@ export const App = () => {
                 usersCollection,
                 result,
                 lists,
+                showCount,
                 searchText,
             }}
         >
@@ -81,6 +65,7 @@ export const App = () => {
                     >
                         KongHaYao
                     </a>
+                    <sup class="text-xs">{__version__}</sup>
                 </h2>
                 <UserSelected></UserSelected>
                 <SearchBox></SearchBox>

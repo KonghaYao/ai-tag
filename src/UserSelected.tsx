@@ -1,30 +1,28 @@
 import { For, useContext } from 'solid-js';
 import copy from 'copy-to-clipboard';
 import { Data } from './App';
+import { TagButton } from './TagButton';
+import { reflect } from '@cn-ui/use';
 
 export const UserSelected = () => {
-    const { deleteMode, enMode, usersCollection } = useContext(Data);
+    const { deleteMode, enMode, usersCollection, showCount } = useContext(Data);
     return (
         <main class="my-2 flex w-full flex-col rounded-xl border border-solid border-gray-600 p-2">
             <header class="flex py-2  text-sm font-bold">
                 <span
-                    class="mx-1 cursor-pointer select-none rounded border  border-solid px-1  font-thin"
+                    class="btn"
                     classList={{
                         'bg-gray-700 border-gray-800': deleteMode(),
-                        'border-gray-800': !deleteMode(),
                     }}
                     onclick={() => deleteMode((i) => !i)}
                 >
                     删除模式
                 </span>
-                <span
-                    class="mx-1 cursor-pointer select-none rounded border  border-solid border-gray-700 px-1 font-thin"
-                    onclick={() => enMode((i) => !i)}
-                >
+                <span class="btn" onclick={() => enMode((i) => !i)}>
                     {enMode() ? '英文模式' : '中文模式'}
                 </span>
                 <span
-                    class="mx-1 cursor-pointer select-none rounded  border border-solid  border-gray-700 px-1 font-thin transition-colors active:bg-gray-700"
+                    class="btn"
                     onclick={() => {
                         const en = enMode();
                         copy(
@@ -38,20 +36,29 @@ export const UserSelected = () => {
                 >
                     一键复制
                 </span>
+                <span
+                    class="btn"
+                    classList={{
+                        'bg-gray-700 border-gray-800': showCount(),
+                    }}
+                    onclick={() => showCount((i) => !i)}
+                >
+                    数值
+                </span>
             </header>
             <div class="flex flex-wrap">
                 <For each={usersCollection()}>
                     {(item) => {
                         return (
-                            <div
-                                class="m-2 cursor-pointer select-none rounded-lg bg-gray-800 p-1"
-                                onclick={() => {
+                            <TagButton
+                                data={item}
+                                en={enMode}
+                                cn={reflect(() => !enMode())}
+                                onClick={(item) => {
                                     deleteMode() &&
                                         usersCollection((i) => i.filter((it) => it !== item));
                                 }}
-                            >
-                                {enMode() ? item.en : item.cn}
-                            </div>
+                            ></TagButton>
                         );
                     }}
                 </For>

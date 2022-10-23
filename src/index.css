@@ -1,4 +1,3 @@
-
 body {
     margin: 0;
     overflow: hidden;
@@ -17,6 +16,10 @@ body {
         linear-gradient(rgb(130 130 130 / 37%) 1px, transparent 1px),
         linear-gradient(90deg, rgb(130 130 130 / 38%) 1px, transparent 1px) !important;
 }
+.btn {
+    @apply mx-1 cursor-pointer select-none rounded border  border-solid border-gray-700 px-1 font-thin transition-all active:bg-gray-700;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

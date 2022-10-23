@@ -1,6 +1,6 @@
 {
-    "name": "@cn-ui/core",
-    "version": "0.0.0",
+    "name": "magic-tag",
+    "version": "1.0.0",
     "main": "./dist/es/index.js",
     "description": "",
     "scripts": {

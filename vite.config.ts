@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
+import p from './package.json';
 // import visualizer from 'rollup-plugin-visualizer';
 
 export default defineConfig(({ mode }) => {
@@ -13,8 +14,10 @@ export default defineConfig(({ mode }) => {
             port: 3000,
         },
         resolve: {
-            alias: {
-            },
+            alias: {},
+        },
+        define: {
+            __version__: JSON.stringify(p.version),
         },
         optimizeDeps: {
             include: [

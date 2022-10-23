@@ -2,18 +2,33 @@ import { For, useContext } from 'solid-js';
 import debounce from 'lodash-es/debounce';
 import sampleSize from 'lodash-es/sampleSize';
 import { Data } from './App';
+import { TagButton } from './TagButton';
 
 export const SearchBox = () => {
     const { usersCollection, result, lists, searchText } = useContext(Data);
     return (
         <>
-            <input
-                class="my-4 rounded-lg bg-gray-700 px-4 py-1 text-gray-200 shadow-md outline-none"
-                placeholder="搜索关键词，中文也可以"
-                oninput={debounce((e) => {
-                    searchText(e.target.value);
-                }, 300)}
-            ></input>
+            <nav class="flex w-full items-center">
+                <input
+                    class="my-4 mr-4 flex-1 rounded-lg bg-gray-700 px-4 py-1 text-gray-200 shadow-md outline-none"
+                    placeholder="搜索关键词，中文也可以"
+                    oninput={debounce((e) => {
+                        searchText(e.target.value);
+                    }, 300)}
+                ></input>
+                <span
+                    class="btn"
+                    onclick={() => {
+                        const name = searchText();
+                        usersCollection((i) => [
+                            ...i,
+                            { cn: name, en: name, count: Infinity, r18: 0 },
+                        ]);
+                    }}
+                >
+                    创建
+                </span>
+            </nav>
             <section class="flex h-full w-full flex-1 flex-col overflow-hidden">
                 <nav class="flex text-gray-600">
                     <span>
@@ -30,24 +45,18 @@ export const SearchBox = () => {
                         随机 100
                     </span>
                 </nav>
-                <section class="my-2 flex h-full flex-wrap items-start overflow-auto">
+                <section class="my-2 flex h-full flex-wrap items-start  overflow-y-auto overflow-x-hidden">
                     <For each={result().slice(0, 1000) || []}>
-                        {(item) => {
-                            return (
-                                <nav
-                                    class="text-col m-2 flex cursor-pointer select-none flex-col rounded-md bg-gray-600 px-2 py-1 text-center"
-                                    onclick={() => {
-                                        usersCollection((i) => [...i, item]);
-                                    }}
-                                >
-                                    <div>{item.cn}</div>
-                                    <div>{item.en}</div>
-                                </nav>
-                            );
-                        }}
+                        {(item) => (
+                            <TagButton
+                                data={item}
+                                onClick={(item) => usersCollection((i) => [...i, item])}
+                            ></TagButton>
+                        )}
                     </For>
                 </section>
             </section>
+            {/* <noscript class="bg-red-900 bg-pink-900 bg-blue-900"></noscript> */}
         </>
     );
 };

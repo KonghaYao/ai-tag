@@ -3,9 +3,19 @@ import debounce from 'lodash-es/debounce';
 import sampleSize from 'lodash-es/sampleSize';
 import { Data } from './App';
 import { TagButton } from './TagButton';
+import { reflect } from '@cn-ui/use';
 
 export const SearchBox = () => {
-    const { usersCollection, result, lists, searchText } = useContext(Data);
+    const { usersCollection, result, lists, searchText, r18Mode } = useContext(Data);
+
+    const showingResult = reflect(() => {
+        if (r18Mode()) return result().slice(0, 1000);
+        return (
+            result()
+                .filter((i) => !i.r18)
+                .slice(0, 1000) || []
+        );
+    });
     return (
         <>
             <nav class="flex w-full items-center">
@@ -46,7 +56,7 @@ export const SearchBox = () => {
                     </span>
                 </nav>
                 <section class="my-2 flex h-full flex-wrap items-start  overflow-y-auto overflow-x-hidden">
-                    <For each={result().slice(0, 1000) || []}>
+                    <For each={showingResult()}>
                         {(item) => (
                             <TagButton
                                 data={item}

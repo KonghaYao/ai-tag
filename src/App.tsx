@@ -17,6 +17,7 @@ export interface IData {
 export const Data = createContext<{
     deleteMode: Atom<boolean>;
     enMode: Atom<boolean>;
+    r18Mode: Atom<boolean>;
     showCount: Atom<boolean>;
     searchText: Atom<string>;
     usersCollection: Atom<IData[]>;
@@ -45,6 +46,7 @@ export const App = () => {
     const { result, lists, searchText, usersCollection } = useDatabase();
 
     const enMode = atom<boolean>(false);
+    const r18Mode = atom<boolean>(false);
     const deleteMode = atom<boolean>(false);
     const showCount = atom<boolean>(true);
     return (
@@ -56,6 +58,7 @@ export const App = () => {
                 result,
                 lists,
                 showCount,
+                r18Mode,
                 searchText,
             }}
         >

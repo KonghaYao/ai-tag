@@ -53,7 +53,7 @@ sitting,坐着,544503,0
 very long hair,很长的头发,533988,0
 underwear,内衣,531948,0
 closed mouth,闭口,520560,0
-nipples,乳头,512054,0
+nipples,乳头,512054,1
 school uniform,校服,508447,0
 green eyes,绿眼睛,506172,0
 blue hair,蓝色的头发,487376,0
@@ -93,7 +93,7 @@ heart,心,311429,0
 pantyhose,连裤袜,306703,0
 bikini,比基尼,304061,0
 sidelocks,侧锁,295954,0
-nude,裸体,293758,0
+nude,裸体,293758,1
 thighs,大腿,293653,0
 red hair,红头发,290725,0
 cowboy shot,牛仔射击,288183,0
@@ -231,7 +231,7 @@ black dress,黑色连衣裙,112102,0
 high heels,高跟鞋,111663,0
 arm up,举起手臂,111522,0
 twin braids,双辫子,111295,0
-vaginal,阴道,111263,0
+vaginal,阴道,111263,1
 mosaic censoring,马赛克审查,111160,0
 red bow,红色蝴蝶结,110998,0
 flat chest,平胸,109719,0
@@ -239,7 +239,7 @@ arms up,举起手臂,109138,0
 side ponytail,侧马尾辫,108736,0
 shiny hair,闪亮的头发,108666,0
 bracelet,手链,108516,0
-covered nipples,覆盖的乳头,108420,0
+covered nipples,覆盖的乳头,108420,1
 collar,衣领,108155,0
 feet,脚,105536,0
 dated,日期,105505,0
@@ -312,7 +312,7 @@ black panties,黑色内裤,81380,0
 black pantyhose,黑色连裤袜,80852,0
 fur trim,皮草饰边,80600,0
 bare arms,光着膀子,80571,0
-pubic hair,阴毛,80147,0
+pubic hair,阴毛,80147,1
 hands up,举起手来,80031,0
 one-piece swimsuit,连体泳衣,79851,0
 gradient background,渐变背景,79339,0
@@ -362,7 +362,7 @@ hoodie,连帽衫,69086,0
 sideboob,侧臂,68975,0
 pussy juice,猫汁,68315,1
 profile,个人资料,68308,0
-completely nude,完全裸体,68276,0
+completely nude,完全裸体,68276,1
 covered navel,覆盖肚脐,67835,0
 black bow,黑色蝴蝶结,67833,0
 makeup,化妆,67812,0
@@ -470,7 +470,7 @@ bandages,绷带,52668,0
 looking away,看着别处,52630,0
 upper teeth,上牙,52615,0
 banned artist,被禁止的艺术家,52523,0
-female pubic hair,女性阴毛,52496,0
+female pubic hair,女性阴毛,52496,1
 blush stickers,腮红贴,52383,0
 drill hair,钻头,52114,0
 shirt lift,衬衫升降机,52073,0
@@ -537,7 +537,7 @@ pink background,粉红色背景,45380,0
 school swimsuit,学校泳装,45255,0
 sunglasses,太阳镜,45181,0
 testicles,睾丸,44794,0
-bdsm,性虐待,44705,0
+bdsm,性虐待,44705,1
 cum on body,暨 上 body,44658,1
 blazer,西装外套,44278,0
 mob cap,暴民帽,44254,0
@@ -786,7 +786,7 @@ front-tie top,前领带顶部,28440,0
 bara,巴拉,28426,0
 microphone,麦克风,28340,0
 bandaid,创可贴,28293,0
-male pubic hair,男性阴毛,28289,0
+male pubic hair,男性阴毛,28289,1
 hakama skirt,袴裙,28267,0
 bow panties,蝴蝶结内裤,28248,0
 hand fan,手扇,28221,0
@@ -844,7 +844,7 @@ micro bikini,微比基尼,25895,0
 light particles,光粒子,25860,0
 red nails,红指甲,25847,0
 mary janes,玛丽珍妮丝,25749,0
-multiple penises,多个阴茎,25616,0
+multiple penises,多个阴茎,25616,1
 pelvic curtain,盆帘,25579,0
 knees up,跪下,25541,0
 red background,红色背景,25531,0
@@ -871,7 +871,7 @@ red neckerchief,红领巾,24801,0
 finger to mouth,手指到嘴巴,24750,0
 licking,舔,24709,0
 close-up,特写镜头,24595,0
-puffy nipples,浮肿的乳头,24570,0
+puffy nipples,浮肿的乳头,24570,1
 short hair with long locks,长发短发,24495,0
 striped thighhighs,条纹长筒袜,24494,0
 extra ears,额外的耳朵,24457,0
@@ -931,7 +931,7 @@ ribbed sweater,罗纹毛衣,22335,0
 cross-laced footwear,交叉系带鞋,22307,0
 after sex,性爱后,22294,1
 broom,扫帚,22293,0
-handjob,打手枪,22274,0
+handjob,打手枪,22274,1
 faceless,不露面,22248,0
 sleeves rolled up,袖子卷起,22202,0
 o-ring,O形圈,22199,0
@@ -1048,7 +1048,7 @@ kaname madoka,要小圆,19709,0
 dragon horns,龙角,19707,0
 thong,丁字裤,19660,0
 cake,蛋糕,19557,0
-clothed female nude male,穿衣服的女性裸体男性,19451,0
+clothed female nude male,穿衣服的女性裸体男性,19451,1
 arm behind head,手臂在头后,19441,0
 oni horns,鬼角,19421,0
 world witches series,世界女巫系列,19413,0
@@ -1708,7 +1708,7 @@ smug,自鸣得意,10185,0
 earmuffs,耳罩,10167,0
 magic,魔术,10148,0
 fur-trimmed jacket,毛皮边饰夹克,10143,0
-inverted nipples,乳头内陷,10139,0
+inverted nipples,乳头内陷,10139,1
 kagamine len,镜音连 10131,10131,0
 pinafore dress,围裙连衣裙,10124,0
 pulled by self,自己拉,10118,0
@@ -1746,7 +1746,7 @@ tamamo (fate),玉藻（命运）,9844,0
 cleft of venus,金星裂,9840,0
 hakama short skirt,袴短裙,9820,0
 neptune (series),海王星（系列）,9819,0
-sexually suggestive,性暗示,9814,0
+sexually suggestive,性暗示,9814,1
 eyeliner,眼线笔,9802,0
 danganronpa 2: goodbye despair,弹丸论破2：再见绝望,9801,0
 style parody,风格模仿,9801,0
@@ -2064,7 +2064,7 @@ holding knife,持刀,7705,0
 scared,害怕,7703,0
 manly,男子气概,7697,0
 torpedo,鱼雷,7697,0
-after vaginal,阴道后,7695,0
+after vaginal,阴道后,7695,1
 looking afar,远远望去,7695,0
 dancing,跳舞,7689,0
 presenting,介绍,7679,0
@@ -2255,13 +2255,13 @@ black cat,黑猫,6699,0
 yukkuri shiteitte ne,yukkuri shiteite ne,6696,0
 face-to-face,面对面,6693,0
 annoyed,生气,6687,0
-pubic tattoo,阴部纹身,6683,0
+pubic tattoo,阴部纹身,6683,1
 beige background,米色背景,6678,0
 fox mask,狐狸面具,6678,0
 takamachi nanoha,高町奈叶,6678,0
 stitches,缝针,6675,0
 holding hair,握头发,6671,0
-vaginal object insertion,阴道物体插入,6669,0
+vaginal object insertion,阴道物体插入,6669,1
 television,电视,6657,0
 huge weapon,巨大的武器,6655,0
 usami renko,宇佐美恋子,6652,0
@@ -2626,7 +2626,7 @@ shell,外壳,5283,0
 dirty,脏的,5279,0
 kitakami (kancolle),北上 (kancolle),5277,0
 bear ears,熊耳朵,5269,0
-clothed male nude female,穿衣服的男性裸体女性,5269,0
+clothed male nude female,穿衣服的男性裸体女性,5269,1
 latex,乳胶,5266,0
 cyborg,半机械人,5265,0
 broken,坏了,5264,0
@@ -2847,7 +2847,7 @@ pink gloves,粉色手套,4704,0
 single mechanical arm,单机械臂,4698,0
 between fingers,指间,4695,0
 flat color,纯色,4693,0
-footjob,脚交,4693,0
+footjob,脚交,4693,1
 aqua necktie,水色领带,4689,0
 tape,胶带,4689,0
 red collar,红领,4686,0
@@ -3100,7 +3100,7 @@ colored tips,彩色提示,4095,0
 single wing,单翼,4095,0
 wo-class aircraft carrier,wo级航空母舰,4094,0
 heart ahoge,心啊,4092,0
-double handjob,双打手枪,4091,0
+double handjob,双打手枪,4091,1
 spring onion,葱,4088,0
 pixiv sample,pixiv 样本,4085,0
 waves,波浪,4082,0
@@ -3596,7 +3596,7 @@ puddle,水坑,3189,0
 bremerton (azur lane),布雷默顿（碧蓝航线）,3187,0
 aiming,瞄准,3181,0
 backwards hat,后帽,3180,0
-dark nipples,黑暗的乳头,3180,0
+dark nipples,黑暗的乳头,3180,1
 holding own arm,抱着自己的手臂,3179,0
 thorns,荆棘,3179,0
 button gap,纽扣间隙,3178,0
@@ -3615,7 +3615,7 @@ arm hug,手臂拥抱,3166,0
 frilled hat,褶边帽子,3164,0
 pince-nez,夹鼻眼镜,3164,0
 leaning,倾斜,3162,0
-no nipples,没有乳头,3161,0
+no nipples,没有乳头,3161,1
 demon slayer uniform,恶魔杀手制服,3157,0
 novelty censor,新奇审查员,3157,0
 green legwear,绿色裤袜,3156,0
@@ -3647,7 +3647,7 @@ flaccid,松弛,3123,0
 sakura miko,樱花巫女,3122,0
 skirt suit,裙子套装,3117,0
 magazine scan,杂志扫描,3116,0
-nude cover,裸体封面,3116,0
+nude cover,裸体封面,3116,1
 purple hairband,紫色发带,3116,0
 selene (pokemon),塞勒涅（口袋妖怪）,3116,0
 blue socks,蓝色袜子,3113,0
@@ -3721,7 +3721,7 @@ kiryu coco,桐生可可,3021,0
 pokemon frlg,宠物小精灵 frlg,3019,0
 fire emblem: mystery of the emblem,火徽：徽记之谜,3017,0
 furude rika,furude rika,3016,0
-imminent vaginal,迫在眉睫的阴道,3016,0
+imminent vaginal,迫在眉睫的阴道,3016,1
 laevatein (touhou),laevatein (东方),3016,0
 steel ball run,钢球跑,3016,0
 aqua bow,水弓,3015,0
@@ -3911,7 +3911,7 @@ baozi,包子,2786,0
 milestone celebration,里程碑庆典,2786,0
 bad feet,坏脚,2785,0
 open dress,开襟连衣裙,2785,0
-bandaids on nipples,乳头上的创可贴,2784,0
+bandaids on nipples,乳头上的创可贴,2784,1
 sennen sensou aigis,sennen sensou aigis,2784,0
 sonic (series),声波（系列）,2783,0
 maid bikini,女仆比基尼,2781,0
@@ -4015,7 +4015,7 @@ flashing,闪烁,2685,0
 holding camera,拿着相机,2684,0
 heart-shaped eyewear,心形眼镜,2683,0
 multiple hair bows,多发弓,2683,0
-colored pubic hair,有色阴毛,2682,0
+colored pubic hair,有色阴毛,2682,1
 flower-shaped pupils,花形瞳孔,2682,0
 tales of vesperia,晚祷的故事,2682,0
 gothic,哥特式,2674,0
@@ -4192,7 +4192,7 @@ magazine cover,杂志封面,2496,0
 samurai spirits,武士精神,2496,0
 shirai kuroko,白井黑子,2496,0
 skates,溜冰鞋,2496,0
-pubic hair peek,阴毛窥视,2494,0
+pubic hair peek,阴毛窥视,2494,1
 akigumo (kancolle),秋云 (kancolle),2493,0
 humanoid robot,人形机器人,2493,0
 multi-tied hair,多扎头发,2493,0
@@ -4256,7 +4256,7 @@ leaf print,叶印,2454,0
 midair,半空,2454,0
 reizei mako,灵精真子,2453,0
 uneven gloves,不均匀的手套,2453,0
-deepthroat,阴道,2452,0
+deepthroat,阴道,2452,1
 watson cross,沃森十字,2452,0
 yugake,游乐,2452,0
 thumb ring,拇指环,2451,0
@@ -4494,7 +4494,7 @@ makise kurisu,牧濑红栖,2266,0
 crescent earrings,新月耳环,2265,0
 seamed legwear,接缝裤袜,2263,0
 kagerou (kancolle),影楼 (kancolle),2262,0
-huge nipples,巨大的乳头,2261,0
+huge nipples,巨大的乳头,2261,1
 aiming at viewer,瞄准观众,2259,0
 leg lock,腿锁,2259,0
 flaming eye,火焰之眼,2257,0
@@ -4597,7 +4597,7 @@ spade (shape),铁锹（形状）,2199,0
 sleepwear,睡衣,2198,0
 diarmuid ua duibhne (lancer) (fate),diarmuid ua duibhne (lancer) (命运),2197,0
 untied panties,解开内裤,2196,0
-clitoral stimulation,阴蒂刺激,2195,0
+clitoral stimulation,阴蒂刺激,2195,1
 rebecca (keinelove),丽贝卡 (keinelove),2195,0
 utau,乌陶,2194,0
 mismatched bikini,不匹配的比基尼,2193,0
@@ -4615,7 +4615,7 @@ single sidelock,单侧锁,2186,0
 star in eye,眼睛里的星星,2186,0
 coffee cup,咖啡杯,2185,0
 mitsudomoe (shape),mitsudomoe (形状),2184,0
-two-footed footjob,两足脚交,2184,0
+two-footed footjob,两足脚交,2184,1
 hishikawa rikka,菱川梨花,2183,0
 looking at penis,看着阴茎,2183,1
 blade,刀片,2182,0
@@ -5077,7 +5077,7 @@ green cape,绿色斗篷,1880,0
 tankini,坦克尼,1880,0
 gundam build fighters try,高达创战者尝试,1879,0
 meitantei conan,名侦探柯南 1879,1879,0
-clitoral hood,阴蒂罩,1878,0
+clitoral hood,阴蒂罩,1878,1
 when you see it,当你看到它时,1878,0
 ear tag,耳标,1877,0
 liquid,液体,1877,0
@@ -5215,7 +5215,7 @@ nail,钉子,1811,0
 thigh ribbon,大腿丝带,1811,0
 holding sign,举牌,1810,0
 glowstick,荧光棒,1809,0
-covering nipples,覆盖乳头,1808,0
+covering nipples,覆盖乳头,1808,1
 kurumi erika,kurumi erika,1808,0
 single hair intake,单发摄入,1807,0
 denim skirt,牛仔裙,1805,0
@@ -5471,7 +5471,7 @@ cheek poking,脸颊戳,1670,0
 counter,柜台,1670,0
 red sky,红色天空,1670,0
 kurosawa ruby,黑泽红宝石,1669,0
-nude filter,裸体滤镜,1668,0
+nude filter,裸体滤镜,1668,1
 viktor nikiforov,维克多·尼基福罗夫,1668,0
 clover hair ornament,三叶草发饰,1667,0
 yuugumo (kancolle),yuugumo (kancolle),1667,0
@@ -5481,7 +5481,7 @@ yu mei-ren (fate),于美人（命运）,1666,0
 blue serafuku,蓝色 serafuku,1665,0
 corpse,尸体,1665,0
 final fantasy v,最终幻想 v,1665,0
-stray pubic hair,杂散的阴毛,1665,0
+stray pubic hair,杂散的阴毛,1665,1
 toast,吐司,1665,0
 kanikama,卡尼卡玛,1663,0
 orange kimono,橙色和服,1663,0
@@ -5612,7 +5612,7 @@ prostitution,卖淫,1600,0
 to love-ru darkness,爱茹黑暗,1600,0
 clover print,三叶草印花,1599,0
 hairdressing,美发,1599,0
-censored nipples,审查的乳头,1598,0
+censored nipples,审查的乳头,1598,1
 choukai (kancolle),choukai (kancolle),1598,0
 hex maniac (pokemon),十六进制疯子（口袋妖怪）,1597,0
 mysterious heroine xx (fate),神秘女主xx（命运）,1597,0
@@ -5721,7 +5721,7 @@ lysithea von ordelia,丽西娅·冯·奥德利亚,1552,0
 cockpit,驾驶舱,1551,0
 bardiche,巴迪切,1550,0
 ceiling light,吸顶灯,1548,0
-gloved handjob,戴手套的打手枪,1548,0
+gloved handjob,戴手套的打手枪,1548,1
 hakos baelz,哈科斯·贝尔茨,1548,0
 hitachi magic wand,日立魔杖,1548,0
 loose clothes,宽松的衣服,1548,0
@@ -6341,7 +6341,7 @@ other focus,其他焦点,1315,0
 ramlethal valentine,ramlethal 情人节,1315,0
 tera online,太极在线,1315,0
 air conditioner,空调,1314,0
-perineum,会阴部,1314,0
+perineum,会阴部,1314,1
 sakura taisen,樱花大战,1314,0
 skyla (pokemon),斯凯拉（口袋妖怪）,1314,0
 wing hair ornament,翼发饰,1314,0
@@ -6420,7 +6420,7 @@ shirase sakuya,白濑咲也,1289,0
 white-framed eyewear,白框眼镜,1288,0
 2010,2010,1287,0
 chocolate on body,巧克力在身体上,1287,0
-clothed female nude female,穿衣女裸女,1287,0
+clothed female nude female,穿衣女裸女,1287,1
 fish hair ornament,鱼头饰,1287,0
 fushiguro megumi,伏黑惠,1287,0
 halberd,戟,1287,0
@@ -6670,7 +6670,7 @@ holding clipboard,拿着剪贴板,1217,0
 imu sanjo,imu 三条,1217,0
 2011,2011,1216,0
 di gi charat,数字特征,1216,0
-excessive pubic hair,阴毛过多,1216,0
+excessive pubic hair,阴毛过多,1216,1
 pink sailor collar,粉色水手领,1216,0
 redesign,重新设计,1216,0
 arcana heart,奥术之心,1215,0
@@ -6731,7 +6731,7 @@ murakumo kai ni (kancolle),murakumo kai ni (kancolle),1199,0
 oguri cap (umamusume),oguri 帽子 (umamusume),1199,0
 takamaki anne,高卷安妮,1199,0
 byleth (fire emblem) (male),byleth（火徽）（男）,1198,0
-blonde pubic hair,金色阴毛,1197,0
+blonde pubic hair,金色阴毛,1197,1
 eyewear on headwear,头饰上的眼镜,1197,0
 hand on breast,手放在乳房上,1197,0
 masturbation through clothes,通过衣服手淫,1197,0
@@ -7172,7 +7172,7 @@ misaki kurehito,美咲红人,1080,0
 nearly naked apron,几乎赤裸的围裙,1080,0
 pote (ptkan),波特 (ptkan),1080,0
 sheya,射呀,1080,0
-black pubic hair,黑色阴毛,1079,0
+black pubic hair,黑色阴毛,1079,1
 cocktail dress,鸡尾酒礼服,1079,0
 diagonal-striped necktie,斜条纹领带,1079,0
 hand on own shoulder,手搭在自己的肩膀上,1079,0
@@ -7448,7 +7448,7 @@ ryuuko no ken,ryuuko no ken,1018,0
 tima,蒂玛,1018,0
 bubukka,布布卡,1017,0
 hand on shoulder,手放在肩上,1017,0
-mismatched pubic hair,不匹配的阴毛,1017,0
+mismatched pubic hair,不匹配的阴毛,1017,1
 single fingerless glove,单指手套,1017,0
 swd3e2,swd3e2,1017,0
 tempura,天妇罗,1017,0
@@ -7854,7 +7854,7 @@ weighing scale,体重秤,941,0
 ashido mina,芦户美奈,940,0
 drum set,鼓组,940,0
 eu03,欧盟03,940,0
-phallic symbol,阴茎符号,940,0
+phallic symbol,阴茎符号,940,1
 uchuu senkan yamato,宇中战舰大和号,940,0
 yukie (kusaka shi),yukie (kusaka shi),940,0
 alternate language,替代语言,939,0
@@ -8318,7 +8318,7 @@ shirayuki hime,白雪姬,857,0
 shorts under dress,裙子下的短裤,857,0
 araragi karen,阿拉拉吉卡伦,856,0
 green hakama,绿色袴,856,0
-penises touching,阴茎接触,856,0
+penises touching,阴茎接触,856,1
 pornography,色情,856,1
 pursed lips,噘起嘴唇,856,0
 raimon soccer uniform,雷蒙足球服,856,0
@@ -8662,7 +8662,7 @@ purple eyeshadow,紫色眼影,802,0
 santa gloves,圣诞老人手套,802,0
 seaweed,海藻,802,0
 sei (kaien kien),sei (kaien kien),802,0
-sparse pubic hair,稀疏的阴毛,802,0
+sparse pubic hair,稀疏的阴毛,802,1
 brown collar,棕色领,801,0
 doujima nanako,堂岛菜菜子,801,0
 fur boots,皮草靴,801,0
@@ -8847,7 +8847,7 @@ coke-bottle glasses,可乐瓶眼镜,774,0
 grey theme,灰色主题,774,0
 marie rose,玛丽玫瑰,774,0
 miyamoto musashi (swimsuit berserker) (second ascension) (fate),宫本武藏（泳装狂战士）（第二次升天）（命运）,774,0
-nursing handjob,护理打手枪,774,0
+nursing handjob,护理打手枪,774,1
 okumura haru,大村春,774,0
 purple belt,紫带,774,0
 sakura chiyo,樱花千代,774,0
@@ -9665,7 +9665,7 @@ oomori yuuko,大森优子,679,0
 post-apocalypse,后启示录,679,0
 purple gemstone,紫色宝石,679,0
 speaking tube headset,对讲管耳机,679,0
-two-handed handjob,双手打手枪,679,0
+two-handed handjob,双手打手枪,679,1
 wata do chinkuru,wata do chinkuru,679,0
 2007,2007,678,0
 774 (nanashi),774（七无）,678,0
@@ -9771,7 +9771,7 @@ humboldt penguin (kemono friends),洪堡企鹅 (kemono 朋友),668,0
 ini (inunabe00),ini (inunabe00),668,0
 rakugaki-biyori,乐垣美食,668,0
 aqua bra,水色文胸,667,0
-colored nipples,彩色乳头,667,0
+colored nipples,彩色乳头,667,1
 galo thymos,加洛胸腺,667,0
 kiritto,基里托,667,0
 pink cape,粉色斗篷,667,0
@@ -10944,7 +10944,7 @@ namaniku atk,namaniku atk,567,0
 necro (nekurodayo),死灵 (nekurodayo),567,0
 nihonga,日本,567,0
 phoenix,凤凰567,567,0
-pubic stubble,阴茬,567,0
+pubic stubble,阴茬,567,1
 queen's gate,女王之门,567,0
 shogi,将棋,567,0
 starlight academy uniform,星光学院制服,567,0
@@ -11151,7 +11151,7 @@ loaded interior,装载内部,550,0
 mizutani eri,水谷绘里,550,0
 paw print pattern,爪印图案,550,0
 plaid ribbon,格子丝带,550,0
-small nipples,小乳头,550,0
+small nipples,小乳头,550,1
 toyokawa fuka,丰川深香,550,0
 trafalgar law,特拉法加法,550,0
 african wild dog (kemono friends),非洲野狗（kemono 朋友）,549,0
@@ -11655,7 +11655,7 @@ octopath traveler,八方旅人,516,0
 ogasawara sachiko,小笠原幸子,516,0
 panties over pantyhose,连裤袜上的内裤,516,0
 roto,旋转,516,0
-sexual coaching,性辅导,516,0
+sexual coaching,性辅导,516,1
 tro,tro,516,0
 azuma aya,吾妻绫515,515,0
 butz klauser,巴茨克劳泽,515,0
@@ -12634,7 +12634,7 @@ cork,软木,458,0
 da capo ii,达卡波二世,458,0
 elevator,电梯,458,0
 fumitsuki (minaduki 6),文月 (minaduki 6),458,0
-glansjob,龟头作业,458,0
+glansjob,龟头作业,458,1
 green tank top,绿色背心,458,0
 heart (organ),心脏（器官）,458,0
 hestia (danmachi) (cosplay),hestia (danmachi) (cosplay),458,0
@@ -12708,7 +12708,7 @@ coin purse,零钱包,454,0
 depressed,郁闷,454,0
 final fantasy x-2,最终幻想 x-2,454,0
 gentoo penguin (kemono friends),gentoo 企鹅 (kemono 朋友),454,0
-handjob gesture,打手枪手势,454,0
+handjob gesture,打手枪手势,454,1
 headphones removed,耳机被移除,454,0
 implied pantyshot,暗示 pantyshot,454,0
 maboroshi mochi,麻糬,454,0
@@ -13497,7 +13497,7 @@ yetworldview kaze,然而世界观风,415,0
 aburaage,阿布拉奇,414,0
 ayasugi tsubaki,绫杉椿,414,0
 beifeng han,北峰韩,414,0
-blue pubic hair,蓝色阴毛,414,0
+blue pubic hair,蓝色阴毛,414,1
 bonkara (sokuseki maou),bonkara (sokuseki maou),414,0
 clamp (circle),夹子（圆形）,414,0
 darjeeling (reley),大吉岭 (reley),414,0
@@ -13696,7 +13696,7 @@ tiffy (nottytiffy),tiffy (nottytiffy),406,0
 tsurusaki takahiro,鹤崎隆广,406,0
 warfarin (arknights),华法林 (arknights),406,0
 whale hair ornament,鲸鱼头饰,406,0
-white pubic hair,白色阴毛,406,0
+white pubic hair,白色阴毛,406,1
 :c,:c,405,0
 amuro tooru,安室透,405,0
 atelier meruru,工作室 meruru,405,0
@@ -13755,7 +13755,7 @@ kazutake hazano,kazutake hazano,404,0
 loose thighhigh,宽松的大腿袜,404,0
 miko (royal milk),巫女（皇家牛奶）,404,0
 octane (apex legends),辛烷值（顶级传奇）,404,0
-red pubic hair,红色阴毛,404,0
+red pubic hair,红色阴毛,404,1
 regu (made in abyss),regu（深渊制造）,404,0
 spread navel,展开肚脐,404,0
 toe cleavage,脚趾乳沟,404,0
@@ -13791,7 +13791,7 @@ yandere sample,yandere 样本,403,0
 ;<,;<,402,0
 ar tonelico iii,阿尔托内利科三世,402,0
 ayagi daifuku,绫木大福,402,0
-brown pubic hair,棕色阴毛,402,0
+brown pubic hair,棕色阴毛,402,1
 covering another's eyes,遮住别人的眼睛,402,0
 ebisuzawa kurumi,惠比泽久留美,402,0
 japan self-defense force,日本自卫队,402,0
@@ -14136,7 +14136,7 @@ aoki shizumi,青木静美,387,0
 big head,大头,387,0
 bubble bath,泡泡浴,387,0
 burnt,烧毁,387,0
-clothed male nude male,穿衣服的男性裸体男性,387,0
+clothed male nude male,穿衣服的男性裸体男性,387,1
 dandara (karakure),dandara (karakure),387,0
 eyecatch,引人注目,387,0
 gachou,嘎州,387,0
@@ -14795,7 +14795,7 @@ onineko-chan,鬼子酱,363,0
 papajay (jennygin2),木瓜 (jennygin2),363,0
 penis ribbon,阴茎丝带,363,1
 puck (re:zero),冰球（重新：零）,363,0
-purple pubic hair,紫色阴毛,363,0
+purple pubic hair,紫色阴毛,363,1
 sakaki,坂木,363,0
 shin'you (kancolle),shin'you (kancolle),363,0
 sleeveless duster,无袖掸子,363,0
@@ -16157,7 +16157,7 @@ adjusting bra,调整文胸,320,0
 bike shorts pull,自行车短裤拉力,320,0
 cheek rest,颊托,320,0
 chorimokki,千层糕,320,0
-cuddling handjob,拥抱 打手枪,320,0
+cuddling handjob,拥抱 打手枪,320,1
 dies irae,死于伊拉克,320,0
 disneyland,迪士尼乐园,320,0
 fin e ld si laffinty,fin e ld si laffinty,320,0
@@ -17460,9 +17460,9 @@ zaizen tokiko,财前时子,288,0
 bunbunmaru,文文丸,287,0
 cleaning brush,清洁刷,287,0
 coffee maker (object),咖啡机（对象）,287,0
-cooperative handjob,合作打手枪,287,0
+cooperative handjob,合作打手枪,287,1
 dragonair,龙航,287,0
-extra penises,额外的阴茎,287,0
+extra penises,额外的阴茎,287,1
 gotou keiji,后藤记事,287,0
 hiranko,平子,287,0
 holding feather,拿着羽毛,287,0
@@ -18607,7 +18607,7 @@ aqua lips,水色嘴唇,261,0
 axent wear,axent 磨损,261,0
 bicycle helmet,自行车头盔,261,0
 bisharp,主教,261,0
-blue nipples,蓝色的乳头,261,0
+blue nipples,蓝色的乳头,261,1
 board eraser,板擦,261,0
 bukkuri,布库里,261,0
 butterfly-shaped pupils,蝴蝶形瞳孔,261,0
@@ -18674,7 +18674,7 @@ sowel (sk3),索维尔 (sk3),261,0
 spread armpit,展开腋窝,261,0
 sub-res,亚分辨率,261,0
 subarashiki kono sekai,subarashiki kono sekai,261,0
-tailjob,尾作业,261,0
+tailjob,尾作业,261,1
 tied to chair,绑在椅子上,261,0
 titania (sao),二氧化钛 (sao),261,0
 toi8,toi8,261,0
@@ -20187,7 +20187,7 @@ spiked boots,尖刺靴,234,0
 standing on person,站在人身上,234,0
 sticker on face,脸上的贴纸,234,0
 sunohara youhei,sunohara youhei,234,0
-tape on nipples,乳头上的胶带,234,0
+tape on nipples,乳头上的胶带,234,1
 tarachine,焦油麻,234,0
 template,模板,234,0
 tenneko yuuri,天猫勇利,234,0
@@ -20512,7 +20512,7 @@ dragoon (final fantasy),龙骑兵（最终幻想）,227,0
 flower basket,花篮,227,0
 frozen frog,冷冻青蛙,227,0
 geetsu,月,227,0
-green pubic hair,绿色阴毛,227,0
+green pubic hair,绿色阴毛,227,1
 headshot,爆头,227,0
 hibiki ryouga,响亮,227,0
 himeno kanon,姬野佳能,227,0
@@ -20843,7 +20843,7 @@ sakeharasu,清酒原宿,223,0
 seki hiromi,关弘美,223,0
 sombrero,阔边帽,223,0
 supon,支持,223,0
-tentaclejob,触手工作,223,0
+tentaclejob,触手工作,223,1
 two-tone bodysuit,两色紧身连衣裤,223,0
 u (the unko),你（unko）,223,0
 watashi (jintai),Watashi（金泰）,223,0
@@ -21131,7 +21131,7 @@ quiff,咳咳,218,0
 reien girl's academy school uniform,丽园女子学院校服,218,0
 saratoga (warship girls r),saratoga (军舰少女),218,0
 scathacha (granblue fantasy),scathacha（碧蓝幻想）,218,0
-sexual harassment,性骚扰,218,0
+sexual harassment,性骚扰,218,1
 shu yamino,舒亚米诺,218,0
 sozan,苏山,218,0
 stuffed fish,酿鱼,218,0
@@ -21269,7 +21269,7 @@ luna platz (mega man),luna platz (mega man),216,0
 malon,马龙,216,0
 manga panel redraw,漫画面板重绘,216,0
 mayo chiki!,蛋黄酱！,216,0
-milking handjob,挤奶 打手枪,216,0
+milking handjob,挤奶 打手枪,216,1
 miyabi akino,秋野美雅,216,0
 miyakure,宫留,216,0
 natu,自然,216,0
@@ -21358,7 +21358,7 @@ hisako (angel beats!),久子（天使节拍！）,215,0
 hotpot,火锅,215,0
 ice climber,攀冰者,215,0
 in (ain),在 (ain),215,0
-intravaginal futanari,阴道内 futanari,215,0
+intravaginal futanari,阴道内 futanari,215,1
 kansaiben,关西便,215,0
 kizuato,木头,215,0
 kono bijutsubu niwa mondai ga aru!,kono bijutsubu niwa mondai ga aru!,215,0
@@ -21633,7 +21633,7 @@ paperclip,回形针,211,0
 poker,扑克,211,0
 rainbow eyes,彩虹眼,211,0
 relationship graph,关系图,211,0
-reverse grip handjob,反握打手枪,211,0
+reverse grip handjob,反握打手枪,211,1
 roserade,玫瑰色,211,0
 sakurano ru,樱野ru,211,0
 seele vollerei (stygian nymph),seele vollerei（冥河若虫）,211,0
@@ -21962,7 +21962,7 @@ sarong lift,纱笼电梯,207,0
 sawada yuusuke,泽田佑介,207,0
 scimitar,弯刀,207,0
 shaving,剃须,207,0
-shoejob,鞋交,207,0
+shoejob,鞋交,207,1
 sibyl,西比尔,207,0
 sills,窗台,207,0
 silver chariot,银色战车,207,0
@@ -22234,7 +22234,7 @@ sora no method,索拉没有方法,203,0
 sumapan,苏马潘,203,0
 suna (sunaipu),苏纳 (sunaipu),203,0
 threat,威胁,203,0
-tonguejob,口交,203,0
+tonguejob,口交,203,1
 touhou cannonball,东方炮弹,203,0
 uo denim,牛仔布,203,0
 villyane,维利亚恩,203,0
@@ -22370,7 +22370,7 @@ mash kyrielight (cosplay),mash kyrielight（角色扮演）,201,0
 misaki juri,美咲树里,201,0
 misha (ohds101),米莎 (ohds101),201,0
 mitsukoshi (department store),三越(百货店),201,0
-multiple vaginal,多个阴道,201,0
+multiple vaginal,多个阴道,201,1
 murasaki iro,村崎铁,201,0
 nagasawa shin,长泽新,201,0
 nakaseko kaori,中瀬香织,201,0
@@ -22611,7 +22611,7 @@ holding quill,拿着羽毛笔,198,0
 holding whistle,拿着口哨,198,0
 hoto mocha,热摩卡,198,0
 ikaasi,卡西,198,0
-implied handjob,暗示 打手枪,198,0
+implied handjob,暗示 打手枪,198,1
 irori,伊罗里,198,0
 jakko,jakko,198,0
 jampen,果酱,198,0
@@ -23135,7 +23135,7 @@ parasite eve,寄生虫前夕,192,0
 phoenix wright: ace attorney - dual destinies,凤凰赖特：王牌律师 - 双重命运,192,0
 photo album,相册,192,0
 pumpkin costume,南瓜服装,192,0
-purple nipples,紫色的乳头,192,0
+purple nipples,紫色的乳头,192,1
 pyramid (geometry),金字塔（几何）,192,0
 repair bucket,修理桶,192,0
 rokuichi,六一,192,0
@@ -23428,7 +23428,7 @@ shijima (sjmr02),石岛 (sjmr02),189,0
 shikuta maru,shikuta丸,189,0
 shunsei (muratou),春生（村头）,189,0
 sidon,西顿,189,0
-silver pubic hair,银色阴毛,189,0
+silver pubic hair,银色阴毛,189,1
 silveroid,银色,189,0
 slytherin,斯莱特林,189,0
 soukuu kizuna,搜库绊,189,0
@@ -23494,7 +23494,7 @@ lavolpe (yagisaka seto),lavolpe (八木坂濑户),188,0
 lemonade,柠檬水,188,0
 libiadan,利比亚,188,0
 licking hand,舔手,188,0
-long nipples,长乳头,188,0
+long nipples,长乳头,188,1
 mamiyama,间山,188,0
 meme (me!me!me!),模因（我！我！我！）,188,0
 mendou saya,门都说,188,0
@@ -24864,7 +24864,7 @@ no.6,第 6,173,0
 noragami,野良神,173,0
 oricorio,oricorio,173,0
 pen (pen3),笔 (pen3),173,0
-pink pubic hair,粉红色的阴毛,173,0
+pink pubic hair,粉红色的阴毛,173,1
 poch4n,poch4n,173,0
 prishe,骗子,173,0
 rito,里托,173,0
@@ -25468,7 +25468,7 @@ rimuru tempest (slime),rimuru 暴风雨（史莱姆）,168,0
 saijou haruki,西条春树168,168,0
 sanaki kirsch altina,sanaki 樱桃酒 altina,168,0
 sasaki makie,佐佐木莳绘,168,0
-shaped pubic hair,异形阴毛,168,0
+shaped pubic hair,异形阴毛,168,1
 shiny luminous,闪亮发光,168,0
 shirakawako,白河湖,168,0
 shuz (dodidu),shuz (dodidu),168,0
@@ -26022,7 +26022,7 @@ gulpin,古尔平,162,0
 haevest,收获,162,0
 haguruma c,haguruma c,162,0
 hama (22ji kara 24ji),滨 (22ji kara 24ji),162,0
-handjob over clothes,在衣服上打手枪,162,0
+handjob over clothes,在衣服上打手枪,162,1
 haru (hiyori-kohal),春（日和湖）,162,0
 hat on back,背上的帽子,162,0
 hatenna,哈滕纳,162,0
@@ -26647,7 +26647,7 @@ cleo everlastin,克莱奥·埃维拉汀,157,0
 crest worm,嵴蠕虫,157,0
 dana zane,丹娜赞恩,157,0
 doberman,杜宾犬,157,0
-double vaginal,双阴道,157,0
+double vaginal,双阴道,157,1
 espurr,电竞,157,0
 extra pupils,额外的学生,157,0
 fixed,固定,157,0
@@ -26761,7 +26761,7 @@ fuuka reventon,风花雷文顿,156,0
 giant armadillo (kemono friends),巨型犰狳（kemono 朋友）,156,0
 gourry gabriev,古里加布里耶夫,156,0
 green brooch,绿色胸针,156,0
-grey pubic hair,灰色阴毛,156,0
+grey pubic hair,灰色阴毛,156,1
 gya (144),嘉 (144),156,0
 hakodate omiko,函馆御子,156,0
 hanamaru youchien,花丸有知园,156,0
@@ -27228,7 +27228,7 @@ note-chan,笔记-chan,153,0
 nyaa (nnekoron),nyaa (nnekoron),153,0
 open box,开箱,153,0
 orange butterfly,橙色蝴蝶,153,0
-orange pubic hair,橙色阴毛,153,0
+orange pubic hair,橙色阴毛,153,1
 otemoto (baaaaloooo),大手本 (baaaaloooo),153,0
 otonashi kiruko,音无桐子,153,0
 outer glow,外发光,153,0
@@ -27387,7 +27387,7 @@ seitei (04seitei),seitei (04seitei),152,0
 shiroko (reku),白子 (reku),152,0
 shisantian,十三田,152,0
 sig mcx (girls' frontline),sig mcx (女子前线),152,0
-simulated footjob,模拟脚交,152,0
+simulated footjob,模拟脚交,152,1
 snow fox,雪狐,152,0
 snow is,雪是,152,0
 sphinx (toaru majutsu no index),狮身人面像 (toaru majutsu 无索引),152,0
@@ -27992,7 +27992,7 @@ glorious (azur lane),光荣（碧蓝航线）,146,0
 godzillapigeon1,哥斯拉鸽子1,146,0
 hajime (caramel toone),hajime (焦糖香),146,0
 half-life,半衰期,146,0
-heart-shaped pubic hair,心形阴毛,146,0
+heart-shaped pubic hair,心形阴毛,146,1
 hifumi kei,风水系,146,0
 hiragana oufu,平假名欧风,146,0
 hitori bocchi,日取bocchi,146,0
@@ -29560,7 +29560,7 @@ esther shen,沉以斯帖,135,0
 ex albio,白化,135,0
 fabric,面料,135,0
 female abyssal admiral (kancolle),女海军上将 (kancolle),135,0
-female footjob,女性 脚交,135,0
+female footjob,女性 脚交,135,1
 finger gun to head,手指枪对着头部,135,0
 firelight ekko,火光ekko,135,0
 fishbowl helmet,鱼缸头盔,135,0
@@ -29672,7 +29672,7 @@ nina williams,尼娜威廉姆斯,135,0
 no scar,没有疤痕,135,0
 noriuma,典马,135,0
 nuda,裸体,135,0
-nude modeling,裸体模特,135,0
+nude modeling,裸体模特,135,1
 nyanko,尼扬科,135,0
 onigiri (ginseitou),饭团(ginseitou),135,0
 oomuro-ke,御室客,135,0
@@ -31992,7 +31992,7 @@ qunqing,群青,121,0
 ramie (ramie541),苎麻 (ramie541),121,0
 rapid punches,快速出拳,121,0
 rednian,瑞典语,121,0
-reverse footjob,反向 脚交,121,0
+reverse footjob,反向 脚交,121,1
 rikka (holostars),rikka（全息星）,121,0
 rizento,里森托,121,0
 rugo,鲁戈,121,0
@@ -33360,7 +33360,7 @@ nanashi maru,七无丸,114,0
 nekoi hikaru,猫井光,114,0
 nogami takeshi,野上武,114,0
 octodeco,octodeco,114,0
-ofuda on nipples,乳头上的ofuda,114,0
+ofuda on nipples,乳头上的ofuda,114,1
 okuyama saori,奥山沙织,114,0
 onimaru (onimal7802),鬼丸 (onimal7802),114,0
 ootsuka mahiro,大冢真弘,114,0
@@ -35657,7 +35657,7 @@ cherrim (sunshine),樱桃（阳光）,103,0
 chiyo goya,千代戈雅,103,0
 chris re5,克里斯 re5,103,0
 cona kinaco,cona kinaco,103,0
-cooperative footjob,合作 脚交,103,0
+cooperative footjob,合作 脚交,103,1
 cow girl (goblin slayer!),奶牛女孩（哥布林杀手！）,103,0
 cp9a,cp9a,103,0
 crystal exarch,水晶exarch,103,0

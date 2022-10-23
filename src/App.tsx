@@ -23,6 +23,7 @@ export const Data = createContext<{
     settingVisible: Atom<boolean>;
     searchText: Atom<string>;
     usersCollection: Atom<IData[]>;
+    tagsPerPage: Atom<number>;
     result: Atom<IData[]>;
     lists: Atom<IData[]>;
 }>();
@@ -35,9 +36,11 @@ export const App = () => {
     const settingVisible = atom<boolean>(false);
     const deleteMode = atom<boolean>(false);
     const showCount = atom<boolean>(true);
+    const tagsPerPage = atom<number>(500);
 
     const storageSetting = {
         enMode,
+        tagsPerPage,
         r18Mode,
         settingVisible,
         deleteMode,

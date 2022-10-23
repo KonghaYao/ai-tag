@@ -51,11 +51,12 @@ export function useDatabase() {
             // console.log(result);
             return result.map((i) => i.item);
         } else {
-            return lists()?.slice(0, 100) || [];
+            return lists()?.slice(0, 300) || [];
         }
     });
     const [U, setU] = createSignal<IData[]>([]);
     // 添加去重功能，但是实现极其不行
+    /** @ts-ignore */
     const usersCollection: Atom<IData[]> = (...args) => {
         if (args.length === 0) {
             return U();

@@ -1,19 +1,28 @@
 import { For, useContext } from 'solid-js';
 import debounce from 'lodash-es/debounce';
-import sampleSize from 'lodash-es/sampleSize';
-import { Data } from './App';
+import { Data, IData } from './App';
 import { TagButton } from './components/TagButton';
 import { reflect } from '@cn-ui/use';
+import { untrack } from 'solid-js/web';
+import { sampleSize as _sampleSize } from 'lodash-es';
+const sampleSize = (list: IData[], size: number) => {
+    const one = _sampleSize(list.slice(0, 1000), Math.ceil(size / 4));
+    const two = _sampleSize(list.slice(1000, 10000), Math.ceil(size / 4));
+    const three = _sampleSize(list.slice(10000, 20000), Math.ceil(size / 4));
+    const four = _sampleSize(list.slice(20000), Math.ceil(size / 4));
+    return [...one, ...two, ...three, ...four];
+};
 
 export const SearchBox = () => {
-    const { usersCollection, result, lists, searchText, r18Mode } = useContext(Data);
+    const { usersCollection, result, lists, searchText, r18Mode, tagsPerPage } = useContext(Data);
 
     const showingResult = reflect(() => {
-        if (r18Mode()) return result().slice(0, 1000);
+        const num = untrack(tagsPerPage);
+        if (r18Mode()) return result().slice(0, num);
         return (
             result()
                 .filter((i) => !i.r18)
-                .slice(0, 1000) || []
+                .slice(0, num) || []
         );
     });
     return (
@@ -49,10 +58,10 @@ export const SearchBox = () => {
                         class="
                     mx-1 cursor-pointer select-none rounded  border border-solid  border-gray-700 px-1 font-thin transition-colors active:bg-gray-700"
                         onclick={() => {
-                            result(sampleSize(lists(), 100));
+                            result(sampleSize(lists(), tagsPerPage()));
                         }}
                     >
-                        随机 100
+                        随机 {tagsPerPage()}
                     </span>
                 </nav>
                 <section class="my-2 flex h-full flex-wrap items-start  overflow-y-auto overflow-x-hidden">

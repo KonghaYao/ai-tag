@@ -5,7 +5,7 @@ import { TagButton } from './components/TagButton';
 import { reflect } from '@cn-ui/use';
 
 export const UserSelected = () => {
-    const { deleteMode, enMode, usersCollection, settingVisible } = useContext(Data);
+    const { deleteMode, enMode, usersCollection, settingVisible, publicVisible } = useContext(Data);
     return (
         <main class="my-2 flex w-full flex-col rounded-xl border border-solid border-gray-600 p-2">
             <header class="flex py-2  text-sm font-bold">
@@ -39,6 +39,9 @@ export const UserSelected = () => {
 
                 <span class="btn" onclick={() => settingVisible((i) => !i)}>
                     设置
+                </span>
+                <span class="btn" onclick={() => publicVisible((i) => !i)}>
+                    止水息雷
                 </span>
             </header>
             <div class="flex flex-wrap">

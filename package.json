@@ -38,6 +38,7 @@
         "copy-to-clipboard": "^3.3.2",
         "fuse.js": "^6.6.2",
         "lodash-es": "^4.17.21",
+        "notion-web": "^1.0.0",
         "solid-js": "^1.5.7",
         "tailwindcss": "^3.1.8",
         "tippy.js": "^6.3.7"

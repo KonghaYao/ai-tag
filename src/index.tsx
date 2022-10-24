@@ -3,7 +3,8 @@ import { render } from 'solid-js/web';
 
 import { App } from './App';
 import { Router, hashIntegration, Route, Routes } from '@solidjs/router';
-
+import { API } from './api/notion';
+API.init();
 render(() => {
     return (
         <Router source={hashIntegration()}>

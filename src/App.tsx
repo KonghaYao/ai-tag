@@ -6,6 +6,7 @@ import { UserSelected } from './UserSelected';
 import { useDatabase } from './use/useDatabase';
 import { SettingPanel } from './SettingPanel';
 import { useStorage } from './use/useStorage';
+import { PublicPanel } from './PublicPanel';
 
 export interface IData {
     en: string;
@@ -21,6 +22,7 @@ export const Data = createContext<{
     r18Mode: Atom<boolean>;
     showCount: Atom<boolean>;
     settingVisible: Atom<boolean>;
+    publicVisible: Atom<boolean>;
     searchText: Atom<string>;
     usersCollection: Atom<IData[]>;
     tagsPerPage: Atom<number>;
@@ -34,6 +36,7 @@ export const App = () => {
     const enMode = atom<boolean>(false);
     const r18Mode = atom<boolean>(false);
     const settingVisible = atom<boolean>(false);
+    const publicVisible = atom<boolean>(false);
     const deleteMode = atom<boolean>(false);
     const showCount = atom<boolean>(true);
     const tagsPerPage = atom<number>(500);
@@ -52,6 +55,7 @@ export const App = () => {
     return (
         <Data.Provider
             value={{
+                publicVisible,
                 usersCollection,
                 result,
                 lists,
@@ -74,6 +78,7 @@ export const App = () => {
                 <UserSelected></UserSelected>
                 <SearchBox></SearchBox>
                 <SettingPanel></SettingPanel>
+                <PublicPanel></PublicPanel>
             </div>
         </Data.Provider>
     );

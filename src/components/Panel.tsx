@@ -18,7 +18,6 @@ export const Panel: Component<{ children?: JSXElement; visible: Atom<boolean> }>
                 // console.log(e);
             }}
         >
-            {/*    */}
             <main class="flex h-full w-full max-w-sm flex-col overflow-auto rounded-2xl border border-solid border-slate-700 bg-gray-700/60 shadow-xl backdrop-blur transition-all">
                 {props.children}
             </main>

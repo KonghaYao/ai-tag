@@ -39,10 +39,11 @@ export type StoreData = {
     description: string;
     origin_tags: string;
 };
-const NotionText = (text: string, prop: string) => {
+const NotionText = (text: string, prop?: string) => {
+    prop = prop ?? 'rich_text';
     return {
-        type: 'title',
-        title: [
+        type: prop,
+        [prop]: [
             {
                 type: 'text',
                 text: {
@@ -82,7 +83,7 @@ export const API = {
                         ...i,
                         description: i.description[0]?.plain_text,
                         username: i.username[0]?.plain_text,
-                        create_time: i.create_time[0]?.plain_text,
+
                         tags: i.tags.map((i) => i.name),
                     };
                 });
@@ -95,24 +96,18 @@ export const API = {
                 database_id: '90b7c1bb6ad7446ba66e0b1d8ec1d535',
             },
             properties: {
-                tags: { type: 'multi_select', multi_select: data.tags },
-                description: {
-                    type: 'rich_text',
-                    rich_text: [
-                        {
-                            type: 'text',
-                            text: {
-                                content: data.description,
-                            },
-                        },
-                    ],
+                tags: {
+                    type: 'multi_select',
+                    multi_select: data.tags.map((i) => ({
+                        name: i,
+                    })),
                 },
+                description: NotionText(data.description),
                 image: { type: 'url', url: data.image },
                 r18: { type: 'checkbox', checkbox: data.r18 },
 
-                username: NotionText(data.username, 'username'),
-                create_time: NotionText(new Date().toISOString(), 'create_time'),
-                origin_tags: NotionText(new Date().toISOString(), 'origin_tags'),
+                username: NotionText(data.username, 'title'),
+                origin_tags: NotionText(data.origin_tags),
             },
         });
     },

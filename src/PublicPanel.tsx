@@ -7,7 +7,7 @@ import { Panel } from './components/Panel';
 
 const getData = memoize((page: number) => API.getData(page));
 export const PublicPanel = () => {
-    const { publicVisible, r18Mode } = useContext(Data);
+    const { publicVisible, r18Mode, uploaderVisible } = useContext(Data);
     const showing = atom<StoreData[]>([]);
     const page = atom<number>(0);
     createIgnoreFirst(() => {
@@ -21,7 +21,14 @@ export const PublicPanel = () => {
         <Panel visible={publicVisible}>
             <header class="w-full py-2 text-center text-lg font-bold">
                 魔咒分享
-                <div class="btn float-right cursor-pointer px-2 text-sm">我要分享</div>
+                <div
+                    class="btn float-right cursor-pointer px-2 text-sm"
+                    onClick={() => {
+                        uploaderVisible(true);
+                    }}
+                >
+                    我要分享
+                </div>
             </header>
             <main class="grid flex-1 auto-rows-min grid-cols-2 gap-2 ">
                 {showing().length === 0 && (

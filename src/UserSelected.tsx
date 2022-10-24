@@ -41,7 +41,7 @@ export const UserSelected = () => {
                     设置
                 </span>
                 <span class="btn" onclick={() => publicVisible((i) => !i)}>
-                    止水息雷
+                    分享
                 </span>
             </header>
             <div class="flex flex-wrap">

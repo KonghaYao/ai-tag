@@ -31,7 +31,7 @@ export const SearchBox = () => {
         <>
             <nav class="flex w-full items-center">
                 <input
-                    class="input my-4 mr-4 flex-1"
+                    class="input my-2 mr-1 flex-1"
                     value={searchText()}
                     placeholder="搜索关键词，中文也可以"
                     oninput={debounce((e) => {
@@ -39,11 +39,11 @@ export const SearchBox = () => {
                     }, 300)}
                 ></input>
 
-                <span class="btn" onclick={() => searchText('')}>
+                <span class="btn flex-none" onclick={() => searchText('')}>
                     清除
                 </span>
                 <span
-                    class="btn"
+                    class="btn flex-none"
                     onclick={() => {
                         const name = searchText();
                         usersCollection((i) => [

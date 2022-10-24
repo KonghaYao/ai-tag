@@ -16,6 +16,7 @@ specifiers:
   fuse.js: ^6.6.2
   lodash-es: ^4.17.21
   notion-web: ^1.0.0
+  notyf: ^3.10.0
   postcss: ^8.4.16
   prettier: 2.6.0
   prettier-plugin-tailwindcss: ^0.1.13
@@ -39,6 +40,7 @@ dependencies:
   fuse.js: 6.6.2
   lodash-es: 4.17.21
   notion-web: 1.0.0
+  notyf: 3.10.0
   solid-js: 1.5.7
   tailwindcss: 3.1.8_postcss@8.4.16
   tippy.js: 6.3.7
@@ -1357,6 +1359,10 @@ packages:
       qs: 6.11.0
     transitivePeerDependencies:
       - encoding
+    dev: false
+
+  /notyf/3.10.0:
+    resolution: {integrity: sha512-Mtnp+0qiZxgrH+TzVlzhWyZceHdAZ/UWK0/ju9U0HQeDpap1mZ8cC7H5wSI5mwgni6yeAjaxsTw0sbMK+aSuHw==}
     dev: false
 
   /object-hash/3.0.0:

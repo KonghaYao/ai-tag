@@ -39,7 +39,7 @@ export const App = () => {
     const r18Mode = atom<boolean>(false);
     const settingVisible = atom<boolean>(false);
     const publicVisible = atom<boolean>(false);
-    const uploaderVisible = atom<boolean>(true);
+    const uploaderVisible = atom<boolean>(false);
     const deleteMode = atom<boolean>(false);
     const showCount = atom<boolean>(true);
     const tagsPerPage = atom<number>(500);

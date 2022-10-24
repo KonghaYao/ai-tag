@@ -64,13 +64,15 @@ export const API = {
         });
     },
     start_cursor: [] as string[],
+    end: false,
     async getData(index: number): Promise<StoreData[]> {
         return await this.client.databases
             .query({
                 database_id: this.database_id,
-                start_cursor: this.start_cursor[index - 1],
+                start_cursor: this.start_cursor[index - 1] ?? undefined,
             })
             .then((res) => {
+                this.end = !res.has_more;
                 this.start_cursor[index] = res.next_cursor;
                 return res;
             })

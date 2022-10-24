@@ -8,6 +8,19 @@ import { IData } from '../App';
 import { getTagInURL } from '../utils/getTagInURL';
 import { debounce } from 'lodash-es';
 
+export const injectEnArray = (arr: string[], list: IData[]): IData[] => {
+    return arr.map((i) => {
+        return (
+            list.find((it) => i === it.en) ?? {
+                en: i,
+                cn: i,
+                count: Infinity,
+                r18: 0,
+            }
+        );
+    });
+};
+
 export function useDatabase() {
     const [data] = createResource<ArrayBuffer>(() =>
         fetch('/tags.csv').then((res) => res.arrayBuffer())

@@ -31,7 +31,7 @@ export const SearchBox = () => {
         <>
             <nav class="flex w-full items-center">
                 <input
-                    class="my-4 mr-4 flex-1 rounded-lg bg-gray-700 px-4 py-1 text-gray-200 shadow-md outline-none"
+                    class="input my-4 mr-4 flex-1"
                     value={searchText()}
                     placeholder="搜索关键词，中文也可以"
                     oninput={debounce((e) => {

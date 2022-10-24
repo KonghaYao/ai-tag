@@ -7,6 +7,7 @@ import { useDatabase } from './use/useDatabase';
 import { SettingPanel } from './SettingPanel';
 import { useStorage } from './use/useStorage';
 import { PublicPanel } from './PublicPanel';
+import { UploadPanel } from './UploadPanel';
 
 export interface IData {
     en: string;
@@ -23,6 +24,7 @@ export const Data = createContext<{
     showCount: Atom<boolean>;
     settingVisible: Atom<boolean>;
     publicVisible: Atom<boolean>;
+    uploaderVisible: Atom<boolean>;
     searchText: Atom<string>;
     usersCollection: Atom<IData[]>;
     tagsPerPage: Atom<number>;
@@ -37,6 +39,7 @@ export const App = () => {
     const r18Mode = atom<boolean>(false);
     const settingVisible = atom<boolean>(false);
     const publicVisible = atom<boolean>(false);
+    const uploaderVisible = atom<boolean>(true);
     const deleteMode = atom<boolean>(false);
     const showCount = atom<boolean>(true);
     const tagsPerPage = atom<number>(500);
@@ -60,6 +63,7 @@ export const App = () => {
                 result,
                 lists,
                 searchText,
+                uploaderVisible,
                 ...storageSetting,
             }}
         >
@@ -79,6 +83,7 @@ export const App = () => {
                 <SearchBox></SearchBox>
                 <SettingPanel></SettingPanel>
                 <PublicPanel></PublicPanel>
+                <UploadPanel></UploadPanel>
             </div>
         </Data.Provider>
     );

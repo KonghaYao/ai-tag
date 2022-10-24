@@ -37,6 +37,7 @@ export type StoreData = {
     r18: boolean;
     image: string;
     description: string;
+    origin_tags: string;
 };
 const NotionText = (text: string, prop: string) => {
     return {
@@ -62,7 +63,7 @@ export const API = {
         });
     },
     start_cursor: [] as string[],
-    async getData(index: number) {
+    async getData(index: number): Promise<StoreData[]> {
         return await this.client.databases
             .query({
                 database_id: this.database_id,
@@ -111,6 +112,7 @@ export const API = {
 
                 username: NotionText(data.username, 'username'),
                 create_time: NotionText(new Date().toISOString(), 'create_time'),
+                origin_tags: NotionText(new Date().toISOString(), 'origin_tags'),
             },
         });
     },

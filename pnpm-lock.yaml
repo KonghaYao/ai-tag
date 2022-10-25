@@ -1,10 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@cn-ui/sortable': ^2.1.0
-  '@cn-ui/split': ^1.0.0
   '@cn-ui/use': ^1.7.0
-  '@fontsource/material-icons-rounded': ^4.5.4
   '@solidjs/router': ^0.5.0
   '@tailwindcss/line-clamp': ^0.4.2
   '@types/fs-extra': ^9.0.13
@@ -25,17 +22,13 @@ specifiers:
   sortablejs: ^1.15.0
   tailwindcss: ^3.1.8
   tippy.js: ^6.3.7
-  upload-js: ^2.1.0
   vite: ^3.1.8
   vite-plugin-imp: ^2.3.0
   vite-plugin-solid: ^2.3.9
   xlsx: ^0.18.5
 
 dependencies:
-  '@cn-ui/sortable': 2.1.0_i42qvq4mljjlaxfcf3qisrig4u
-  '@cn-ui/split': 1.1.0_i42qvq4mljjlaxfcf3qisrig4u
   '@cn-ui/use': 1.7.0_solid-js@1.5.7
-  '@fontsource/material-icons-rounded': 4.5.4
   '@solidjs/router': 0.5.0_solid-js@1.5.7
   copy-to-clipboard: 3.3.2
   fuse.js: 6.6.2
@@ -58,7 +51,6 @@ devDependencies:
   prettier: 2.6.0
   prettier-plugin-tailwindcss: 0.1.13_prettier@2.6.0
   rollup-plugin-visualizer: 5.8.3
-  upload-js: 2.1.0
   vite: 3.1.8
   vite-plugin-imp: 2.3.0_vite@3.1.8
   vite-plugin-solid: 2.3.9_solid-js@1.5.7+vite@3.1.8
@@ -388,28 +380,6 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@cn-ui/sortable/2.1.0_i42qvq4mljjlaxfcf3qisrig4u:
-    resolution: {integrity: sha512-jhWYp1sdJgiquHjVVTiqtCRv9ROy1j6S4Gi49/mwZVIr0xkZSOcs0fdLr1Ynzm1pJu1rIY5a0GlyqIWWfOKCGQ==}
-    peerDependencies:
-      '@cn-ui/use': ^1.5.0
-      solid-js: ^1.5.7
-    dependencies:
-      '@cn-ui/use': 1.7.0_solid-js@1.5.7
-      solid-js: 1.5.7
-      sortablejs: 1.15.0
-    dev: false
-
-  /@cn-ui/split/1.1.0_i42qvq4mljjlaxfcf3qisrig4u:
-    resolution: {integrity: sha512-V6G6sKfhGB9Uwobztwjgc2vkOfOlOxxg+U0seY/eW0b0iN/sIeo14pQ2A2EgRplNI6qf09nHv5GgED/ViQIHqQ==}
-    peerDependencies:
-      '@cn-ui/use': ^1.5.0
-      solid-js: ^1.5.7
-    dependencies:
-      '@cn-ui/use': 1.7.0_solid-js@1.5.7
-      solid-js: 1.5.7
-      split.js: 1.6.5
-    dev: false
-
   /@cn-ui/use/1.7.0_solid-js@1.5.7:
     resolution: {integrity: sha512-5dtAD+8MT7H09Ajh+dFPFHaLgdm2lWanPOFyF6Bm7Evv/OobznOYNkIzs6GTnFUwoQkU37PkqtkivlLRtZadMw==}
     peerDependencies:
@@ -435,10 +405,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /@fontsource/material-icons-rounded/4.5.4:
-    resolution: {integrity: sha512-zBrzaDzj//EJiuz9+yaL3uvYhqGcGXxewrwWy0fqHibOivNE9mlYtIjgibNRjEmS0eRXUu9h3TNmahlLwj3JvQ==}
-    dev: false
 
   /@jridgewell/gen-mapping/0.1.1:
     resolution: {integrity: sha512-sQXCasFk+U8lWYEe66WxRDOE9PjVz4vSM51fTu3Hw+ClTpUSQb718772vH3pyS5pShp6lvQM7SxgIDXXXmOX7w==}
@@ -551,10 +517,6 @@ packages:
 
   /@types/node/18.7.23:
     resolution: {integrity: sha512-DWNcCHolDq0ZKGizjx2DZjR/PqsYwAcYUJmfMWqtVU2MBMG5Mo+xFZrhGId5r/O5HOuMPyQEcM6KUBp5lBZZBg==}
-
-  /@upload-io/upload-api-client-upload-js/2.10.0:
-    resolution: {integrity: sha512-F73xyglCCVX4drTkDt/B2kgB1nubArVx8O2rau6SDqDGM8Uf0iucXjoP4LPbSJXdCM8hP6uM5EEhuqUoqNneXA==}
-    dev: true
 
   /acorn-node/1.8.2:
     resolution: {integrity: sha512-8mt+fslDufLYntIoPAaIMUe/lrbrehIiwmR3t2k9LljIzoigEPF27eLk2hy8zSGzmR/ogr7zbRKINMo1u0yh5A==}
@@ -1490,10 +1452,6 @@ packages:
     hasBin: true
     dev: true
 
-  /progress-smoother/1.3.0:
-    resolution: {integrity: sha512-vWtKd8Q1pQXHJ6Fx4pa5fbSCj+p6BPKfWufCVmagOjNKc3JsNsMfgTF55yx8UE0mNnZlnbKHr20+M/imHsnNbQ==}
-    dev: true
-
   /qs/6.11.0:
     resolution: {integrity: sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==}
     engines: {node: '>=0.6'}
@@ -1610,10 +1568,6 @@ packages:
     engines: {node: '>= 8'}
     dev: true
 
-  /split.js/1.6.5:
-    resolution: {integrity: sha512-mPTnGCiS/RiuTNsVhCm9De9cCAUsrNFFviRbADdKiiV+Kk8HKp/0fWu7Kr8pi3/yBmsqLFHuXGT9UUZ+CNLwFw==}
-    dev: false
-
   /ssf/0.11.2:
     resolution: {integrity: sha512-+idbmIXoYET47hH+d7dfm2epdOMUDjqcB4648sTZ+t2JwoyBFL/insLfB/racrDmsKB3diwsDA696pZMieAC5g==}
     engines: {node: '>=0.8'}
@@ -1729,13 +1683,6 @@ packages:
       browserslist: 4.21.4
       escalade: 3.1.1
       picocolors: 1.0.0
-    dev: true
-
-  /upload-js/2.1.0:
-    resolution: {integrity: sha512-LHXu34JhhE4dq/WgDgAHkxMIWxl0vUBNjdWNX3Jpb057vBIuDcrK40zXg5/oEfxDobF1jSC+qkmW+Pe7HdDqKA==}
-    dependencies:
-      '@upload-io/upload-api-client-upload-js': 2.10.0
-      progress-smoother: 1.3.0
     dev: true
 
   /util-deprecate/1.0.2:

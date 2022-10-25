@@ -98,6 +98,10 @@ export const API = {
                 type: 'database_id',
                 database_id: '90b7c1bb6ad7446ba66e0b1d8ec1d535',
             },
+            cover: {
+                external: { url: data.image },
+                type: 'external',
+            },
             properties: {
                 tags: {
                     type: 'multi_select',

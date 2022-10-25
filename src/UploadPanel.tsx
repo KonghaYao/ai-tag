@@ -22,7 +22,7 @@ export const UploadPanel = () => {
     const { uploaderVisible, username, usersCollection } = useContext(Data);
     const uploading = atom(false);
     const check = () => {
-        if (store.description && store.username && store.image && store.origin_tags) {
+        if (store.description && username() && store.image && store.origin_tags) {
             return true;
         }
         return false;

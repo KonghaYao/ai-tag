@@ -1,4 +1,4 @@
-import { Atom, atomization } from '@cn-ui/use';
+import { Atom, atomization, reflect } from '@cn-ui/use';
 import copy from 'copy-to-clipboard';
 import { Component, useContext } from 'solid-js';
 import { Data, IData } from '../App';
@@ -21,13 +21,15 @@ export const TagButton: Component<{
         if (item.count > 1000) return 'bg-yellow-900';
         if (item.count > 500) return 'bg-green-900';
     };
-
+    const emColor = ['bg-gray-700', 'bg-yellow-800', 'bg-amber-800', 'bg-orange-800', 'bg-red-800'];
+    const em = reflect(() => emColor[props.data.emphasize]);
     return (
         <nav
-            class="text-col relative mx-2 my-2 flex  cursor-pointer select-none  rounded-md bg-gray-600 px-2 py-1 text-center transition-colors active:bg-gray-700"
+            class="text-col relative mx-2 my-2 flex  cursor-pointer select-none  rounded-md  px-2 py-1 text-center transition-colors active:brightness-90"
             onclick={() => {
                 props.onClick && props.onClick(item);
             }}
+            classList={{ [em()]: true }}
             onDblClick={() => {
                 copy(enMode() ? item.en : item.cn);
                 Notice.success('双击单项复制魔法释放');

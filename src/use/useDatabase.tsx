@@ -6,32 +6,9 @@ import Fuse from 'fuse.js';
 import { useSearchParams } from '@solidjs/router';
 import { IData } from '../App';
 import { getTagInURL } from '../utils/getTagInURL';
-import { stringToTagData } from '../utils/stringToTags';
-export const stringToTags = (s: string, list: IData[]): IData[] => {
-    const data = stringToTagData(s);
-    // console.log(data, s);
-    return data.map((i) => {
-        const en = list.find((it) => i.text === it.en);
-        if (en) return { ...en, emphasize: i.emphasize };
-        const cn = list.find((it) => i.text === it.cn);
-        if (cn) return { ...cn, emphasize: i.emphasize };
-        return {
-            en: i.text,
-            cn: i.text,
-            count: Infinity,
-            r18: 0,
-            emphasize: i.emphasize,
-        };
-    });
-};
-export const TagsToString = (data: IData[], en = true) => {
-    return data
-        .map((i) => {
-            return '{'.repeat(i.emphasize) + (en ? i.en : i.cn) + '}'.repeat(i.emphasize);
-        })
-        .join(',');
-};
+import { TagsToString } from './TagsToString';
 
+/** 加载 Tag 数据库 */
 export function useDatabase() {
     const [data] = createResource<ArrayBuffer>(() =>
         fetch('/tags.csv').then((res) => res.arrayBuffer())

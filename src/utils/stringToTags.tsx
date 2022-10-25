@@ -30,6 +30,7 @@ export const stringToTagData = (s: string) => {
             }
         }
         if (splitSymbol.includes(s[i]) || i === s.length - 1) {
+            if (i === s.length - 1) nowString += s[i];
             nowString = nowString.trim();
             if (nowString) {
                 let r = 0;

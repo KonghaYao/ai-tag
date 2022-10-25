@@ -4,7 +4,7 @@ import { For, useContext } from 'solid-js';
 import { API, StoreData } from './api/notion';
 import { Data } from './App';
 import { Panel } from './components/Panel';
-import { stringToTags } from './use/useDatabase';
+import { stringToTags } from './use/TagsToString';
 import { Notice } from './utils/notice';
 
 const getData = memoize((page: number) => API.getData(page));

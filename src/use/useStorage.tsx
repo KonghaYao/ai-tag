@@ -1,6 +1,7 @@
 import { createEffect } from 'solid-js';
 import { Atom } from '@cn-ui/use';
 
+/** 使用本地存储 */
 export const useStorage = (data: { [name: string]: Atom<any> }) => {
     return {
         recover() {

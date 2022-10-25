@@ -1,6 +1,6 @@
 import { useSearchParams } from '@solidjs/router';
 import { IData } from '../App';
-import { stringToTags } from '../use/useDatabase';
+import { stringToTags } from '../use/TagsToString';
 
 export const getTagInURL = (lists: IData[]) => {
     const [{ tags }] = useSearchParams();

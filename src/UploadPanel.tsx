@@ -1,4 +1,4 @@
-import { For, useContext } from 'solid-js';
+import { createEffect, For, useContext } from 'solid-js';
 import { Data } from './App';
 import { createStore } from 'solid-js/store';
 import { Panel } from './components/Panel';
@@ -6,6 +6,8 @@ import { API, StoreData } from './api/notion';
 import { atom } from '@cn-ui/use';
 import { stringToTags } from './utils/stringToTags';
 import { Notice } from './utils/notice';
+import { untrack } from 'solid-js/web';
+import { TagsToString } from './use/TagsToString';
 const init = {
     username: '',
     tags: [],
@@ -17,7 +19,7 @@ const init = {
 const [store, set] = createStore({ ...init });
 
 export const UploadPanel = () => {
-    const { uploaderVisible, username } = useContext(Data);
+    const { uploaderVisible, username, usersCollection } = useContext(Data);
     const uploading = atom(false);
     const check = () => {
         if (store.description && store.username && store.image && store.origin_tags) {
@@ -35,6 +37,16 @@ export const UploadPanel = () => {
             Notice.error('你的法力好像有些缺失呀！');
         }
     };
+    createEffect(() => {
+        if (uploaderVisible() === true) {
+            const list = untrack(usersCollection);
+            set(
+                'tags',
+                list.map((i) => i.en)
+            );
+            set('origin_tags', TagsToString(list));
+        }
+    });
     return (
         <Panel visible={uploaderVisible}>
             <header class="w-full py-2 text-center font-bold">我要分享魔咒！</header>

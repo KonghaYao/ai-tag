@@ -4,7 +4,8 @@ import { Data } from './App';
 import { TagButton } from './components/TagButton';
 import { reflect } from '@cn-ui/use';
 import { SortableList } from '@cn-ui/sortable';
-import { TagsToString } from './use/useDatabase';
+import { stringToTags, TagsToString } from './use/TagsToString';
+import { Notice } from './utils/notice';
 export const UserSelected = () => {
     const { deleteMode, enMode, usersCollection, emphasizeAddMode, emphasizeSubMode } =
         useContext(Data);
@@ -66,7 +67,8 @@ export const UserSelected = () => {
 };
 
 function HeaderFirst() {
-    const { enMode, usersCollection, settingVisible, publicVisible } = useContext(Data);
+    const { enMode, usersCollection, settingVisible, publicVisible, uploaderVisible } =
+        useContext(Data);
     return (
         <header class="flex w-full  py-2 text-sm font-bold">
             <span class="btn" onclick={() => enMode((i) => !i)}>
@@ -77,6 +79,7 @@ function HeaderFirst() {
                 onclick={() => {
                     const en = enMode();
                     copy(TagsToString(usersCollection(), en));
+                    Notice.success('复制魔法释放');
                 }}
             >
                 一键复制
@@ -85,15 +88,19 @@ function HeaderFirst() {
             <span class="btn" onclick={() => settingVisible((i) => !i)}>
                 设置
             </span>
-            <span class="btn bg-green-800" onclick={() => publicVisible((i) => !i)}>
+            <span class="btn bg-green-800" onclick={() => publicVisible(true)}>
                 模板资源
+            </span>
+            <span class="btn bg-green-800" onclick={() => uploaderVisible(true)}>
+                我要分享
             </span>
         </header>
     );
 }
 
 function HeaderSecond() {
-    const { r18Mode, emphasizeAddMode, emphasizeSubMode, deleteMode } = useContext(Data);
+    const { r18Mode, emphasizeAddMode, emphasizeSubMode, deleteMode, usersCollection, lists } =
+        useContext(Data);
     return (
         <header class="flex py-2  text-sm font-bold">
             <span
@@ -135,6 +142,18 @@ function HeaderSecond() {
             >
                 减权模式
             </span>
+            <div
+                class="btn"
+                onclick={() => {
+                    const text = prompt('请输入魔咒, 魔咒将会覆盖哦', '');
+                    console.log(text);
+                    if (text) {
+                        usersCollection(stringToTags(text, lists()));
+                    }
+                }}
+            >
+                魔咒导入
+            </div>
             {!r18Mode() && <span class="btn">青少年模式</span>}
         </header>
     );

@@ -12,8 +12,8 @@ export const stringToTags = (s: string) => {
 
 /** 有点小 BUG 但是问题不大 */
 export const stringToTagData = (s: string) => {
-    let lel = [...'({[（']; //声明左括号的数组
-    let rgl = [...')}]）']; //声明右括号的数组
+    let lel = [...'({]（']; //声明左括号的数组
+    let rgl = [...')}[）']; //声明右括号的数组
     let splitSymbol = [...',，']; //声明右括号的数组
 
     let nowString = '';
@@ -30,22 +30,28 @@ export const stringToTagData = (s: string) => {
             }
         }
         if (splitSymbol.includes(s[i]) || i === s.length - 1) {
-            if (i === s.length - 1) nowString += s[i];
+            if (i === s.length - 1 && !lel.includes(s[i]) && !rgl.includes(s[i])) nowString += s[i];
             nowString = nowString.trim();
             if (nowString) {
                 let r = 0;
                 let l = 0;
+                let count: undefined | number;
                 for (let j = i - 1; j >= 0; j--) {
                     const element = s[j];
                     if (rgl.includes(element)) {
+                        if (!count) count = 1;
                         l++;
                     } else if (lel.includes(element)) {
+                        if (!count) count = -1;
                         r++;
                     } else if (splitSymbol.includes(element)) {
                         break;
                     }
                 }
-                result.push({ text: nowString, emphasize: Math.min(l, r) + emphasizeCount });
+                result.push({
+                    text: nowString,
+                    emphasize: Math.min(l, r) * (count ?? 1) + emphasizeCount,
+                });
             }
             nowString = '';
         } else {

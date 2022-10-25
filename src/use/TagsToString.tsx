@@ -25,7 +25,9 @@ export const stringToTags = (s: string, list: IData[]): IData[] => {
 export const TagsToString = (data: IData[], en = true) => {
     return data
         .map((i) => {
-            return '{'.repeat(i.emphasize) + (en ? i.en : i.cn) + '}'.repeat(i.emphasize);
+            const count = Math.abs(i.emphasize);
+            const tag = i.emphasize > 0 ? '{}' : '[]';
+            return tag[0].repeat(count) + (en ? i.en : i.cn) + tag[1].repeat(count);
         })
         .join(',');
 };

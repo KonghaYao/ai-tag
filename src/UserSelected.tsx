@@ -45,7 +45,7 @@ export const UserSelected = () => {
                                     usersCollection((arr) => {
                                         const index = arr.findIndex((it) => it === item);
                                         const it = arr[index];
-                                        if (it.emphasize > 0) {
+                                        if (it.emphasize > -5) {
                                             const newArr = [...arr];
                                             newArr[index] = { ...it, emphasize: it.emphasize - 1 };
                                             return newArr;

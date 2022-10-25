@@ -83,6 +83,7 @@ export function useDatabase() {
             if (typeof data === 'function') {
                 data = data(U());
             }
+            data = data.filter((i) => i);
             return setU(
                 data.filter(
                     (item, index) =>

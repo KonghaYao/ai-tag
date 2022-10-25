@@ -48,7 +48,7 @@ export const SearchBox = () => {
                         const name = searchText();
                         usersCollection((i) => [
                             ...i,
-                            { cn: name, en: name, count: Infinity, r18: 0 },
+                            { cn: name, en: name, count: Infinity, r18: 0, emphasize: 0 },
                         ]);
                     }}
                 >

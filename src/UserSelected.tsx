@@ -3,38 +3,38 @@ import copy from 'copy-to-clipboard';
 import { Data } from './App';
 import { TagButton } from './components/TagButton';
 import { reflect } from '@cn-ui/use';
-
+import { SortableList } from '@cn-ui/sortable';
 export const UserSelected = () => {
-    const { deleteMode, enMode, usersCollection, settingVisible, publicVisible } = useContext(Data);
+    const { deleteMode, enMode, usersCollection } = useContext(Data);
     return (
         <main class="my-2 flex w-full flex-col rounded-xl border border-solid border-gray-600 p-2">
             <HeaderFirst></HeaderFirst>
-            <div
+            <SortableList
                 class="flex flex-wrap overflow-y-auto overflow-x-hidden  text-sm"
                 style={{
                     'max-height': '30vh',
                 }}
+                each={usersCollection}
+                getId={(el) => el.en}
             >
-                <For each={usersCollection()}>
-                    {(item) => {
-                        return (
-                            <TagButton
-                                data={item}
-                                en={enMode}
-                                cn={reflect(() => !enMode())}
-                                onClick={(item) => {
-                                    deleteMode() &&
-                                        usersCollection((i) => i.filter((it) => it !== item));
-                                }}
-                            ></TagButton>
-                        );
-                    }}
-                </For>
+                {(item) => {
+                    return (
+                        <TagButton
+                            data={item}
+                            en={enMode}
+                            cn={reflect(() => !enMode())}
+                            onClick={(item) => {
+                                deleteMode() &&
+                                    usersCollection((i) => i.filter((it) => it !== item));
+                            }}
+                        ></TagButton>
+                    );
+                }}
+            </SortableList>
 
-                {usersCollection().length === 0 && (
-                    <span class="text-sm font-light">点击下面的关键词添加</span>
-                )}
-            </div>
+            {usersCollection().length === 0 && (
+                <span class="text-sm font-light">点击下面的关键词添加</span>
+            )}
             <HeaderSecond></HeaderSecond>
         </main>
     );

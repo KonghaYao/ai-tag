@@ -14,7 +14,9 @@ export default defineConfig(({ mode }) => {
             port: 3000,
         },
         resolve: {
-            alias: {},
+            alias: {
+                '@cn-ui/sortable': './src/components/sortable/index',
+            },
         },
         define: {
             __version__: JSON.stringify(p.version),

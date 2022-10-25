@@ -32,6 +32,7 @@ export const TagButton: Component<{
                 copy(enMode() ? item.en : item.cn);
                 Notice.success('双击单项复制魔法释放');
             }}
+            data-id={item.en}
         >
             <span>{Array(props.data.emphasize).fill('{')}</span>
             <div class="flex flex-col">

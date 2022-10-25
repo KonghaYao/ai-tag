@@ -12,8 +12,7 @@
         "declarationDir": "./dist",
         "declaration": true,
         "isolatedModules": true,
-        "resolveJsonModule": true,
-
+        "resolveJsonModule": true
     },
     "include": ["src/**/*"]
 }

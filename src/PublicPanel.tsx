@@ -24,10 +24,8 @@ export const PublicPanel = () => {
             <header class="w-full py-2 text-center text-lg font-bold">
                 魔咒分享
                 <div
-                    class="btn float-right cursor-pointer px-2 text-sm"
-                    onClick={() => {
-                        uploaderVisible(true);
-                    }}
+                    class="btn float-right cursor-pointer px-2 text-sm text-green-700"
+                    onClick={() => uploaderVisible(true)}
                 >
                     我要分享
                 </div>
@@ -66,7 +64,7 @@ export const PublicPanel = () => {
                                 <button
                                     class="btn"
                                     onClick={() => {
-                                        usersCollection(injectEnArray(item.tags, lists()));
+                                        usersCollection(injectEnArray(item.origin_tags, lists()));
                                         publicVisible(false);
                                         Notice.success('拿来成功');
                                     }}

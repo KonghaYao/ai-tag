@@ -15,6 +15,7 @@ export interface IData {
     // 暂时没有打上
     r18: 0 | 1;
     count: number;
+    emphasize: number;
 }
 
 export const Data = createContext<{
@@ -35,7 +36,7 @@ export const Data = createContext<{
 export const App = () => {
     const { result, lists, searchText, usersCollection } = useDatabase();
 
-    const enMode = atom<boolean>(false);
+    const enMode = atom<boolean>(true);
     const r18Mode = atom<boolean>(false);
     const settingVisible = atom<boolean>(false);
     const publicVisible = atom<boolean>(false);

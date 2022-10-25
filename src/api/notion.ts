@@ -85,6 +85,7 @@ export const API = {
                         ...i,
                         description: i.description[0]?.plain_text,
                         username: i.username[0]?.plain_text,
+                        origin_tags: i.origin_tags[0]?.plain_text,
 
                         tags: i.tags.map((i) => i.name),
                     };

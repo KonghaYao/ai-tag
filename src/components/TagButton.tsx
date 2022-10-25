@@ -2,6 +2,7 @@ import { Atom, atomization } from '@cn-ui/use';
 import copy from 'copy-to-clipboard';
 import { Component, useContext } from 'solid-js';
 import { Data, IData } from '../App';
+import { Notice } from '../utils/notice';
 
 export const TagButton: Component<{
     data: IData;
@@ -20,19 +21,24 @@ export const TagButton: Component<{
         if (item.count > 1000) return 'bg-yellow-900';
         if (item.count > 500) return 'bg-green-900';
     };
+
     return (
         <nav
-            class="text-col relative mx-2 my-3 flex cursor-pointer select-none flex-col rounded-md bg-gray-600 px-2 py-1 text-center transition-colors active:bg-gray-700"
+            class="text-col relative mx-2 my-2 flex  cursor-pointer select-none  rounded-md bg-gray-600 px-2 py-1 text-center transition-colors active:bg-gray-700"
             onclick={() => {
                 props.onClick && props.onClick(item);
             }}
             onDblClick={() => {
                 copy(enMode() ? item.en : item.cn);
-                console.log('双击复制成功');
+                Notice.success('双击单项复制魔法释放');
             }}
         >
-            {cn() && <div>{item.cn}</div>}
-            {en() && <div>{item.en}</div>}
+            <span>{Array(props.data.emphasize).fill('{')}</span>
+            <div class="flex flex-col">
+                {cn() && <div>{item.cn}</div>}
+                {en() && <div>{item.en}</div>}
+            </div>
+            <span>{Array(props.data.emphasize).fill('}')}</span>
             {showCount() && (
                 <div
                     class={

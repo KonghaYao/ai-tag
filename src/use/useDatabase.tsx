@@ -6,18 +6,22 @@ import Fuse from 'fuse.js';
 import { useSearchParams } from '@solidjs/router';
 import { IData } from '../App';
 import { getTagInURL } from '../utils/getTagInURL';
-import { debounce } from 'lodash-es';
-
-export const injectEnArray = (arr: string[], list: IData[]): IData[] => {
-    return arr.map((i) => {
-        return (
-            list.find((it) => i === it.en) ?? {
-                en: i,
-                cn: i,
-                count: Infinity,
-                r18: 0,
-            }
-        );
+import { stringToTagData } from '../utils/stringToTags';
+export const injectEnArray = (s: string, list: IData[]): IData[] => {
+    const data = stringToTagData(s);
+    // console.log(data, s);
+    return data.map((i) => {
+        const en = list.find((it) => i.text === it.en);
+        if (en) return { ...en, emphasize: i.emphasize };
+        const cn = list.find((it) => i.text === it.cn);
+        if (cn) return { ...cn, emphasize: i.emphasize };
+        return {
+            en: i.text,
+            cn: i.text,
+            count: Infinity,
+            r18: 0,
+            emphasize: i.emphasize,
+        };
     });
 };
 
@@ -29,6 +33,7 @@ export function useDatabase() {
         if (data()) {
             const workbook = XLSX.read(data());
             const json = XLSX.utils.sheet_to_json(workbook.Sheets.Sheet1);
+            json.forEach((i) => (i.emphasize = 0));
             // 防止重复渲染
             untrack(() => {
                 usersCollection(getTagInURL(json));

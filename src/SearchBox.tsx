@@ -1,8 +1,8 @@
-import { For, useContext } from 'solid-js';
+import { createDeferred, createEffect, For, on, useContext } from 'solid-js';
 import debounce from 'lodash-es/debounce';
 import { Data, IData } from './App';
 import { TagButton } from './components/TagButton';
-import { reflect } from '@cn-ui/use';
+import { createIgnoreFirst, reflect } from '@cn-ui/use';
 import { untrack } from 'solid-js/web';
 import { sampleSize as _sampleSize } from 'lodash-es';
 
@@ -27,6 +27,13 @@ export const SearchBox = () => {
                 .slice(0, num) || []
         );
     });
+    let searchResult: HTMLDivElement;
+    createEffect(
+        on(showingResult, () => {
+            console.log(searchResult.scrollTop);
+            searchResult.scrollTo(0, 0);
+        })
+    );
     return (
         <>
             <nav class="flex w-full items-center">
@@ -36,7 +43,7 @@ export const SearchBox = () => {
                     placeholder="搜索关键词，中文也可以"
                     oninput={debounce((e) => {
                         searchText(e.target.value);
-                    }, 300)}
+                    }, 500)}
                 ></input>
 
                 <span class="btn flex-none" onclick={() => searchText('')}>
@@ -71,7 +78,10 @@ export const SearchBox = () => {
                         随机 {tagsPerPage()}
                     </span>
                 </nav>
-                <section class="my-2 flex h-full flex-wrap items-start  overflow-y-auto overflow-x-hidden">
+                <section
+                    class="my-2 flex h-full flex-wrap items-start  overflow-y-auto overflow-x-hidden"
+                    ref={searchResult}
+                >
                     <For each={showingResult()}>
                         {(item) => (
                             <TagButton

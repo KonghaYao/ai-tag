@@ -7,7 +7,7 @@ import { useSearchParams } from '@solidjs/router';
 import { IData } from '../App';
 import { getTagInURL } from '../utils/getTagInURL';
 import { stringToTagData } from '../utils/stringToTags';
-export const injectEnArray = (s: string, list: IData[]): IData[] => {
+export const stringToTags = (s: string, list: IData[]): IData[] => {
     const data = stringToTagData(s);
     // console.log(data, s);
     return data.map((i) => {
@@ -23,6 +23,13 @@ export const injectEnArray = (s: string, list: IData[]): IData[] => {
             emphasize: i.emphasize,
         };
     });
+};
+export const TagsToString = (data: IData[], en = true) => {
+    return data
+        .map((i) => {
+            return '{'.repeat(i.emphasize) + (en ? i.en : i.cn) + '}'.repeat(i.emphasize);
+        })
+        .join(',');
 };
 
 export function useDatabase() {
@@ -95,9 +102,7 @@ export function useDatabase() {
     const [searchParams, setSearchParams] = useSearchParams();
 
     createIgnoreFirst(() => {
-        const tags = usersCollection()
-            .map((i) => i.en)
-            .join(',');
+        const tags = TagsToString(usersCollection());
         setSearchParams(
             {
                 ...untrack(() => searchParams),

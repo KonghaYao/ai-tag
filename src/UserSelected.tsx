@@ -4,8 +4,10 @@ import { Data } from './App';
 import { TagButton } from './components/TagButton';
 import { reflect } from '@cn-ui/use';
 import { SortableList } from '@cn-ui/sortable';
+import { TagsToString } from './use/useDatabase';
 export const UserSelected = () => {
-    const { deleteMode, enMode, usersCollection } = useContext(Data);
+    const { deleteMode, enMode, usersCollection, emphasizeAddMode, emphasizeSubMode } =
+        useContext(Data);
     return (
         <main class="my-2 flex w-full flex-col rounded-xl border border-solid border-gray-600 p-2">
             <HeaderFirst></HeaderFirst>
@@ -26,11 +28,34 @@ export const UserSelected = () => {
                             onClick={(item) => {
                                 deleteMode() &&
                                     usersCollection((i) => i.filter((it) => it !== item));
+                                emphasizeAddMode() &&
+                                    usersCollection((arr) => {
+                                        const index = arr.findIndex((it) => it === item);
+                                        const it = arr[index];
+                                        if (it.emphasize < 5) {
+                                            const newArr = [...arr];
+                                            newArr[index] = { ...it, emphasize: it.emphasize + 1 };
+                                            return newArr;
+                                        }
+                                        return arr;
+                                    });
+                                emphasizeSubMode() &&
+                                    usersCollection((arr) => {
+                                        const index = arr.findIndex((it) => it === item);
+                                        const it = arr[index];
+                                        if (it.emphasize > 0) {
+                                            const newArr = [...arr];
+                                            newArr[index] = { ...it, emphasize: it.emphasize - 1 };
+                                            return newArr;
+                                        }
+                                        return arr;
+                                    });
                             }}
                         ></TagButton>
                     );
                 }}
             </SortableList>
+            <span class="text-xs text-red-600">拖拽移动到最后一个的位置上会 BUG</span>
 
             {usersCollection().length === 0 && (
                 <span class="text-sm font-light">点击下面的关键词添加</span>
@@ -41,18 +66,9 @@ export const UserSelected = () => {
 };
 
 function HeaderFirst() {
-    const { deleteMode, enMode, usersCollection, settingVisible, publicVisible } = useContext(Data);
+    const { enMode, usersCollection, settingVisible, publicVisible } = useContext(Data);
     return (
         <header class="flex w-full  py-2 text-sm font-bold">
-            <span
-                class="btn"
-                classList={{
-                    'bg-gray-700 border-gray-800': deleteMode(),
-                }}
-                onclick={() => deleteMode((i) => !i)}
-            >
-                删除模式
-            </span>
             <span class="btn" onclick={() => enMode((i) => !i)}>
                 {enMode() ? '英文' : '中文'}
             </span>
@@ -60,13 +76,7 @@ function HeaderFirst() {
                 class="btn"
                 onclick={() => {
                     const en = enMode();
-                    copy(
-                        usersCollection()
-                            .map((item) => {
-                                return en ? item.en : item.cn;
-                            })
-                            .join(',')
-                    );
+                    copy(TagsToString(usersCollection(), en));
                 }}
             >
                 一键复制
@@ -76,27 +86,56 @@ function HeaderFirst() {
                 设置
             </span>
             <span class="btn bg-green-800" onclick={() => publicVisible((i) => !i)}>
-                广场
+                模板资源
             </span>
         </header>
     );
 }
 
 function HeaderSecond() {
-    const { r18Mode } = useContext(Data);
+    const { r18Mode, emphasizeAddMode, emphasizeSubMode, deleteMode } = useContext(Data);
     return (
         <header class="flex py-2  text-sm font-bold">
             <span
                 class="btn"
-                classList={
-                    {
-                        // 'bg-gray-700 border-gray-800': deleteMode(),
-                    }
-                }
+                classList={{
+                    'bg-gray-700 border-gray-800': deleteMode(),
+                }}
+                onclick={() => {
+                    emphasizeAddMode(false);
+                    emphasizeAddMode(false);
+                    deleteMode((i) => !i);
+                }}
             >
                 删除模式
             </span>
-            {r18Mode() && <span class="btn">青少年模式</span>}
+            <span
+                class="btn"
+                classList={{
+                    'bg-gray-700 border-gray-800': emphasizeAddMode(),
+                }}
+                onClick={() => {
+                    deleteMode(false);
+                    emphasizeSubMode(false);
+                    emphasizeAddMode((i) => !i);
+                }}
+            >
+                加权模式
+            </span>
+            <span
+                class="btn"
+                classList={{
+                    'bg-gray-700 border-gray-800': emphasizeSubMode(),
+                }}
+                onClick={() => {
+                    deleteMode(false);
+                    emphasizeAddMode(false);
+                    emphasizeSubMode((i) => !i);
+                }}
+            >
+                减权模式
+            </span>
+            {!r18Mode() && <span class="btn">青少年模式</span>}
         </header>
     );
 }

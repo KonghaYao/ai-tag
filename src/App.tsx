@@ -21,12 +21,15 @@ export interface IData {
 export const Data = createContext<{
     deleteMode: Atom<boolean>;
     enMode: Atom<boolean>;
+    emphasizeAddMode: Atom<boolean>;
+    emphasizeSubMode: Atom<boolean>;
     r18Mode: Atom<boolean>;
     showCount: Atom<boolean>;
     settingVisible: Atom<boolean>;
     publicVisible: Atom<boolean>;
     uploaderVisible: Atom<boolean>;
     searchText: Atom<string>;
+    username: Atom<string>;
     usersCollection: Atom<IData[]>;
     tagsPerPage: Atom<number>;
     result: Atom<IData[]>;
@@ -43,7 +46,10 @@ export const App = () => {
     const uploaderVisible = atom<boolean>(false);
     const deleteMode = atom<boolean>(false);
     const showCount = atom<boolean>(true);
+    const emphasizeAddMode = atom(false);
+    const emphasizeSubMode = atom(false);
     const tagsPerPage = atom<number>(500);
+    const username = atom('');
 
     const storageSetting = {
         enMode,
@@ -52,6 +58,7 @@ export const App = () => {
         settingVisible,
         deleteMode,
         showCount,
+        username,
     };
     const { recover, tracking } = useStorage(storageSetting);
     recover();
@@ -63,6 +70,8 @@ export const App = () => {
                 usersCollection,
                 result,
                 lists,
+                emphasizeAddMode,
+                emphasizeSubMode,
                 searchText,
                 uploaderVisible,
                 ...storageSetting,

@@ -17,9 +17,8 @@ const init = {
 const [store, set] = createStore({ ...init });
 
 export const UploadPanel = () => {
-    const { uploaderVisible } = useContext(Data);
+    const { uploaderVisible, username } = useContext(Data);
     const uploading = atom(false);
-
     const check = () => {
         if (store.description && store.username && store.image && store.origin_tags) {
             return true;
@@ -28,7 +27,7 @@ export const UploadPanel = () => {
     };
     const upload = () => {
         if (check()) {
-            API.uploadData(store).then(() => {
+            API.uploadData({ ...store, username: username() }).then(() => {
                 set(() => ({ ...init }));
                 Notice.success('上传完成');
             });
@@ -46,10 +45,10 @@ export const UploadPanel = () => {
                     <input
                         class="input ml-1 w-full"
                         type="text"
-                        value={store.username}
+                        value={username()}
                         onChange={(e) => {
                             /**@ts-ignore */
-                            set('username', e.target.value);
+                            username(e.target.value);
                         }}
                     />
                 </div>

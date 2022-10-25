@@ -2,6 +2,7 @@
 import {
     Accessor,
     createContext,
+    createDeferred,
     createEffect,
     For,
     JSX,
@@ -59,13 +60,17 @@ export const SortableList = OriginComponent((baseProps) => {
         ...props.options,
 
         onSort() {
-            const sortable = getSortable();
+            const sortable = getSortable().toArray();
             props.options?.onSort?.apply(this, arguments);
-            each((i) => {
-                const list = sortable.toArray().map((id) => {
-                    return i.find((item) => getId(item) === id);
+            const update = () => {
+                each((i) => {
+                    return sortable.map((id) => {
+                        return i.find((item) => getId(item) === id);
+                    });
                 });
-                return list;
+            };
+            setTimeout(() => {
+                update();
             });
         },
 
@@ -88,6 +93,7 @@ export const SortableList = OriginComponent((baseProps) => {
             if (sortable.toArray().join(',') !== IdMap.join(',')) sortable.sort(IdMap, true);
         }
     });
+    // TODO 把元素放置在末尾会发生 bug
     return (
         <div
             ref={initSort}
@@ -99,7 +105,6 @@ export const SortableList = OriginComponent((baseProps) => {
             <For each={each()} fallback={props.fallback}>
                 {props.children}
             </For>
-            <div></div>
         </div>
     );
 }) as unknown as <T>(props: SortableListProps<T>) => JSXElement;

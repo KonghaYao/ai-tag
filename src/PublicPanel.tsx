@@ -4,7 +4,7 @@ import { For, useContext } from 'solid-js';
 import { API, StoreData } from './api/notion';
 import { Data } from './App';
 import { Panel } from './components/Panel';
-import { injectEnArray } from './use/useDatabase';
+import { stringToTags } from './use/useDatabase';
 import { Notice } from './utils/notice';
 
 const getData = memoize((page: number) => API.getData(page));
@@ -64,7 +64,7 @@ export const PublicPanel = () => {
                                 <button
                                     class="btn"
                                     onClick={() => {
-                                        usersCollection(injectEnArray(item.origin_tags, lists()));
+                                        usersCollection(stringToTags(item.origin_tags, lists()));
                                         publicVisible(false);
                                         Notice.success('拿来成功');
                                     }}

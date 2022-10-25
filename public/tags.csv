@@ -1,7 +1,7 @@
 ﻿en,cn,count,r18
 highly detailed,精细,9999999,0
 extremely detailed 8K wallpaper,高级背景修饰词,9999999,0
-nsfw,nsfw,9999999,0
+nsfw,nsfw,9999999,1
 best quality,高质量,9999999,0
 masterpiece,杰作,9999999,0
 1girl,1个女孩,3663973,0
@@ -65,7 +65,7 @@ blue hair,蓝色的头发,487376,0
 standing,站立,473056,0
 purple eyes,紫色的眼睛,463120,0
 collarbone,锁骨,448824,0
-panties,内裤,442366,0
+panties,内裤,442366,1
 monochrome,单色,421271,0
 tail,尾巴,416809,0
 jacket,夹克,414708,0
@@ -218,7 +218,7 @@ armor,盔甲,125241,0
 white dress,白色连衣裙,125227,0
 holding weapon,手持武器,124826,0
 black footwear,黑色鞋类,124749,0
-white panties,白色内裤,124171,0
+white panties,白色内裤,124171,1
 rabbit ears,兔耳朵,123685,0
 mole,鼹鼠,120941,0
 uniform,制服,120421,0
@@ -313,7 +313,7 @@ maid headdress,女仆头饰,82494,0
 legs,腿,82346,0
 petals,花瓣,81946,0
 cosplay,角色扮演,81666,0
-black panties,黑色内裤,81380,0
+black panties,黑色内裤,81380,1
 black pantyhose,黑色连裤袜,80852,0
 fur trim,皮草饰边,80600,0
 bare arms,光着膀子,80571,0
@@ -376,7 +376,7 @@ skindentation,剥皮,67546,0
 leaning forward,身体前倾,67471,0
 neck ribbon,颈带,67406,0
 muscular,肌肉发达,66550,0
-no panties,没有内裤,66463,0
+no panties,没有内裤,66463,1
 thigh strap,大腿绑带,66443,0
 mask,面具,66402,0
 capelet,披肩,66285,0
@@ -692,13 +692,13 @@ green skirt,绿裙子,34039,0
 loafers,乐福鞋,33900,0
 gauntlets,护手,33858,0
 elf,精灵,33658,0
-pink panties,粉色内裤,33658,0
+pink panties,粉色内裤,33658,1
 no pants,没有裤子,33627,0
 fate/stay night,命运/过夜,33474,0
 t-shirt,t 恤,33474,0
 red flower,红花,33318,0
 black bra,黑色文胸,33218,0
-striped panties,条纹内裤,33132,0
+striped panties,条纹内裤,33132,1
 multiple tails,多尾,33042,0
 building,建筑,32940,0
 wristband,腕带,32893,0
@@ -742,7 +742,7 @@ fishnets,渔网,30907,0
 horse girl,马女孩,30889,0
 tassel,流苏,30800,0
 wet clothes,湿衣服,30771,0
-side-tie panties,侧系内裤,30688,0
+side-tie panties,侧系内裤,30688,1
 red bowtie,红色领结,30656,0
 genderswap,性别交换,30654,0
 revealing clothes,露出衣服,30634,0
@@ -793,7 +793,7 @@ microphone,麦克风,28340,0
 bandaid,创可贴,28293,0
 male pubic hair,男性阴毛,28289,1
 hakama skirt,袴裙,28267,0
-bow panties,蝴蝶结内裤,28248,0
+bow panties,蝴蝶结内裤,28248,1
 hand fan,手扇,28221,0
 blue archive,蓝色档案,28195,0
 white apron,白色围裙,28089,0
@@ -997,7 +997,7 @@ flying,飞行,20835,0
 highleg leotard,高腿紧身衣,20827,0
 hood up,罩起来,20761,0
 spot color,专色,20747,0
-panties under pantyhose,连裤袜下的内裤,20745,0
+panties under pantyhose,连裤袜下的内裤,20745,1
 nontraditional miko,非传统巫女,20727,0
 kemonomimi mode,kemonomimi模式,20724,0
 sailor dress,水手服,20684,0
@@ -1226,7 +1226,7 @@ injury,受伤,15995,0
 thought bubble,思想泡泡,15972,0
 brown jacket,棕色夹克,15948,0
 mini hat,迷你帽子,15946,0
-blue panties,蓝色内裤,15901,0
+blue panties,蓝色内裤,15901,1
 dakimakura (medium),dakimakura（中）,15892,0
 black coat,黑色外套,15874,0
 robe,长袍,15869,0
@@ -1333,7 +1333,7 @@ fighting stance,战斗姿态,14250,0
 hibiki (kancolle),响（kancolle）,14235,0
 hair bell,发铃,14229,0
 sign,标志,14202,0
-panties aside,除了内裤,14198,0
+panties aside,除了内裤,14198,1
 pout,噘嘴,14196,0
 chen,陈,14181,0
 cum on hair,暨上头发,14179,1
@@ -1359,7 +1359,7 @@ open book,打开书,13923,0
 partially translated,部分翻译,13899,0
 spoon,勺子,13897,0
 orange bow,橙色蝴蝶结,13880,0
-panties around one leg,一条腿周围的内裤,13820,0
+panties around one leg,一条腿周围的内裤,13820,1
 pink bra,粉色文胸,13815,0
 round teeth,圆齿,13815,0
 card,卡,13798,0
@@ -1514,7 +1514,7 @@ brown headwear,棕色头饰,12217,0
 pink bikini,粉色比基尼,12210,0
 goatee,山羊胡,12208,0
 black bodysuit,黑色紧身连衣裤,12191,0
-highleg panties,高腿内裤,12174,0
+highleg panties,高腿内裤,12174,1
 holding clothes,拿着衣服,12172,0
 re:zero kara hajimeru isekai seikatsu,re:zero kara hajimeru isekai seikatsu,12149,0
 floral background,花卉背景,12134,0
@@ -1817,7 +1817,7 @@ ice wings,冰翼,9373,0
 japanese armor,日本装甲,9362,0
 +++,+++,9357,0
 source smaller,源更小,9351,0
-purple panties,紫色内裤,9350,0
+purple panties,紫色内裤,9350,1
 brown belt,棕色腰带,9329,0
 sailor shirt,水手衫,9324,0
 triangle mouth,三角口,9314,0
@@ -1871,7 +1871,7 @@ breast pocket,胸袋,8935,0
 akiyama mio,秋山澪,8931,0
 dagger,匕首,8931,0
 against wall,靠墙,8930,0
-red panties,红色内裤,8928,0
+red panties,红色内裤,8928,1
 laughing,笑,8923,0
 fubuki (kancolle),吹雪 (kancolle),8922,0
 single side bun,单面发髻,8919,0
@@ -1959,11 +1959,11 @@ pumpkin,南瓜,8347,0
 check commentary,检查评论,8335,0
 tiger ears,虎耳,8335,0
 fake horns,假喇叭,8311,0
-string panties,字符串内裤,8309,0
+string panties,字符串内裤,8309,1
 low wings,低翼,8303,0
 self upload,自行上传,8298,0
 haori,外罩,8294,0
-lace-trimmed panties,蕾丝边内裤,8293,0
+lace-trimmed panties,蕾丝边内裤,8293,1
 happy new year,新年快乐,8288,0
 rebuild of evangelion,新世纪福音战士的重建,8274,0
 purple gloves,紫色手套,8273,0
@@ -2383,7 +2383,7 @@ broom riding,骑扫帚,6172,0
 handcuffs,手铐,6165,0
 soaking feet,泡脚,6164,0
 no pupils,没有学生,6158,0
-frilled panties,褶边内裤,6147,0
+frilled panties,褶边内裤,6147,1
 fur-trimmed sleeves,毛边袖子,6146,0
 holding gift,拿着礼物,6145,0
 aqua nails,水色指甲,6141,0
@@ -2450,7 +2450,7 @@ folded,折叠,5918,0
 forehead jewel,额头宝石,5913,0
 badge,徽章,5912,0
 chalkboard,黑板,5910,0
-green panties,绿色内裤,5905,0
+green panties,绿色内裤,5905,1
 amatsukaze (kancolle),松风（kancolle）,5900,0
 high school dxd,高中 dxd,5900,0
 ushio (kancolle),ushio (kancolle),5895,0
@@ -2514,7 +2514,7 @@ red skin,红皮,5700,0
 :/,:/,5697,0
 bishounen,美少年,5696,0
 fucked silly,搞砸了 5696,5696,1
-lowleg panties,低腿内裤,5696,0
+lowleg panties,低腿内裤,5696,1
 symbol in eye,眼睛里的符号,5696,0
 shoukaku (kancolle),shoukaku (kancolle),5695,0
 pointing at viewer,指向观众,5688,0
@@ -2538,7 +2538,7 @@ chess piece,棋子,5615,0
 sepia,棕褐色,5615,0
 planet,星球,5610,0
 brown sweater,棕色毛衣,5602,0
-print panties,印花内裤,5601,0
+print panties,印花内裤,5601,1
 red pants,红色裤子,5599,0
 error,错误,5591,0
 pink thighhighs,粉色长筒袜,5587,0
@@ -2597,7 +2597,7 @@ inkling girl,暗示 女孩,5399,0
 miqo'te,miqo'te,5398,0
 white tank top,白色背心,5398,0
 zhongli (genshin impact),中立（原神）,5393,0
-panties removed,去除内裤,5392,0
+panties removed,去除内裤,5392,1
 girl sandwich,女孩三明治,5391,0
 holding stuffed toy,拿着毛绒玩具,5391,0
 ears through headwear,耳朵穿过头饰,5390,0
@@ -2793,7 +2793,7 @@ cow tail,牛尾巴,4861,0
 paper fan,纸扇,4861,0
 pink bowtie,粉色领结,4851,0
 queen's blade,女王之刃,4851,0
-polka dot panties,波点内裤,4850,0
+polka dot panties,波点内裤,4850,1
 female admiral (kancolle),女海军上将 (kancolle),4849,0
 stand (jojo),站 (jojo),4846,0
 plaid scarf,格子围巾,4844,0
@@ -2835,7 +2835,7 @@ real life,现实生活,4734,0
 baseball bat,棒球棒,4728,0
 flag print,旗印,4726,0
 sweating profusely,大汗淋漓,4725,0
-wet panties,湿内裤,4725,0
+wet panties,湿内裤,4725,1
 ear blush,耳红,4724,0
 mona (genshin impact),莫娜（原神影响）,4719,0
 :|,:|,4717,0
@@ -3434,7 +3434,7 @@ yellow headwear,黄色头饰,3472,0
 hand on another's chin,手放在别人的下巴上,3468,0
 sleeves pushed up,袖子上推,3466,0
 osomatsu-san,小松桑,3465,0
-yellow panties,黄色内裤,3465,0
+yellow panties,黄色内裤,3465,1
 oppai loli,欧派萝莉,3457,0
 orange dress,橙色连衣裙,3457,0
 cat hair ornament,猫头饰,3456,0
@@ -4324,7 +4324,7 @@ sheep ears,羊耳朵,2404,0
 monster hunter (character),怪物猎人（角色）,2403,0
 torn bodysuit,撕裂的紧身连衣裤,2403,0
 after fellatio,口交后,2401,1
-cat ear panties,猫耳内裤,2399,0
+cat ear panties,猫耳内裤,2399,1
 american flag bikini,美国国旗比基尼,2398,0
 flip-flops,人字拖,2397,0
 hunter x hunter,猎人 x 猎人,2395,0
@@ -4367,7 +4367,7 @@ akizuki ritsuko,秋月律子,2374,0
 naga u,娜迦 u,2372,0
 raihan (pokemon),raihan（口袋妖怪）,2372,0
 tokitsukaze (kancolle),时风 (kancolle),2372,0
-grey panties,灰色内裤,2371,0
+grey panties,灰色内裤,2371,1
 kama (fate),卡玛（命运）,2371,0
 lotion,乳液,2370,0
 shiranui mai,不知火舞,2369,0
@@ -4420,7 +4420,7 @@ urethra,尿道,2326,0
 hallway,走廊,2324,0
 hayate no gotoku!,飒飒的豪德！,2323,0
 ch'en (arknights),陈 (arknights),2322,0
-lace panties,蕾丝内裤,2322,0
+lace panties,蕾丝内裤,2322,1
 reindeer antlers,驯鹿鹿角,2321,0
 ear ribbon,耳带,2319,0
 holding scythe,拿着镰刀,2317,0
@@ -4449,7 +4449,7 @@ furry with non-furry,毛茸茸的,2303,1
 long eyelashes,长睫毛,2302,0
 jealous,嫉妒,2299,0
 red rope,红绳,2299,0
-hand in panties,手内裤,2298,0
+hand in panties,手内裤,2298,1
 padlock,挂锁,2298,0
 pudding,布丁,2298,0
 ashigara (kancolle),ashigara (kancolle),2297,0
@@ -4601,7 +4601,7 @@ wrestling outfit,摔跤服,2200,0
 spade (shape),铁锹（形状）,2199,0
 sleepwear,睡衣,2198,0
 diarmuid ua duibhne (lancer) (fate),diarmuid ua duibhne (lancer) (命运),2197,0
-untied panties,解开内裤,2196,0
+untied panties,解开内裤,2196,1
 clitoral stimulation,阴蒂刺激,2195,1
 rebecca (keinelove),丽贝卡 (keinelove),2195,0
 utau,乌陶,2194,0
@@ -4656,7 +4656,7 @@ arm held back,手臂向后,2160,0
 asakura ryouko,朝仓凉子,2160,0
 mismatched footwear,不匹配的鞋类,2160,0
 calendar (medium),日历（中）,2159,0
-holding panties,拿着内裤,2159,0
+holding panties,拿着内裤,2159,1
 simon (ttgl),西蒙 (ttgl),2159,0
 flame-tipped tail,火焰尾翼,2156,0
 hisahiko,久彦,2155,0
@@ -5032,7 +5032,7 @@ milk bottle,奶瓶,1909,0
 nisemonogatari,nisemonogatari,1909,0
 agnes tachyon (umamusume),agnes tachyon (umamusume),1908,0
 akai haato,akai haato,1908,0
-crotchless panties,无裆内裤,1908,0
+crotchless panties,无裆内裤,1908,1
 fine art parody,美术模仿,1908,0
 restaurant,餐厅,1908,0
 kirigiri kyouko,1907 切里吉里杏子,1907,0
@@ -6471,7 +6471,7 @@ ar tonelico,阿尔托内利科,1273,0
 artoria pendragon (swimsuit ruler) (fate),artoria pendragon (泳装尺) (fate),1273,0
 butcha-u,布查-u,1273,0
 ringo (touhou),ringo (东方),1273,0
-vibrator under panties,振动器 下 内裤,1273,0
+vibrator under panties,振动器 下 内裤,1273,1
 wiping tears,擦眼泪,1273,0
 silver fox (kemono friends),银狐 (kemono 朋友),1272,0
 mechanization,机械化,1271,0
@@ -6680,7 +6680,7 @@ pink sailor collar,粉色水手领,1216,0
 redesign,重新设计,1216,0
 arcana heart,奥术之心,1215,0
 ishikei,石景,1215,0
-micro panties,微型内裤,1215,0
+micro panties,微型内裤,1215,1
 eureka seven,尤里卡七,1214,0
 fujiwara chika,藤原千花,1214,0
 nian (arknights),年（方舟）,1214,0
@@ -6855,7 +6855,7 @@ mihono bourbon (umamusume),mihono bourbon (umamusume),1165,0
 nekomusume,猫娘,1165,0
 sailor moon redraw challenge (meme),水手月亮重绘挑战（模因）,1165,0
 nekotoufu,猫头府,1164,0
-plaid panties,格子内裤,1164,0
+plaid panties,格子内裤,1164,1
 stadium,体育场,1164,0
 hagikaze (kancolle),萩风 (kancolle),1163,0
 joseph joestar (old),约瑟夫·乔斯塔（旧）,1163,0
@@ -6981,7 +6981,7 @@ cheering,欢呼,1134,0
 full-package futanari,全包 futanari,1134,0
 natsuki subaru,夏树昴,1134,0
 kilye kairi,基耶凯里,1133,0
-torn panties,撕裂的内裤,1133,0
+torn panties,撕裂的内裤,1133,1
 hatsune miku (cosplay),初音未来 (cosplay),1132,0
 bianca (pokemon),比安卡（口袋妖怪）,1131,0
 world flipper,世界脚蹼,1131,0
@@ -7096,7 +7096,7 @@ the legend of zelda: skyward sword,塞尔达传说：天空之剑,1103,0
 green flower,绿花,1102,0
 kuma (persona 4),kuma (角色 4),1102,0
 nepgear,nepgear,1102,0
-panties on head,头上的内裤,1102,0
+panties on head,头上的内裤,1102,1
 panty straps,连裤带,1101,0
 german flag,德国国旗,1100,0
 kasane teto,kasane teto,1100,0
@@ -7216,7 +7216,7 @@ kirijou mitsuru,桐城光,1072,0
 mery (yangmalgage),mery (yangmalgage),1072,0
 red bandana,红色头巾,1072,0
 silica,二氧化硅,1072,0
-aqua panties,水色内裤,1071,0
+aqua panties,水色内裤,1071,1
 arch bishop (ragnarok online),大主教 (ragnarok online),1071,0
 blue fur,蓝色毛皮,1071,0
 doctor,医生,1071,0
@@ -7475,7 +7475,7 @@ pink pupils,粉色瞳孔,1013,0
 urushihara satoshi,漆原聪,1013,0
 world trigger,世界触发器,1013,0
 arm blade,手臂刀片,1012,0
-brown panties,棕色内裤,1012,0
+brown panties,棕色内裤,1012,1
 they had lots of sex afterwards (meme),之后他们发生了很多性行为（模因）,1012,1
 james (pokemon),詹姆斯（口袋妖怪）,1011,0
 two-sided cape,双面斗篷,1011,0
@@ -7538,7 +7538,7 @@ fuuin no tsue,风印之结,1001,0
 hatsushimo (kancolle),初代 (kancolle),1001,0
 lizard tail,蜥蜴尾巴,1001,0
 minamoto sakura,源樱花,1001,0
-orange panties,橙色内裤,1001,0
+orange panties,橙色内裤,1001,1
 tsuruya,鹤屋,1001,0
 vibrator in thighhighs,长筒袜振动器,1001,0
 asagumo (kancolle),朝云 (kancolle),1000,0
@@ -7770,7 +7770,7 @@ liquid hair,液体头发,960,0
 lpip,lpip,960,0
 pharah (overwatch),法拉（守望先锋）,960,0
 saunders military uniform,桑德斯军装,960,0
-back-print panties,背面印花内裤,959,0
+back-print panties,背面印花内裤,959,1
 consensual tentacles,双方同意的触角,959,0
 lucas (pokemon),卢卡斯（口袋妖怪）,959,0
 mouth pull,嘴拉,959,0
@@ -8641,7 +8641,7 @@ white serafuku,白色 serafuku,807,0
 haniwa (statue),haniwa（雕像）,806,0
 okina ika,冲绳 ika,806,0
 pointy breasts,尖尖的乳房,806,1
-strawberry panties,草莓内裤,806,0
+strawberry panties,草莓内裤,806,1
 no eyebrows,没有眉毛,805,0
 sano toshihide,佐野俊秀,805,0
 searchlight,探照灯,805,0
@@ -9064,7 +9064,7 @@ looking through legs,透过腿看,747,0
 nekomusume (gegege no kitarou 6),nekomusume (gegege no kitarou 6),747,0
 romaji commentary,罗马字评论,747,0
 sakuragi mano,樱木真野,747,0
-satin panties,缎面内裤,747,0
+satin panties,缎面内裤,747,1
 tanikaze (kancolle),tanikaze (kancolle),747,0
 tsurezure children,tsurezure 儿童,747,0
 cropped arms,短臂,746,0
@@ -9343,7 +9343,7 @@ inline skates,直排轮滑鞋,714,0
 justice (helltaker),正义（地狱猎手）,714,0
 mamaloni,马马洛尼,714,0
 no eyepatch,没有眼罩,714,0
-stained panties,染色内裤,714,0
+stained panties,染色内裤,714,1
 aozora market,青空市场,713,0
 character signature,字符签名,713,0
 club3,俱乐部3,713,0
@@ -9411,7 +9411,7 @@ onion,洋葱,708,0
 sagiri (kancolle),sagiri (kancolle),708,0
 starbucks,星巴克,708,0
 stole,偷了,708,0
-vertical-striped panties,竖条纹内裤,708,0
+vertical-striped panties,竖条纹内裤,708,1
 dumpling,饺子,707,0
 flag background,标志背景,707,0
 frozen,冷冻,707,0
@@ -9463,7 +9463,7 @@ grass wonder (umamusume),草奇迹 (umamusume),702,0
 kappa,卡帕,702,0
 kobayakawa sae,小早川佐江,702,0
 moyazou (kitaguni moyashi seizoujo),moyazou (kitaguni moyashi seizoujo),702,0
-multi-strapped panties,多带内裤,702,0
+multi-strapped panties,多带内裤,702,1
 mundane utility,平凡的实用工具,702,0
 mutsuki (moonknives),mutsuki（月刀）,702,0
 paper crane,纸鹤,702,0
@@ -9760,11 +9760,11 @@ saibou shinkyoku,斋戒神曲,670,0
 sakura oriko,樱花织子,670,0
 sayagata,早矢,670,0
 shoujo kitou-chuu,少女鬼头中,670,0
-adjusting panties,调整内裤,669,0
+adjusting panties,调整内裤,669,1
 cart,购物车,669,0
 matikane tannhauser (umamusume),matikane tannhauser (umamusume),669,0
 nipple bar,乳头棒,669,1
-panties under buruma,buruma 下的内裤,669,0
+panties under buruma,buruma 下的内裤,669,1
 pizza slice,披萨片,669,0
 super saiyan 1,超级赛亚人 1,669,0
 wardrobe error,衣柜错误,669,0
@@ -11150,7 +11150,7 @@ atelier totori,工作室鸟取,550,0
 bolt,螺栓,550,0
 cuboon,立方体,550,0
 destroyer princess,驱逐舰公主,550,0
-front-print panties,正面印花内裤,550,0
+front-print panties,正面印花内裤,550,1
 kotatsu (g-rough),被炉（g-粗）,550,0
 loaded interior,装载内部,550,0
 mizutani eri,水谷绘里,550,0
@@ -11282,7 +11282,7 @@ aile (crossroads),aile (十字路口),540,0
 chomusuke,长之助,540,0
 crane game,起重机游戏,540,0
 elise (fire emblem),伊莉丝（火徽）,540,0
-fingering through panties,指法通过内裤,540,0
+fingering through panties,指法通过内裤,540,1
 hanzou,汉州,540,0
 i-no,我不,540,0
 ittokyu,伊东急,540,0
@@ -11340,7 +11340,7 @@ wrestle angels,摔跤天使,537,0
 yellow-tinted eyewear,黄色眼镜,537,0
 yumizuka satsuki,由水冢小月,537,0
 atago (summer march) (azur lane),爱宕（夏季进行曲）（碧蓝航线）,536,0
-bear panties,熊内裤,536,0
+bear panties,熊内裤,536,1
 clothes pin,衣夹,536,0
 freyja wion,弗雷亚·维昂,536,0
 gao,高,536,0
@@ -11658,7 +11658,7 @@ kan'u unchou,kan'u uncho,516,0
 lansane,兰桑,516,0
 octopath traveler,八方旅人,516,0
 ogasawara sachiko,小笠原幸子,516,0
-panties over pantyhose,连裤袜上的内裤,516,0
+panties over pantyhose,连裤袜上的内裤,516,1
 roto,旋转,516,0
 sexual coaching,性辅导,516,1
 tro,tro,516,0
@@ -12430,7 +12430,7 @@ lightning bolt print,闪电印花,470,0
 okitakung,奥基塔贡,470,0
 parari (parari000),帕拉里 (parari000),470,0
 psyduck,心理鸭,470,0
-ribbon-trimmed panties,丝带饰边内裤,470,0
+ribbon-trimmed panties,丝带饰边内裤,470,1
 senko (sewayaki kitsune no senko-san),senko (sewayaki kitsune no senko-san),470,0
 shulk (xenoblade),shulk（异种之刃）,470,0
 soranamae,空前,470,0
@@ -12473,7 +12473,7 @@ matanonki,马塔农基,468,0
 mouth,嘴,468,0
 ndgd,ndgd,468,0
 ninian (fire emblem),念念（火徽）,468,0
-panties under shorts,短裤内裤,468,0
+panties under shorts,短裤内裤,468,1
 portal (object),门户（对象）,468,0
 puyopuyo fever,puyopuyo 发烧,468,0
 rindou mikoto,临道美琴468,468,0
@@ -12777,7 +12777,7 @@ mahouka koukou no rettousei,mahouka koukou no rettousei,450,0
 miyashita ai,宫下爱,450,0
 omachi (slabco),大町 (slabco),450,0
 pink diamond 765 (idolmaster),粉钻 765（偶像大师）,450,0
-presenting panties,展示内裤,450,0
+presenting panties,展示内裤,450,1
 pushing away,推开,450,0
 red feathers,红色羽毛,450,0
 russian commentary,俄罗斯评论,450,0
@@ -13377,7 +13377,7 @@ yuugiri (zombie land saga),yuugiri（僵尸大陆传奇）,422,0
 absol,绝对,421,0
 ace of spades,黑桃 A,421,0
 choujigen game neptune mk2,choujigen 游戏 海王星 mk2,421,0
-heart panties,心形内裤,421,0
+heart panties,心形内裤,421,1
 hedgehog,刺猬,421,0
 henshako,变砂子,421,0
 hitomaru,人丸,421,0
@@ -14080,7 +14080,7 @@ mahou senki lyrical nanoha force,mahou senki 抒情 nanoha force,390,0
 mizunashi (second run),水无（第二轮）,390,0
 nichika (nitikapo),日化 (nitikapo),390,0
 oddish,奇怪的,390,0
-panties (pantsu-pirate),内裤 (pantsu-pirate),390,0
+panties (pantsu-pirate),内裤 (pantsu-pirate),390,1
 red carpet,红地毯,390,0
 sakura yuki (clochette),樱花由纪 (clochette),390,0
 street fighter 6,街头霸王 6,390,0
@@ -14455,7 +14455,7 @@ prison school,监狱学校,376,0
 yuuki rito,梨藤优树376,376,0
 ars almal,阿尔马尔,375,0
 bed frame,床架,375,0
-boyshort panties,平角内裤,375,0
+boyshort panties,平角内裤,375,1
 film strip,胶片,375,0
 harunatsu akito,春夏秋藤,375,0
 immobilization,固定,375,0
@@ -15132,7 +15132,7 @@ white wrist cuffs,白色腕带,353,0
 after bathing,沐浴后,352,0
 all might,尽一切可能,352,0
 ansatsu kyoushitsu,ansatsu kyoushitsu,352,0
-backless panties,露背内裤,352,0
+backless panties,露背内裤,352,1
 bandaid on head,头上的绷带,352,0
 dragon tattoo,龙纹身,352,0
 galaxy angel rune,银河天使符文,352,0
@@ -15402,7 +15402,7 @@ muffin top,松饼顶部,343,0
 mugino shizuri,mugino shizuri,343,0
 mushishi,木石,343,0
 natuna natu,natuna natu,343,0
-o-ring panties,O 型圈内裤,343,0
+o-ring panties,O 型圈内裤,343,1
 orange juice,橙汁,343,0
 saemonza (girls und panzer),saemonza（少女与装甲）,343,0
 shirokane rinko,白银临港,343,0
@@ -15993,7 +15993,7 @@ nice nature (run&win) (umamusume),美好的自然 (run&win) (umamusume),325,0
 nopon,诺蓬,325,0
 noripro,诺瑞普,325,0
 ooba minori,大叶小花,325,0
-panties over garter belt,吊袜带上的内裤,325,0
+panties over garter belt,吊袜带上的内裤,325,1
 richelieu (azur lane),黎塞留（碧蓝航线）,325,0
 saileach (arknights),赛利奇（方舟之夜）,325,0
 scary monsters (stand),可怕的怪物（站立）,325,0
@@ -16363,7 +16363,7 @@ pink check school (idolmaster),粉色格子学校（偶像大师）,315,0
 pinup (style),海报（风格）,315,0
 plaid trim,格子装饰,315,0
 raiden (metal gear),雷电（金属齿轮）,315,0
-ribbon panties,丝带内裤,315,0
+ribbon panties,丝带内裤,315,1
 riko (made in abyss),riko（深渊制造）,315,0
 rotom dex,rotom dex,315,0
 sanpachishiki (gyokusai-jima),三八色（玉斋岛）,315,0
@@ -17243,7 +17243,7 @@ miyazono kawori,宫园川里,292,0
 morgan (fire emblem) (female),摩根（火徽）（女）,292,0
 mysterious heroine x alter (second ascension) (fate),神秘女主角 x alter (second ascension) (fate),292,0
 neck biting,咬脖子,292,0
-panties around ankles,脚踝周围的内裤,292,0
+panties around ankles,脚踝周围的内裤,292,1
 particle cannon case,粒子炮箱,292,0
 pinta (ayashii bochi),品塔 (ayashii bochi),292,0
 presenting foot,展示脚,292,0
@@ -18743,7 +18743,7 @@ vintage microphone,老式麦克风,260,0
 aegislash,神盾,259,0
 camping,露营,259,0
 candice (pokemon),坎迪斯（口袋妖怪）,259,0
-cat panties,猫内裤,259,0
+cat panties,猫内裤,259,1
 chiton,石鳖,259,0
 dynamic pose,动态姿势,259,0
 e volution,进化,259,0
@@ -18906,7 +18906,7 @@ mx2j (nsh6394),mx2j (nsh6394),256,0
 nekoshoko,猫小子,256,0
 nest,巢,256,0
 origami cyclone,折纸旋风256,256,0
-panties in mouth,内裤在嘴里,256,0
+panties in mouth,内裤在嘴里,256,1
 penthesilea (fate),彭忒西勒亚（命运）,256,0
 rattata,拉塔塔,256,0
 rejection,拒绝,256,0
@@ -20018,7 +20018,7 @@ mifuru,三福鲁,236,0
 minase (takaoka nanase),水濑（高冈七濑）,236,0
 mp40,mp40,236,0
 mr.romance,浪漫先生,236,0
-multicolored panties,五彩内裤,236,0
+multicolored panties,五彩内裤,236,1
 nakabayashi reimei,中林灵明,236,0
 otome wa boku ni koishiteru,otome wa boku ni koishiteru,236,0
 pink sclera,粉红色巩膜,236,0
@@ -20593,7 +20593,7 @@ naked robe,裸袍,226,0
 nanjo hikaru,南条光,226,0
 naoko-san,直子山,226,0
 ohlia,奥利亚,226,0
-panties under bike shorts,自行车短裤内裤,226,0
+panties under bike shorts,自行车短裤内裤,226,1
 purple pupils,紫色瞳孔,226,0
 roegadyn,罗加登,226,0
 round table,圆桌会议,226,0
@@ -22023,7 +22023,7 @@ nogami aoi,野上葵,206,0
 oono tsutomu,小野勉,206,0
 outie navel,肚脐,206,0
 pachira,帕奇拉,206,0
-panties day,内裤日,206,0
+panties day,内裤日,206,1
 plaid sailor collar,格子水手领,206,0
 puni (miku plus),puni (miku plus),206,0
 rin2008,rin2008,206,0
@@ -22714,7 +22714,7 @@ asagi yuna,朝木优菜,197,0
 asteroid,小行星,197,0
 billie (meng gong fang),比莉（孟公芳）,197,0
 border break,边境突破,197,0
-bunny panties,兔子内裤,197,0
+bunny panties,兔子内裤,197,1
 caracol,卡拉科尔,197,0
 cum in navel,暨在肚脐,197,1
 cum on food,暨食物,197,1
@@ -22921,7 +22921,7 @@ taro (taro),芋头(芋头),195,0
 terence t. d'arby,特伦斯吨。达比,195,0
 teruru,照耀,195,0
 trombone,长号,195,0
-two-tone panties,两色内裤,195,0
+two-tone panties,两色内裤,195,1
 vertical-striped swimsuit,竖条纹泳衣,195,0
 view between legs,两腿之间的视图,195,0
 vyragami,维拉加米,195,0
@@ -22945,7 +22945,7 @@ bell cranel,钟形起重机,194,0
 boku to koi suru ponkotsu akuma.,boku to koi suru ponkotsu akuma.,194,0
 canards,鸭翼,194,0
 colored text,彩色文本,194,0
-cumdrip onto panties,cumdrip 到 内裤,194,0
+cumdrip onto panties,cumdrip 到 内裤,194,1
 doraeshi,哆啦A梦,194,0
 easy (aqk7bdqt),容易 (aqk7bdqt),194,0
 flandre scarlet (cosplay),弗兰德猩红（角色扮演）,194,0
@@ -29053,7 +29053,7 @@ ryuu (breath of fire v),ryuu（火焰之息 v）,139,0
 saeki nao,佐伯直,139,0
 scathach skadi (third ascension) (fate),scathach skadi（第三次提升）（命运）,139,0
 scene (arknights),场景（方舟）,139,0
-see-through panties,透明内裤,139,0
+see-through panties,透明内裤,139,1
 seikai no senki,生海之战记,139,0
 sekiutsu maria tarou,sekiutsu玛丽亚太郎,139,0
 sen no kiseki ii,千之轨迹 ii,139,0
@@ -30907,7 +30907,7 @@ nokoru sora,nokoru 空,127,0
 not present,不存在,127,0
 numbered flag,编号标志,127,0
 ookamiuo,大神鱼,127,0
-panties around one ankle,脚踝周围的内裤,127,0
+panties around one ankle,脚踝周围的内裤,127,1
 pink headband,粉色头带,127,0
 poi (goldfish scoop),poi（金鱼勺）,127,0
 popman3580,popman3580,127,0
@@ -30999,7 +30999,7 @@ bunny ear legwear,兔耳裤,126,0
 bushidou 2 (sekaiju),武士道 2 (sekaiju),126,0
 carte,点菜,126,0
 cha goma,查戈马,126,0
-checkered panties,格纹内裤,126,0
+checkered panties,格纹内裤,126,1
 chel (the road to el dorado),chel（通往埃尔多拉多的道路）,126,0
 chobipero,乔比佩罗,126,0
 chokutou,吸头,126,0
@@ -31841,7 +31841,7 @@ sonjow4,宋乔4,122,0
 souya ichika,一香宗也,122,0
 spy (tf2),间谍 (tf2),122,0
 stag beetle,锹形虫,122,0
-star panties,明星内裤,122,0
+star panties,明星内裤,122,1
 star wars: the clone wars,星球大战：克隆人战争,122,0
 studded gloves,铆钉手套,122,0
 sudachips,苏达芯片,122,0
@@ -32514,7 +32514,7 @@ noblesse (elsword),贵族（艾斯之剑）,118,0
 notte,注意,118,0
 nut (hardware),螺母（硬件）,118,0
 nyatrix,尼亚特里克斯,118,0
-object in panties,内裤中的物体,118,0
+object in panties,内裤中的物体,118,1
 ochiai miyabi,落合宫,118,0
 okajima rokuro,冈岛六郎,118,0
 okamura nao,冈村直,118,0
@@ -34487,7 +34487,7 @@ dragon riding,骑龙,108,0
 drossel von flugel,德罗塞尔·冯·弗鲁格尔,108,0
 duca,杜卡,108,0
 edgar roni figaro,埃德加·罗尼·费加罗,108,0
-embroidered panties,刺绣内裤,108,0
+embroidered panties,刺绣内裤,108,1
 emurin,埃姆林,108,0
 enterprise (wind catcher) (azur lane),企业（捕风者）（碧蓝航线）,108,0
 envy,羡慕,108,0
@@ -35148,7 +35148,7 @@ orsola aquinas,阿奎那海葵,106,0
 paintale,油漆,106,0
 pandarou,熊猫肉,106,0
 pantheon (league of legends),万神殿（英雄联盟）,106,0
-panties under swimsuit,泳装内裤,106,0
+panties under swimsuit,泳装内裤,106,1
 paper doll,纸娃娃,106,0
 paul (pokemon),保罗（口袋妖怪）,106,0
 pixie (megami tensei),小精灵 (megami 紧张),106,0
@@ -35228,7 +35228,7 @@ aikawa tatsuki,合川辰树 105,105,0
 akihabara (tokyo),秋叶原（东京）,105,0
 akudama drive,akudama 驱动器,105,0
 amei sumeru,阿美须弥,105,0
-american flag panties,美国国旗内裤,105,0
+american flag panties,美国国旗内裤,105,1
 amulet heart,护身符之心,105,0
 aranea highwind,aranea 大风,105,0
 arkatopia,阿尔卡托邦,105,0
@@ -35723,7 +35723,7 @@ kronshtadt (azur lane),喀琅施塔特（碧蓝航线）,103,0
 kuon (nokokopopo),kuon (nokokopopo),103,0
 kyokou suiri,京口水里,103,0
 lana (hyrule warriors),拉娜（海拉鲁战士）,103,0
-latex panties,乳胶内裤,103,0
+latex panties,乳胶内裤,103,1
 lebring,勒布林,103,0
 leo (mafuyu),狮子座 (mafuyu),103,0
 leonardo 16sei,莱昂纳多 16sei,103,0
@@ -36933,7 +36933,7 @@ tenko kuugen,天光空玄,99,0
 terai (teraimorimori),寺井（寺森森）,99,0
 the monkey,猴子,99,0
 theresa apocalypse (celestial hymn),特蕾莎启示录（天上的赞美诗）,99,0
-they're not panties,它们不是内裤,99,0
+they're not panties,它们不是内裤,99,1
 thorfinn,索芬,99,0
 tianel ent,天耳耳鼻喉科,99,0
 tibino,蒂比诺,99,0
@@ -37389,7 +37389,7 @@ orianna (league of legends),奥莉安娜（英雄联盟）,97,0
 otsukare,大冢,97,0
 ougi (ihayasaka),扇子（ihayasaka）,97,0
 oz ma33,盎司 ma33,97,0
-panties around one finger,一根手指周围的内裤,97,0
+panties around one finger,一根手指周围的内裤,97,1
 pink bandana,粉红色头巾,97,0
 power symbol-shaped pupils,电源符号形瞳孔,97,0
 pump,泵,97,0
@@ -37809,7 +37809,7 @@ koomoi,酷萌,95,0
 kururi,库鲁里,95,0
 kusari hime: euthanasia,kusari 姬：安乐死,95,0
 lalah sune,lalah sune,95,0
-lavender panties,薰衣草色内裤,95,0
+lavender panties,薰衣草色内裤,95,1
 lewdkuma,小熊,95,0
 lyza (made in abyss),lyza（在深渊中制造）,95,0
 magician (china),魔术师（中国）,95,0

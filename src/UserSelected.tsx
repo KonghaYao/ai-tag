@@ -3,9 +3,10 @@ import copy from 'copy-to-clipboard';
 import { Data } from './App';
 import { TagButton } from './components/TagButton';
 import { reflect } from '@cn-ui/use';
-import { SortableList } from '@cn-ui/sortable';
+
 import { stringToTags, TagsToString } from './use/TagsToString';
 import { Notice } from './utils/notice';
+import { SortableList } from './components/sortable';
 export const UserSelected = () => {
     const { deleteMode, enMode, usersCollection, emphasizeAddMode, emphasizeSubMode } =
         useContext(Data);

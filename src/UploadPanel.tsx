@@ -96,6 +96,7 @@ export const UploadPanel = () => {
                     </For>
                 </div>
 
+                <div class="my-2 mx-4 text-green-700"> 注意上传正确的图片和 tag 否则会被清理</div>
                 <div class="my-2 mx-4 flex items-center justify-between ">
                     <div class="flex-none">必须要有图片</div>
                     <input
@@ -120,7 +121,7 @@ export const UploadPanel = () => {
                     />
                 </div>
 
-                {uploading() && <div class="btn w-full text-center">上传图片中</div>}
+                {uploading() && <div class="btn w-full text-center text-red-700">上传图片中</div>}
                 {store.image && (
                     <img
                         class="m-auto h-32 w-32 object-cover"
@@ -131,7 +132,7 @@ export const UploadPanel = () => {
                 )}
 
                 <div class="my-2 mx-4 flex items-center justify-between">
-                    <label class="flex-none">是否适合未成年</label>
+                    <label class="flex-none text-green-600">是否适合未成年</label>
                     <div
                         class="h-6 w-6 rounded-md border border-solid border-slate-700 transition-colors duration-300"
                         classList={{

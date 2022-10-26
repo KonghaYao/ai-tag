@@ -21,7 +21,8 @@ export const useViewer = (props?: Options) => {
     };
     let viewer: Viewer = createViewer();
     const dataToImg = (i: ImgData) => {
-        const img = document.createElement('img');
+        const img = new Image();
+        img.loading = 'lazy';
 
         return Object.assign(img, i);
     };

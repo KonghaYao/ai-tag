@@ -1,25 +1,5 @@
 import { Client } from 'notion-web/dist/index';
-
-const fetchWithAgent = (url: string, options?: RequestInit) => {
-    console.log(url, options);
-    const params = new URLSearchParams();
-    params.set('url', url.toString());
-    if (options) {
-        const headers = `method='Post',config.body=\`${options.body}\`,{${Object.entries(
-            options.headers
-        )
-            .map(([key, value]) => `"${key}":"${value}"`)
-            .join(',')}}`;
-        options.body = JSON.stringify({
-            url: url.toString(),
-            headers,
-        });
-        options.headers = {
-            'content-type': 'application/json',
-        };
-    }
-    return fetch('https://bird.ioliu.cn/v2', options);
-};
+import { fetchWithAgent } from './fetchWithAgent';
 /** 解构 notion 的 数据列表 */
 const treeToArray = (data) => {
     return data.results.map((i) =>
@@ -39,6 +19,7 @@ export type StoreData = {
     description: string;
     origin_tags: string;
 };
+// Notion 的 Text 格式生成器
 const NotionText = (text: string, prop?: string) => {
     prop = prop ?? 'rich_text';
     return {
@@ -60,7 +41,7 @@ export const API = {
         // Initializing a client
         this.client = new Client({
             auth: 'secret_HUtTw6zxXXR4KjLk63NaU8ZbNZc77KYM4c6PQd5ODp0',
-            fetch: fetchWithAgent,
+            fetch: fetchWithAgent as any,
         });
     },
     start_cursor: [] as string[],

@@ -2,7 +2,6 @@ import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
 import p from './package.json';
 import visualizer from 'rollup-plugin-visualizer';
-
 export default defineConfig(({ mode }) => {
     return {
         plugins: [

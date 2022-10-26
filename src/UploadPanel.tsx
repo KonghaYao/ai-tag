@@ -122,7 +122,12 @@ export const UploadPanel = () => {
 
                 {uploading() && <div class="btn w-full text-center">上传图片中</div>}
                 {store.image && (
-                    <img class="m-auto h-32 w-32 object-cover" src={store.image} alt="" />
+                    <img
+                        class="m-auto h-32 w-32 object-cover"
+                        src={store.image}
+                        alt=""
+                        loading="lazy"
+                    />
                 )}
 
                 <div class="my-2 mx-4 flex items-center justify-between">

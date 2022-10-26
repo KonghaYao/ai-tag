@@ -26,7 +26,8 @@ export const PublicPanel = () => {
                         arr.map((i) => {
                             return {
                                 alt: i.description,
-                                src: i.image.replace('/t/', '/s/'),
+                                src: i.image,
+                                origin: i.image.replace('/t/', '/s/'),
                             };
                         })
                     );
@@ -53,12 +54,12 @@ export const PublicPanel = () => {
                     </div>
                 )}
                 <For each={showing()}>
-                    {(item) => {
+                    {(item, index) => {
                         return (
                             <div class="flex h-64  flex-col p-2">
                                 <div
                                     class="h-full overflow-hidden rounded-md shadow-lg"
-                                    onclick={() => getViewer().show()}
+                                    onclick={() => getViewer().view(index())}
                                 >
                                     {item.image ? (
                                         <img

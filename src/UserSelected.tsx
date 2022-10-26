@@ -1,4 +1,4 @@
-import { For, useContext } from 'solid-js';
+import { batch, For, useContext } from 'solid-js';
 import copy from 'copy-to-clipboard';
 import { Data, IData } from './App';
 import { TagButton } from './components/TagButton';
@@ -133,11 +133,13 @@ function HeaderSecond() {
                 classList={{
                     'bg-gray-700 border-gray-800': deleteMode(),
                 }}
-                onclick={() => {
-                    emphasizeAddMode(false);
-                    emphasizeAddMode(false);
-                    deleteMode((i) => !i);
-                }}
+                onclick={() =>
+                    batch(() => {
+                        emphasizeAddMode(false);
+                        emphasizeSubMode(false);
+                        deleteMode((i) => !i);
+                    })
+                }
             >
                 删除模式
             </span>
@@ -146,11 +148,13 @@ function HeaderSecond() {
                 classList={{
                     'bg-gray-700 border-gray-800': emphasizeAddMode(),
                 }}
-                onClick={() => {
-                    deleteMode(false);
-                    emphasizeSubMode(false);
-                    emphasizeAddMode((i) => !i);
-                }}
+                onClick={() =>
+                    batch(() => {
+                        deleteMode(false);
+                        emphasizeSubMode(false);
+                        emphasizeAddMode((i) => !i);
+                    })
+                }
             >
                 加权模式
             </span>
@@ -159,11 +163,14 @@ function HeaderSecond() {
                 classList={{
                     'bg-gray-700 border-gray-800': emphasizeSubMode(),
                 }}
-                onClick={() => {
-                    deleteMode(false);
-                    emphasizeAddMode(false);
-                    emphasizeSubMode((i) => !i);
-                }}
+                onClick={() =>
+                    batch(() => {
+                        deleteMode(false);
+                        emphasizeAddMode(false);
+                        emphasizeSubMode((i) => !i);
+                        console.log(emphasizeSubMode());
+                    })
+                }
             >
                 减权模式
             </span>

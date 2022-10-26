@@ -7,6 +7,17 @@ export default defineConfig(({ mode }) => {
     return {
         plugins: [
             solidPlugin(),
+            {
+                enforce: 'pre',
+                resolveId(id) {
+                    if (id === 'viewerjs') {
+                        return {
+                            external: true,
+                            id: 'https://cdn.jsdelivr.net/npm/viewerjs/dist/viewer.esm.min.js',
+                        };
+                    }
+                },
+            },
             mode === 'analyze' &&
                 (visualizer({ open: true, filename: 'visualizer/stat.html' }) as any),
         ],
@@ -15,7 +26,8 @@ export default defineConfig(({ mode }) => {
         },
         resolve: {
             alias: {
-                '@cn-ui/sortable': './src/components/sortable/index',
+                // '@cn-ui/sortable': './src/components/sortable/index',
+                // viewerjs: 'https://unpkg.com/viewerjs',
             },
         },
         define: {

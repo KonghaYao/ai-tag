@@ -12,7 +12,7 @@ const getData = memoize((page: number) => API.getData(page));
 export const PublicPanel = () => {
     const { publicVisible, r18Mode, uploaderVisible, lists, usersCollection } = useContext(Data);
     // 更改为异步导入
-    const { addImages, replaceImages, getViewer } = useViewer();
+    const { replaceImages, getViewer } = useViewer();
 
     const showing = atom<StoreData[]>([]);
     const page = atom<number>(0);

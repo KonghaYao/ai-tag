@@ -11,6 +11,7 @@ specifiers:
   browserslist: ^4.21.4
   copy-to-clipboard: ^3.3.2
   fuse.js: ^6.6.2
+  is-mobile: ^3.1.1
   lodash-es: ^4.17.21
   notion-web: ^1.0.0
   notyf: ^3.10.0
@@ -33,6 +34,7 @@ dependencies:
   '@solidjs/router': 0.5.0_solid-js@1.5.7
   copy-to-clipboard: 3.3.2
   fuse.js: 6.6.2
+  is-mobile: 3.1.1
   lodash-es: 4.17.21
   notion-web: 1.0.0
   notyf: 3.10.0
@@ -1196,6 +1198,10 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       is-extglob: 2.1.1
+
+  /is-mobile/3.1.1:
+    resolution: {integrity: sha512-RRoXXR2HNFxNkUnxtaBdGBXtFlUMFa06S0NUKf/LCF+MuGLu13gi9iBCkoEmc6+rpXuwi5Mso5V8Zf7mNynMBQ==}
+    dev: false
 
   /is-number/7.0.0:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==}

@@ -48,7 +48,7 @@ export const TagButton: Component<{
     return (
         <nav
             class="text-col relative mx-2 my-2 flex  cursor-pointer select-none  rounded-md  px-2 py-1 text-center transition-colors active:brightness-90"
-            onclick={() => {
+            onClick={() => {
                 props.onClick && props.onClick(item);
             }}
             classList={{ [em()]: true }}

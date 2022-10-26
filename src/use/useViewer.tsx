@@ -34,7 +34,7 @@ export const useViewer = (props?: Options) => {
 
             return a.call(v, nextIndex);
         };
-        console.log(v);
+        // console.log(v);
         return v;
     };
 

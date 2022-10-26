@@ -25,6 +25,7 @@
 -   [x] 青少年模式
 -   [x] csv 预先压缩 Netlify 设置压缩即可
 -   [x] 分享模式，社区收藏
+-   [x] 添加社区图片直接预览
 -   [ ] tag 收藏栏
 
 ![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/header2.png)

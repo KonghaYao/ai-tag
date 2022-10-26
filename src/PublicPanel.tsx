@@ -5,17 +5,33 @@ import { API, StoreData } from './api/notion';
 import { Data } from './App';
 import { Panel } from './components/Panel';
 import { stringToTags } from './use/TagsToString';
+import { useViewer } from './use/useViewer';
 import { Notice } from './utils/notice';
 
 const getData = memoize((page: number) => API.getData(page));
 export const PublicPanel = () => {
     const { publicVisible, r18Mode, uploaderVisible, lists, usersCollection } = useContext(Data);
+    // 更改为异步导入
+    const { addImages, replaceImages, getViewer } = useViewer();
+
     const showing = atom<StoreData[]>([]);
     const page = atom<number>(0);
     createIgnoreFirst(() => {
         if (publicVisible()) {
             showing([]);
-            getData(page()).then((res) => showing(r18Mode() ? res : res.filter((i) => !i.r18)));
+            getData(page())
+                .then((res) => (r18Mode() ? res : res.filter((i) => !i.r18)))
+                .then((arr) => {
+                    replaceImages(
+                        arr.map((i) => {
+                            return {
+                                alt: i.description,
+                                src: i.image.replace('/t/', '/s/'),
+                            };
+                        })
+                    );
+                    showing(arr);
+                });
         }
     }, [publicVisible, page]);
 
@@ -40,7 +56,10 @@ export const PublicPanel = () => {
                     {(item) => {
                         return (
                             <div class="flex h-64  flex-col p-2">
-                                <div class="h-full overflow-hidden rounded-md shadow-lg">
+                                <div
+                                    class="h-full overflow-hidden rounded-md shadow-lg"
+                                    onclick={() => getViewer().show()}
+                                >
                                     {item.image ? (
                                         <img
                                             loading="lazy"

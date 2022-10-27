@@ -47,10 +47,12 @@ export const API = {
     start_cursor: [] as string[],
     end: false,
     async getData(index: number): Promise<StoreData[]> {
-        return await this.client.databases
+        const client: Client = this.client;
+        return await client.databases
             .query({
                 database_id: this.database_id,
                 start_cursor: this.start_cursor[index - 1] ?? undefined,
+                page_size: 6,
             })
             .then((res) => {
                 this.end = !res.has_more;

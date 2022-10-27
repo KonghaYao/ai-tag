@@ -95,7 +95,7 @@ function HeaderFirst() {
     const { enMode, usersCollection, settingVisible, publicVisible, uploaderVisible } =
         useContext(Data);
     return (
-        <header class="flex w-full border-b border-slate-700 pb-3 text-sm font-bold">
+        <header class="flex w-full border-b border-slate-700 pb-2 text-sm font-bold">
             <span class="btn" onclick={() => enMode((i) => !i)}>
                 {enMode() ? '英文' : '中文'}
             </span>
@@ -127,7 +127,7 @@ function HeaderSecond() {
     const { r18Mode, emphasizeAddMode, emphasizeSubMode, deleteMode, usersCollection, lists } =
         useContext(Data);
     return (
-        <header class="flex border-t border-slate-700 pt-3 text-sm font-bold">
+        <header class="flex border-t border-slate-700 pt-2 text-sm font-bold">
             <span
                 class="btn"
                 classList={{

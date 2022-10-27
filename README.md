@@ -37,6 +37,7 @@
     -   [x] 添加社区图片直接预览
     -   [x] 社区魔咒复制！
     -   [x] 社区魔咒融合！
+    -   [ ] 社区分页。
 -   [ ] tag 收藏栏
 
 ![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/header2.png)

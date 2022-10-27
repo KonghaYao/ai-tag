@@ -84,14 +84,20 @@ export const App = () => {
             <div class="m-auto flex h-screen w-screen max-w-7xl flex-col  p-2 text-gray-400 sm:p-4">
                 <h2 class="text-center text-xl font-bold">
                     AI 绘画三星法器 —— 魔导绪论
-                    <a
-                        href="https://github.com/KonghaYao/ai-tag"
-                        target="_blank"
-                        class="mx-2 text-sm text-blue-700 "
-                    >
-                        KongHaYao
-                    </a>
-                    <sup class="text-xs text-blue-700 ">{__version__}</sup>
+                    <sup class="px-2 text-xs text-yellow-300">{__version__}</sup>
+                    <div class="flex items-center  justify-center gap-2 text-xs font-thin text-[#f5f3c2]">
+                        <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
+                            教程
+                        </a>
+                        ·
+                        <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
+                            开源
+                        </a>
+                        ·
+                        <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
+                            {'{{ By 江夏尧 }}'}
+                        </a>
+                    </div>
                 </h2>
                 <UserSelected></UserSelected>
                 <SearchBox></SearchBox>

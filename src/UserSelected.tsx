@@ -84,7 +84,7 @@ export const UserSelected = () => {
             {/* <span class="text-xs text-red-600">拖拽移动到最后一个的位置上会 BUG</span> */}
 
             {usersCollection().length === 0 && (
-                <span class="text-sm font-light">点击下面的关键词添加</span>
+                <span class="h-16 text-center  font-light text-sky-500">点击下面的关键词添加</span>
             )}
             <HeaderSecond></HeaderSecond>
         </main>
@@ -95,7 +95,7 @@ function HeaderFirst() {
     const { enMode, usersCollection, settingVisible, publicVisible, uploaderVisible } =
         useContext(Data);
     return (
-        <header class="flex w-full  py-2 text-sm font-bold">
+        <header class="flex w-full border-b border-slate-700 pb-3 text-sm font-bold">
             <span class="btn" onclick={() => enMode((i) => !i)}>
                 {enMode() ? '英文' : '中文'}
             </span>
@@ -127,7 +127,7 @@ function HeaderSecond() {
     const { r18Mode, emphasizeAddMode, emphasizeSubMode, deleteMode, usersCollection, lists } =
         useContext(Data);
     return (
-        <header class="flex py-2  text-sm font-bold">
+        <header class="flex border-t border-slate-700 pt-3 text-sm font-bold">
             <span
                 class="btn"
                 classList={{

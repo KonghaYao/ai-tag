@@ -63,7 +63,7 @@ export const SearchBox = () => {
                 </span>
             </nav>
             <section class="flex h-full w-full flex-1 flex-col overflow-hidden">
-                <nav class="flex text-gray-400">
+                <nav class="flex text-sm text-gray-400">
                     <span class="flex-none">
                         搜索结果 {result().length} / {lists() ? lists().length : '加载中'}
                     </span>

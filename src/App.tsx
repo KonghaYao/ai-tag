@@ -81,7 +81,7 @@ export const App = () => {
                 ...storageSetting,
             }}
         >
-            <div class="flex h-screen w-screen flex-col bg-slate-900 p-4 text-gray-400">
+            <div class="m-auto flex h-screen w-screen max-w-7xl flex-col  p-2 text-gray-400 sm:p-4">
                 <h2 class="text-center text-xl font-bold">
                     AI 绘画三星法器 —— 魔导绪论
                     <a

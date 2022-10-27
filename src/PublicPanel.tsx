@@ -1,5 +1,5 @@
 import { atom, createIgnoreFirst } from '@cn-ui/use';
-import { debounce, memoize } from 'lodash-es';
+import { debounce, memoize, uniqBy, uniqWith } from 'lodash-es';
 import { For, useContext } from 'solid-js';
 import { API, StoreData } from './api/notion';
 import { Data } from './App';
@@ -50,7 +50,7 @@ export const PublicPanel = () => {
             <main class="grid flex-1 auto-rows-min grid-cols-2 gap-2  overflow-auto">
                 {showing().length === 0 && (
                     <div class="flex h-full w-full items-center justify-center">
-                        <span>加载中</span>
+                        <span>加载中, 请稍等。</span>
                     </div>
                 )}
                 <For each={showing()}>
@@ -77,20 +77,51 @@ export const PublicPanel = () => {
                                     )}
                                 </div>
                                 <div class="flex w-full items-center justify-between">
-                                    <div class="py-1 font-bold line-clamp-1">{item.username}</div>
-                                    <div class="h-fit text-xs line-clamp-1">{item.description}</div>
+                                    <div class="py-1 font-bold line-clamp-1">
+                                        {item.description}
+                                    </div>
+                                    <div class="h-fit text-xs line-clamp-1">{item.username}</div>
                                 </div>
-                                <div class="h-4 text-xs line-clamp-1">{item.tags.join(',')}</div>
-                                <button
-                                    class="btn"
-                                    onClick={() => {
-                                        usersCollection(stringToTags(item.origin_tags, lists()));
-                                        publicVisible(false);
-                                        Notice.success('拿来成功');
-                                    }}
-                                >
-                                    拿来魔法
-                                </button>
+
+                                <div class="flex text-sm text-amber-400">
+                                    <button
+                                        class="btn flex-none"
+                                        onClick={() => {
+                                            usersCollection(
+                                                stringToTags(item.origin_tags, lists())
+                                            );
+                                            publicVisible(false);
+                                            Notice.success('拿来成功');
+                                        }}
+                                    >
+                                        拿来魔法
+                                    </button>
+                                    <button
+                                        class="btn flex-none"
+                                        onClick={() => {
+                                            usersCollection((i) => {
+                                                const input = stringToTags(
+                                                    item.origin_tags,
+                                                    lists()
+                                                );
+                                                // 折叠融合，这样才符合 tags 的先后顺序
+                                                const newArr = [];
+                                                while (i.length || input.length) {
+                                                    newArr.length && newArr.push(i.shift());
+                                                    input.length && newArr.push(input.shift());
+                                                }
+
+                                                return uniqBy(
+                                                    newArr.filter((i) => i),
+                                                    (a) => a.en
+                                                );
+                                            });
+                                            Notice.success('融合魔法发动，魔咒已融入');
+                                        }}
+                                    >
+                                        融合魔法
+                                    </button>
+                                </div>
                             </div>
                         );
                     }}

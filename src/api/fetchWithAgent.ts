@@ -1,5 +1,9 @@
 const __rapid_tokens__ = import.meta.env.VITE_RAPID_TOKENS.split(',').filter((i) => i);
-const token = () => __rapid_tokens__[Math.floor(Math.random() * __rapid_tokens__.length)];
+const token = () => {
+    const index = Math.floor(Math.random() * __rapid_tokens__.length);
+    console.log('响应服务器编号', index);
+    return __rapid_tokens__[index];
+};
 // rapidAPI 的测试使用，但是有次数限制
 const rapidAPI = (url: string, options?: RequestInit) => {
     if (options) {

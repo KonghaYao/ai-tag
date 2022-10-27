@@ -1,6 +1,7 @@
 body {
     margin: 0;
     overflow: hidden;
+    @apply select-none bg-slate-900;
 }
 #app {
     height: 100vh;
@@ -17,7 +18,7 @@ body {
         linear-gradient(90deg, rgb(130 130 130 / 38%) 1px, transparent 1px) !important;
 }
 .btn {
-    @apply mx-1 cursor-pointer select-none rounded border  border-solid border-gray-700 px-1 font-thin transition-all active:bg-gray-700;
+    @apply mx-1 cursor-pointer select-none rounded border border-solid  border-gray-700 bg-gray-800 px-2  font-thin transition-all active:bg-gray-700;
 }
 .input {
     @apply rounded-lg border border-solid border-gray-600 bg-gray-700 px-4 py-1 text-gray-200 shadow-md outline-none;
@@ -26,3 +27,18 @@ body {
 @tailwind components;
 @tailwind utilities;
 @tailwind variants;
+::-webkit-scrollbar {
+    width: 4px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 4px;
+
+    border-radius: 4px;
+    @apply bg-gray-600;
+}
+/* 滚动条轨道 */
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}

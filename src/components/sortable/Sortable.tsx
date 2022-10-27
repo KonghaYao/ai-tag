@@ -2,13 +2,11 @@
 import {
     Accessor,
     createContext,
-    createDeferred,
     createEffect,
     For,
     JSX,
     JSXElement,
     mergeProps,
-    untrack,
     useContext,
 } from 'solid-js';
 import SortableCore from 'sortablejs';

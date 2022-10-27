@@ -2,7 +2,7 @@ import { createDeferred, createEffect, For, on, useContext } from 'solid-js';
 import debounce from 'lodash-es/debounce';
 import { Data, IData } from './App';
 import { TagButton } from './components/TagButton';
-import { createIgnoreFirst, reflect } from '@cn-ui/use';
+import { atom, createIgnoreFirst, reflect } from '@cn-ui/use';
 import { untrack } from 'solid-js/web';
 import { sampleSize as _sampleSize } from 'lodash-es';
 
@@ -16,24 +16,24 @@ const sampleSize = (list: IData[], size: number) => {
 };
 
 export const SearchBox = () => {
-    const { usersCollection, result, lists, searchText, r18Mode, tagsPerPage } = useContext(Data);
-
+    const { usersCollection, result, lists, searchText, r18Mode, tagsPerPage, searchNumberLimit } =
+        useContext(Data);
     const showingResult = reflect(() => {
         const num = untrack(tagsPerPage);
-        if (r18Mode()) return result().slice(0, num);
+        const r18 = r18Mode();
+        const numberLimit = searchNumberLimit();
         return (
             result()
-                .filter((i) => !i.r18)
+                .filter((i) => {
+                    return (r18 || !i.r18) && i.count >= numberLimit;
+                })
                 .slice(0, num) || []
         );
     });
+
+    // fixed 修复搜索完成之后没回去的问题
     let searchResult: HTMLDivElement;
-    createEffect(
-        on(showingResult, () => {
-            console.log(searchResult.scrollTop);
-            searchResult.scrollTo(0, 0);
-        })
-    );
+    createEffect(on(showingResult, () => searchResult.scrollTo(0, 0)));
     return (
         <>
             <nav class="flex w-full items-center">
@@ -63,14 +63,28 @@ export const SearchBox = () => {
                 </span>
             </nav>
             <section class="flex h-full w-full flex-1 flex-col overflow-hidden">
-                <nav class="flex text-gray-600">
-                    <span>
+                <nav class="flex text-gray-400">
+                    <span class="flex-none">
                         搜索结果 {result().length} / {lists() ? lists().length : '加载中'}
                     </span>
+
                     <span class="flex-1"></span>
+                    <div
+                        class="btn flex-none"
+                        onclick={() => {
+                            searchNumberLimit((i) => {
+                                if (i === 0) return 10;
+                                if (i === 1000000) return 0;
+                                return i * 10;
+                            });
+                        }}
+                    >
+                        {searchNumberLimit() === 0
+                            ? '无数目筛选'
+                            : `> ${searchNumberLimit().toLocaleString('en')}`}
+                    </div>
                     <span
-                        class="
-                    mx-1 cursor-pointer select-none rounded  border border-solid  border-gray-700 px-1 font-thin transition-colors active:bg-gray-700"
+                        class="btn flex-none"
                         onclick={() => {
                             result(sampleSize(lists(), tagsPerPage()));
                         }}

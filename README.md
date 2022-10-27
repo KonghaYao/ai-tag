@@ -2,7 +2,7 @@
 
 # 魔导绪论
 
-[AI 魔咒生成器](https://magic-tag.netlify.app/#/), 使用由 B 站 UP 主 [十二今天也很可爱](https://www.bilibili.com/video/BV1m84y1B7Ny/?p=1&t=285&vd_source=a2ecd44ec8a0a62c70f8b98747f4aa56) 提供的 4 万个 tag 并提供中文检索，方便魔法师们直接使用。永无广告，无商业。
+[AI 魔咒生成器](https://magic-tag.netlify.app/#/), 使用由 B 站 UP 主 [十二今天也很可爱](https://www.bilibili.com/video/BV1m84y1B7Ny/?p=1&t=285&vd_source=a2ecd44ec8a0a62c70f8b98747f4aa56) 提供的 4 万个 tag 并提供中文检索，并提供了魔咒社区方便魔法师们直接复制生成。永远免费，永无广告，无商业。
 
 1. 中文翻译为谷歌机翻，可能比较水，就当英文翻译题好了。
 
@@ -14,18 +14,29 @@
 
 5. 由于没钱买服务器，所以我用我的 notion 数据库作为了后端帮助大家存储公开魔咒。Notion 只能进行上传和查询操作，所以公开的魔咒是只能由我改动，可以提交 issues，同时也没有用户系统，大家都是一样的，也算是部分 Web 3 了吧，哈哈哈。[Notion 页面](https://magic-tag.notion.site/90b7c1bb6ad7446ba66e0b1d8ec1d535?v=4cd4db0491664d25a25107631a6f3803)
 
+6. 图片存储在 thumbsnap 网站，提供了非常好的图片加载速度，足够社区使用。
+
 ## 功能列表
 
 > 多多点赞，我就多多更新 (● ∀ ●)。
 
--   [x] 自主创建 tag
--   [x] url 绑定 tags
--   [x] 设置面板
--   [x] 本地化设置参数
--   [x] 青少年模式
--   [x] csv 预先压缩 Netlify 设置压缩即可
--   [x] 分享模式，社区收藏
--   [x] 添加社区图片直接预览
+-   Tag 编辑器
+    -   [x] tag 加减权，删除，一键复制导入，自主创建
+    -   [x] 绑定 tags，网页 URL 指向了你的魔咒
+    -   [ ] 搜索标签排除
+    -   [ ] 搜索卡顿优化
+    -   [ ] 社区魔咒融合！
+-   系统方面
+    -   [x] 设置面板可以更改系统参数
+    -   [x] 本地化设置参数
+    -   [x] 青少年模式
+-   部署方面
+    -   [x] csv 预先压缩：Netlify 设置压缩即可
+    -   [x] rapidAPI 跨域 CORS
+-   社区方面
+    -   [x] 分享模式，社区魔咒查看
+    -   [x] 添加社区图片直接预览
+    -   [x] 社区魔咒复制！
 -   [ ] tag 收藏栏
 
 ![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/header2.png)

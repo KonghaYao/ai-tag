@@ -32,6 +32,7 @@ export const Data = createContext<{
     username: Atom<string>;
     usersCollection: Atom<IData[]>;
     tagsPerPage: Atom<number>;
+    searchNumberLimit: Atom<number>;
     result: Atom<IData[]>;
     lists: Atom<IData[]>;
 }>();
@@ -49,6 +50,8 @@ export const App = () => {
     const emphasizeAddMode = atom(false);
     const emphasizeSubMode = atom(false);
     const tagsPerPage = atom<number>(500);
+    const searchNumberLimit = atom<number>(0);
+
     const username = atom('');
 
     const storageSetting = {
@@ -59,6 +62,7 @@ export const App = () => {
         deleteMode,
         showCount,
         username,
+        searchNumberLimit,
     };
     const { recover, tracking } = useStorage(storageSetting);
     recover();
@@ -77,7 +81,7 @@ export const App = () => {
                 ...storageSetting,
             }}
         >
-            <div class="flex h-screen w-screen flex-col bg-black p-4 text-gray-400">
+            <div class="flex h-screen w-screen flex-col bg-slate-900 p-4 text-gray-400">
                 <h2 class="text-center text-xl font-bold">
                     AI 绘画三星法器 —— 魔导绪论
                     <a

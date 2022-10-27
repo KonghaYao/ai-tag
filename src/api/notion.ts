@@ -52,7 +52,7 @@ export const API = {
             .query({
                 database_id: this.database_id,
                 start_cursor: this.start_cursor[index - 1] ?? undefined,
-                page_size: 6,
+                page_size: 10,
             })
             .then((res) => {
                 this.end = !res.has_more;

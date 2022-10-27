@@ -1,4 +1,4 @@
-import { createDeferred, createEffect, For, on, useContext } from 'solid-js';
+import { Accessor, createDeferred, createEffect, For, on, Setter, useContext } from 'solid-js';
 import debounce from 'lodash-es/debounce';
 import { Data, IData } from './App';
 import { TagButton } from './components/TagButton';
@@ -20,20 +20,16 @@ export const SearchBox = () => {
         useContext(Data);
     const showingResult = reflect(() => {
         const num = untrack(tagsPerPage);
-        const r18 = r18Mode();
-        const numberLimit = searchNumberLimit();
-        return (
-            result()
-                .filter((i) => {
-                    return (r18 || !i.r18) && i.count >= numberLimit;
-                })
-                .slice(0, num) || []
-        );
+        return result().slice(0, num);
     });
 
     // fixed 修复搜索完成之后没回去的问题
     let searchResult: HTMLDivElement;
     createEffect(on(showingResult, () => searchResult.scrollTo(0, 0)));
+
+    // 直接写入 searchText 无更改
+    const triggerSearch = debounce(searchText, 300) as Setter<string>;
+    // 等待 500 ms 进行更改
     return (
         <>
             <nav class="flex w-full items-center">
@@ -41,12 +37,10 @@ export const SearchBox = () => {
                     class="input my-2 mr-1 flex-1"
                     value={searchText()}
                     placeholder="搜索关键词，中文也可以"
-                    oninput={debounce((e) => {
-                        searchText(e.target.value);
-                    }, 500)}
+                    oninput={(e: any) => triggerSearch(e.target.value)}
                 ></input>
 
-                <span class="btn flex-none" onclick={() => searchText('')}>
+                <span class="btn flex-none" onclick={() => triggerSearch('')}>
                     清除
                 </span>
                 <span

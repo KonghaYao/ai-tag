@@ -1,5 +1,5 @@
 /** @ts-ignore */
-import { createContext, Show, untrack } from 'solid-js';
+import { Accessor, createContext, Show, untrack } from 'solid-js';
 import { Atom, atom, createIgnoreFirst } from '@cn-ui/use';
 import { SearchBox } from './SearchBox';
 import { UserSelected } from './UserSelected';
@@ -17,29 +17,29 @@ export interface IData {
     count: number;
     emphasize: number;
 }
-
-export const Data = createContext<{
+export interface IStoreData {
     deleteMode: Atom<boolean>;
     enMode: Atom<boolean>;
+    r18Mode: Atom<boolean>;
+    settingVisible: Atom<boolean>;
+    showCount: Atom<boolean>;
+    searchNumberLimit: Atom<number>;
+    tagsPerPage: Atom<number>;
+    username: Atom<string>;
+}
+export interface IGlobalData extends IStoreData {
     emphasizeAddMode: Atom<boolean>;
     emphasizeSubMode: Atom<boolean>;
-    r18Mode: Atom<boolean>;
-    showCount: Atom<boolean>;
-    settingVisible: Atom<boolean>;
     publicVisible: Atom<boolean>;
     uploaderVisible: Atom<boolean>;
     searchText: Atom<string>;
-    username: Atom<string>;
     usersCollection: Atom<IData[]>;
-    tagsPerPage: Atom<number>;
-    searchNumberLimit: Atom<number>;
     result: Atom<IData[]>;
-    lists: Atom<IData[]>;
-}>();
+    lists: Accessor<IData[]>;
+}
+export const Data = createContext<IGlobalData>();
 
 export const App = () => {
-    const { result, lists, searchText, usersCollection } = useDatabase();
-
     const enMode = atom<boolean>(true);
     const r18Mode = atom<boolean>(false);
     const settingVisible = atom<boolean>(false);
@@ -50,7 +50,7 @@ export const App = () => {
     const emphasizeAddMode = atom(false);
     const emphasizeSubMode = atom(false);
     const tagsPerPage = atom<number>(500);
-    const searchNumberLimit = atom<number>(0);
+    const searchNumberLimit = atom<number>(1000);
 
     const username = atom('');
 
@@ -64,6 +64,7 @@ export const App = () => {
         username,
         searchNumberLimit,
     };
+    const { result, lists, searchText, usersCollection } = useDatabase(storageSetting);
     const { recover, tracking } = useStorage(storageSetting);
     recover();
     tracking();
@@ -97,6 +98,7 @@ export const App = () => {
                         <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
                             {'{{ By 江夏尧 }}'}
                         </a>
+                        {!r18Mode() && <span class="btn bg-green-700">青少年模式</span>}
                     </div>
                 </h2>
                 <UserSelected></UserSelected>

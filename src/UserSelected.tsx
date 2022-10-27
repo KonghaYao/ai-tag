@@ -186,7 +186,6 @@ function HeaderSecond() {
             >
                 魔咒导入
             </div>
-            {!r18Mode() && <span class="btn">青少年模式</span>}
         </header>
     );
 }

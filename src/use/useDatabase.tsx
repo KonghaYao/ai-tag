@@ -4,12 +4,12 @@ import { createEffect, createMemo, createResource, createSignal, untrack } from 
 import { Atom, atom, createIgnoreFirst, reflect } from '@cn-ui/use';
 import Fuse from 'fuse.js';
 import { useSearchParams } from '@solidjs/router';
-import { IData } from '../App';
+import { IData, IStoreData } from '../App';
 import { getTagInURL } from '../utils/getTagInURL';
 import { TagsToString } from './TagsToString';
 
 /** 加载 Tag 数据库 */
-export function useDatabase() {
+export function useDatabase(store: IStoreData) {
     const [data] = createResource<ArrayBuffer>(() =>
         fetch('/tags.csv').then((res) => res.arrayBuffer())
     );
@@ -25,9 +25,19 @@ export function useDatabase() {
             return json;
         }
     });
+
+    // 预先筛选 searchText，减少需要查找的区间
+    const searchText = atom<string>('');
+    const { r18Mode, searchNumberLimit } = store;
+    const searchInput = createMemo(() => {
+        if (!lists()) return [];
+        const r18 = r18Mode();
+        const numberLimit = searchNumberLimit();
+        return lists().filter((i) => (r18 || !i.r18) && i.count >= numberLimit);
+    });
     const query = reflect(() => {
-        if (lists()) {
-            return new Fuse(lists(), {
+        if (searchInput()) {
+            return new Fuse(searchInput(), {
                 // isCaseSensitive: false,
                 // includeScore: false,
                 // shouldSort: true,
@@ -45,15 +55,19 @@ export function useDatabase() {
             });
         }
     });
-    const searchText = atom<string>('');
+
     const result = reflect(() => {
         const text = searchText();
         if (text) {
+            // 这个搜索特别慢
+            console.time('搜索');
             const result = query().search(text);
+            console.timeEnd('搜索');
             // console.log(result);
-            return result.map((i) => i.item);
+            const final = result.map((i) => i.item);
+            return final;
         } else {
-            return lists()?.slice(0, 300) || [];
+            return searchInput()?.slice(0, 300) || [];
         }
     });
     const [U, setU] = createSignal<IData[]>([]);
@@ -90,5 +104,5 @@ export function useDatabase() {
         console.log('写入 URL ');
     }, [usersCollection]);
 
-    return { result, lists, searchText, usersCollection };
+    return { result, lists: searchInput, searchText, usersCollection };
 }

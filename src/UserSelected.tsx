@@ -92,8 +92,7 @@ export const UserSelected = () => {
 };
 
 function HeaderFirst() {
-    const { enMode, usersCollection, settingVisible, publicVisible, uploaderVisible } =
-        useContext(Data);
+    const { enMode, usersCollection, visibleId } = useContext(Data);
     return (
         <header class="flex w-full border-b border-slate-700 pb-2 text-sm font-bold">
             <span class="btn" onclick={() => enMode((i) => !i)}>
@@ -110,13 +109,13 @@ function HeaderFirst() {
                 一键复制
             </span>
 
-            <span class="btn" onclick={() => settingVisible((i) => !i)}>
+            <span class="btn" onclick={() => visibleId('setting')}>
                 设置
             </span>
-            <span class="btn bg-sky-800" onclick={() => publicVisible(true)}>
-                模板
+            <span class="btn bg-sky-800" onclick={() => visibleId('gallery')}>
+                画廊
             </span>
-            <span class="btn bg-sky-800" onclick={() => uploaderVisible(true)}>
+            <span class="btn bg-sky-800" onclick={() => visibleId('uploader')}>
                 分享
             </span>
         </header>

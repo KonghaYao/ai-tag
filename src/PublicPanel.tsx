@@ -1,6 +1,6 @@
 import { atom, createIgnoreFirst } from '@cn-ui/use';
 import { debounce, memoize, uniqBy, uniqWith } from 'lodash-es';
-import { For, useContext } from 'solid-js';
+import { createMemo, For, useContext } from 'solid-js';
 import { API, StoreData } from './api/notion';
 import { Data } from './App';
 import { Panel } from './components/Panel';
@@ -10,14 +10,15 @@ import { Notice } from './utils/notice';
 
 const getData = memoize((page: number) => API.getData(page));
 export const PublicPanel = () => {
-    const { publicVisible, r18Mode, uploaderVisible, lists, usersCollection } = useContext(Data);
+    const { isPanelVisible, r18Mode, visibleId, lists, usersCollection } = useContext(Data);
     // 更改为异步导入
     const { replaceImages, getViewer } = useViewer();
 
+    const visible = createMemo(() => isPanelVisible('gallery'));
     const showing = atom<StoreData[]>([]);
     const page = atom<number>(0);
     createIgnoreFirst(() => {
-        if (publicVisible()) {
+        if (visible()) {
             showing([]);
             getData(page())
                 .then((res) => (r18Mode() ? res : res.filter((i) => !i.r18)))
@@ -34,15 +35,15 @@ export const PublicPanel = () => {
                     showing(arr);
                 });
         }
-    }, [publicVisible, page]);
+    }, [visible, page]);
 
     return (
-        <Panel visible={publicVisible}>
+        <Panel id="gallery">
             <header class="w-full py-2 text-center text-lg font-bold">
                 魔咒分享
                 <div
                     class="btn float-right cursor-pointer px-2 text-sm text-green-700"
-                    onClick={() => uploaderVisible(true)}
+                    onClick={() => visibleId('uploader')}
                 >
                     我要分享
                 </div>
@@ -83,14 +84,14 @@ export const PublicPanel = () => {
                                     <div class="h-fit text-xs line-clamp-1">{item.username}</div>
                                 </div>
 
-                                <div class="flex text-sm text-amber-400">
+                                <div class="flex text-xs text-amber-400">
                                     <button
                                         class="btn flex-none"
                                         onClick={() => {
                                             usersCollection(
                                                 stringToTags(item.origin_tags, lists())
                                             );
-                                            publicVisible(false);
+                                            visibleId('');
                                             Notice.success('拿来成功');
                                         }}
                                     >

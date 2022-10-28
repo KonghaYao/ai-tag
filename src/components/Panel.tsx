@@ -1,20 +1,23 @@
 import { Atom } from '@cn-ui/use';
-import { Component, JSXElement } from 'solid-js';
+import { Component, createMemo, JSXElement, useContext } from 'solid-js';
+import { Data } from '../App';
+import { PanelIds } from '../SideApp';
 
-export const Panel: Component<{ children?: JSXElement; visible: Atom<boolean> }> = (props) => {
+export const Panel: Component<{ children?: JSXElement; id: PanelIds }> = (props) => {
+    const { visibleId, isPanelVisible } = useContext(Data);
     let container: HTMLDivElement;
-
+    const visible = createMemo(() => isPanelVisible(props.id));
     return (
         <nav
             ref={container}
-            class="absolute top-0 left-0 flex h-screen w-screen items-center justify-center p-6 transition-all duration-300 sm:p-12 "
+            class="absolute top-0 left-0 flex h-full w-full items-center justify-center p-6 transition-all duration-300 "
             classList={{
-                'scale-100': props.visible(),
-                'scale-0': !props.visible(),
-                'pointer-event-none': !props.visible(),
+                'scale-100': visible(),
+                'scale-0': !visible(),
+                'pointer-event-none': !visible(),
             }}
             onClick={(e) => {
-                if (e.target === container) props.visible(false);
+                if (e.target === container) visibleId('');
                 // console.log(e);
             }}
         >

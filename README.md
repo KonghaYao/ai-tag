@@ -37,8 +37,14 @@
     -   [x] 添加社区图片直接预览
     -   [x] 社区魔咒复制！
     -   [x] 社区魔咒融合！
-    -   [x] 社区分页。
--   [ ] tag 收藏栏
+    -   [x] 社区分页
+    -   [ ] 社区搜索
+-   反馈信息
+    -   [ ] Bug 反馈
+    -   [ ] 违禁词反馈
+    -   [ ] 优化提示
+-   网站样式
+    -   [ ] 白昼模式
 
 ![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/header2.png)
 
@@ -117,6 +123,10 @@ pnpm dev # 开发者模式查看
 pnpm build # 打包版本
 node ./scripts/swearFilter.mjs # 对敏感词进行标记
 ```
+
+## Q&A
+
+1. 想要加友链？直接提交一个 issues 格式随意！
 
 # License 开源证书
 

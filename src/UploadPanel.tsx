@@ -19,7 +19,7 @@ const init = {
 const [store, set] = createStore({ ...init });
 
 export const UploadPanel = () => {
-    const { uploaderVisible, username, usersCollection } = useContext(Data);
+    const { username, usersCollection, isPanelVisible } = useContext(Data);
     const uploading = atom(false);
     const check = () => {
         if (store.description && username() && store.image && store.origin_tags) {
@@ -38,7 +38,7 @@ export const UploadPanel = () => {
         }
     };
     createEffect(() => {
-        if (uploaderVisible() === true) {
+        if (isPanelVisible('uploader')) {
             const list = untrack(usersCollection);
             set(
                 'tags',
@@ -48,7 +48,7 @@ export const UploadPanel = () => {
         }
     });
     return (
-        <Panel visible={uploaderVisible}>
+        <Panel id="uploader">
             <header class="w-full py-2 text-center font-bold">大梦的曲调</header>
 
             <main class="flex flex-1 flex-col overflow-auto">
@@ -99,7 +99,9 @@ export const UploadPanel = () => {
                     </For>
                 </div>
 
-                <div class="my-2 mx-4 text-green-700"> 注意上传正确的图片和 tag 否则会被清理</div>
+                <div class="my-2 mx-4 text-center text-sm text-green-700">
+                    注意上传正确的图片和 tag 否则会被清理
+                </div>
                 <div class="my-2 mx-4 flex items-center justify-between ">
                     <div class="flex-none">必须要有图片</div>
                     <input

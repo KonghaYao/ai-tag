@@ -3,15 +3,16 @@ import { Data } from './App';
 import { Panel } from './components/Panel';
 
 export const SettingPanel = () => {
-    const { r18Mode, settingVisible, showCount, tagsPerPage } = useContext(Data);
+    const { r18Mode, showCount, tagsPerPage, sideAppMode } = useContext(Data);
 
     const list = [
         { title: '青少年模式', bind: r18Mode.reflux(!r18Mode(), (i) => !i) },
         { title: '显示数值', bind: showCount },
+        { title: '侧边应用模式', bind: sideAppMode },
     ];
     const NumberList = [{ title: '每页 tags 数', bind: tagsPerPage }];
     return (
-        <Panel visible={settingVisible}>
+        <Panel id="setting">
             <h3 class="my-2 text-center text-lg font-bold">设置面板</h3>
             <For each={list}>
                 {(item) => {

@@ -8,6 +8,7 @@ import { stringToTags } from '../utils/stringToTags';
 import { Notice } from '../utils/notice';
 import { untrack } from 'solid-js/web';
 import { TagsToString } from '../use/TagsToString';
+import { batch } from 'solid-js';
 const init = {
     username: '',
     tags: [],
@@ -30,7 +31,7 @@ export const UploadPanel = () => {
     const upload = () => {
         if (check()) {
             API.uploadData({ ...store, username: username() }).then(() => {
-                set(() => ({ ...init }));
+                set((i) => ({ ...i, image: '', description: '' }));
                 Notice.success('上传完成');
             });
         } else {
@@ -39,12 +40,14 @@ export const UploadPanel = () => {
     };
     createEffect(() => {
         if (isPanelVisible('uploader')) {
-            const list = untrack(usersCollection);
-            set(
-                'tags',
-                list.map((i) => i.en)
-            );
-            set('origin_tags', TagsToString(list));
+            const list = usersCollection();
+            batch(() => {
+                set(
+                    'tags',
+                    list.map((i) => i.en)
+                );
+                set('origin_tags', TagsToString(list));
+            });
         }
     });
     return (

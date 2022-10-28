@@ -4,7 +4,8 @@ import { PublicPanel } from './Panels/PublicPanel';
 import { UploadPanel } from './Panels/UploadPanel';
 import { Data } from './App';
 import { HomePanel } from './Panels/HomePanel';
-export type PanelIds = 'setting' | 'gallery' | 'uploader';
+import { Webview } from './Panels/Webview';
+export type PanelIds = 'setting' | 'gallery' | 'uploader' | 'webview';
 export const SideApp = () => {
     const { sideAppMode, visibleId } = useContext(Data);
 
@@ -26,6 +27,7 @@ export const SideApp = () => {
                 <PublicPanel></PublicPanel>
                 <UploadPanel></UploadPanel>
                 <HomePanel></HomePanel>
+                <Webview></Webview>
             </div>
         </main>
     );

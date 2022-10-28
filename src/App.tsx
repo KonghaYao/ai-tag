@@ -24,6 +24,7 @@ export interface IStoreData {
     searchNumberLimit: Atom<number>;
     tagsPerPage: Atom<number>;
     username: Atom<string>;
+    webviewURL: Atom<string>;
 }
 export interface IGlobalData extends IStoreData {
     emphasizeAddMode: Atom<boolean>;
@@ -38,19 +39,21 @@ export interface IGlobalData extends IStoreData {
 export const Data = createContext<IGlobalData>();
 import isMobile from 'is-mobile';
 export const App = () => {
-    const enMode = atom<boolean>(true);
-    const r18Mode = atom<boolean>(false);
-    const sideAppMode = atom<boolean>(!isMobile());
-    const deleteMode = atom<boolean>(false);
-    const showCount = atom<boolean>(true);
+    const enMode = atom(true);
+    const r18Mode = atom(false);
+    const sideAppMode = atom(!isMobile());
+    const deleteMode = atom(false);
+    const showCount = atom(true);
     const emphasizeAddMode = atom(false);
     const emphasizeSubMode = atom(false);
     const tagsPerPage = atom<number>(500);
     const searchNumberLimit = atom<number>(1000);
+    const webviewURL = atom('');
     const visibleId = atom<PanelIds | ''>('');
     const isPanelVisible = createSelector(visibleId);
     const username = atom('');
 
+    /** 需要持久化的变量写这里 */
     const storageSetting = {
         enMode,
         tagsPerPage,
@@ -60,6 +63,7 @@ export const App = () => {
         username,
         searchNumberLimit,
         visibleId,
+        webviewURL,
     };
     const { result, lists, searchText, usersCollection } = useDatabase(storageSetting);
     const { recover, tracking } = useStorage(storageSetting);

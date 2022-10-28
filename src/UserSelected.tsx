@@ -1,12 +1,11 @@
-import { batch, For, useContext } from 'solid-js';
-import copy from 'copy-to-clipboard';
+import { For, useContext } from 'solid-js';
 import { Data, IData } from './App';
 import { TagButton } from './components/TagButton';
 import { reflect } from '@cn-ui/use';
 import isMobile from 'is-mobile';
-import { stringToTags, TagsToString } from './use/TagsToString';
-import { Notice } from './utils/notice';
 import { SortableList } from './components/sortable';
+import { HeaderFirst } from './HeaderFirst';
+import { HeaderSecond } from './HeaderSecond';
 export const UserSelected = () => {
     const { deleteMode, enMode, usersCollection, emphasizeAddMode, emphasizeSubMode } =
         useContext(Data);
@@ -90,101 +89,3 @@ export const UserSelected = () => {
         </main>
     );
 };
-
-function HeaderFirst() {
-    const { enMode, usersCollection, visibleId } = useContext(Data);
-    return (
-        <header class="flex w-full border-b border-slate-700 pb-2 text-sm font-bold">
-            <span class="btn" onclick={() => enMode((i) => !i)}>
-                {enMode() ? '英文' : '中文'}
-            </span>
-            <span
-                class="btn"
-                onclick={() => {
-                    const en = enMode();
-                    copy(TagsToString(usersCollection(), en));
-                    Notice.success('复制魔法释放');
-                }}
-            >
-                一键复制
-            </span>
-
-            <span class="btn" onclick={() => visibleId('setting')}>
-                设置
-            </span>
-            <span class="btn bg-sky-800" onclick={() => visibleId('gallery')}>
-                画廊
-            </span>
-            <span class="btn bg-sky-800" onclick={() => visibleId('uploader')}>
-                分享
-            </span>
-        </header>
-    );
-}
-
-function HeaderSecond() {
-    const { r18Mode, emphasizeAddMode, emphasizeSubMode, deleteMode, usersCollection, lists } =
-        useContext(Data);
-    return (
-        <header class="flex border-t border-slate-700 pt-2 text-sm font-bold">
-            <span
-                class="btn"
-                classList={{
-                    'bg-gray-700 border-gray-800': deleteMode(),
-                }}
-                onclick={() =>
-                    batch(() => {
-                        emphasizeAddMode(false);
-                        emphasizeSubMode(false);
-                        deleteMode((i) => !i);
-                    })
-                }
-            >
-                删除模式
-            </span>
-            <span
-                class="btn"
-                classList={{
-                    'bg-gray-700 border-gray-800': emphasizeAddMode(),
-                }}
-                onClick={() =>
-                    batch(() => {
-                        deleteMode(false);
-                        emphasizeSubMode(false);
-                        emphasizeAddMode((i) => !i);
-                    })
-                }
-            >
-                加权模式
-            </span>
-            <span
-                class="btn"
-                classList={{
-                    'bg-gray-700 border-gray-800': emphasizeSubMode(),
-                }}
-                onClick={() =>
-                    batch(() => {
-                        deleteMode(false);
-                        emphasizeAddMode(false);
-                        emphasizeSubMode((i) => !i);
-                        console.log(emphasizeSubMode());
-                    })
-                }
-            >
-                减权模式
-            </span>
-            <div
-                class="btn"
-                onclick={() => {
-                    const text = prompt('请输入魔咒, 魔咒将会覆盖哦', '');
-                    console.log(text);
-                    if (text) {
-                        usersCollection(stringToTags(text, lists()));
-                    }
-                }}
-            >
-                魔咒导入
-            </div>
-        </header>
-    );
-}

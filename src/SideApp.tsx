@@ -20,9 +20,6 @@ export const SideApp = () => {
                 'w-0': !sideAppMode() || !hasOpened(),
             }}
         >
-            <Show when={hasOpened()}>
-                <ControlBar></ControlBar>
-            </Show>
             <div class="flex-1" classList={{ relative: sideAppMode() }}>
                 <SettingPanel></SettingPanel>
                 <PublicPanel></PublicPanel>
@@ -31,13 +28,16 @@ export const SideApp = () => {
                 <Webview></Webview>
                 <RandomMaker></RandomMaker>
             </div>
+            <Show when={hasOpened()}>
+                <ControlBar></ControlBar>
+            </Show>
         </main>
     );
 };
 export const ControlBar = () => {
     const { visibleId } = useContext(Data);
     return (
-        <div class="mx-6 mt-6 flex h-8 items-center justify-end rounded-lg border border-gray-500 bg-gray-800">
+        <div class="mx-6 mb-6 flex h-8 items-center justify-end rounded-lg border border-gray-500 bg-gray-800">
             <div onclick={() => visibleId('random-maker')}> 测试按钮</div>
             <button class="btn" onclick={() => visibleId('')}>
                 主页

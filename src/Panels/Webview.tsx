@@ -7,7 +7,7 @@ import { Panel } from '../components/Panel';
 export const WebViewLink: Component<{ children: JSXElement; href: string }> = (props) => {
     const { nav } = useWebView();
     return (
-        <span class="text-green-700" onclick={() => nav(props.href)}>
+        <span class="text-green-500" onclick={() => nav(props.href)}>
             {props.children}
         </span>
     );

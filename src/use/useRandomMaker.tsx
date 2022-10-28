@@ -1,17 +1,19 @@
 import { atom } from '@cn-ui/use';
 import { sample } from 'lodash-es';
-import { createResource } from 'solid-js';
+import { createEffect, createResource } from 'solid-js';
 import { IData } from '../App';
 import { PickDataType } from '../Panels/RandomMaker';
 
 export const useRandomMaker = () => {
-    const [baseData] = createResource<{
+    const baseData = atom<{
         [key: string]: {
             name: string;
             id: number;
             tags: IData[];
         };
-    }>(() =>
+    }>({});
+
+    const loadData = () => {
         fetch('./tagsClassify.json')
             .then((res) => res.json())
             .then((res) => res.data)
@@ -31,11 +33,15 @@ export const useRandomMaker = () => {
                     return col;
                 }, {});
             })
-    );
+            .then((res) => {
+                baseData(res);
+            });
+    };
 
     const pickData = atom<PickDataType[]>([]);
     return {
         baseData,
+        loadData,
         pickData,
         addClassify(name: string) {
             if (pickData().find((i) => i.name === name)) return;

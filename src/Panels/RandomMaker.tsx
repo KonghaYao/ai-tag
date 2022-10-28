@@ -1,6 +1,6 @@
 import { Atom, atom } from '@cn-ui/use';
 import { sample } from 'lodash-es';
-import { For, useContext } from 'solid-js';
+import { createEffect, For, useContext } from 'solid-js';
 import { Data, IData } from '../App';
 import { Panel } from '../components/Panel';
 import { SortableList } from '../components/sortable';
@@ -21,10 +21,16 @@ import { TagButton } from '../components/TagButton';
 import { CombineMagic } from './PublicPanel';
 import { useRandomMaker } from '../use/useRandomMaker';
 export const RandomMaker = () => {
-    const { usersCollection, deleteMode } = useContext(Data);
+    const { usersCollection, deleteMode, isPanelVisible } = useContext(Data);
     const voidId = Math.random().toString();
-    const { pickData, baseData, addClassify } = useRandomMaker();
-
+    const { pickData, baseData, addClassify, loadData } = useRandomMaker();
+    let firstTime = true;
+    createEffect(() => {
+        if (isPanelVisible('random-maker') && firstTime) {
+            loadData();
+            firstTime = !firstTime;
+        }
+    });
     return (
         <Panel id="random-maker">
             <div class="flex h-full w-full flex-col">

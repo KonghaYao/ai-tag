@@ -69,7 +69,6 @@ export const App = () => {
     const { recover, tracking } = useStorage(storageSetting);
     recover();
     tracking();
-
     return (
         <Data.Provider
             value={{

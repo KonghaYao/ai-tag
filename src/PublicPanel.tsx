@@ -1,6 +1,6 @@
 import { atom, createIgnoreFirst } from '@cn-ui/use';
 import { debounce, memoize, uniqBy, uniqWith } from 'lodash-es';
-import { createMemo, For, useContext } from 'solid-js';
+import { createEffect, createMemo, For, useContext } from 'solid-js';
 import { API, StoreData } from './api/notion';
 import { Data } from './App';
 import { Panel } from './components/Panel';
@@ -17,7 +17,7 @@ export const PublicPanel = () => {
     const visible = createMemo(() => isPanelVisible('gallery'));
     const showing = atom<StoreData[]>([]);
     const page = atom<number>(0);
-    createIgnoreFirst(() => {
+    createEffect(() => {
         if (visible()) {
             showing([]);
             getData(page())
@@ -35,7 +35,7 @@ export const PublicPanel = () => {
                     showing(arr);
                 });
         }
-    }, [visible, page]);
+    });
 
     return (
         <Panel id="gallery">

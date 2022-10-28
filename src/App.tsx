@@ -36,11 +36,11 @@ export interface IGlobalData extends IStoreData {
     isPanelVisible: (key: PanelIds) => boolean;
 }
 export const Data = createContext<IGlobalData>();
-
+import isMobile from 'is-mobile';
 export const App = () => {
     const enMode = atom<boolean>(true);
     const r18Mode = atom<boolean>(false);
-    const sideAppMode = atom<boolean>(true);
+    const sideAppMode = atom<boolean>(!isMobile());
     const deleteMode = atom<boolean>(false);
     const showCount = atom<boolean>(true);
     const emphasizeAddMode = atom(false);

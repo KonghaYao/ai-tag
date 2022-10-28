@@ -9,7 +9,6 @@ import { RandomMaker } from './Panels/RandomMaker';
 export type PanelIds = 'setting' | 'gallery' | 'uploader' | 'webview' | 'random-maker';
 export const SideApp = () => {
     const { sideAppMode, visibleId } = useContext(Data);
-
     const hasOpened = createMemo(() => visibleId() !== null);
 
     return (
@@ -28,23 +27,6 @@ export const SideApp = () => {
                 <Webview></Webview>
                 <RandomMaker></RandomMaker>
             </div>
-            <Show when={hasOpened()}>
-                <ControlBar></ControlBar>
-            </Show>
         </main>
-    );
-};
-export const ControlBar = () => {
-    const { visibleId } = useContext(Data);
-    return (
-        <div class="mx-6 mb-6 flex h-8 items-center justify-end rounded-lg border border-gray-500 bg-gray-800">
-            <div onclick={() => visibleId('random-maker')}> 测试按钮</div>
-            <button class="btn" onclick={() => visibleId('')}>
-                主页
-            </button>
-            <button class="btn" onclick={() => visibleId(null)}>
-                关闭
-            </button>
-        </div>
     );
 };

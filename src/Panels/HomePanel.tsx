@@ -1,11 +1,21 @@
-import { useContext } from 'solid-js';
+import { For, useContext } from 'solid-js';
 import { Data } from '../App';
 import { Panel } from '../components/Panel';
 import { useWebView, WebViewLink } from './Webview';
 
+const EnableSites = [
+    {
+        name: 'Novel AI 教程',
+        src: 'https://www.yuque.com/longyuye/lmgcwy',
+    },
+    { name: '元素法典', src: 'https://docs.qq.com/doc/DWHl3am5Zb05QbGVs' },
+    { name: '图片解析魔咒', src: 'https://spell.novelai.dev/' },
+    { name: '魔咒百科词典', src: 'https://aitag.top/' },
+    { name: 'NovelAi-魔导学概论', src: 'https://noveltags.com/' },
+];
+
 export const HomePanel = () => {
     const { isPanelVisible, r18Mode, visibleId, lists, usersCollection } = useContext(Data);
-    const { nav } = useWebView();
     return (
         <Panel id="">
             <header class="w-full border-b-4 border-gray-800 py-2 text-center">
@@ -27,23 +37,11 @@ export const HomePanel = () => {
                 <div class="font-bold text-yellow-500">
                     下面是外部窗口测试，你可以查看这些大佬的魔咒网页
                 </div>
-                <ul>
-                    <li>
-                        <WebViewLink href="https://www.yuque.com/longyuye/lmgcwy">
-                            Novel AI 教程
-                        </WebViewLink>
-                    </li>
-                    <li>
-                        <WebViewLink href="https://docs.qq.com/doc/DWHl3am5Zb05QbGVs">
-                            元素法典
-                        </WebViewLink>
-                    </li>
-                    <li>
-                        <WebViewLink href="https://github.com/KonghaYao/ai-tag">
-                            Github 主页
-                        </WebViewLink>
-                    </li>
-                </ul>
+                <div class="flex flex-col">
+                    <For each={EnableSites}>
+                        {(item) => <WebViewLink href={item.src}>{item.name}</WebViewLink>}
+                    </For>
+                </div>
             </div>
         </Panel>
     );

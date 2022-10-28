@@ -1,5 +1,5 @@
 import { atom } from '@cn-ui/use';
-import { batch, Component, JSXElement, useContext } from 'solid-js';
+import { batch, Component, JSXElement, Show, useContext } from 'solid-js';
 import { ErrorBoundary } from 'solid-js';
 import { Data } from '../App';
 import { Panel } from '../components/Panel';
@@ -26,36 +26,37 @@ export const useWebView = () => {
 };
 
 export const Webview = () => {
-    const { isPanelVisible, r18Mode, visibleId, lists, usersCollection, webviewURL } =
-        useContext(Data);
+    const { webviewURL, isPanelVisible } = useContext(Data);
 
     let container: HTMLIFrameElement;
     const loading = atom(true);
     return (
         <Panel id="webview">
-            <div class="relative h-full w-full">
-                {loading() && <div> 加载中。。。</div>}
-                <ErrorBoundary
-                    fallback={() => {
-                        return (
-                            <div>
-                                该站点不支持，请点击跳转
-                                <a href={webviewURL()}>{webviewURL()}</a>
-                            </div>
-                        );
-                    }}
-                >
-                    <iframe
-                        ref={container}
-                        class="h-full w-full "
-                        src={webviewURL()}
-                        onload={(e) => {
-                            console.log(webviewURL(), '加载完毕');
-                            loading(false);
+            <Show when={isPanelVisible('webview')}>
+                <div class="relative h-full w-full">
+                    {loading() && <div> 加载中。。。</div>}
+                    <ErrorBoundary
+                        fallback={() => {
+                            return (
+                                <div>
+                                    该站点不支持，请点击跳转
+                                    <a href={webviewURL()}>{webviewURL()}</a>
+                                </div>
+                            );
                         }}
-                    ></iframe>
-                </ErrorBoundary>
-            </div>
+                    >
+                        <iframe
+                            ref={container}
+                            class="h-full w-full "
+                            src={webviewURL()}
+                            onload={(e) => {
+                                console.log(webviewURL(), '加载完毕');
+                                loading(false);
+                            }}
+                        ></iframe>
+                    </ErrorBoundary>
+                </div>
+            </Show>
         </Panel>
     );
 };

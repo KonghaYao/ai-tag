@@ -5,7 +5,7 @@ const token = () => {
     return __rapid_tokens__[index];
 };
 // rapidAPI 的测试使用，但是有次数限制
-const rapidAPI = (url: string, options?: RequestInit) => {
+export const rapidAPI = (url: string, options?: RequestInit) => {
     if (options) {
         options.headers = {
             ...(options.headers ?? {}),
@@ -17,7 +17,7 @@ const rapidAPI = (url: string, options?: RequestInit) => {
     return fetch(`https://http-cors-proxy.p.rapidapi.com/${url}`, options);
 };
 // json bird 的 fetch 但是速度不稳定
-const jsonBird = (url: string, options?: RequestInit) => {
+export const jsonBird = (url: string, options?: RequestInit) => {
     console.log(url, options);
     const params = new URLSearchParams();
     params.set('url', url.toString());

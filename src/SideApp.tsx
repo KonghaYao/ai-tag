@@ -5,7 +5,8 @@ import { UploadPanel } from './Panels/UploadPanel';
 import { Data } from './App';
 import { HomePanel } from './Panels/HomePanel';
 import { Webview } from './Panels/Webview';
-export type PanelIds = 'setting' | 'gallery' | 'uploader' | 'webview';
+import { RandomMaker } from './Panels/RandomMaker';
+export type PanelIds = 'setting' | 'gallery' | 'uploader' | 'webview' | 'random-maker';
 export const SideApp = () => {
     const { sideAppMode, visibleId } = useContext(Data);
 
@@ -28,6 +29,7 @@ export const SideApp = () => {
                 <UploadPanel></UploadPanel>
                 <HomePanel></HomePanel>
                 <Webview></Webview>
+                <RandomMaker></RandomMaker>
             </div>
         </main>
     );
@@ -36,6 +38,7 @@ export const ControlBar = () => {
     const { visibleId } = useContext(Data);
     return (
         <div class="mx-6 mt-6 flex h-8 items-center justify-end rounded-lg border border-gray-500 bg-gray-800">
+            <div onclick={() => visibleId('random-maker')}> 测试按钮</div>
             <button class="btn" onclick={() => visibleId('')}>
                 主页
             </button>

@@ -33,7 +33,7 @@ export interface IGlobalData extends IStoreData {
     usersCollection: Atom<IData[]>;
     result: Atom<IData[]>;
     lists: Accessor<IData[]>;
-    isPanelVisible: (key: PanelIds) => boolean;
+    isPanelVisible: (key: PanelIds | '') => boolean;
 }
 export const Data = createContext<IGlobalData>();
 import isMobile from 'is-mobile';

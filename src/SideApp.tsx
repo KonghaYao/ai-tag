@@ -1,13 +1,14 @@
 import { createMemo, Show, useContext } from 'solid-js';
-import { SettingPanel } from './SettingPanel';
-import { PublicPanel } from './PublicPanel';
-import { UploadPanel } from './UploadPanel';
+import { SettingPanel } from './Panels/SettingPanel';
+import { PublicPanel } from './Panels/PublicPanel';
+import { UploadPanel } from './Panels/UploadPanel';
 import { Data } from './App';
+import { HomePanel } from './Panels/HomePanel';
 export type PanelIds = 'setting' | 'gallery' | 'uploader';
 export const SideApp = () => {
     const { sideAppMode, visibleId } = useContext(Data);
 
-    const hasOpened = createMemo(() => !!visibleId());
+    const hasOpened = createMemo(() => visibleId() !== null);
 
     return (
         <main
@@ -24,6 +25,7 @@ export const SideApp = () => {
                 <SettingPanel></SettingPanel>
                 <PublicPanel></PublicPanel>
                 <UploadPanel></UploadPanel>
+                <HomePanel></HomePanel>
             </div>
         </main>
     );
@@ -32,6 +34,9 @@ export const ControlBar = () => {
     const { visibleId } = useContext(Data);
     return (
         <div class="mx-6 mt-6 flex h-8 items-center justify-end rounded-lg border border-gray-500 bg-gray-800">
+            <button class="btn" onclick={() => visibleId('')}>
+                主页
+            </button>
             <button class="btn" onclick={() => visibleId(null)}>
                 关闭
             </button>

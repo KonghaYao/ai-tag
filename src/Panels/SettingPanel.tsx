@@ -1,6 +1,6 @@
 import { For, useContext } from 'solid-js';
-import { Data } from './App';
-import { Panel } from './components/Panel';
+import { Data } from '../App';
+import { Panel } from '../components/Panel';
 
 export const SettingPanel = () => {
     const { r18Mode, showCount, tagsPerPage, sideAppMode } = useContext(Data);

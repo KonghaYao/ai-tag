@@ -3,7 +3,7 @@ import { Component, createMemo, JSXElement, useContext } from 'solid-js';
 import { Data } from '../App';
 import { PanelIds } from '../SideApp';
 
-export const Panel: Component<{ children?: JSXElement; id: PanelIds }> = (props) => {
+export const Panel: Component<{ children?: JSXElement; id: PanelIds | '' }> = (props) => {
     const { visibleId, isPanelVisible } = useContext(Data);
     let container: HTMLDivElement;
     const visible = createMemo(() => isPanelVisible(props.id));
@@ -17,7 +17,7 @@ export const Panel: Component<{ children?: JSXElement; id: PanelIds }> = (props)
                 'pointer-event-none': !visible(),
             }}
             onClick={(e) => {
-                if (e.target === container) visibleId('');
+                if (e.target === container) visibleId(null);
                 // console.log(e);
             }}
         >

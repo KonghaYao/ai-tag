@@ -1,12 +1,12 @@
 import { atom, createIgnoreFirst } from '@cn-ui/use';
 import { debounce, memoize, uniqBy, uniqWith } from 'lodash-es';
 import { createEffect, createMemo, For, useContext } from 'solid-js';
-import { API, StoreData } from './api/notion';
-import { Data } from './App';
-import { Panel } from './components/Panel';
-import { stringToTags } from './use/TagsToString';
-import { useViewer } from './use/useViewer';
-import { Notice } from './utils/notice';
+import { API, StoreData } from '../api/notion';
+import { Data } from '../App';
+import { Panel } from '../components/Panel';
+import { stringToTags } from '../use/TagsToString';
+import { useViewer } from '../use/useViewer';
+import { Notice } from '../utils/notice';
 
 const getData = memoize((page: number) => API.getData(page));
 export const PublicPanel = () => {
@@ -40,7 +40,7 @@ export const PublicPanel = () => {
     return (
         <Panel id="gallery">
             <header class="w-full py-2 text-center text-lg font-bold">
-                魔咒分享
+                魔咒画廊
                 <div
                     class="btn float-right cursor-pointer px-2 text-sm text-green-700"
                     onClick={() => visibleId('uploader')}
@@ -48,7 +48,7 @@ export const PublicPanel = () => {
                     我要分享
                 </div>
             </header>
-            <main class="grid flex-1 auto-rows-min grid-cols-2 gap-2  overflow-auto">
+            <main class="grid w-full flex-1 auto-rows-min grid-cols-2 gap-2 overflow-auto p-2">
                 {showing().length === 0 && (
                     <div class="flex h-full w-full items-center justify-center">
                         <span>加载中, 请稍等。</span>
@@ -57,9 +57,9 @@ export const PublicPanel = () => {
                 <For each={showing()}>
                     {(item, index) => {
                         return (
-                            <div class="flex h-64  flex-col p-2">
+                            <div class="flex flex-col ">
                                 <div
-                                    class="h-full overflow-hidden rounded-md shadow-lg"
+                                    class=" h-36 w-36 overflow-hidden rounded-md shadow-lg"
                                     onclick={() => getViewer().view(index())}
                                 >
                                     {item.image ? (
@@ -84,7 +84,7 @@ export const PublicPanel = () => {
                                     <div class="h-fit text-xs line-clamp-1">{item.username}</div>
                                 </div>
 
-                                <div class="flex text-xs text-amber-400">
+                                <div class="flex justify-between text-xs text-amber-400">
                                     <button
                                         class="btn flex-none"
                                         onClick={() => {

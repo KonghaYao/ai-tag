@@ -1,13 +1,13 @@
 import { createEffect, For, useContext } from 'solid-js';
-import { Data } from './App';
+import { Data } from '../App';
 import { createStore } from 'solid-js/store';
-import { Panel } from './components/Panel';
-import { API, StoreData } from './api/notion';
+import { Panel } from '../components/Panel';
+import { API, StoreData } from '../api/notion';
 import { atom } from '@cn-ui/use';
-import { stringToTags } from './utils/stringToTags';
-import { Notice } from './utils/notice';
+import { stringToTags } from '../utils/stringToTags';
+import { Notice } from '../utils/notice';
 import { untrack } from 'solid-js/web';
-import { TagsToString } from './use/TagsToString';
+import { TagsToString } from '../use/TagsToString';
 const init = {
     username: '',
     tags: [],

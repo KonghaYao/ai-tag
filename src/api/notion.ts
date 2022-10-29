@@ -18,6 +18,7 @@ export type StoreData = {
     image: string;
     description: string;
     origin_tags: string;
+    seed?: string;
 };
 // Notion 的 Text 格式生成器
 const NotionText = (text: string, prop?: string) => {
@@ -98,6 +99,7 @@ export const API = {
 
                 username: NotionText(data.username, 'title'),
                 origin_tags: NotionText(data.origin_tags),
+                seed: NotionText(data.seed ?? ''),
             },
         });
     },

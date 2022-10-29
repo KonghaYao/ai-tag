@@ -3,7 +3,7 @@ import { Data } from '../App';
 import { createStore } from 'solid-js/store';
 import { Panel } from '../components/Panel';
 import { API, StoreData } from '../api/notion';
-import { atom } from '@cn-ui/use';
+import { Atom, atom } from '@cn-ui/use';
 import { stringToTags } from '../utils/stringToTags';
 import { Notice } from '../utils/notice';
 import { untrack } from 'solid-js/web';
@@ -16,12 +16,14 @@ const init = {
     image: '',
     description: '',
     origin_tags: '',
+    seed: '',
 } as StoreData;
 const [store, set] = createStore({ ...init });
 
-export const UploadPanel = () => {
+const useSharedUpload = (uploading: Atom<boolean>) => {
     const { username, usersCollection, isPanelVisible } = useContext(Data);
-    const uploading = atom(false);
+
+    // 上传前检查
     const check = () => {
         if (store.description && username() && store.image && store.origin_tags) {
             return true;
@@ -31,13 +33,37 @@ export const UploadPanel = () => {
     const upload = () => {
         if (check()) {
             API.uploadData({ ...store, username: username() }).then(() => {
-                set((i) => ({ ...i, image: '', description: '' }));
+                set((i) => ({ ...i, image: '', description: '', seed: '' }));
                 Notice.success('上传完成');
             });
         } else {
             Notice.error('你的法力好像有些缺失呀！');
         }
     };
+    const uploadPicture = async (file: File) => {
+        uploading(true);
+        const fd = new FormData();
+        fd.append('key', '0000239c0acbbcb3bdedc2b1c6983537');
+        fd.append('media', file);
+        return fetch('https://thumbsnap.com/api/upload', {
+            method: 'post',
+            body: fd,
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                uploading(false);
+                set('image', res.data.thumb);
+            });
+    };
+    return { upload, uploadPicture };
+};
+
+export const UploadPanel = () => {
+    const { username, usersCollection, isPanelVisible } = useContext(Data);
+    const uploading = atom(false);
+
+    const { upload, uploadPicture } = useSharedUpload(uploading);
+
     createEffect(() => {
         if (isPanelVisible('uploader')) {
             const list = usersCollection();
@@ -81,6 +107,7 @@ export const UploadPanel = () => {
                         }}
                     />
                 </div>
+
                 <div class="my-2 mx-4 flex items-center justify-between">
                     <label class="flex-none ">魔咒文本</label>
                     <textarea
@@ -109,22 +136,12 @@ export const UploadPanel = () => {
                     <div class="flex-none">必须要有图片</div>
                     <input
                         type="file"
-                        oninput={(e) => {
-                            /** @ts-ignore */
-                            const file = e.target.files[0];
-                            const fd = new FormData();
-                            fd.append('key', '0000239c0acbbcb3bdedc2b1c6983537');
-                            fd.append('media', file);
-                            uploading(true);
-                            fetch('https://thumbsnap.com/api/upload', {
-                                method: 'post',
-                                body: fd,
-                            })
-                                .then((res) => res.json())
-                                .then((res) => {
-                                    uploading(false);
-                                    set('image', res.data.thumb);
-                                });
+                        oninput={(e: any) => {
+                            const file: File = e.target.files[0];
+                            // 看看是否有种子号
+                            const seed = file.name.match(/(?<=-)[^\-]+?(?=\.[^\.]+?$)/);
+                            seed.length && set('seed', seed[0]);
+                            uploadPicture(file);
                         }}
                     />
                 </div>
@@ -142,7 +159,19 @@ export const UploadPanel = () => {
                         loading="lazy"
                     />
                 )}
-
+                <div class="my-2 mx-4 flex items-center justify-between">
+                    <label class="flex-none ">种子号码</label>
+                    <input
+                        placeholder="如果没有可以不填"
+                        class="input ml-1 w-full"
+                        type="text"
+                        value={store.seed}
+                        onChange={(e) => {
+                            /**@ts-ignore */
+                            set('seed', e.target.value);
+                        }}
+                    />
+                </div>
                 <div
                     class="my-2 mx-4 flex items-center justify-between"
                     onclick={() => set('r18', !store.r18)}

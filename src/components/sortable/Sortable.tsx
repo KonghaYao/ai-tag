@@ -10,15 +10,7 @@ import {
     useContext,
 } from 'solid-js';
 import SortableCore from 'sortablejs';
-import {
-    OriginComponent,
-    Atom,
-    atomization,
-    extendsEvent,
-    atom,
-    reflect,
-    createIgnoreFirst,
-} from '@cn-ui/use';
+import { OriginComponent, Atom, atomization, extendsEvent, createIgnoreFirst } from '@cn-ui/use';
 import { useSortable } from './useSortable';
 export { SortableCore };
 /** Sortable 组件的公共参数 */

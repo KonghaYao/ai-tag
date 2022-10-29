@@ -6,9 +6,13 @@ import isMobile from 'is-mobile';
 import { SortableList } from './components/sortable';
 import { HeaderFirst } from './HeaderFirst';
 import { HeaderSecond } from './HeaderSecond';
+import { useIframeExpose } from './iframeExpose';
 export const UserSelected = () => {
     const { deleteMode, enMode, usersCollection, emphasizeAddMode, emphasizeSubMode } =
         useContext(Data);
+
+    useIframeExpose();
+
     const clickEvent = (item: IData) => {
         deleteMode() && usersCollection((i) => i.filter((it) => it !== item));
         emphasizeAddMode() &&

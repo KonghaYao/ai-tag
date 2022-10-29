@@ -46,6 +46,7 @@
     -   [ ] 优化提示
 -   网站样式
     -   [ ] 白昼模式
+    -   [ ] Iframe 通道通信
 
 ![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/header2.png)
 

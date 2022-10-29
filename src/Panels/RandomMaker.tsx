@@ -18,7 +18,7 @@ function findMore<T>(origin: T[], input: T[], equal = Object.is) {
     }
 }
 import { TagButton } from '../components/TagButton';
-import { CombineMagic } from './PublicPanel';
+import { CombineMagic } from '../utils/CombineMagic';
 import { useRandomMaker } from '../use/useRandomMaker';
 export const RandomMaker = () => {
     const { usersCollection, deleteMode, isPanelVisible } = useContext(Data);

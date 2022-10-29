@@ -1,29 +1,13 @@
 import { atom, createIgnoreFirst } from '@cn-ui/use';
-import { debounce, memoize, uniqBy, uniqWith } from 'lodash-es';
+import { debounce, memoize, uniqWith } from 'lodash-es';
 import { createEffect, createMemo, For, useContext } from 'solid-js';
 import { API, StoreData } from '../api/notion';
-import { Data, IData } from '../App';
+import { Data } from '../App';
 import { Panel } from '../components/Panel';
 import { stringToTags } from '../use/TagsToString';
 import { useViewer } from '../use/useViewer';
 import { Notice } from '../utils/notice';
-
-/** 融合魔法 */
-export const CombineMagic = (input: IData[], usersCollection: any) => {
-    usersCollection((i) => {
-        // 折叠融合，这样才符合 tags 的先后顺序
-        const newArr = [];
-        while (i.length || input.length) {
-            newArr.length && newArr.push(i.shift());
-            input.length && newArr.push(input.shift());
-        }
-
-        return uniqBy(
-            newArr.filter((i) => i),
-            (a) => a.en
-        );
-    });
-};
+import { CombineMagic } from '../utils/CombineMagic';
 
 const getData = memoize((page: number) => API.getData(page));
 export const PublicPanel = () => {

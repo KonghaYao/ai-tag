@@ -44,7 +44,7 @@ export const App = () => {
     const sideAppMode = atom(!isMobile());
     const deleteMode = atom(false);
     const showCount = atom(true);
-    const emphasizeAddMode = atom(false);
+    const emphasizeAddMode = atom(true);
     const emphasizeSubMode = atom(false);
     const tagsPerPage = atom<number>(500);
     const searchNumberLimit = atom<number>(1000);

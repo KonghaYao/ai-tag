@@ -4,18 +4,6 @@
 
 [AI 魔咒生成器](https://magic-tag.netlify.app/#/), 使用由 B 站 UP 主 [十二今天也很可爱](https://www.bilibili.com/video/BV1m84y1B7Ny/?p=1&t=285&vd_source=a2ecd44ec8a0a62c70f8b98747f4aa56) 提供的 4 万个 tag 并提供中文检索，并提供了魔咒社区方便魔法师们直接复制生成。永远免费，永无广告，无商业。
 
-1. 中文翻译为谷歌机翻，可能比较水，就当英文翻译题好了。
-
-2. 搜索功能可能有时抽风，这是搜索算法的问题，换种搜法就好了。比如白发，你搜头发是搜不到的。
-
-3. 为啥每次搜索的结果最多看到 500 （或者更多），因为 这些标签内没找到，要不是没有，就是搜索词不对，所以为了节省性能，没有显示。
-
-4. 默认为青少年模式，但是违禁词过滤估计还会有漏网之鱼，请多多提 issue；**模式则可以通过设置面板调整** (\*^\_^\*)。
-
-5. 由于没钱买服务器，所以我用我的 notion 数据库作为了后端帮助大家存储公开魔咒。Notion 只能进行上传和查询操作，所以公开的魔咒是只能由我改动，可以提交 issues，同时也没有用户系统，大家都是一样的，也算是部分 Web 3 了吧，哈哈哈。[Notion 页面](https://magic-tag.notion.site/90b7c1bb6ad7446ba66e0b1d8ec1d535?v=4cd4db0491664d25a25107631a6f3803)
-
-6. 图片存储在 thumbsnap 网站，提供了非常好的图片加载速度，足够社区使用。
-
 ## 功能列表
 
 > 多多点赞，我就多多更新 (● ∀ ●)。
@@ -25,6 +13,7 @@
     -   [x] 绑定 tags，网页 URL 指向了你的魔咒
     -   [x] 搜索标签排除
     -   [x] 搜索卡顿优化
+    -   [x] 魔咒导入
     -   [x] 简易魔咒生成器
 -   系统方面
     -   [x] 设置面板可以更改系统参数
@@ -51,6 +40,31 @@
 
 ## 魔导绪论指南
 
+### 基础操作讲解
+
+1. 选择适合的词汇，点击选中
+
+![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/Pick.gif)
+
+2. 在加权模式下，左点加权，右点减权（减权模式相反）
+
+![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/addAndSub.gif)
+
+3. 不想要某个词汇了：点击删除模式，点击不想要的词汇即可
+
+![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/delete.gif)
+
+4. 拖拽可以移动词汇
+
+![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/Move.gif)
+
+5. 一键复制，魔咒导入，不用多说了吧！
+6. 画廊中有可以直接使用的模板，点击复制魔法可以直接导入 tag，而融合魔法则会融入你的 tag。如果你想，你也可以在上面分享你的 tags 和图片！
+
+![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/Gallery.gif)
+
+> 因为是免费服务，所以服务器稳定性不高，请耐心等待。
+
 ### 明白魔导绪论的原理
 
 1. 魔导绪论的文件都是静态文件，没有 api，别攻击了，数据都在 Github 上了。
@@ -58,6 +72,15 @@
 3. 魔导绪论在此基础上实现了 tags 的查询操作，数据化魔咒支持加减权操作等。
 4. 魔导绪论需要一个 **支持 tags 的 AI 图片生成工具**，这个就自行查找吧。
 5. 如果你对具体的 tag 的意义有学习的想法，建议阅读 [UP 主 胧雨夜 的 Novel AI 教程](https://www.bilibili.com/video/BV1Le4y1E792/?p=1&t=1304) [网页文本](https://www.yuque.com/longyuye/lmgcwy)
+6. 中文翻译为谷歌机翻，可能比较水，就当英文翻译题好了。 搜索功能可能有时抽风，比如白发，你搜头发是搜不到的，这是搜索算法的问题，换种搜法就好了。
+
+7. 为啥每次搜索的结果最多看到 500 （或者更多），因为 这些标签内没找到，要不是没有，就是搜索词不对，所以为了节省性能，没有显示。
+
+8. 默认为青少年模式，但是违禁词过滤估计还会有漏网之鱼，请多多提 issue；**模式则可以通过设置面板调整** (\*^\_^\*)。
+
+9. 由于没钱买服务器，所以我用我的 notion 数据库作为了后端帮助大家存储公开魔咒。Notion 只能进行上传和查询操作，所以公开的魔咒是只能由我改动，可以提交 issues，同时也没有用户系统，大家都是一样的，也算是部分 Web 3 了吧，哈哈哈。[Notion 页面](https://magic-tag.notion.site/90b7c1bb6ad7446ba66e0b1d8ec1d535?v=4cd4db0491664d25a25107631a6f3803)
+
+10. 图片存储在 thumbsnap 网站，提供了非常好的图片加载速度，足够社区使用。
 
 ### 使用魔导绪论绘制你想要的图片
 
@@ -125,9 +148,32 @@ pnpm build # 打包版本
 node ./scripts/swearFilter.mjs # 对敏感词进行标记
 ```
 
+## 我是程序员，我想要使用你的服务
+
+魔导绪论提供了 iframe 接口可以为不同网站提供魔咒生成操作，主站完全不需要进行任何修改，直接 iframe 嵌入我们的主页，并且进行几十行代码的接口使用，即可与魔导绪论无缝衔接
+
+```js
+// comlink 是必须要的依赖
+import { wrap, windowEndpoint, proxy } from 'comlink';
+const ifr = document.querySelector('iframe');
+await new Promise((resolve) => (ifr.onload = resolve));
+const app = wrap(windowEndpoint(ifr.contentWindow));
+
+// 监听魔导绪论数据变化，为了安全考虑响应有延迟
+await app.onPromptChange(
+    proxy((str) => {
+        console.log('%cchanged prompts：' + str, 'background-color:green;color:white');
+    })
+);
+// 注入魔咒
+await app.inputPrompt('masterpease');
+// 获取现在的魔咒
+const str = await app.getPrompt();
+```
+
 ## Q&A
 
-1. 想要加友链？直接提交一个 issues 格式随意！
+1. 想要加友链？直接提交一个 issues 格式随意！或者直接在魔导绪论里面提交反馈！
 
 # License 开源证书
 

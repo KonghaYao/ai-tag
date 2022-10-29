@@ -53,9 +53,7 @@ export const TagButton: Component<{
 
                 props.onClick && props.onClick(item, true);
             }}
-            onClick={(e) => {
-                e.preventDefault();
-                console.log(e);
+            onClick={() => {
                 props.onClick && props.onClick(item, false);
             }}
             classList={{ [em()]: true }}

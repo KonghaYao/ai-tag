@@ -3,7 +3,7 @@ import { stringToTagData } from '../utils/stringToTags';
 
 /** 将字符串转化为 Tag 数组 */
 
-export const stringToTags = (s: string, list: IData[]): IData[] => {
+export const stringToTags = (s: string, list: IData[] = []): IData[] => {
     const data = stringToTagData(s);
     // console.log(data, s);
     return data.map((i) => {

@@ -67,7 +67,7 @@ export const TagButton: Component<{
             {showCount() && (
                 <div
                     class={
-                        'pointer-events-none absolute -right-4 -top-2 rounded-lg bg-gray-700 px-1 text-xs font-thin text-gray-400 ' +
+                        'pointer-events-none absolute -right-4 -top-2 rounded-lg  px-1 text-xs font-thin text-gray-400 ' +
                         color()
                     }
                 >

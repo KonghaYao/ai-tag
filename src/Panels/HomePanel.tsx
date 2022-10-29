@@ -16,6 +16,7 @@ const EnableSites = [
 const LocalPower = [
     { name: '魔咒画廊', src: 'gallery' },
     { name: '三分之二魔咒生成器', src: 'random-maker' },
+    { name: '反馈错误', src: 'callbacks' },
 ];
 export const HomePanel = () => {
     const { visibleId } = useContext(Data);

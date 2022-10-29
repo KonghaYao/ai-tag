@@ -97,7 +97,7 @@ export const App = () => {
                             <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
                                 开源
                             </a>
-                            ·
+                            ·<span onClick={() => visibleId('feedback')}>报错</span>
                             <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
                                 {'{{ By 江夏尧 }}'}
                             </a>

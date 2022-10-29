@@ -6,7 +6,8 @@ import { Data } from './App';
 import { HomePanel } from './Panels/HomePanel';
 import { Webview } from './Panels/Webview';
 import { RandomMaker } from './Panels/RandomMaker';
-export type PanelIds = 'setting' | 'gallery' | 'uploader' | 'webview' | 'random-maker';
+import { FeedBackPanel } from './Feedback/Feedback';
+export type PanelIds = 'setting' | 'gallery' | 'uploader' | 'webview' | 'random-maker' | 'feedback';
 export const SideApp = () => {
     const { sideAppMode, visibleId } = useContext(Data);
     const hasOpened = createMemo(() => visibleId() !== null);
@@ -26,6 +27,7 @@ export const SideApp = () => {
                 <HomePanel></HomePanel>
                 <Webview></Webview>
                 <RandomMaker></RandomMaker>
+                <FeedBackPanel></FeedBackPanel>
             </div>
         </main>
     );

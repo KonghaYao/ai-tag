@@ -1,4 +1,3 @@
-import { atom, Atom } from '@cn-ui/use';
 import { Component, createMemo, JSXElement, Show, useContext } from 'solid-js';
 import { Data } from '../App';
 import { PanelIds } from '../SideApp';

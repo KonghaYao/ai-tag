@@ -1,16 +1,18 @@
+import copy from 'copy-to-clipboard';
 import { batch, useContext } from 'solid-js';
 import { Data } from './App';
-import { stringToTags } from './use/TagsToString';
+import { stringToTags, TagsToString } from './use/TagsToString';
+import { Notice } from './utils/notice';
 
 export function HeaderSecond() {
-    const { r18Mode, emphasizeAddMode, emphasizeSubMode, deleteMode, usersCollection, lists } =
+    const { enMode, emphasizeAddMode, emphasizeSubMode, deleteMode, usersCollection, lists } =
         useContext(Data);
     return (
         <header class="flex border-t border-slate-700 pt-2 text-sm font-bold">
             <span
                 class="btn"
                 classList={{
-                    'bg-gray-700 border-gray-800': deleteMode(),
+                    'bg-red-800 border-gray-800': deleteMode(),
                 }}
                 onclick={() =>
                     batch(() => {
@@ -25,7 +27,7 @@ export function HeaderSecond() {
             <span
                 class="btn"
                 classList={{
-                    'bg-gray-700 border-gray-800': emphasizeAddMode(),
+                    'bg-amber-800 border-gray-800': emphasizeAddMode(),
                 }}
                 onClick={() =>
                     batch(() => {
@@ -40,7 +42,7 @@ export function HeaderSecond() {
             <span
                 class="btn"
                 classList={{
-                    'bg-gray-700 border-gray-800': emphasizeSubMode(),
+                    'bg-sky-800 border-gray-800': emphasizeSubMode(),
                 }}
                 onClick={() =>
                     batch(() => {
@@ -53,18 +55,17 @@ export function HeaderSecond() {
             >
                 减权模式
             </span>
-            <div
+
+            <span
                 class="btn"
                 onclick={() => {
-                    const text = prompt('请输入魔咒, 魔咒将会覆盖哦', '');
-                    console.log(text);
-                    if (text) {
-                        usersCollection(stringToTags(text, lists()));
-                    }
+                    const en = enMode();
+                    copy(TagsToString(usersCollection(), en));
+                    Notice.success('复制魔法释放');
                 }}
             >
-                魔咒导入
-            </div>
+                一键复制
+            </span>
         </header>
     );
 }

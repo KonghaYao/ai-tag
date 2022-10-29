@@ -1,27 +1,28 @@
 import { useContext } from 'solid-js';
 import copy from 'copy-to-clipboard';
 import { Data } from './App';
-import { TagsToString } from './use/TagsToString';
+import { stringToTags, TagsToString } from './use/TagsToString';
 import { Notice } from './utils/notice';
 
 export function HeaderFirst() {
-    const { enMode, usersCollection, visibleId } = useContext(Data);
+    const { enMode, usersCollection, visibleId, lists } = useContext(Data);
     return (
         <header class="flex w-full border-b border-slate-700 pb-2 text-sm font-bold">
             <span class="btn" onclick={() => enMode((i) => !i)}>
                 {enMode() ? '英文' : '中文'}
             </span>
-            <span
+            <div
                 class="btn"
                 onclick={() => {
-                    const en = enMode();
-                    copy(TagsToString(usersCollection(), en));
-                    Notice.success('复制魔法释放');
+                    const text = prompt('请输入魔咒, 魔咒将会覆盖哦', '');
+                    console.log(text);
+                    if (text) {
+                        usersCollection(stringToTags(text, lists()));
+                    }
                 }}
             >
-                一键复制
-            </span>
-
+                魔咒导入
+            </div>
             <span class="btn" onclick={() => visibleId('setting')}>
                 设置
             </span>

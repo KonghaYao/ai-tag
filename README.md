@@ -4,6 +4,33 @@
 
 [AI 魔咒生成器](https://magic-tag.netlify.app/#/), 使用由 B 站 UP 主 [十二今天也很可爱](https://www.bilibili.com/video/BV1m84y1B7Ny/?p=1&t=285&vd_source=a2ecd44ec8a0a62c70f8b98747f4aa56) 提供的 4 万个 tag 并提供中文检索，并提供了魔咒社区方便魔法师们直接复制生成。永远免费，永无广告，无商业。
 
+## 魔导绪论指南
+
+### 基础操作讲解
+
+1. 选择适合的词汇，点击选中
+
+![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/Pick.gif)
+
+2. 在加权模式下，左点加权，右点减权（减权模式相反）
+
+![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/addAndSub.gif)
+
+3. 不想要某个词汇了：点击删除模式，点击不想要的词汇即可
+
+![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/delete.gif)
+
+4. 拖拽可以移动词汇
+
+![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/Move.gif)
+
+5. 一键复制，魔咒导入，不用多说了吧！
+6. 画廊中有可以直接使用的模板，点击复制魔法可以直接导入 tag，而融合魔法则会融入你的 tag。如果你想，你也可以在上面分享你的 tags 和图片！
+
+![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/Gallery.gif)
+
+> 因为是免费服务，所以服务器稳定性不高，请耐心等待。
+
 ## 功能列表
 
 > 多多点赞，我就多多更新 (● ∀ ●)。
@@ -37,33 +64,6 @@
     -   [ ] 白昼模式
 
 ![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/header2.png)
-
-## 魔导绪论指南
-
-### 基础操作讲解
-
-1. 选择适合的词汇，点击选中
-
-![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/Pick.gif)
-
-2. 在加权模式下，左点加权，右点减权（减权模式相反）
-
-![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/addAndSub.gif)
-
-3. 不想要某个词汇了：点击删除模式，点击不想要的词汇即可
-
-![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/delete.gif)
-
-4. 拖拽可以移动词汇
-
-![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/Move.gif)
-
-5. 一键复制，魔咒导入，不用多说了吧！
-6. 画廊中有可以直接使用的模板，点击复制魔法可以直接导入 tag，而融合魔法则会融入你的 tag。如果你想，你也可以在上面分享你的 tags 和图片！
-
-![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/Gallery.gif)
-
-> 因为是免费服务，所以服务器稳定性不高，请耐心等待。
 
 ### 明白魔导绪论的原理
 

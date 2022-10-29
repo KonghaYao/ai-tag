@@ -45,7 +45,10 @@ export const fetchWithAgent = (url: string, options?: RequestInit) => {
     return new Promise(async (resolve) => {
         for (const fetch of requests) {
             try {
-                const data = await fetch(url, options);
+                const data = await fetch(url, options).then((res) => {
+                    if (res.ok) return res;
+                    throw res.status;
+                });
                 resolve(data);
                 break;
             } catch (e) {

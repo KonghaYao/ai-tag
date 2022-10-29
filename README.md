@@ -41,12 +41,11 @@
     -   [x] 社区分页
     -   [ ] 社区搜索
 -   反馈信息
-    -   [ ] Bug 反馈
-    -   [ ] 违禁词反馈
-    -   [ ] 优化提示
+    -   [x] Bug 反馈
+    -   [x] 违禁词反馈
 -   网站样式
+    -   [x] Iframe 通道通信
     -   [ ] 白昼模式
-    -   [ ] Iframe 通道通信
 
 ![](https://cdn.jsdelivr.net/gh/konghayao/ai-tag/assets/header2.png)
 

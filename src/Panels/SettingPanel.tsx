@@ -53,6 +53,7 @@ export const SettingPanel = () => {
                     );
                 }}
             </For>
+            <div class="flex-1"></div>
         </Panel>
     );
 };

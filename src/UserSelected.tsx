@@ -13,10 +13,13 @@ export const UserSelected = () => {
 
     useIframeExpose();
 
-    const clickEvent = (item: IData) => {
+    const clickEvent = (item: IData, rightClick?: boolean) => {
         deleteMode() && usersCollection((i) => i.filter((it) => it !== item));
-        emphasizeAddMode() &&
-            usersCollection((arr) => {
+
+        if ((emphasizeAddMode() && !rightClick) || (rightClick && emphasizeSubMode())) {
+            // 加权操作
+
+            return usersCollection((arr) => {
                 const index = arr.findIndex((it) => it === item);
                 const it = arr[index];
                 if (it.emphasize < 5) {
@@ -26,8 +29,10 @@ export const UserSelected = () => {
                 }
                 return arr;
             });
-        emphasizeSubMode() &&
-            usersCollection((arr) => {
+        }
+        if ((emphasizeSubMode() && !rightClick) || (rightClick && emphasizeAddMode())) {
+            // 减权操作
+            return usersCollection((arr) => {
                 const index = arr.findIndex((it) => it === item);
                 const it = arr[index];
                 if (it.emphasize > -5) {
@@ -37,6 +42,7 @@ export const UserSelected = () => {
                 }
                 return arr;
             });
+        }
     };
     const voidId = Math.random().toString();
     const disabledSortable = reflect(() => {

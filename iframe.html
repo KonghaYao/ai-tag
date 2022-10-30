@@ -6,32 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
     </head>
-    <body>
-        <iframe width="400px" height="400px" src="./index.html" frameborder="0"></iframe>
-        <div></div>
-    </body>
-    <script type="module">
-        import { wrap, windowEndpoint, proxy } from 'comlink';
-        async function main() {
-            const ifr = document.querySelector('iframe');
-            await new Promise((resolve) => (ifr.onload = resolve));
-            const app = wrap(windowEndpoint(ifr.contentWindow));
-            console.log('接入魔导绪论');
-            console.log('测试注入数据');
-
-            // 监听魔导绪论数据变化，为了安全考虑，有延迟
-            await app.onPromptChange(
-                proxy((str) => {
-                    console.log('%cchanged prompts：' + str, 'background-color:green;color:white');
-                })
-            );
-            // 注入魔咒
-            await app.inputPrompt('masterpease');
-            // 获取魔咒
-            const str = await app.getPrompt();
-
-            console.log(str);
-        }
-        main();
-    </script>
+    <body></body>
+    <script type="module" src="./demo/index.tsx"></script>
 </html>

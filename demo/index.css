@@ -1,13 +1,7 @@
 body {
     margin: 0;
     overflow: hidden;
-    @apply select-none bg-slate-900;
 }
-#app {
-    height: 100vh;
-    width: 100vw;
-}
-
 .bg-grid {
     background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px !important;
     background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px !important;
@@ -18,7 +12,7 @@ body {
         linear-gradient(90deg, rgb(130 130 130 / 38%) 1px, transparent 1px) !important;
 }
 .btn {
-    @apply mx-1 flex-none cursor-pointer select-none rounded border  border-solid border-gray-700 bg-gray-800  px-2 font-thin transition-all active:bg-gray-700;
+    @apply mx-1 cursor-pointer select-none rounded border border-solid  border-gray-700 bg-gray-800 px-2  font-thin transition-all active:bg-gray-700;
 }
 .input {
     @apply rounded-lg border border-solid border-gray-600 bg-gray-700 px-4 py-1 text-gray-200 shadow-md outline-none;

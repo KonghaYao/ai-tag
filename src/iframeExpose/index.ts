@@ -24,7 +24,7 @@ export const useIframeExpose = () => {
             onPromptChange(cb) {
                 const sendBack = debounce(() => {
                     cb(TagsToString(usersCollection()));
-                }, 500);
+                }, 200);
                 callbacks.push(sendBack);
             },
             /** 载入 prompt 字符串，但是以合并的方式 */

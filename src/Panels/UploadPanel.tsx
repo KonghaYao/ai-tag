@@ -139,7 +139,7 @@ export const UploadPanel = () => {
                         oninput={(e: any) => {
                             const file: File = e.target.files[0];
                             // 看看是否有种子号
-                            const seed = file.name.match(/(?<=-)[^\-\(\)]+(?=.+?$)/);
+                            const seed = file.name.match(/(?<=-)[\d]+(?=.+?$)/);
                             seed?.length && set('seed', seed[0]);
                             uploadPicture(file);
                         }}

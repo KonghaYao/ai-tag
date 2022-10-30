@@ -129,7 +129,7 @@ export function useDatabase(store: IStoreData) {
             });
         } else {
             await sharedWorker.getData().then((data) => {
-                if (data.prompt) usersCollection(stringToTags(data.prompt));
+                if (data.prompt) usersCollection(stringToTags(data.prompt, untrack(lists)));
             });
         }
     });
@@ -137,7 +137,7 @@ export function useDatabase(store: IStoreData) {
         proxy((data) => {
             if (data.prompt && data.prompt !== stateTag) {
                 stateTag = data.prompt;
-                usersCollection(stringToTags(data.prompt));
+                usersCollection(stringToTags(data.prompt, untrack(lists)));
             }
         })
     );

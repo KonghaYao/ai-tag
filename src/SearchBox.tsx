@@ -1,4 +1,4 @@
-import { Accessor, createDeferred, createEffect, For, on, Setter, useContext } from 'solid-js';
+import { createEffect, For, on, Setter, useContext } from 'solid-js';
 import debounce from 'lodash-es/debounce';
 import { Data, IData } from './App';
 import { TagButton } from './components/TagButton';

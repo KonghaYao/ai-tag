@@ -16,7 +16,7 @@ export const stringToTags = (s: string, list: IData[] = []): IData[] => {
             cn: i.text,
             count: Infinity,
             r18: 0,
-            emphasize: i.emphasize,
+            emphasize: i.emphasize ?? 0,
         };
     });
 };

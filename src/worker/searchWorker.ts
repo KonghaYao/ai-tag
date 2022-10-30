@@ -1,3 +1,6 @@
 import { expose } from 'comlink';
 import * as api from './searchCore';
-expose(api);
+
+globalThis.onconnect = (e) => {
+    expose(api, e.ports[0]);
+};

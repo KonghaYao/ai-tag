@@ -4,20 +4,31 @@ import { Atom, atom, createIgnoreFirst, reflect } from '@cn-ui/use';
 import { useSearchParams } from '@solidjs/router';
 import { IData, IStoreData } from '../App';
 import { getTagInURL } from '../utils/getTagInURL';
-import { TagsToString } from './TagsToString';
-import { wrap } from 'comlink';
+import { stringToTags, TagsToString } from './TagsToString';
+import { proxy, wrap } from 'comlink';
 import { CSVToJSON } from '../utils/CSVToJSON';
+import { SharedDataAPI } from '../worker/dataShared';
 
 // 初始化搜索 worker
-const worker = new Worker(new URL('../worker/searchWorker', import.meta.url), { type: 'module' });
 const searchWorker = wrap<{
     init: (input: IData[]) => Promise<void>;
     rebuild: (a: { r18: boolean; numberLimit: number }) => Promise<true>;
     search: (a: { text: string; limit: number }) => Promise<number[]>;
-}>(worker);
+}>(
+    new SharedWorker(new URL('../worker/searchWorker', import.meta.url), {
+        type: 'module',
+    }).port
+);
+
+const sharedWorker = wrap<SharedDataAPI>(
+    new SharedWorker(new URL('../worker/dataShared', import.meta.url), {
+        type: 'module',
+    }).port
+);
 
 /** 加载 Tag 数据库 */
 export function useDatabase(store: IStoreData) {
+    console.log('重绘');
     const rebuildSearchSet = async () => {
         if (lists.loading) return [];
         const r18 = r18Mode();
@@ -43,8 +54,6 @@ export function useDatabase(store: IStoreData) {
                 })
         );
     });
-
-    createEffect(() => usersCollection(getTagInURL(lists())));
 
     // 预先筛选 searchText，减少需要查找的区间
     const searchText = atom<string>('');
@@ -110,5 +119,27 @@ export function useDatabase(store: IStoreData) {
         // console.log('写入 URL ');
     }, [usersCollection]);
 
+    let stateTag = untrack(() => searchParams.tags) ?? '';
+    createEffect(async () => {
+        const urlTags = getTagInURL(lists());
+        if (urlTags?.length) {
+            usersCollection(urlTags);
+            await sharedWorker.changeData({
+                prompt: untrack(() => searchParams.tags),
+            });
+        } else {
+            await sharedWorker.getData().then((data) => {
+                if (data.prompt) usersCollection(stringToTags(data.prompt));
+            });
+        }
+    });
+    sharedWorker.onUpdate(
+        proxy((data) => {
+            if (data.prompt && data.prompt !== stateTag) {
+                stateTag = data.prompt;
+                usersCollection(stringToTags(data.prompt));
+            }
+        })
+    );
     return { result, lists: safeList, searchText, usersCollection };
 }

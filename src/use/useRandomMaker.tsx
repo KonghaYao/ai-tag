@@ -1,6 +1,5 @@
 import { atom } from '@cn-ui/use';
 import { sample } from 'lodash-es';
-import { createEffect, createResource } from 'solid-js';
 import { IData } from '../App';
 import { PickDataType } from '../Panels/RandomMaker';
 

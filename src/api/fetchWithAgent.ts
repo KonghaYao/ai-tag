@@ -38,19 +38,9 @@ export const jsonBird = (url: string, options?: RequestInit) => {
     return fetch('https://bird.ioliu.cn/v2', options);
 };
 
-const MyAgent = (url, options) => {
-    console.log(options);
-    return fetch(`http://127.0.0.1:3010/?url=${url}`, {
-        ...options,
-        headers: {
-            overwrite: JSON.stringify(options.headers),
-        },
-    });
-};
-
 //
-// const requests = [rapidAPI, jsonBird];
-const requests = [MyAgent];
+const requests = [rapidAPI, jsonBird];
+// const requests = [MyAgent];
 /** 垫底请求，多个 api 合为一个 */
 export const fetchWithAgent = (url: string, options?: RequestInit) => {
     return new Promise(async (resolve) => {

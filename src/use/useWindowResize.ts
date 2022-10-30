@@ -3,16 +3,12 @@ import { debounce } from 'lodash-es';
 import { createEffect } from 'solid-js';
 
 export const useWindowResize = () => {
-    const width = atom(0);
-    window.addEventListener(
-        'resize',
-        debounce(() => {
-            width(document.body.clientWidth);
-        }, 300)
-    );
-    createEffect(() => {
-        console.log(width());
-    });
+    const width = atom(document.body.clientWidth);
+    const getWidth = debounce(() => {
+        width(document.body.clientWidth);
+    }, 300);
+    window.addEventListener('resize', getWidth);
+    window.addEventListener('onload', getWidth);
 
     return { width };
 };

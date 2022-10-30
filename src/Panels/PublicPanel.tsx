@@ -60,7 +60,7 @@ export const PublicPanel = () => {
                         return (
                             <div class="flex flex-col ">
                                 <div
-                                    class=" h-36 w-36 overflow-hidden rounded-md shadow-lg"
+                                    class=" m-auto h-36 w-36 overflow-hidden rounded-md shadow-lg"
                                     onclick={() => getViewer().view(index())}
                                 >
                                     {item.image ? (

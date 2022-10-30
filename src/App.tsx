@@ -1,5 +1,5 @@
 /** @ts-ignore */
-import { Accessor, createContext, createSelector, Show, untrack } from 'solid-js';
+import { Accessor, createContext, createEffect, createSelector, Show, untrack } from 'solid-js';
 import { Atom, atom, createIgnoreFirst } from '@cn-ui/use';
 import { SearchBox } from './SearchBox';
 import { UserSelected } from './UserSelected';
@@ -38,6 +38,7 @@ export interface IGlobalData extends IStoreData {
 }
 export const Data = createContext<IGlobalData>();
 import isMobile from 'is-mobile';
+import { useWindowResize } from './use/useWindowResize';
 export const App = () => {
     const enMode = atom(true);
     const r18Mode = atom(false);
@@ -67,6 +68,10 @@ export const App = () => {
     };
     const { result, lists, searchText, usersCollection } = useDatabase(storageSetting);
     const { recover, tracking } = useStorage(storageSetting);
+
+    const { width } = useWindowResize();
+    // 自动变换 SideAPP 状态
+    createEffect(() => sideAppMode(width() > 888));
     recover();
     tracking();
     return (
@@ -86,7 +91,7 @@ export const App = () => {
         >
             <div class="flex h-screen w-screen justify-center">
                 <main class=" flex h-full w-full max-w-4xl flex-col overflow-hidden  p-2 text-gray-400 sm:p-4">
-                    <h2 class="text-center text-xl font-bold">
+                    <h2 class="cursor-pointer text-center text-xl font-bold">
                         AI 绘画三星法器 —— 魔导绪论
                         <sup class="px-2 text-xs text-yellow-300">{__version__}</sup>
                         <div class="flex items-center  justify-center gap-2 text-xs font-thin text-[#f5f3c2]">
@@ -97,7 +102,7 @@ export const App = () => {
                             <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
                                 开源
                             </a>
-                            ·<span onClick={() => visibleId('feedback')}>报错</span>
+                            ·<span onClick={() => visibleId('feedback')}>反馈</span>
                             <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
                                 {'{{ By 江夏尧 }}'}
                             </a>

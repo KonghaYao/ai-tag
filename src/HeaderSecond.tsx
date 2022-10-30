@@ -49,7 +49,6 @@ export function HeaderSecond() {
                         deleteMode(false);
                         emphasizeAddMode(false);
                         emphasizeSubMode((i) => !i);
-                        console.log(emphasizeSubMode());
                     })
                 }
             >

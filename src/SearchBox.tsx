@@ -27,9 +27,7 @@ export const SearchBox = () => {
     let searchResult: HTMLDivElement;
     createEffect(on(showingResult, () => searchResult.scrollTo(0, 0)));
 
-    // 直接写入 searchText 无更改
-    const triggerSearch = debounce(searchText, 300) as Setter<string>;
-    // 等待 500 ms 进行更改
+    const triggerSearch = debounce(searchText, 200) as Setter<string>;
     return (
         <>
             <nav class="flex w-full items-center">

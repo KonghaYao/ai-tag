@@ -1,6 +1,6 @@
 /** @ts-ignore */
 import { createEffect, createResource, createSignal, untrack } from 'solid-js';
-import { Atom, atom, createIgnoreFirst } from '@cn-ui/use';
+import { Atom, atom, createIgnoreFirst, reflect } from '@cn-ui/use';
 import { useSearchParams } from '@solidjs/router';
 import { IData, IStoreData } from '../App';
 import { getTagInURL } from '../utils/getTagInURL';
@@ -53,27 +53,27 @@ export function useDatabase(store: IStoreData) {
 
     const result = atom<IData[]>([]);
 
+    /** 安全的数据列表，对外提供操作 */
+    const safeList = reflect(() => {
+        const r18 = r18Mode();
+        const numberLimit = searchNumberLimit();
+
+        return lists()?.filter((i) => (r18 || !i.r18) && i.count >= numberLimit) ?? [];
+    });
+
     createEffect(async () => {
         if (!lists()) result([]);
         const text = searchText();
         if (!text) {
-            const r18 = untrack(r18Mode);
-            const numberLimit = untrack(searchNumberLimit);
-
-            const r =
-                lists()
-                    ?.filter((i) => (r18 || !i.r18) && i.count >= numberLimit)
-                    ?.slice(0, tagsPerPage()) ?? [];
-            result(r);
+            result(safeList().slice(0, tagsPerPage()));
             return;
         }
-        // 这个搜索特别慢
         console.time('搜索');
+        // 返回形式为数组，所以非常快
         const r = await searchWorker.search({ text, limit: tagsPerPage() });
         console.timeEnd('搜索');
         const data = lists();
-        const final = r.map((i) => data[i]);
-        result(final);
+        result(r.map((i) => data[i]));
     });
 
     const [U, setU] = createSignal<IData[]>([]);
@@ -110,5 +110,5 @@ export function useDatabase(store: IStoreData) {
         // console.log('写入 URL ');
     }, [usersCollection]);
 
-    return { result, lists, searchText, usersCollection };
+    return { result, lists: safeList, searchText, usersCollection };
 }

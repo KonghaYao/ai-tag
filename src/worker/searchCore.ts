@@ -1,18 +1,12 @@
 import { IData } from '../App';
-import { CSVToJSON } from '../utils/CSVToJSON';
 import Fuse from 'fuse.js';
 type IndexedData = IData & { id?: number };
 export let query: Fuse<IndexedData>;
 let data: IndexedData[];
-export const init = async () => {
+export const init = async (input: IndexedData[]) => {
     // 这里不需要处理，排序为 en 和 cn
-    data = await fetch('/tags.csv')
-        .then((res) => res.blob())
-        .then((res) => CSVToJSON<IndexedData>(res))
-        .then((res) => {
-            res.forEach((i, index) => (i.id = index));
-            return res;
-        });
+    input.forEach((i, index) => (i.id = index));
+    data = input;
     return true;
 };
 const createQuery = (data: IData[]) => {

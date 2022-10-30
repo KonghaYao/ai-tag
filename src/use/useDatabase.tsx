@@ -1,15 +1,6 @@
 /** @ts-ignore */
-import {
-    batch,
-    createEffect,
-    createMemo,
-    createResource,
-    createSignal,
-    on,
-    untrack,
-} from 'solid-js';
-import { Atom, atom, createIgnoreFirst, reflect } from '@cn-ui/use';
-import Fuse from 'fuse.js';
+import { createEffect, createResource, createSignal, untrack } from 'solid-js';
+import { Atom, atom, createIgnoreFirst } from '@cn-ui/use';
 import { useSearchParams } from '@solidjs/router';
 import { IData, IStoreData } from '../App';
 import { getTagInURL } from '../utils/getTagInURL';
@@ -20,7 +11,7 @@ import { CSVToJSON } from '../utils/CSVToJSON';
 // 初始化搜索 worker
 const worker = new Worker(new URL('../worker/searchWorker', import.meta.url), { type: 'module' });
 const searchWorker = wrap<{
-    init: () => Promise<void>;
+    init: (input: IData[]) => Promise<void>;
     rebuild: (a: { r18: boolean; numberLimit: number }) => Promise<true>;
     search: (a: { text: string; limit: number }) => Promise<number[]>;
 }>(worker);
@@ -34,12 +25,18 @@ export function useDatabase(store: IStoreData) {
         await searchWorker.rebuild({ r18, numberLimit });
     };
     const [lists] = createResource<IData[]>(async () => {
-        await searchWorker.init();
-        await rebuildSearchSet();
         return fetch('/tags.csv', { cache: 'force-cache' }).then((res) =>
             res
                 .blob()
                 .then((res) => CSVToJSON<IData>(res))
+                .then(async (res) => {
+                    // <100 ms 可以被接收
+                    console.time('初始化线程');
+                    await searchWorker.init(res);
+                    console.timeEnd('初始化线程');
+                    await rebuildSearchSet();
+                    return res;
+                })
                 .then((res) => {
                     res.forEach((i) => (i.emphasize = 0));
                     return res;

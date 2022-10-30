@@ -39,7 +39,7 @@ export const TagButton: Component<{
     const split = reflect(() => {
         const count = Math.abs(props.data.emphasize);
 
-        const splitSymbol = props.data.emphasize > 0 ? '{}' : '[]';
+        const splitSymbol = props.data.emphasize > 0 ? '()' : '[]';
         return [
             Array(count).fill(splitSymbol[0]).join(''),
             Array(count).fill(splitSymbol[1]).join(''),

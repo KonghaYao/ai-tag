@@ -21,12 +21,11 @@ export const stringToTags = (s: string, list: IData[] = []): IData[] => {
     });
 };
 /** 将用户的 Tag 转化为字符串 */
-
 export const TagsToString = (data: IData[], en = true) => {
     return data
         .map((i) => {
             const count = Math.abs(i.emphasize);
-            const tag = i.emphasize > 0 ? '{}' : '[]';
+            const tag = i.emphasize > 0 ? '()' : '[]';
             return tag[0].repeat(count) + (en ? i.en : i.cn) + tag[1].repeat(count);
         })
         .join(',');

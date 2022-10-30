@@ -179,4 +179,4 @@ const str = await app.getPrompt();
 
 GPL 3.0
 
-注意啦，不允许商用
+注意啦，作者不建议商用

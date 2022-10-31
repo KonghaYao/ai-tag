@@ -38,12 +38,15 @@ type TupleToUnion<T extends any[]> = T[number]['value'];
 /**@ts-ignore */
 export type FeedBackTags = TupleToUnion<typeof Labels> | 'bot';
 export interface FeedBackMessage {
+    author: string;
     title: string;
     body: string;
     labels: FeedBackTags[];
 }
 /** 提交一个 BUG */
 export const commitFeedBack = async (data: FeedBackMessage) => {
+    data.title = (data.author || '匿名') + ': ' + data.title;
+    delete data.author;
     return fetch('https://api.github.com/repos/KonghaYao/ai-tag/issues', {
         method: 'POST',
         headers: {
@@ -51,7 +54,16 @@ export const commitFeedBack = async (data: FeedBackMessage) => {
             Authorization: 'Bearer ' + import.meta.env.VITE_GITHUB_TOKEN,
         },
         body: JSON.stringify(data),
+    }).then((res) => res.json());
+};
+/** 获取 Issues 状态  */
+export const getIssueState = async (url: string) => {
+    return fetch(url.replace('github.com/', 'api.github.com/repos/'), {
+        headers: {
+            accept: 'application/vnd.github+json',
+            Authorization: 'Bearer ' + import.meta.env.VITE_GITHUB_TOKEN,
+        },
     })
         .then((res) => res.json())
-        .then<string>((res) => res.html_url);
+        .then((res) => res.state);
 };

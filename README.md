@@ -140,10 +140,12 @@
 
 # 开发者相关
 
-## 打包流程
+## 开发者与测试的流程
 
 ```sh
 pnpm i
+pnpm i netlify-cli -g # 需要全局按照
+netlify functions:serve # 开启 netlify 的调试云函数
 pnpm dev # 开发者模式查看
 pnpm build # 打包版本
 node ./scripts/swearFilter.mjs # 对敏感词进行标记

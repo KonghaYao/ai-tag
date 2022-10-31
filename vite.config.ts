@@ -22,6 +22,13 @@ export default defineConfig(({ mode }) => {
         ],
         server: {
             port: 3000,
+            proxy: {
+                // 配合 netlify 的云函数
+                '/.netlify/functions/notion_get':
+                    'http://localhost:9999/.netlify/functions/notion_get',
+                '/.netlify/functions/notion_create':
+                    'http://localhost:9999/.netlify/functions/notion_create',
+            },
         },
         resolve: {
             alias: {

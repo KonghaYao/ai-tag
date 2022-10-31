@@ -1,5 +1,5 @@
-import { Client } from 'notion-web/dist/index';
-import { fetchWithAgent } from './fetchWithAgent';
+// import { Client } from 'notion-web/dist/index';
+// import { fetchWithAgent } from './fetchWithAgent';
 /** 解构 notion 的 数据列表 */
 const treeToArray = (data) => {
     return data.results.map((i) =>
@@ -36,25 +36,32 @@ const NotionText = (text: string, prop?: string) => {
     };
 };
 export const API = {
-    client: null as null | Client,
+    // client: null as null | Client,
     database_id: '90b7c1bb6ad7446ba66e0b1d8ec1d535',
     init() {
         // Initializing a client
-        this.client = new Client({
-            auth: 'secret_HUtTw6zxXXR4KjLk63NaU8ZbNZc77KYM4c6PQd5ODp0',
-            fetch: fetchWithAgent as any,
-        });
+        // this.client = new Client({
+        // token 已经过时
+        //     auth: 'secret_HUtTw6zxXXR4KjLk63NaU8ZbNZc77KYM4c6PQd5ODp0',
+        //     fetch: fetchWithAgent as any,
+        // });
     },
     start_cursor: [] as string[],
     end: false,
     async getData(index: number): Promise<StoreData[]> {
-        const client: Client = this.client;
-        return await client.databases
-            .query({
-                database_id: this.database_id,
-                start_cursor: this.start_cursor[index - 1] ?? undefined,
-                page_size: 10,
-            })
+        const params = {
+            database_id: this.database_id,
+
+            page_size: 10,
+        };
+        const start_cursor = this.start_cursor[index - 1];
+        /**@ts-ignore */ // 在交给云函数过程中，不能有 undefined 值
+        if (start_cursor) params.start_cursor = start_cursor;
+        const str = Object.entries(params)
+            .map((i) => i.join('='))
+            .join('&');
+        return fetch('./.netlify/functions/notion_get?' + str, { cache: 'force-cache' })
+            .then((res) => res.json())
             .then((res) => {
                 this.end = !res.has_more;
                 this.start_cursor[index] = res.next_cursor;
@@ -62,7 +69,6 @@ export const API = {
             })
             .then(treeToArray)
             .then((arr) => {
-                console.log('notion', arr);
                 /**@ts-ignore */
                 return arr.map<StoreData[]>((i) => {
                     return {
@@ -77,7 +83,7 @@ export const API = {
             });
     },
     async uploadData(data: StoreData) {
-        return this.client.pages.create({
+        const body = {
             parent: {
                 type: 'database_id',
                 database_id: '90b7c1bb6ad7446ba66e0b1d8ec1d535',
@@ -101,6 +107,19 @@ export const API = {
                 origin_tags: NotionText(data.origin_tags),
                 seed: NotionText(data.seed ?? ''),
             },
+        };
+        return fetch('./.netlify/functions/notion_create', {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {
+                'content-type': 'application/json',
+            },
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                throw res.text();
+            }
         });
     },
 };

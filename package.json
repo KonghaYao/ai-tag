@@ -5,6 +5,7 @@
     "description": "",
     "scripts": {
         "dev": "vite dev",
+        "function": "netlify functions:serve",
         "build": "vite build  ",
         "analyze": "vite build --mode analyze"
     },
@@ -38,7 +39,6 @@
         "fuse.js": "^6.6.2",
         "is-mobile": "^3.1.1",
         "lodash-es": "^4.17.21",
-        "notion-web": "^1.0.0",
         "notyf": "^3.10.0",
         "papaparse": "^5.3.2",
         "solid-js": "^1.5.7",

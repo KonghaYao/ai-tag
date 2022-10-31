@@ -1,6 +1,6 @@
 import { Handler } from '@netlify/functions';
 import { Client } from '@notionhq/client';
-
+import { debounce } from 'lodash-es';
 // Initializing a client
 const notion = new Client({
     auth: process.env.VITE_NOTION_TOKEN,
@@ -16,5 +16,8 @@ export const handler: Handler = async (event, content) => {
     return {
         statusCode: 200,
         body: JSON.stringify(data),
+        headers: {
+            'cache-control': 'public, max-age=43200',
+        },
     };
 };

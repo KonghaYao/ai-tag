@@ -1,3 +1,4 @@
+// 已经废弃使用
 const __rapid_tokens__ = import.meta.env.VITE_RAPID_TOKENS.split(',').filter((i) => i);
 const token = () => {
     const index = Math.floor(Math.random() * __rapid_tokens__.length);

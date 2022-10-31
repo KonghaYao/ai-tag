@@ -50,7 +50,7 @@
     -   [x] 青少年模式
 -   部署方面
     -   [x] csv 预先压缩：Netlify 设置压缩即可
-    -   [x] rapidAPI 跨域 CORS
+    -   [x] 使用 Netlify 云函数 + Notion 后台
 -   社区方面
     -   [x] 分享模式，社区魔咒查看
     -   [x] 添加社区图片直接预览

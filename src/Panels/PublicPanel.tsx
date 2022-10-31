@@ -9,7 +9,6 @@ import { useViewer } from '../use/useViewer';
 import { Notice } from '../utils/notice';
 import { CombineMagic } from '../utils/CombineMagic';
 
-const getData = memoize((page: number) => API.getData(page));
 export const PublicPanel = () => {
     const { isPanelVisible, r18Mode, visibleId, lists, usersCollection } = useContext(Data);
     // 更改为异步导入
@@ -21,7 +20,7 @@ export const PublicPanel = () => {
     createEffect(() => {
         if (visible()) {
             showing([]);
-            getData(page())
+            API.getData(page(), r18Mode())
                 .then((res) => (r18Mode() ? res : res.filter((i) => !i.r18)))
                 .then((arr) => {
                     replaceImages(

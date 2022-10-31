@@ -35,6 +35,7 @@ const NotionText = (text: string, prop?: string) => {
         ],
     };
 };
+import { Client } from '@notionhq/client';
 export const API = {
     // client: null as null | Client,
     database_id: '90b7c1bb6ad7446ba66e0b1d8ec1d535',
@@ -46,13 +47,23 @@ export const API = {
         //     fetch: fetchWithAgent as any,
         // });
     },
+    // 这次查询的列表 cursor
     start_cursor: [] as string[],
     end: false,
-    async getData(index: number): Promise<StoreData[]> {
+    async getData(index: number, r18 = false): Promise<StoreData[]> {
         const params = {
             database_id: this.database_id,
-
             page_size: 10,
+            filter: {
+                and: [
+                    !r18 && {
+                        property: 'r18',
+                        checkbox: {
+                            equals: false,
+                        },
+                    },
+                ],
+            },
         };
         const start_cursor = this.start_cursor[index - 1];
         /**@ts-ignore */ // 在交给云函数过程中，不能有 undefined 值

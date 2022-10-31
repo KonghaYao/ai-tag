@@ -127,7 +127,7 @@ export function useDatabase(store: IStoreData) {
         if (stateTag === tags) return;
         stateTag = tags;
 
-        console.log('url => ', tags);
+        // console.log('url => ', tags);
         const urlTags = getTagInURL(lists());
 
         // 载入 URL 中的 Prompt
@@ -139,7 +139,7 @@ export function useDatabase(store: IStoreData) {
 
     // 初始化 usersCollection
     const initUsersCollection = async () => {
-        const tags = searchParams.tags;
+        const tags = searchParams.tags ?? '';
         if (stateTag === tags) return;
         stateTag = tags;
 
@@ -158,9 +158,10 @@ export function useDatabase(store: IStoreData) {
     };
     untrack(initUsersCollection);
     sharedWorker.onUpdate(
-        proxy(({ prompt }) => {
-            if (prompt && prompt !== stateTag) {
-                console.log('触发检查', { a: prompt, stateTag }, prompt === stateTag);
+        proxy(({ prompt = '' }) => {
+            if (prompt !== stateTag) {
+                // 如果用户输入在 URL 的 tag 不太规范，会震荡数据将其统一
+                console.log('触发检查', { receive: prompt, stateTag }, prompt === stateTag);
                 stateTag = prompt;
                 usersCollection(stringToTags(prompt, untrack(lists)));
             }

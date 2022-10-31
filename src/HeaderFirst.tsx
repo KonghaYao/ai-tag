@@ -5,7 +5,7 @@ import { stringToTags, TagsToString } from './use/TagsToString';
 import { Notice } from './utils/notice';
 
 export function HeaderFirst() {
-    const { enMode, usersCollection, visibleId, lists } = useContext(Data);
+    const { enMode, usersCollection, visibleId, lists, emphasizeSymbol } = useContext(Data);
     return (
         <header class="flex w-full border-b border-slate-700 pb-2 text-sm font-bold">
             <span class="btn" onclick={() => enMode((i) => !i)}>
@@ -31,6 +31,15 @@ export function HeaderFirst() {
             </span>
             <span class="btn bg-sky-800" onclick={() => visibleId('uploader')}>
                 分享
+            </span>
+            <span
+                class="btn  scale-110 bg-purple-600 font-bold text-white"
+                onClick={() => {
+                    emphasizeSymbol((i) => (i === '{}' ? '()' : '{}'));
+                    Notice.success('强调括号更换');
+                }}
+            >
+                {emphasizeSymbol().split('').join(' ')}
             </span>
         </header>
     );

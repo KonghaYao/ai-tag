@@ -26,6 +26,7 @@ export interface IStoreData {
     MaxEmphasize: Atom<number>;
     username: Atom<string>;
     webviewURL: Atom<string>;
+    emphasizeSymbol: Atom<string>;
 }
 export interface IGlobalData extends IStoreData {
     emphasizeAddMode: Atom<boolean>;
@@ -48,6 +49,7 @@ export const App = () => {
     const deleteMode = atom(false);
     const emphasizeAddMode = atom(false);
     const emphasizeSubMode = atom(false);
+    const emphasizeSymbol = atom('{}');
     const tagsPerPage = atom<number>(500);
     const MaxEmphasize = atom<number>(5);
     const searchNumberLimit = atom<number>(1000);
@@ -58,6 +60,7 @@ export const App = () => {
 
     /** 需要持久化的变量写这里 */
     const storageSetting = {
+        emphasizeSymbol,
         enMode,
         tagsPerPage,
         r18Mode,

@@ -10,7 +10,7 @@ export const TagButton: Component<{
     en?: Atom<boolean>;
     cn?: Atom<boolean>;
 }> = (props) => {
-    const { showCount, enMode, MaxEmphasize } = useContext(Data);
+    const { showCount, enMode, MaxEmphasize, emphasizeSymbol } = useContext(Data);
     const en = atomization(props.en ?? true);
     const cn = atomization(props.cn ?? true);
     const item = props.data;
@@ -31,11 +31,8 @@ export const TagButton: Component<{
     const split = reflect(() => {
         const count = Math.abs(props.data.emphasize);
 
-        const splitSymbol = props.data.emphasize > 0 ? '()' : '[]';
-        return [
-            Array(count).fill(splitSymbol[0]).join(''),
-            Array(count).fill(splitSymbol[1]).join(''),
-        ];
+        const [left, right] = props.data.emphasize > 0 ? emphasizeSymbol() : '[]';
+        return [Array(count).fill(left).join(''), Array(count).fill(right).join('')];
     });
     return (
         <nav

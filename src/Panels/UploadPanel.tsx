@@ -3,10 +3,9 @@ import { Data } from '../App';
 import { createStore } from 'solid-js/store';
 import { Panel } from '../components/Panel';
 import { API, StoreData } from '../api/notion';
-import { Atom, atom } from '@cn-ui/use';
+import { Atom, atom, useSingleAsync } from '@cn-ui/use';
 import { stringToTags } from '../utils/stringToTags';
 import { Notice } from '../utils/notice';
-import { untrack } from 'solid-js/web';
 import { TagsToString } from '../use/TagsToString';
 import { batch } from 'solid-js';
 const init = {
@@ -30,16 +29,18 @@ const useSharedUpload = (uploading: Atom<boolean>) => {
         }
         return false;
     };
-    const upload = () => {
+    /** 上传接口 */
+    const upload = useSingleAsync(() => {
         if (check()) {
-            API.uploadData({ ...store, username: username() }).then(() => {
+            Notice.success('上传中，请稍等');
+            return API.uploadData({ ...store, username: username() }).then(() => {
                 set((i) => ({ ...i, image: '', description: '', seed: '' }));
                 Notice.success('上传完成');
             });
         } else {
             Notice.error('你的法力好像有些缺失呀！');
         }
-    };
+    });
     const uploadPicture = async (file: File) => {
         uploading(true);
         const fd = new FormData();

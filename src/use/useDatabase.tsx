@@ -1,32 +1,13 @@
-/** @ts-ignore */
 import { createEffect, createResource, createSignal, untrack } from 'solid-js';
 import { Atom, atom, createIgnoreFirst, reflect } from '@cn-ui/use';
 import { useSearchParams } from '@solidjs/router';
 import { IData, IStoreData } from '../App';
 import { getTagInURL } from '../utils/getTagInURL';
 import { stringToTags, TagsToString } from './TagsToString';
-import { proxy, wrap } from 'comlink';
+import { proxy } from 'comlink';
 import { CSVToJSON } from '../utils/CSVToJSON';
-import { SharedDataAPI } from '../worker/dataShared';
-import { debounce } from 'lodash-es';
-
-// 初始化搜索 worker
-const searchWorker = wrap<{
-    init: (input: IData[]) => Promise<void>;
-    rebuild: (a: { r18: boolean; numberLimit: number }) => Promise<true>;
-    search: (a: { text: string; limit: number }) => Promise<number[]>;
-}>(
-    new SharedWorker(new URL('../worker/searchWorker', import.meta.url), {
-        type: 'module',
-    }).port
-);
-
-const sharedWorker = wrap<SharedDataAPI>(
-    new SharedWorker(new URL('../worker/dataShared', import.meta.url), {
-        type: 'module',
-    }).port
-);
-
+import { initWorker } from '../worker';
+const { searchWorker, sharedWorker } = initWorker();
 /** 加载 Tag 数据库 */
 export function useDatabase(store: IStoreData) {
     console.log('重绘');

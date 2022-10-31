@@ -8,6 +8,7 @@ import { stringToTags, TagsToString } from './TagsToString';
 import { proxy, wrap } from 'comlink';
 import { CSVToJSON } from '../utils/CSVToJSON';
 import { SharedDataAPI } from '../worker/dataShared';
+import { debounce } from 'lodash-es';
 
 // 初始化搜索 worker
 const searchWorker = wrap<{
@@ -107,6 +108,7 @@ export function useDatabase(store: IStoreData) {
     };
     const [searchParams, setSearchParams] = useSearchParams();
 
+    // 将 usersCollection 推向标签栏
     createIgnoreFirst(() => {
         const tags = TagsToString(usersCollection());
         setSearchParams(
@@ -114,30 +116,53 @@ export function useDatabase(store: IStoreData) {
                 ...untrack(() => searchParams),
                 tags,
             },
-            { replace: true, resolve: false }
+            {}
         );
-        // console.log('写入 URL ');
     }, [usersCollection]);
 
-    let stateTag = untrack(() => searchParams.tags) ?? '';
-    createEffect(async () => {
+    let stateTag = '';
+    // 监听 URL 地址变化
+    createIgnoreFirst(async () => {
+        const tags = searchParams.tags;
+        if (stateTag === tags) return;
+        stateTag = tags;
+
+        console.log('url => ', tags);
         const urlTags = getTagInURL(lists());
-        if (urlTags?.length) {
-            usersCollection(urlTags);
-            await sharedWorker.changeData({
-                prompt: untrack(() => searchParams.tags),
-            });
-        } else {
+
+        // 载入 URL 中的 Prompt
+        usersCollection(urlTags);
+        await sharedWorker.changeData({
+            prompt: tags,
+        });
+    }, [() => searchParams.tags]);
+
+    // 初始化 usersCollection
+    const initUsersCollection = async () => {
+        const tags = searchParams.tags;
+        if (stateTag === tags) return;
+        stateTag = tags;
+
+        const urlTags = getTagInURL(lists());
+        if (!urlTags?.length) {
             await sharedWorker.getData().then((data) => {
                 if (data.prompt) usersCollection(stringToTags(data.prompt, untrack(lists)));
             });
+            return;
+        } else {
+            usersCollection(urlTags);
+            await sharedWorker.changeData({
+                prompt: tags,
+            });
         }
-    });
+    };
+    untrack(initUsersCollection);
     sharedWorker.onUpdate(
-        proxy((data) => {
-            if (data.prompt && data.prompt !== stateTag) {
-                stateTag = data.prompt;
-                usersCollection(stringToTags(data.prompt, untrack(lists)));
+        proxy(({ prompt }) => {
+            if (prompt && prompt !== stateTag) {
+                console.log('触发检查', { a: prompt, stateTag }, prompt === stateTag);
+                stateTag = prompt;
+                usersCollection(stringToTags(prompt, untrack(lists)));
             }
         })
     );

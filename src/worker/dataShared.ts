@@ -6,11 +6,15 @@ const GlobalData = {
 const listeners = [];
 const api = {
     async changeData(newValue: Partial<typeof GlobalData>) {
-        Object.entries(newValue).forEach(([key, value]) => {
-            GlobalData[key] = value;
+        const needUpdate = Object.entries(newValue).some(([key, value]) => {
+            if (GlobalData[key] !== value) {
+                GlobalData[key] = value;
+                return true;
+            }
+            return false;
         });
-        listeners.forEach((i) => i());
-        return true;
+        if (needUpdate) listeners.forEach((i) => i());
+        return GlobalData;
     },
     getData() {
         return GlobalData;

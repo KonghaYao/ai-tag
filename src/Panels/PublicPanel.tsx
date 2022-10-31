@@ -20,20 +20,18 @@ export const PublicPanel = () => {
     createEffect(() => {
         if (visible()) {
             showing([]);
-            API.getData(page(), r18Mode())
-                .then((res) => (r18Mode() ? res : res.filter((i) => !i.r18)))
-                .then((arr) => {
-                    replaceImages(
-                        arr.map((i) => {
-                            return {
-                                alt: i.description,
-                                src: i.image,
-                                origin: i.image.replace('/t/', '/s/'),
-                            };
-                        })
-                    );
-                    showing(arr);
-                });
+            API.getData(page(), r18Mode()).then((arr) => {
+                replaceImages(
+                    arr.map((i) => {
+                        return {
+                            alt: i.description,
+                            src: i.image,
+                            origin: i.image.replace('/t/', '/s/'),
+                        };
+                    })
+                );
+                showing(arr);
+            });
         }
     });
 

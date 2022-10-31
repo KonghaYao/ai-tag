@@ -62,16 +62,16 @@ export const API = {
                             equals: false,
                         },
                     },
-                ],
+                ].filter((i) => i),
             },
         };
         const start_cursor = this.start_cursor[index - 1];
         /**@ts-ignore */ // 在交给云函数过程中，不能有 undefined 值
         if (start_cursor) params.start_cursor = start_cursor;
-        const str = Object.entries(params)
-            .map((i) => i.join('='))
-            .join('&');
-        return fetch('./.netlify/functions/notion_get?' + str, { cache: 'force-cache' })
+
+        return fetch('./.netlify/functions/notion_get?data=' + JSON.stringify(params), {
+            cache: 'force-cache',
+        })
             .then((res) => res.json())
             .then((res) => {
                 this.end = !res.has_more;

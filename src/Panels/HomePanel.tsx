@@ -12,6 +12,7 @@ const EnableSites = [
     { name: '元素法典', src: 'https://docs.qq.com/doc/DWHl3am5Zb05QbGVs' },
     { name: '图片 => Tags', src: 'https://spell.novelai.dev/' },
     { name: '魔咒百科词典', src: 'https://aitag.top/' },
+    { name: 'NovelAI tag生成器 V2.0', src: 'https://wolfchen.top/tag/', jump: true },
 ];
 const LocalPower = [
     { name: '魔咒画廊', src: 'gallery' },
@@ -45,13 +46,20 @@ export const HomePanel = () => {
                 <div class="py-2 font-bold text-yellow-500">友情链接</div>
                 <div class="flex flex-wrap gap-1 ">
                     <For each={EnableSites}>
-                        {(item) => (
-                            <WebViewLink href={item.src}>
-                                <div class="cursor-pointer rounded-sm bg-gray-700 px-2 py-1 transition-all hover:brightness-90">
+                        {(item) => {
+                            const inner = (
+                                <div class="cursor-pointer rounded-sm bg-gray-700 px-2 py-1 text-green-500 transition-all hover:brightness-90">
                                     {item.name}
                                 </div>
-                            </WebViewLink>
-                        )}
+                            );
+                            if (item.jump)
+                                return (
+                                    <a href={item.src} target="_blank">
+                                        {inner}
+                                    </a>
+                                );
+                            return <WebViewLink href={item.src}>{inner}</WebViewLink>;
+                        }}
                     </For>
                 </div>
             </div>

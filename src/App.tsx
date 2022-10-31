@@ -23,6 +23,7 @@ export interface IStoreData {
     showCount: Atom<boolean>;
     searchNumberLimit: Atom<number>;
     tagsPerPage: Atom<number>;
+    MaxEmphasize: Atom<number>;
     username: Atom<string>;
     webviewURL: Atom<string>;
 }
@@ -48,6 +49,7 @@ export const App = () => {
     const emphasizeAddMode = atom(false);
     const emphasizeSubMode = atom(false);
     const tagsPerPage = atom<number>(500);
+    const MaxEmphasize = atom<number>(5);
     const searchNumberLimit = atom<number>(1000);
     const webviewURL = atom('');
     const visibleId = atom<PanelIds | ''>('');
@@ -65,6 +67,7 @@ export const App = () => {
         searchNumberLimit,
         visibleId,
         webviewURL,
+        MaxEmphasize,
     };
     const { result, lists, searchText, usersCollection } = useDatabase(storageSetting);
     const { recover, tracking } = useStorage(storageSetting);

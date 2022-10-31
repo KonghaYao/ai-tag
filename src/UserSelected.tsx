@@ -8,8 +8,14 @@ import { HeaderFirst } from './HeaderFirst';
 import { HeaderSecond } from './HeaderSecond';
 import { useIframeExpose } from './iframeExpose';
 export const UserSelected = () => {
-    const { deleteMode, enMode, usersCollection, emphasizeAddMode, emphasizeSubMode } =
-        useContext(Data);
+    const {
+        deleteMode,
+        enMode,
+        usersCollection,
+        emphasizeAddMode,
+        emphasizeSubMode,
+        MaxEmphasize,
+    } = useContext(Data);
 
     useIframeExpose();
 
@@ -22,7 +28,7 @@ export const UserSelected = () => {
             return usersCollection((arr) => {
                 const index = arr.findIndex((it) => it === item);
                 const it = arr[index];
-                if (it.emphasize < 5) {
+                if (it.emphasize < MaxEmphasize()) {
                     const newArr = [...arr];
                     newArr[index] = { ...it, emphasize: it.emphasize + 1 };
                     return newArr;
@@ -35,7 +41,7 @@ export const UserSelected = () => {
             return usersCollection((arr) => {
                 const index = arr.findIndex((it) => it === item);
                 const it = arr[index];
-                if (it.emphasize > -5) {
+                if (it.emphasize > -1 * MaxEmphasize()) {
                     const newArr = [...arr];
                     newArr[index] = { ...it, emphasize: it.emphasize - 1 };
                     return newArr;

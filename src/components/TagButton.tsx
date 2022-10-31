@@ -10,7 +10,7 @@ export const TagButton: Component<{
     en?: Atom<boolean>;
     cn?: Atom<boolean>;
 }> = (props) => {
-    const { showCount, enMode } = useContext(Data);
+    const { showCount, enMode, MaxEmphasize } = useContext(Data);
     const en = atomization(props.en ?? true);
     const cn = atomization(props.cn ?? true);
     const item = props.data;
@@ -21,21 +21,13 @@ export const TagButton: Component<{
         if (item.count > 1000) return 'bg-yellow-900';
         if (item.count > 500) return 'bg-green-900';
     };
-    const emColor = [
-        'bg-purple-700',
-        'bg-indigo-700',
-        'bg-blue-700',
-        'bg-sky-700',
-        'bg-cyan-700',
-        //0
-        'bg-gray-700',
-        'bg-lime-800',
-        'bg-yellow-800',
-        'bg-amber-800',
-        'bg-orange-800',
-        'bg-red-800',
-    ];
-    const em = reflect(() => emColor[props.data.emphasize + 5]);
+    const emColor = ['bg-lime-800', 'bg-yellow-800', 'bg-amber-800', 'bg-orange-800', 'bg-red-800'];
+    const _emColor = ['bg-cyan-700', 'bg-sky-700', 'bg-blue-700', 'bg-indigo-700', 'bg-purple-700'];
+    const em = reflect(() => {
+        if (props.data.emphasize === 0) return 'bg-gray-700';
+        const index = Math.floor((Math.abs(props.data.emphasize) * 4) / MaxEmphasize());
+        return (props.data.emphasize > 0 ? emColor : _emColor)[index];
+    });
     const split = reflect(() => {
         const count = Math.abs(props.data.emphasize);
 

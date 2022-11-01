@@ -33,6 +33,11 @@ export const Webview = () => {
     return (
         <Panel id="webview">
             <Show when={isPanelVisible('webview')}>
+                <div>
+                    <a href={webviewURL()} target="_blank">
+                        <div class="btn m-2"> 新标签页打开</div>
+                    </a>
+                </div>
                 <div class="relative h-full w-full">
                     {loading() && <div> 加载中。。。</div>}
                     <ErrorBoundary
@@ -47,7 +52,8 @@ export const Webview = () => {
                     >
                         <iframe
                             ref={container}
-                            class="h-full w-full "
+                            sandbox="allow-scripts allow-popups allow-top-navigation-by-user-activation allow-forms allow-same-origin allow-storage-access-by-user-activation"
+                            class="absolute top-0 left-0 h-full w-full"
                             src={webviewURL()}
                             onload={(e) => {
                                 console.log(webviewURL(), '加载完毕');

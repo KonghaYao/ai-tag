@@ -1,6 +1,7 @@
 import { For, useContext } from 'solid-js';
 import { Data } from '../App';
 import { Panel } from '../components/Panel';
+import { Notice } from '../utils/notice';
 
 export const SettingPanel = () => {
     const { r18Mode, showCount, tagsPerPage, sideAppMode, MaxEmphasize } = useContext(Data);
@@ -14,9 +15,19 @@ export const SettingPanel = () => {
         { title: '每页 tags 数', bind: tagsPerPage },
         { title: '最大强调层数', bind: MaxEmphasize },
     ];
+    const reloadCache = async () => {
+        await fetch('https://cdn.jsdelivr.net/gh/konghayao/tag-collection/data/tags.csv', {
+            cache: 'reload',
+        }).then(() => {
+            Notice.success('更新完成，刷新浏览器完成更新');
+        });
+    };
     return (
         <Panel id="setting">
             <h3 class="my-2 text-center text-lg font-bold">设置面板</h3>
+            <div class="bg-slate-700 p-2 text-center transition-colors" onclick={reloadCache}>
+                刷新缓存: 词库有强缓存，更新新请点我。
+            </div>
             <For each={list}>
                 {(item) => {
                     return (

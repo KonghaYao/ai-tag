@@ -8,7 +8,7 @@
 
 -   [x] 使用 Netlify 的云函数提供更为快速的社区数据操作！（暂时不知道花费多少）
 -   [x] 查看自己的反馈信息。链接 Github issues
--   [ ] 考虑剥离词库为单独仓库，采用 jsDelivr 提供的缓存
+-   [x] 考虑剥离词库为单独仓库，采用 jsDelivr 提供的缓存，词库已经单独分配到 [Tags 收集整理项目](https://github.com/KonghaYao/tag-collection) 管理
 
 ## 魔导绪论指南
 
@@ -76,7 +76,7 @@
 ### 明白魔导绪论的原理
 
 1. 魔导绪论的文件都是静态文件，没有 api，别攻击了，数据都在 Github 上了。
-2. 魔导绪论有一个庞大的标签列表，在 public/tags.csv
+2. 魔导绪论有一个庞大的标签列表，在 [Tags 收集整理项目](https://github.com/KonghaYao/tag-collection)。
 3. 魔导绪论在此基础上实现了 tags 的查询操作，数据化魔咒支持加减权操作等。
 4. 魔导绪论需要一个 **支持 tags 的 AI 图片生成工具**，这个就自行查找吧。
 5. 如果你对具体的 tag 的意义有学习的想法，建议阅读 [UP 主 胧雨夜 的 Novel AI 教程](https://www.bilibili.com/video/BV1Le4y1E792/?p=1&t=1304) [网页文本](https://www.yuque.com/longyuye/lmgcwy)

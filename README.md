@@ -7,8 +7,8 @@
 ### v2 版本更新内容
 
 -   [x] 使用 Netlify 的云函数提供更为快速的社区数据操作！（暂时不知道花费多少）
--   [x] 查看自己的反馈信息。链接 Github issues
--   [x] 考虑剥离词库为单独仓库，采用 jsDelivr 提供的缓存，词库已经单独分配到 [Tags 收集整理项目](https://github.com/KonghaYao/tag-collection) 管理
+-   [x] 查看自己的反馈信息。链接 Github Issues。
+-   [x] 考虑剥离词库为单独仓库，采用 jsDelivr 提供的缓存，词库已经单独分配到 [Tags 收集整理项目](https://github.com/KonghaYao/tag-collection) 管理。
 
 ## 魔导绪论指南
 

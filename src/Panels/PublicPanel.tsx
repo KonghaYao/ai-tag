@@ -37,7 +37,8 @@ export const PublicPanel = () => {
 
     return (
         <Panel id="gallery">
-            <header class="w-full py-2 text-center text-lg font-bold">
+            <header class="flex w-full items-end justify-between p-2 text-center text-lg font-bold">
+                <span class=" text-xs font-thin">点击查看大图</span>
                 魔咒画廊
                 <div
                     class="btn float-right cursor-pointer px-2 text-sm text-green-700"
@@ -46,6 +47,7 @@ export const PublicPanel = () => {
                     我要分享
                 </div>
             </header>
+
             <main class="grid w-full flex-1 auto-rows-min grid-cols-2 gap-2 overflow-auto p-2">
                 {showing().length === 0 && (
                     <div class="flex h-full w-full items-center justify-center">

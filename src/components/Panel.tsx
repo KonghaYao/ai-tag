@@ -16,10 +16,11 @@ export const Panel: Component<{ children?: JSXElement; id: PanelIds | '' }> = (p
     return (
         <nav
             ref={container}
-            class="absolute top-0 left-0 flex h-full w-full flex-col items-center justify-center p-6 transition-all"
+            class="absolute top-0 left-0 flex h-full w-full flex-col items-center justify-center p-6 transition-all duration-500"
             classList={{
                 'scale-100': visible(),
                 'scale-0': !visible(),
+                'translate-y-full': !visible(),
                 'pointer-event-none': !visible(),
                 hidden: hidden(),
             }}

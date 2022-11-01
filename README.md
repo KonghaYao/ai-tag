@@ -7,7 +7,8 @@
 ### v2 版本更新内容
 
 -   [x] 使用 Netlify 的云函数提供更为快速的社区数据操作！（暂时不知道花费多少）
--   [ ] 查看自己的反馈信息。链接 Github issues
+-   [x] 查看自己的反馈信息。链接 Github issues
+-   [ ] 考虑剥离词库为单独仓库，采用 jsDelivr 提供的缓存
 
 ## 魔导绪论指南
 
@@ -84,7 +85,7 @@
 8. 默认为青少年模式，但是违禁词过滤估计还会有漏网之鱼，请多多提 issue；**模式则可以通过设置面板调整** (\*^\_^\*)。
 9. 由于没钱买服务器，所以我用我的 notion 数据库作为了后端帮助大家存储公开魔咒。Notion 只能进行上传和查询操作，所以公开的魔咒是只能由我改动，可以提交 issues，同时也没有用户系统，大家都是一样的，也算是部分 Web 3 了吧，哈哈哈。[Notion 页面](https://magic-tag.notion.site/90b7c1bb6ad7446ba66e0b1d8ec1d535?v=4cd4db0491664d25a25107631a6f3803)
 
-10. 图片存储在 thumbsnap 网站，提供了非常好的图片加载速度，足够社区使用。另外，如果没有显示出图片，那么覅长有可能你开了某个代理，关掉就可以了。（我就是这样）
+10. 图片存储在 thumbsnap 网站，提供了非常好的图片加载速度，足够社区使用。另外，如果没有显示出图片，那么非常有可能你开了某个代理，关掉就可以了。（我就是这样）[关于图片网速的测试](https://github.com/KonghaYao/ai-tag/issues/7#issuecomment-1297947958)
 11. 关于魔咒的符号问题，两个家族 —— Novel AI 和 Stable Diffusion 采用了不同的符号机制，但是有共同之处。魔导绪论采用的方案是所见即所得，魔咒如代码，是给人看的，保证你在上面编辑的数据复制后是一致的。
     1. 如果你想要 **数值加权**、`|` 融合、`AND` 写法，那么直接写在搜索栏然后创建吧，魔导绪论不能识别他们，但是可以保证复制后是正确的。（如遇 BUG 请提交 issues）
 
@@ -156,9 +157,18 @@ pnpm build # 打包版本
 node ./scripts/swearFilter.mjs # 对敏感词进行标记
 ```
 
-## 我是程序员，我想要使用你的服务
+## Iframe 服务
 
-魔导绪论提供了 iframe 接口可以为不同网站提供魔咒生成操作，主站完全不需要进行任何修改，直接 iframe 嵌入我们的主页，并且进行几十行代码的接口使用，即可与魔导绪论无缝衔接
+魔导绪论提供了 iframe 接口可以为不同网站提供魔咒生成操作，主站完全不需要进行任何修改，直接 iframe 嵌入我们的主页，并且进行几十行代码的接口使用，即可与魔导绪论无缝衔接。
+
+### 快速上手
+
+```html
+<iframe
+    sandbox="allow-scripts allow-popups allow-top-navigation-by-user-activation allow-same-origin allow-storage-access-by-user-activation"
+    src="https://magic-tag.netlify.app"
+></iframe>
+```
 
 ```js
 // comlink 是必须要的依赖
@@ -179,9 +189,21 @@ await app.inputPrompt('masterpease');
 const str = await app.getPrompt();
 ```
 
+### 原理
+
+1. 我们采用通用的 [MessageChannel](https://developer.mozilla.org/zh-CN/docs/Web/API/MessageChannel) 的方式在网站间传递数据，这个也是常用的网站联合操作。
+2. iframe 标签上必须使用 sandbox 属性保证两边网站的安全权限，[具体调配请访问 MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Security-Policy/sandbox)。
+3. 例子
+    1. CodeSandbox 的代码在线演示广泛应用于官网教程网站，也是通过 iframe 方式加载的，详见 [Sandpack 源码](https://github.com/codesandbox/sandpack)
+    2. Notion 支持直接导入网站，也是以 iframe 方式。
+    3. [XMind](https://github.com/xmindltd/xmind-embed-viewer) 也支持直接在网站联合查看，使用 iframe + MessageChannel 的方式
+
 ## Q&A
 
-1. 想要加友链？直接提交一个 issues 格式随意！或者直接在魔导绪论里面提交反馈！
+1. 想要加友链？
+    - 直接提交一个 issues 格式随意！或者直接在魔导绪论里面提交反馈！
+2. 如何跳转并注入一段魔咒
+    - `https://magic-tag.netlify.app/#/?tags={{masterpiece}}` 你看这里的 tags 后面就是魔咒。
 
 # License 开源证书
 

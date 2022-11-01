@@ -30,6 +30,7 @@ const App = () => {
         <div class="flex h-screen w-screen ">
             <div class="h-full w-full max-w-sm p-4">
                 <iframe
+                    sandbox="allow-scripts allow-popups allow-top-navigation-by-user-activation allow-forms allow-same-origin allow-storage-access-by-user-activation"
                     class="h-full w-full appearance-none  overflow-hidden rounded-lg border-none shadow-xl"
                     ref={container}
                     src="./index.html?tags=348923849"

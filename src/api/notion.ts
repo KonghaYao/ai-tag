@@ -71,9 +71,7 @@ export const API = {
         /**@ts-ignore */ // 在交给云函数过程中，不能有 undefined 值
         if (start_cursor) params.start_cursor = start_cursor;
 
-        return fetch('./.netlify/functions/notion_get?data=' + JSON.stringify(params), {
-            cache: 'force-cache',
-        })
+        return fetch('./.netlify/functions/notion_get?data=' + JSON.stringify(params))
             .then((res) => res.json())
             .then((res) => {
                 this.end = !res.has_more;

@@ -18,22 +18,23 @@ export function useDatabase(store: IStoreData) {
         await searchWorker.rebuild({ r18, numberLimit });
     };
     const [lists] = createResource<IData[]>(async () => {
-        return fetch('/tags.csv', { cache: 'force-cache' }).then((res) =>
-            res
-                .blob()
-                .then((res) => CSVToJSON<IData>(res))
-                .then(async (res) => {
-                    // <100 ms 可以被接收
-                    console.time('初始化线程');
-                    await searchWorker.init(res);
-                    console.timeEnd('初始化线程');
-                    await rebuildSearchSet();
-                    return res;
-                })
-                .then((res) => {
-                    res.forEach((i) => (i.emphasize = 0));
-                    return res;
-                })
+        return fetch('https://cdn.jsdelivr.net/gh/konghayao/tag-collection/data/tags.csv').then(
+            (res) =>
+                res
+                    .blob()
+                    .then((res) => CSVToJSON<IData>(res))
+                    .then(async (res) => {
+                        // <100 ms 可以被接收
+                        console.time('初始化线程');
+                        await searchWorker.init(res);
+                        console.timeEnd('初始化线程');
+                        await rebuildSearchSet();
+                        return res;
+                    })
+                    .then((res) => {
+                        res.forEach((i) => (i.emphasize = 0));
+                        return res;
+                    })
         );
     });
 

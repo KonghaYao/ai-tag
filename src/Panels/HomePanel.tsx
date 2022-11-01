@@ -23,11 +23,9 @@ export const HomePanel = () => {
     const { visibleId } = useContext(Data);
     return (
         <Panel id="">
-            <header class="w-full border-b-4 border-gray-800 py-2 text-center">
-                Side APP 功能测试
-            </header>
+            <header class="w-full border-b-4 border-gray-800 py-2 text-center">主页</header>
             <div class="h-full w-full p-4 font-thin">
-                <p class="text-center text-yellow-600">在设置中可以调回浮窗模式！</p>
+                <p class="text-center text-yellow-600">点击下面的主页即是返回</p>
 
                 <div class="py-2 font-bold text-yellow-500">本地功能</div>
 

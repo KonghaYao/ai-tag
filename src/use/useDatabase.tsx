@@ -24,7 +24,7 @@ export function useDatabase(store: IStoreData) {
                     .blob()
                     .then((res) => CSVToJSON<IData>(res))
                     .then(async (res) => {
-                        // <100 ms 可以被接收
+                        // <200 ms 可以被接受
                         console.time('初始化线程');
                         await searchWorker.init(res);
                         console.timeEnd('初始化线程');

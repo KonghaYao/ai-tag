@@ -7,6 +7,7 @@ import { Notice } from '../utils/notice';
 import { commitFeedBack, FeedBackMessage, FeedBackTags, Labels } from './index';
 export const FeedBackPanel = () => {
     const { visibleId } = useContext(Data);
+    /** 反馈信息 */
     const callbacks = atom<FeedBackMessage>({
         author: '',
         title: '',
@@ -15,12 +16,9 @@ export const FeedBackPanel = () => {
     });
     const checks = () => {
         const form = callbacks();
-        if (form.title && form.body) {
-            return true;
-        } else {
-            return false;
-        }
+        return form.title && form.body ? true : false;
     };
+    /** 提交请求 */
     const Commit = useSingleAsync(() => {
         if (checks()) {
             const form = callbacks();
@@ -51,11 +49,15 @@ export const FeedBackPanel = () => {
                 >
                     查看以前的反馈
                 </div>
+
+                <div class="p-2 text-sm ">
+                    <div>反馈之前，请确认：青少年模式导致词缺失</div>
+                </div>
                 <div class="flex justify-between">
-                    <span class="flex-none">我想要</span>
+                    <span class="flex-none">我就想要</span>
                     <select
                         value={callbacks().labels[0]}
-                        class="ml-2 appearance-none bg-gray-800 px-2 outline-none"
+                        class="ml-2 w-full appearance-none bg-gray-800 px-2 outline-none"
                         onChange={(e: any) => {
                             callbacks((i) => ({
                                 ...i,
@@ -74,6 +76,7 @@ export const FeedBackPanel = () => {
                 <div class="flex ">
                     <span class="flex-none">问题标题</span>
                     <input
+                        placeholder="必填"
                         value={callbacks().title}
                         class="ml-4 w-full appearance-none rounded-md bg-gray-800 px-2 outline-none"
                         onChange={(e: any) => {
@@ -87,7 +90,7 @@ export const FeedBackPanel = () => {
                 <div class="flex ">
                     <span class="flex-none">你的名称</span>
                     <input
-                        placeholder="选填"
+                        placeholder="选填，可以留下地址"
                         value={callbacks().author}
                         class="ml-4 w-full appearance-none rounded-md bg-gray-800 px-2 outline-none"
                         onChange={(e: any) => {
@@ -102,6 +105,7 @@ export const FeedBackPanel = () => {
                     具体描述
                     <textarea
                         value={callbacks().body}
+                        placeholder="必填，请写下相关的信息，相关的来源，触发的条件等，有啥写啥"
                         class="w-full appearance-none rounded-md bg-gray-800 px-2 outline-none"
                         onChange={(e: any) => {
                             callbacks((i) => ({

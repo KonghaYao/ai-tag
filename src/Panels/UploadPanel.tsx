@@ -154,7 +154,7 @@ export const UploadPanel = () => {
                     注意上传正确的图片和 tag 否则会被清理。
                 </div>
                 <div class="my-2 mx-4 text-center text-sm text-green-700">
-                    为了持续服务，请不要上传 “你懂的” 的类型，谢谢。
+                    为了持续服务，请不要上传 “你懂的” 的类型。
                 </div>
                 <div class="my-2 mx-4 flex items-center justify-between ">
                     <div class="flex-none">自动识别图片=》</div>
@@ -162,7 +162,7 @@ export const UploadPanel = () => {
                 </div>
 
                 {uploading() && (
-                    <div class="btn w-full text-center text-red-700">
+                    <div class="btn w-full text-center text-red-600 ">
                         上传图片中，请等待完成。。。
                     </div>
                 )}

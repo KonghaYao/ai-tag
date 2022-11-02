@@ -3,13 +3,15 @@ import { Data } from '../App';
 import { Panel } from '../components/Panel';
 import { useWebView, WebViewLink } from './Webview';
 
+const Translators = [{ name: 'Bing 翻译', src: 'https://cn.bing.com/translator/' }];
+
 const EnableSites = [
     { name: 'NovelAi-魔导学概论', src: 'https://noveltags.com/' },
     {
         name: 'Novel AI 教程',
         src: 'https://www.yuque.com/longyuye/lmgcwy',
     },
-    { name: '元素法典', src: 'https://docs.qq.com/doc/DWHl3am5Zb05QbGVs' },
+    { name: 'AI绘图指南wiki', src: 'https://aiguidebook.top/' },
     { name: '图片 => Tags', src: 'https://spell.novelai.dev/' },
     { name: '魔咒百科词典', src: 'https://aitag.top/' },
     { name: 'NovelAI tag生成器 V2.0', src: 'https://wolfchen.top/tag/', jump: true },
@@ -56,6 +58,20 @@ export const HomePanel = () => {
                                         {inner}
                                     </a>
                                 );
+                            return <WebViewLink href={item.src}>{inner}</WebViewLink>;
+                        }}
+                    </For>
+                </div>
+                <div class="py-2 font-bold text-yellow-500">辅助翻译器</div>
+                <div class="flex flex-wrap gap-1 ">
+                    <For each={Translators}>
+                        {(item) => {
+                            const inner = (
+                                <div class="cursor-pointer rounded-sm bg-gray-700 px-2 py-1 text-green-500 transition-all hover:brightness-90">
+                                    {item.name}
+                                </div>
+                            );
+
                             return <WebViewLink href={item.src}>{inner}</WebViewLink>;
                         }}
                     </For>

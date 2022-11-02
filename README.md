@@ -79,7 +79,9 @@
 2. 魔导绪论有一个庞大的标签列表，在 [Tags 收集整理项目](https://github.com/KonghaYao/tag-collection)。
 3. 魔导绪论在此基础上实现了 tags 的查询操作，数据化魔咒支持加减权操作等。
 4. 魔导绪论需要一个 **支持 tags 的 AI 图片生成工具**，这个就自行查找吧。
-5. 如果你对具体的 tag 的意义有学习的想法，建议阅读 [UP 主 胧雨夜 的 Novel AI 教程](https://www.bilibili.com/video/BV1Le4y1E792/?p=1&t=1304) [网页文本](https://www.yuque.com/longyuye/lmgcwy)
+5. 如果你对具体的 tag 的意义有学习的想法，建议阅读
+    - [UP 主 胧雨夜 的 Novel AI 教程](https://www.bilibili.com/video/BV1Le4y1E792/?p=1&t=1304) [网页文本](https://www.yuque.com/longyuye/lmgcwy)
+    - [如何与 AI 乙方沟通 —— 细节生成法](https://magic-tag.notion.site/AI-41525facc3ff4874b09973f1c5b33945)
 6. 中文翻译为谷歌机翻，可能比较水，就当英文翻译题好了。 搜索功能可能有时抽风，比如白发，你搜头发是搜不到的，这是搜索算法的问题，换种搜法就好了。
 7. 为啥每次搜索的结果最多看到 500 （或者更多），因为 这些标签内没找到，要不是没有，就是搜索词不对，所以为了节省性能，没有显示。
 8. 默认为青少年模式，但是违禁词过滤估计还会有漏网之鱼，请多多提 issue；**模式则可以通过设置面板调整** (\*^\_^\*)。
@@ -142,7 +144,7 @@
 
 ## 总结
 
-总的来说，AI 画师装备很足，但是没有调优师也是白搭，个自半部讨龙。对于我们来说，我们也需要进一步学习多数 tag 的指向性来确定整个内容的布局特性，是根据想象创建出的产物，AI 只是一支很好的画笔。永远不要把技术当作特权，当自己失去其优势时，锤足嗟叹。向着星辰与深渊！
+总的来说，AI 画师装备很足，但是没有调优师也是白搭，各自半部讨龙。对于我们来说，我们也需要进一步学习多数 tag 的指向性来确定整个内容的布局特性，是根据想象创建出的产物，AI 只是一支很好的画笔。永远不要把技术当作特权，当自己失去其优势时，锤足嗟叹。向着星辰与深渊！
 
 # 开发者相关
 
@@ -150,8 +152,8 @@
 
 ```sh
 pnpm i
-pnpm i netlify-cli -g # 需要全局按照
-netlify functions:serve # 开启 netlify 的调试云函数
+pnpm i netlify-cli -g # 需要全局安装
+netlify functions:serve # 开启 netlify 的调试云函数，主要是社区需要使用
 pnpm dev # 开发者模式查看
 pnpm build # 打包版本
 node ./scripts/swearFilter.mjs # 对敏感词进行标记

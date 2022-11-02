@@ -57,7 +57,7 @@ export const FeedBackPanel = () => {
                     <span class="flex-none">我就想要</span>
                     <select
                         value={callbacks().labels[0]}
-                        class="ml-2 w-full appearance-none bg-gray-800 px-2 outline-none"
+                        class="ml-2 w-full appearance-none bg-gray-800 px-2 text-sm outline-none"
                         onChange={(e: any) => {
                             callbacks((i) => ({
                                 ...i,
@@ -78,7 +78,7 @@ export const FeedBackPanel = () => {
                     <input
                         placeholder="必填"
                         value={callbacks().title}
-                        class="ml-4 w-full appearance-none rounded-md bg-gray-800 px-2 outline-none"
+                        class="ml-4 w-full appearance-none rounded-md bg-gray-800 px-2 text-sm outline-none"
                         onChange={(e: any) => {
                             callbacks((i) => ({
                                 ...i,
@@ -92,7 +92,7 @@ export const FeedBackPanel = () => {
                     <input
                         placeholder="选填，可以留下地址"
                         value={callbacks().author}
-                        class="ml-4 w-full appearance-none rounded-md bg-gray-800 px-2 outline-none"
+                        class="ml-4 w-full appearance-none rounded-md bg-gray-800 px-2 text-sm outline-none"
                         onChange={(e: any) => {
                             callbacks((i) => ({
                                 ...i,
@@ -106,7 +106,7 @@ export const FeedBackPanel = () => {
                     <textarea
                         value={callbacks().body}
                         placeholder="必填，请写下相关的信息，相关的来源，触发的条件等，有啥写啥"
-                        class="w-full appearance-none rounded-md bg-gray-800 px-2 outline-none"
+                        class="w-full appearance-none rounded-md bg-gray-800 px-2 text-sm outline-none"
                         onChange={(e: any) => {
                             callbacks((i) => ({
                                 ...i,

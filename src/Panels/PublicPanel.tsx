@@ -68,7 +68,6 @@ export const PublicPanel = () => {
                     <a href="https://github.com/KonghaYao/ai-tag#关于社区的搜索方式">高级搜索</a>
                 </div>
                 <input
-                    ref={searchText}
                     placeholder="搜索标题"
                     type="search"
                     class="w-full rounded-full bg-gray-700  px-4 text-sm text-gray-200 outline-none"

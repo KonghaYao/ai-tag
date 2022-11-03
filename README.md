@@ -161,13 +161,19 @@ node ./scripts/swearFilter.mjs # 对敏感词进行标记
 
 ## 关于社区的搜索方式
 
-社区的搜索方式采用了类似 Github 的高级搜索方式
+社区的搜索方式采用了类似 Github 的高级搜索方式。默认搜索字符串就是搜索标题。
 
-默认搜索字符串就是搜索标题
-
+> `灰色`
+>
+> 标题中包含灰色
+>
+> `username:=江夏尧`
+>
+> 指定上传者的名称全等于 `江夏尧`
+>
 > `username:Top origin_tags:masterpiece 红`
 >
-> 指定上传者的名称包含 Top；魔咒中包含 masterpiece；标题中包含 红
+> 指定上传者的名称包含 `Top`；魔咒中包含 `masterpiece`；标题中包含 `红`
 
 ## Iframe 服务
 

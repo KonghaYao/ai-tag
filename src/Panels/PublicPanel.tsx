@@ -46,6 +46,7 @@ export const PublicPanel = () => {
 
     createEffect(on(page, (index) => visible() && refetch()));
     createEffect(on(visible, (vis) => vis && refetch()));
+    createEffect(on(searchText, (text) => text === '' && refetch()));
 
     /** 搜索词汇改变 */
     const changeSearch = debounce(refetchData, 1000);
@@ -157,7 +158,7 @@ export const PublicPanel = () => {
                                 </div>
                             );
                         }}
-                    </For>{' '}
+                    </For>
                 </Show>
             </main>
             <footer class=" flex w-full items-center justify-between bg-gray-700 p-2 font-bold">

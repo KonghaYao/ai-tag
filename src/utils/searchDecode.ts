@@ -20,7 +20,7 @@ const decode = (val: string) => {
  * username:=江夏尧 origin_tags:masterpiece 中文搜索
  */
 export const searchDecode = (text: string = '') => {
-    let [_, props, mainText] = text.match(/(.+:\S+\s)*\s*(.*)/);
+    let [_, props, mainText] = (text + ' ').match(/(.+:\S+\s)*\s*(.*)/);
     props && (props = props.trim());
     let data: { props: string; type: string; val: string }[] = [];
     if (props) {
@@ -34,7 +34,7 @@ export const searchDecode = (text: string = '') => {
         });
     }
     return {
-        mainText,
+        mainText: mainText.trim(),
         data,
     };
 };

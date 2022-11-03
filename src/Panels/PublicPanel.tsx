@@ -65,7 +65,12 @@ export const PublicPanel = () => {
 
             <div class="flex p-2">
                 <div class="btn  w-fit py-1 text-center text-sm">
-                    <a href="https://github.com/KonghaYao/ai-tag#关于社区的搜索方式">高级搜索</a>
+                    <a
+                        href="https://github.com/KonghaYao/ai-tag#关于社区的搜索方式"
+                        target="_blank"
+                    >
+                        高级搜索
+                    </a>
                 </div>
                 <input
                     placeholder="搜索标题"

@@ -37,7 +37,6 @@ const NotionText = (text: string, prop?: string) => {
         ],
     };
 };
-import { Client } from '@notionhq/client';
 export const API = {
     // client: null as null | Client,
     database_id: '90b7c1bb6ad7446ba66e0b1d8ec1d535',
@@ -52,7 +51,13 @@ export const API = {
     // 这次查询的列表 cursor
     start_cursor: [] as string[],
     end: false,
-    async getData(index: number, r18 = false): Promise<StoreData[]> {
+    async getData(
+        index: number,
+        r18 = false,
+        filters: unknown[] = [],
+        clear = false
+    ): Promise<StoreData[]> {
+        if (clear) this.start_cursor = [];
         const params = {
             database_id: this.database_id,
             page_size: 10,
@@ -64,6 +69,7 @@ export const API = {
                             equals: false,
                         },
                     },
+                    ...filters,
                 ].filter((i) => i),
             },
         };

@@ -159,6 +159,16 @@ pnpm build # 打包版本
 node ./scripts/swearFilter.mjs # 对敏感词进行标记
 ```
 
+## 关于社区的搜索方式
+
+社区的搜索方式采用了类似 Github 的高级搜索方式
+
+默认搜索字符串就是搜索标题
+
+> `username:Top origin_tags:masterpiece 红`
+>
+> 指定上传者的名称包含 Top；魔咒中包含 masterpiece；标题中包含 红
+
 ## Iframe 服务
 
 魔导绪论提供了 iframe 接口可以为不同网站提供魔咒生成操作，主站完全不需要进行任何修改，直接 iframe 嵌入我们的主页，并且进行几十行代码的接口使用，即可与魔导绪论无缝衔接。

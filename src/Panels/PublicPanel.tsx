@@ -139,7 +139,6 @@ export const PublicPanel = () => {
                                                 usersCollection(
                                                     stringToTags(item.origin_tags, lists())
                                                 );
-                                                visibleId('');
                                                 Notice.success('拿来成功');
                                             }}
                                         >

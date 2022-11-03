@@ -223,8 +223,8 @@ const str = await app.getPrompt();
 2. 如何跳转并注入一段魔咒
     - `https://magic-tag.netlify.app/#/?tags={{masterpiece}}` 你看这里的 tags 后面就是魔咒。
 
-# License 开源证书
+# License
 
-GPL 3.0
+这个仓库 GPL 3.0 注意啦，作者不建议商用
 
-注意啦，作者不建议商用
+社区上传的资源我们采用 [CCO](https://creativecommons.org/share-your-work/public-domain/cc0/) 的方式共享，如果您有疑问可以联系我。

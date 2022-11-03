@@ -82,7 +82,7 @@ export const PublicPanel = () => {
                     搜索
                 </div>
             </div>
-            <main class="grid w-full flex-1 auto-rows-min grid-cols-2 gap-2 overflow-auto p-2">
+            <main class="grid w-full flex-1 auto-rows-min grid-cols-2 gap-2 overflow-auto p-4 py-6">
                 <Show
                     when={!showing.loading}
                     fallback={
@@ -161,6 +161,7 @@ export const PublicPanel = () => {
                     </For>
                 </Show>
             </main>
+
             <footer class=" flex w-full items-center justify-between bg-gray-700 p-2 font-bold">
                 <button
                     class="btn"

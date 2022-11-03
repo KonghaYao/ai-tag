@@ -207,6 +207,16 @@ export const UploadPanel = () => {
                         }}
                     />
                 </div>
+                <div class="p-2 text-sm text-green-600">
+                    上传资源将以
+                    <a
+                        class="px-2 text-sky-600"
+                        href="https://creativecommons.org/share-your-work/public-domain/cc0/"
+                    >
+                        CC0 方式
+                    </a>
+                    进行分享
+                </div>
             </main>
             <div class="cursor-pointer bg-green-600 p-2  text-center text-white" onClick={upload}>
                 提交! <span class="text-xs">森林会记住一切</span>

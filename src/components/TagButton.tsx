@@ -56,12 +56,18 @@ export const TagButton: Component<{
             return (
                 <div class="special-tags flex gap-1">
                     [{item.fromTo[0] === '' ? item.fromTo[1] : item.fromTo.join(':')} :
-                    <span class="text-purple-600">{item.weight}</span>]
+                    <span class="text-purple-500">{item.weight}</span>]
                 </div>
             );
         if (item.weight) {
             // console.log(item.weight);
-            return <div class="special-tags flex gap-1">{`(${item.en}:${item.weight})`}</div>;
+            return (
+                <div class="special-tags flex gap-1">
+                    {`(${item.en}:`}
+                    <span class="text-purple-500">{item.weight}</span>
+                    {')'}
+                </div>
+            );
         }
         return (
             <>

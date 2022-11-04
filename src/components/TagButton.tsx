@@ -7,7 +7,7 @@ import { Notice } from '../utils/notice';
 export const TagButton: Component<{
     data: IData;
     onClick?: (item: IData, rightClick?: boolean) => void;
-    onWheel?: (item: IData, delta: number) => void;
+    onWheel?: (item: IData, delta: number, e: Event) => void;
     en?: Atom<boolean>;
     cn?: Atom<boolean>;
 }> = (props) => {
@@ -76,7 +76,6 @@ export const TagButton: Component<{
             class="text-col relative mx-2 my-2 flex  cursor-pointer select-none  rounded-md  px-2 py-1 text-center transition-colors active:brightness-90"
             onContextMenu={(e) => {
                 e.preventDefault();
-
                 props.onClick && props.onClick(item, true);
             }}
             onClick={() => {
@@ -92,7 +91,7 @@ export const TagButton: Component<{
                 const delta: number = e.wheelDelta || e.detail;
                 props.onWheel &&
                     (item.alternatingArr || item.weight || item.fromTo) &&
-                    props.onWheel(item, delta);
+                    props.onWheel(item, delta, e);
                 return false;
             }}
             title="左点击加，右点击减，滚轮改变小数点"

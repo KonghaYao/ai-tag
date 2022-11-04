@@ -127,7 +127,10 @@ export const UserSelected = () => {
                                 en={enMode}
                                 cn={reflect(() => !enMode())}
                                 onClick={clickEvent}
-                                onWheel={wheelEvent}
+                                onWheel={(info, delta, e) => {
+                                    e.preventDefault();
+                                    wheelEvent(info, delta);
+                                }}
                             ></TagButton>
                         </div>
                     );

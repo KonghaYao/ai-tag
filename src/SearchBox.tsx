@@ -2,7 +2,7 @@ import { createEffect, For, on, Setter, useContext } from 'solid-js';
 import debounce from 'lodash-es/debounce';
 import { Data, IData } from './App';
 import { TagButton } from './components/TagButton';
-import { atom, createIgnoreFirst, reflect } from '@cn-ui/use';
+import { reflect } from '@cn-ui/use';
 import { untrack } from 'solid-js/web';
 import { sampleSize as _sampleSize } from 'lodash-es';
 import { stringToTags } from './use/TagsConvertor';

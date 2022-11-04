@@ -58,8 +58,7 @@ export function HeaderSecond() {
             <span
                 class="btn"
                 onclick={() => {
-                    const en = enMode();
-                    copy(TagsToString(usersCollection(), en));
+                    copy(TagsToString(usersCollection()));
                     Notice.success('复制魔法释放');
                 }}
             >

@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { stringToTags } from './TagsConvertor';
+import { stringToTags, TagsToString } from './TagsConvertor';
 
-describe('魔咒测试', () => {
+describe('魔咒字符串解析', () => {
     it('通用字符串转魔咒测试', () => {
         const data = stringToTags('(a), ((b c)), ((((d)))), [g]');
         expect(data).eql([
@@ -44,7 +44,7 @@ describe('魔咒测试', () => {
             {
                 cn: 'mountain:lake:0.25',
                 count: Infinity,
-                emphasize: -1,
+                emphasize: 0,
                 en: 'mountain:lake:0.25',
                 r18: 0,
                 weight: '0.25',
@@ -53,7 +53,7 @@ describe('魔咒测试', () => {
             {
                 cn: 'in foreground::0.6',
                 count: Infinity,
-                emphasize: -1,
+                emphasize: 0,
                 en: 'in foreground::0.6',
                 r18: 0,
                 weight: '0.6',
@@ -62,7 +62,7 @@ describe('魔咒测试', () => {
             {
                 cn: 'in foreground:0.6',
                 count: Infinity,
-                emphasize: -1,
+                emphasize: 0,
                 en: 'in foreground:0.6',
                 weight: '0.6',
                 r18: 0,
@@ -84,5 +84,25 @@ describe('魔咒测试', () => {
                 { en: 'b c', cn: 'b c', count: Infinity, r18: 0, emphasize: 2 },
                 { en: 'd', cn: 'd', count: Infinity, r18: 0, emphasize: 4 },
             ]);
+    });
+});
+describe('魔咒数据转字符串', () => {
+    it('通用字符串转魔咒测试', () => {
+        const data = stringToTags('(a), ((b c)), ((((d)))), [g]');
+        expect(TagsToString(data)).eql('(a),((b c)),((((d)))),[g]');
+    });
+    it('SD (tag:number) 数值权重测试', () => {
+        const data = stringToTags('(e:1.5),(a:0.273)');
+        expect(TagsToString(data)).eql('(e:1.5),(a:0.273)');
+    });
+    it('SD [cow|horse] Alternating Words', () => {
+        const data = stringToTags('[cow|horse],[cow|horse|dog|cat]');
+        expect(TagsToString(data)).eql('[cow|horse],[cow|horse|dog|cat]');
+    });
+    it('SD [from:to:when] Prompt editing', () => {
+        const data = stringToTags('[mountain:lake:0.25],[in foreground::0.6],[ in foreground:0.6]');
+        expect(TagsToString(data)).eql(
+            '[mountain:lake:0.25],[in foreground::0.6],[in foreground:0.6]'
+        );
     });
 });

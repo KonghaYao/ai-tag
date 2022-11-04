@@ -10,10 +10,12 @@ const stringParserDecorator = (data: PreData) => (
                 if (_) {
                     data.weight = weight;
                     data.fromTo = [from, to];
+                    data.emphasize++;
                     return true;
                 } else {
                     const [_, to, weight] = data.text.match(/([^:]+):([\d\.]+)/) ?? [];
                     if (_) {
+                        data.emphasize++;
                         data.weight = weight;
                         data.fromTo = ['', to];
                         return true;
@@ -80,14 +82,23 @@ export const stringToTags = (s: string, list: IData[] = []): IData[] => {
         } as any as IData;
     });
 };
+
+const convertToString = (data: IData) => {
+    if (data.fromTo && data.fromTo.length === 2 && typeof data.weight === 'string')
+        return `[${data.fromTo[0] === '' ? data.fromTo[1] : data.fromTo.join(':')}:${data.weight}]`;
+    if (typeof data.weight === 'string') return `(${data.en}:${data.weight})`;
+    if (data.alternatingArr && data.alternatingArr.length)
+        return `[${data.alternatingArr.join('|')}]`;
+    return data.en;
+};
+
 /** 将用户的 Tag 转化为字符串 */
-export const TagsToString = (data: IData[], en = true) => {
-    const positive = JSON.parse(localStorage.getItem('emphasizeSymbol')) ?? '()';
+export const TagsToString = (data: IData[], positive = '()') => {
     return data
         .map((i) => {
             const count = Math.abs(i.emphasize);
             const tag = i.emphasize > 0 ? positive : '[]';
-            return tag[0].repeat(count) + (en ? i.en : i.cn) + tag[1].repeat(count);
+            return tag[0].repeat(count) + convertToString(i) + tag[1].repeat(count);
         })
         .join(',');
 };

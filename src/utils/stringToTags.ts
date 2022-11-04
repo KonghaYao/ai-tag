@@ -47,7 +47,7 @@ export const stringToTagData = (s: string, baseEm = 0): PreData[] => {
     if (emphasizeCount === 0 && lastStopCursor !== s.length) piece.push(s.slice(lastStopCursor));
 
     return piece
-        .filter((i) => i !== ',')
+        .filter((i) => !splitSymbol.includes(i))
         .flatMap((i) => {
             if (i.length === 0) return [];
             let a = 0;

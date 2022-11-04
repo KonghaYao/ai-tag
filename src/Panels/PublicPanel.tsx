@@ -4,7 +4,7 @@ import { createEffect, createMemo, createResource, For, on, Show, useContext } f
 import { API, StoreData } from '../api/notion';
 import { Data } from '../App';
 import { Panel } from '../components/Panel';
-import { stringToTags } from '../use/TagsToString';
+import { stringToTags } from '../use/TagsConvertor';
 import { useViewer } from '../use/useViewer';
 import { Notice } from '../utils/notice';
 import { CombineMagic } from '../utils/CombineMagic';

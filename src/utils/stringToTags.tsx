@@ -1,6 +1,12 @@
 import { trim } from 'lodash-es';
-
-/** 将字符串转化为 tags */
+export interface PreData {
+    text: string;
+    emphasize: number;
+    weight?: string;
+    alternatingArr?: string[];
+    fromTo?: [string, string];
+}
+/** 简单抽取，将魔咒串转化为 tags */
 export const stringToTags = (s: string) => {
     return s
         .split(',')
@@ -11,7 +17,7 @@ export const stringToTags = (s: string) => {
 };
 
 /** 有点小 BUG 但是问题不大 */
-export const stringToTagData = (s: string) => {
+export const stringToTagData = (s: string): PreData[] => {
     let lel = [...'({]（']; //声明左括号的数组
     let rgl = [...')}[）']; //声明右括号的数组
     let splitSymbol = [...',，']; //声明右括号的数组

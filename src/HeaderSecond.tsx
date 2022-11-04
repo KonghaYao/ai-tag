@@ -1,7 +1,7 @@
 import copy from 'copy-to-clipboard';
 import { batch, useContext } from 'solid-js';
 import { Data } from './App';
-import { stringToTags, TagsToString } from './use/TagsToString';
+import { stringToTags, TagsToString } from './use/TagsConvertor';
 import { Notice } from './utils/notice';
 
 export function HeaderSecond() {

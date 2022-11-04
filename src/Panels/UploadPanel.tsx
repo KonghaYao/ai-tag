@@ -6,7 +6,7 @@ import { API, StoreData } from '../api/notion';
 import { Atom, atom, useSingleAsync } from '@cn-ui/use';
 import { stringToTags } from '../utils/stringToTags';
 import { Notice } from '../utils/notice';
-import { TagsToString } from '../use/TagsToString';
+import { TagsToString } from '../use/TagsConvertor';
 import { batch } from 'solid-js';
 import { readFileInfo } from '../utils/getPromptsFromPic';
 import { untrack } from 'solid-js/web';

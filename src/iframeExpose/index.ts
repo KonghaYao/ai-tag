@@ -2,7 +2,7 @@ import { expose, windowEndpoint } from 'comlink';
 import { debounce } from 'lodash-es';
 import { createEffect, on, useContext } from 'solid-js';
 import { Data } from '../App';
-import { stringToTags, TagsToString } from '../use/TagsToString';
+import { stringToTags, TagsToString } from '../use/TagsConvertor';
 import { CombineMagic } from '../utils/CombineMagic';
 export const useIframeExpose = () => {
     const { usersCollection } = useContext(Data);

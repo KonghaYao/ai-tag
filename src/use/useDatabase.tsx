@@ -3,7 +3,7 @@ import { Atom, atom, createIgnoreFirst, reflect } from '@cn-ui/use';
 import { useSearchParams } from '@solidjs/router';
 import { IData, IStoreData } from '../App';
 import { getTagInURL } from '../utils/getTagInURL';
-import { stringToTags, TagsToString } from './TagsToString';
+import { stringToTags, TagsToString } from './TagsConvertor';
 import { proxy } from 'comlink';
 import { CSVToJSON } from '../utils/CSVToJSON';
 import { initWorker } from '../worker';

@@ -15,6 +15,7 @@ const EnableSites = [
     { name: '图片 => Tags', src: 'https://spell.novelai.dev/' },
     { name: '魔咒百科词典', src: 'https://aitag.top/' },
     { name: 'NovelAI tag生成器 V2.0', src: 'https://wolfchen.top/tag/', jump: true },
+    { name: '免费 AI 绘图', src: 'https://novelai.8zyw.cn', jump: true },
 ];
 const LocalPower = [
     { name: '魔咒画廊', src: 'gallery' },

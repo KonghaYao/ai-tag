@@ -8,6 +8,7 @@ import { HeaderFirst } from './HeaderFirst';
 import { HeaderSecond } from './HeaderSecond';
 import { useIframeExpose } from './iframeExpose';
 import { plus, minus } from 'number-precision';
+import { debounce } from 'lodash-es';
 export const UserSelected = () => {
     const {
         deleteMode,
@@ -68,6 +69,33 @@ export const UserSelected = () => {
             return false;
         }
     });
+    const wheelEvent = debounce((item: IData, delta: number) => {
+        const diff = delta / 150;
+        if (emphasizeAddMode() || emphasizeSubMode()) {
+            // console.log(diff);
+            if (diff > 0) {
+                return usersCollection((arr) => {
+                    const index = arr.findIndex((it) => it === item);
+                    const it = arr[index];
+                    const newArr = [...arr];
+                    const weight = plus(it.weight, 0.1);
+                    newArr[index] = { ...it, weight: weight < 0 ? '0.0' : weight.toString() };
+                    return newArr;
+                });
+            } else {
+                // 减权操作
+                return usersCollection((arr) => {
+                    const index = arr.findIndex((it) => it === item);
+                    const it = arr[index];
+                    const newArr = [...arr];
+
+                    const weight = minus(it.weight, 0.1);
+                    newArr[index] = { ...it, weight: weight < 0 ? '0.0' : weight.toString() };
+                    return newArr;
+                });
+            }
+        }
+    }, 50);
     return (
         <main class="my-2 flex w-full flex-col rounded-xl border border-solid border-gray-600 p-2">
             <HeaderFirst></HeaderFirst>
@@ -99,6 +127,7 @@ export const UserSelected = () => {
                                 en={enMode}
                                 cn={reflect(() => !enMode())}
                                 onClick={clickEvent}
+                                onWheel={wheelEvent}
                             ></TagButton>
                         </div>
                     );

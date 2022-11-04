@@ -7,6 +7,7 @@ import { Notice } from '../utils/notice';
 export const TagButton: Component<{
     data: IData;
     onClick?: (item: IData, rightClick?: boolean) => void;
+    onWheel?: (item: IData, delta: number) => void;
     en?: Atom<boolean>;
     cn?: Atom<boolean>;
 }> = (props) => {
@@ -54,12 +55,12 @@ export const TagButton: Component<{
         if (item.fromTo && item.weight)
             return (
                 <div class="special-tags flex gap-1">
-                    [{item.fromTo.join(' : ')}
+                    [{item.fromTo[0] === '' ? item.fromTo[1] : item.fromTo.join(':')} :
                     <span class="text-purple-600">{item.weight}</span>]
                 </div>
             );
         if (item.weight) {
-            console.log(item.weight);
+            // console.log(item.weight);
             return <div class="special-tags flex gap-1">{`(${item.en}:${item.weight})`}</div>;
         }
         return (
@@ -86,6 +87,15 @@ export const TagButton: Component<{
                 copy(enMode() ? item.en : item.cn);
                 Notice.success('双击单项复制魔法释放');
             }}
+            onWheel={(e) => {
+                /**@ts-ignore */
+                const delta: number = e.wheelDelta || e.detail;
+                props.onWheel &&
+                    (item.alternatingArr || item.weight || item.fromTo) &&
+                    props.onWheel(item, delta);
+                return false;
+            }}
+            title="左点击加，右点击减，滚轮改变小数点"
             data-id={item.en}
         >
             <nav>{split()[0]}</nav>

@@ -8,6 +8,7 @@ import { stringToTags, TagsToString } from './TagsConvertor';
 describe('魔咒字符串解析', () => {
     it('通用字符串转魔咒测试', () => {
         const data = stringToTags('(a), ((b c)), ((((d)))), [g]');
+        // console.log(data);
         expect(data).eql([
             { en: 'a', cn: 'a', count: Infinity, r18: 0, emphasize: 1 },
             { en: 'b c', cn: 'b c', count: Infinity, r18: 0, emphasize: 2 },

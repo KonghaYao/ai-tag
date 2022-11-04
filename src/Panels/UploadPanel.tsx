@@ -4,7 +4,7 @@ import { createStore } from 'solid-js/store';
 import { Panel } from '../components/Panel';
 import { API, StoreData } from '../api/notion';
 import { Atom, atom, useSingleAsync } from '@cn-ui/use';
-import { stringToTags } from '../utils/stringToTags';
+import { easyStringToTags } from '../utils/stringToTags';
 import { Notice } from '../utils/notice';
 import { TagsToString } from '../use/TagsConvertor';
 import { batch } from 'solid-js';
@@ -91,7 +91,7 @@ export const UploadPanel = () => {
         // 写入 tags
         if (info.has('Description')) {
             const tags = info.get('Description');
-            const tagsArray = stringToTags(tags);
+            const tagsArray = easyStringToTags(tags);
             batch(() => {
                 set('tags', tagsArray);
                 set('origin_tags', tags);
@@ -183,7 +183,7 @@ export const UploadPanel = () => {
                         oninput={(e) => {
                             /** @ts-ignore */
                             const text = e.target.value;
-                            set('tags', stringToTags(text));
+                            set('tags', easyStringToTags(text));
                             set('origin_tags', text);
                             console.log(text);
                         }}

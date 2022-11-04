@@ -1,6 +1,6 @@
 import { Atom, atomization, reflect } from '@cn-ui/use';
 import copy from 'copy-to-clipboard';
-import { Component, useContext } from 'solid-js';
+import { Component, For, useContext } from 'solid-js';
 import { Data, IData } from '../App';
 import { Notice } from '../utils/notice';
 
@@ -34,6 +34,42 @@ export const TagButton: Component<{
         const [left, right] = props.data.emphasize > 0 ? emphasizeSymbol() : '[]';
         return [Array(count).fill(left).join(''), Array(count).fill(right).join('')];
     });
+
+    const contentFormat = () => {
+        if (item.alternatingArr && item.alternatingArr.length)
+            return (
+                <div class="special-tags flex gap-1">
+                    [
+                    <For each={item.alternatingArr}>
+                        {(item, index) => (
+                            <>
+                                {index() !== 0 && '|'}
+                                <div>{item}</div>
+                            </>
+                        )}
+                    </For>
+                    ]
+                </div>
+            );
+        if (item.fromTo && item.weight)
+            return (
+                <div class="special-tags flex gap-1">
+                    [{item.fromTo.join(' : ')}
+                    <span class="text-purple-600">{item.weight}</span>]
+                </div>
+            );
+        if (item.weight) {
+            console.log(item.weight);
+            return <div class="special-tags flex gap-1">{`(${item.en}:${item.weight})`}</div>;
+        }
+        return (
+            <>
+                {cn() && <div>{item.cn}</div>}
+                {en() && <div>{item.en}</div>}
+            </>
+        );
+    };
+
     return (
         <nav
             class="text-col relative mx-2 my-2 flex  cursor-pointer select-none  rounded-md  px-2 py-1 text-center transition-colors active:brightness-90"
@@ -52,12 +88,9 @@ export const TagButton: Component<{
             }}
             data-id={item.en}
         >
-            <span>{split()[0]}</span>
-            <div class="flex flex-col">
-                {cn() && <div>{item.cn}</div>}
-                {en() && <div>{item.en}</div>}
-            </div>
-            <span>{split()[1]}</span>
+            <nav>{split()[0]}</nav>
+            <main class="flex flex-col">{contentFormat()}</main>
+            <nav>{split()[1]}</nav>
             {showCount() && (
                 <div
                     class={

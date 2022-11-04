@@ -7,6 +7,7 @@ import { SortableList } from './components/sortable';
 import { HeaderFirst } from './HeaderFirst';
 import { HeaderSecond } from './HeaderSecond';
 import { useIframeExpose } from './iframeExpose';
+import { plus, minus } from 'number-precision';
 export const UserSelected = () => {
     const {
         deleteMode,
@@ -28,8 +29,11 @@ export const UserSelected = () => {
             return usersCollection((arr) => {
                 const index = arr.findIndex((it) => it === item);
                 const it = arr[index];
-                if (it.emphasize < MaxEmphasize()) {
-                    const newArr = [...arr];
+                const newArr = [...arr];
+                if (it.weight) {
+                    newArr[index] = { ...it, weight: plus(it.weight, 1).toString() };
+                    return newArr;
+                } else if (it.emphasize < MaxEmphasize()) {
                     newArr[index] = { ...it, emphasize: it.emphasize + 1 };
                     return newArr;
                 }
@@ -41,8 +45,12 @@ export const UserSelected = () => {
             return usersCollection((arr) => {
                 const index = arr.findIndex((it) => it === item);
                 const it = arr[index];
-                if (it.emphasize > -1 * MaxEmphasize()) {
-                    const newArr = [...arr];
+                const newArr = [...arr];
+                if (it.weight) {
+                    const weight = minus(it.weight, 1);
+                    newArr[index] = { ...it, weight: weight < 0 ? '0.0' : weight.toString() };
+                    return newArr;
+                } else if (it.emphasize > -1 * MaxEmphasize()) {
                     newArr[index] = { ...it, emphasize: it.emphasize - 1 };
                     return newArr;
                 }

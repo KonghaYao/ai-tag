@@ -18,6 +18,7 @@ specifiers:
   is-mobile: ^3.1.1
   lodash-es: ^4.17.21
   notyf: ^3.10.0
+  number-precision: ^1.6.0
   papaparse: ^5.3.2
   png-chunk-text: ^1.0.0
   png-chunks-extract: ^1.0.0
@@ -46,6 +47,7 @@ dependencies:
   is-mobile: 3.1.1
   lodash-es: 4.17.21
   notyf: 3.10.0
+  number-precision: 1.6.0
   papaparse: 5.3.2
   png-chunk-text: 1.0.0
   png-chunks-extract: 1.0.0
@@ -1408,6 +1410,10 @@ packages:
 
   /notyf/3.10.0:
     resolution: {integrity: sha512-Mtnp+0qiZxgrH+TzVlzhWyZceHdAZ/UWK0/ju9U0HQeDpap1mZ8cC7H5wSI5mwgni6yeAjaxsTw0sbMK+aSuHw==}
+    dev: false
+
+  /number-precision/1.6.0:
+    resolution: {integrity: sha512-05OLPgbgmnixJw+VvEh18yNPUo3iyp4BEWJcrLu4X9W05KmMifN7Mu5exYvQXqxxeNWhvIF+j3Rij+HmddM/hQ==}
     dev: false
 
   /object-hash/3.0.0:

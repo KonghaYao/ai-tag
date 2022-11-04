@@ -1,6 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import { stringToTags, TagsToString } from './TagsConvertor';
 
+/**
+ *
+ * 全测试魔咒 (a), ((b c)), ((((d)))),[g],(e:1.5),[cow|horse],[cow|horse|dog|cat],[mountain:lake:0.25],[in foreground::0.6],[ in foreground:0.6]
+ */
 describe('魔咒字符串解析', () => {
     it('通用字符串转魔咒测试', () => {
         const data = stringToTags('(a), ((b c)), ((((d)))), [g]');

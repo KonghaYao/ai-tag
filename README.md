@@ -49,7 +49,7 @@
     -   [x] 简易魔咒生成器
     -   [x] 搜索卡顿消除（采用 Worker）
     -   [x] tag 符号 `{}` `()` 切换
-    -   [ ] 支持数值权重（Stable Diffusion 专有）
+    -   [x] 支持 [数值加权](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#attentionemphasis) ,[Prompt editing](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#prompt-editing), [Alternating Words](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#alternating-words), （Stable Diffusion 专有）
 -   系统方面
     -   [x] 设置面板可以更改系统参数
     -   [x] 本地化设置参数

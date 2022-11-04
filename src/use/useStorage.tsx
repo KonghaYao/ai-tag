@@ -1,5 +1,5 @@
 import { createEffect } from 'solid-js';
-import { Atom } from '@cn-ui/use';
+import { Atom, createIgnoreFirst } from '@cn-ui/use';
 
 /** 使用本地存储 */
 export const useStorage = (data: { [name: string]: Atom<any> }) => {
@@ -12,10 +12,10 @@ export const useStorage = (data: { [name: string]: Atom<any> }) => {
         },
         tracking() {
             Object.entries(data).map(([name, value]) => {
-                createEffect(() => {
+                createIgnoreFirst(() => {
                     console.log('存储设置');
                     localStorage.setItem(name, JSON.stringify(value()));
-                });
+                }, [value]);
             });
         },
     };

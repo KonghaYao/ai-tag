@@ -63,7 +63,7 @@ const useSharedUpload = (uploading: Atom<boolean>) => {
 };
 
 export const UploadPanel = () => {
-    const { username, usersCollection, isPanelVisible } = useContext(Data);
+    const { username, usersCollection, isPanelVisible, emphasizeSymbol } = useContext(Data);
     const uploading = atom(false);
 
     const { upload, uploadPicture } = useSharedUpload(uploading);
@@ -76,7 +76,7 @@ export const UploadPanel = () => {
                     'tags',
                     list.map((i) => i.en)
                 );
-                set('origin_tags', TagsToString(list));
+                set('origin_tags', TagsToString(list, emphasizeSymbol()));
             });
         }
     });

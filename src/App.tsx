@@ -66,6 +66,8 @@ export const App = () => {
 
     /** 需要持久化的变量写这里 */
     const storageSetting = {
+        emphasizeAddMode,
+        emphasizeSubMode,
         emphasizeSymbol,
         enMode,
         tagsPerPage,
@@ -95,8 +97,6 @@ export const App = () => {
                 result,
 
                 lists,
-                emphasizeAddMode,
-                emphasizeSubMode,
                 searchText,
                 ...storageSetting,
             }}

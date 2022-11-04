@@ -50,6 +50,7 @@
     -   [x] 搜索卡顿消除（采用 Worker）
     -   [x] tag 符号 `{}` `()` 切换
     -   [x] 支持 [数值加权](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#attentionemphasis) ,[Prompt editing](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#prompt-editing), [Alternating Words](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#alternating-words), （Stable Diffusion 专有）
+    -   [ ] NAI 和 SD 魔咒等值交换
 -   系统方面
     -   [x] 设置面板可以更改系统参数
     -   [x] 本地化设置参数
@@ -63,7 +64,7 @@
     -   [x] 社区魔咒复制！
     -   [x] 社区魔咒融合！（非词汇融合）
     -   [x] 社区分页
-    -   [ ] 社区搜索
+    -   [x] 社区搜索
 -   反馈信息
     -   [x] Bug 反馈
     -   [x] 违禁词反馈

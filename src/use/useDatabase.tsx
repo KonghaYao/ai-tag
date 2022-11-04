@@ -92,7 +92,7 @@ export function useDatabase(store: IStoreData) {
 
     // 将 usersCollection 推向标签栏
     createIgnoreFirst(() => {
-        const tags = TagsToString(usersCollection());
+        const tags = TagsToString(usersCollection(), store.emphasizeSymbol());
         setSearchParams(
             {
                 ...untrack(() => searchParams),

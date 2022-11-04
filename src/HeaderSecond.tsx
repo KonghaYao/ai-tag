@@ -5,8 +5,14 @@ import { stringToTags, TagsToString } from './use/TagsConvertor';
 import { Notice } from './utils/notice';
 
 export function HeaderSecond() {
-    const { enMode, emphasizeAddMode, emphasizeSubMode, deleteMode, usersCollection, lists } =
-        useContext(Data);
+    const {
+        enMode,
+        emphasizeAddMode,
+        emphasizeSubMode,
+        deleteMode,
+        usersCollection,
+        emphasizeSymbol,
+    } = useContext(Data);
     return (
         <header class="flex border-t border-slate-700 pt-2 text-sm font-bold">
             <span
@@ -58,7 +64,7 @@ export function HeaderSecond() {
             <span
                 class="btn"
                 onclick={() => {
-                    copy(TagsToString(usersCollection()));
+                    copy(TagsToString(usersCollection(), emphasizeSymbol()));
                     Notice.success('复制魔法释放');
                 }}
             >

@@ -37,16 +37,8 @@ const NotionText = (text: string, prop?: string) => {
     };
 };
 export const API = {
-    // client: null as null | Client,
     database_id: '90b7c1bb6ad7446ba66e0b1d8ec1d535',
-    init() {
-        // Initializing a client
-        // this.client = new Client({
-        // token 已经过时
-        //     auth: 'secret_HUtTw6zxXXR4KjLk63NaU8ZbNZc77KYM4c6PQd5ODp0',
-        //     fetch: fetchWithAgent as any,
-        // });
-    },
+
     // 这次查询的列表 cursor
     start_cursor: [] as string[],
     end: false,
@@ -57,6 +49,7 @@ export const API = {
         clear = false
     ): Promise<StoreData[]> {
         if (clear) this.start_cursor = [];
+        if (this.end) return [];
         const params = {
             database_id: this.database_id,
             page_size: 10,

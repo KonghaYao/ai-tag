@@ -5,6 +5,7 @@ import p from './package.json';
 import visualizer from 'rollup-plugin-visualizer';
 export default defineConfig(({ mode }) => {
     return {
+        base: './',
         plugins: [
             solidPlugin(),
             {
@@ -50,6 +51,14 @@ export default defineConfig(({ mode }) => {
                 'zxcvbn',
             ],
             exclude: ['@cn-ui/core'],
+        },
+        build: {
+            rollupOptions: {
+                input: {
+                    index: './index.html',
+                    gallery: './gallery.html',
+                },
+            },
         },
     };
 });

@@ -43,7 +43,6 @@ body {
 
 ::-webkit-scrollbar-thumb {
     width: 4px;
-
     border-radius: 4px;
     @apply bg-gray-600;
 }

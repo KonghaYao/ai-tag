@@ -64,7 +64,18 @@ export function HeaderSecond() {
             <span
                 class="btn"
                 onclick={() => {
-                    copy(TagsToString(usersCollection(), emphasizeSymbol()));
+                    copy(
+                        TagsToString(
+                            usersCollection().map((i) => {
+                                if (enMode()) {
+                                    return i;
+                                } else {
+                                    return { ...i, text: i.cn };
+                                }
+                            }),
+                            emphasizeSymbol()
+                        )
+                    );
                     Notice.success('复制魔法释放');
                 }}
             >

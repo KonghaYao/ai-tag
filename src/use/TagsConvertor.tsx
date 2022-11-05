@@ -29,6 +29,6 @@ export const CreateIData = (data: IData) => {
     if (data.text === undefined) data.text = data.en;
     if (data.en === undefined) data.en = data.text;
     if (data.cn === undefined) data.cn = data.text;
-    console.log(data);
+    // console.log(data);
     return data;
 };

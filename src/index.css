@@ -17,6 +17,10 @@ body {
         linear-gradient(rgb(130 130 130 / 37%) 1px, transparent 1px),
         linear-gradient(90deg, rgb(130 130 130 / 38%) 1px, transparent 1px) !important;
 }
+.blur-background {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
 .btn {
     @apply mx-1 flex-none cursor-pointer select-none rounded border  border-solid border-gray-700 bg-gray-800  px-2 font-thin transition-all active:bg-gray-700;
 }

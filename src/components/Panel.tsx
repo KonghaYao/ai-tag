@@ -33,7 +33,8 @@ export const Panel: Component<{ children?: JSXElement; id: PanelIds | '' }> = (p
                 // console.log(e);
             }}
         >
-            <main class="flex h-full w-full max-w-sm flex-col overflow-auto overflow-hidden rounded-2xl border-2 border-solid border-slate-700 bg-gray-700/60 backdrop-blur transition-all sm:max-w-md">
+            {/* blur-background 因为 tailwind 的方式有 BUG */}
+            <main class="blur-background flex h-full w-full max-w-sm flex-col  overflow-auto rounded-2xl border-2 border-solid border-slate-700 bg-gray-700/60 transition-all sm:max-w-md">
                 {props.children}
                 <Show when={hasOpened()}>
                     <ControlBar></ControlBar>

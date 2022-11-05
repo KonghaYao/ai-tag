@@ -51,7 +51,7 @@ export const App = () => {
     const emphasizeSubMode = atom(false);
     const emphasizeSymbol = atom('{}');
     const tagsPerPage = atom<number>(500);
-    const MaxEmphasize = atom<number>(5);
+    const MaxEmphasize = atom<number>(10);
     const searchNumberLimit = atom<number>(1000);
     const webviewURL = atom('');
     const visibleId = atom<PanelIds | ''>('');

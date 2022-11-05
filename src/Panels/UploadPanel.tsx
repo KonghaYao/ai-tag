@@ -12,22 +12,21 @@ import { readFileInfo } from '../utils/getPromptsFromPic';
 import { untrack } from 'solid-js/web';
 const init = {
     username: '',
-    tags: [],
+    tags: '',
     r18: true,
     image: '',
     description: '',
-    origin_tags: '',
     seed: '',
     other: '',
 } as StoreData;
 const [store, set] = createStore({ ...init });
 
 const useSharedUpload = (uploading: Atom<boolean>) => {
-    const { username, usersCollection, isPanelVisible } = useContext(Data);
+    const { username } = useContext(Data);
 
     // 上传前检查
     const check = () => {
-        if (store.description && username() && store.image && store.origin_tags) {
+        if (store.description && username() && store.image && store.tags) {
             return true;
         }
         return false;
@@ -45,6 +44,7 @@ const useSharedUpload = (uploading: Atom<boolean>) => {
         }
     });
     const uploadPicture = async (file: File) => {
+        Notice.success('上传图片中');
         uploading(true);
         const fd = new FormData();
         fd.append('key', '0000239c0acbbcb3bdedc2b1c6983537');
@@ -57,6 +57,7 @@ const useSharedUpload = (uploading: Atom<boolean>) => {
             .then((res) => {
                 uploading(false);
                 set('image', res.data.thumb);
+                Notice.success('上传图片完成');
             });
     };
     return { upload, uploadPicture };
@@ -72,11 +73,7 @@ export const UploadPanel = () => {
         if (isPanelVisible('uploader')) {
             const list = untrack(usersCollection);
             batch(() => {
-                set(
-                    'tags',
-                    list.map((i) => i.en)
-                );
-                set('origin_tags', TagsToString(list, emphasizeSymbol()));
+                set('tags', TagsToString(list, emphasizeSymbol()));
             });
         }
     });
@@ -93,8 +90,7 @@ export const UploadPanel = () => {
             const tags = info.get('Description');
             const tagsArray = easyStringToTags(tags);
             batch(() => {
-                set('tags', tagsArray);
-                set('origin_tags', tags);
+                set('tags', tags);
             });
         }
         // 看看是否有种子号
@@ -179,19 +175,18 @@ export const UploadPanel = () => {
                     <textarea
                         placeholder="曲调内容"
                         class="input ml-1"
-                        value={store.origin_tags}
+                        value={store.tags}
                         oninput={(e) => {
                             /** @ts-ignore */
                             const text = e.target.value;
-                            set('tags', easyStringToTags(text));
-                            set('origin_tags', text);
+                            set('tags', text);
                             console.log(text);
                         }}
                     />
                 </div>
                 <div class="my-2 mx-4 flex cursor-pointer flex-wrap">
                     检测结果：
-                    {store.origin_tags}
+                    {store.tags}
                 </div>
 
                 <div class="my-2 mx-4 flex items-center justify-between">

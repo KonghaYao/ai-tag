@@ -173,7 +173,7 @@ node ./scripts/swearFilter.mjs # 对敏感词进行标记
 >
 > 指定上传者的名称全等于 `江夏尧`
 >
-> `username:Top origin_tags:masterpiece 红`
+> `username:Top tags:masterpiece 红`
 >
 > 指定上传者的名称包含 `Top`；魔咒中包含 `masterpiece`；标题中包含 `红`
 

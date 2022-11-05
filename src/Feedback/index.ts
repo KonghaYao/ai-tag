@@ -1,5 +1,6 @@
 export const Labels = [
     { name: '添加词汇', value: 'ADD_WORDS' },
+    { name: '添加功能', value: 'ADD_FUNCTIONS' },
     { name: '翻译错误', value: 'TRANSLATE_ERROR' },
     { name: '添加屏蔽词汇', value: 'ADD_NOT_ALLOWED' },
     { name: '汇报一个 Tag 编辑器 的 BUG', value: 'RUNTIME_BUG' },
@@ -19,6 +20,10 @@ export const Labels = [
     {
         name: '汇报一个 TAG 搜索 的 BUG',
         value: 'TAG_SEARCH_BUG',
+    },
+    {
+        name: '汇报一个 反馈界面 的 BUG',
+        value: 'FEEDBACK_BUG',
     },
 
     {

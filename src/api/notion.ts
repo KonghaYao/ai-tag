@@ -13,11 +13,10 @@ const treeToArray = (data) => {
 
 export type StoreData = {
     username: string;
-    tags: string[];
+    tags: string;
     r18: boolean;
     image: string;
     description: string;
-    origin_tags: string;
     seed?: string;
     /** 图片信息抽取 */
     other?: string;
@@ -92,9 +91,7 @@ export const API = {
                         ...i,
                         description: i.description[0]?.plain_text,
                         username: i.username[0]?.plain_text,
-                        origin_tags: i.origin_tags[0]?.plain_text,
-
-                        tags: i.tags.map((i) => i.name),
+                        tags: i.tags[0]?.plain_text,
                     };
                 });
             });
@@ -110,18 +107,12 @@ export const API = {
                 type: 'external',
             },
             properties: {
-                tags: {
-                    type: 'multi_select',
-                    multi_select: data.tags.map((i) => ({
-                        name: i,
-                    })),
-                },
                 description: NotionText(data.description),
                 image: { type: 'url', url: data.image },
                 r18: { type: 'checkbox', checkbox: data.r18 },
 
                 username: NotionText(data.username, 'title'),
-                origin_tags: NotionText(data.origin_tags),
+                tags: NotionText(data.tags),
                 seed: NotionText(data.seed ?? ''),
                 other: NotionText(data.other ?? ''),
             },

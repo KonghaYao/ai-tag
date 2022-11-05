@@ -20,7 +20,7 @@ export const PublicPanel = () => {
     const searchText = atom('');
     const [showing, { refetch }] = createResource<StoreData[]>(() => {
         if (!visible()) return [];
-        let filters = searchText() ? notionSearch(searchText(), ['username', 'origin_tags']) : [];
+        let filters = searchText() ? notionSearch(searchText(), ['username', 'tags']) : [];
         return API.getData(page(), r18Mode(), filters, false).then((arr) => {
             replaceImages(
                 arr.map((i) => {
@@ -136,9 +136,7 @@ export const PublicPanel = () => {
                                         <button
                                             class="btn flex-none"
                                             onClick={() => {
-                                                usersCollection(
-                                                    stringToTags(item.origin_tags, lists())
-                                                );
+                                                usersCollection(stringToTags(item.tags, lists()));
                                                 Notice.success('拿来成功');
                                             }}
                                         >
@@ -147,10 +145,7 @@ export const PublicPanel = () => {
                                         <button
                                             class="btn flex-none"
                                             onClick={() => {
-                                                const input = stringToTags(
-                                                    item.origin_tags,
-                                                    lists()
-                                                );
+                                                const input = stringToTags(item.tags, lists());
                                                 CombineMagic(input, usersCollection);
                                                 Notice.success('融合魔法发动，魔咒已融入');
                                             }}

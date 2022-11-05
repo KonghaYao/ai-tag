@@ -17,7 +17,7 @@ const decode = (val: string) => {
 };
 /**
  * 搜索语法详解
- * username:=江夏尧 origin_tags:masterpiece 中文搜索
+ * username:=江夏尧 tags:masterpiece 中文搜索
  */
 export const searchDecode = (text: string = '') => {
     let [_, props, mainText] = (text + ' ').match(/(.+:\S+\s)*\s*(.*)/);

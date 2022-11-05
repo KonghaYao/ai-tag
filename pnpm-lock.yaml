@@ -26,6 +26,7 @@ specifiers:
   prettier: 2.6.0
   prettier-plugin-tailwindcss: ^0.1.13
   pretty-bytes: ^6.0.0
+  promptor: ^1.0.3
   rollup-plugin-visualizer: ^5.8.3
   solid-js: ^1.5.7
   sortablejs: ^1.15.0
@@ -52,6 +53,7 @@ dependencies:
   png-chunk-text: 1.0.0
   png-chunks-extract: 1.0.0
   pretty-bytes: 6.0.0
+  promptor: 1.0.3
   solid-js: 1.5.7
   sortablejs: 1.15.0
   tailwindcss: 3.1.8_postcss@8.4.16
@@ -1556,6 +1558,10 @@ packages:
   /pretty-bytes/6.0.0:
     resolution: {integrity: sha512-6UqkYefdogmzqAZWzJ7laYeJnaXDy2/J+ZqiiMtS7t7OfpXWTlaeGMwX8U6EFvPV/YWWEKRkS8hKS4k60WHTOg==}
     engines: {node: ^14.13.1 || >=16.0.0}
+    dev: false
+
+  /promptor/1.0.3:
+    resolution: {integrity: sha512-pmVhaV5k16KXmJvCGVvGssRCglZyh6h5jux0JZ5oVxdbb3sYQAOKb+rBgr30GBwg98TzYP9Li0AXBH4sAk5IlQ==}
     dev: false
 
   /queue-microtask/1.2.3:

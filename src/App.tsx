@@ -7,19 +7,12 @@ import { useDatabase } from './use/useDatabase';
 import { useStorage } from './use/useStorage';
 import { PanelIds, SideApp } from './SideApp';
 
-export interface IData {
+export interface IData extends IPromptData {
     en: string;
     cn: string;
     // 暂时没有打上
     r18: 0 | 1;
     count: number;
-    emphasize: number;
-    /** 数值权重, 由于解析精度问题，故不进行改变 */
-    weight?: string;
-    /** 融合语法 */
-    alternatingArr?: string[];
-    /** Prompt editing*/
-    fromTo?: [string, string];
 }
 export interface IStoreData {
     deleteMode: Atom<boolean>;
@@ -47,6 +40,7 @@ export interface IGlobalData extends IStoreData {
 export const Data = createContext<IGlobalData>();
 import isMobile from 'is-mobile';
 import { useWindowResize } from './use/useWindowResize';
+import { IPromptData } from 'promptor';
 export const App = () => {
     const enMode = atom(true);
     const r18Mode = atom(false);

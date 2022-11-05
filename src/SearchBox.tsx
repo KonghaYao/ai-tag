@@ -5,7 +5,7 @@ import { TagButton } from './components/TagButton';
 import { reflect } from '@cn-ui/use';
 import { untrack } from 'solid-js/web';
 import { sampleSize as _sampleSize } from 'lodash-es';
-import { stringToTags } from './use/TagsConvertor';
+import { CreateIData, stringToTags } from './use/TagsConvertor';
 
 /** 重新设计的随机函数 */
 const sampleSize = (list: IData[], size: number) => {
@@ -90,7 +90,9 @@ export const SearchBox = () => {
                         {(item) => (
                             <TagButton
                                 data={item}
-                                onClick={(item) => usersCollection((i) => [...i, item])}
+                                onClick={(item) =>
+                                    usersCollection((i) => [...i, CreateIData(item)])
+                                }
                             ></TagButton>
                         )}
                     </For>

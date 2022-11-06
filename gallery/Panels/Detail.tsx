@@ -1,8 +1,6 @@
 import { reflect } from '@cn-ui/use';
 import copy from 'copy-to-clipboard';
 import { Show, useContext } from 'solid-js';
-import { Panel } from '../../src/components/Panel';
-import { useViewer } from '../../src/use/useViewer';
 import { GalleryGlobal } from '../App';
 import { GalleryPanel } from '../components/GalleryPanel';
 

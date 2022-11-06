@@ -10,6 +10,8 @@
 -   [x] 查看自己的反馈信息。链接 Github Issues。
 -   [x] 考虑剥离词库为单独仓库，采用 jsDelivr 提供的缓存，词库已经单独分配到 [Tags 收集整理项目](https://github.com/KonghaYao/tag-collection) 管理。
 -   [x] 抽离魔咒解析库到 NPM，[promptor](https://npm.io/promptor) ，[Github 仓库](https://github.com/KonghaYao/promptor)，已经通过测试！
+-   [x] 联合 [Web 字体网站](https://chinese-font.netlify.app/#/home)，使用中文（江西拙楷 2.0）和英文 （aclonica）字体
+-   [x] [独立画廊页面](https://magic-tag.netlify.app/gallery.html#/)，直接看图。
 
 ## 魔导绪论指南
 

@@ -1,4 +1,4 @@
-export const FontSupport = () => {
+export const FontSupport = (props) => {
     return (
         <>
             <link

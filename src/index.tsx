@@ -13,7 +13,6 @@ render(() => {
                     <Route path="/" element={App}></Route>
                 </Routes>
             </Router>
-            <FontSupport></FontSupport>
         </>
     );
 }, document.getElementById('root') as HTMLElement);

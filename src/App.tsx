@@ -26,6 +26,7 @@ export interface IStoreData {
     username: Atom<string>;
     webviewURL: Atom<string>;
     emphasizeSymbol: Atom<string>;
+    defaultFont: Atom<boolean>;
 }
 export interface IGlobalData extends IStoreData {
     emphasizeAddMode: Atom<boolean>;
@@ -41,12 +42,14 @@ import isMobile from 'is-mobile';
 import { useWindowResize } from './use/useWindowResize';
 import { IPromptData } from 'promptor';
 import { PanelContext } from './components/Panel';
+import { FontSupport } from './components/FontSupport';
 export const App = () => {
     const enMode = atom(true);
     const r18Mode = atom(false);
     const sideAppMode = atom(!isMobile());
     const showCount = atom(true);
     const deleteMode = atom(false);
+    const defaultFont = atom(false);
     const emphasizeAddMode = atom(false);
     const emphasizeSubMode = atom(false);
     const emphasizeSymbol = atom('{}');
@@ -73,6 +76,7 @@ export const App = () => {
         visibleId,
         webviewURL,
         MaxEmphasize,
+        defaultFont,
     };
     const { result, lists, searchText, usersCollection } = useDatabase(storageSetting);
     const { recover, tracking } = useStorage(storageSetting);
@@ -100,7 +104,12 @@ export const App = () => {
                     isPanelVisible,
                 }}
             >
-                <div class="font-global flex h-screen w-screen justify-center">
+                <div
+                    class=" flex h-screen w-screen justify-center"
+                    classList={{
+                        'font-global': !defaultFont(),
+                    }}
+                >
                     <main class=" flex h-full w-full max-w-4xl flex-col overflow-hidden  p-2 text-gray-400 sm:p-4">
                         <h2 class="cursor-pointer text-center text-xl font-bold text-gray-300">
                             AI 绘画三星法器 —— 魔导绪论
@@ -126,8 +135,10 @@ export const App = () => {
                         <UserSelected></UserSelected>
                         <SearchBox></SearchBox>
                     </main>
-
                     <SideApp></SideApp>
+                    <Show when={!defaultFont()}>
+                        <FontSupport></FontSupport>
+                    </Show>
                 </div>
             </PanelContext.Provider>
         </Data.Provider>

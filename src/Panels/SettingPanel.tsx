@@ -4,12 +4,14 @@ import { Panel } from '../components/Panel';
 import { Notice } from '../utils/notice';
 
 export const SettingPanel = () => {
-    const { r18Mode, showCount, tagsPerPage, sideAppMode, MaxEmphasize } = useContext(Data);
+    const { r18Mode, showCount, tagsPerPage, sideAppMode, MaxEmphasize, defaultFont } =
+        useContext(Data);
 
     const list = [
         { title: '青少年模式', bind: r18Mode.reflux(!r18Mode(), (i) => !i) },
         { title: '显示数值', bind: showCount },
         { title: '侧边应用模式', bind: sideAppMode },
+        { title: '使用默认字体', bind: defaultFont },
     ];
     const NumberList = [
         { title: '每页 tags 数', bind: tagsPerPage },

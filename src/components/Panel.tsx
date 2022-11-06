@@ -1,11 +1,24 @@
-import { atom } from '@cn-ui/use';
-import { Component, createEffect, createMemo, JSXElement, Show, useContext } from 'solid-js';
-import { Data } from '../App';
+import { Atom, atom } from '@cn-ui/use';
+import {
+    Component,
+    createContext,
+    createEffect,
+    createMemo,
+    JSXElement,
+    Show,
+    useContext,
+} from 'solid-js';
 import { PanelIds } from '../SideApp';
 import { ControlBar } from './ControlBar';
 
+export interface IPanelData {
+    visibleId: Atom<string>;
+    isPanelVisible: (key: PanelIds | '') => boolean;
+}
+
+export const PanelContext = createContext<IPanelData>();
 export const Panel: Component<{ children?: JSXElement; id: PanelIds | '' }> = (props) => {
-    const { visibleId, isPanelVisible } = useContext(Data);
+    const { visibleId, isPanelVisible } = useContext(PanelContext);
     let container: HTMLDivElement;
     const visible = createMemo(() => isPanelVisible(props.id));
     const hasOpened = createMemo(() => visibleId() !== null);

@@ -14,7 +14,7 @@ export function HeaderSecond() {
         emphasizeSymbol,
     } = useContext(Data);
     return (
-        <header class="flex border-t border-slate-700 pt-2 text-sm font-bold">
+        <header class="flex border-t border-slate-700 pt-2 text-sm font-bold text-yellow-600">
             <span
                 class="btn"
                 classList={{

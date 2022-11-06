@@ -54,8 +54,12 @@ export const PublicPanel = () => {
     return (
         <Panel id="gallery">
             <header class="flex w-full items-end justify-between p-2 text-center text-lg font-bold">
-                <span class=" text-xs font-thin">点击查看大图</span>
-                魔咒画廊
+                <a href="./gallery.html">
+                    <div class="btn float-right cursor-pointer px-2 text-sm text-green-700">
+                        前往网站
+                    </div>
+                </a>
+                <div class="flex-none">魔咒画廊</div>
                 <div
                     class="btn float-right cursor-pointer px-2 text-sm text-green-700"
                     onClick={() => visibleId('uploader')}

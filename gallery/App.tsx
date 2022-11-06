@@ -1,12 +1,12 @@
 import { Show, createResource, onMount, createSelector, useContext, createContext } from 'solid-js';
-import { Atom, atom, reflect } from '@cn-ui/use';
+import { Atom, atom, reflect, useSingleAsync } from '@cn-ui/use';
 import { PanelContext } from '../src/components/Panel';
 import { Gallery } from './Gallery';
 import { DetailPanel } from './Panels/Detail';
 import { StoreData } from '../src/api/notion';
 import { useGalleryInfo } from './useGalleryInfo';
 
-const ScrollLoading = (cb: () => void) => {
+const ScrollLoading = (cb: () => void, space = 10) => {
     const ScrollEvent = (e: Event) => {
         const dom = e.target as HTMLElement;
         //文档内容实际高度（包括超出视窗的溢出部分）
@@ -15,7 +15,7 @@ const ScrollLoading = (cb: () => void) => {
         let scrollTop = dom.scrollTop;
         //窗口可视范围高度
         let clientHeight = Math.min(dom.clientHeight, dom.clientHeight);
-        if (clientHeight + scrollTop >= scrollHeight) {
+        if (clientHeight + scrollTop >= scrollHeight - 10) {
             cb();
         }
     };
@@ -30,7 +30,7 @@ export const GalleryGlobal = createContext<
 
 export const App = () => {
     const galleryInfo = useGalleryInfo();
-    const { ScrollEvent } = ScrollLoading(() => galleryInfo.page((i) => i + 1));
+    const { ScrollEvent } = ScrollLoading(useSingleAsync(() => galleryInfo.page((i) => i + 1)));
     const visibleId = atom('');
 
     const ShowingPicture = atom<null | StoreData>(null);

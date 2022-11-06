@@ -7,7 +7,14 @@ export const Gallery: Component = (props) => {
     const { ShowingPicture, showingData, getViewer } = useContext(GalleryGlobal);
 
     return (
-        <For each={createMemo(() => showingData().flat())()} fallback={<div>结果为空</div>}>
+        <For
+            each={createMemo(() =>
+                showingData()
+                    .flat()
+                    .filter((i) => i)
+            )()}
+            fallback={<div>结果为空</div>}
+        >
             {(item, index) => {
                 return (
                     <div class=" flex w-fit flex-col">

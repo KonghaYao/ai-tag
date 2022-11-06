@@ -1,6 +1,6 @@
 import { createEffect, on } from 'solid-js';
 import { StoreData, API } from '../src/api/notion';
-import { atom } from '@cn-ui/use';
+import { atom, useSingleAsync } from '@cn-ui/use';
 import { useViewer } from '../src/use/useViewer';
 import { notionSearch } from '../src/utils/searchDecode';
 
@@ -10,18 +10,18 @@ export const useGalleryInfo = () => {
 
     const searchText = atom('');
     const showingData = atom<StoreData[][]>([]);
-    const loadMore = async () => {
+    const loadMore = useSingleAsync(async () => {
         const LoadingPage = page();
         let filters = searchText() ? notionSearch(searchText(), ['username', 'tags']) : [];
         return API.getData(LoadingPage, false, filters, false)
-
             .then((res) => {
-                showingData((i) => {
-                    i[LoadingPage] = res;
-                    return [...i];
-                });
+                if (res.length)
+                    showingData((i) => {
+                        i[LoadingPage] = res;
+                        return [...i];
+                    });
             })
-            .then((arr) => {
+            .then(() => {
                 replaceImages(
                     showingData()
                         .flat()
@@ -33,9 +33,8 @@ export const useGalleryInfo = () => {
                             };
                         })
                 );
-                return arr;
             });
-    };
+    });
 
     const refetchData = () => {
         page(0);

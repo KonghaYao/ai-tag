@@ -34,12 +34,24 @@ export const DetailPanel = () => {
                         }}
                     />
                 </div>
-                <main class="z-10 flex h-full gap-4 p-4">
-                    <main class="flex flex-col overflow-hidden">
+                <main class="z-10 flex h-full flex-col  gap-4 overflow-auto p-4  sm:flex-row">
+                    <nav
+                        class="flex flex-col items-center justify-center"
+                        onclick={() => {
+                            getViewer().view(
+                                showingData()
+                                    .flat()
+                                    .findIndex((i) => i === ShowingPicture())
+                            );
+                        }}
+                    >
+                        <img loading="lazy" src={getImagePath(ShowingPicture().image)} alt="" />
+                    </nav>
+                    <main class="flex select-text flex-col sm:overflow-hidden">
                         <header class="py-4 text-2xl font-bold text-white">
                             {ShowingPicture().description}
                         </header>
-                        <main class="flex max-w-2xl flex-col gap-4 overflow-auto rounded-lg bg-gray-800/80 p-4 text-gray-400">
+                        <main class="flex max-w-2xl flex-col gap-4 rounded-lg bg-gray-800/80 p-4 text-gray-400 sm:overflow-auto">
                             <header class="text-xl ">配料表</header>
                             <div>作者:{ShowingPicture().username}</div>
                             <div>种子号码:{ShowingPicture().seed}</div>
@@ -72,18 +84,6 @@ export const DetailPanel = () => {
                             <div>noise：{Comment().noise ?? '未知'}</div>{' '}
                         </main>
                     </main>
-                    <nav
-                        class="flex flex-col items-center justify-center"
-                        onclick={() => {
-                            getViewer().view(
-                                showingData()
-                                    .flat()
-                                    .findIndex((i) => i === ShowingPicture())
-                            );
-                        }}
-                    >
-                        <img loading="lazy" src={getImagePath(ShowingPicture().image)} alt="" />
-                    </nav>
                 </main>
             </Show>
         </GalleryPanel>

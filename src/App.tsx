@@ -109,9 +109,12 @@ export const App = () => {
                                 <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
                                     教程
                                 </a>
-                                ·
                                 <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
                                     开源
+                                </a>
+                                ·
+                                <a href="./gallery.html" target="_blank">
+                                    画廊
                                 </a>
                                 ·<span onClick={() => visibleId('feedback')}>反馈</span>
                                 <a href="https://github.com/KonghaYao/ai-tag" target="_blank">

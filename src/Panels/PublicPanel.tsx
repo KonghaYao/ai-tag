@@ -3,7 +3,7 @@ import { create, debounce, filter, memoize, uniqWith } from 'lodash-es';
 import { createEffect, createMemo, createResource, For, on, Show, useContext } from 'solid-js';
 import { API, StoreData } from '../api/notion';
 import { Data } from '../App';
-import { Panel } from '../components/Panel';
+import { Panel, PanelContext } from '../components/Panel';
 import { stringToTags } from '../use/TagsConvertor';
 import { useViewer } from '../use/useViewer';
 import { Notice } from '../utils/notice';
@@ -11,7 +11,8 @@ import { CombineMagic } from '../utils/CombineMagic';
 import { notionSearch } from '../utils/searchDecode';
 
 export const PublicPanel = () => {
-    const { isPanelVisible, r18Mode, visibleId, lists, usersCollection } = useContext(Data);
+    const { isPanelVisible } = useContext(PanelContext);
+    const { r18Mode, visibleId, lists, usersCollection } = useContext(Data);
     // 更改为异步导入
     const { replaceImages, getViewer } = useViewer();
 

@@ -2,7 +2,7 @@ import { Atom, atom } from '@cn-ui/use';
 import { sample } from 'lodash-es';
 import { createEffect, For, useContext } from 'solid-js';
 import { Data, IData } from '../App';
-import { Panel } from '../components/Panel';
+import { Panel, PanelContext } from '../components/Panel';
 import { SortableList } from '../components/sortable';
 export interface PickDataType {
     name: string;
@@ -21,7 +21,8 @@ import { TagButton } from '../components/TagButton';
 import { CombineMagic } from '../utils/CombineMagic';
 import { useRandomMaker } from '../use/useRandomMaker';
 export const RandomMaker = () => {
-    const { usersCollection, deleteMode, isPanelVisible } = useContext(Data);
+    const { isPanelVisible } = useContext(PanelContext);
+    const { usersCollection, deleteMode } = useContext(Data);
     const voidId = Math.random().toString();
     const { pickData, baseData, addClassify, loadData } = useRandomMaker();
     let firstTime = true;

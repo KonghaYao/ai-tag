@@ -97,10 +97,10 @@ export const UserSelected = () => {
         }
     }, 50);
     return (
-        <main class="my-2 flex w-full flex-col rounded-xl border border-solid border-gray-600 p-2">
+        <main class=" my-2 flex w-full flex-col rounded-xl border border-solid border-gray-600 p-2 ">
             <HeaderFirst></HeaderFirst>
             <SortableList
-                class="flex flex-wrap overflow-y-auto overflow-x-hidden  text-sm"
+                class="flex flex-wrap overflow-y-auto overflow-x-hidden text-sm"
                 style={{
                     'max-height': '30vh',
                 }}

@@ -85,6 +85,8 @@ export const API = {
                         description: i.description[0]?.plain_text,
                         username: i.username[0]?.plain_text,
                         tags: i.tags[0]?.plain_text,
+                        seed: i.seed[0]?.plain_text,
+                        other: i.other[0]?.plain_text,
                     };
                 });
             });

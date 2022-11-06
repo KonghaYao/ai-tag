@@ -100,9 +100,9 @@ export const App = () => {
                     isPanelVisible,
                 }}
             >
-                <div class="flex h-screen w-screen justify-center">
+                <div class="font-global flex h-screen w-screen justify-center">
                     <main class=" flex h-full w-full max-w-4xl flex-col overflow-hidden  p-2 text-gray-400 sm:p-4">
-                        <h2 class="cursor-pointer text-center text-xl font-bold">
+                        <h2 class="cursor-pointer text-center text-xl font-bold text-gray-300">
                             AI 绘画三星法器 —— 魔导绪论
                             <sup class="px-2 text-xs text-yellow-300">{__version__}</sup>
                             <div class="flex items-center  justify-center gap-2 text-xs font-thin text-[#f5f3c2]">

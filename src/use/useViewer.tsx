@@ -47,7 +47,7 @@ export const useViewer = (props?: Options) => {
     };
     return {
         addImages(image: ImgData[]) {
-            images = images.concat(image.map(dataToImg));
+            images = [...images, ...image.map(dataToImg)];
             viewer.update();
         },
         replaceImages(newImages: ImgData[]) {

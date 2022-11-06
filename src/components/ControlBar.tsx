@@ -1,8 +1,8 @@
 import { useContext } from 'solid-js';
-import { Data } from '../App';
+import { PanelContext } from './Panel';
 
 export const ControlBar = () => {
-    const { visibleId } = useContext(Data);
+    const { visibleId } = useContext(PanelContext);
     return (
         <div class="flex h-8 items-center justify-evenly bg-gray-800">
             <button class="btn bg-green-700 text-gray-300" onclick={() => visibleId('feedback')}>

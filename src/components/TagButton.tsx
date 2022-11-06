@@ -72,14 +72,14 @@ export const TagButton: Component<{
         return (
             <>
                 {cn() && <div>{item.cn}</div>}
-                {en() && <div>{item.en}</div>}
+                {en() && <div class="en-words">{item.en}</div>}
             </>
         );
     };
 
     return (
         <nav
-            class="text-col relative mx-2 my-2 flex  cursor-pointer select-none  rounded-md  px-2 py-1 text-center transition-colors active:brightness-90"
+            class="text-col relative mx-2 my-2 flex cursor-pointer select-none items-center gap-1  rounded-md  px-2 py-1 text-center transition-colors active:brightness-90"
             onContextMenu={(e) => {
                 e.preventDefault();
                 props.onClick && props.onClick(item, true);
@@ -109,7 +109,7 @@ export const TagButton: Component<{
             {showCount() && (
                 <div
                     class={
-                        'pointer-events-none absolute -right-4 -top-2 rounded-lg  px-1 text-xs font-thin text-gray-400 ' +
+                        'pointer-events-none absolute -right-4 -top-2 rounded-lg  px-1  text-xs font-thin text-gray-400 ' +
                         color()
                     }
                 >

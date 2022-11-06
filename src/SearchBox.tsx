@@ -83,7 +83,7 @@ export const SearchBox = () => {
                     </span>
                 </nav>
                 <section
-                    class="my-2 flex h-full flex-wrap items-start  overflow-y-auto overflow-x-hidden"
+                    class="search-results my-2 flex h-full flex-wrap items-start  overflow-y-auto overflow-x-hidden"
                     ref={searchResult}
                 >
                     <For each={showingResult()}>

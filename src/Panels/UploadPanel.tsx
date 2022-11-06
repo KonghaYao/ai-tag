@@ -1,7 +1,7 @@
 import { createEffect, For, useContext } from 'solid-js';
 import { Data } from '../App';
 import { createStore } from 'solid-js/store';
-import { Panel } from '../components/Panel';
+import { Panel, PanelContext } from '../components/Panel';
 import { API, StoreData } from '../api/notion';
 import { Atom, atom, useSingleAsync } from '@cn-ui/use';
 import { easyStringToTags } from '../utils/stringToTags';
@@ -64,7 +64,8 @@ const useSharedUpload = (uploading: Atom<boolean>) => {
 };
 
 export const UploadPanel = () => {
-    const { username, usersCollection, isPanelVisible, emphasizeSymbol } = useContext(Data);
+    const { isPanelVisible } = useContext(PanelContext);
+    const { username, usersCollection, emphasizeSymbol } = useContext(Data);
     const uploading = atom(false);
 
     const { upload, uploadPicture } = useSharedUpload(uploading);

@@ -2,7 +2,7 @@ import { atom } from '@cn-ui/use';
 import { batch, Component, JSXElement, Show, useContext } from 'solid-js';
 import { ErrorBoundary } from 'solid-js';
 import { Data } from '../App';
-import { Panel } from '../components/Panel';
+import { Panel, PanelContext } from '../components/Panel';
 
 export const WebViewLink: Component<{ children: JSXElement; href: string }> = (props) => {
     const { nav } = useWebView();
@@ -26,7 +26,8 @@ export const useWebView = () => {
 };
 
 export const Webview = () => {
-    const { webviewURL, isPanelVisible } = useContext(Data);
+    const { isPanelVisible } = useContext(PanelContext);
+    const { webviewURL } = useContext(Data);
 
     let container: HTMLIFrameElement;
     const loading = atom(true);

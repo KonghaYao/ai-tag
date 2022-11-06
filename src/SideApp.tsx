@@ -15,7 +15,9 @@ export type PanelIds =
     | 'webview'
     | 'random-maker'
     | 'feedback'
-    | 'my-feedback';
+    | 'my-feedback'
+    // gallery 的 panel
+    | 'detail';
 export const SideApp = () => {
     const { sideAppMode, visibleId } = useContext(Data);
     const hasOpened = createMemo(() => visibleId() !== null);

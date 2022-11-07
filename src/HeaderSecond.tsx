@@ -1,7 +1,8 @@
 import copy from 'copy-to-clipboard';
 import { batch, useContext } from 'solid-js';
+import { useTranslation } from '../i18n';
 import { Data } from './App';
-import { stringToTags, TagsToString } from './use/TagsConvertor';
+import { TagsToString } from './use/TagsConvertor';
 import { Notice } from './utils/notice';
 
 export function HeaderSecond() {
@@ -13,6 +14,7 @@ export function HeaderSecond() {
         usersCollection,
         emphasizeSymbol,
     } = useContext(Data);
+    const { t } = useTranslation();
     return (
         <header class="flex border-t border-slate-700 pt-2 text-sm font-bold text-yellow-600">
             <span
@@ -28,7 +30,7 @@ export function HeaderSecond() {
                     })
                 }
             >
-                删除模式
+                {t('toolbar2.deleteMode')}
             </span>
             <span
                 class="btn"
@@ -43,7 +45,7 @@ export function HeaderSecond() {
                     })
                 }
             >
-                加权模式
+                {t('toolbar2.addWeight')}
             </span>
             <span
                 class="btn"
@@ -58,7 +60,7 @@ export function HeaderSecond() {
                     })
                 }
             >
-                减权模式
+                {t('toolbar2.addWeight')}
             </span>
 
             <span
@@ -76,10 +78,10 @@ export function HeaderSecond() {
                             emphasizeSymbol()
                         )
                     );
-                    Notice.success('复制魔法释放');
+                    Notice.success(t('toolbar2.hint.copy'));
                 }}
             >
-                一键复制
+                {t('toolbar2.copy')}
             </span>
         </header>
     );

@@ -9,6 +9,7 @@ import { HeaderSecond } from './HeaderSecond';
 import { useIframeExpose } from './iframeExpose';
 import { plus, minus } from 'number-precision';
 import { debounce } from 'lodash-es';
+import { t } from 'i18next';
 export const UserSelected = () => {
     const {
         deleteMode,
@@ -139,7 +140,9 @@ export const UserSelected = () => {
             {/* <span class="text-xs text-red-600">拖拽移动到最后一个的位置上会 BUG</span> */}
 
             {usersCollection().length === 0 && (
-                <span class="h-16 text-center  font-light text-sky-500">点击下面的关键词添加</span>
+                <span class="h-16 text-center  font-light text-sky-500">
+                    {t('userSelect.hint.add')}
+                </span>
             )}
             <HeaderSecond></HeaderSecond>
         </main>

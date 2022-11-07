@@ -1,4 +1,5 @@
 {
+    "loading": "加载中",
     "header": {
         "Doc": "教程",
         "Gallery": "画廊",
@@ -15,6 +16,30 @@
         "hint": {
             "bracketsChange": "强调括号更换",
             "ImportHint": "请输入魔咒, 魔咒将会覆盖哦"
+        }
+    },
+    "toolbar2": {
+        "deleteMode": "删除模式",
+        "addWeight": "加权模式",
+        "subWeight": "减权模式",
+        "copy": "一键复制",
+        "hint": {
+            "copy": "复制魔法释放"
+        }
+    },
+    "searchBox": {
+        "hint": {
+            "searchPlaceholder": "搜索关键词，中文也可以"
+        },
+        "searchResult": "搜索结果",
+        "clear": "清除",
+        "create": "创建",
+        "NoNumberFilter": "无数目筛选",
+        "Random": "随机"
+    },
+    "userSelect": {
+        "hint": {
+            "add": "点击下面的关键词添加"
         }
     }
 }

@@ -6,6 +6,7 @@ import { reflect } from '@cn-ui/use';
 import { untrack } from 'solid-js/web';
 import { sampleSize as _sampleSize } from 'lodash-es';
 import { CreateIData, stringToTags } from './use/TagsConvertor';
+import { useTranslation } from '../i18n';
 
 /** 重新设计的随机函数 */
 const sampleSize = (list: IData[], size: number) => {
@@ -17,7 +18,7 @@ const sampleSize = (list: IData[], size: number) => {
 };
 
 export const SearchBox = () => {
-    const { usersCollection, result, lists, searchText, r18Mode, tagsPerPage, searchNumberLimit } =
+    const { usersCollection, result, lists, searchText, tagsPerPage, searchNumberLimit } =
         useContext(Data);
     const showingResult = reflect(() => {
         const num = untrack(tagsPerPage);
@@ -29,18 +30,19 @@ export const SearchBox = () => {
     createEffect(on(showingResult, () => searchResult.scrollTo(0, 0)));
 
     const triggerSearch = debounce(searchText, 200) as Setter<string>;
+    const { t } = useTranslation();
     return (
         <>
             <nav class="flex w-full items-center">
                 <input
                     class="input my-2 mr-1 flex-1"
                     value={searchText()}
-                    placeholder="搜索关键词，中文也可以"
+                    placeholder={t('searchBox.hint.searchPlaceholder')}
                     oninput={(e: any) => triggerSearch(e.target.value)}
                 ></input>
 
                 <span class="btn flex-none" onclick={() => triggerSearch('')}>
-                    清除
+                    {t('searchBox.clear')}
                 </span>
                 <span
                     class="btn flex-none"
@@ -49,13 +51,14 @@ export const SearchBox = () => {
                         usersCollection((i) => [...i, ...stringToTags(name, lists())]);
                     }}
                 >
-                    创建
+                    {t('searchBox.create')}
                 </span>
             </nav>
             <section class="flex h-full w-full flex-1 flex-col overflow-hidden">
                 <nav class="flex text-sm text-gray-400">
                     <span class="flex-none">
-                        搜索结果 {result().length} / {lists() ? lists().length : '加载中'}
+                        {t('searchBox.searchResult')} {result().length} /
+                        {lists() ? lists().length : t('loading')}
                     </span>
 
                     <span class="flex-1"></span>
@@ -70,7 +73,7 @@ export const SearchBox = () => {
                         }}
                     >
                         {searchNumberLimit() === 0
-                            ? '无数目筛选'
+                            ? t('searchBox.NoNumberFilter')
                             : `> ${searchNumberLimit().toLocaleString('en')}`}
                     </div>
                     <span
@@ -79,7 +82,7 @@ export const SearchBox = () => {
                             result(sampleSize(lists(), tagsPerPage()));
                         }}
                     >
-                        随机 {tagsPerPage()}
+                        {t('searchBox.Random')} {tagsPerPage()}
                     </span>
                 </nav>
                 <section

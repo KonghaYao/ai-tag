@@ -43,6 +43,7 @@ import { useWindowResize } from './use/useWindowResize';
 import { IPromptData } from 'promptor';
 import { PanelContext } from './components/Panel';
 import { FontSupport } from './components/FontSupport';
+import { useTranslation } from '../i18n';
 export const App = () => {
     const enMode = atom(true);
     const r18Mode = atom(false);
@@ -80,7 +81,7 @@ export const App = () => {
     };
     const { result, lists, searchText, usersCollection } = useDatabase(storageSetting);
     const { recover, tracking } = useStorage(storageSetting);
-
+    const { t } = useTranslation();
     const { width } = useWindowResize();
     // 自动变换 SideAPP 状态
     createEffect(() => sideAppMode(width() > 888));
@@ -116,7 +117,7 @@ export const App = () => {
                             <sup class="px-2 text-xs text-yellow-300">{__version__}</sup>
                             <div class="flex items-center  justify-center gap-2 text-xs font-thin text-[#f5f3c2]">
                                 <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
-                                    教程
+                                    {t('header.Doc')}
                                 </a>
                                 ·
                                 <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
@@ -124,13 +125,18 @@ export const App = () => {
                                 </a>
                                 ·
                                 <a href="./gallery.html" target="_blank">
-                                    画廊
+                                    {t('header.Gallery')}
                                 </a>
-                                ·<span onClick={() => visibleId('feedback')}>反馈</span>
+                                ·
+                                <span onClick={() => visibleId('feedback')}>
+                                    {t('header.FeedBack')}
+                                </span>
                                 <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
                                     {'{{ By 江夏尧 }}'}
                                 </a>
-                                {!r18Mode() && <span class="btn bg-green-700">青少年模式</span>}
+                                {!r18Mode() && (
+                                    <span class="btn bg-green-700">{t('header.TeenagerMode')}</span>
+                                )}
                             </div>
                         </h2>
                         <UserSelected></UserSelected>

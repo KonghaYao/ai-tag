@@ -1,0 +1,20 @@
+{
+    "header": {
+        "Doc": "教程",
+        "Gallery": "画廊",
+        "FeedBack": "反馈",
+        "TeenagerMode": "青少年模式"
+    },
+    "toolbar1": {
+        "en": "英文",
+        "zh": "中文",
+        "Import": "魔咒导入",
+        "Home": "主页",
+        "Gallery": "画廊",
+        "Share": "分享",
+        "hint": {
+            "bracketsChange": "强调括号更换",
+            "ImportHint": "请输入魔咒, 魔咒将会覆盖哦"
+        }
+    }
+}

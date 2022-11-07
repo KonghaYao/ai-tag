@@ -9,10 +9,12 @@
         "jsxImportSource": "solid-js",
         "types": ["vite/client"],
         "emitDeclarationOnly": true,
+
         "declarationDir": "./dist",
         "declaration": true,
+
         "isolatedModules": true,
         "resolveJsonModule": true
     },
-    "include": ["src/**/*", "demo/**/*", "gallery/**/*"]
+    "include": ["src/**/*", "demo/**/*", "gallery/**/*", "i18n/**/*"]
 }

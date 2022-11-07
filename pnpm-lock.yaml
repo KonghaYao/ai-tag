@@ -15,6 +15,8 @@ specifiers:
   comlink: ^4.3.1
   copy-to-clipboard: ^3.3.2
   fuse.js: ^6.6.2
+  i18next: ^22.0.4
+  i18next-browser-languagedetector: ^7.0.1
   is-mobile: ^3.1.1
   lodash-es: ^4.17.21
   notyf: ^3.10.0
@@ -28,23 +30,25 @@ specifiers:
   pretty-bytes: ^6.0.0
   promptor: ^1.0.3
   rollup-plugin-visualizer: ^5.8.3
-  solid-js: ^1.5.7
+  solid-js: ^1.6.1
   sortablejs: ^1.15.0
   tailwindcss: ^3.1.8
   tippy.js: ^6.3.7
   viewerjs: ^1.11.0
-  vite: ^3.1.8
+  vite: ^3.2.2
   vite-plugin-imp: ^2.3.0
-  vite-plugin-solid: ^2.3.9
+  vite-plugin-solid: ^2.4.0
   vitest: ^0.24.5
   xlsx: ^0.18.5
 
 dependencies:
-  '@cn-ui/use': 1.7.0_solid-js@1.5.7
-  '@solidjs/router': 0.5.0_solid-js@1.5.7
+  '@cn-ui/use': 1.7.0_solid-js@1.6.1
+  '@solidjs/router': 0.5.0_solid-js@1.6.1
   comlink: 4.3.1
   copy-to-clipboard: 3.3.2
   fuse.js: 6.6.2
+  i18next: 22.0.4
+  i18next-browser-languagedetector: 7.0.1
   is-mobile: 3.1.1
   lodash-es: 4.17.21
   notyf: 3.10.0
@@ -54,7 +58,7 @@ dependencies:
   png-chunks-extract: 1.0.0
   pretty-bytes: 6.0.0
   promptor: 1.0.3
-  solid-js: 1.5.7
+  solid-js: 1.6.1
   sortablejs: 1.15.0
   tailwindcss: 3.1.8_postcss@8.4.16
   tippy.js: 6.3.7
@@ -75,9 +79,9 @@ devDependencies:
   prettier: 2.6.0
   prettier-plugin-tailwindcss: 0.1.13_prettier@2.6.0
   rollup-plugin-visualizer: 5.8.3
-  vite: 3.1.8
-  vite-plugin-imp: 2.3.0_vite@3.1.8
-  vite-plugin-solid: 2.3.9_solid-js@1.5.7+vite@3.1.8
+  vite: 3.2.2
+  vite-plugin-imp: 2.3.0_vite@3.2.2
+  vite-plugin-solid: 2.4.0_solid-js@1.6.1+vite@3.2.2
   vitest: 0.24.5
 
 packages:
@@ -368,6 +372,13 @@ packages:
       - supports-color
     dev: true
 
+  /@babel/runtime/7.20.1:
+    resolution: {integrity: sha512-mrzLkl6U9YLF8qpqI7TB82PESyEGjm/0Ly91jG575eVxMMlb8fYfOXFZIJ8XfLrJZQbm7dlKry2bJmXBUEkdFg==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.13.10
+    dev: false
+
   /@babel/template/7.18.10:
     resolution: {integrity: sha512-TI+rCtooWHr3QJ27kJxfjutghu44DLnasDMwpDqCXVTal9RLp3RSYNh4NdBrRP2cQAoG9A8juOQl6P6oZG4JxA==}
     engines: {node: '>=6.9.0'}
@@ -404,12 +415,12 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@cn-ui/use/1.7.0_solid-js@1.5.7:
+  /@cn-ui/use/1.7.0_solid-js@1.6.1:
     resolution: {integrity: sha512-5dtAD+8MT7H09Ajh+dFPFHaLgdm2lWanPOFyF6Bm7Evv/OobznOYNkIzs6GTnFUwoQkU37PkqtkivlLRtZadMw==}
     peerDependencies:
       solid-js: ^1.5.7
     dependencies:
-      solid-js: 1.5.7
+      solid-js: 1.6.1
     dev: false
 
   /@esbuild/android-arm/0.15.10:
@@ -507,12 +518,12 @@ packages:
     resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
     dev: false
 
-  /@solidjs/router/0.5.0_solid-js@1.5.7:
+  /@solidjs/router/0.5.0_solid-js@1.6.1:
     resolution: {integrity: sha512-rNR07l21tWWDVmCbaapggB89rEX7jlM2XChpTLqEGEnj46LzVZ8zgvjcF6NNKScByAlLpoQUkVIjB2KHpcMi+w==}
     peerDependencies:
       solid-js: ^1.5.3
     dependencies:
-      solid-js: 1.5.7
+      solid-js: 1.6.1
     dev: false
 
   /@tailwindcss/line-clamp/0.4.2_tailwindcss@3.1.8:
@@ -1238,6 +1249,18 @@ packages:
     resolution: {integrity: sha512-c3Ab/url5ksaT0WyleslpBEthOzWhrjQbg75y7XUsfSzi3Dgzt0l8w5e7DylRn15MTlMMD58dTfzddNS2kcAjQ==}
     dev: true
 
+  /i18next-browser-languagedetector/7.0.1:
+    resolution: {integrity: sha512-Pa5kFwaczXJAeHE56CHG2aWzFBMJNUNghf0Pm4SwSrEMps/PTKqW90EYWlIvhuYStf3Sn1K0vw+gH3+TLdkH1g==}
+    dependencies:
+      '@babel/runtime': 7.20.1
+    dev: false
+
+  /i18next/22.0.4:
+    resolution: {integrity: sha512-TOp7BTMKDbUkOHMzDlVsCYWpyaFkKakrrO3HNXfSz4EeJaWwnBScRmgQSTaWHScXVHBUFXTvShrCW8uryBYFcg==}
+    dependencies:
+      '@babel/runtime': 7.20.1
+    dev: false
+
   /is-binary-path/2.1.0:
     resolution: {integrity: sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==}
     engines: {node: '>=8'}
@@ -1540,6 +1563,15 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.0.2
 
+  /postcss/8.4.18:
+    resolution: {integrity: sha512-Wi8mWhncLJm11GATDaQKobXSNEYGUHeQLiQqDFG1qQ5UTDPTEvKw0Xt5NsTpktGTwLps3ByrWsBrG0rB8YQ9oA==}
+    engines: {node: ^10 || ^12 || >=14}
+    dependencies:
+      nanoid: 3.3.4
+      picocolors: 1.0.0
+      source-map-js: 1.0.2
+    dev: true
+
   /prettier-plugin-tailwindcss/0.1.13_prettier@2.6.0:
     resolution: {integrity: sha512-/EKQURUrxLu66CMUg4+1LwGdxnz8of7IDvrSLqEtDqhLH61SAlNNUSr90UTvZaemujgl3OH/VHg+fyGltrNixw==}
     engines: {node: '>=12.17.0'}
@@ -1582,6 +1614,10 @@ packages:
     dependencies:
       picomatch: 2.3.1
 
+  /regenerator-runtime/0.13.10:
+    resolution: {integrity: sha512-KepLsg4dU12hryUO7bp/axHAKvwGOCV0sGloQtpagJ12ai+ojVDqkeGSiRX1zlq+kjIMZ1t7gpze+26QqtdGqw==}
+    dev: false
+
   /require-directory/2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
     engines: {node: '>=0.10.0'}
@@ -1614,8 +1650,8 @@ packages:
       yargs: 17.6.0
     dev: true
 
-  /rollup/2.78.1:
-    resolution: {integrity: sha512-VeeCgtGi4P+o9hIg+xz4qQpRl6R401LWEXBmxYKOV4zlF82lyhgh2hTZnheFUbANE8l2A41F458iwj2vEYaXJg==}
+  /rollup/2.79.1:
+    resolution: {integrity: sha512-uKxbd0IhMZOhjAiD5oAFp7BqvkA4Dv47qpOCtaNvng4HBwdbWtdOh8f5nZNuk2rp51PMGk3bzfWu5oayNEuYnw==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     optionalDependencies:
@@ -1636,12 +1672,12 @@ packages:
     hasBin: true
     dev: true
 
-  /solid-js/1.5.7:
-    resolution: {integrity: sha512-L1UuyMuZZARAwzXo5NZDhE6yxc14aqNbVOUoGzvlcxRZo1Cm4ExhPV0diEfwDyiKG/igqNNLkNurHkXiI5sVEg==}
+  /solid-js/1.6.1:
+    resolution: {integrity: sha512-i8OmR419Hr0918Or6sm1ET/cgmxTtAB7Bdz/UwhZ7G2THixrvVSO3jd+C7YqMKKfVwmf8PJ2gUSbKE8NKv28GA==}
     dependencies:
       csstype: 3.1.1
 
-  /solid-refresh/0.4.1_solid-js@1.5.7:
+  /solid-refresh/0.4.1_solid-js@1.6.1:
     resolution: {integrity: sha512-v3tD/OXQcUyXLrWjPW1dXZyeWwP7/+GQNs8YTL09GBq+5FguA6IejJWUvJDrLIA4M0ho9/5zK2e9n+uy+4488g==}
     peerDependencies:
       solid-js: ^1.3
@@ -1649,7 +1685,7 @@ packages:
       '@babel/generator': 7.19.3
       '@babel/helper-module-imports': 7.18.6
       '@babel/types': 7.19.3
-      solid-js: 1.5.7
+      solid-js: 1.6.1
     dev: true
 
   /sortablejs/1.15.0:
@@ -1814,7 +1850,7 @@ packages:
     resolution: {integrity: sha512-TE3XvfEXqKV+LdHsRdMSPsCaq0PfKDXm4SjGzfty7CzVxlDbBbT4x38vAqfXfNITmHhHUQefdxdg0Vv4ia+Z9w==}
     dev: false
 
-  /vite-plugin-imp/2.3.0_vite@3.1.8:
+  /vite-plugin-imp/2.3.0_vite@3.2.2:
     resolution: {integrity: sha512-I7xSzptQw0yBxUmXawXqkzYvtZbqRF99ZeylmaTuYmJTVjZw5/TbKE7z3h95IKE4r/lkSWdKYmHEs3QwiXKS7g==}
     peerDependencies:
       vite: '>= 2.0.0-beta.5'
@@ -1826,13 +1862,13 @@ packages:
       chalk: 4.1.2
       param-case: 3.0.4
       pascal-case: 3.1.2
-      vite: 3.1.8
+      vite: 3.2.2
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite-plugin-solid/2.3.9_solid-js@1.5.7+vite@3.1.8:
-    resolution: {integrity: sha512-+lprsYgt9DVNp0kbDj2d2HWAPI13L8ff5xslk9SjiPBcsY/YUZ/1Wj0J/Oj5aiVAhwfPm8IcM3bzyHJUPlmc8w==}
+  /vite-plugin-solid/2.4.0_solid-js@1.6.1+vite@3.2.2:
+    resolution: {integrity: sha512-Rr+t2sr9TWIvH16yzBZzx6O9YSpYAvcwKUMPqbi/4iU3mRumXQ4O10i1XGtQIynC7U3XwJsMzAJigDFGbiJBiw==}
     peerDependencies:
       solid-js: ^1.3.17
       vite: ^3.0.0
@@ -1841,21 +1877,23 @@ packages:
       '@babel/preset-typescript': 7.18.6_@babel+core@7.19.3
       babel-preset-solid: 1.4.6_@babel+core@7.19.3
       merge-anything: 5.0.2
-      solid-js: 1.5.7
-      solid-refresh: 0.4.1_solid-js@1.5.7
-      vite: 3.1.8
+      solid-js: 1.6.1
+      solid-refresh: 0.4.1_solid-js@1.6.1
+      vite: 3.2.2
+      vitefu: 0.1.1_vite@3.2.2
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite/3.1.8:
-    resolution: {integrity: sha512-m7jJe3nufUbuOfotkntGFupinL/fmuTNuQmiVE7cH2IZMuf4UbfbGYMUT3jVWgGYuRVLY9j8NnrRqgw5rr5QTg==}
+  /vite/3.2.2:
+    resolution: {integrity: sha512-pLrhatFFOWO9kS19bQ658CnRYzv0WLbsPih6R+iFeEEhDOuYgYCX2rztUViMz/uy/V8cLCJvLFeiOK7RJEzHcw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
       less: '*'
       sass: '*'
       stylus: '*'
+      sugarss: '*'
       terser: ^5.4.0
     peerDependenciesMeta:
       less:
@@ -1864,15 +1902,28 @@ packages:
         optional: true
       stylus:
         optional: true
+      sugarss:
+        optional: true
       terser:
         optional: true
     dependencies:
       esbuild: 0.15.10
-      postcss: 8.4.16
+      postcss: 8.4.18
       resolve: 1.22.1
-      rollup: 2.78.1
+      rollup: 2.79.1
     optionalDependencies:
       fsevents: 2.3.2
+    dev: true
+
+  /vitefu/0.1.1_vite@3.2.2:
+    resolution: {integrity: sha512-HClD14fjMJ+NQgXBqT3dC3RdO/+Chayil+cCPYZKY3kT+KcJomKzrdgzfCHJkIL2L0OAY+VPvrSW615iPtc7ag==}
+    peerDependencies:
+      vite: ^3.0.0
+    peerDependenciesMeta:
+      vite:
+        optional: true
+    dependencies:
+      vite: 3.2.2
     dev: true
 
   /vitest/0.24.5:
@@ -1907,11 +1958,12 @@ packages:
       tinybench: 2.3.1
       tinypool: 0.3.0
       tinyspy: 1.0.2
-      vite: 3.1.8
+      vite: 3.2.2
     transitivePeerDependencies:
       - less
       - sass
       - stylus
+      - sugarss
       - supports-color
       - terser
     dev: true

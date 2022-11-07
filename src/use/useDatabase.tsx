@@ -1,4 +1,4 @@
-import { createEffect, createResource, createSignal, untrack } from 'solid-js';
+import { createDeferred, createEffect, createResource, createSignal, untrack } from 'solid-js';
 import { Atom, atom, createIgnoreFirst, reflect } from '@cn-ui/use';
 import { useSearchParams } from '@solidjs/router';
 import { IData, IStoreData } from '../App';
@@ -8,6 +8,17 @@ import { proxy } from 'comlink';
 import { CSVToJSON } from '../utils/CSVToJSON';
 import { initWorker } from '../worker';
 const { searchWorker, sharedWorker } = initWorker();
+
+const refreshData = () => {
+    createDeferred(
+        () =>
+            fetch('https://cdn.jsdelivr.net/gh/konghayao/tag-collection/data/tags.csv', {
+                cache: 'no-cache',
+            }),
+        { timeoutMs: 2000 }
+    );
+};
+
 /** 加载 Tag 数据库 */
 export function useDatabase(store: IStoreData) {
     console.log('重绘');
@@ -18,24 +29,23 @@ export function useDatabase(store: IStoreData) {
         await searchWorker.rebuild({ r18, numberLimit });
     };
     const [lists] = createResource<IData[]>(async () => {
-        return fetch('https://cdn.jsdelivr.net/gh/konghayao/tag-collection/data/tags.csv').then(
-            (res) =>
-                res
-                    .blob()
-                    .then((res) => CSVToJSON<IData>(res))
-                    .then(async (res) => {
-                        // <200 ms 可以被接受
-                        console.time('初始化线程');
-                        await searchWorker.init(res);
-                        console.timeEnd('初始化线程');
-                        await rebuildSearchSet();
-                        return res;
-                    })
-                    .then((res) => {
-                        res.forEach((i) => (i.emphasize = 0));
-                        return res;
-                    })
-        );
+        return fetch('https://cdn.jsdelivr.net/gh/konghayao/tag-collection/data/tags.csv')
+            .then((res) => res.blob())
+            .then((res) => CSVToJSON<IData>(res))
+            .then(async (res) => {
+                // <200 ms 可以被接受
+                console.time('初始化线程');
+                await searchWorker.init(res);
+                console.timeEnd('初始化线程');
+                await rebuildSearchSet();
+                return res;
+            })
+            .then((res) => {
+                // 添加缺失的属性
+                res.forEach((i) => (i.emphasize = 0));
+                refreshData();
+                return res;
+            });
     });
 
     // 预先筛选 searchText，减少需要查找的区间

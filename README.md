@@ -4,13 +4,11 @@
 
 [AI 魔咒生成器](https://magic-tag.netlify.app/#/), 使用由 B 站 UP 主 [十二今天也很可爱](https://www.bilibili.com/video/BV1m84y1B7Ny/?p=1&t=285&vd_source=a2ecd44ec8a0a62c70f8b98747f4aa56) 提供的 4 万个 tag 并提供中文检索，并提供了魔咒社区方便魔法师们直接复制生成。永远免费，永无广告，无商业。
 
-### v2 版本更新内容
+### v3 版本更新内容
 
--   [x] 使用 Netlify 的云函数提供更为快速的社区数据操作！（暂时不知道花费多少）
--   [x] 查看自己的反馈信息。链接 Github Issues。
 -   [x] 考虑剥离词库为单独仓库，采用 jsDelivr 提供的缓存，词库已经单独分配到 [Tags 收集整理项目](https://github.com/KonghaYao/tag-collection) 管理。
 -   [x] 抽离魔咒解析库到 NPM，[promptor](https://npm.io/promptor) ，[Github 仓库](https://github.com/KonghaYao/promptor)，已经通过测试！
--   [x] 联合 [Web 字体网站](https://chinese-font.netlify.app/#/home)，使用中文（江西拙楷 2.0）和英文 （aclonica）字体
+-   [x] 联合 [Web 字体网站](https://chinese-font.netlify.app/#/home)，使用中文（江西拙楷 2.0）和英文 （aclonica）字体，在设置面板中可以进行默认字体调整。
 -   [x] [独立画廊页面](https://magic-tag.netlify.app/gallery.html#/)，直接看图。
 
 ## 魔导绪论指南

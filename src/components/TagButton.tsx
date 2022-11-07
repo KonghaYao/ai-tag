@@ -22,6 +22,7 @@ export const TagButton: Component<{
         if (item.count > 1000) return 'bg-yellow-900';
         if (item.count > 500) return 'bg-green-900';
     };
+    // 强调颜色
     const emColor = ['bg-lime-800', 'bg-yellow-800', 'bg-amber-800', 'bg-orange-800', 'bg-red-800'];
     const _emColor = ['bg-cyan-700', 'bg-sky-700', 'bg-blue-700', 'bg-indigo-700', 'bg-purple-700'];
     const em = reflect(() => {
@@ -29,14 +30,60 @@ export const TagButton: Component<{
         const index = Math.floor((Math.abs(props.data.emphasize) * 4) / MaxEmphasize());
         return (props.data.emphasize > 0 ? emColor : _emColor)[index];
     });
+
+    // 强调括号
     const split = reflect(() => {
         const count = Math.abs(props.data.emphasize);
-
         const [left, right] = props.data.emphasize > 0 ? emphasizeSymbol() : '[]';
         return [Array(count).fill(left).join(''), Array(count).fill(right).join('')];
     });
 
-    const contentFormat = () => {
+    const contentFormat = createContent(item, cn, en);
+
+    return (
+        <nav
+            class="tag-button text-col relative mx-2 my-2 flex cursor-pointer select-none items-center gap-1  rounded-md  px-2 py-1 text-center transition-colors active:brightness-90"
+            onContextMenu={(e) => {
+                e.preventDefault();
+                props.onClick && props.onClick(item, true);
+            }}
+            onClick={() => {
+                props.onClick && props.onClick(item, false);
+            }}
+            classList={{ [em()]: true }}
+            onDblClick={() => {
+                copy(enMode() ? item.en : item.cn);
+                Notice.success('双击单项复制魔法释放');
+            }}
+            onWheel={(e) => {
+                /**@ts-ignore */
+                const delta: number = e.wheelDelta || e.detail;
+                props.onWheel &&
+                    (item.alternatingArr || item.weight || item.fromTo) &&
+                    props.onWheel(item, delta, e);
+                return false;
+            }}
+            title="左点击加，右点击减，滚轮改变小数点"
+            data-id={item.en}
+        >
+            <nav>{split()[0]}</nav>
+            <main class="flex flex-col">{contentFormat()}</main>
+            <nav>{split()[1]}</nav>
+            {showCount() && (
+                <div
+                    class={
+                        ' pointer-events-none absolute -right-4 -top-2 rounded-lg px-1  text-xs   font-thin text-gray-400 ' +
+                        color()
+                    }
+                >
+                    {item.count}
+                </div>
+            )}
+        </nav>
+    );
+};
+function createContent(item: IData, cn: Atom<boolean>, en: Atom<boolean>) {
+    return () => {
         if (item.alternatingArr && item.alternatingArr.length)
             return (
                 <div class="special-tags flex gap-1">
@@ -76,46 +123,4 @@ export const TagButton: Component<{
             </>
         );
     };
-
-    return (
-        <nav
-            class="text-col relative mx-2 my-2 flex cursor-pointer select-none items-center gap-1  rounded-md  px-2 py-1 text-center transition-colors active:brightness-90"
-            onContextMenu={(e) => {
-                e.preventDefault();
-                props.onClick && props.onClick(item, true);
-            }}
-            onClick={() => {
-                props.onClick && props.onClick(item, false);
-            }}
-            classList={{ [em()]: true }}
-            onDblClick={() => {
-                copy(enMode() ? item.en : item.cn);
-                Notice.success('双击单项复制魔法释放');
-            }}
-            onWheel={(e) => {
-                /**@ts-ignore */
-                const delta: number = e.wheelDelta || e.detail;
-                props.onWheel &&
-                    (item.alternatingArr || item.weight || item.fromTo) &&
-                    props.onWheel(item, delta, e);
-                return false;
-            }}
-            title="左点击加，右点击减，滚轮改变小数点"
-            data-id={item.en}
-        >
-            <nav>{split()[0]}</nav>
-            <main class="flex flex-col">{contentFormat()}</main>
-            <nav>{split()[1]}</nav>
-            {showCount() && (
-                <div
-                    class={
-                        'pointer-events-none absolute -right-4 -top-2 rounded-lg  px-1  text-xs font-thin text-gray-400 ' +
-                        color()
-                    }
-                >
-                    {item.count}
-                </div>
-            )}
-        </nav>
-    );
-};
+}

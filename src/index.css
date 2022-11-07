@@ -16,6 +16,14 @@ body {
     width: 100vw;
 }
 
+/* 搜索区域的动画 */
+.search-results .tag-button {
+    @apply transition-transform active:scale-125;
+}
+/* 用户区域的动画 */
+.user-selected .tag-button {
+    @apply transition-transform active:scale-90;
+}
 .bg-grid {
     background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px !important;
     background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px !important;

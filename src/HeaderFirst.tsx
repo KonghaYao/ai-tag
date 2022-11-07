@@ -23,8 +23,8 @@ export function HeaderFirst() {
             >
                 魔咒导入
             </div>
-            <span class="btn" onclick={() => visibleId('setting')}>
-                设置
+            <span class="btn" onclick={() => visibleId('')}>
+                主页
             </span>
             <span class="btn bg-sky-800" onclick={() => visibleId('gallery')}>
                 画廊

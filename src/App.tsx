@@ -118,8 +118,9 @@ export const App = () => {
                                 <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
                                     教程
                                 </a>
+                                ·
                                 <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
-                                    开源
+                                    Github
                                 </a>
                                 ·
                                 <a href="./gallery.html" target="_blank">

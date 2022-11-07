@@ -85,7 +85,7 @@ export const UploadPanel = () => {
             console.warn(error);
             return [];
         });
-        console.log(data);
+        // console.log(data);
         const info = new Map(data);
 
         // 写入 tags
@@ -102,7 +102,7 @@ export const UploadPanel = () => {
 
         set('other', JSON.stringify(data));
 
-        // uploadPicture(file);
+        uploadPicture(file);
     };
 
     return (

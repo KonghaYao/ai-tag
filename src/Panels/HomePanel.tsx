@@ -18,6 +18,7 @@ const EnableSites = [
     { name: '免费 AI 绘图', src: 'https://novelai.8zyw.cn', jump: true },
 ];
 const LocalPower = [
+    { name: '设置', src: 'setting' },
     { name: '魔咒画廊', src: 'gallery' },
     { name: '三分之二魔咒生成器', src: 'random-maker' },
     { name: '反馈错误', src: 'feedback' },
@@ -34,9 +35,12 @@ export const HomePanel = () => {
 
                 <div class="flex flex-wrap gap-1 ">
                     <For each={LocalPower}>
-                        {(item) => (
+                        {(item, index) => (
                             <div
-                                class="cursor-pointer rounded-sm bg-gray-700 px-2 py-1 transition-all hover:brightness-90"
+                                class="cursor-pointer rounded-sm px-2 py-1 text-white transition-all hover:brightness-90"
+                                style={{
+                                    'background-color': `hwb(${index() * 20}deg 9% 21%)`,
+                                }}
                                 onclick={() => visibleId(item.src)}
                             >
                                 {item.name}

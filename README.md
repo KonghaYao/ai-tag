@@ -46,19 +46,17 @@
     -   [x] tag 加减权，删除，一键复制导入，自主创建
     -   [x] 绑定 tags，网页 URL 指向了你的魔咒
     -   [x] 搜索标签排除
-    -   [x] 魔咒导入
-    -   [x] 简易魔咒生成器
-    -   [x] 搜索卡顿消除（采用 Worker）
+    -   [x] 搜索卡顿消除（采用 Worker 和 Shared Worker）
     -   [x] tag 符号 `{}` `()` 切换
     -   [x] 支持 [数值加权](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#attentionemphasis) ,[Prompt editing](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#prompt-editing), [Alternating Words](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#alternating-words), （Stable Diffusion 专有）
-    -   [ ] NAI 和 SD 魔咒等值交换
 -   系统方面
     -   [x] 设置面板可以更改系统参数
     -   [x] 本地化设置参数
     -   [x] 青少年模式
 -   部署方面
     -   [x] csv 预先压缩：Netlify 设置压缩即可
-    -   [x] 使用 Netlify 云函数 + Notion 后台
+    -   [x] 使用 Netlify 云函数 + Notion 后台组成社区数据库
+    -   [x] 使用 Github Issues 作为反馈后台
 -   社区方面
     -   [x] 分享模式，社区魔咒查看
     -   [x] 添加社区图片直接预览
@@ -77,21 +75,32 @@
 
 ### 明白魔导绪论的原理
 
-1. 魔导绪论的文件都是静态文件，没有 api，别攻击了，数据都在 Github 上了。
-2. 魔导绪论有一个庞大的标签列表，在 [Tags 收集整理项目](https://github.com/KonghaYao/tag-collection)。
-3. 魔导绪论在此基础上实现了 tags 的查询操作，数据化魔咒支持加减权操作等。
-4. 魔导绪论需要一个 **支持 tags 的 AI 图片生成工具**，这个就自行查找吧。
-5. 如果你对具体的 tag 的意义有学习的想法，建议阅读
+1. 魔导绪论的文件都是静态文件，没有 api，别攻击了，数据都在 Github 上了。魔导绪论有一个庞大的标签列表，在 [Tags 收集整理项目](https://github.com/KonghaYao/tag-collection)。 魔导绪论在此基础上实现了 tags 的查询操作，数据化魔咒支持加减权操作等。
+
+2. 魔导绪论需要一个 **支持 tags 的 AI 图片生成工具**，这个就自行查找吧。
+
+3. 如果你对具体的 tag 的意义有学习的想法，建议阅读
+
     - [UP 主 胧雨夜 的 Novel AI 教程](https://www.bilibili.com/video/BV1Le4y1E792/?p=1&t=1304) [网页文本](https://www.yuque.com/longyuye/lmgcwy)
     - [如何与 AI 乙方沟通 —— 细节生成法](https://magic-tag.notion.site/AI-41525facc3ff4874b09973f1c5b33945)
-6. 中文翻译为谷歌机翻，可能比较水，就当英文翻译题好了。 搜索功能可能有时抽风，比如白发，你搜头发是搜不到的，这是搜索算法的问题，换种搜法就好了。
-7. 为啥每次搜索的结果最多看到 500 （或者更多），因为 这些标签内没找到，要不是没有，就是搜索词不对，所以为了节省性能，没有显示。
-8. 默认为青少年模式，但是违禁词过滤估计还会有漏网之鱼，请多多提 issue；**模式则可以通过设置面板调整** (\*^\_^\*)。
-9. 由于没钱买服务器，所以我用我的 notion 数据库作为了后端帮助大家存储公开魔咒。Notion 只能进行上传和查询操作，所以公开的魔咒是只能由我改动，可以提交 issues，同时也没有用户系统，大家都是一样的，也算是部分 Web 3 了吧，哈哈哈。[Notion 页面](https://magic-tag.notion.site/90b7c1bb6ad7446ba66e0b1d8ec1d535?v=4cd4db0491664d25a25107631a6f3803)
 
-10. 图片存储在 thumbsnap 网站，提供了非常好的图片加载速度，足够社区使用。另外，如果没有显示出图片，那么非常有可能你开了某个代理，关掉就可以了。（我就是这样）[关于图片网速的测试](https://github.com/KonghaYao/ai-tag/issues/7#issuecomment-1297947958)
-11. 关于魔咒的符号问题，两个家族 —— Novel AI 和 Stable Diffusion 采用了不同的符号机制，但是有共同之处。魔导绪论采用的方案是所见即所得，魔咒如代码，是给人看的，保证你在上面编辑的数据复制后是一致的。
-    1. 如果你想要 **数值加权**、`|` 融合、`AND` 写法，那么直接写在搜索栏然后创建吧，魔导绪论不能识别他们，但是可以保证复制后是正确的。（如遇 BUG 请提交 issues）
+4. **中文翻译为谷歌机翻**，部分经过人工调教。 搜索功能可能有时抽风，比如白发，你搜头发是搜不到的，这是搜索算法的问题，换种搜法就好了。
+
+5. 为啥每次搜索的结果最多看到 500 （或者更多），因为 这些标签内没找到，要不是没有，就是搜索词不对，所以为了节省性能，没有显示。
+
+6. **默认为青少年模式**，但是违禁词过滤估计还会有漏网之鱼，请多多提 issue；**模式则可以通过设置面板调整** (\*^\_^\*)。
+
+7. 由于没钱买服务器，所以我用我的 notion 数据库作为了后端帮助大家存储公开魔咒。
+
+> Notion 只能进行上传和查询操作，所以公开的魔咒是只能由我改动，可以提交 issues，同时也没有用户系统，大家都是一样的。所有的数据都作为了画廊功能进行展示！[Notion 页面](https://magic-tag.notion.site/90b7c1bb6ad7446ba66e0b1d8ec1d535?v=4cd4db0491664d25a25107631a6f3803)
+
+8.  图片存储在 thumbsnap 网站，提供了非常好的图片加载速度，足够社区使用。
+
+> 另外，如果没有显示出图片，那么非常有可能你开了某个代理，关掉就可以了。（我就是这样）[关于图片网速的测试](https://github.com/KonghaYao/ai-tag/issues/7#issuecomment-1297947958)
+
+9.  关于魔咒的符号问题，两个家族 —— Novel AI 和 Stable Diffusion 采用了不同的符号机制，但是有共同之处。魔导绪论采用的方案是所见即所得，魔咒如代码，是给人看的，保证你在上面编辑的数据复制后是一致的。
+
+> 如果你想要 **数值加权**、`|` 融合、`AND` 写法，那么直接写在搜索栏然后创建吧，魔导绪论可以部分识别它们。（如遇 BUG 请提交 issues）
 
 ### 使用魔导绪论绘制你想要的图片
 

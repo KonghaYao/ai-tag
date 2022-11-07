@@ -53,19 +53,26 @@ export async function readFileInfo(file: File) {
 }
 async function handleWebUiTag(data) {
     let promptSplit = data.text.split('Negative prompt: ');
-    let otherSplit = promptSplit[1].split('Steps: ');
+    let [badPrompt, Details] = promptSplit[1].split('Steps: ');
     return [
         {
-            keyword: '提示词',
+            keyword: 'Description',
             text: promptSplit[0],
         },
         {
-            keyword: '负面提示词',
-            text: otherSplit[0],
+            keyword: 'Software',
+            text: 'Stable Diffusion WebUI',
         },
         {
-            keyword: '其他参数',
-            text: 'Steps: ' + otherSplit[1],
+            keyword: 'Comment',
+            text: JSON.stringify({
+                uc: badPrompt,
+                ...Object.fromEntries(
+                    ('Steps: ' + Details)
+                        .split(',')
+                        .map((i) => i.split(':').map((i) => i.toLowerCase().trim()))
+                ),
+            }),
         },
     ];
 }

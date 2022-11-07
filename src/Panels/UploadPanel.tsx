@@ -82,14 +82,15 @@ export const UploadPanel = () => {
     const changeFile = async (e: any) => {
         const file: File = e.target.files[0];
         const data = await readFileInfo(file).catch((error) => {
+            console.warn(error);
             return [];
         });
+        console.log(data);
         const info = new Map(data);
 
         // 写入 tags
         if (info.has('Description')) {
             const tags = info.get('Description');
-            const tagsArray = easyStringToTags(tags);
             batch(() => {
                 set('tags', tags);
             });
@@ -100,7 +101,8 @@ export const UploadPanel = () => {
         seed?.length && set('seed', seed);
 
         set('other', JSON.stringify(data));
-        uploadPicture(file);
+
+        // uploadPicture(file);
     };
 
     return (

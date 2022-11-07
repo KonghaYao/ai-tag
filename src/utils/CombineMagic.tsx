@@ -1,8 +1,7 @@
 import { uniqBy } from 'lodash-es';
 import { IData } from '../App';
 
-/** 融合魔法 */
-
+/** 融合魔法，折叠融合魔咒 */
 export const CombineMagic = (input: IData[], usersCollection: any) => {
     usersCollection((i) => {
         // 折叠融合，这样才符合 tags 的先后顺序

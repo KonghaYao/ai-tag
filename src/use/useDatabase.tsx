@@ -153,7 +153,7 @@ export function useDatabase(store: IStoreData) {
         proxy(({ prompt = '' }) => {
             if (prompt !== stateTag) {
                 // 如果用户输入在 URL 的 tag 不太规范，会震荡数据将其统一
-                console.log('触发检查', { receive: prompt, stateTag }, prompt === stateTag);
+                console.log('Worker 注入数据');
                 stateTag = prompt;
                 usersCollection(stringToTags(prompt, untrack(lists)));
             }

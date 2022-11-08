@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
 import p from './package.json';
 import visualizer from 'rollup-plugin-visualizer';
+import fs from 'fs';
 export default defineConfig(({ mode }) => {
     return {
         base: './',
@@ -10,6 +11,12 @@ export default defineConfig(({ mode }) => {
             solidPlugin(),
             {
                 enforce: 'pre',
+                transformIndexHtml(code) {
+                    return code.replace(
+                        '<!-- Info Inject -->',
+                        fs.readFileSync('./html/searchEngine.html', 'utf8')
+                    );
+                },
                 resolveId(id) {
                     if (id === 'viewerjs') {
                         return {

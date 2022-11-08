@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /.netlify/
+Sitemap: https://magic-tag.netlify.app/sitemap.xml

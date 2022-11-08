@@ -1,3 +1,5 @@
 User-agent: *
 Disallow: /.netlify/
+Allow: /index.html
+Allow: /gallery.html
 Sitemap: https://magic-tag.netlify.app/sitemap.xml

@@ -1,5 +1,8 @@
 {
     "loading": "加载中",
+    "search": "搜索",
+    "error": "发生了不知名的错误",
+    "voidResult": "结果为空",
     "header": {
         "Doc": "教程",
         "Gallery": "画廊",
@@ -59,5 +62,35 @@
         "DescriptionTitle": "具体描述",
         "Description": "必填，请写下相关的信息，相关的来源，触发的条件等，有啥写啥",
         "UploadButton": "提交，感谢您的支持！"
+    },
+    "home": {
+        "btn": {
+            "Setting": "设置",
+            "Gallery": "魔咒画廊",
+            "RandomMaker": "三分之二魔咒生成器",
+            "feedback": "反馈信息"
+        },
+        "hint": {
+            "clickBelow": "点击下面的主页即是返回"
+        },
+        "title": {
+            "home": "主页",
+            "localFunc": "本地功能",
+            "FriendsLink": "友情链接",
+            "translator": "辅助翻译器"
+        }
+    },
+    "publicPanel": {
+        "hint": {
+            "gotoSite": "前往网站",
+            "gallery": "魔咒画廊",
+            "Share": "我要分享",
+            "CopySuccess": "拿来成功",
+            "CombineSuccess": "融合魔法发动，魔咒已融入",
+            "searchHint": "搜索标题"
+        },
+        "CopyMagic": "拿来魔法",
+        "CombineMagic": "融合魔法",
+        "advancedSearch": "高级搜索"
     }
 }

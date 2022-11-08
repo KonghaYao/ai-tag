@@ -9,6 +9,7 @@ import { useViewer } from '../use/useViewer';
 import { Notice } from '../utils/notice';
 import { CombineMagic } from '../utils/CombineMagic';
 import { notionSearch } from '../utils/searchDecode';
+import { useTranslation } from '../../i18n';
 
 export const PublicPanel = () => {
     const { isPanelVisible } = useContext(PanelContext);
@@ -51,20 +52,21 @@ export const PublicPanel = () => {
 
     /** 搜索词汇改变 */
     const changeSearch = debounce(refetchData, 1000);
+    const { t } = useTranslation();
     return (
         <Panel id="gallery">
             <header class="flex w-full items-end justify-between p-2 text-center text-lg font-bold">
                 <a href="./gallery.html">
                     <div class="btn float-right cursor-pointer px-2 text-sm text-green-700">
-                        前往网站
+                        {t('publicPanel.hint.gotoSite')}
                     </div>
                 </a>
-                <div class="flex-none">魔咒画廊</div>
+                <div class="flex-none"> {t('publicPanel.hint.gallery')}</div>
                 <div
                     class="btn float-right cursor-pointer px-2 text-sm text-green-700"
                     onClick={() => visibleId('uploader')}
                 >
-                    我要分享
+                    {t('publicPanel.hint.Share')}
                 </div>
             </header>
 
@@ -74,11 +76,11 @@ export const PublicPanel = () => {
                         href="https://github.com/KonghaYao/ai-tag#关于社区的搜索方式"
                         target="_blank"
                     >
-                        高级搜索
+                        {t('publicPanel.advancedSearch')}
                     </a>
                 </div>
                 <input
-                    placeholder="搜索标题"
+                    placeholder={t('publicPanel.hint.searchHint')}
                     type="search"
                     class="w-full rounded-full bg-gray-700  px-4 text-sm text-gray-200 outline-none"
                     oninput={(i) => {
@@ -88,7 +90,7 @@ export const PublicPanel = () => {
                     }}
                 />
                 <div class="btn px-2" onClick={refetchData}>
-                    搜索
+                    {t('search')}
                 </div>
             </div>
             <main class="grid w-full flex-1 auto-rows-min grid-cols-2 gap-2 overflow-auto p-4 py-6">
@@ -97,14 +99,14 @@ export const PublicPanel = () => {
                     fallback={
                         <div class="flex h-full w-full items-center justify-center">
                             {showing.error ? (
-                                <span>加载错误了</span>
+                                <span>{t('error')}</span>
                             ) : (
-                                <span>加载中, 请稍等。</span>
+                                <span>{t('loading')}</span>
                             )}
                         </div>
                     }
                 >
-                    {showing().length === 0 && <div>结果为空</div>}
+                    {showing().length === 0 && <div>{t('voidResult')}</div>}
                     <For each={showing()}>
                         {(item, index) => {
                             return (
@@ -142,20 +144,22 @@ export const PublicPanel = () => {
                                             class="btn flex-none"
                                             onClick={() => {
                                                 usersCollection(stringToTags(item.tags, lists()));
-                                                Notice.success('拿来成功');
+                                                Notice.success(t('publicPanel.hint.CopySuccess'));
                                             }}
                                         >
-                                            拿来魔法
+                                            {t('publicPanel.CopyMagic')}
                                         </button>
                                         <button
                                             class="btn flex-none"
                                             onClick={() => {
                                                 const input = stringToTags(item.tags, lists());
                                                 CombineMagic(input, usersCollection);
-                                                Notice.success('融合魔法发动，魔咒已融入');
+                                                Notice.success(
+                                                    t('publicPanel.hint.CombineSuccess')
+                                                );
                                             }}
                                         >
-                                            融合魔法
+                                            {t('publicPanel.CopyMagic')}
                                         </button>
                                     </div>
                                 </div>

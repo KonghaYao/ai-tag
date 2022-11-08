@@ -14,7 +14,7 @@ export const SettingPanel = () => {
         { title: '使用默认字体', bind: defaultFont },
     ];
     const NumberList = [
-        { title: '每页 tags 数', bind: tagsPerPage },
+        { title: '每次搜索 tags 数', bind: tagsPerPage },
         { title: '最大强调层数', bind: MaxEmphasize },
     ];
     const reloadCache = async () => {

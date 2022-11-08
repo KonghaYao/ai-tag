@@ -1,7 +1,7 @@
 import { atom, useSingleAsync } from '@cn-ui/use';
 import { debounce } from 'lodash-es';
 import { For, useContext } from 'solid-js';
-import { useTranslation } from '../../i18n';
+import i18n, { useTranslation } from '../../i18n';
 import { Data } from '../App';
 import { Panel } from '../components/Panel';
 import { Notice } from '../utils/notice';
@@ -70,7 +70,11 @@ export const FeedBackPanel = () => {
                     >
                         <For each={Labels}>
                             {(item) => {
-                                return <option value={item.value}>{item.name}</option>;
+                                return (
+                                    <option value={item.value}>
+                                        {i18n.language === 'zh' ? item.name : item.value}
+                                    </option>
+                                );
                             }}
                         </For>
                     </select>
@@ -80,7 +84,7 @@ export const FeedBackPanel = () => {
                     <input
                         placeholder={t('feedback.necessary')}
                         value={callbacks().title}
-                        class="ml-4 w-full appearance-none rounded-md bg-gray-800 px-2 text-sm outline-none"
+                        class="ml-4 w-full appearance-none rounded-md bg-gray-800 px-2 text-sm outline-none placeholder:text-gray-600"
                         onChange={(e: any) => {
                             callbacks((i) => ({
                                 ...i,
@@ -94,7 +98,7 @@ export const FeedBackPanel = () => {
                     <input
                         placeholder={t('feedback.Path')}
                         value={callbacks().author}
-                        class="ml-4 w-full appearance-none rounded-md bg-gray-800 px-2 text-sm outline-none"
+                        class="ml-4 w-full appearance-none rounded-md bg-gray-800 px-2 text-sm outline-none placeholder:text-gray-600"
                         onChange={(e: any) => {
                             callbacks((i) => ({
                                 ...i,
@@ -108,7 +112,7 @@ export const FeedBackPanel = () => {
                     <textarea
                         value={callbacks().body}
                         placeholder={t('feedback.Description')}
-                        class="w-full appearance-none rounded-md bg-gray-800 px-2 text-sm outline-none"
+                        class="w-full appearance-none rounded-md bg-gray-800 px-2 text-sm outline-none placeholder:text-gray-600"
                         onChange={(e: any) => {
                             callbacks((i) => ({
                                 ...i,

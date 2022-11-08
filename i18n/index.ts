@@ -24,4 +24,5 @@ export const useTranslation = () => {
         },
     };
 };
+// console.log(i18n);
 export default i18n;

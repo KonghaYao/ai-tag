@@ -215,6 +215,7 @@ export const UploadPanel = () => {
                 </div>
                 <a
                     class="px-2 text-sky-600"
+                    target="_blank"
                     href="https://creativecommons.org/share-your-work/public-domain/cc0/"
                 >
                     <div class="p-2 text-sm text-green-600">{t('uploadPanel.license')}</div>

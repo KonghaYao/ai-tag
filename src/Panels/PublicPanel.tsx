@@ -159,7 +159,7 @@ export const PublicPanel = () => {
                                                 );
                                             }}
                                         >
-                                            {t('publicPanel.CopyMagic')}
+                                            {t('publicPanel.CombineMagic')}
                                         </button>
                                     </div>
                                 </div>

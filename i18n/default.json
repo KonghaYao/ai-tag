@@ -82,9 +82,9 @@
     },
     "publicPanel": {
         "hint": {
-            "gotoSite": "前往网站",
+            "gotoSite": "网站",
             "gallery": "魔咒画廊",
-            "Share": "我要分享",
+            "Share": "分享",
             "CopySuccess": "拿来成功",
             "CombineSuccess": "融合魔法发动，魔咒已融入",
             "searchHint": "搜索标题"

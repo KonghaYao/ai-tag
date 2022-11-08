@@ -60,7 +60,7 @@ export function HeaderSecond() {
                     })
                 }
             >
-                {t('toolbar2.addWeight')}
+                {t('toolbar2.subWeight')}
             </span>
 
             <span

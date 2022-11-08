@@ -1,0 +1,118 @@
+{
+    "loading": "ロード中",
+    "search": "検索けんさく",
+    "error": "知られていないエラーが発生しました",
+    "voidResult": "結果がNULLです",
+    "header": {
+        "Doc": "チュートリアル",
+        "Gallery": "ギャラリー",
+        "FeedBack": "フィードバック",
+        "TeenagerMode": "青少年モード"
+    },
+    "toolbar1": {
+        "en": "英語",
+        "zh": "中国語",
+        "Import": "呪文導入",
+        "Home": "ホーム・ページ",
+        "Gallery": "ギャラリー",
+        "Share": "分かち合う",
+        "hint": {
+            "bracketsChange": "括弧の交換を強調する",
+            "ImportHint": "呪文を入力してください。呪文は上書きされますよ"
+        }
+    },
+    "toolbar2": {
+        "deleteMode": "削除モード",
+        "addWeight": "重み付けモード",
+        "subWeight": "ウェイトダウンモード",
+        "copy": "ワンクリックコピー",
+        "hint": { "copy": "複製魔法リリース" }
+    },
+    "searchBox": {
+        "hint": { "searchPlaceholder": "検索キーワードは、中国語でも構いません" },
+        "searchResult": "検索結果",
+        "clear": "パージ",
+        "create": "作成＃サクセイ＃",
+        "NoNumberFilter": "無数の目のスクリーニング",
+        "Random": "ランダム"
+    },
+    "userSelect": { "hint": { "add": "次のキーワードをクリックして追加" } },
+    "feedback": {
+        "hint": {
+            "uploading": "コミット中。。。",
+            "success": "コミットに成功しました。フィードバックありがとうございます",
+            "notFilled": "記入を完了してください"
+        },
+        "feedbackMessage": "フィードバック情報",
+        "viewOldFeedback": "以前のフィードバックの表示",
+        "beforeFeedback": "フィードバックする前に、確認してください：青少年モードによる単語の欠落",
+        "IWantTo": "私は欲しい",
+        "QuestionTitle": "問題のタイトル",
+        "necessary": "必須",
+        "YourName": "あなたの名前",
+        "Path": "住所を残すことができる",
+        "DescriptionTitle": "具体的な説明",
+        "Description": "必要に応じて、関連する情報、関連するソース、トリガーの条件など、何が書いてあるかを書いてください。",
+        "UploadButton": "提出して、あなたの支持に感謝します！"
+    },
+    "home": {
+        "btn": {
+            "Setting": "設定＃セッテイ＃",
+            "Gallery": "魔法の呪文ギャラリー",
+            "RandomMaker": "3分の2の呪文生成器",
+            "feedback": "フィードバック情報"
+        },
+        "hint": { "clickBelow": "次のホームページをクリックして戻る" },
+        "title": {
+            "home": "ホーム・ページ",
+            "localFunc": "ローカル機能",
+            "FriendsLink": "相互リンク",
+            "translator": "ほじょほんやくき"
+        }
+    },
+    "publicPanel": {
+        "hint": {
+            "gotoSite": "Webサイトへ",
+            "gallery": "魔法の呪文ギャラリー",
+            "Share": "分かち合いたい",
+            "CopySuccess": "成功を収める",
+            "CombineSuccess": "融合魔法が発動し、呪文が溶け込んだ",
+            "searchHint": "検索タイトル"
+        },
+        "CopyMagic": "魔法を持ってきて",
+        "CombineMagic": "融合魔法",
+        "advancedSearch": "高度な検索"
+    },
+    "settingPanel": {
+        "title": "セットアップパネル",
+        "hint": {
+            "refresh": "キャッシュの更新：辞書に強いキャッシュがあります。新しいものを更新してください。"
+        }
+    },
+    "uploadPanel": {
+        "hint": {
+            "uploading": "アップロード中です、少々お待ちください",
+            "uploadDone": "アップロード完了",
+            "checkError": "あなたの法力は少し欠けているようですね。",
+            "uploadingImage": "画像をアップロードするには、完成を待ってください。。。",
+            "uploadError": "画像のアップロードに失敗しました",
+            "commit": "コミット！",
+            "commitHint": "森はすべてを覚えている"
+        },
+        "title": "大きな夢のメロディー",
+        "YourName": "あなたの名前",
+        "description": "呪文の記述",
+        "suitableForTeen": "未成年に適しているか",
+        "hint1": "正しい画像とタグをアップロードしないとクリーンアップされますので注意してください。",
+        "hint2": "サービスを継続するためには、「あなたが知っている」タイプをアップロードしないでください。",
+        "autoDetect": "画像の自動認識=>",
+        "prompt": "呪文テキスト",
+        "DetectResult": "検出結果：",
+        "seed": "シード番号",
+        "license": "アップロードリソースはCC 0で共有されます"
+    },
+    "WebView": {
+        "newPage": "新しいタブページが開きます",
+        "Error": "このサイトはサポートされていません。ジャンプをクリックしてください"
+    }
+}

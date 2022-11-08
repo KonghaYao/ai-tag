@@ -1,11 +1,14 @@
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import zh from './zh/translation.json';
+import zh from './default.json';
+import en from './lang/en.json';
+import jp from './lang/jp.json';
 
 i18n.use(LanguageDetector).init({
     resources: {
-        // en: { translation: en },
+        en: { translation: en },
         zh: { translation: zh },
+        ja: { translation: jp },
     },
     fallbackLng: 'zh',
     debug: true,

@@ -92,5 +92,37 @@
         "CopyMagic": "拿来魔法",
         "CombineMagic": "融合魔法",
         "advancedSearch": "高级搜索"
+    },
+    "settingPanel": {
+        "title": "设置面板",
+        "hint": {
+            "refresh": "刷新缓存: 词库有强缓存，更新新请点我。"
+        }
+    },
+    "uploadPanel": {
+        "hint": {
+            "uploading": "上传中，请稍等",
+            "uploadDone": "上传完成",
+            "checkError": "你的法力好像有些缺失呀！",
+            "uploadingImage": "上传图片中，请等待完成。。。",
+            "uploadError": "上传图片失败",
+            "commit": "提交 ! ",
+            "commitHint": "森林会记住一切"
+        },
+        "title": "大梦的曲调",
+        "YourName": "你的名字",
+        "description": "魔咒描述",
+        "suitableForTeen": "是否适合未成年",
+        "hint1": " 注意上传正确的图片和 tag 否则会被清理。",
+        "hint2": "为了持续服务，请不要上传 “你懂的” 的类型。",
+        "autoDetect": "自动识别图片=>",
+        "prompt": "魔咒文本",
+        "DetectResult": "检测结果：",
+        "seed": "种子号码",
+        "license": "上传资源将以 CC0 方式进行分享"
+    },
+    "WebView": {
+        "newPage": "新标签页打开",
+        "Error": "该站点不支持，请点击跳转"
     }
 }

@@ -178,7 +178,7 @@ export const PublicPanel = () => {
                         }
                     }, 500)}
                 >
-                    上一页
+                    《
                 </button>
                 {page() + 1}
                 <button
@@ -191,7 +191,7 @@ export const PublicPanel = () => {
                         }
                     }, 500)}
                 >
-                    下一页
+                    》
                 </button>
             </footer>
         </Panel>

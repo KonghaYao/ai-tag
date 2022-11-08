@@ -1,15 +1,15 @@
-import { createEffect, For, useContext } from 'solid-js';
+import { createEffect, For, useContext, useTransition } from 'solid-js';
 import { Data } from '../App';
 import { createStore } from 'solid-js/store';
 import { Panel, PanelContext } from '../components/Panel';
 import { API, StoreData } from '../api/notion';
 import { Atom, atom, useSingleAsync } from '@cn-ui/use';
-import { easyStringToTags } from '../utils/stringToTags';
 import { Notice } from '../utils/notice';
 import { TagsToString } from '../use/TagsConvertor';
 import { batch } from 'solid-js';
 import { readFileInfo } from '../utils/getPromptsFromPic';
 import { untrack } from 'solid-js/web';
+import { useTranslation } from '../../i18n';
 const init = {
     username: '',
     tags: '',
@@ -22,6 +22,7 @@ const init = {
 const [store, set] = createStore({ ...init });
 
 const useSharedUpload = (uploading: Atom<boolean>) => {
+    const { t } = useTranslation();
     const { username } = useContext(Data);
 
     // 上传前检查
@@ -34,17 +35,17 @@ const useSharedUpload = (uploading: Atom<boolean>) => {
     /** 上传接口 */
     const upload = useSingleAsync(() => {
         if (check()) {
-            Notice.success('上传中，请稍等');
+            Notice.success(t('uploadPanel.hint.uploading'));
             return API.uploadData({ ...store, username: username() }).then(() => {
                 set((i) => ({ ...i, image: '', description: '', seed: '' }));
-                Notice.success('上传完成');
+                Notice.success(t('uploadPanel.hint.uploadDone'));
             });
         } else {
-            Notice.error('你的法力好像有些缺失呀！');
+            Notice.error(t('uploadPanel.hint.checkError'));
         }
     });
     const uploadPicture = async (file: File) => {
-        Notice.success('上传图片中');
+        Notice.success(t('uploadPanel.hint.uploadingImage'));
         uploading(true);
         const fd = new FormData();
         fd.append('key', '0000239c0acbbcb3bdedc2b1c6983537');
@@ -57,13 +58,18 @@ const useSharedUpload = (uploading: Atom<boolean>) => {
             .then((res) => {
                 uploading(false);
                 set('image', res.data.thumb);
-                Notice.success('上传图片完成');
+                Notice.success(t('uploadPanel.hint.uploadDone'));
+            })
+            .catch((err) => {
+                console.warn(err);
+                Notice.error(t('uploadPanel.hint.uploadError'));
             });
     };
     return { upload, uploadPicture };
 };
 
 export const UploadPanel = () => {
+    const { t } = useTranslation();
     const { isPanelVisible } = useContext(PanelContext);
     const { username, usersCollection, emphasizeSymbol } = useContext(Data);
     const uploading = atom(false);
@@ -107,11 +113,11 @@ export const UploadPanel = () => {
 
     return (
         <Panel id="uploader">
-            <header class="w-full py-2 text-center font-bold">大梦的曲调</header>
+            <header class="w-full py-2 text-center font-bold">{t('uploadPanel.title')}</header>
 
             <main class="flex flex-1 flex-col overflow-auto">
                 <div class="my-2 mx-4 flex items-center justify-between">
-                    <label class="flex-none ">你的名字</label>
+                    <label class="flex-none ">{t('uploadPanel.YourName')}</label>
                     <input
                         placeholder="那菈的名字"
                         class="input ml-1 w-full"
@@ -124,7 +130,7 @@ export const UploadPanel = () => {
                     />
                 </div>
                 <div class="my-2 mx-4 flex items-center justify-between">
-                    <label class="flex-none ">魔咒描述</label>
+                    <label class="flex-none ">{t('uploadPanel.description')}</label>
                     <input
                         placeholder="曲调名称"
                         class="input ml-1 w-full"
@@ -140,7 +146,9 @@ export const UploadPanel = () => {
                     class="my-2 mx-4 flex items-center justify-between"
                     onclick={() => set('r18', !store.r18)}
                 >
-                    <label class="flex-none text-green-600">是否适合未成年</label>
+                    <label class="flex-none text-green-600">
+                        {t('uploadPanel.suitableForTeen')}
+                    </label>
                     <div
                         class="h-6 w-6 rounded-md border border-solid border-slate-600 transition-colors duration-300"
                         classList={{
@@ -150,19 +158,19 @@ export const UploadPanel = () => {
                     ></div>
                 </div>
                 <div class="my-2 mx-4 text-center text-sm text-green-700">
-                    注意上传正确的图片和 tag 否则会被清理。
+                    {t('uploadPanel.hint1')}
                 </div>
                 <div class="my-2 mx-4 text-center text-sm text-green-700">
-                    为了持续服务，请不要上传 “你懂的” 的类型。
+                    {t('uploadPanel.hint2')}
                 </div>
                 <div class="my-2 mx-4 flex items-center justify-between ">
-                    <div class="flex-none">自动识别图片=》</div>
+                    <div class="flex-none">{t('uploadPanel.autoDetect')}</div>
                     <input type="file" oninput={changeFile} />
                 </div>
 
                 {uploading() && (
                     <div class="btn w-full text-center text-red-600 ">
-                        上传图片中，请等待完成。。。
+                        {t('uploadPanel.hint.uploadingImage')}
                     </div>
                 )}
                 {store.image && (
@@ -174,7 +182,7 @@ export const UploadPanel = () => {
                     />
                 )}
                 <div class="my-2 mx-4 flex items-center justify-between">
-                    <label class="flex-none ">魔咒文本</label>
+                    <label class="flex-none ">{t('uploadPanel.prompt')}</label>
                     <textarea
                         placeholder="曲调内容"
                         class="input ml-1"
@@ -188,12 +196,12 @@ export const UploadPanel = () => {
                     />
                 </div>
                 <div class="my-2 mx-4 flex cursor-pointer flex-wrap">
-                    检测结果：
+                    {t('uploadPanel.DetectResult')}
                     {store.tags}
                 </div>
 
                 <div class="my-2 mx-4 flex items-center justify-between">
-                    <label class="flex-none ">种子号码</label>
+                    <label class="flex-none ">{t('uploadPanel.seed')}</label>
                     <input
                         placeholder="如果没有可以不填"
                         class="input ml-1 w-full"
@@ -205,19 +213,16 @@ export const UploadPanel = () => {
                         }}
                     />
                 </div>
-                <div class="p-2 text-sm text-green-600">
-                    上传资源将以
-                    <a
-                        class="px-2 text-sky-600"
-                        href="https://creativecommons.org/share-your-work/public-domain/cc0/"
-                    >
-                        CC0 方式
-                    </a>
-                    进行分享
-                </div>
+                <a
+                    class="px-2 text-sky-600"
+                    href="https://creativecommons.org/share-your-work/public-domain/cc0/"
+                >
+                    <div class="p-2 text-sm text-green-600">{t('uploadPanel.license')}</div>
+                </a>
             </main>
             <div class="cursor-pointer bg-green-600 p-2  text-center text-white" onClick={upload}>
-                提交! <span class="text-xs">森林会记住一切</span>
+                {t('uploadPanel.hint.commit')}{' '}
+                <span class="text-xs">{t('uploadPanel.hint.commitHint')}</span>
             </div>
         </Panel>
     );

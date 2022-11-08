@@ -1,6 +1,7 @@
 import { atom } from '@cn-ui/use';
 import { batch, Component, JSXElement, Show, useContext } from 'solid-js';
 import { ErrorBoundary } from 'solid-js';
+import { useTranslation } from '../../i18n';
 import { Data } from '../App';
 import { Panel, PanelContext } from '../components/Panel';
 
@@ -26,6 +27,7 @@ export const useWebView = () => {
 };
 
 export const Webview = () => {
+    const { t } = useTranslation();
     const { isPanelVisible } = useContext(PanelContext);
     const { webviewURL } = useContext(Data);
 
@@ -36,16 +38,16 @@ export const Webview = () => {
             <Show when={isPanelVisible('webview')}>
                 <div>
                     <a href={webviewURL()} target="_blank">
-                        <div class="btn m-2"> 新标签页打开</div>
+                        <div class="btn m-2"> {t('WebView.newPage')}</div>
                     </a>
                 </div>
                 <div class="relative h-full w-full">
-                    {loading() && <div> 加载中。。。</div>}
+                    {loading() && <div> {t('uploading')}</div>}
                     <ErrorBoundary
                         fallback={() => {
                             return (
                                 <div>
-                                    该站点不支持，请点击跳转
+                                    {t('WebView.Error')}
                                     <a href={webviewURL()}>{webviewURL()}</a>
                                 </div>
                             );

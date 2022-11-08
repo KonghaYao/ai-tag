@@ -1,4 +1,5 @@
 import { For, useContext } from 'solid-js';
+import { useTranslation } from '../../i18n';
 import { Data } from '../App';
 import { Panel } from '../components/Panel';
 import { Notice } from '../utils/notice';
@@ -24,11 +25,12 @@ export const SettingPanel = () => {
             Notice.success('更新完成，刷新浏览器完成更新');
         });
     };
+    const { t } = useTranslation();
     return (
         <Panel id="setting">
-            <h3 class="my-2 text-center text-lg font-bold">设置面板</h3>
+            <h3 class="my-2 text-center text-lg font-bold">{t('settingPanel.title')}</h3>
             <div class="bg-slate-700 p-2 text-center transition-colors" onclick={reloadCache}>
-                刷新缓存: 词库有强缓存，更新新请点我。
+                {t('settingPanel.hint.refresh')}
             </div>
             <For each={list}>
                 {(item) => {

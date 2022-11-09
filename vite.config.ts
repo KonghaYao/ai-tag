@@ -5,6 +5,7 @@ import p from './package.json';
 import visualizer from 'rollup-plugin-visualizer';
 import fs from 'fs';
 export default defineConfig(({ mode }) => {
+    const __isDev__ = mode === 'development';
     return {
         base: './',
         plugins: [
@@ -12,10 +13,11 @@ export default defineConfig(({ mode }) => {
             {
                 enforce: 'pre',
                 transformIndexHtml(code) {
-                    return code.replace(
-                        '<!-- Info Inject -->',
-                        fs.readFileSync('./html/searchEngine.html', 'utf8')
-                    );
+                    if (__isDev__)
+                        return code.replace(
+                            '<!-- Info Inject -->',
+                            fs.readFileSync('./html/searchEngine.html', 'utf8')
+                        );
                 },
                 resolveId(id) {
                     if (id === 'viewerjs') {
@@ -26,7 +28,7 @@ export default defineConfig(({ mode }) => {
                     }
                 },
                 transform(code, id) {
-                    if (mode !== 'development' && id.includes('/src/worker/index')) {
+                    if (__isDev__ && id.includes('/src/worker/index')) {
                         return code.replace(/{[^{]*?type:\s*?'module',*?[^}]*?}/g, '');
                     }
                 },
@@ -49,7 +51,7 @@ export default defineConfig(({ mode }) => {
         },
         define: {
             __version__: JSON.stringify(p.version),
-            __isDev__: JSON.stringify(mode === 'development'),
+            __isDev__: JSON.stringify(__isDev__),
         },
         optimizeDeps: {
             include: [

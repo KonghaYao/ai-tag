@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => {
             {
                 enforce: 'pre',
                 transformIndexHtml(code) {
-                    if (__isDev__)
+                    if (!__isDev__)
                         return code.replace(
                             '<!-- Info Inject -->',
                             fs.readFileSync('./html/searchEngine.html', 'utf8')
@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => {
                     }
                 },
                 transform(code, id) {
-                    if (__isDev__ && id.includes('/src/worker/index')) {
+                    if (!__isDev__ && id.includes('/src/worker/index')) {
                         return code.replace(/{[^{]*?type:\s*?'module',*?[^}]*?}/g, '');
                     }
                 },

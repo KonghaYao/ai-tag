@@ -8,7 +8,7 @@ import { Notice } from '../utils/notice';
 import { commitFeedBack, FeedBackMessage, FeedBackTags, Labels } from './index';
 export const FeedBackPanel = () => {
     const { t } = useTranslation();
-    const { visibleId } = useContext(Data);
+    const { visibleId, username } = useContext(Data);
     /** 反馈信息 */
     const callbacks = atom<FeedBackMessage>({
         author: '',
@@ -72,7 +72,7 @@ export const FeedBackPanel = () => {
                             {(item) => {
                                 return (
                                     <option value={item.value}>
-                                        {i18n.language === 'zh' ? item.name : item.value}
+                                        {i18n.language === 'zh-CN' ? item.name : item.value}
                                     </option>
                                 );
                             }}
@@ -97,7 +97,7 @@ export const FeedBackPanel = () => {
                     <span class="flex-none">{t('feedback.YourName')}</span>
                     <input
                         placeholder={t('feedback.Path')}
-                        value={callbacks().author}
+                        value={username()}
                         class="ml-4 w-full appearance-none rounded-md bg-gray-800 px-2 text-sm outline-none placeholder:text-gray-600"
                         onChange={(e: any) => {
                             callbacks((i) => ({

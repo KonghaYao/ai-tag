@@ -8,24 +8,24 @@ export const SettingPanel = () => {
     const { r18Mode, showCount, tagsPerPage, sideAppMode, MaxEmphasize, defaultFont } =
         useContext(Data);
 
+    const { t } = useTranslation();
     const list = [
-        { title: '青少年模式', bind: r18Mode.reflux(!r18Mode(), (i) => !i) },
-        { title: '显示数值', bind: showCount },
-        { title: '侧边应用模式', bind: sideAppMode },
-        { title: '使用默认字体', bind: defaultFont },
+        { title: t('settingPanel.lists.teen'), bind: r18Mode.reflux(!r18Mode(), (i) => !i) },
+        { title: t('settingPanel.lists.number'), bind: showCount },
+        { title: t('settingPanel.lists.sideAPP'), bind: sideAppMode },
+        { title: t('settingPanel.lists.defaultFont'), bind: defaultFont },
     ];
     const NumberList = [
-        { title: '每次搜索 tags 数', bind: tagsPerPage },
-        { title: '最大强调层数', bind: MaxEmphasize },
+        { title: t('settingPanel.lists.everyTimeTags'), bind: tagsPerPage },
+        { title: t('settingPanel.lists.maxEm'), bind: MaxEmphasize },
     ];
     const reloadCache = async () => {
         await fetch('https://cdn.jsdelivr.net/gh/konghayao/tag-collection/data/tags.csv', {
             cache: 'reload',
         }).then(() => {
-            Notice.success('更新完成，刷新浏览器完成更新');
+            Notice.success(t('settingPanel.hint.updated'));
         });
     };
-    const { t } = useTranslation();
     return (
         <Panel id="setting">
             <h3 class="my-2 text-center text-lg font-bold">{t('settingPanel.title')}</h3>

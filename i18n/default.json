@@ -7,7 +7,10 @@
         "Doc": "教程",
         "Gallery": "画廊",
         "FeedBack": "反馈",
-        "TeenagerMode": "青少年模式"
+        "TeenagerMode": "青少年模式",
+        "hint": {
+            "teen": "可以在设置面板"
+        }
     },
     "toolbar1": {
         "en": "英文",
@@ -96,7 +99,16 @@
     "settingPanel": {
         "title": "设置面板",
         "hint": {
-            "refresh": "刷新缓存: 词库有强缓存，更新新请点我。"
+            "refresh": "刷新缓存: 词库有强缓存，更新新请点我。",
+            "updated": "更新完成，刷新浏览器完成更新"
+        },
+        "lists": {
+            "teen": "青少年模式",
+            "number": "显示数值",
+            "sideAPP": "侧边应用模式",
+            "defaultFont": "使用默认字体",
+            "everyTimeTags": "每次搜索 tags 数",
+            "maxEm": "最大强调层数"
         }
     },
     "uploadPanel": {

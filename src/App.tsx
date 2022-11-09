@@ -44,6 +44,7 @@ import { IPromptData } from 'promptor';
 import { PanelContext } from './components/Panel';
 import { FontSupport } from './components/FontSupport';
 import { useTranslation } from '../i18n';
+import { Notice } from './utils/notice';
 export const App = () => {
     const enMode = atom(true);
     const r18Mode = atom(false);
@@ -135,7 +136,14 @@ export const App = () => {
                                     {'{{ By 江夏尧 }}'}
                                 </a>
                                 {!r18Mode() && (
-                                    <span class="btn bg-green-700">{t('header.TeenagerMode')}</span>
+                                    <span
+                                        class="btn bg-green-700"
+                                        onClick={() => {
+                                            Notice.success(t('header.hint.teen'));
+                                        }}
+                                    >
+                                        {t('header.TeenagerMode')}
+                                    </span>
                                 )}
                             </div>
                         </h2>

@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => {
             {
                 enforce: 'pre',
                 transformIndexHtml(code) {
+                    // 替换 HTML 中的模板位置为搜索引擎的东西
                     if (!__isDev__)
                         return code.replace(
                             '<!-- Info Inject -->',
@@ -28,6 +29,7 @@ export default defineConfig(({ mode }) => {
                     }
                 },
                 transform(code, id) {
+                    // 兼容 worker 模式
                     if (!__isDev__ && id.includes('/src/worker/index')) {
                         return code.replace(/{[^{]*?type:\s*?'module',*?[^}]*?}/g, '');
                     }

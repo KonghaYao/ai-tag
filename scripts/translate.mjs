@@ -2,6 +2,7 @@ import traverse from 'traverse';
 import fetch from 'node-fetch';
 import fs from 'fs';
 import { gtk, getSign, token, cookie } from './transInput.mjs';
+import { merge } from 'lodash-es';
 /**
  *
  * @param {Object} obj
@@ -79,6 +80,10 @@ async function trans(q, from, to) {
         return trans(text, 'zh', targetLang);
     });
     Object.entries(final).forEach(([lang, data]) => {
+        const isExist = fs.existsSync(`./i18n/overrides/${lang}.json`);
+        if (isExist) {
+            merge(data.value, JSON.parse(fs.readFileSync(`./i18n/overrides/${lang}.json`)));
+        }
         fs.writeFileSync(`./i18n/lang/${lang}.json`, JSON.stringify(data.value));
     });
     // console.log(a);

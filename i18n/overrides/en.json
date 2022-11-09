@@ -1,0 +1,12 @@
+{
+    "home": {
+        "btn": {
+            "Setting": "Setting"
+        }
+    },
+    "publicPanel": {
+        "CopyMagic": "Copy",
+        "CombineMagic": "Blending",
+        "advancedSearch": "Advanced"
+    }
+}

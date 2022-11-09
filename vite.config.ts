@@ -25,6 +25,11 @@ export default defineConfig(({ mode }) => {
                         };
                     }
                 },
+                transform(code, id) {
+                    if (mode !== 'development' && id.includes('/src/worker/index')) {
+                        return code.replace(/{[^{]*?type:\s*?'module',*?[^}]*?}/g, '');
+                    }
+                },
             },
             mode === 'analyze' &&
                 (visualizer({ open: true, filename: 'visualizer/stat.html' }) as any),
@@ -40,13 +45,11 @@ export default defineConfig(({ mode }) => {
             },
         },
         resolve: {
-            alias: {
-                // '@cn-ui/sortable': './src/components/sortable/index',
-                // viewerjs: 'https://unpkg.com/viewerjs',
-            },
+            alias: {},
         },
         define: {
             __version__: JSON.stringify(p.version),
+            __isDev__: JSON.stringify(mode === 'development'),
         },
         optimizeDeps: {
             include: [
@@ -67,5 +70,6 @@ export default defineConfig(({ mode }) => {
                 },
             },
         },
+        worker: { format: 'iife' },
     };
 });

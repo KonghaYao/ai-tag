@@ -37,7 +37,7 @@ specifiers:
   tippy.js: ^6.3.7
   traverse: ^0.6.7
   viewerjs: ^1.11.0
-  vite: ^3.2.2
+  vite: ^3.2.3
   vite-plugin-imp: ^2.3.0
   vite-plugin-solid: ^2.4.0
   vitest: ^0.24.5
@@ -83,9 +83,9 @@ devDependencies:
   prettier: 2.6.0
   prettier-plugin-tailwindcss: 0.1.13_prettier@2.6.0
   rollup-plugin-visualizer: 5.8.3
-  vite: 3.2.2
-  vite-plugin-imp: 2.3.0_vite@3.2.2
-  vite-plugin-solid: 2.4.0_solid-js@1.6.1+vite@3.2.2
+  vite: 3.2.3
+  vite-plugin-imp: 2.3.0_vite@3.2.3
+  vite-plugin-solid: 2.4.0_solid-js@1.6.1+vite@3.2.3
   vitest: 0.24.5
 
 packages:
@@ -1892,7 +1892,7 @@ packages:
     resolution: {integrity: sha512-TE3XvfEXqKV+LdHsRdMSPsCaq0PfKDXm4SjGzfty7CzVxlDbBbT4x38vAqfXfNITmHhHUQefdxdg0Vv4ia+Z9w==}
     dev: false
 
-  /vite-plugin-imp/2.3.0_vite@3.2.2:
+  /vite-plugin-imp/2.3.0_vite@3.2.3:
     resolution: {integrity: sha512-I7xSzptQw0yBxUmXawXqkzYvtZbqRF99ZeylmaTuYmJTVjZw5/TbKE7z3h95IKE4r/lkSWdKYmHEs3QwiXKS7g==}
     peerDependencies:
       vite: '>= 2.0.0-beta.5'
@@ -1904,12 +1904,12 @@ packages:
       chalk: 4.1.2
       param-case: 3.0.4
       pascal-case: 3.1.2
-      vite: 3.2.2
+      vite: 3.2.3
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite-plugin-solid/2.4.0_solid-js@1.6.1+vite@3.2.2:
+  /vite-plugin-solid/2.4.0_solid-js@1.6.1+vite@3.2.3:
     resolution: {integrity: sha512-Rr+t2sr9TWIvH16yzBZzx6O9YSpYAvcwKUMPqbi/4iU3mRumXQ4O10i1XGtQIynC7U3XwJsMzAJigDFGbiJBiw==}
     peerDependencies:
       solid-js: ^1.3.17
@@ -1921,23 +1921,26 @@ packages:
       merge-anything: 5.0.2
       solid-js: 1.6.1
       solid-refresh: 0.4.1_solid-js@1.6.1
-      vite: 3.2.2
-      vitefu: 0.1.1_vite@3.2.2
+      vite: 3.2.3
+      vitefu: 0.1.1_vite@3.2.3
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite/3.2.2:
-    resolution: {integrity: sha512-pLrhatFFOWO9kS19bQ658CnRYzv0WLbsPih6R+iFeEEhDOuYgYCX2rztUViMz/uy/V8cLCJvLFeiOK7RJEzHcw==}
+  /vite/3.2.3:
+    resolution: {integrity: sha512-h8jl1TZ76eGs3o2dIBSsvXDLb1m/Ec1iej8ZMdz+PsaFUsftZeWe2CZOI3qogEsMNaywc17gu0q6cQDzh/weCQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
+      '@types/node': '>= 14'
       less: '*'
       sass: '*'
       stylus: '*'
       sugarss: '*'
       terser: ^5.4.0
     peerDependenciesMeta:
+      '@types/node':
+        optional: true
       less:
         optional: true
       sass:
@@ -1957,7 +1960,41 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitefu/0.1.1_vite@3.2.2:
+  /vite/3.2.3_@types+node@18.7.23:
+    resolution: {integrity: sha512-h8jl1TZ76eGs3o2dIBSsvXDLb1m/Ec1iej8ZMdz+PsaFUsftZeWe2CZOI3qogEsMNaywc17gu0q6cQDzh/weCQ==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': '>= 14'
+      less: '*'
+      sass: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      '@types/node': 18.7.23
+      esbuild: 0.15.10
+      postcss: 8.4.18
+      resolve: 1.22.1
+      rollup: 2.79.1
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
+  /vitefu/0.1.1_vite@3.2.3:
     resolution: {integrity: sha512-HClD14fjMJ+NQgXBqT3dC3RdO/+Chayil+cCPYZKY3kT+KcJomKzrdgzfCHJkIL2L0OAY+VPvrSW615iPtc7ag==}
     peerDependencies:
       vite: ^3.0.0
@@ -1965,7 +2002,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 3.2.2
+      vite: 3.2.3
     dev: true
 
   /vitest/0.24.5:
@@ -2000,7 +2037,7 @@ packages:
       tinybench: 2.3.1
       tinypool: 0.3.0
       tinyspy: 1.0.2
-      vite: 3.2.2
+      vite: 3.2.3_@types+node@18.7.23
     transitivePeerDependencies:
       - less
       - sass

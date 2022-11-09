@@ -11,7 +11,7 @@ i18n.use(LanguageDetector).init({
         ja: { translation: jp },
     },
     fallbackLng: 'zh',
-    debug: true,
+    debug: __isDev__,
     detection: {
         order: ['querystring', 'navigator', 'localStorage'],
         lookupQuerystring: 'lang',

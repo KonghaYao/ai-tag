@@ -1,7 +1,7 @@
 import { createEffect, For, on, Setter, useContext } from 'solid-js';
 import debounce from 'lodash-es/debounce';
 import { Data, IData } from './App';
-import { TagButton } from './components/TagButton';
+import { _emColor, TagButton } from './components/TagButton';
 import { reflect } from '@cn-ui/use';
 import { untrack } from 'solid-js/web';
 import { sampleSize as _sampleSize } from 'lodash-es';
@@ -64,7 +64,9 @@ export const SearchBox = () => {
 
                     <span class="flex-1"></span>
                     <div
-                        class="btn flex-none"
+                        class={
+                            'btn flex-none ' + _emColor[searchNumberLimit().toString().length - 1]
+                        }
                         onclick={() => {
                             searchNumberLimit((i) => {
                                 if (i === 0) return 10;
@@ -78,7 +80,7 @@ export const SearchBox = () => {
                             : `> ${searchNumberLimit().toLocaleString('en')}`}
                     </div>
                     <span
-                        class="btn flex-none"
+                        class="btn flex-none bg-cyan-700"
                         onclick={() => {
                             result(sampleSize(lists(), tagsPerPage()));
                         }}

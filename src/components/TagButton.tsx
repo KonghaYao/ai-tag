@@ -4,6 +4,22 @@ import { Component, For, useContext } from 'solid-js';
 import { Data, IData } from '../App';
 import { Notice } from '../utils/notice';
 
+/** 正向颜色 */
+export const emColor = [
+    'bg-lime-800',
+    'bg-yellow-800',
+    'bg-amber-800',
+    'bg-orange-800',
+    'bg-red-800',
+] as const;
+/** 反向颜色 */
+export const _emColor = [
+    'bg-cyan-700',
+    'bg-sky-700',
+    'bg-blue-700',
+    'bg-indigo-700',
+    'bg-purple-700',
+] as const;
 export const TagButton: Component<{
     data: IData;
     onClick?: (item: IData, rightClick?: boolean) => void;
@@ -23,8 +39,7 @@ export const TagButton: Component<{
         if (item.count > 500) return 'bg-green-900';
     };
     // 强调颜色
-    const emColor = ['bg-lime-800', 'bg-yellow-800', 'bg-amber-800', 'bg-orange-800', 'bg-red-800'];
-    const _emColor = ['bg-cyan-700', 'bg-sky-700', 'bg-blue-700', 'bg-indigo-700', 'bg-purple-700'];
+
     const em = reflect(() => {
         if (props.data.emphasize === 0) return 'bg-gray-700';
         const index = Math.floor((Math.abs(props.data.emphasize) * 4) / MaxEmphasize());

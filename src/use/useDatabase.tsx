@@ -71,7 +71,7 @@ export function useDatabase(store: IStoreData) {
             return;
         }
         console.time('搜索');
-        // 返回形式为数组，所以非常快
+        // 返回形式为 Index 数组，所以非常快
         const r = await searchWorker.search({ text, limit: tagsPerPage() });
         console.timeEnd('搜索');
         const data = lists();

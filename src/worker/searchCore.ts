@@ -1,16 +1,21 @@
 import { IData } from '../App';
 import Fuse from 'fuse.js';
 type IndexedData = IData & { id?: number };
-export let query: Fuse<IndexedData>;
-let data: IndexedData[];
+
+class Search {
+    static data: IndexedData[];
+    static numberLimit = 1000;
+    static query: Fuse<IndexedData>;
+}
+
 export const init = async (input: IndexedData[]) => {
     // 这里不需要处理，排序为 en 和 cn
     input.forEach((i, index) => (i.id = index));
-    data = input;
+    Search.data = input;
     return true;
 };
 const createQuery = (data: IData[]) => {
-    query = new Fuse(data, {
+    Search.query = new Fuse(data, {
         // isCaseSensitive: false,
         // includeScore: false,
         // shouldSort: true,
@@ -29,13 +34,14 @@ const createQuery = (data: IData[]) => {
     });
 };
 export const rebuild = async ({ r18, numberLimit }) => {
-    const querySet = data.filter((i) => (r18 || !i.r18) && i.count >= numberLimit);
+    const querySet = Search.data.filter((i) => (r18 || !i.r18) && i.count >= numberLimit);
     createQuery(querySet);
     return true;
 };
 export const search = ({ text, limit }) => {
     console.log('搜索 ', text, limit);
-    return query
+
+    return Search.query
         .search(text)
         .map((i) => i.item.id)
         .slice(0, limit);

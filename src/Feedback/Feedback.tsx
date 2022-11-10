@@ -11,7 +11,7 @@ export const FeedBackPanel = () => {
     const { visibleId, username } = useContext(Data);
     /** 反馈信息 */
     const callbacks = atom<FeedBackMessage>({
-        author: '',
+        author: username(),
         title: '',
         labels: ['ADD_WORDS', 'bot'],
         body: '',

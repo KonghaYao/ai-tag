@@ -63,7 +63,7 @@ export const TagButton: Component<{
                     props.onWheel(item, delta, e);
                 return false;
             }}
-            title="左点击加，右点击减，滚轮改变小数点"
+            title={`${item.cn ?? item.en}\n左点击加，右点击减，滚轮改变小数点`}
             data-id={item.en}
         >
             <nav>{split()[0]}</nav>

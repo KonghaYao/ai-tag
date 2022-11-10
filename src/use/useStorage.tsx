@@ -1,4 +1,3 @@
-import { createEffect } from 'solid-js';
 import { Atom, createIgnoreFirst } from '@cn-ui/use';
 
 /** 使用本地存储 */

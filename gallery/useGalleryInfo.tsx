@@ -10,10 +10,9 @@ export const useGalleryInfo = () => {
 
     const searchText = atom('');
     const showingData = atom<StoreData[][]>([]);
-    const loadMore = useSingleAsync(async () => {
-        const LoadingPage = page();
+    const loadMore = async (LoadingPage: number, clear = false) => {
         let filters = searchText() ? notionSearch(searchText(), ['username', 'tags']) : [];
-        return API.getData(LoadingPage, false, filters, false)
+        return API.getData(LoadingPage, false, filters, clear)
             .then((res) => {
                 if (res.length)
                     showingData((i) => {
@@ -25,6 +24,7 @@ export const useGalleryInfo = () => {
                 replaceImages(
                     showingData()
                         .flat()
+                        .filter((i) => i)
                         .map((i) => {
                             return {
                                 alt: i.description,
@@ -34,19 +34,16 @@ export const useGalleryInfo = () => {
                         })
                 );
             });
-    });
-
-    const refetchData = () => {
-        page(0);
-        /** 写掉缓存 */
-        API.start_cursor = [];
-        loadMore();
     };
 
-    createEffect(on(page, (index) => loadMore()));
-    createEffect(on(searchText, (text) => text === '' && loadMore()));
+    createEffect(on(searchText, (text) => text === '' && loadMore(0, true)));
     return {
         page,
+        changePage: useSingleAsync(async (number: number) => {
+            return loadMore(number).then(() => {
+                page(number);
+            });
+        }),
         searchText,
         showingData,
         getViewer,

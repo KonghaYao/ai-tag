@@ -30,7 +30,7 @@ export const GalleryGlobal = createContext<
 
 export const App = () => {
     const galleryInfo = useGalleryInfo();
-    const { ScrollEvent } = ScrollLoading(useSingleAsync(() => galleryInfo.page((i) => i + 1)));
+    const { ScrollEvent } = ScrollLoading(() => galleryInfo.changePage(galleryInfo.page() + 1));
     const visibleId = atom('');
 
     const ShowingPicture = atom<null | StoreData>(null);

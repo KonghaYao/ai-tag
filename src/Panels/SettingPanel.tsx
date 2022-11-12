@@ -84,11 +84,11 @@ export const SettingPanel = () => {
 
             <nav class="mx-4 my-2 flex justify-between">
                 <div class="flex w-full justify-between">
-                    <div>{'背景图片'}</div>
+                    <div>{t('settingPanel.lists.backgroundImage')}</div>
                     <button
                         class="btn"
                         onClick={() => {
-                            const url = prompt('请输入一个 URL');
+                            const url = prompt(t('settingPanel.hint.pleaseInput'));
                             if (url) {
                                 backgroundImage(url);
                             }
@@ -113,8 +113,11 @@ export const SettingPanel = () => {
                         }
                     }}
                 >
-                    本地载入
+                    {t('settingPanel.lists.localUpload')}
                 </UploadButton>
+                <button class="btn" onclick={() => backgroundImage('')}>
+                    {t('search')}
+                </button>
             </nav>
 
             <div class="flex-1"></div>

@@ -3,6 +3,7 @@
     "search": "搜索",
     "error": "发生了不知名的错误",
     "voidResult": "结果为空",
+    "clear": "清除",
     "header": {
         "Doc": "教程",
         "Gallery": "画廊",
@@ -100,7 +101,8 @@
         "title": "设置面板",
         "hint": {
             "refresh": "刷新缓存: 词库有强缓存，更新新请点我。",
-            "updated": "更新完成，刷新浏览器完成更新"
+            "updated": "更新完成，刷新浏览器完成更新",
+            "pleaseInput": "请输入一个 URL"
         },
         "lists": {
             "teen": "青少年模式",
@@ -108,7 +110,9 @@
             "sideAPP": "侧边应用模式",
             "defaultFont": "使用默认字体",
             "everyTimeTags": "每次搜索 tags 数",
-            "maxEm": "最大强调层数"
+            "maxEm": "最大强调层数",
+            "backgroundImage": "更换背景图片",
+            "localUpload": "本地载入"
         }
     },
     "uploadPanel": {

@@ -116,7 +116,7 @@ export const SettingPanel = () => {
                     {t('settingPanel.lists.localUpload')}
                 </UploadButton>
                 <button class="btn" onclick={() => backgroundImage('')}>
-                    {t('search')}
+                    {t('clear')}
                 </button>
             </nav>
 

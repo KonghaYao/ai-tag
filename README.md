@@ -2,7 +2,12 @@
 
 # 魔导绪论
 
-[AI 魔咒生成器](https://magic-tag.netlify.app/#/), 使用由 B 站 UP 主 [十二今天也很可爱](https://www.bilibili.com/video/BV1m84y1B7Ny/?p=1&t=285&vd_source=a2ecd44ec8a0a62c70f8b98747f4aa56) 提供的 4 万个 tag 并提供中文检索，并提供了魔咒社区方便魔法师们直接复制生成。永远免费，永无广告，无商业。
+[AI 魔咒生成器](https://magic-tag.netlify.app/#/), 使用由 B 站 UP 主 [十二今天也很可爱](https://www.bilibili.com/video/BV1m84y1B7Ny/?p=1&t=285&vd_source=a2ecd44ec8a0a62c70f8b98747f4aa56) 提供的 4 万个 tag , 合并 [Novelai 词条百科共享站](https://www.cerfai.com/#/) 的中文翻译，提供中文检索和魔咒生成服务，并提供了魔咒社区方便魔法师们直接复制生成。永远免费，永无广告，无商业。
+
+衍生项目
+
+1. [promptor](https://github.com/KonghaYao/promptor) 纯粹的魔咒解析库。
+2. [tag-collection](https://github.com/KonghaYao/tag-collection) Tag 仓库项目，提供 Tag 数据文件。
 
 ### v3 版本更新内容
 
@@ -85,13 +90,11 @@
     - [UP 主 胧雨夜 的 Novel AI 教程](https://www.bilibili.com/video/BV1Le4y1E792/?p=1&t=1304) [网页文本](https://www.yuque.com/longyuye/lmgcwy)
     - [如何与 AI 乙方沟通 —— 细节生成法](https://magic-tag.notion.site/AI-41525facc3ff4874b09973f1c5b33945)
 
-4. **中文翻译为谷歌机翻**，部分经过人工调教。 搜索功能可能有时抽风，比如白发，你搜头发是搜不到的，这是搜索算法的问题，换种搜法就好了。
+4. 为啥每次搜索的结果最多看到 500 （或者更多），因为 这些标签内没找到，要不是没有，就是搜索词不对，所以为了节省性能，没有显示。
 
-5. 为啥每次搜索的结果最多看到 500 （或者更多），因为 这些标签内没找到，要不是没有，就是搜索词不对，所以为了节省性能，没有显示。
+5. **默认为青少年模式**，但是违禁词过滤估计还会有漏网之鱼，请多多提 issue；**模式则可以通过设置面板调整** (\*^\_^\*)。
 
-6. **默认为青少年模式**，但是违禁词过滤估计还会有漏网之鱼，请多多提 issue；**模式则可以通过设置面板调整** (\*^\_^\*)。
-
-7. 由于没钱买服务器，所以我用我的 notion 数据库作为了后端帮助大家存储公开魔咒。
+6. 由于没钱买服务器，所以我用我的 notion 数据库作为了后端帮助大家存储公开魔咒。
 
 > Notion 只能进行上传和查询操作，所以公开的魔咒是只能由我改动，可以提交 issues，同时也没有用户系统，大家都是一样的。所有的数据都作为了画廊功能进行展示！[Notion 页面](https://magic-tag.notion.site/90b7c1bb6ad7446ba66e0b1d8ec1d535?v=4cd4db0491664d25a25107631a6f3803)
 

@@ -25,7 +25,7 @@ export const UserSelected = () => {
             return false;
         }
     });
-    const { receive } = useDragAndDropData();
+    const { receive, send } = useDragAndDropData();
     return (
         <main class="user-selected my-2 flex w-full flex-col rounded-xl border border-solid border-gray-600 p-2 ">
             <HeaderFirst></HeaderFirst>
@@ -33,6 +33,10 @@ export const UserSelected = () => {
                 class="flex flex-wrap overflow-y-auto overflow-x-hidden text-sm"
                 style={{
                     'max-height': '30vh',
+                }}
+                setData={(data, el) => {
+                    const item = usersCollection().find((i) => i.en === el.dataset.id);
+                    item && send(data, { type: 'USER_SELECTED', data: item });
                 }}
                 each={usersCollection}
                 getId={(el) => el.en}

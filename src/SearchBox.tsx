@@ -33,7 +33,7 @@ export const SearchBox = () => {
 
     const triggerSearch = debounce(searchText, 200) as Setter<string>;
     const { t } = useTranslation();
-    const { send } = useDragAndDropData();
+    const { send, receive } = useDragAndDropData();
     return (
         <>
             <nav class="flex w-full items-center">
@@ -44,7 +44,18 @@ export const SearchBox = () => {
                     oninput={(e: any) => triggerSearch(e.target.value)}
                 ></input>
 
-                <span class="btn flex-none" onclick={() => triggerSearch('')}>
+                <span
+                    class="btn flex-none"
+                    onclick={() => triggerSearch('')}
+                    // TODO CN
+                    title="拖拽到我删除 Tag"
+                    ondragover={(e) => e.preventDefault()}
+                    onDrop={(e) => {
+                        receive(e.dataTransfer, 'USER_SELECTED', (item) => {
+                            usersCollection((i) => i.filter((i) => i.en !== item.en));
+                        });
+                    }}
+                >
                     {t('searchBox.clear')}
                 </span>
                 <span

@@ -1,9 +1,15 @@
+import { IData } from '../App';
+
 export type TagTransfer =
     // 添加魔咒到指定地点
-    {
-        type: 'ADD_BEFORE';
-        data: string;
-    };
+    | {
+          type: 'ADD_BEFORE';
+          data: string;
+      }
+    | {
+          type: 'USER_SELECTED';
+          data: IData;
+      };
 export const useDragAndDropData = () => {
     return {
         send(transfer: DataTransfer, info: TagTransfer) {

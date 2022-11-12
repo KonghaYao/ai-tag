@@ -32,6 +32,7 @@ export interface SortableListProps<T> extends Omit<JSX.HTMLAttributes<HTMLDivEle
     options?: SortableCore.Options;
     void: T;
     disabled: Atom<boolean>;
+    setData?: (data: DataTransfer, el: HTMLElement) => void;
 }
 
 /**
@@ -66,7 +67,7 @@ export const SortableList = OriginComponent<SortableListProps<unknown>>((basePro
         // sort: false,
         // delayOnTouchOnly: true, // only delay if user is using touch
         // delay: 100,
-
+        setData: props.setData,
         onSort() {
             const sortable: string[] = getSortable()
                 .toArray()
@@ -87,6 +88,7 @@ export const SortableList = OriginComponent<SortableListProps<unknown>>((basePro
             props.options?.onAdd?.apply(this, arguments);
             RefreshData();
         },
+
         onRemove() {
             props.options?.onRemove?.apply(this, arguments);
             RefreshData();

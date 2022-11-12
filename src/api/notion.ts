@@ -49,7 +49,7 @@ export const API = {
         clear = false
     ): Promise<StoreData[]> {
         if (clear) this.start_cursor = [];
-        if (this.end) return [];
+        if (this.end && index === this.start_cursor.length + 1) return [];
         const params = {
             database_id: this.database_id,
             page_size: 10,

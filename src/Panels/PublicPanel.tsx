@@ -1,5 +1,5 @@
-import { atom, createIgnoreFirst, useSingleAsync } from '@cn-ui/use';
-import { create, debounce, filter, memoize, uniqWith } from 'lodash-es';
+import { atom } from '@cn-ui/use';
+import { debounce } from 'lodash-es';
 import { createEffect, createMemo, createResource, For, on, Show, useContext } from 'solid-js';
 import { API, StoreData } from '../api/notion';
 import { Data } from '../App';
@@ -172,24 +172,26 @@ export const PublicPanel = () => {
             <footer class=" flex w-full items-center justify-between bg-gray-700 p-2 font-bold">
                 <button
                     class="btn"
-                    onclick={debounce(() => {
+                    onclick={() => {
+                        if (showing.loading) return;
                         if (page() > 0) {
                             page((i) => i - 1);
                         }
-                    }, 500)}
+                    }}
                 >
                     《
                 </button>
                 {page() + 1}
                 <button
                     class="btn"
-                    onclick={debounce(() => {
+                    onclick={() => {
+                        if (showing.loading) return;
                         if (API.end) {
                             Notice.error('没有更多了');
                         } else {
                             page((i) => i + 1);
                         }
-                    }, 500)}
+                    }}
                 >
                     》
                 </button>

@@ -49,7 +49,9 @@ export default defineConfig(({ mode }) => {
             },
         },
         resolve: {
-            alias: {},
+            alias: {
+                // localforage: 'https://cdn.skypack.dev/localforage',
+            },
         },
         define: {
             __version__: JSON.stringify(p.version),

@@ -1,5 +1,13 @@
 /** @ts-ignore */
-import { Accessor, createContext, createEffect, createSelector, Show, untrack } from 'solid-js';
+import {
+    Accessor,
+    createContext,
+    createEffect,
+    createSelector,
+    Show,
+    untrack,
+    useContext,
+} from 'solid-js';
 import { Atom, atom, createIgnoreFirst } from '@cn-ui/use';
 import { SearchBox } from './SearchBox';
 import { UserSelected } from './UserSelected';
@@ -36,6 +44,7 @@ export interface IGlobalData extends IStoreData {
     usersCollection: Atom<IData[]>;
     result: Atom<IData[]>;
     lists: Accessor<IData[]>;
+    backgroundImage: Atom<string>;
 }
 export const Data = createContext<IGlobalData>();
 import isMobile from 'is-mobile';
@@ -45,6 +54,28 @@ import { PanelContext } from './components/Panel';
 import { FontSupport } from './components/FontSupport';
 import { useTranslation } from '../i18n';
 import { Notice } from './utils/notice';
+import { useLocalData } from './use/useLocalData';
+
+export const Background = () => {
+    const { backgroundImage } = useContext(Data);
+    return (
+        <div class="brightness-60 pointer-events-none fixed h-full w-full opacity-30">
+            {backgroundImage() && (
+                <img
+                    loading="lazy"
+                    src={backgroundImage()}
+                    class="h-full w-full  object-cover "
+                    alt=""
+                    style={{
+                        'min-height': '100%',
+                        'min-width': '100%',
+                    }}
+                />
+            )}
+        </div>
+    );
+};
+
 export const App = () => {
     const enMode = atom(true);
     const r18Mode = atom(false);
@@ -81,7 +112,9 @@ export const App = () => {
         defaultFont,
     };
     const { result, lists, searchText, usersCollection } = useDatabase(storageSetting);
+
     const { recover, tracking } = useStorage(storageSetting);
+    const { backgroundImage } = useLocalData();
     const { t } = useTranslation();
     const { width } = useWindowResize();
     // 自动变换 SideAPP 状态
@@ -97,6 +130,8 @@ export const App = () => {
 
                 lists,
                 searchText,
+
+                backgroundImage,
                 ...storageSetting,
             }}
         >
@@ -112,6 +147,7 @@ export const App = () => {
                         'font-global': !defaultFont(),
                     }}
                 >
+                    <Background></Background>
                     <main class=" flex h-full w-full max-w-4xl flex-col overflow-hidden  p-2 text-gray-400 sm:p-4">
                         <h2 class="cursor-pointer text-center text-xl font-bold text-gray-300">
                             AI 绘画三星法器 —— 魔导绪论

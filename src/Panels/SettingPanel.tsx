@@ -2,11 +2,20 @@ import { For, useContext } from 'solid-js';
 import { useTranslation } from '../../i18n';
 import { Data } from '../App';
 import { Panel } from '../components/Panel';
+import { UploadButton } from '../components/UploadButton';
+import { useLocalData } from '../use/useLocalData';
 import { Notice } from '../utils/notice';
 
 export const SettingPanel = () => {
-    const { r18Mode, showCount, tagsPerPage, sideAppMode, MaxEmphasize, defaultFont } =
-        useContext(Data);
+    const {
+        r18Mode,
+        showCount,
+        tagsPerPage,
+        sideAppMode,
+        MaxEmphasize,
+        defaultFont,
+        backgroundImage,
+    } = useContext(Data);
 
     const { t } = useTranslation();
     const list = [
@@ -72,6 +81,42 @@ export const SettingPanel = () => {
                     );
                 }}
             </For>
+
+            <nav class="mx-4 my-2 flex justify-between">
+                <div class="flex w-full justify-between">
+                    <div>{'背景图片'}</div>
+                    <button
+                        class="btn"
+                        onClick={() => {
+                            const url = prompt('请输入一个 URL');
+                            if (url) {
+                                backgroundImage(url);
+                            }
+                        }}
+                    >
+                        URL
+                    </button>
+                </div>
+                <UploadButton
+                    accept="image/*"
+                    onUpload={([file]) => {
+                        if (file) {
+                            new Promise((res) => {
+                                let oFileReader = new FileReader();
+                                oFileReader.onloadend = function (e) {
+                                    res(e.target.result);
+                                };
+                                oFileReader.readAsDataURL(file);
+                            }).then((res: string) => {
+                                backgroundImage(res);
+                            });
+                        }
+                    }}
+                >
+                    本地载入
+                </UploadButton>
+            </nav>
+
             <div class="flex-1"></div>
         </Panel>
     );

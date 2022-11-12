@@ -7,6 +7,7 @@ import { untrack } from 'solid-js/web';
 import { sampleSize as _sampleSize } from 'lodash-es';
 import { CreateIData, stringToTags } from './use/TagsConvertor';
 import { useTranslation } from '../i18n';
+import { useDragAndDropData } from './use/useDragAndDropData';
 
 /** 重新设计的随机函数, 很明显，数量大的 tag 的支持度更高，所以使用排序手法 */
 const sampleSize = (list: IData[], size: number) => {
@@ -32,6 +33,7 @@ export const SearchBox = () => {
 
     const triggerSearch = debounce(searchText, 200) as Setter<string>;
     const { t } = useTranslation();
+    const { send } = useDragAndDropData();
     return (
         <>
             <nav class="flex w-full items-center">
@@ -95,6 +97,13 @@ export const SearchBox = () => {
                     <For each={showingResult()}>
                         {(item) => (
                             <TagButton
+                                draggable={true}
+                                onDragStart={(item, data) => {
+                                    send(data, {
+                                        type: 'ADD_BEFORE',
+                                        data: item.en,
+                                    });
+                                }}
                                 data={item}
                                 onClick={(item) =>
                                     usersCollection((i) => [...i, CreateIData(item)])

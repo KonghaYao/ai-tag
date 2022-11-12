@@ -16,7 +16,8 @@
 -   [x] 联合 [Web 字体网站](https://chinese-font.netlify.app/#/home)，使用中文（江西拙楷 2.0）和英文 （aclonica）字体，在设置面板中可以进行默认字体调整。
 -   [x] [独立画廊页面](https://magic-tag.netlify.app/gallery.html#/)，直接看图。
 -   [x] 国际化文本：英语，日语（如果有兴趣可以帮助翻译 i18n/overrides）。
--   [ ] 自定义背景图片
+-   [x] 自定义背景图片
+-   [x] 支持更加高级的拖拽协议
 
 ## 魔导绪论指南
 

@@ -1,6 +1,6 @@
 import { Atom, atomization, reflect } from '@cn-ui/use';
 import copy from 'copy-to-clipboard';
-import { Component, For, useContext } from 'solid-js';
+import { Accessor, Component, For, useContext } from 'solid-js';
 import { Data, IData } from '../App';
 import { Notice } from '../utils/notice';
 
@@ -20,10 +20,27 @@ export const _emColor = [
     'bg-indigo-700',
     'bg-purple-700',
 ] as const;
+
+const useColorStep = (data: Accessor<number>) => {
+    return {
+        color: () => {
+            const count = data();
+            if (count > 1000000) return 'bg-red-900';
+            if (count > 100000) return 'bg-pink-900';
+            if (count > 10000) return 'bg-amber-900';
+            if (count > 1000) return 'bg-yellow-900';
+            if (count > 500) return 'bg-green-900';
+        },
+    };
+};
+
 export const TagButton: Component<{
     data: IData;
     onClick?: (item: IData, rightClick?: boolean) => void;
     onWheel?: (item: IData, delta: number, e: Event) => void;
+    onDragStart?: (item: IData, dragData: DataTransfer, e: Event) => void;
+    onDrop?: (item: IData, dropData: DataTransfer, e: Event) => void;
+    draggable?: boolean;
     en?: Atom<boolean>;
     cn?: Atom<boolean>;
 }> = (props) => {
@@ -31,14 +48,8 @@ export const TagButton: Component<{
     const en = atomization(props.en ?? true);
     const cn = atomization(props.cn ?? true);
     const item = props.data;
-    const color = () => {
-        if (item.count > 1000000) return 'bg-red-900';
-        if (item.count > 100000) return 'bg-pink-900';
-        if (item.count > 10000) return 'bg-amber-900';
-        if (item.count > 1000) return 'bg-yellow-900';
-        if (item.count > 500) return 'bg-green-900';
-    };
     // 强调颜色
+    const { color } = useColorStep(() => item.count);
 
     const em = reflect(() => {
         if (props.data.emphasize === 0) return 'bg-gray-700';
@@ -78,6 +89,16 @@ export const TagButton: Component<{
                     props.onWheel(item, delta, e);
                 return false;
             }}
+            draggable={props.draggable ?? false}
+            ondragstart={(e) => {
+                props.onDragStart && props.onDragStart(item, e.dataTransfer, e);
+            }}
+            onDragOver={(e) => e.preventDefault()}
+            onDrop={(e) => {
+                //阻止文件打开默认行为
+                e.preventDefault();
+                props.onDrop && props.onDrop(item, e.dataTransfer, e);
+            }}
             title={`${item.cn ?? item.en}\n左点击加，右点击减，滚轮改变小数点`}
             data-id={item.en}
         >
@@ -97,6 +118,7 @@ export const TagButton: Component<{
         </nav>
     );
 };
+/** 写出文本操作 */
 function createContent(item: IData, cn: Atom<boolean>, en: Atom<boolean>) {
     return () => {
         if (item.alternatingArr && item.alternatingArr.length)

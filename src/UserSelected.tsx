@@ -8,9 +8,11 @@ import { HeaderFirst } from './HeaderFirst';
 import { HeaderSecond } from './HeaderSecond';
 import { t } from 'i18next';
 import { useTagController } from './use/useTagController';
+import { stringToTags } from './use/TagsConvertor';
+import { useDragAndDropData } from './use/useDragAndDropData';
 
 export const UserSelected = () => {
-    const { deleteMode, enMode, usersCollection, emphasizeAddMode, emphasizeSubMode } =
+    const { deleteMode, enMode, usersCollection, emphasizeAddMode, emphasizeSubMode, lists } =
         useContext(Data);
     const { wheelEvent, clickEvent } = useTagController();
     const voidId = Math.random().toString();
@@ -23,6 +25,7 @@ export const UserSelected = () => {
             return false;
         }
     });
+    const { receive } = useDragAndDropData();
     return (
         <main class="user-selected my-2 flex w-full flex-col rounded-xl border border-solid border-gray-600 p-2 ">
             <HeaderFirst></HeaderFirst>
@@ -50,6 +53,18 @@ export const UserSelected = () => {
                     return (
                         <div data-id={item.en}>
                             <TagButton
+                                onDrop={(item, data) => {
+                                    // 接收创建协议
+                                    receive(data, 'ADD_BEFORE', (info) => {
+                                        usersCollection((i) => {
+                                            const temp = [...i];
+                                            const dist = i.indexOf(item) ?? temp.length;
+
+                                            temp.splice(dist, 0, ...stringToTags(info, lists()));
+                                            return temp;
+                                        });
+                                    });
+                                }}
                                 data={item}
                                 en={enMode}
                                 cn={reflect(() => !enMode())}

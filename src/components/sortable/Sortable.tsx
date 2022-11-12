@@ -83,7 +83,7 @@ export const SortableList = OriginComponent<SortableListProps<unknown>>((basePro
             update();
         },
 
-        onAdd() {
+        onAdd(e) {
             props.options?.onAdd?.apply(this, arguments);
             RefreshData();
         },

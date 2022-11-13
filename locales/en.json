@@ -36,7 +36,8 @@
     "btn": {
       "Gallery": "Charms Gallery",
       "RandomMaker": "Two-Thirds Spell Generator",
-      "feedback": "Feedback"
+      "feedback": "Feedback",
+      "Setting": "set up"
     },
     "hint": {
       "clickBelow": "Click on the home page below to return"
@@ -58,7 +59,8 @@
       "CopySuccess": "bring success",
       "Share": "share",
       "gallery": "Charms Gallery",
-      "gotoSite": "website"
+      "gotoSite": "website",
+      "searchHint": "search title"
     }
   },
   "search": "search",
@@ -70,7 +72,8 @@
       "deleteMessage": "release, remove element",
       "searchPlaceholder": "Search keywords, Chinese is also available"
     },
-    "searchResult": "search results"
+    "searchResult": "search results",
+    "NoNumberFilter": "No number of filters"
   },
   "settingPanel": {
     "hint": {
@@ -79,22 +82,38 @@
       "updated": "The update is complete, refresh the browser to complete the update"
     },
     "lists": {
-      "number": "display value"
-    }
+      "number": "display value",
+      "backgroundImage": "Change the background image",
+      "defaultFont": "Use default font",
+      "everyTimeTags": "Number of tags per search",
+      "localUpload": "local loading",
+      "maxEm": "Maximum Emphasis Layers",
+      "sideAPP": "Side Application Mode",
+      "teen": "Teen Mode"
+    },
+    "title": "Settings panel"
   },
   "success": "Successful operation",
   "toolbar1": {
     "Home": "home page",
     "hint": {
-      "ImportHint": "Please enter the spell, the spell will be overwritten"
+      "ImportHint": "Please enter the spell, the spell will be overwritten",
+      "bracketsChange": "Emphasis bracket replacement"
     },
-    "zh": "Chinese"
+    "zh": "Chinese",
+    "Gallery": "gallery",
+    "Import": "Spell import",
+    "Share": "share",
+    "en": "English"
   },
   "toolbar2": {
     "copy": "one-click copy",
     "hint": {
       "copy": "copy magic unleashed"
-    }
+    },
+    "addWeight": "Weighted mode",
+    "deleteMode": "delete mode",
+    "subWeight": "Weight reduction model"
   },
   "upload": "upload",
   "uploadPanel": {
@@ -108,10 +127,25 @@
       "uploadDone": "upload completed",
       "uploadError": "Failed to upload image",
       "uploading": "Uploading, please wait",
-      "uploadingImage": "Uploading pictures, please wait for completion. . ."
+      "uploadingImage": "Uploading pictures, please wait for completion. . .",
+      "commit": "submit !"
     },
     "hint2": "For continued service, please do not upload &quot;you know&quot; types.",
     "license": "Uploaded resources will be shared in CC0 mode",
-    "prompt": "spell text"
-  }
+    "prompt": "spell text",
+    "hint1": "Be careful to upload the correct image and tag otherwise it will be cleaned up.",
+    "seed": "seed number",
+    "suitableForTeen": "Is it suitable for minors",
+    "title": "big dream tune"
+  },
+  "userSelect": {
+    "hint": {
+      "add": "1. Click or drag the following keywords to add\n2. Drag to the clear button to delete the tag"
+    },
+    "message": {
+      "addBefore": "loosen, add before this",
+      "addTail": "Loosen, add element at the end"
+    }
+  },
+  "voidResult": "result is empty"
 }

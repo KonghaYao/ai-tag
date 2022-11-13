@@ -1,0 +1,151 @@
+{
+  "WebView": {
+    "Error": "このサイトはサポートしていません。クリックしてジャンプしてください",
+    "newPage": "新しいタブが開きます"
+  },
+  "clear": "クリア",
+  "feedback": {
+    "UploadButton": "送信してください。ご支援ありがとうございます。",
+    "beforeFeedback": "フィードバックの前に確認してください: 10 代のモードにより単語が欠落している",
+    "hint": {
+      "success": "正常に送信されました。フィードバックをお寄せいただきありがとうございます",
+      "uploading": "提出します。 . .",
+      "notFilled": "完成してください"
+    },
+    "DescriptionTitle": "具体的な説明",
+    "YourName": "あなたの名前",
+    "IWantTo": "私が欲しい",
+    "necessary": "必須",
+    "viewOldFeedback": "以前のフィードバックを表示",
+    "Path": "オプション、住所を残すことができます",
+    "feedbackMessage": "フィードバック",
+    "Description": "必須。関連情報、関連ソース、トリガー条件などを書き留めてください。",
+    "QuestionTitle": "質問のタイトル"
+  },
+  "header": {
+    "FeedBack": "フィードバック",
+    "Gallery": "ギャラリー",
+    "Doc": "チュートリアル",
+    "TeenagerMode": "ティーンモード",
+    "hint": {
+      "teen": "設定パネルで変更してください"
+    }
+  },
+  "home": {
+    "btn": {
+      "Gallery": "スペルギャラリー",
+      "Setting": "設定",
+      "RandomMaker": "2/3 スペルジェネレーター",
+      "feedback": "フィードバック"
+    },
+    "title": {
+      "home": "家",
+      "FriendsLink": "リンク",
+      "localFunc": "ローカル関数",
+      "translator": "補助翻訳者"
+    },
+    "hint": {
+      "clickBelow": "戻るには下のホームページをクリックしてください"
+    }
+  },
+  "error": "不明なエラーが発生しました",
+  "publicPanel": {
+    "CombineMagic": "融合魔法",
+    "advancedSearch": "詳細検索",
+    "hint": {
+      "Share": "シェア",
+      "gotoSite": "Webサイト",
+      "gallery": "スペルギャラリー",
+      "CombineSuccess": "融合魔法が発動し、魔法が統合された",
+      "CopySuccess": "成功をもたらす",
+      "searchHint": "検索タイトル"
+    },
+    "CopyMagic": "魔法をもたらす"
+  },
+  "loading": "読み込み中",
+  "search": "探す",
+  "searchBox": {
+    "NoNumberFilter": "フィルター数なし",
+    "Random": "ランダム",
+    "create": "作成",
+    "hint": {
+      "deleteHint": "タグを削除するには、私をドラッグ アンド ドロップします",
+      "searchPlaceholder": "検索キーワード、中国語も可",
+      "deleteMessage": "要素を解放する、削除する"
+    },
+    "searchResult": "の検索結果"
+  },
+  "settingPanel": {
+    "hint": {
+      "pleaseInput": "URL を入力してください",
+      "refresh": "キャッシュの更新: シソーラスには強力なキャッシュがあります。クリックして更新してください。",
+      "updated": "更新が完了しました。ブラウザを更新して更新を完了してください"
+    },
+    "lists": {
+      "backgroundImage": "背景画像を変更する",
+      "defaultFont": "デフォルトのフォントを使用",
+      "everyTimeTags": "検索あたりのタグ数",
+      "localUpload": "ローカルローディング",
+      "maxEm": "最大強調レイヤー",
+      "number": "表示値",
+      "sideAPP": "サイドアプリケーションモード",
+      "teen": "ティーンモード"
+    },
+    "title": "設定パネル"
+  },
+  "success": "操作の成功",
+  "toolbar1": {
+    "Home": "家",
+    "Import": "スペルインポート",
+    "Share": "シェア",
+    "en": "英語",
+    "hint": {
+      "ImportHint": "呪文を入力してください。呪文は上書きされます",
+      "bracketsChange": "強調ブラケットの交換"
+    },
+    "zh": "中国語",
+    "Gallery": "ギャラリー"
+  },
+  "toolbar2": {
+    "addWeight": "加重モード",
+    "copy": "ワンクリックコピー",
+    "deleteMode": "削除モード",
+    "subWeight": "軽量化モデル",
+    "hint": {
+      "copy": "解き放たれたコピーマジック"
+    }
+  },
+  "uploadPanel": {
+    "DetectResult": "試験結果：",
+    "YourName": "あなたの名前",
+    "hint": {
+      "checkError": "マナが不足しているようです！",
+      "commit": "参加する ！",
+      "uploadDone": "アップロード完了",
+      "uploadError": "画像をアップロードできませんでした",
+      "uploading": "アップロードしています。お待ちください",
+      "uploadingImage": "画像をアップロードしています。完了するまでお待ちください。 . .",
+      "commitHint": "森はすべてを覚えている"
+    },
+    "hint1": "正しい画像とタグをアップロードするように注意してください。そうしないと、クリーンアップされます。",
+    "hint2": "継続的なサービスのために、「知っている」タイプをアップロードしないでください。",
+    "license": "アップロードされたリソースは CC0 モードで共有されます",
+    "prompt": "スペルテキスト",
+    "seed": "種子番号",
+    "suitableForTeen": "未成年者に適していますか",
+    "title": "大きな夢の曲",
+    "description": "呪文の説明",
+    "autoDetect": "画像を自動認識 =>"
+  },
+  "userSelect": {
+    "hint": {
+      "add": "1. 次のキーワードをクリックまたはドラッグして追加します\n2. クリアボタンにドラッグしてタグを削除します"
+    },
+    "message": {
+      "addBefore": "ほぐす、この前に加える",
+      "addTail": "緩めて、最後に要素を追加"
+    }
+  },
+  "voidResult": "結果は空です",
+  "upload": "アップロード"
+}

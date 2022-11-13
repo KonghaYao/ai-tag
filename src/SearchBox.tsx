@@ -58,7 +58,7 @@ export const SearchBox = () => {
                         });
                     }}
                 >
-                    {t('searchBox.clear')}
+                    {t('clear')}
                 </span>
                 <span
                     class="btn flex-none"

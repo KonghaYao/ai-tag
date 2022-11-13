@@ -4,6 +4,7 @@
     "error": "发生了不知名的错误",
     "voidResult": "结果为空",
     "clear": "清除",
+    "upload": "上传",
     "header": {
         "Doc": "教程",
         "Gallery": "画廊",
@@ -39,7 +40,6 @@
             "searchPlaceholder": "搜索关键词，中文也可以"
         },
         "searchResult": "搜索结果",
-        "clear": "清除",
         "create": "创建",
         "NoNumberFilter": "无数目筛选",
         "Random": "随机"

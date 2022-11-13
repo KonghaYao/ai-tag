@@ -10,6 +10,7 @@ import { batch } from 'solid-js';
 import { readFileInfo } from '../utils/getPromptsFromPic';
 import { untrack } from 'solid-js/web';
 import { useTranslation } from '../../i18n';
+import { UploadButton } from '../components/UploadButton';
 const init = {
     username: '',
     tags: '',
@@ -85,8 +86,8 @@ export const UploadPanel = () => {
         }
     });
     /** 输入文件事件 */
-    const changeFile = async (e: any) => {
-        const file: File = e.target.files[0];
+    const changeFile = async (files: FileList) => {
+        const file = files[0];
         const data = await readFileInfo(file).catch((error) => {
             console.warn(error);
             return [];
@@ -165,7 +166,9 @@ export const UploadPanel = () => {
                 </div>
                 <div class="my-2 mx-4 flex items-center justify-between ">
                     <div class="flex-none">{t('uploadPanel.autoDetect')}</div>
-                    <input type="file" oninput={changeFile} />
+                    <UploadButton accept="image/*" onUpload={changeFile}>
+                        {t('upload')}
+                    </UploadButton>
                 </div>
 
                 {uploading() && (
@@ -222,7 +225,7 @@ export const UploadPanel = () => {
                 </a>
             </main>
             <div class="cursor-pointer bg-green-600 p-2  text-center text-white" onClick={upload}>
-                {t('uploadPanel.hint.commit')}{' '}
+                {t('uploadPanel.hint.commit')}
                 <span class="text-xs">{t('uploadPanel.hint.commitHint')}</span>
             </div>
         </Panel>

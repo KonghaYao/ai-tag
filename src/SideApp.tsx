@@ -8,6 +8,7 @@ import { Webview } from './Panels/Webview';
 import { RandomMaker } from './Panels/RandomMaker';
 import { FeedBackPanel } from './Feedback/Feedback';
 import { MyFeedBackPanel } from './Feedback/MyFeedback';
+import { MessageHint } from './MessageHint';
 export type PanelIds =
     | 'setting'
     | 'gallery'
@@ -40,6 +41,7 @@ export const SideApp = () => {
                 <FeedBackPanel></FeedBackPanel>
                 <MyFeedBackPanel></MyFeedBackPanel>
             </div>
+            <MessageHint></MessageHint>
         </main>
     );
 };

@@ -9,6 +9,7 @@ import { CreateIData, stringToTags } from './use/TagsConvertor';
 import { useTranslation } from '../i18n';
 import { useDragAndDropData } from './use/useDragAndDropData';
 import { Notice } from './utils/notice';
+import { Message } from './MessageHint';
 
 /** 重新设计的随机函数, 很明显，数量大的 tag 的支持度更高，所以使用排序手法 */
 const sampleSize = (list: IData[], size: number) => {
@@ -45,12 +46,16 @@ export const SearchBox = () => {
                     oninput={(e: any) => triggerSearch(e.target.value)}
                 ></input>
 
-                <span
-                    class="btn flex-none"
+                <div
+                    class="btn flex-none bg-red-800 px-4"
                     onclick={() => triggerSearch('')}
                     // TODO CN
                     title="拖拽到我删除 Tag"
-                    ondragover={(e) => e.preventDefault()}
+                    ondragover={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        receive(false, 'USER_SELECTED', () => Message.warn('松开，删除元素'));
+                    }}
                     onDrop={(e) => {
                         receive(e.dataTransfer, 'USER_SELECTED', (item) => {
                             usersCollection((i) => i.filter((i) => i.en !== item.en));
@@ -59,7 +64,7 @@ export const SearchBox = () => {
                     }}
                 >
                     {t('clear')}
-                </span>
+                </div>
                 <span
                     class="btn flex-none"
                     onclick={() => {

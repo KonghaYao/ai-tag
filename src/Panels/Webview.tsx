@@ -42,7 +42,7 @@ export const Webview = () => {
                     </a>
                 </div>
                 <div class="relative h-full w-full">
-                    {loading() && <div> {t('uploading')}</div>}
+                    {loading() && <div> {t('upload')}</div>}
                     <ErrorBoundary
                         fallback={() => {
                             return (

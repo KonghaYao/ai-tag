@@ -1,11 +1,10 @@
 import { atom, useSingleAsync } from '@cn-ui/use';
-import { debounce } from 'lodash-es';
 import { For, useContext } from 'solid-js';
 import i18n, { useTranslation } from '../../i18n';
 import { Data } from '../App';
 import { Panel } from '../components/Panel';
 import { Notice } from '../utils/notice';
-import { commitFeedBack, FeedBackMessage, FeedBackTags, Labels } from './index';
+import { commitFeedBack, FeedBackMessage, Labels } from './index';
 export const FeedBackPanel = () => {
     const { t } = useTranslation();
     const { visibleId, username } = useContext(Data);

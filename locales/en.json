@@ -1,15 +1,15 @@
 {
   "WebView": {
-    "newPage": "New tab opens",
+    "newPage": "New Tab",
     "Error": "This site does not support, please click to jump"
   },
-  "clear": "to clear",
+  "clear": "Clear",
   "error": "An unknown error has occurred",
   "feedback": {
     "Description": "Mandatory, please write down relevant information, related sources, triggering conditions, etc., write what you have",
     "DescriptionTitle": "specific description",
-    "IWantTo": "i just want",
-    "Path": "Optional, you can leave your address",
+    "IWantTo": "I just want",
+    "Path": "Optional, you can leave information",
     "QuestionTitle": "question title",
     "UploadButton": "Submit, thanks for your support!",
     "YourName": "your name",
@@ -37,29 +37,29 @@
       "Gallery": "Charms Gallery",
       "RandomMaker": "Two-Thirds Spell Generator",
       "feedback": "Feedback",
-      "Setting": "set up"
+      "Setting": "Setting"
     },
     "hint": {
-      "clickBelow": "Click on the home page below to return"
+      "clickBelow": "Click Home below to return"
     },
     "title": {
       "FriendsLink": "Links",
-      "home": "home page",
-      "localFunc": "local function",
-      "translator": "auxiliary translator"
+      "home": "Home",
+      "localFunc": "Local APP",
+      "translator": "Translator"
     }
   },
   "loading": "Loading",
   "publicPanel": {
-    "CombineMagic": "fusion magic",
-    "CopyMagic": "bring magic",
-    "advancedSearch": "Advanced Search",
+    "CombineMagic": "Blende",
+    "CopyMagic": "Copy",
+    "advancedSearch": "Advanced",
     "hint": {
-      "CombineSuccess": "The fusion magic is launched, and the spell has been integrated",
-      "CopySuccess": "bring success",
-      "Share": "share",
+      "CombineSuccess": "Blende magic is launched, and the spell has been integrated",
+      "CopySuccess": "Copy Success",
+      "Share": "Share",
       "gallery": "Charms Gallery",
-      "gotoSite": "website",
+      "gotoSite": "Website",
       "searchHint": "search title"
     }
   },
@@ -82,43 +82,43 @@
       "updated": "The update is complete, refresh the browser to complete the update"
     },
     "lists": {
-      "number": "display value",
+      "number": "Allowed Display Number",
       "backgroundImage": "Change the background image",
       "defaultFont": "Use default font",
       "everyTimeTags": "Number of tags per search",
-      "localUpload": "local loading",
+      "localUpload": "upload",
       "maxEm": "Maximum Emphasis Layers",
       "sideAPP": "Side Application Mode",
       "teen": "Teen Mode"
     },
-    "title": "Settings panel"
+    "title": "Settings"
   },
   "success": "Successful operation",
   "toolbar1": {
-    "Home": "home page",
+    "Home": "Home",
     "hint": {
       "ImportHint": "Please enter the spell, the spell will be overwritten",
-      "bracketsChange": "Emphasis bracket replacement"
+      "bracketsChange": "Emphasis bracket replaced"
     },
     "zh": "Chinese",
-    "Gallery": "gallery",
-    "Import": "Spell import",
-    "Share": "share",
+    "Gallery": "Gallery",
+    "Import": "Spell",
+    "Share": "Share",
     "en": "English"
   },
   "toolbar2": {
-    "copy": "one-click copy",
+    "copy": "Copy Magic",
     "hint": {
       "copy": "copy magic unleashed"
     },
-    "addWeight": "Weighted mode",
-    "deleteMode": "delete mode",
-    "subWeight": "Weight reduction model"
+    "addWeight": "+ Mode",
+    "deleteMode": "Delete mode",
+    "subWeight": "- Model"
   },
   "upload": "upload",
   "uploadPanel": {
     "DetectResult": "Test results:",
-    "YourName": "your name",
+    "YourName": "Your name",
     "autoDetect": "Automatically identify pictures =&gt;",
     "description": "Charm description",
     "hint": {
@@ -128,7 +128,7 @@
       "uploadError": "Failed to upload image",
       "uploading": "Uploading, please wait",
       "uploadingImage": "Uploading pictures, please wait for completion. . .",
-      "commit": "submit !"
+      "commit": "Submit !"
     },
     "hint2": "For continued service, please do not upload &quot;you know&quot; types.",
     "license": "Uploaded resources will be shared in CC0 mode",
@@ -136,7 +136,7 @@
     "hint1": "Be careful to upload the correct image and tag otherwise it will be cleaned up.",
     "seed": "seed number",
     "suitableForTeen": "Is it suitable for minors",
-    "title": "big dream tune"
+    "title": "Upload Panel"
   },
   "userSelect": {
     "hint": {

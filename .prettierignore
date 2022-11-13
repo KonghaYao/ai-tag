@@ -4,3 +4,4 @@ visualizer/**/*
 **/dist_site/**/*
 **/node_modules/**/*
 **/pkg-dist/**/*
+locales/**/*

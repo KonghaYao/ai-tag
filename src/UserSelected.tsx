@@ -32,7 +32,7 @@ export const UserSelected = () => {
     const { events } = useHoverInDOM((type) => {
         if (type === 'Drag') {
             receive(false, 'ADD_BEFORE', () => {
-                Message.success('松开，添加到这个之前');
+                Message.success(t('userSelect.message.addBefore'));
             });
         }
     });
@@ -42,7 +42,7 @@ export const UserSelected = () => {
             ondragover={(e) => {
                 e.preventDefault();
                 receive(false, 'ADD_BEFORE', () => {
-                    Message.success('松开，添加元素在末尾');
+                    Message.success(t('userSelect.message.addTail'));
                 });
             }}
             onDrop={(e) => {
@@ -93,7 +93,7 @@ export const UserSelected = () => {
                                             temp.splice(dist, 0, ...stringToTags(info, lists()));
                                             return temp;
                                         });
-                                        Notice.success('添加成功');
+                                        Notice.success(t('success'));
                                     });
                                 }}
                                 data={item}

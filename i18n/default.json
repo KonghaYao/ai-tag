@@ -1,5 +1,6 @@
 {
     "loading": "加载中",
+    "success": "操作成功",
     "search": "搜索",
     "error": "发生了不知名的错误",
     "voidResult": "结果为空",
@@ -37,7 +38,9 @@
     },
     "searchBox": {
         "hint": {
-            "searchPlaceholder": "搜索关键词，中文也可以"
+            "searchPlaceholder": "搜索关键词，中文也可以",
+            "deleteHint": "拖拽到我删除 Tag",
+            "deleteMessage": "松开，删除元素"
         },
         "searchResult": "搜索结果",
         "create": "创建",
@@ -47,6 +50,10 @@
     "userSelect": {
         "hint": {
             "add": "1. 点击或者拖拽下面的关键词添加\n2. 拖拽到清除按钮删除 Tag"
+        },
+        "message": {
+            "addBefore": "松开，添加到这个之前",
+            "addTail": "松开，添加元素在末尾"
         }
     },
     "feedback": {

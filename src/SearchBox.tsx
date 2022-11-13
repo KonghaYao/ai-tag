@@ -49,17 +49,18 @@ export const SearchBox = () => {
                 <div
                     class="btn flex-none bg-red-800 px-4"
                     onclick={() => triggerSearch('')}
-                    // TODO CN
-                    title="拖拽到我删除 Tag"
+                    title={t('searchBox.hint.deleteHint')}
                     ondragover={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        receive(false, 'USER_SELECTED', () => Message.warn('松开，删除元素'));
+                        receive(false, 'USER_SELECTED', () =>
+                            Message.warn(t('searchBox.hint.deleteMessage'))
+                        );
                     }}
                     onDrop={(e) => {
                         receive(e.dataTransfer, 'USER_SELECTED', (item) => {
                             usersCollection((i) => i.filter((i) => i.en !== item.en));
-                            Notice.success('删除 Tag 成功');
+                            Notice.success(t('success'));
                         });
                     }}
                 >

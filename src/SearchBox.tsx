@@ -8,6 +8,7 @@ import { sampleSize as _sampleSize } from 'lodash-es';
 import { CreateIData, stringToTags } from './use/TagsConvertor';
 import { useTranslation } from '../i18n';
 import { useDragAndDropData } from './use/useDragAndDropData';
+import { Notice } from './utils/notice';
 
 /** 重新设计的随机函数, 很明显，数量大的 tag 的支持度更高，所以使用排序手法 */
 const sampleSize = (list: IData[], size: number) => {
@@ -53,6 +54,7 @@ export const SearchBox = () => {
                     onDrop={(e) => {
                         receive(e.dataTransfer, 'USER_SELECTED', (item) => {
                             usersCollection((i) => i.filter((i) => i.en !== item.en));
+                            Notice.success('删除 Tag 成功');
                         });
                     }}
                 >

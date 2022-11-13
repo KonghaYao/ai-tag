@@ -10,6 +10,7 @@ import { t } from 'i18next';
 import { useTagController } from './use/useTagController';
 import { stringToTags } from './use/TagsConvertor';
 import { useDragAndDropData } from './use/useDragAndDropData';
+import { Notice } from './utils/notice';
 
 export const UserSelected = () => {
     const { deleteMode, enMode, usersCollection, emphasizeAddMode, emphasizeSubMode, lists } =
@@ -67,6 +68,7 @@ export const UserSelected = () => {
                                             temp.splice(dist, 0, ...stringToTags(info, lists()));
                                             return temp;
                                         });
+                                        Notice.success('添加成功');
                                     });
                                 }}
                                 data={item}

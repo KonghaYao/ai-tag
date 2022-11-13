@@ -1,9 +1,8 @@
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import zh from './default.json';
-import en from './lang/en.json';
-import jp from './lang/jp.json';
-
+import zh from '../locales/zh-CN.json';
+import en from '../locales/en.json';
+import jp from '../locales/jp.json';
 i18n.use(LanguageDetector).init({
     resources: {
         en: { translation: en },

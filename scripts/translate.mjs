@@ -3,39 +3,6 @@ import fetch from 'node-fetch';
 import fs from 'fs';
 import { gtk, getSign, token, cookie } from './transInput.mjs';
 import { merge } from 'lodash-es';
-/**
- *
- * @param {Object} obj
- * @param {string[]} languages
- * @param {(text:string,targetLang:string)=>Promise<string>} translate
- */
-export const loop = (obj, languages, translate) => {
-    let traversed = traverse(obj);
-
-    let targets = {};
-
-    languages.forEach((lang) => {
-        targets[lang] = traverse(traversed.clone());
-    });
-
-    let paths = traversed.paths();
-
-    return paths.reduce(async (col, path) => {
-        await col;
-        let text = traversed.get(path);
-        if (typeof text !== 'string') {
-            return;
-        }
-        await languages.reduce((col, lang) => {
-            return col.then(() => {
-                return translate(text, lang).then((res) => {
-                    targets[lang].set(path, res);
-                });
-            });
-        }, Promise.resolve());
-        return targets;
-    }, Promise.resolve(targets));
-};
 
 async function trans(q, from, to) {
     const body = new URLSearchParams();
@@ -73,18 +40,3 @@ async function trans(q, from, to) {
             return res.trans_result.data[0].dst;
         });
 }
-(async () => {
-    const data = JSON.parse(fs.readFileSync('./i18n/default.json', 'utf-8'));
-    const final = await loop(data, ['en', 'jp'], async (text, targetLang) => {
-        console.log(targetLang, text);
-        return trans(text, 'zh', targetLang);
-    });
-    Object.entries(final).forEach(([lang, data]) => {
-        const isExist = fs.existsSync(`./i18n/overrides/${lang}.json`);
-        if (isExist) {
-            merge(data.value, JSON.parse(fs.readFileSync(`./i18n/overrides/${lang}.json`)));
-        }
-        fs.writeFileSync(`./i18n/lang/${lang}.json`, JSON.stringify(data.value));
-    });
-    // console.log(a);
-})();

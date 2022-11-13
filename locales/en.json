@@ -1,0 +1,117 @@
+{
+  "WebView": {
+    "newPage": "New tab opens",
+    "Error": "This site does not support, please click to jump"
+  },
+  "clear": "to clear",
+  "error": "An unknown error has occurred",
+  "feedback": {
+    "Description": "Mandatory, please write down relevant information, related sources, triggering conditions, etc., write what you have",
+    "DescriptionTitle": "specific description",
+    "IWantTo": "i just want",
+    "Path": "Optional, you can leave your address",
+    "QuestionTitle": "question title",
+    "UploadButton": "Submit, thanks for your support!",
+    "YourName": "your name",
+    "beforeFeedback": "Before Feedback, Please Acknowledge: Teenager mode causes missing words",
+    "feedbackMessage": "Feedback",
+    "hint": {
+      "notFilled": "Please complete",
+      "success": "Submitted successfully, thank you for your feedback",
+      "uploading": "submitting. . ."
+    },
+    "necessary": "required",
+    "viewOldFeedback": "View previous feedback"
+  },
+  "header": {
+    "Doc": "tutorial",
+    "FeedBack": "the feedback",
+    "Gallery": "gallery",
+    "TeenagerMode": "Teen Mode",
+    "hint": {
+      "teen": "Please change in the settings panel"
+    }
+  },
+  "home": {
+    "btn": {
+      "Gallery": "Charms Gallery",
+      "RandomMaker": "Two-Thirds Spell Generator",
+      "feedback": "Feedback"
+    },
+    "hint": {
+      "clickBelow": "Click on the home page below to return"
+    },
+    "title": {
+      "FriendsLink": "Links",
+      "home": "home page",
+      "localFunc": "local function",
+      "translator": "auxiliary translator"
+    }
+  },
+  "loading": "Loading",
+  "publicPanel": {
+    "CombineMagic": "fusion magic",
+    "CopyMagic": "bring magic",
+    "advancedSearch": "Advanced Search",
+    "hint": {
+      "CombineSuccess": "The fusion magic is launched, and the spell has been integrated",
+      "CopySuccess": "bring success",
+      "Share": "share",
+      "gallery": "Charms Gallery",
+      "gotoSite": "website"
+    }
+  },
+  "search": "search",
+  "searchBox": {
+    "Random": "random",
+    "create": "create",
+    "hint": {
+      "deleteHint": "Drag and drop to I delete Tag",
+      "deleteMessage": "release, remove element",
+      "searchPlaceholder": "Search keywords, Chinese is also available"
+    },
+    "searchResult": "search results"
+  },
+  "settingPanel": {
+    "hint": {
+      "pleaseInput": "Please enter a URL",
+      "refresh": "Refresh cache: Thesaurus has a strong cache, please click me to update.",
+      "updated": "The update is complete, refresh the browser to complete the update"
+    },
+    "lists": {
+      "number": "display value"
+    }
+  },
+  "success": "Successful operation",
+  "toolbar1": {
+    "Home": "home page",
+    "hint": {
+      "ImportHint": "Please enter the spell, the spell will be overwritten"
+    },
+    "zh": "Chinese"
+  },
+  "toolbar2": {
+    "copy": "one-click copy",
+    "hint": {
+      "copy": "copy magic unleashed"
+    }
+  },
+  "upload": "upload",
+  "uploadPanel": {
+    "DetectResult": "Test results:",
+    "YourName": "your name",
+    "autoDetect": "Automatically identify pictures =&gt;",
+    "description": "Charm description",
+    "hint": {
+      "checkError": "Your magic power seems to be missing!",
+      "commitHint": "the forest remembers everything",
+      "uploadDone": "upload completed",
+      "uploadError": "Failed to upload image",
+      "uploading": "Uploading, please wait",
+      "uploadingImage": "Uploading pictures, please wait for completion. . ."
+    },
+    "hint2": "For continued service, please do not upload &quot;you know&quot; types.",
+    "license": "Uploaded resources will be shared in CC0 mode",
+    "prompt": "spell text"
+  }
+}

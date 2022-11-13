@@ -14,7 +14,15 @@ export const Message = {
     success(info: string) {
         this.total(info);
         this.close();
+        set('color', 'bg-green-600');
     },
+
+    info(info: string) {
+        this.total(info);
+        this.close();
+        set('color', 'bg-blue-600');
+    },
+
     warn(info: string) {
         this.total(info);
         set('color', 'bg-yellow-600');

@@ -55,6 +55,8 @@ import { FontSupport } from './components/FontSupport';
 import { useTranslation } from '../i18n';
 import { Notice } from './utils/notice';
 import { useLocalData } from './use/useLocalData';
+import { useDragAndDropData } from './use/useDragAndDropData';
+import { Message } from './MessageHint';
 
 export const Background = () => {
     const { backgroundImage } = useContext(Data);
@@ -121,6 +123,7 @@ export const App = () => {
     createEffect(() => sideAppMode(width() > 888));
     recover();
     tracking();
+    const { detect } = useDragAndDropData();
     return (
         <Data.Provider
             value={{
@@ -145,6 +148,13 @@ export const App = () => {
                     class=" flex h-screen w-screen justify-center"
                     classList={{
                         'font-global': !defaultFont(),
+                    }}
+                    ondragover={(e) => {
+                        detect(e.dataTransfer, {
+                            PURE_TAGS() {
+                                Message.success('你可以拖拽魔咒文本到任何编辑器！');
+                            },
+                        });
                     }}
                 >
                     <Background></Background>

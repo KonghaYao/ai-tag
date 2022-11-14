@@ -50,10 +50,10 @@ export const UserSelected = () => {
                         Message.success(t('userSelect.message.addTail'));
                     },
                     COMBINE_MAGIC() {
-                        Message.success('检测到融合魔法！');
+                        Message.success(t('userSelect.message.combine'));
                     },
                     INPUT_MAGIC() {
-                        Message.success('检测到 Tag 注入');
+                        Message.success(t('userSelect.message.input'));
                     },
                 });
             }}
@@ -104,9 +104,9 @@ export const UserSelected = () => {
                         <div data-id={item.en} {...events}>
                             <TagButton
                                 onDrop={(item, data, e) => {
-                                    e.stopPropagation();
                                     // 在某个元素前创建协议
                                     receive(data, 'ADD_BEFORE', (info) => {
+                                        e.stopPropagation();
                                         usersCollection((i) => {
                                             const temp = [...i];
                                             const dist = i.indexOf(item) ?? temp.length;
@@ -130,7 +130,6 @@ export const UserSelected = () => {
                     );
                 }}
             </SortableList>
-            {/* <span class="text-xs text-red-600">拖拽移动到最后一个的位置上会 BUG</span> */}
 
             {usersCollection().length === 0 && (
                 <span class="h-16 whitespace-pre-wrap text-center font-light text-sky-500">

@@ -4,6 +4,7 @@ import { Data } from './App';
 import { stringToTags, TagsToString } from './use/TagsConvertor';
 import { Notice } from './utils/notice';
 import { useTranslation } from '../i18n';
+import { WebViewLink } from './Panels/Webview';
 
 export function HeaderFirst() {
     const { enMode, usersCollection, visibleId, lists, emphasizeSymbol } = useContext(Data);
@@ -43,6 +44,9 @@ export function HeaderFirst() {
             >
                 {emphasizeSymbol().split('').join(' ')}
             </span>
+            <WebViewLink href="./notebook.html">
+                <span class="btn  bg-purple-600 font-bold  text-white">{t('notebook')}</span>
+            </WebViewLink>
         </header>
     );
 }

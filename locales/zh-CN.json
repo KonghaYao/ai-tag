@@ -1,151 +1,159 @@
 {
-    "loading": "加载中",
-    "success": "操作成功",
-    "search": "搜索",
-    "error": "发生了不知名的错误",
-    "voidResult": "结果为空",
-    "clear": "清除",
-    "upload": "上传",
-    "header": {
-        "Doc": "教程",
-        "Gallery": "画廊",
-        "FeedBack": "反馈",
-        "TeenagerMode": "青少年模式",
-        "hint": {
-            "teen": "请在设置面板更改"
-        }
-    },
-    "toolbar1": {
-        "en": "英文",
-        "zh": "中文",
-        "Import": "魔咒导入",
-        "Home": "主页",
-        "Gallery": "画廊",
-        "Share": "分享",
-        "hint": {
-            "bracketsChange": "强调括号更换",
-            "ImportHint": "请输入魔咒, 魔咒将会覆盖哦"
-        }
-    },
-    "toolbar2": {
-        "deleteMode": "删除模式",
-        "addWeight": "加权模式",
-        "subWeight": "减权模式",
-        "copy": "一键复制",
-        "hint": {
-            "copy": "复制魔法释放"
-        }
-    },
-    "searchBox": {
-        "hint": {
-            "searchPlaceholder": "搜索关键词，中文也可以",
-            "deleteHint": "拖拽到我删除 Tag",
-            "deleteMessage": "松开，删除元素"
-        },
-        "searchResult": "搜索结果",
-        "create": "创建",
-        "NoNumberFilter": "无数目筛选",
-        "Random": "随机"
-    },
-    "userSelect": {
-        "hint": {
-            "add": "1. 点击或者拖拽下面的关键词添加\n2. 拖拽到清除按钮删除 Tag"
-        },
-        "message": {
-            "addBefore": "松开，添加到这个之前",
-            "addTail": "松开，添加元素在末尾"
-        }
-    },
-    "feedback": {
-        "hint": {
-            "uploading": "提交中。。。",
-            "success": "提交成功, 感谢您的反馈",
-            "notFilled": "请完成填写"
-        },
-        "feedbackMessage": "反馈信息",
-        "viewOldFeedback": "查看以前的反馈",
-        "beforeFeedback": "反馈之前，请确认：青少年模式导致词缺失",
-        "IWantTo": "我就想要",
-        "QuestionTitle": "问题标题",
-        "necessary": "必填",
-        "YourName": "你的名字",
-        "Path": "选填，可以留下信息",
-        "DescriptionTitle": "具体描述",
-        "Description": "必填，请写下相关的信息，相关的来源，触发的条件等，有啥写啥",
-        "UploadButton": "提交，感谢您的支持！"
-    },
-    "home": {
-        "btn": {
-            "Setting": "设置",
-            "Gallery": "魔咒画廊",
-            "RandomMaker": "三分之二魔咒生成器",
-            "feedback": "反馈信息"
-        },
-        "hint": {
-            "clickBelow": "点击下面的主页即是返回"
-        },
-        "title": {
-            "home": "主页",
-            "localFunc": "本地功能",
-            "FriendsLink": "友情链接",
-            "translator": "辅助翻译器"
-        }
-    },
-    "publicPanel": {
-        "hint": {
-            "gotoSite": "网站",
-            "gallery": "魔咒画廊",
-            "Share": "分享",
-            "CopySuccess": "拿来成功",
-            "CombineSuccess": "融合魔法发动，魔咒已融入",
-            "searchHint": "搜索标题"
-        },
-        "CopyMagic": "拿来魔法",
-        "CombineMagic": "融合魔法",
-        "advancedSearch": "高级搜索"
-    },
-    "settingPanel": {
-        "title": "设置面板",
-        "hint": {
-            "refresh": "刷新缓存: 词库有强缓存，更新新请点我。",
-            "updated": "更新完成，刷新浏览器完成更新",
-            "pleaseInput": "请输入一个 URL"
-        },
-        "lists": {
-            "teen": "青少年模式",
-            "number": "显示数值",
-            "sideAPP": "侧边应用模式",
-            "defaultFont": "使用默认字体",
-            "everyTimeTags": "每次搜索 tags 数",
-            "maxEm": "最大强调层数",
-            "backgroundImage": "更换背景图片",
-            "localUpload": "本地载入"
-        }
-    },
-    "uploadPanel": {
-        "hint": {
-            "uploading": "上传中，请稍等",
-            "uploadDone": "上传完成",
-            "checkError": "你的法力好像有些缺失呀！",
-            "uploadingImage": "上传图片中，请等待完成。。。",
-            "uploadError": "上传图片失败",
-            "commit": "提交 ! ",
-            "commitHint": "森林会记住一切"
-        },
-        "title": "大梦的曲调",
-        "YourName": "你的名字",
-        "description": "魔咒描述",
-        "suitableForTeen": "是否适合未成年",
-        "hint1": " 注意上传正确的图片和 tag 否则会被清理。",
-        "hint2": "为了持续服务，请不要上传 “你懂的” 的类型。",
-        "autoDetect": "自动识别图片=>",
-        "prompt": "魔咒文本",
-        "DetectResult": "检测结果：",
-        "seed": "种子号码",
-        "license": "上传资源将以 CC0 方式进行分享"
-    },
-    "WebView": {
-        "newPage": "新标签页打开",
-        "Error": "该站点不支持，请点击跳转"
+  "loading": "加载中",
+  "success": "操作成功",
+  "search": "搜索",
+  "error": "发生了不知名的错误",
+  "voidResult": "结果为空",
+  "clear": "清除",
+  "upload": "上传",
+  "header": {
+    "Doc": "教程",
+    "Gallery": "画廊",
+    "FeedBack": "反馈",
+    "TeenagerMode": "青少年模式",
+    "hint": {
+      "teen": "请在设置面板更改"
     }
+  },
+  "toolbar1": {
+    "en": "英文",
+    "zh": "中文",
+    "Import": "魔咒导入",
+    "Home": "主页",
+    "Gallery": "画廊",
+    "Share": "分享",
+    "hint": {
+      "bracketsChange": "强调括号更换",
+      "ImportHint": "请输入魔咒, 魔咒将会覆盖哦"
+    }
+  },
+  "toolbar2": {
+    "deleteMode": "删除模式",
+    "addWeight": "加权模式",
+    "subWeight": "减权模式",
+    "copy": "一键复制",
+    "hint": {
+      "copy": "复制魔法释放"
+    }
+  },
+  "searchBox": {
+    "hint": {
+      "searchPlaceholder": "搜索关键词，中文也可以",
+      "deleteHint": "拖拽到我删除 Tag",
+      "deleteMessage": "松开，删除元素"
+    },
+    "searchResult": "搜索结果",
+    "create": "创建",
+    "NoNumberFilter": "无数目筛选",
+    "Random": "随机"
+  },
+  "userSelect": {
+    "hint": {
+      "add": "1. 点击或者拖拽下面的关键词添加\n2. 拖拽到清除按钮删除 Tag"
+    },
+    "message": {
+      "addBefore": "松开，添加到这个之前",
+      "addTail": "松开，添加元素在末尾",
+      "combine": "检测到融合魔法！",
+      "input": "松手，复制魔咒"
+    }
+  },
+  "feedback": {
+    "hint": {
+      "uploading": "提交中。。。",
+      "success": "提交成功, 感谢您的反馈",
+      "notFilled": "请完成填写"
+    },
+    "feedbackMessage": "反馈信息",
+    "viewOldFeedback": "查看以前的反馈",
+    "beforeFeedback": "反馈之前，请确认：青少年模式导致词缺失",
+    "IWantTo": "我就想要",
+    "QuestionTitle": "问题标题",
+    "necessary": "必填",
+    "YourName": "你的名字",
+    "Path": "选填，可以留下信息",
+    "DescriptionTitle": "具体描述",
+    "Description": "必填，请写下相关的信息，相关的来源，触发的条件等，有啥写啥",
+    "UploadButton": "提交，感谢您的支持！"
+  },
+  "home": {
+    "btn": {
+      "Setting": "设置",
+      "Gallery": "魔咒画廊",
+      "RandomMaker": "三分之二魔咒生成器",
+      "feedback": "反馈信息"
+    },
+    "hint": {
+      "clickBelow": "点击下面的主页即是返回"
+    },
+    "title": {
+      "home": "主页",
+      "localFunc": "本地功能",
+      "FriendsLink": "友情链接",
+      "translator": "辅助翻译器"
+    }
+  },
+  "publicPanel": {
+    "hint": {
+      "gotoSite": "网站",
+      "gallery": "魔咒画廊",
+      "Share": "分享",
+      "CopySuccess": "拿来成功",
+      "CombineSuccess": "融合魔法发动，魔咒已融入",
+      "searchHint": "搜索标题"
+    },
+    "CopyMagic": "拿来魔法",
+    "CombineMagic": "融合魔法",
+    "advancedSearch": "高级搜索"
+  },
+  "settingPanel": {
+    "title": "设置面板",
+    "hint": {
+      "refresh": "刷新缓存: 词库有强缓存，更新新请点我。",
+      "updated": "更新完成，刷新浏览器完成更新",
+      "pleaseInput": "请输入一个 URL"
+    },
+    "lists": {
+      "teen": "青少年模式",
+      "number": "显示数值",
+      "sideAPP": "侧边应用模式",
+      "defaultFont": "使用默认字体",
+      "everyTimeTags": "每次搜索 tags 数",
+      "maxEm": "最大强调层数",
+      "backgroundImage": "更换背景图片",
+      "localUpload": "本地载入"
+    }
+  },
+  "uploadPanel": {
+    "hint": {
+      "uploading": "上传中，请稍等",
+      "uploadDone": "上传完成",
+      "checkError": "你的法力好像有些缺失呀！",
+      "uploadingImage": "上传图片中，请等待完成。。。",
+      "uploadError": "上传图片失败",
+      "commit": "提交 ! ",
+      "commitHint": "森林会记住一切"
+    },
+    "title": "大梦的曲调",
+    "YourName": "你的名字",
+    "description": "魔咒描述",
+    "suitableForTeen": "是否适合未成年",
+    "hint1": " 注意上传正确的图片和 tag 否则会被清理。",
+    "hint2": "为了持续服务，请不要上传 “你懂的” 的类型。",
+    "autoDetect": "自动识别图片=>",
+    "prompt": "魔咒文本",
+    "DetectResult": "检测结果：",
+    "seed": "种子号码",
+    "license": "上传资源将以 CC0 方式进行分享"
+  },
+  "WebView": {
+    "newPage": "新标签页打开",
+    "Error": "该站点不支持，请点击跳转"
+  },
+  "notebook": "笔记本",
+  "Notebook": {
+    "hint": {
+      "PURE_TAGS": "检测到来自魔导绪论的魔咒"
+    }
+  }
 }

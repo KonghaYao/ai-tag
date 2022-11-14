@@ -50,7 +50,7 @@ export const useDragAndDropData = () => {
 
                     try {
                         const Payload = JSON.parse(data) as TagTransfer;
-                        if (Payload.type === type) return cb(Payload.data);
+                        return cb(Payload.data);
                     } catch (e) {
                         console.warn(e);
                         return;

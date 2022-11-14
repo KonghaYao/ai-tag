@@ -55,7 +55,7 @@ export const Webview = () => {
                     >
                         <iframe
                             ref={container}
-                            sandbox="allow-scripts allow-popups allow-same-origin "
+                            sandbox="allow-scripts allow-popups allow-same-origin allow-modals"
                             class="absolute top-0 left-0 h-full w-full"
                             src={webviewURL()}
                             onload={(e) => {

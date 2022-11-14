@@ -1,5 +1,6 @@
 import { atom } from '@cn-ui/use';
 import { createResource, For, Show, Suspense } from 'solid-js';
+import { useTranslation } from '../i18n';
 import { Message, MessageHint } from '../src/MessageHint';
 import { useDragAndDropData } from '../src/use/useDragAndDropData';
 import { Notice } from '../src/utils/notice';
@@ -7,14 +8,18 @@ import { SingleMagic, useIndexedDB } from './use/useIndexedDB';
 
 export const App = () => {
     const { addMagic } = useIndexedDB();
-    const { receive } = useDragAndDropData();
+    const { receive, detect } = useDragAndDropData();
+    const { t } = useTranslation();
     return (
         <main
             class="font-global flex h-screen w-screen flex-col overflow-hidden text-gray-400"
             ondragover={(e) => {
                 e.preventDefault();
-                // ! 注意，获取不到过程量
-                Message.success('检测到拖拽');
+                detect(e.dataTransfer, {
+                    PURE_TAGS() {
+                        Message.success(t('Notebook.hint.PURE_TAGS'));
+                    },
+                });
             }}
             ondrop={(e) => {
                 receive(e.dataTransfer, 'PURE_TAGS', (tags) => {
@@ -47,7 +52,18 @@ const MagicList = () => {
     const { send } = useDragAndDropData();
     return (
         <div class="flex flex-col gap-4 overflow-y-scroll py-12">
-            <For each={IndexList()} fallback={'您的数据为空'}>
+            <For
+                each={IndexList()}
+                fallback={
+                    <div class="w-full text-center">
+                        数据为空, 你可以
+                        <ol class=" px-4 text-left">
+                            <li>1. 直接拖拽魔咒文本到这里</li>
+                            <li>2. 在魔导绪论拖拽一键复制按钮到这里</li>
+                        </ol>
+                    </div>
+                }
+            >
                 {(item, index) => {
                     const [data, { refetch }] = createResource<SingleMagic>(() =>
                         store.getItem(item)

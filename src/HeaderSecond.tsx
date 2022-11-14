@@ -92,6 +92,7 @@ export function HeaderSecond() {
                     copy(getTagString());
                     Notice.success(t('toolbar2.hint.copy'));
                 }}
+                title={t('toolbar2.hint.copy_drag')}
             >
                 {t('toolbar2.copy')}
             </span>

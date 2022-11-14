@@ -33,7 +33,8 @@
     "subWeight": "减权模式",
     "copy": "一键复制",
     "hint": {
-      "copy": "复制魔法释放"
+      "copy": "复制魔法释放",
+      "copy_drag": "试着把我拖到笔记本里面"
     }
   },
   "searchBox": {

@@ -3,6 +3,7 @@ import { batch, useContext } from 'solid-js';
 import { useTranslation } from '../i18n';
 import { Data } from './App';
 import { TagsToString } from './use/TagsConvertor';
+import { useDragAndDropData } from './use/useDragAndDropData';
 import { Notice } from './utils/notice';
 
 export function HeaderSecond() {
@@ -15,6 +16,20 @@ export function HeaderSecond() {
         emphasizeSymbol,
     } = useContext(Data);
     const { t } = useTranslation();
+    const { send } = useDragAndDropData();
+    const getTagString = () => {
+        return TagsToString(
+            usersCollection().map((i) => {
+                // 中英文模式下的不同修改
+                if (enMode()) {
+                    return i;
+                } else {
+                    return { ...i, text: i.cn };
+                }
+            }),
+            emphasizeSymbol()
+        );
+    };
     return (
         <header class="flex border-t border-slate-700 pt-2 text-sm font-bold text-yellow-600">
             <span
@@ -65,19 +80,16 @@ export function HeaderSecond() {
 
             <span
                 class="btn"
+                draggable={true}
+                ondragover={(e) => e.preventDefault()}
+                ondragstart={(e) => {
+                    send(e.dataTransfer, {
+                        type: 'PURE_TAGS',
+                        data: getTagString(),
+                    });
+                }}
                 onclick={() => {
-                    copy(
-                        TagsToString(
-                            usersCollection().map((i) => {
-                                if (enMode()) {
-                                    return i;
-                                } else {
-                                    return { ...i, text: i.cn };
-                                }
-                            }),
-                            emphasizeSymbol()
-                        )
-                    );
+                    copy(getTagString());
                     Notice.success(t('toolbar2.hint.copy'));
                 }}
             >

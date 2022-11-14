@@ -59,7 +59,7 @@ import { useLocalData } from './use/useLocalData';
 export const Background = () => {
     const { backgroundImage } = useContext(Data);
     return (
-        <div class="brightness-60 pointer-events-none fixed h-full w-full opacity-30">
+        <div class="brightness-40 pointer-events-none fixed h-full w-full opacity-30">
             {backgroundImage() && (
                 <img
                     loading="lazy"

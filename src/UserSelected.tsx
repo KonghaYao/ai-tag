@@ -13,6 +13,7 @@ import { useDragAndDropData } from './use/useDragAndDropData';
 import { Notice } from './utils/notice';
 import { useHoverInDOM } from './use/useHoverInDom';
 import { Message } from './MessageHint';
+import { CombineMagic } from './utils/CombineMagic';
 
 export const UserSelected = () => {
     const { deleteMode, enMode, usersCollection, emphasizeAddMode, emphasizeSubMode, lists } =
@@ -28,11 +29,14 @@ export const UserSelected = () => {
             return false;
         }
     });
-    const { receive, send } = useDragAndDropData();
-    const { events } = useHoverInDOM((type) => {
+    const { receive, send, detect } = useDragAndDropData();
+    const { events } = useHoverInDOM((type, e) => {
         if (type === 'Drag') {
-            receive(false, 'ADD_BEFORE', () => {
-                Message.success(t('userSelect.message.addBefore'));
+            /** @ts-ignore */
+            detect(e.dataTransfer, {
+                ADD_BEFORE() {
+                    Message.success(t('userSelect.message.addBefore'));
+                },
             });
         }
     });
@@ -41,14 +45,31 @@ export const UserSelected = () => {
             class="user-selected my-2 flex w-full flex-col rounded-xl border border-solid border-gray-600 p-2 "
             ondragover={(e) => {
                 e.preventDefault();
-                receive(false, 'ADD_BEFORE', () => {
-                    Message.success(t('userSelect.message.addTail'));
+                detect(e.dataTransfer, {
+                    ADD_BEFORE() {
+                        Message.success(t('userSelect.message.addTail'));
+                    },
+                    COMBINE_MAGIC() {
+                        Message.success('检测到融合魔法！');
+                    },
+                    INPUT_MAGIC() {
+                        Message.success('检测到 Tag 注入');
+                    },
                 });
             }}
             onDrop={(e) => {
                 // 默认添加到末尾
                 receive(e.dataTransfer, 'ADD_BEFORE', (info) => {
                     usersCollection((i) => [...i, ...stringToTags(info, lists())]);
+                });
+                receive(e.dataTransfer, 'COMBINE_MAGIC', (tags: string) => {
+                    const input = stringToTags(tags, lists());
+                    CombineMagic(input, usersCollection);
+                    Message.success(t('publicPanel.hint.CombineSuccess'));
+                });
+                receive(e.dataTransfer, 'INPUT_MAGIC', (tags: string) => {
+                    usersCollection(stringToTags(tags, lists()));
+                    Notice.success(t('publicPanel.hint.CopySuccess'));
                 });
             }}
         >

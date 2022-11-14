@@ -71,6 +71,7 @@ export default defineConfig(({ mode }) => {
                 input: {
                     index: './index.html',
                     gallery: './gallery.html',
+                    notebook: './notebook.html',
                 },
             },
         },

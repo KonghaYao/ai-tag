@@ -35,7 +35,7 @@ export const SearchBox = () => {
 
     const triggerSearch = debounce(searchText, 200) as Setter<string>;
     const { t } = useTranslation();
-    const { send, receive } = useDragAndDropData();
+    const { send, receive, detect } = useDragAndDropData();
     return (
         <>
             <nav class="flex w-full items-center">
@@ -53,9 +53,11 @@ export const SearchBox = () => {
                     ondragover={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        receive(false, 'USER_SELECTED', () =>
-                            Message.warn(t('searchBox.hint.deleteMessage'))
-                        );
+                        detect(e.dataTransfer, {
+                            USER_SELECTED() {
+                                Message.warn(t('searchBox.hint.deleteMessage'));
+                            },
+                        });
                     }}
                     onDrop={(e) => {
                         receive(e.dataTransfer, 'USER_SELECTED', (item) => {

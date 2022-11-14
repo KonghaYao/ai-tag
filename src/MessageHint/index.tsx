@@ -34,7 +34,7 @@ export const Message = {
 };
 export const MessageHint = () => {
     return (
-        <section class="pointer-events-none absolute top-5 left-0 flex h-fit w-full justify-center text-center">
+        <section class="pointer-events-none fixed top-5 left-0 z-50 flex h-fit w-full justify-center text-center">
             <div
                 classList={{
                     'translate-y-0 scale-100 opacity-100': MessageStore.visible,

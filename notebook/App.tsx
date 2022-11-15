@@ -22,16 +22,19 @@ export const App = () => {
                 });
             }}
             ondrop={(e) => {
-                receive(e.dataTransfer, 'PURE_TAGS', (tags) => {
+                const isReceived = receive(e.dataTransfer, 'PURE_TAGS', (tags) => {
                     addMagic(tags);
                     Notice.success('创建魔咒成功');
+                    return true;
                 });
-                const tags = e.dataTransfer.getData('text');
-                if (tags) {
-                    const isReal = confirm(`这是一个魔咒吗？\n ${tags}`);
-                    if (isReal) {
-                        addMagic(tags);
-                        Notice.success('创建魔咒成功');
+                if (!isReceived) {
+                    const tags = e.dataTransfer.getData('text');
+                    if (tags) {
+                        const isReal = confirm(`这是一个魔咒吗？\n ${tags}`);
+                        if (isReal) {
+                            addMagic(tags);
+                            Notice.success('创建魔咒成功');
+                        }
                     }
                 }
             }}

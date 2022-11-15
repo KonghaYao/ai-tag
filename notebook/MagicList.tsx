@@ -1,5 +1,6 @@
 import { atom } from '@cn-ui/use';
-import { createResource, For, Show } from 'solid-js';
+import copy from 'copy-to-clipboard';
+import { Component, createResource, For, JSX, JSXElement, Show } from 'solid-js';
 import { Message } from '../src/MessageHint';
 import { useDragAndDropData } from '../src/use/useDragAndDropData';
 import { Notice } from '../src/utils/notice';
@@ -44,7 +45,7 @@ export const MagicList = () => {
                     );
                     return (
                         <div
-                            class="mx-4 rounded-md bg-slate-800 p-4"
+                            class="mx-4 rounded-md bg-slate-800 p-4 "
                             ondragover={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
@@ -81,9 +82,10 @@ export const MagicList = () => {
                                 </div>
                             </Show>
                             <Show when={data()} fallback={<div> 加载中</div>}>
-                                <header class="flex justify-between">
+                                <header class="flex cursor-pointer justify-between">
                                     <div
-                                        class="cursor-default"
+                                        class="cursor-pointer"
+                                        title="点我修改标题"
                                         onclick={() => {
                                             const cb = prompt('请输入这个魔咒的名称', data().title);
                                             if (cb)
@@ -96,12 +98,30 @@ export const MagicList = () => {
                                     <div class="flex ">{DeleteButton}</div>
                                 </header>
                                 <nav class="my-1 w-full bg-gray-700" style="height:1px"></nav>
-                                <span
-                                    class="cursor-pointer tracking-wider"
-                                    classList={{
-                                        'line-clamp-1': !longText(),
-                                    }}
-                                    onClick={() => longText((i) => !i)}
+                                <ExpendText
+                                    open={
+                                        <span
+                                            class="btn whitespace-nowrap bg-green-600 text-white"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                const cb = prompt('请修改描述', data().description);
+                                                if (cb)
+                                                    ChangeMagic({
+                                                        ...data(),
+                                                        description: cb,
+                                                    }).then(refetch);
+                                            }}
+                                        >
+                                            修改
+                                        </span>
+                                    }
+                                >
+                                    <span class="text-gray-500">
+                                        {data().description || '没有描述信息哦'}
+                                    </span>
+                                </ExpendText>
+
+                                <ExpendText
                                     draggable={true}
                                     ondragstart={(e) => {
                                         e.dataTransfer.setData('text', data().tags);
@@ -111,10 +131,19 @@ export const MagicList = () => {
                                         });
                                         Message.success('您可以拖拽魔咒到其他页面');
                                     }}
+                                    open={
+                                        <span
+                                            class="btn whitespace-nowrap bg-green-600 text-white"
+                                            onclick={() => copy(data().tags)}
+                                        >
+                                            复制魔咒
+                                        </span>
+                                    }
                                     title="点击展开，魔咒可以被拖到任何地方"
                                 >
                                     {data().tags}
-                                </span>
+                                </ExpendText>
+
                                 {/* 时间标记 */}
                                 <div class="flex justify-between py-1 text-xs text-gray-600">
                                     <nav>{new Date(data().create_time).toLocaleDateString()}</nav>
@@ -125,6 +154,28 @@ export const MagicList = () => {
                     );
                 }}
             </For>
+        </div>
+    );
+};
+
+const ExpendText: Component<
+    {
+        children: JSXElement;
+        open?: JSXElement;
+    } & any
+> = (props) => {
+    const longText = atom(false);
+    return (
+        <div
+            class="cursor-pointer tracking-wider"
+            classList={{
+                'line-clamp-1': !longText(),
+            }}
+            onClick={() => longText((i) => !i)}
+            {...props}
+        >
+            {props.children}
+            {longText() && props.open}
         </div>
     );
 };

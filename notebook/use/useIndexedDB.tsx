@@ -20,6 +20,10 @@ const initDatabase = memoize(() => {
         name: 'magic_notebook',
         driver: [localforage.INDEXEDDB],
     });
+    const images = localforage.createInstance({
+        name: 'magic_images',
+        driver: [localforage.INDEXEDDB],
+    });
 
     const IndexList = atom<string[]>([]);
 
@@ -31,7 +35,7 @@ const initDatabase = memoize(() => {
         return IndexList(res ?? []);
     });
 
-    return { store, IndexList };
+    return { store, IndexList, images };
 });
 
 export const useIndexedDB = () => {
@@ -60,5 +64,20 @@ export const useIndexedDB = () => {
             last_update: new Date().toISOString(),
         });
     };
-    return { ...database, addMagic, DeleteMagic, ChangeMagic };
+    return {
+        ...database,
+        addMagic,
+        DeleteMagic,
+        ChangeMagic,
+        async AddDemoImage(file: File, oldMagic: SingleMagic) {
+            const id = Math.ceil(Math.random() * 100000000).toString();
+            await database.images.setItem(id, file);
+            return ChangeMagic({ ...oldMagic, demos: [...oldMagic.demos, id] });
+        },
+        getImage: memoize(async (id: string) => {
+            return database.images.getItem(id).then((res: File) => {
+                return URL.createObjectURL(res);
+            });
+        }) as (id: string) => Promise<string>,
+    };
 };

@@ -22,12 +22,14 @@ export const App = () => {
                 });
             }}
             ondrop={(e) => {
+                e.preventDefault();
                 const isReceived = receive(e.dataTransfer, 'PURE_TAGS', (tags) => {
                     addMagic(tags);
                     Notice.success('创建魔咒成功');
                     return true;
                 });
                 if (!isReceived) {
+                    // 文本形式的魔咒导入
                     const tags = e.dataTransfer.getData('text');
                     if (tags) {
                         const isReal = confirm(`这是一个魔咒吗？\n ${tags}`);

@@ -1,13 +1,15 @@
-import { atom } from '@cn-ui/use';
 import copy from 'copy-to-clipboard';
-import { Component, createResource, For, JSX, JSXElement, Show } from 'solid-js';
+import { Component, createResource, For, JSX, Show } from 'solid-js';
 import { Message } from '../src/MessageHint';
 import { useDragAndDropData } from '../src/use/useDragAndDropData';
+import { useViewer } from '../src/use/useViewer';
 import { Notice } from '../src/utils/notice';
+import { AsyncImage } from './AsyncImage';
+import { ExpendText } from './ExpendText';
 import { SingleMagic, useIndexedDB } from './use/useIndexedDB';
 
 export const MagicList = () => {
-    const { IndexList, store, DeleteMagic, ChangeMagic } = useIndexedDB();
+    const { IndexList, store, DeleteMagic, ChangeMagic, AddDemoImage } = useIndexedDB();
     const { send, receive, detect } = useDragAndDropData();
     return (
         <div class="flex flex-col gap-4 overflow-y-scroll py-12">
@@ -27,7 +29,6 @@ export const MagicList = () => {
                     const [data, { refetch }] = createResource<SingleMagic>(() =>
                         store.getItem(item)
                     );
-                    const longText = atom(false);
                     const DeleteButton = (
                         <div
                             class="btn bg-rose-700 text-gray-200"
@@ -46,23 +47,40 @@ export const MagicList = () => {
                     return (
                         <div
                             class="mx-4 rounded-md bg-slate-800 p-4 "
+                            ondragenter={(e) => e.preventDefault()}
+                            ondragleave={(e) => e.preventDefault()}
+                            ondragexit={(e) => e.preventDefault()}
+                            ondragend={(e) => e.preventDefault()}
                             ondragover={(e) => {
                                 e.preventDefault();
-                                e.stopPropagation();
+
                                 detect(e.dataTransfer, {
                                     PURE_TAGS() {
+                                        e.stopPropagation();
                                         Message.success('松手，修改魔咒文本');
                                     },
                                 });
+                                if (e.dataTransfer.types.includes('Files')) {
+                                    Message.success('添加图片到这个魔咒');
+                                }
                             }}
                             ondrop={(e) => {
-                                e.stopPropagation();
                                 receive(e.dataTransfer, 'PURE_TAGS', (tags: string) => {
+                                    e.stopPropagation();
                                     ChangeMagic({ ...data(), tags })
                                         .then(refetch)
                                         .then(() => {
                                             Notice.success('修改魔咒成功');
                                         });
+                                });
+                                Promise.all(
+                                    [...e.dataTransfer.files]
+                                        .filter((i) => {
+                                            return i.type.startsWith('image/');
+                                        })
+                                        .map((i) => AddDemoImage(i, data()))
+                                ).then((list) => {
+                                    list.length && refetch();
                                 });
                             }}
                         >
@@ -144,6 +162,14 @@ export const MagicList = () => {
                                     {data().tags}
                                 </ExpendText>
 
+                                <div class="flex flex-nowrap gap-4 ">
+                                    <For each={data().demos.slice(0, 3)}>
+                                        {(id) => {
+                                            return <ImageCard id={id}></ImageCard>;
+                                        }}
+                                    </For>
+                                </div>
+
                                 {/* 时间标记 */}
                                 <div class="flex justify-between py-1 text-xs text-gray-600">
                                     <nav>{new Date(data().create_time).toLocaleDateString()}</nav>
@@ -157,25 +183,11 @@ export const MagicList = () => {
         </div>
     );
 };
-
-const ExpendText: Component<
-    {
-        children: JSXElement;
-        open?: JSXElement;
-    } & any
-> = (props) => {
-    const longText = atom(false);
+const ImageCard: Component<{ id: string }> = (props) => {
+    const { getImage } = useIndexedDB();
     return (
-        <div
-            class="cursor-pointer tracking-wider"
-            classList={{
-                'line-clamp-1': !longText(),
-            }}
-            onClick={() => longText((i) => !i)}
-            {...props}
-        >
-            {props.children}
-            {longText() && props.open}
+        <div class="h-32 w-32 cursor-pointer overflow-hidden rounded-lg">
+            <AsyncImage fetch={() => getImage(props.id)}></AsyncImage>
         </div>
     );
 };

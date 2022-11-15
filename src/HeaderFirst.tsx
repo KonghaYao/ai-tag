@@ -5,7 +5,7 @@ import { stringToTags, TagsToString } from './use/TagsConvertor';
 import { Notice } from './utils/notice';
 import { useTranslation } from '../i18n';
 import { WebViewLink } from './Panels/Webview';
-
+import isMobile from 'is-mobile';
 export function HeaderFirst() {
     const { enMode, usersCollection, visibleId, lists, emphasizeSymbol } = useContext(Data);
     const { t } = useTranslation();
@@ -32,9 +32,9 @@ export function HeaderFirst() {
             <span class="btn bg-sky-800" onclick={() => visibleId('gallery')}>
                 {t('toolbar1.Gallery')}
             </span>
-            <span class="btn bg-sky-800" onclick={() => visibleId('uploader')}>
+          {!isMobile()&&  <span class="btn bg-sky-800" onclick={() => visibleId('uploader')}>
                 {t('toolbar1.Share')}
-            </span>
+            </span>}
             <span
                 class="btn  bg-purple-600 font-bold  text-white"
                 onClick={() => {

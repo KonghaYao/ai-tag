@@ -83,9 +83,11 @@ export function HeaderSecond() {
                 draggable={true}
                 ondragover={(e) => e.preventDefault()}
                 ondragstart={(e) => {
+                    const data = getTagString();
+                    e.dataTransfer.setData('text', data);
                     send(e.dataTransfer, {
                         type: 'PURE_TAGS',
-                        data: getTagString(),
+                        data,
                     });
                 }}
                 onclick={() => {

@@ -10,7 +10,7 @@ export function HeaderFirst() {
     const { enMode, usersCollection, visibleId, lists, emphasizeSymbol } = useContext(Data);
     const { t } = useTranslation();
     return (
-        <header class="flex w-full border-b border-slate-700 pb-2 text-sm font-bold text-yellow-600">
+        <header class="flex w-full whitespace-nowrap border-b border-slate-700 pb-2 text-sm font-bold text-yellow-600">
             <span class="btn" onclick={() => enMode((i) => !i)}>
                 {t('toolbar1.' + (enMode() ? 'en' : 'zh'))}
             </span>
@@ -32,9 +32,11 @@ export function HeaderFirst() {
             <span class="btn bg-sky-800" onclick={() => visibleId('gallery')}>
                 {t('toolbar1.Gallery')}
             </span>
-          {!isMobile()&&  <span class="btn bg-sky-800" onclick={() => visibleId('uploader')}>
-                {t('toolbar1.Share')}
-            </span>}
+            {!isMobile() && (
+                <span class="btn bg-sky-800" onclick={() => visibleId('uploader')}>
+                    {t('toolbar1.Share')}
+                </span>
+            )}
             <span
                 class="btn  bg-purple-600 font-bold  text-white"
                 onClick={() => {

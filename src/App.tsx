@@ -198,7 +198,7 @@ export const App = () => {
                     </main>
                     <SideApp></SideApp>
                     <Show when={!defaultFont()}>
-                        <FontSupport></FontSupport>
+                        <FontSupport delay={200} show={atom(false)}></FontSupport>
                     </Show>
                 </div>
             </PanelContext.Provider>

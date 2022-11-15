@@ -4,12 +4,13 @@ import { Message } from '../src/MessageHint';
 import { useDragAndDropData } from '../src/use/useDragAndDropData';
 import { useViewer } from '../src/use/useViewer';
 import { Notice } from '../src/utils/notice';
-import { AsyncImage } from './AsyncImage';
-import { ExpendText } from './ExpendText';
+import { AsyncImage } from './components/AsyncImage';
+import { ExpendText } from './components/ExpendText';
 import { SingleMagic, useIndexedDB } from './use/useIndexedDB';
 
 export const MagicList = () => {
-    const { IndexList, store, DeleteMagic, ChangeMagic, AddDemoImage } = useIndexedDB();
+    const { IndexList, store, DeleteMagic, ChangeMagic, AddDemoImage, DeleteImage } =
+        useIndexedDB();
     const { send, receive, detect } = useDragAndDropData();
     return (
         <div class="flex flex-col gap-4 overflow-y-scroll py-12">
@@ -40,6 +41,23 @@ export const MagicList = () => {
                                     );
                                 }
                             }}
+                            ondragover={(e) => {
+                                e.preventDefault();
+                                detect(e.dataTransfer, {
+                                    MAGIC_IMAGE() {
+                                        Message.warn('从魔咒中删除这个图片');
+                                    },
+                                });
+                            }}
+                            ondrop={(e) => {
+                                e.preventDefault();
+                                receive(e.dataTransfer, 'MAGIC_IMAGE', (info) => {
+                                    DeleteImage(info.origin, info.position).then(() => {
+                                        refetch();
+                                        Notice.success('删除成功');
+                                    });
+                                });
+                            }}
                         >
                             删除
                         </div>
@@ -59,10 +77,10 @@ export const MagicList = () => {
                                         e.stopPropagation();
                                         Message.success('松手，修改魔咒文本');
                                     },
+                                    Files() {
+                                        Message.success('添加图片到这个魔咒');
+                                    },
                                 });
-                                if (e.dataTransfer.types.includes('Files')) {
-                                    Message.success('添加图片到这个魔咒');
-                                }
                             }}
                             ondrop={(e) => {
                                 receive(e.dataTransfer, 'PURE_TAGS', (tags: string) => {
@@ -162,10 +180,15 @@ export const MagicList = () => {
                                     {data().tags}
                                 </ExpendText>
 
-                                <div class="flex flex-nowrap gap-4 ">
-                                    <For each={data().demos.slice(0, 3)}>
+                                <div class="flex flex-nowrap gap-4 overflow-y-auto">
+                                    <For
+                                        each={data().demos}
+                                        fallback={
+                                            <span class="text-gray-500">拖拽图片到这里添加</span>
+                                        }
+                                    >
                                         {(id) => {
-                                            return <ImageCard id={id}></ImageCard>;
+                                            return <ImageCard data={data()} id={id}></ImageCard>;
                                         }}
                                     </For>
                                 </div>
@@ -183,10 +206,24 @@ export const MagicList = () => {
         </div>
     );
 };
-const ImageCard: Component<{ id: string }> = (props) => {
+const ImageCard: Component<{ data: SingleMagic; id: string }> = (props) => {
     const { getImage } = useIndexedDB();
+    const { send } = useDragAndDropData();
     return (
-        <div class="h-32 w-32 cursor-pointer overflow-hidden rounded-lg">
+        <div
+            class="h-32 w-32 flex-none cursor-pointer overflow-hidden rounded-lg"
+            title="点击查看\n拖动到删除按钮删除"
+            draggable={true}
+            ondragstart={(e) => {
+                send(e.dataTransfer, {
+                    type: 'MAGIC_IMAGE',
+                    data: {
+                        origin: props.data,
+                        position: props.id,
+                    },
+                });
+            }}
+        >
             <AsyncImage fetch={() => getImage(props.id)}></AsyncImage>
         </div>
     );

@@ -1,5 +1,5 @@
 import { Component, createResource, Show } from 'solid-js';
-import { useViewer } from '../src/use/useViewer';
+import { useViewer } from '../../src/use/useViewer';
 
 export const AsyncImage: Component<{
     fetch: () => Promise<string>;
@@ -11,6 +11,7 @@ export const AsyncImage: Component<{
         <>
             <Show when={url()} fallback="加载中">
                 <img
+                    draggable={false}
                     src={url()}
                     onclick={() => {
                         replaceImages([

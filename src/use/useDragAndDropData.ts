@@ -1,3 +1,4 @@
+import { SingleMagic } from '../../notebook/use/useIndexedDB';
 import { IData } from '../App';
 
 export type TagTransfer =
@@ -9,6 +10,13 @@ export type TagTransfer =
     | {
           type: 'USER_SELECTED';
           data: IData;
+      }
+    | {
+          type: 'MAGIC_IMAGE';
+          data: {
+              origin: SingleMagic;
+              position: string;
+          };
       };
 
 /**
@@ -65,6 +73,7 @@ export const useDragAndDropData = () => {
                 if (iterator.startsWith('x-application/')) {
                     const key = iterator.replace('x-application/', '').toUpperCase();
                     obj[key] && obj[key]();
+                    obj[iterator] && obj[iterator]();
                 }
             }
         },

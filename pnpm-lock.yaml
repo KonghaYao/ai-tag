@@ -8,6 +8,7 @@ specifiers:
   '@tailwindcss/line-clamp': ^0.4.2
   '@types/fs-extra': ^9.0.13
   '@types/lodash-es': ^4.17.6
+  '@types/md5': ^2.3.2
   '@types/papaparse': ^5.3.5
   autoprefixer: ^10.4.8
   babel-preset-solid: ^1.4.6
@@ -20,6 +21,7 @@ specifiers:
   is-mobile: ^3.1.1
   localforage: ^1.10.0
   lodash-es: ^4.17.21
+  md5: ^2.3.0
   node-fetch: ^3.2.10
   notyf: ^3.10.0
   number-precision: ^1.6.0
@@ -55,6 +57,7 @@ dependencies:
   is-mobile: 3.1.1
   localforage: 1.10.0
   lodash-es: 4.17.21
+  md5: 2.3.0
   notyf: 3.10.0
   number-precision: 1.6.0
   papaparse: 5.3.2
@@ -76,6 +79,7 @@ devDependencies:
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.1.8
   '@types/fs-extra': 9.0.13
   '@types/lodash-es': 4.17.6
+  '@types/md5': 2.3.2
   '@types/papaparse': 5.3.5
   autoprefixer: 10.4.8_postcss@8.4.16
   babel-preset-solid: 1.4.6
@@ -566,6 +570,10 @@ packages:
     resolution: {integrity: sha512-evMDG1bC4rgQg4ku9tKpuMh5iBNEwNa3tf9zRHdP1qlv+1WUg44xat4IxCE14gIpZRGUUWAx2VhItCZc25NfMA==}
     dev: true
 
+  /@types/md5/2.3.2:
+    resolution: {integrity: sha512-v+JFDu96+UYJ3/UWzB0mEglIS//MZXgRaJ4ubUPwOM0gvLc/kcQ3TWNYwENEK7/EcXGQVrW8h/XqednSjBd/Og==}
+    dev: true
+
   /@types/node-fetch/2.6.2:
     resolution: {integrity: sha512-DHqhlq5jeESLy19TYhLakJ07kNumXWjcDdxXsLUMJZ6ue8VZJj4kLPQVE/2mdHh3xZziNF1xppu5lwmS53HR+A==}
     dependencies:
@@ -774,6 +782,10 @@ packages:
       supports-color: 7.2.0
     dev: true
 
+  /charenc/0.0.2:
+    resolution: {integrity: sha1-wKHS86cJLgN3S/qD8UwPxXkKhmc=}
+    dev: false
+
   /check-error/1.0.2:
     resolution: {integrity: sha512-BrgHpW9NURQgzoNyjfq0Wu6VFO6D7IZEmJNdtgNqpzGG8RuNFHt2jQxWlAs4HMe119chBnv+34syEZtc6IhLtA==}
     dev: true
@@ -858,6 +870,10 @@ packages:
     resolution: {integrity: sha512-ROmzCKrTnOwybPcJApAA6WBWij23HVfGVNKqqrZpuyZOHqK2CwHSvpGuyt/UNNvaIjEd8X5IFGp4Mh+Ie1IHJQ==}
     engines: {node: '>=0.8'}
     hasBin: true
+    dev: false
+
+  /crypt/0.0.2:
+    resolution: {integrity: sha1-iNf/fsDfuG9xPch7u0LQRNPmxBs=}
     dev: false
 
   /cssesc/3.0.0:
@@ -1297,6 +1313,10 @@ packages:
     dependencies:
       binary-extensions: 2.2.0
 
+  /is-buffer/1.1.6:
+    resolution: {integrity: sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==}
+    dev: false
+
   /is-core-module/2.10.0:
     resolution: {integrity: sha512-Erxj2n/LDAZ7H8WNJXd9tw38GYM3dv8rk8Zcs+jJuxYTW7sozH+SS8NtrSjVL1/vpLvWi1hxy96IzjJ3EHTJJg==}
     dependencies:
@@ -1399,6 +1419,14 @@ packages:
     dependencies:
       tslib: 2.4.0
     dev: true
+
+  /md5/2.3.0:
+    resolution: {integrity: sha512-T1GITYmFaKuO91vxyoQMFETst+O71VUPEU3ze5GNzDm0OWdP8v1ziTaAEPUr/3kLsY3Sftgz242A1SetQiDL7g==}
+    dependencies:
+      charenc: 0.0.2
+      crypt: 0.0.2
+      is-buffer: 1.1.6
+    dev: false
 
   /merge-anything/5.0.2:
     resolution: {integrity: sha512-POPQBWkBC0vxdgzRJ2Mkj4+2NTKbvkHo93ih+jGDhNMLzIw+rYKjO7949hOQM2X7DxMHH1uoUkwWFLIzImw7gA==}

@@ -1,7 +1,7 @@
 import { atom, createIgnoreFirst } from '@cn-ui/use';
 import localforage from 'localforage';
 import { memoize } from 'lodash-es';
-import { createEffect } from 'solid-js';
+import md5 from 'md5';
 
 /** 单条魔咒的详细情况 */
 export interface SingleMagic {
@@ -70,7 +70,9 @@ export const useIndexedDB = () => {
         DeleteMagic,
         ChangeMagic,
         async AddDemoImage(file: File, oldMagic: SingleMagic) {
-            const id = Math.ceil(Math.random() * 100000000).toString();
+            const buffer = await file.arrayBuffer();
+            const id = md5(new Uint8Array(buffer));
+            if (oldMagic.demos.includes(id)) return;
             await database.images.setItem(id, file);
             return ChangeMagic({ ...oldMagic, demos: [...oldMagic.demos, id] });
         },
@@ -79,5 +81,10 @@ export const useIndexedDB = () => {
                 return URL.createObjectURL(res);
             });
         }) as (id: string) => Promise<string>,
+        DeleteImage: async (oldMagic: SingleMagic, id: string) => {
+            oldMagic.demos = oldMagic.demos.filter((i) => i !== id);
+            await database.images.removeItem(id);
+            return ChangeMagic(oldMagic);
+        },
     };
 };

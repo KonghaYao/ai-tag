@@ -3,7 +3,7 @@ import { Data, IData } from './App';
 import { TagButton } from './components/TagButton';
 import { reflect } from '@cn-ui/use';
 import isMobile from 'is-mobile';
-import { SortableList } from './components/sortable';
+import { SortableList } from '@cn-ui/sortable';
 import { HeaderFirst } from './HeaderFirst';
 import { HeaderSecond } from './HeaderSecond';
 import { t } from 'i18next';
@@ -88,18 +88,8 @@ export const UserSelected = () => {
                 getId={(el) => el.en}
                 options={{}}
                 disabled={disabledSortable}
-                void={
-                    {
-                        en: voidId,
-                        cn: '',
-                        r18: 0,
-                        emphasize: 0,
-                        count: 0,
-                    } as IData
-                }
             >
                 {(item) => {
-                    if (item.en === voidId) return <div data-id={item.en}></div>;
                     return (
                         <div data-id={item.en} {...events}>
                             <TagButton

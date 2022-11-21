@@ -3,7 +3,7 @@ import { sample } from 'lodash-es';
 import { createEffect, For, useContext } from 'solid-js';
 import { Data, IData } from '../App';
 import { Panel, PanelContext } from '../components/Panel';
-import { SortableList } from '../components/sortable';
+import { SortableList } from '@cn-ui/sortable';
 export interface PickDataType {
     name: string;
     tags: Atom<IData[]>;
@@ -23,7 +23,6 @@ import { useRandomMaker } from '../use/useRandomMaker';
 export const RandomMaker = () => {
     const { isPanelVisible } = useContext(PanelContext);
     const { usersCollection, deleteMode } = useContext(Data);
-    const voidId = Math.random().toString();
     const { pickData, baseData, addClassify, loadData } = useRandomMaker();
     let firstTime = true;
     createEffect(() => {
@@ -61,14 +60,8 @@ export const RandomMaker = () => {
                         getId={(el) => el.name}
                         options={{}}
                         disabled={atom(false)}
-                        void={
-                            {
-                                name: voidId,
-                            } as PickDataType
-                        }
                     >
                         {(item) => {
-                            if (item.name === voidId) return <div data-id={voidId}></div>;
                             return (
                                 <main data-id={item.name} class="p-2">
                                     <div class="flex justify-between font-bold">
@@ -107,19 +100,8 @@ export const RandomMaker = () => {
                                         getId={(el) => el.en}
                                         options={{}}
                                         disabled={atom(false)}
-                                        void={
-                                            {
-                                                en: voidId,
-                                                cn: '',
-                                                r18: 0,
-                                                emphasize: 0,
-                                                count: 0,
-                                            } as IData
-                                        }
                                     >
                                         {(it) => {
-                                            if (it.en === voidId)
-                                                return <div data-id={voidId}></div>;
                                             return (
                                                 <TagButton
                                                     data={it}

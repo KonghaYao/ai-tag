@@ -198,10 +198,6 @@ export const UploadPanel = () => {
                         }}
                     />
                 </div>
-                <div class="my-2 mx-4 flex cursor-pointer flex-wrap">
-                    {t('uploadPanel.DetectResult')}
-                    {store.tags}
-                </div>
 
                 <div class="my-2 mx-4 flex items-center justify-between">
                     <label class="flex-none ">{t('uploadPanel.seed')}</label>

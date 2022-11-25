@@ -45,7 +45,7 @@ export function HeaderFirst() {
             </span>
             {!isMobile() && (
                 <span class="btn bg-sky-800" onclick={() => visibleId('uploader')}>
-                    {iconBtn() ? 'present_to_all' : t('toolbar1.Share')}
+                    {iconBtn() ? 'upload' : t('toolbar1.Share')}
                 </span>
             )}
             <span

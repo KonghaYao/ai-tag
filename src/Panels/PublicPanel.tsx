@@ -57,26 +57,26 @@ export const PublicPanel = () => {
         <Panel id="gallery">
             <header class="flex w-full items-end justify-between p-2 text-center text-lg font-bold">
                 <a href="./gallery.html">
-                    <div class="btn float-right cursor-pointer px-2 text-sm text-green-700">
-                        {t('publicPanel.hint.gotoSite')}
+                    <div class="font-icon btn float-right cursor-pointer px-2 text-xl text-sm text-green-700">
+                        open_in_browser
                     </div>
                 </a>
                 <div class="flex-none"> {t('publicPanel.hint.gallery')}</div>
                 <div
-                    class="btn float-right cursor-pointer px-2 text-sm text-green-700"
+                    class="font-icon btn float-right cursor-pointer px-2 text-xl  text-green-700"
                     onClick={() => visibleId('uploader')}
                 >
-                    {t('publicPanel.hint.Share')}
+                    upload
                 </div>
             </header>
 
             <div class="flex p-2">
-                <div class="btn  w-fit py-1 text-center text-sm">
+                <div class=" font-icon btn  w-fit py-1 text-center ">
                     <a
                         href="https://github.com/KonghaYao/ai-tag#关于社区的搜索方式"
                         target="_blank"
                     >
-                        {t('publicPanel.advancedSearch')}
+                        book
                     </a>
                 </div>
                 <input
@@ -89,8 +89,8 @@ export const PublicPanel = () => {
                         // changeSearch();
                     }}
                 />
-                <div class="btn px-2" onClick={refetchData}>
-                    {t('search')}
+                <div class="btn font-icon rounded-full px-2 text-xl" onClick={refetchData}>
+                    search
                 </div>
             </div>
             <main class="grid w-full flex-1 auto-rows-min grid-cols-2 gap-2 overflow-auto p-4 py-6">

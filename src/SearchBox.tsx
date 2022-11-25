@@ -22,7 +22,7 @@ const sampleSize = (list: IData[], size: number) => {
 };
 
 export const SearchBox = () => {
-    const { usersCollection, result, lists, searchText, tagsPerPage, searchNumberLimit } =
+    const { usersCollection, result, lists, searchText, tagsPerPage, iconBtn, searchNumberLimit } =
         useContext(Data);
     const showingResult = reflect(() => {
         const num = untrack(tagsPerPage);
@@ -47,36 +47,43 @@ export const SearchBox = () => {
                 ></input>
 
                 <div
-                    class="btn flex-none bg-red-800 px-4"
-                    onclick={() => triggerSearch('')}
-                    title={t('searchBox.hint.deleteHint')}
-                    ondragover={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        detect(e.dataTransfer, {
-                            USER_SELECTED() {
-                                Message.warn(t('searchBox.hint.deleteMessage'));
-                            },
-                        });
-                    }}
-                    onDrop={(e) => {
-                        receive(e.dataTransfer, 'USER_SELECTED', (item) => {
-                            usersCollection((i) => i.filter((i) => i.en !== item.en));
-                            Notice.success(t('success'));
-                        });
+                    class="flex "
+                    classList={{
+                        'font-icon': iconBtn(),
                     }}
                 >
-                    {t('clear')}
+                    <div
+                        class="btn flex-none bg-red-800 px-4"
+                        onclick={() => triggerSearch('')}
+                        title={t('searchBox.hint.deleteHint')}
+                        ondragover={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            detect(e.dataTransfer, {
+                                USER_SELECTED() {
+                                    Message.warn(t('searchBox.hint.deleteMessage'));
+                                },
+                            });
+                        }}
+                        onDrop={(e) => {
+                            receive(e.dataTransfer, 'USER_SELECTED', (item) => {
+                                usersCollection((i) => i.filter((i) => i.en !== item.en));
+                                Notice.success(t('success'));
+                            });
+                        }}
+                    >
+                        {iconBtn() ? 'clear' : t('clear')}
+                    </div>
+                    <span
+                        class="btn flex-none"
+                        onclick={() => {
+                            const name = searchText();
+                            usersCollection((i) => [...i, ...stringToTags(name, lists())]);
+                        }}
+                    >
+                        {iconBtn() ? 'create' : t('searchBox.create')}
+                    </span>
                 </div>
-                <span
-                    class="btn flex-none"
-                    onclick={() => {
-                        const name = searchText();
-                        usersCollection((i) => [...i, ...stringToTags(name, lists())]);
-                    }}
-                >
-                    {t('searchBox.create')}
-                </span>
             </nav>
             <section class="flex h-full w-full flex-1 flex-col overflow-hidden">
                 <nav class="flex text-sm text-gray-400">

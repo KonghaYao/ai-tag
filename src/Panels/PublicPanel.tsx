@@ -57,7 +57,7 @@ export const PublicPanel = () => {
         <Panel id="gallery">
             <header class="flex w-full items-end justify-between p-2 text-center text-lg font-bold">
                 <a href="./gallery.html">
-                    <div class="font-icon btn float-right cursor-pointer px-2 text-xl text-sm text-green-700">
+                    <div class="font-icon btn float-right cursor-pointer px-2 text-xl  text-green-700">
                         open_in_browser
                     </div>
                 </a>

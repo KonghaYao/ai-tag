@@ -89,7 +89,8 @@
       "localUpload": "upload",
       "maxEm": "Maximum Emphasis Layers",
       "sideAPP": "Side Application Mode",
-      "teen": "Teen Mode"
+      "teen": "Teen Mode",
+      "iconBtn": "Icon Mode"
     },
     "title": "Settings"
   },

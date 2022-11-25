@@ -4,15 +4,26 @@ import { Data } from './App';
 import { stringToTags, TagsToString } from './use/TagsConvertor';
 import { Notice } from './utils/notice';
 import { useTranslation } from '../i18n';
-import { WebViewLink } from './Panels/Webview';
+import { useWebView, WebViewLink } from './Panels/Webview';
 import isMobile from 'is-mobile';
 export function HeaderFirst() {
-    const { enMode, usersCollection, visibleId, lists, emphasizeSymbol } = useContext(Data);
+    const { enMode, usersCollection, visibleId, lists, emphasizeSymbol, iconBtn } =
+        useContext(Data);
+    const { nav } = useWebView();
     const { t } = useTranslation();
     return (
-        <header class="flex w-full whitespace-nowrap border-b border-slate-700 pb-2 text-sm font-bold text-yellow-600">
-            <span class="btn" onclick={() => enMode((i) => !i)}>
-                {t('toolbar1.' + (enMode() ? 'en' : 'zh'))}
+        <header
+            class="flex w-full whitespace-nowrap border-b border-slate-700 pb-2  font-bold text-yellow-600"
+            classList={{
+                'font-icon': iconBtn(),
+                'text-xl': iconBtn(),
+                'text-sm': !iconBtn(),
+            }}
+        >
+            <span class="btn text-sm" onclick={() => enMode((i) => !i)}>
+                {iconBtn()
+                    ? t('toolbar1.' + (enMode() ? 'en' : 'zh'))[0]
+                    : t('toolbar1.' + (enMode() ? 'en' : 'zh'))}
             </span>
             <div
                 class="btn"
@@ -24,21 +35,21 @@ export function HeaderFirst() {
                     }
                 }}
             >
-                {t('toolbar1.Import')}
+                {iconBtn() ? 'add_circle' : t('toolbar1.Import')}
             </div>
-            <span class="btn" onclick={() => visibleId('')}>
-                {t('toolbar1.Home')}
+            <span class="btn " onclick={() => visibleId('')}>
+                {iconBtn() ? 'apps' : t('toolbar1.Home')}
             </span>
             <span class="btn bg-sky-800" onclick={() => visibleId('gallery')}>
-                {t('toolbar1.Gallery')}
+                {iconBtn() ? 'collections' : t('toolbar1.Gallery')}
             </span>
             {!isMobile() && (
                 <span class="btn bg-sky-800" onclick={() => visibleId('uploader')}>
-                    {t('toolbar1.Share')}
+                    {iconBtn() ? 'present_to_all' : t('toolbar1.Share')}
                 </span>
             )}
             <span
-                class="btn  bg-purple-600 font-bold  text-white"
+                class="btn  bg-purple-600   text-sm text-white"
                 onClick={() => {
                     emphasizeSymbol((i) => (i === '{}' ? '()' : '{}'));
                     Notice.success(t('toolbar1.hint.bracketsChange'));
@@ -46,9 +57,14 @@ export function HeaderFirst() {
             >
                 {emphasizeSymbol().split('').join(' ')}
             </span>
-            <WebViewLink href="./notebook.html">
-                <span class="btn  bg-purple-600 font-bold  text-white">{t('notebook')}</span>
-            </WebViewLink>
+            <span
+                class="btn  bg-purple-600 font-bold  text-white"
+                onclick={() => {
+                    nav('./notebook.html');
+                }}
+            >
+                {iconBtn() ? 'book' : t('notebook')}
+            </span>
         </header>
     );
 }

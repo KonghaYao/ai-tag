@@ -122,7 +122,8 @@
       "everyTimeTags": "每次搜索 tags 数",
       "maxEm": "最大强调层数",
       "backgroundImage": "更换背景图片",
-      "localUpload": "本地载入"
+      "localUpload": "本地载入",
+      "iconBtn": "Icon 模式"
     }
   },
   "uploadPanel": {

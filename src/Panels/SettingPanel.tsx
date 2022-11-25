@@ -15,6 +15,7 @@ export const SettingPanel = () => {
         MaxEmphasize,
         defaultFont,
         backgroundImage,
+        iconBtn,
     } = useContext(Data);
 
     const { t } = useTranslation();
@@ -23,6 +24,7 @@ export const SettingPanel = () => {
         { title: t('settingPanel.lists.number'), bind: showCount },
         { title: t('settingPanel.lists.sideAPP'), bind: sideAppMode },
         { title: t('settingPanel.lists.defaultFont'), bind: defaultFont },
+        { title: t('settingPanel.lists.iconBtn'), bind: iconBtn },
     ];
     const NumberList = [
         { title: t('settingPanel.lists.everyTimeTags'), bind: tagsPerPage },

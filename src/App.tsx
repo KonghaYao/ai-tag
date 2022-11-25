@@ -35,6 +35,7 @@ export interface IStoreData {
     webviewURL: Atom<string>;
     emphasizeSymbol: Atom<string>;
     defaultFont: Atom<boolean>;
+    iconBtn: Atom<boolean>;
 }
 export interface IGlobalData extends IStoreData {
     emphasizeAddMode: Atom<boolean>;
@@ -85,6 +86,7 @@ export const App = () => {
     const showCount = atom(true);
     const deleteMode = atom(false);
     const defaultFont = atom(false);
+    const iconBtn = atom(false);
     const emphasizeAddMode = atom(false);
     const emphasizeSubMode = atom(false);
     const emphasizeSymbol = atom('{}');
@@ -112,6 +114,7 @@ export const App = () => {
         webviewURL,
         MaxEmphasize,
         defaultFont,
+        iconBtn,
     };
     const { result, lists, searchText, usersCollection } = useDatabase(storageSetting);
 
@@ -130,10 +133,8 @@ export const App = () => {
                 usersCollection,
                 sideAppMode,
                 result,
-
                 lists,
                 searchText,
-
                 backgroundImage,
                 ...storageSetting,
             }}

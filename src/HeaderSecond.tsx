@@ -14,6 +14,7 @@ export function HeaderSecond() {
         deleteMode,
         usersCollection,
         emphasizeSymbol,
+        iconBtn,
     } = useContext(Data);
     const { t } = useTranslation();
     const { send } = useDragAndDropData();
@@ -31,7 +32,14 @@ export function HeaderSecond() {
         );
     };
     return (
-        <header class="flex border-t border-slate-700 pt-2 text-sm font-bold text-yellow-600">
+        <header
+            class="flex border-t border-slate-700 pt-2 font-bold text-yellow-600"
+            classList={{
+                'font-icon': iconBtn(),
+                'text-lg': iconBtn(),
+                'text-sm': !iconBtn(),
+            }}
+        >
             <span
                 class="btn"
                 classList={{
@@ -45,7 +53,7 @@ export function HeaderSecond() {
                     })
                 }
             >
-                {t('toolbar2.deleteMode')}
+                {iconBtn() ? 'delete' : t('toolbar2.deleteMode')}
             </span>
             <span
                 class="btn"
@@ -60,7 +68,7 @@ export function HeaderSecond() {
                     })
                 }
             >
-                {t('toolbar2.addWeight')}
+                {iconBtn() ? 'text_increase' : t('toolbar2.addWeight')}
             </span>
             <span
                 class="btn"
@@ -75,7 +83,7 @@ export function HeaderSecond() {
                     })
                 }
             >
-                {t('toolbar2.subWeight')}
+                {iconBtn() ? 'text_decrease' : t('toolbar2.subWeight')}
             </span>
 
             <span
@@ -96,7 +104,7 @@ export function HeaderSecond() {
                 }}
                 title={t('toolbar2.hint.copy_drag')}
             >
-                {t('toolbar2.copy')}
+                {iconBtn() ? 'copy' : t('toolbar2.copy')}
             </span>
         </header>
     );

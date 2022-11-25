@@ -1,9 +1,10 @@
 import copy from 'copy-to-clipboard';
-import { Component, createResource, For, JSX, Show } from 'solid-js';
+import { Component, createResource, For, JSX, Show, useContext } from 'solid-js';
 import { Message } from '../src/MessageHint';
 import { useDragAndDropData } from '../src/use/useDragAndDropData';
 import { useViewer } from '../src/use/useViewer';
 import { Notice } from '../src/utils/notice';
+import { NoteBookContext } from './App';
 import { AsyncImage } from './components/AsyncImage';
 import { ExpendText } from './components/ExpendText';
 import { SingleMagic, useIndexedDB } from './use/useIndexedDB';
@@ -11,6 +12,7 @@ import { SingleMagic, useIndexedDB } from './use/useIndexedDB';
 export const MagicList = () => {
     const { IndexList, store, DeleteMagic, ChangeMagic, AddDemoImage, DeleteImage } =
         useIndexedDB();
+    const { hidImage } = useContext(NoteBookContext);
     const { send, receive, detect } = useDragAndDropData();
     return (
         <div class="flex flex-col gap-4 overflow-y-scroll py-12">
@@ -180,18 +182,24 @@ export const MagicList = () => {
                                     {data().tags}
                                 </ExpendText>
 
-                                <div class="flex flex-nowrap gap-4 overflow-y-auto">
-                                    <For
-                                        each={data().demos}
-                                        fallback={
-                                            <span class="text-gray-500">拖拽图片到这里添加</span>
-                                        }
-                                    >
-                                        {(id) => {
-                                            return <ImageCard data={data()} id={id}></ImageCard>;
-                                        }}
-                                    </For>
-                                </div>
+                                <Show when={!hidImage()}>
+                                    <div class="flex flex-nowrap gap-4 overflow-y-auto">
+                                        <For
+                                            each={data().demos}
+                                            fallback={
+                                                <span class="text-gray-500">
+                                                    拖拽图片到这里添加
+                                                </span>
+                                            }
+                                        >
+                                            {(id) => {
+                                                return (
+                                                    <ImageCard data={data()} id={id}></ImageCard>
+                                                );
+                                            }}
+                                        </For>
+                                    </div>
+                                </Show>
 
                                 {/* 时间标记 */}
                                 <div class="flex justify-between py-1 text-xs text-gray-600">

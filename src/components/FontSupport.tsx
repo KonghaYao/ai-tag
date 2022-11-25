@@ -21,6 +21,10 @@ export const FontSupport: Component<{ show?: boolean | Atom<boolean>; delay?: nu
                     rel="stylesheet"
                     href="https://unpkg.com/@fontsource/aclonica@4.5.9/400.css"
                 ></link>
+                <link
+                    rel="stylesheet"
+                    href="https://unpkg.com/@fontsource/material-icons-rounded@4.5.4/400.css"
+                ></link>
             </Show>
         </>
     );

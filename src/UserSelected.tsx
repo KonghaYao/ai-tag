@@ -19,7 +19,7 @@ export const UserSelected = () => {
     const { deleteMode, enMode, usersCollection, emphasizeAddMode, emphasizeSubMode, lists } =
         useContext(Data);
     const { wheelEvent, clickEvent } = useTagController();
-    const voidId = Math.random().toString();
+
     const disabledSortable = reflect(() => {
         if (isMobile()) {
             // 修复移动端多重状态 BUG

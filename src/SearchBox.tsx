@@ -122,7 +122,7 @@ export const SearchBox = () => {
                     class="search-results my-2 flex h-full flex-wrap items-start  overflow-y-auto overflow-x-hidden"
                     ref={searchResult}
                 >
-                    <For each={showingResult()}>
+                    <For each={showingResult()} fallback={() => <div>{t('hint.LoadingData')}</div>}>
                         {(item) => (
                             <TagButton
                                 draggable={true}

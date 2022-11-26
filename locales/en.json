@@ -110,7 +110,8 @@
   "toolbar2": {
     "copy": "Copy Magic",
     "hint": {
-      "copy": "copy magic unleashed"
+      "copy": "copy magic unleashed",
+      "copy_drag": "Try dragging me into the notebook"
     },
     "addWeight": "+ Mode",
     "deleteMode": "Delete mode",
@@ -145,8 +146,19 @@
     },
     "message": {
       "addBefore": "loosen, add before this",
-      "addTail": "Loosen, add element at the end"
+      "addTail": "Loosen, add element at the end",
+      "combine": "Fusion magic detected!",
+      "input": "Let go, copy the spell"
     }
   },
-  "voidResult": "result is empty"
+  "voidResult": "result is empty",
+  "Notebook": {
+    "hint": {
+      "PURE_TAGS": "A spell detected from the Introductory Magus"
+    }
+  },
+  "hint": {
+    "LoadingData": "It takes a while to load for the first time"
+  },
+  "notebook": "notes"
 }

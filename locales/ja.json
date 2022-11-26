@@ -89,7 +89,8 @@
       "maxEm": "最大強調レイヤー",
       "number": "表示値",
       "sideAPP": "サイドアプリケーションモード",
-      "teen": "ティーンモード"
+      "teen": "ティーンモード",
+      "iconBtn": "アイコンモード"
     },
     "title": "設定パネル"
   },
@@ -112,7 +113,8 @@
     "deleteMode": "削除モード",
     "subWeight": "軽量化モデル",
     "hint": {
-      "copy": "解き放たれたコピーマジック"
+      "copy": "解き放たれたコピーマジック",
+      "copy_drag": "私をノートにドラッグしてみてください"
     }
   },
   "uploadPanel": {
@@ -143,9 +145,20 @@
     },
     "message": {
       "addBefore": "ほぐす、この前に加える",
-      "addTail": "緩めて、最後に要素を追加"
+      "addTail": "緩めて、最後に要素を追加",
+      "combine": "融合魔法発見！",
+      "input": "手放し、呪文をコピーする"
     }
   },
   "voidResult": "結果は空です",
-  "upload": "アップロード"
+  "upload": "アップロード",
+  "Notebook": {
+    "hint": {
+      "PURE_TAGS": "入門魔術師から検出された呪文"
+    }
+  },
+  "hint": {
+    "LoadingData": "初回読み込みに時間がかかる"
+  },
+  "notebook": "ノート"
 }

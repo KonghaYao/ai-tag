@@ -7,18 +7,22 @@ import { notionSearch } from '../src/utils/searchDecode';
 export const useGalleryInfo = () => {
     const { replaceImages, getViewer } = useViewer();
     const page = atom(0);
-
+    const end = atom(false);
     const searchText = atom('');
     const showingData = atom<StoreData[][]>([]);
     const loadMore = async (LoadingPage: number, clear = false) => {
         let filters = searchText() ? notionSearch(searchText(), ['username', 'tags']) : [];
         return API.getData(LoadingPage, false, filters, clear)
             .then((res) => {
-                if (res.length)
+                if (res.length) {
                     showingData((i) => {
                         i[LoadingPage] = res;
                         return [...i];
                     });
+                } else if (clear) {
+                    showingData([]);
+                }
+                end(API.end);
             })
             .then(() => {
                 replaceImages(
@@ -39,11 +43,13 @@ export const useGalleryInfo = () => {
     createEffect(on(searchText, (text) => text === '' && loadMore(0, true)));
     return {
         page,
+        end,
         changePage: useSingleAsync(async (number: number) => {
-            return loadMore(number).then(() => {
-                page(number);
-            });
+            return loadMore(number).then(() => page(number));
         }),
+        clearAndResearch() {
+            loadMore(0, true);
+        },
         searchText,
         showingData,
         getViewer,

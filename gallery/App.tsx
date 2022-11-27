@@ -5,6 +5,7 @@ import { Gallery } from './Gallery';
 import { DetailPanel } from './Panels/Detail';
 import { StoreData } from '../src/api/notion';
 import { useGalleryInfo } from './useGalleryInfo';
+import { debounce, throttle } from 'lodash-es';
 
 const ScrollLoading = (cb: () => void, space = 10) => {
     const ScrollEvent = (e: Event) => {
@@ -32,7 +33,12 @@ export const App = () => {
     const galleryInfo = useGalleryInfo();
     const { ScrollEvent } = ScrollLoading(() => galleryInfo.changePage(galleryInfo.page() + 1));
     const visibleId = atom('');
-
+    let searchInputEl: HTMLInputElement;
+    const searching = debounce(async () => {
+        // console.log('触发搜索', searchInputEl.value);
+        galleryInfo.searchText(searchInputEl.value);
+        galleryInfo.clearAndResearch();
+    }, 1000);
     const ShowingPicture = atom<null | StoreData>(null);
     return (
         <GalleryGlobal.Provider
@@ -48,15 +54,32 @@ export const App = () => {
                 }}
             >
                 <main class="font-global flex h-screen w-screen flex-col overflow-hidden text-gray-400">
-                    <header class="blur-background absolute top-0 left-0 z-10 w-full p-4 text-center text-xl">
-                        魔导绪论图库
+                    <header class="blur-background absolute top-0 left-0 z-10  w-full p-4 text-xl ">
+                        <div class=" flex justify-between rounded-xl bg-slate-700/60 py-2 px-4">
+                            <span>魔导绪论图库</span>
+                            <span class="font-icon"></span>
+                            <div class="flex  overflow-hidden rounded-lg bg-slate-700  ">
+                                <input
+                                    class="w-24 appearance-none bg-slate-700 px-4 text-sm outline-none transition-all  sm:focus:w-40"
+                                    ref={searchInputEl}
+                                    placeholder={'搜索标题'}
+                                    type="search"
+                                    value={galleryInfo.searchText()}
+                                    name=""
+                                    id=""
+                                    oninput={searching}
+                                />
+                                <div class="font-icon px-2">search</div>
+                            </div>
+                        </div>
                     </header>
+
                     <main
                         class="mx-auto mt-8 grid max-w-3xl grid-cols-2 justify-items-center gap-8 overflow-auto px-8 py-16 sm:grid-cols-3 md:grid-cols-4"
                         onScroll={ScrollEvent}
                     >
                         <Gallery></Gallery>
-                        <div>继续往下滑</div>
+                        {galleryInfo.end() ? null : <div>继续往下滑</div>}
                     </main>
                     <DetailPanel></DetailPanel>
                 </main>

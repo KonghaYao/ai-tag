@@ -4,7 +4,7 @@ import { Show, useContext } from 'solid-js';
 import { GalleryGlobal } from '../App';
 import { GalleryPanel } from '../components/GalleryPanel';
 
-const getImagePath = (s: string) => {
+export const getImagePath = (s: string) => {
     return s.replace('/t/', '/s/').replace('.jpg', '.png') + '?src=ts20221106';
 };
 
@@ -20,18 +20,6 @@ export const DetailPanel = () => {
     return (
         <GalleryPanel id="detail">
             <Show when={ShowingPicture()}>
-                <div class="absolute top-0 left-0 h-full w-full brightness-50 ">
-                    <img
-                        loading="lazy"
-                        src={getImagePath(ShowingPicture().image)}
-                        alt=""
-                        class="h-full w-full  object-cover opacity-40"
-                        style={{
-                            'min-height': '100%',
-                            'min-width': '100%',
-                        }}
-                    />
-                </div>
                 <main class="z-10 flex h-full flex-col  gap-4 overflow-auto p-4  sm:flex-row">
                     <nav
                         class="flex flex-col items-center justify-center"

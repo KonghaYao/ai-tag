@@ -1,10 +1,11 @@
 import { For, Component, createMemo, useContext, batch } from 'solid-js';
 import { PanelContext } from '../src/components/Panel';
 import { GalleryGlobal } from './App';
+import { getImagePath } from './Panels/Detail';
 
 export const Gallery: Component = (props) => {
     const { visibleId } = useContext(PanelContext);
-    const { ShowingPicture, showingData, getViewer } = useContext(GalleryGlobal);
+    const { ShowingPicture, showingData, getViewer, backgroundImage } = useContext(GalleryGlobal);
 
     return (
         <For
@@ -24,6 +25,7 @@ export const Gallery: Component = (props) => {
                                 batch(() => {
                                     ShowingPicture(item);
                                     visibleId('detail');
+                                    backgroundImage(getImagePath(item.image));
                                 });
                             }}
                         >

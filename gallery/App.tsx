@@ -8,6 +8,7 @@ import { useGalleryInfo } from './useGalleryInfo';
 import { debounce, throttle } from 'lodash-es';
 import { keepStore, useStorage } from '../src/use/useStorage';
 import { Notice } from '../src/utils/notice';
+import { Background } from '../src/components/Background';
 
 const ScrollLoading = (cb: () => void, space = 10) => {
     const ScrollEvent = (e: Event) => {
@@ -27,6 +28,7 @@ const ScrollLoading = (cb: () => void, space = 10) => {
 
 export const GalleryGlobal = createContext<
     {
+        backgroundImage: Atom<string>;
         ShowingPicture: Atom<null | StoreData>;
     } & ReturnType<typeof useGalleryInfo>
 >();
@@ -34,7 +36,10 @@ export const GalleryGlobal = createContext<
 export const App = () => {
     const username = atom('');
     keepStore('username', username, true);
+    const backgroundImage = atom('');
+    keepStore('gallery:backgroundImage', backgroundImage, true);
     const galleryInfo = useGalleryInfo();
+
     const { ScrollEvent } = ScrollLoading(() => galleryInfo.changePage(galleryInfo.page() + 1));
     const visibleId = atom('');
     let searchInputEl: HTMLInputElement;
@@ -47,6 +52,7 @@ export const App = () => {
             value={{
                 ShowingPicture,
                 ...galleryInfo,
+                backgroundImage,
             }}
         >
             <PanelContext.Provider
@@ -55,7 +61,8 @@ export const App = () => {
                     isPanelVisible: createSelector(visibleId),
                 }}
             >
-                <main class="font-global flex h-screen w-screen flex-col overflow-hidden text-gray-400">
+                <Background image={backgroundImage()}></Background>
+                <main class="font-global absolute top-0 left-0 z-10 flex h-screen w-screen flex-col overflow-hidden text-gray-400">
                     <header class="blur-background absolute top-0 left-0 z-10  w-full p-4 text-xl ">
                         <div class=" flex justify-between rounded-xl bg-slate-700/60 py-2 px-4">
                             <span class="flex-none">魔导绪论图库</span>

@@ -58,26 +58,7 @@ import { Notice } from './utils/notice';
 import { useLocalData } from './use/useLocalData';
 import { useDragAndDropData } from './use/useDragAndDropData';
 import { Message } from './MessageHint';
-
-export const Background = () => {
-    const { backgroundImage } = useContext(Data);
-    return (
-        <div class="brightness-40 pointer-events-none fixed h-full w-full opacity-30">
-            {backgroundImage() && (
-                <img
-                    loading="lazy"
-                    src={backgroundImage()}
-                    class="h-full w-full  object-cover "
-                    alt=""
-                    style={{
-                        'min-height': '100%',
-                        'min-width': '100%',
-                    }}
-                />
-            )}
-        </div>
-    );
-};
+import { Background } from './components/Background';
 
 export const App = () => {
     const enMode = atom(true);
@@ -158,7 +139,7 @@ export const App = () => {
                         });
                     }}
                 >
-                    <Background></Background>
+                    <Background image={backgroundImage()}></Background>
                     <main class=" flex h-full w-full max-w-4xl flex-col overflow-hidden  p-2 text-gray-400 sm:p-4">
                         <h2 class="cursor-pointer text-center text-xl font-bold text-gray-300">
                             AI 绘画三星法器 —— 魔导绪论

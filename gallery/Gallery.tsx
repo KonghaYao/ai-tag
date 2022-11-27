@@ -44,9 +44,11 @@ export const Gallery: Component = (props) => {
                         </div>
                         <div class="flex w-full flex-col items-center justify-between">
                             <div class="py-1 font-bold line-clamp-1">{item.description}</div>
-                            <div class="h-fit text-xs line-clamp-1">{item.username}</div>
-                            <div class="btn mt-2 text-xs" onclick={() => getViewer().view(index())}>
-                                查看大图
+                            <div class="flex w-full flex-row items-center justify-between">
+                                <div class="h-fit text-xs line-clamp-1">{item.username}</div>
+                                <div class="btn  text-xs" onclick={() => getViewer().view(index())}>
+                                    查看大图
+                                </div>
                             </div>
                         </div>
                     </div>

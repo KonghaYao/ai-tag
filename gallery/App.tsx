@@ -56,6 +56,7 @@ export const App = () => {
                         onScroll={ScrollEvent}
                     >
                         <Gallery></Gallery>
+                        <div>继续往下滑</div>
                     </main>
                     <DetailPanel></DetailPanel>
                 </main>

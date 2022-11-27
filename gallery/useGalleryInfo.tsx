@@ -47,9 +47,9 @@ export const useGalleryInfo = () => {
         changePage: useSingleAsync(async (number: number) => {
             return loadMore(number).then(() => page(number));
         }),
-        clearAndResearch() {
-            loadMore(0, true);
-        },
+        clearAndResearch: useSingleAsync(async () => {
+            return loadMore(0, true);
+        }),
         searchText,
         showingData,
         getViewer,

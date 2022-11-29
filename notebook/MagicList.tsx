@@ -122,7 +122,7 @@ export const MagicList = () => {
                             <Show when={data()} fallback={<div> 加载中</div>}>
                                 <header class="flex cursor-pointer justify-between">
                                     <div
-                                        class="cursor-pointer"
+                                        class="flex cursor-pointer items-center gap-2"
                                         title="点我修改标题"
                                         onclick={() => {
                                             const cb = prompt('请输入这个魔咒的名称', data().title);
@@ -130,16 +130,17 @@ export const MagicList = () => {
                                                 ChangeMagic({ ...data(), title: cb }).then(refetch);
                                         }}
                                     >
-                                        {data().title}
+                                        <span class="font-icon">edit</span>
+                                        <span>{data().title}</span>
                                     </div>
 
                                     <div class="flex ">{DeleteButton}</div>
                                 </header>
                                 <nav class="my-1 w-full bg-gray-700" style="height:1px"></nav>
-                                <ExpendText
-                                    open={
+                                <ExpendText open={null}>
+                                    <span class="text-gray-500">
                                         <span
-                                            class="btn whitespace-nowrap bg-green-600 text-white"
+                                            class="font-icon btn whitespace-nowrap bg-green-600 text-white"
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 const cb = prompt('请修改描述', data().description);
@@ -150,11 +151,9 @@ export const MagicList = () => {
                                                     }).then(refetch);
                                             }}
                                         >
-                                            修改
+                                            edit
                                         </span>
-                                    }
-                                >
-                                    <span class="text-gray-500">
+
                                         {data().description || '没有描述信息哦'}
                                     </span>
                                 </ExpendText>
@@ -173,7 +172,22 @@ export const MagicList = () => {
                                     title="点击展开，魔咒可以被拖到任何地方"
                                 >
                                     <span
-                                        class="font-icon btn mr-2 whitespace-nowrap bg-green-600 text-white"
+                                        class="font-icon btn whitespace-nowrap bg-green-600 text-white"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            const cb = prompt('请修改魔咒', data().tags);
+                                            if (cb)
+                                                ChangeMagic({ ...data(), tags: cb })
+                                                    .then(refetch)
+                                                    .then(() => {
+                                                        Notice.success('修改魔咒成功');
+                                                    });
+                                        }}
+                                    >
+                                        edit
+                                    </span>
+                                    <span
+                                        class="font-icon btn mr-2 whitespace-nowrap bg-sky-600 text-white"
                                         onclick={() => {
                                             copy(data().tags);
                                             Notice.success('复制成功');

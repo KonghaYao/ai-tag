@@ -55,17 +55,7 @@ export default defineConfig(({ mode }) => {
             __version__: JSON.stringify(p.version),
             __isDev__: JSON.stringify(__isDev__),
         },
-        optimizeDeps: {
-            include: [
-                'lodash-es',
-                'copy-to-clipboard',
-                'viewerjs',
-                '@vant/area-data',
-                'mitt',
-                'zxcvbn',
-            ],
-            exclude: ['@cn-ui/core'],
-        },
+
         build: {
             rollupOptions: {
                 input: {

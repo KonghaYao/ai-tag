@@ -169,16 +169,18 @@ export const MagicList = () => {
                                         });
                                         Message.success('您可以拖拽魔咒到其他页面');
                                     }}
-                                    open={
-                                        <span
-                                            class="btn whitespace-nowrap bg-green-600 text-white"
-                                            onclick={() => copy(data().tags)}
-                                        >
-                                            复制魔咒
-                                        </span>
-                                    }
+                                    open={null}
                                     title="点击展开，魔咒可以被拖到任何地方"
                                 >
+                                    <span
+                                        class="font-icon btn mr-2 whitespace-nowrap bg-green-600 text-white"
+                                        onclick={() => {
+                                            copy(data().tags);
+                                            Notice.success('复制成功');
+                                        }}
+                                    >
+                                        copy
+                                    </span>
                                     {data().tags}
                                 </ExpendText>
 

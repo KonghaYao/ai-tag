@@ -17,7 +17,7 @@ export const App = () => {
     return (
         <NoteBookContext.Provider value={{ hidImage }}>
             <main
-                class="font-global flex h-screen w-screen flex-col overflow-hidden text-gray-400"
+                class="font-global  m-auto flex h-screen w-screen max-w-6xl flex-col overflow-hidden text-gray-400"
                 ondragover={(e) => {
                     e.preventDefault();
                     detect(e.dataTransfer, {
@@ -46,7 +46,7 @@ export const App = () => {
                     }
                 }}
             >
-                <div class=" mx-4 my-2 flex items-center divide-x-2 divide-gray-700 rounded-md bg-slate-800 p-2">
+                <div class=" m-4  flex items-center divide-x-2 divide-gray-700 rounded-md bg-slate-800 p-2">
                     <header class=" pl-2 pr-4 text-xl">魔咒记忆器</header>
                     <div class="flex flex-1 justify-end">
                         <div

@@ -137,7 +137,8 @@
     "suitableForTeen": "未成年者に適していますか",
     "title": "大きな夢の曲",
     "description": "呪文の説明",
-    "autoDetect": "画像を自動認識 =>"
+    "autoDetect": "画像を自動認識 =>",
+    "notice": "写真をアップロードしたら、送信ボタンをクリックしてください。"
   },
   "userSelect": {
     "hint": {
@@ -151,7 +152,7 @@
     }
   },
   "voidResult": "結果は空です",
-  "upload": "アップロード",
+  "upload": "ドラッグまたはクリックしてアップロード",
   "Notebook": {
     "hint": {
       "PURE_TAGS": "入門魔術師から検出された呪文"

@@ -5,7 +5,7 @@
   "error": "发生了不知名的错误",
   "voidResult": "结果为空",
   "clear": "清除",
-  "upload": "上传",
+  "upload": "拖拽或点击上传",
   "header": {
     "Doc": "教程",
     "Gallery": "画廊",
@@ -134,7 +134,8 @@
       "uploadingImage": "上传图片中，请等待完成。。。",
       "uploadError": "上传图片失败",
       "commit": "提交 ! ",
-      "commitHint": "森林会记住一切"
+      "commitHint": "森林会记住一切",
+      "uploadPicDone": "上传完成，记得点击提交按钮"
     },
     "title": "大梦的曲调",
     "YourName": "你的名字",
@@ -146,7 +147,8 @@
     "prompt": "魔咒文本",
     "DetectResult": "检测结果：",
     "seed": "种子号码",
-    "license": "上传资源将以 CC0 方式进行分享"
+    "license": "上传资源将以 CC0 方式进行分享",
+    "notice": "请注意上传完成图片后，点击提交按钮！"
   },
   "WebView": {
     "newPage": "新标签页打开",

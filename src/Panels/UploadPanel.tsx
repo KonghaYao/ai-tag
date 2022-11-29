@@ -59,7 +59,7 @@ const useSharedUpload = (uploading: Atom<boolean>) => {
             .then((res) => {
                 uploading(false);
                 set('image', res.data.thumb);
-                Notice.success(t('uploadPanel.hint.uploadDone'));
+                Notice.success(t('uploadPanel.hint.uploadPicDone'));
             })
             .catch((err) => {
                 console.warn(err);
@@ -111,9 +111,20 @@ export const UploadPanel = () => {
 
         uploadPicture(file);
     };
-
     return (
-        <Panel id="uploader">
+        <Panel
+            id="uploader"
+            ondragover={(e) => {
+                e.preventDefault();
+            }}
+            ondrop={(e) => {
+                e.preventDefault();
+                const getFile = [...e.dataTransfer.files].filter((i) =>
+                    i.type.startsWith('image/')
+                ) as any as FileList;
+                changeFile(getFile);
+            }}
+        >
             <header class="w-full py-2 text-center font-bold">{t('uploadPanel.title')}</header>
 
             <main class="flex flex-1 flex-col overflow-auto">
@@ -219,6 +230,7 @@ export const UploadPanel = () => {
                 >
                     <div class="p-2 text-sm text-green-600">{t('uploadPanel.license')}</div>
                 </a>
+                <div class="p-2 text-sm text-red-600">{t('uploadPanel.notice')}</div>
             </main>
             <div class="cursor-pointer bg-green-600 p-2  text-center text-white" onClick={upload}>
                 {t('uploadPanel.hint.commit')}

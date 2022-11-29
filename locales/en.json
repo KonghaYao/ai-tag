@@ -117,7 +117,7 @@
     "deleteMode": "Delete mode",
     "subWeight": "- Model"
   },
-  "upload": "upload",
+  "upload": "Drag or click to upload",
   "uploadPanel": {
     "DetectResult": "Test results:",
     "YourName": "Your name",
@@ -138,7 +138,8 @@
     "hint1": "Be careful to upload the correct image and tag otherwise it will be cleaned up.",
     "seed": "seed number",
     "suitableForTeen": "Is it suitable for minors",
-    "title": "Upload Panel"
+    "title": "Upload Panel",
+    "notice": "Please note that after uploading the picture, click the submit button!"
   },
   "userSelect": {
     "hint": {

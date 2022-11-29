@@ -1,9 +1,11 @@
 import { Atom, atom } from '@cn-ui/use';
+import { pick } from 'lodash-es';
 import {
     Component,
     createContext,
     createEffect,
     createMemo,
+    JSX,
     JSXElement,
     Show,
     useContext,
@@ -17,7 +19,13 @@ export interface IPanelData {
 }
 
 export const PanelContext = createContext<IPanelData>();
-export const Panel: Component<{ children?: JSXElement; id: PanelIds | '' }> = (props) => {
+
+interface PanelEl extends JSX.HTMLAttributes<HTMLDivElement> {
+    children?: JSXElement;
+    id: PanelIds | '';
+}
+
+export const Panel: Component<PanelEl> = (props) => {
     const { visibleId, isPanelVisible } = useContext(PanelContext);
     let container: HTMLDivElement;
     const visible = createMemo(() => isPanelVisible(props.id));
@@ -41,6 +49,8 @@ export const Panel: Component<{ children?: JSXElement; id: PanelIds | '' }> = (p
                 // console.log(!visible());
                 hidden(!visible());
             }}
+            ondragover={props.ondragover}
+            ondrop={props.ondrop}
             onClick={(e) => {
                 if (e.target === container) visibleId(null);
                 // console.log(e);

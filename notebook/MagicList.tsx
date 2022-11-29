@@ -34,7 +34,7 @@ export const MagicList = () => {
                     );
                     const DeleteButton = (
                         <div
-                            class="btn bg-rose-700 text-gray-200"
+                            class="font-icon btn bg-rose-700 text-gray-200"
                             onclick={() => {
                                 const info = confirm(`是否删除${data()?.title}\n${data()?.tags}`);
                                 if (info) {
@@ -61,7 +61,7 @@ export const MagicList = () => {
                                 });
                             }}
                         >
-                            删除
+                            delete
                         </div>
                     );
                     return (

@@ -1,7 +1,7 @@
 body {
     margin: 0;
     overflow: hidden;
-    @apply select-none bg-slate-900;
+    @apply select-none bg-slate-900 text-gray-400;
 }
 
 .font-global {

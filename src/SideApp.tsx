@@ -9,8 +9,10 @@ import { RandomMaker } from './Panels/RandomMaker';
 import { FeedBackPanel } from './Feedback/Feedback';
 import { MyFeedBackPanel } from './Feedback/MyFeedback';
 import { MessageHint } from './MessageHint';
+import { AIPrompt } from './Panels/AIPrompt';
 export type PanelIds =
     | 'setting'
+    | 'ai-prompt'
     | 'gallery'
     | 'uploader'
     | 'webview'
@@ -40,6 +42,7 @@ export const SideApp = () => {
                 <RandomMaker></RandomMaker>
                 <FeedBackPanel></FeedBackPanel>
                 <MyFeedBackPanel></MyFeedBackPanel>
+                <AIPrompt></AIPrompt>
             </div>
             <MessageHint></MessageHint>
         </main>

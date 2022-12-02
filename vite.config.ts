@@ -60,6 +60,7 @@ export default defineConfig(({ mode }) => {
             rollupOptions: {
                 input: {
                     index: './index.html',
+                    generator: './generator/index.html',
                     gallery: './gallery.html',
                     notebook: './notebook.html',
                 },

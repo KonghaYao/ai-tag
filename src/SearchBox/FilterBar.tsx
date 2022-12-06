@@ -34,10 +34,16 @@ const ClassFilter = () => {
     });
     const show = atom(false);
     return (
-        <div class="btn relative" onMouseEnter={() => show(true)} onclick={() => show((i) => !i)}>
-            {selectType}
+        <div class="relative">
+            <div
+                class="btn relative bg-pink-700 text-neutral-300"
+                onMouseEnter={() => show(true)}
+                onclick={() => show((i) => !i)}
+            >
+                {selectType}
+            </div>
             <section
-                class="blur-background absolute top-[150%] left-0 z-50 flex h-64 w-32 flex-col gap-2  overflow-scroll rounded-md p-2 text-slate-300 ring-1 ring-gray-500 transition-transform duration-300"
+                class="blur-background absolute top-[150%] left-2 z-50 flex h-64 w-32 flex-col gap-2  overflow-scroll rounded-md p-2 text-slate-300 ring-1 ring-gray-500 transition-transform duration-300"
                 classList={{
                     'scale-0': !show(),
                     'scale-100': show(),

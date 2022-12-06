@@ -1,3 +1,4 @@
+import { resource } from '@cn-ui/use';
 import copy from 'copy-to-clipboard';
 import { Component, createResource, For, JSX, Show, useContext } from 'solid-js';
 import { Message } from '../src/MessageHint';
@@ -29,9 +30,7 @@ export const MagicList = () => {
                 }
             >
                 {(item, index) => {
-                    const [data, { refetch }] = createResource<SingleMagic>(() =>
-                        store.getItem(item)
-                    );
+                    const data = resource<SingleMagic>(() => store.getItem(item));
                     const DeleteButton = (
                         <div
                             class="font-icon btn bg-rose-700 text-gray-200"
@@ -55,7 +54,7 @@ export const MagicList = () => {
                                 e.preventDefault();
                                 receive(e.dataTransfer, 'MAGIC_IMAGE', (info) => {
                                     DeleteImage(info.origin, info.position).then(() => {
-                                        refetch();
+                                        data.refetch();
                                         Notice.success('删除成功');
                                     });
                                 });
@@ -88,7 +87,7 @@ export const MagicList = () => {
                                 receive(e.dataTransfer, 'PURE_TAGS', (tags: string) => {
                                     e.stopPropagation();
                                     ChangeMagic({ ...data(), tags })
-                                        .then(refetch)
+                                        .then(data.refetch)
                                         .then(() => {
                                             Notice.success('修改魔咒成功');
                                         });
@@ -100,7 +99,7 @@ export const MagicList = () => {
                                         })
                                         .map((i) => AddDemoImage(i, data()))
                                 ).then((list) => {
-                                    list.length && refetch();
+                                    list.length && data.refetch();
                                 });
                             }}
                         >
@@ -112,14 +111,14 @@ export const MagicList = () => {
                                         class="btn bg-sky-700"
                                         onclick={() => {
                                             Notice.success('重新加载开始');
-                                            refetch();
+                                            data.refetch();
                                         }}
                                     >
                                         重新加载
                                     </div>
                                 </div>
                             </Show>
-                            <Show when={data()} fallback={<div> 加载中</div>}>
+                            <Show when={data.isReady()} fallback={<div> 加载中</div>}>
                                 <header class="flex cursor-pointer justify-between">
                                     <div
                                         class="flex cursor-pointer items-center gap-2"
@@ -127,7 +126,9 @@ export const MagicList = () => {
                                         onclick={() => {
                                             const cb = prompt('请输入这个魔咒的名称', data().title);
                                             if (cb)
-                                                ChangeMagic({ ...data(), title: cb }).then(refetch);
+                                                ChangeMagic({ ...data(), title: cb }).then(
+                                                    data.refetch
+                                                );
                                         }}
                                     >
                                         <span class="font-icon">edit</span>
@@ -148,7 +149,7 @@ export const MagicList = () => {
                                                     ChangeMagic({
                                                         ...data(),
                                                         description: cb,
-                                                    }).then(refetch);
+                                                    }).then(data.refetch);
                                             }}
                                         >
                                             edit
@@ -178,7 +179,7 @@ export const MagicList = () => {
                                             const cb = prompt('请修改魔咒', data().tags);
                                             if (cb)
                                                 ChangeMagic({ ...data(), tags: cb })
-                                                    .then(refetch)
+                                                    .then(data.refetch)
                                                     .then(() => {
                                                         Notice.success('修改魔咒成功');
                                                     });

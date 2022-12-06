@@ -1,4 +1,4 @@
-import { atom, createIgnoreFirst } from '@cn-ui/use';
+import { atom, createIgnoreFirst, resource } from '@cn-ui/use';
 import { createEffect, createResource, Show, useContext } from 'solid-js';
 import { useTranslation } from '../../i18n';
 import { Data } from '../App';
@@ -11,7 +11,7 @@ export const AIPrompt = () => {
     const { usersCollection, lists } = useContext(Data);
     const preInput = atom('');
     const length = atom(60);
-    const [data, { refetch }] = createResource<{ prompt: string }>(() =>
+    const data = resource<{ prompt: string }>(() =>
         fetch(
             `https://bundle-konghayao.cloud.okteto.net/api/getMagic?input=${preInput()}&length=${length()}`
         ).then((res) => res.json())
@@ -25,7 +25,7 @@ export const AIPrompt = () => {
                 <div class="text-sm text-red-300">研发测试中，PowerBy KonghaYao</div>
                 <div class="text-sm text-yellow-300">随机黑魔咒为 AI 随机生成</div>
                 <div class="text-sm text-yellow-300">且训练集较多为 r18 内容</div>
-                <button class="btn my-2 w-full" onclick={() => refetch()}>
+                <button class="btn my-2 w-full" onclick={() => data.refetch()}>
                     刷新
                 </button>
                 <input
@@ -52,7 +52,7 @@ export const AIPrompt = () => {
                 </div>
 
                 <div class="text-yellow-300">你的随机黑魔咒</div>
-                <Show when={!data.error && !data.loading} fallback={'加载中'}>
+                <Show when={data.isReady()} fallback={'加载中'}>
                     <p class="max-h-96 overflow-y-auto overflow-x-hidden">{data().prompt}</p>
                 </Show>
             </div>

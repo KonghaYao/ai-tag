@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@cn-ui/sortable': ^2.1.2
-  '@cn-ui/use': ^1.7.0
+  '@cn-ui/use': ^1.8.2
   '@netlify/functions': ^1.3.0
   '@notionhq/client': ^2.2.1
   '@solidjs/router': ^0.5.0
@@ -48,8 +48,8 @@ specifiers:
   xlsx: ^0.18.5
 
 dependencies:
-  '@cn-ui/sortable': 2.1.2_i66lbiss2ihdthgg477ins24ty
-  '@cn-ui/use': 1.7.0_solid-js@1.6.1
+  '@cn-ui/sortable': 2.1.2_372o4bmi2zi7g4xztf7tezxjmi
+  '@cn-ui/use': 1.8.2_solid-js@1.6.1
   '@solidjs/router': 0.5.0_solid-js@1.6.1
   comlink: 4.3.1
   copy-to-clipboard: 3.3.2
@@ -427,19 +427,19 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@cn-ui/sortable/2.1.2_i66lbiss2ihdthgg477ins24ty:
+  /@cn-ui/sortable/2.1.2_372o4bmi2zi7g4xztf7tezxjmi:
     resolution: {integrity: sha512-xeh+QehNFyY7u4hF42Uzo61VHPm3UncjIil1r4Tu7OdI93FUH1lp+5JhYOJhsjppDYEWXGuih9YFmPoDmmlNnQ==}
     peerDependencies:
       '@cn-ui/use': ^1.5.0
       solid-js: ^1.5.7
     dependencies:
-      '@cn-ui/use': 1.7.0_solid-js@1.6.1
+      '@cn-ui/use': 1.8.2_solid-js@1.6.1
       solid-js: 1.6.1
       sortablejs: 1.15.0
     dev: false
 
-  /@cn-ui/use/1.7.0_solid-js@1.6.1:
-    resolution: {integrity: sha512-5dtAD+8MT7H09Ajh+dFPFHaLgdm2lWanPOFyF6Bm7Evv/OobznOYNkIzs6GTnFUwoQkU37PkqtkivlLRtZadMw==}
+  /@cn-ui/use/1.8.2_solid-js@1.6.1:
+    resolution: {integrity: sha512-tCdvWaN6eDhjgpHhGkiUbXaE9I5YEwZteR6+26ha7H5REtIeKdZGzrHu/2TSRutV+YDrSMkY1MCa4b3wmBp/4w==}
     peerDependencies:
       solid-js: ^1.5.7
     dependencies:

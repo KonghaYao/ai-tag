@@ -1,4 +1,4 @@
-import { atom } from '@cn-ui/use';
+import { atom, resource } from '@cn-ui/use';
 import { debounce } from 'lodash-es';
 import { createEffect, createMemo, createResource, For, on, Show, useContext } from 'solid-js';
 import { API, StoreData } from '../api/notion';
@@ -20,7 +20,7 @@ export const PublicPanel = () => {
     const visible = createMemo(() => isPanelVisible('gallery'));
     const page = atom<number>(0);
     const searchText = atom('');
-    const [showing, { refetch }] = createResource<StoreData[]>(() => {
+    const showing = resource<StoreData[]>(async () => {
         if (!visible()) return [];
         let filters = searchText() ? notionSearch(searchText(), ['username', 'tags']) : [];
         return API.getData(page(), r18Mode(), filters, false).then((arr) => {
@@ -42,13 +42,13 @@ export const PublicPanel = () => {
             page(0);
             /** 写掉缓存 */
             API.start_cursor = [];
-            refetch();
+            showing.refetch();
         }
     };
 
-    createEffect(on(page, (index) => visible() && refetch()));
-    createEffect(on(visible, (vis) => vis && refetch()));
-    createEffect(on(searchText, (text) => text === '' && refetch()));
+    createEffect(on(page, (index) => visible() && showing.refetch()));
+    createEffect(on(visible, (vis) => vis && showing.refetch()));
+    createEffect(on(searchText, (text) => text === '' && showing.refetch()));
 
     /** 搜索词汇改变 */
     const changeSearch = debounce(refetchData, 1000);
@@ -95,7 +95,7 @@ export const PublicPanel = () => {
             </div>
             <main class="grid w-full flex-1 auto-rows-min grid-cols-2 gap-2 overflow-auto p-4 py-6">
                 <Show
-                    when={!showing.loading}
+                    when={showing.isReady()}
                     fallback={
                         <div class="flex h-full w-full items-center justify-center">
                             {showing.error ? (
@@ -106,8 +106,7 @@ export const PublicPanel = () => {
                         </div>
                     }
                 >
-                    {showing().length === 0 && <div>{t('voidResult')}</div>}
-                    <For each={showing()}>
+                    <For each={showing()} fallback={<div>{t('voidResult')}</div>}>
                         {(item, index) => {
                             return (
                                 <div class="flex flex-col ">
@@ -173,7 +172,7 @@ export const PublicPanel = () => {
                 <button
                     class="btn"
                     onclick={() => {
-                        if (showing.loading) return;
+                        if (!showing.isReady()) return;
                         if (page() > 0) {
                             page((i) => i - 1);
                         }
@@ -185,7 +184,7 @@ export const PublicPanel = () => {
                 <button
                     class="btn"
                     onclick={() => {
-                        if (showing.loading) return;
+                        if (!showing.isReady()) return;
                         if (API.end) {
                             Notice.error('没有更多了');
                         } else {

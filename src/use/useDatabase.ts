@@ -1,5 +1,5 @@
 import { createDeferred, createEffect, createResource, createSignal, untrack } from 'solid-js';
-import { Atom, atom, createIgnoreFirst, reflect } from '@cn-ui/use';
+import { Atom, atom, createIgnoreFirst, reflect, resource } from '@cn-ui/use';
 import { useSearchParams } from '@solidjs/router';
 import { IData, IStoreData } from '../App';
 import { getTagInURL } from '../utils/getTagInURL';
@@ -23,12 +23,12 @@ const refreshData = () => {
 export function useDatabase(store: IStoreData) {
     console.log('重绘');
     const rebuildSearchSet = async () => {
-        if (lists.loading) return [];
+        if (!lists.isReady()) return [];
         const r18 = r18Mode();
         const numberLimit = searchNumberLimit();
         await searchWorker.rebuild({ r18, numberLimit });
     };
-    const [lists] = createResource<IData[]>(async () => {
+    const lists = resource<IData[]>(async () => {
         return fetch('https://cdn.jsdelivr.net/gh/konghayao/tag-collection/data/tags.csv')
             .then((res) => res.blob())
             .then((res) => CSVToJSON<IData>(res))
@@ -64,7 +64,7 @@ export function useDatabase(store: IStoreData) {
     });
 
     createEffect(async () => {
-        if (!lists()) result([]);
+        if (!lists.isReady()) result([]);
         const text = searchText();
         if (!text) {
             result(safeList().slice(0, tagsPerPage()));

@@ -1,4 +1,4 @@
-import { Show, createResource, onMount, createSelector, useContext, createContext } from 'solid-js';
+import { Show, onMount, createSelector, useContext, createContext } from 'solid-js';
 import { Atom, atom, reflect, useSingleAsync } from '@cn-ui/use';
 import { PanelContext } from '../src/components/Panel';
 import { Gallery } from './Gallery';

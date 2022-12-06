@@ -9,7 +9,7 @@ import {
     useContext,
 } from 'solid-js';
 import { Atom, atom, createIgnoreFirst } from '@cn-ui/use';
-import { SearchBox } from './SearchBox';
+import { SearchBox } from './SearchBox/SearchBox';
 import { UserSelected } from './UserSelected';
 import { useDatabase } from './use/useDatabase';
 import { useStorage } from './use/useStorage';

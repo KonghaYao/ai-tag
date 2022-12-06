@@ -5,7 +5,6 @@ import { UploadPanel } from './Panels/UploadPanel';
 import { Data } from './App';
 import { HomePanel } from './Panels/HomePanel';
 import { Webview } from './Panels/Webview';
-import { RandomMaker } from './Panels/RandomMaker';
 import { FeedBackPanel } from './Feedback/Feedback';
 import { MyFeedBackPanel } from './Feedback/MyFeedback';
 import { MessageHint } from './MessageHint';
@@ -16,7 +15,6 @@ export type PanelIds =
     | 'gallery'
     | 'uploader'
     | 'webview'
-    | 'random-maker'
     | 'feedback'
     | 'my-feedback'
     // gallery 的 panel
@@ -39,7 +37,7 @@ export const SideApp = () => {
                 <UploadPanel></UploadPanel>
                 <HomePanel></HomePanel>
                 <Webview></Webview>
-                <RandomMaker></RandomMaker>
+
                 <FeedBackPanel></FeedBackPanel>
                 <MyFeedBackPanel></MyFeedBackPanel>
                 <AIPrompt></AIPrompt>

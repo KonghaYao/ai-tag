@@ -2,7 +2,7 @@ import { For, useContext } from 'solid-js';
 import { useTranslation } from '../../i18n';
 import { Data } from '../App';
 import { Panel } from '../components/Panel';
-import { useWebView, WebViewLink } from './Webview';
+import { WebViewLink } from './Webview';
 
 const Translators = [{ name: 'Bing 翻译', src: 'https://cn.bing.com/translator/' }];
 
@@ -24,7 +24,6 @@ const { t } = useTranslation();
 const LocalPower = [
     { name: t('home.btn.Setting'), src: 'setting' },
     { name: t('home.btn.Gallery'), src: 'gallery' },
-    { name: t('home.btn.RandomMaker'), src: 'random-maker' },
     { name: t('home.btn.feedback'), src: 'feedback' },
     { name: t('home.btn.ai_prompt'), src: 'ai-prompt' },
 ];

@@ -98,7 +98,7 @@ export const PublicPanel = () => {
                     when={showing.isReady()}
                     fallback={
                         <div class="flex h-full w-full items-center justify-center">
-                            {showing.error ? (
+                            {showing.error() ? (
                                 <span>{t('error')}</span>
                             ) : (
                                 <span>{t('loading')}</span>

@@ -33,7 +33,7 @@ export function HeaderSecond() {
     };
     return (
         <header
-            class="flex border-t border-slate-700 pt-2 font-bold text-yellow-600"
+            class="flex border-t border-slate-700 pt-2 font-bold text-neutral-300"
             classList={{
                 'font-icon': iconBtn(),
                 'text-lg': iconBtn(),

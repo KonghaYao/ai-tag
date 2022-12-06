@@ -8,7 +8,7 @@ import { useTranslation } from '../../i18n';
 import { useDragAndDropData } from '../use/useDragAndDropData';
 
 export const SearchResult = () => {
-    const { usersCollection, result, lists, tagsPerPage, searchNumberLimit } = useContext(Data);
+    const { usersCollection, result, tagsPerPage } = useContext(Data);
     const showingResult = reflect(() => {
         const num = untrack(tagsPerPage);
         return result().slice(0, num);
@@ -22,7 +22,7 @@ export const SearchResult = () => {
     const { send } = useDragAndDropData();
     return (
         <section
-            class="search-results my-2 flex h-full flex-wrap items-start  overflow-y-auto overflow-x-hidden"
+            class="search-results my-2 flex h-full flex-wrap content-start  overflow-y-auto overflow-x-hidden"
             ref={searchResult}
         >
             <For each={showingResult()} fallback={() => <div>{t('hint.LoadingData')}</div>}>

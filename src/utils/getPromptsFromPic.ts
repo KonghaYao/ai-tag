@@ -21,9 +21,11 @@ async function readNovelAITag(file: File) {
             if (chunk.name === 'iTXt') {
                 let data = chunk.data.filter((x) => x != 0x0);
                 let txt = new TextDecoder().decode(data);
+
                 return {
                     keyword: '信息',
-                    text: txt.slice(11),
+                    // 这里原本为 11 ,但是没有收到过 "信息" 的标签，所以改为 10 给 paddle 解析
+                    text: txt.slice(10),
                 };
             }
             return text.decode(chunk.data);
@@ -39,6 +41,14 @@ export async function readFileInfo(file: File) {
     if (nai.length == 0) {
         throw new Error('提示: 这可能不是一张 NovelAI 生成的图或者不是原图, 经过了压缩');
     }
+
+    const index = nai.findIndex((i) => i.keyword === '信息');
+    if (index !== -1) {
+        console.log('Paddle 的产物');
+        const decode = await handlePaddlePic(nai[index]);
+
+        nai.splice(index, 1, ...decode);
+    }
     return [
         ['文件名', file.name],
         ['文件大小', prettyBytes(file.size)],
@@ -50,6 +60,31 @@ export async function readFileInfo(file: File) {
             return [v.keyword, v.text];
         }),
     ] as [string, any][];
+}
+
+async function handlePaddlePic(data) {
+    let promptSplit = data.text.split('Negative prompt: ');
+    let [badPrompt, ...Details] = promptSplit[1].split('\n');
+    return [
+        {
+            keyword: 'Description',
+            text: promptSplit[0].trim(),
+        },
+        {
+            keyword: 'Comment',
+            text: JSON.stringify({
+                uc: badPrompt,
+                ...Object.fromEntries(
+                    Details.map((i: string) =>
+                        i
+                            .toLowerCase()
+                            .split(':')
+                            .map((i) => i.trim())
+                    )
+                ),
+            }),
+        },
+    ];
 }
 async function handleWebUiTag(data) {
     let promptSplit = data.text.split('Negative prompt: ');

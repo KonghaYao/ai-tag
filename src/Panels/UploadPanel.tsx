@@ -108,7 +108,7 @@ export const UploadPanel = () => {
         seed?.length && set('seed', seed);
 
         set('other', JSON.stringify(data));
-
+        console.log(data);
         uploadPicture(file);
     };
     return (

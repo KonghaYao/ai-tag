@@ -1,26 +1,43 @@
-import { For, Component, createMemo, useContext, batch } from 'solid-js';
+import { For, Component, createMemo, useContext, batch, Switch, Match } from 'solid-js';
+import { StoreData } from '../src/api/notion';
 import { PanelContext } from '../src/components/Panel';
 import { GalleryGlobal } from './App';
 import { getImagePath } from './Panels/Detail';
+import { ScrollLoading } from './ScrollLoading';
+export const Gallery = (props) => {
+    const { showingData, page, changePage } = useContext(GalleryGlobal);
+    const images = createMemo(() =>
+        showingData()
+            .flat()
+            .filter((i) => i)
+            .reduce((cols, item, index) => {
+                cols[index % cols.length].push(item);
+                return cols;
+            }, [...Array(props.column).keys()].map(() => []) as StoreData[][])
+    );
 
-export const Gallery: Component = (props) => {
+    const { ScrollEvent } = ScrollLoading(() => changePage(page() + 1));
+    return (
+        <div class="mx-[5%] mt-24 flex h-full  gap-2 overflow-auto  " onScroll={ScrollEvent}>
+            <For each={images()}>
+                {(item) => {
+                    return <GalleryColumn images={item}></GalleryColumn>;
+                }}
+            </For>
+        </div>
+    );
+};
+export const GalleryColumn: Component<{ images: StoreData[] }> = (props) => {
     const { visibleId } = useContext(PanelContext);
-    const { ShowingPicture, showingData, getViewer, backgroundImage } = useContext(GalleryGlobal);
+    const { ShowingPicture, getViewer, backgroundImage } = useContext(GalleryGlobal);
 
     return (
-        <For
-            each={createMemo(() =>
-                showingData()
-                    .flat()
-                    .filter((i) => i)
-            )()}
-            fallback={<div>结果为空</div>}
-        >
-            {(item, index) => {
-                return (
-                    <div class=" flex w-fit flex-col">
+        <div class=" flex flex-1 flex-col gap-2 self-start">
+            <For each={props.images} fallback={<div>结果为空</div>}>
+                {(item, index) => {
+                    return (
                         <div
-                            class=" m-auto h-40 w-40 cursor-pointer overflow-hidden rounded-md border-2 border-gray-500 shadow-lg transition-transform duration-500 hover:-translate-y-4 hover:scale-125"
+                            class="single-pic relative  m-auto  cursor-pointer  rounded-md  shadow-lg transition-transform duration-500"
                             onclick={() => {
                                 batch(() => {
                                     ShowingPicture(item);
@@ -29,36 +46,28 @@ export const Gallery: Component = (props) => {
                                 });
                             }}
                         >
-                            {item.image ? (
-                                <img
-                                    loading="lazy"
-                                    src={item.image}
-                                    class="h-full w-full  object-cover "
-                                    alt=""
-                                    style={{
-                                        'min-height': '100%',
-                                        'min-width': '100%',
-                                    }}
-                                />
-                            ) : (
-                                <div>暂无图片</div>
-                            )}
-                        </div>
-                        <div class="flex w-full flex-col items-center justify-between">
-                            <div class="py-1 font-bold line-clamp-1">{item.description}</div>
-                            <div class="flex w-full flex-row items-center justify-between">
-                                <div class="h-fit text-xs line-clamp-1">{item.username}</div>
-                                <div
-                                    class="font-icon cursor-pointer  text-lg"
-                                    onclick={() => getViewer().view(index())}
-                                >
-                                    photo
+                            <img
+                                loading="lazy"
+                                src={getImagePath(item.image)}
+                                class="w-full  object-cover "
+                                alt=""
+                            />
+                            <div class="title-item absolute bottom-0  left-0 flex w-full flex-col items-center justify-between ">
+                                <div class="py-1 font-bold line-clamp-1">{item.description}</div>
+                                <div class="flex w-full flex-row items-center justify-between">
+                                    <div class="h-fit text-xs line-clamp-1">{item.username}</div>
+                                    <div
+                                        class="font-icon cursor-pointer  text-lg"
+                                        onclick={() => getViewer().view(index())}
+                                    >
+                                        photo
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                );
-            }}
-        </For>
+                    );
+                }}
+            </For>
+        </div>
     );
 };

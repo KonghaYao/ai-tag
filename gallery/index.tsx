@@ -4,7 +4,7 @@ import { render } from 'solid-js/web';
 import { App } from './App';
 import { Router, hashIntegration, Route, Routes } from '@solidjs/router';
 import { FontSupport } from '../src/components/FontSupport';
-
+import './index.css';
 render(() => {
     return (
         <>

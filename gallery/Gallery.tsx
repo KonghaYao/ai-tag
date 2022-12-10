@@ -18,7 +18,7 @@ export const Gallery = (props) => {
 
     const { ScrollEvent } = ScrollLoading(() => changePage(page() + 1));
     return (
-        <div class="mx-[5%]  flex h-full  gap-2 overflow-auto  " onScroll={ScrollEvent}>
+        <div class="mx-[5%]  flex h-full  gap-4 overflow-auto  " onScroll={ScrollEvent}>
             <For each={images()}>
                 {(item) => {
                     return <GalleryColumn images={item}></GalleryColumn>;

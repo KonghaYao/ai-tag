@@ -10,15 +10,16 @@ export const GalleryColumn: Component<{ images: StoreData[] }> = (props) => {
     const { ShowingPicture, getViewer, backgroundImage } = useContext(GalleryGlobal);
 
     return (
-        <div class=" flex flex-1 flex-col gap-2 self-start">
+        <div class=" flex flex-1 flex-col gap-4 self-start">
+            <nav class="h-16 w-full">{/* 用于填充的方块 */}</nav>
             <For each={props.images} fallback={<div>结果为空</div>}>
                 {(item, index) => {
                     return (
-                        <div class="single-pic relative m-auto w-full  cursor-pointer  rounded-md  shadow-lg transition-transform duration-500">
+                        <div class="single-pic relative m-auto w-full  cursor-pointer  rounded-md  shadow-lg transition-transform  duration-500">
                             <img
                                 loading="lazy"
                                 src={getImagePath(item.image)}
-                                class="w-full  object-cover "
+                                class="w-full overflow-hidden rounded-lg object-cover "
                                 alt=""
                                 style={{
                                     'min-height': '6rem',

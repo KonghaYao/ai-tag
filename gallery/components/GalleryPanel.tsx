@@ -31,7 +31,7 @@ export const GalleryPanel: Component<{ children?: JSXElement; id: PanelIds | '' 
             }}
         >
             {/* blur-background 因为 tailwind 的方式有 BUG */}
-            <main class="blur-background relative flex h-full w-full max-w-sm  flex-col overflow-auto rounded-2xl border-2 border-solid border-slate-700 bg-gray-700/60 transition-all sm:max-w-2xl">
+            <main class="blur-background relative flex h-full w-full max-w-sm  flex-col overflow-auto rounded-2xl border-2 border-solid border-slate-500  transition-all sm:max-w-2xl">
                 {props.children}
             </main>
         </nav>

@@ -4,3 +4,28 @@
 .single-pic:hover .title-item {
     @apply opacity-100;
 }
+.single-pic {
+    transform: rotateX(0deg) rotateY(12deg);
+}
+.single-pic:hover {
+    transform-style: preserve-3d;
+    animation: hovering 5s ease infinite;
+}
+
+@keyframes hovering {
+    0% {
+        transform: rotateX(0deg) rotateY(12deg);
+    }
+    25% {
+        transform: rotateX(12deg) rotateY(0deg);
+    }
+    50% {
+        transform: rotateX(0deg) rotateY(-12deg);
+    }
+    75% {
+        transform: rotateX(-12deg) rotateY(0deg);
+    }
+    100% {
+        transform: rotateX(0deg) rotateY(12deg);
+    }
+}

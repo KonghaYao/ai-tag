@@ -1,6 +1,6 @@
 import { reflect } from '@cn-ui/use';
 import copy from 'copy-to-clipboard';
-import { Show, useContext } from 'solid-js';
+import { For, Show, useContext } from 'solid-js';
 import { GalleryGlobal } from '../App';
 import { GalleryPanel } from '../components/GalleryPanel';
 
@@ -37,7 +37,7 @@ export const DetailPanel = () => {
                         <header class="py-4 text-2xl font-bold text-white">
                             {ShowingPicture().description}
                         </header>
-                        <main class="flex max-w-2xl flex-col gap-4 rounded-lg bg-gray-800/80 p-4 text-gray-400 sm:overflow-auto">
+                        <main class="blur-background flex max-w-2xl flex-col gap-4 rounded-lg p-4 text-gray-400 sm:overflow-auto">
                             <header class="text-xl ">配料表</header>
                             <div>作者:{ShowingPicture().username}</div>
                             <div>种子号码:{ShowingPicture().seed}</div>
@@ -63,11 +63,16 @@ export const DetailPanel = () => {
                                 </a>
                             </div>
                             <div> {details().Software ?? '未知'}</div>
-                            <div>采样：{Comment().sampler ?? '未知'}</div>
-                            <div>scale：{Comment().scale ?? '未知'}</div>
-                            <div>steps：{Comment().steps ?? '未知'}</div>
-                            <div>strength：{Comment().strength ?? '未知'}</div>
-                            <div>noise：{Comment().noise ?? '未知'}</div>{' '}
+                            <For each={Object.entries(Comment())}>
+                                {([key, value]) => {
+                                    if (key === 'uc') return null;
+                                    return (
+                                        <div>
+                                            {key}: {value as string}
+                                        </div>
+                                    );
+                                }}
+                            </For>
                         </main>
                     </main>
                 </main>

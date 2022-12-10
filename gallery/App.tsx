@@ -11,14 +11,70 @@ import { Notice } from '../src/utils/notice';
 import { Background } from '../src/components/Background';
 import { ScrollLoading } from './ScrollLoading';
 import { useWindowResize } from '../src/use/useWindowResize';
+import { useSearchParams } from '@solidjs/router';
 
 export const GalleryGlobal = createContext<
     {
+        username: Atom<string>;
         backgroundImage: Atom<string>;
         ShowingPicture: Atom<null | StoreData>;
     } & ReturnType<typeof useGalleryInfo>
 >();
-
+export const SearchBar = () => {
+    const [_, setSearchParams] = useSearchParams();
+    const { clearAndResearch, searchText, username } = useContext(GalleryGlobal);
+    let searchInputEl: HTMLInputElement;
+    const searching = debounce(async () => {
+        setSearchParams({
+            q: searchText(),
+        });
+        clearAndResearch();
+    }, 1000);
+    onMount(() => {
+        if (_.q) {
+            searchText(_.q);
+            searching();
+        }
+    });
+    return (
+        <div class="flex overflow-hidden rounded-lg bg-slate-700 ">
+            <input
+                class="min-w-[4em] appearance-none bg-slate-700 px-4 text-sm outline-none transition-all sm:w-28  "
+                classList={{
+                    'sm:min-w-[20em]': !!searchText(),
+                }}
+                ref={searchInputEl}
+                placeholder={'搜索标题'}
+                type="search"
+                value={searchText()}
+                name=""
+                id=""
+                oninput={() => {
+                    searchText(searchInputEl.value);
+                    searching();
+                }}
+            />
+            <div
+                class="font-icon cursor-pointer px-2"
+                onclick={() => {
+                    clearAndResearch();
+                    Notice.success('搜索成功');
+                }}
+            >
+                search
+            </div>
+            <div
+                class="font-icon cursor-pointer px-2"
+                onclick={() => {
+                    searchText((i) => `username:=${username()} ` + i);
+                    Notice.success('添加用户检索');
+                }}
+            >
+                account_box
+            </div>
+        </div>
+    );
+};
 export const App = () => {
     const username = atom('');
     keepStore('username', username, true);
@@ -27,10 +83,7 @@ export const App = () => {
     const galleryInfo = useGalleryInfo();
 
     const visibleId = atom('');
-    let searchInputEl: HTMLInputElement;
-    const searching = debounce(async () => {
-        galleryInfo.clearAndResearch();
-    }, 1000);
+
     const ShowingPicture = atom<null | StoreData>(null);
     const { width } = useWindowResize();
     const columns = reflect(() => {
@@ -48,6 +101,7 @@ export const App = () => {
     return (
         <GalleryGlobal.Provider
             value={{
+                username,
                 ShowingPicture,
                 ...galleryInfo,
                 backgroundImage,
@@ -60,49 +114,11 @@ export const App = () => {
                 }}
             >
                 <Background image={backgroundImage()}></Background>
-                <main class="font-global absolute top-0 left-0 z-10 flex h-screen w-screen flex-col overflow-hidden text-gray-400">
-                    <header class="blur-background absolute top-0 left-0 z-10   w-full p-4 text-xl ">
-                        <div class=" flex justify-between rounded-xl bg-slate-700/60 py-2 px-4">
+                <main class="font-global absolute top-0 left-0 z-10 flex h-screen w-screen flex-col overflow-hidden text-gray-200">
+                    <header class=" absolute top-0 left-0 z-10   w-full p-4 text-xl ">
+                        <div class=" flex justify-between rounded-xl bg-slate-600 py-2 px-4">
                             <span class="flex-none">魔导绪论图库</span>
-
-                            <div class="flex  overflow-hidden rounded-lg bg-slate-700  ">
-                                <input
-                                    class="min-w-[4em] appearance-none bg-slate-700 px-4 text-sm outline-none transition-all sm:w-28  "
-                                    classList={{
-                                        'sm:min-w-[20em]': !!galleryInfo.searchText(),
-                                    }}
-                                    ref={searchInputEl}
-                                    placeholder={'搜索标题'}
-                                    type="search"
-                                    value={galleryInfo.searchText()}
-                                    name=""
-                                    id=""
-                                    oninput={() => {
-                                        galleryInfo.searchText(searchInputEl.value);
-                                        searching();
-                                    }}
-                                />
-                                <div
-                                    class="font-icon cursor-pointer px-2"
-                                    onclick={() => {
-                                        galleryInfo.clearAndResearch();
-                                        Notice.success('搜索成功');
-                                    }}
-                                >
-                                    search
-                                </div>
-                                <div
-                                    class="font-icon cursor-pointer px-2"
-                                    onclick={() => {
-                                        galleryInfo.searchText(
-                                            (i) => `username:=${username()} ` + i
-                                        );
-                                        Notice.success('添加用户检索');
-                                    }}
-                                >
-                                    account_box
-                                </div>
-                            </div>
+                            <SearchBar></SearchBar>
                         </div>
                     </header>
 

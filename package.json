@@ -41,6 +41,7 @@
         "@solidjs/router": "^0.5.0",
         "comlink": "^4.3.1",
         "copy-to-clipboard": "^3.3.2",
+        "file-saver": "^2.0.5",
         "fuse.js": "^6.6.2",
         "i18next": "^22.0.4",
         "i18next-browser-languagedetector": "^7.0.1",

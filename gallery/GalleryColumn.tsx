@@ -5,7 +5,7 @@ import { GalleryGlobal } from './App';
 import { getImagePath } from './Panels/Detail';
 import { saveAs } from 'file-saver';
 
-export const GalleryColumn: Component<{ images: StoreData[] }> = (props) => {
+export const GalleryColumn: Component<{ images: (StoreData & { index: number })[] }> = (props) => {
     const { visibleId } = useContext(PanelContext);
     const { ShowingPicture, getViewer, backgroundImage, searchText } = useContext(GalleryGlobal);
 
@@ -13,7 +13,7 @@ export const GalleryColumn: Component<{ images: StoreData[] }> = (props) => {
         <div class=" flex flex-1 flex-col gap-4 self-start">
             <nav class="h-16 w-full">{/* 用于填充的方块 */}</nav>
             <For each={props.images} fallback={<div>结果为空</div>}>
-                {(item, index) => {
+                {(item) => {
                     return (
                         <div class="single-pic relative m-auto w-full  cursor-pointer  rounded-md  shadow-lg transition-transform  duration-500">
                             <img
@@ -48,7 +48,7 @@ export const GalleryColumn: Component<{ images: StoreData[] }> = (props) => {
                                 <nav class="flex gap-2">
                                     <div
                                         class="font-icon h-7 w-7 cursor-pointer rounded-full bg-lime-500  text-center text-lg  text-white"
-                                        onclick={() => getViewer().view(index())}
+                                        onclick={() => getViewer().view(item.index)}
                                     >
                                         photo
                                     </div>

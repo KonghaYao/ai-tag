@@ -11,9 +11,9 @@ export const Gallery = (props) => {
             .flat()
             .filter((i) => i)
             .reduce((cols, item, index) => {
-                cols[index % cols.length].push(item);
+                cols[index % cols.length].push({ index, ...item });
                 return cols;
-            }, [...Array(props.column).keys()].map(() => []) as StoreData[][])
+            }, [...Array(props.column).keys()].map(() => []) as (StoreData & { index: number })[][])
     );
 
     const { ScrollEvent } = ScrollLoading(() => changePage(page() + 1));

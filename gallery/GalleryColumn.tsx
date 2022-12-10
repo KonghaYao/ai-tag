@@ -7,7 +7,7 @@ import { saveAs } from 'file-saver';
 
 export const GalleryColumn: Component<{ images: StoreData[] }> = (props) => {
     const { visibleId } = useContext(PanelContext);
-    const { ShowingPicture, getViewer, backgroundImage } = useContext(GalleryGlobal);
+    const { ShowingPicture, getViewer, backgroundImage, searchText } = useContext(GalleryGlobal);
 
     return (
         <div class=" flex flex-1 flex-col gap-4 self-start">
@@ -32,7 +32,12 @@ export const GalleryColumn: Component<{ images: StoreData[] }> = (props) => {
                                     });
                                 }}
                             />
-                            <div class="absolute top-2 right-2 h-fit rounded-xl bg-lime-600 px-1  text-slate-200  line-clamp-1">
+                            <div
+                                class="absolute top-2 right-2 h-fit cursor-pointer rounded-xl bg-lime-600  px-1  text-slate-200 line-clamp-1"
+                                onclick={() => {
+                                    searchText(`username:${item.username}`);
+                                }}
+                            >
                                 {item.username}
                             </div>
                             <div class="title-item  absolute  bottom-0 left-0 flex w-full  items-center  justify-between px-4 py-2 text-slate-700">

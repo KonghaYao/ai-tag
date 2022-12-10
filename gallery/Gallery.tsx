@@ -51,8 +51,11 @@ export const GalleryColumn: Component<{ images: StoreData[] }> = (props) => {
                                 src={getImagePath(item.image)}
                                 class="w-full  object-cover "
                                 alt=""
+                                style={{
+                                    'min-height': '6rem',
+                                }}
                             />
-                            <div class="title-item absolute bottom-0  left-0 flex w-full flex-col items-center justify-between ">
+                            <div class="title-item  absolute  bottom-0 left-0 flex w-full flex-col items-center  justify-between bg-slate-200/80 px-4 py-2 text-slate-700">
                                 <div class="py-1 font-bold line-clamp-1">{item.description}</div>
                                 <div class="flex w-full flex-row items-center justify-between">
                                     <div class="h-fit text-xs line-clamp-1">{item.username}</div>

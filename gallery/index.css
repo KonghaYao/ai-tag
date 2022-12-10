@@ -1,6 +1,6 @@
 .single-pic .title-item {
-    @apply opacity-0;
+    @apply opacity-0 transition-all duration-300;
 }
 .single-pic:hover .title-item {
-    @apply opacity-100 transition-all duration-300;
+    @apply opacity-100;
 }

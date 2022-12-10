@@ -5,7 +5,7 @@ import { GalleryGlobal } from '../App';
 import { GalleryPanel } from '../components/GalleryPanel';
 
 export const getImagePath = (s: string) => {
-    return s.replace('/t/', '/s/').replace('.jpg', '.png') + '?src=ts20221106';
+    return s.replace('/t/', '/s/').replace('.jpg', '.png');
 };
 
 export const DetailPanel = () => {

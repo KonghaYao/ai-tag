@@ -1,7 +1,7 @@
 import { Atom, atom } from '@cn-ui/use';
 import { createContext, Suspense } from 'solid-js';
 import { useTranslation } from '../i18n';
-import { DropReceiver } from '../src/components/DnD';
+import { DropReceiver } from '@cn-ui/headless';
 import { Message, MessageHint } from '../src/MessageHint';
 import { Notice } from '../src/utils/notice';
 import { MagicList } from './MagicList';

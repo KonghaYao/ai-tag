@@ -2,7 +2,7 @@ import copy from 'copy-to-clipboard';
 import { batch, useContext } from 'solid-js';
 import { useTranslation } from '../i18n';
 import { Data } from './App';
-import { DragPoster } from './components/DnD';
+import { DragPoster } from '@cn-ui/headless';
 import { TagsToString } from './use/TagsConvertor';
 import { Notice } from './utils/notice';
 

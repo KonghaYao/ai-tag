@@ -1,7 +1,7 @@
 import { resource } from '@cn-ui/use';
 import copy from 'copy-to-clipboard';
 import { Component, For, Show, useContext } from 'solid-js';
-import { DragPoster, DropReceiver } from '../src/components/DnD';
+import { DragPoster, DropReceiver } from '@cn-ui/headless';
 import { Message } from '../src/MessageHint';
 
 import { Notice } from '../src/utils/notice';

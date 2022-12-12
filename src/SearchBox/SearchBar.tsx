@@ -5,7 +5,7 @@ import { stringToTags } from '../use/TagsConvertor';
 import { useTranslation } from '../../i18n';
 import { Notice } from '../utils/notice';
 import { Message } from '../MessageHint';
-import { DropReceiver } from '../components/DnD';
+import { DropReceiver } from '@cn-ui/headless';
 
 export const SearchBar = () => {
     const { usersCollection, lists, searchText, iconBtn } = useContext(Data);

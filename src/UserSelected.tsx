@@ -9,12 +9,10 @@ import { HeaderSecond } from './HeaderSecond';
 import { t } from 'i18next';
 import { useTagController } from './use/useTagController';
 import { stringToTags } from './use/TagsConvertor';
-import { useDragAndDropData } from './use/useDragAndDropData';
 import { Notice } from './utils/notice';
-import { useHoverInDOM } from './use/useHoverInDom';
 import { Message } from './MessageHint';
 import { CombineMagic } from './utils/CombineMagic';
-import { DropReceiver } from './components/DnD';
+import { DropReceiver, useDragAndDropData } from '@cn-ui/headless';
 
 export const UserSelected = () => {
     const { deleteMode, enMode, usersCollection, emphasizeAddMode, emphasizeSubMode, lists } =

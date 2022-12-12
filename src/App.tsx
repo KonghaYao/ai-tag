@@ -58,7 +58,7 @@ import { Notice } from './utils/notice';
 import { useLocalData } from './use/useLocalData';
 import { Message } from './MessageHint';
 import { Background } from './components/Background';
-import { DropReceiver } from './components/DnD';
+import { DropReceiver } from '@cn-ui/headless';
 
 export const App = () => {
     const enMode = atom(true);

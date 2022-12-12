@@ -36,6 +36,7 @@
         "vitest": "^0.24.5"
     },
     "dependencies": {
+        "@cn-ui/headless": "^1.9.0",
         "@cn-ui/sortable": "^2.1.2",
         "@cn-ui/use": "^1.8.2",
         "@solidjs/router": "^0.5.0",

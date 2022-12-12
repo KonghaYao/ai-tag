@@ -5,7 +5,7 @@ import { reflect } from '@cn-ui/use';
 import { untrack } from 'solid-js/web';
 import { CreateIData } from '../use/TagsConvertor';
 import { useTranslation } from '../../i18n';
-import { DragPoster } from '../components/DnD';
+import { DragPoster } from '@cn-ui/headless';
 
 export const SearchResult = () => {
     const { usersCollection, result, tagsPerPage } = useContext(Data);

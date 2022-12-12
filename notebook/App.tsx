@@ -20,8 +20,9 @@ export const App = () => {
                     PURE_TAGS() {
                         Message.success(t('Notebook.hint.PURE_TAGS'));
                     },
-                    'text/plain'() {
-                        Message.success(t('Notebook.hint.text'));
+                    extra(dataTransfer: DataTransfer) {
+                        if ([...dataTransfer.types.values()].some((i) => i.startsWith('text')))
+                            Message.success(t('Notebook.hint.text'));
                     },
                 }}
                 multi={false}
@@ -31,7 +32,7 @@ export const App = () => {
                         Notice.success('创建魔咒成功');
                         return true;
                     },
-                    extra(data, dataTransfer: DataTransfer) {
+                    extra(_, dataTransfer: DataTransfer) {
                         const tags = dataTransfer.getData('text');
                         if (tags) {
                             const isReal = confirm(`这是一个魔咒吗？\n ${tags}`);

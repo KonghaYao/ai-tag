@@ -71,11 +71,7 @@ export const MagicList = () => {
                                     Message.success('松手，修改魔咒文本');
                                 },
                                 extra(dataTransfer: DataTransfer) {
-                                    if (
-                                        [...dataTransfer.types.values()].some((i) =>
-                                            i.startsWith('image')
-                                        )
-                                    )
+                                    if (dataTransfer.types.includes('Files'))
                                         Message.success('添加图片到这个魔咒');
                                 },
                             }}

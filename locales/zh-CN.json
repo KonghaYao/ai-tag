@@ -158,7 +158,8 @@
   "notebook": "笔记",
   "Notebook": {
     "hint": {
-      "PURE_TAGS": "检测到来自魔导绪论的魔咒"
+      "PURE_TAGS": "检测到来自魔导绪论的魔咒",
+      "text": "检测到字符串"
     }
   },
   "hint": {

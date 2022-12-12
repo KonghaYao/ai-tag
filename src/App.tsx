@@ -56,9 +56,9 @@ import { FontSupport } from './components/FontSupport';
 import { useTranslation } from '../i18n';
 import { Notice } from './utils/notice';
 import { useLocalData } from './use/useLocalData';
-import { useDragAndDropData } from './use/useDragAndDropData';
 import { Message } from './MessageHint';
 import { Background } from './components/Background';
+import { DropReceiver } from './components/DnD';
 
 export const App = () => {
     const enMode = atom(true);
@@ -107,7 +107,6 @@ export const App = () => {
     createEffect(() => sideAppMode(width() > 888));
     recover();
     tracking();
-    const { detect } = useDragAndDropData();
     return (
         <Data.Provider
             value={{
@@ -126,63 +125,64 @@ export const App = () => {
                     isPanelVisible,
                 }}
             >
-                <div
-                    class=" flex h-screen w-screen justify-center"
-                    classList={{
-                        'font-global': !defaultFont(),
-                    }}
-                    ondragover={(e) => {
-                        detect(e.dataTransfer, {
-                            PURE_TAGS() {
-                                Message.success('你可以拖拽魔咒文本到任何编辑器！');
-                            },
-                        });
+                <DropReceiver
+                    detect={{
+                        PURE_TAGS() {
+                            Message.success('你可以拖拽魔咒文本到任何编辑器！');
+                        },
                     }}
                 >
-                    <Background image={backgroundImage()}></Background>
-                    <main class=" flex h-full w-full max-w-4xl flex-col overflow-hidden  p-2 text-gray-400 sm:p-4">
-                        <h2 class="cursor-pointer text-center text-xl font-bold text-gray-300">
-                            AI 绘画三星法器 —— 魔导绪论
-                            <sup class="px-2 text-xs text-yellow-300">{__version__}</sup>
-                            <div class="flex items-center  justify-center gap-2 text-xs font-thin text-[#f5f3c2]">
-                                <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
-                                    {t('header.Doc')}
-                                </a>
-                                ·
-                                <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
-                                    Github
-                                </a>
-                                ·
-                                <a href="./gallery.html" target="_blank">
-                                    {t('header.Gallery')}
-                                </a>
-                                ·
-                                <span onClick={() => visibleId('feedback')}>
-                                    {t('header.FeedBack')}
-                                </span>
-                                <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
-                                    {'{{ By 江夏尧 }}'}
-                                </a>
-                                {!r18Mode() && (
-                                    <span
-                                        class="btn bg-green-700"
-                                        onClick={() => {
-                                            Notice.success(t('header.hint.teen'));
-                                        }}
-                                    >
-                                        {t('header.TeenagerMode')}
+                    <div
+                        class=" flex h-screen w-screen justify-center"
+                        classList={{
+                            'font-global': !defaultFont(),
+                        }}
+                    >
+                        <Background image={backgroundImage()}></Background>
+                        <main class=" flex h-full w-full max-w-4xl flex-col overflow-hidden  p-2 text-gray-400 sm:p-4">
+                            <h2 class="cursor-pointer text-center text-xl font-bold text-gray-300">
+                                AI 绘画三星法器 —— 魔导绪论
+                                <sup class="px-2 text-xs text-yellow-300">{__version__}</sup>
+                                <div class="flex items-center  justify-center gap-2 text-xs font-thin text-[#f5f3c2]">
+                                    <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
+                                        {t('header.Doc')}
+                                    </a>
+                                    ·
+                                    <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
+                                        Github
+                                    </a>
+                                    ·
+                                    <a href="./gallery.html" target="_blank">
+                                        {t('header.Gallery')}
+                                    </a>
+                                    ·
+                                    <span onClick={() => visibleId('feedback')}>
+                                        {t('header.FeedBack')}
                                     </span>
-                                )}
-                            </div>
-                        </h2>
-                        <UserSelected></UserSelected>
-                        <SearchBox></SearchBox>
-                    </main>
-                    <SideApp></SideApp>
-                    <Show when={!defaultFont()}>
-                        <FontSupport delay={200} show={atom(false)}></FontSupport>
-                    </Show>
-                </div>
+                                    <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
+                                        {'{{ By 江夏尧 }}'}
+                                    </a>
+                                    {!r18Mode() && (
+                                        <span
+                                            class="btn bg-green-700"
+                                            onClick={() => {
+                                                Notice.success(t('header.hint.teen'));
+                                            }}
+                                        >
+                                            {t('header.TeenagerMode')}
+                                        </span>
+                                    )}
+                                </div>
+                            </h2>
+                            <UserSelected></UserSelected>
+                            <SearchBox></SearchBox>
+                        </main>
+                        <SideApp></SideApp>
+                        <Show when={!defaultFont()}>
+                            <FontSupport delay={200} show={atom(false)}></FontSupport>
+                        </Show>
+                    </div>
+                </DropReceiver>
             </PanelContext.Provider>
         </Data.Provider>
     );

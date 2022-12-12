@@ -2,8 +2,8 @@ import copy from 'copy-to-clipboard';
 import { batch, useContext } from 'solid-js';
 import { useTranslation } from '../i18n';
 import { Data } from './App';
+import { DragPoster } from './components/DnD';
 import { TagsToString } from './use/TagsConvertor';
-import { useDragAndDropData } from './use/useDragAndDropData';
 import { Notice } from './utils/notice';
 
 export function HeaderSecond() {
@@ -17,7 +17,6 @@ export function HeaderSecond() {
         iconBtn,
     } = useContext(Data);
     const { t } = useTranslation();
-    const { send } = useDragAndDropData();
     const getTagString = () => {
         return TagsToString(
             usersCollection().map((i) => {
@@ -86,26 +85,21 @@ export function HeaderSecond() {
                 {iconBtn() ? 'text_decrease' : t('toolbar2.subWeight')}
             </span>
 
-            <span
-                class="btn"
-                draggable={true}
-                ondragover={(e) => e.preventDefault()}
-                ondragstart={(e) => {
-                    const data = getTagString();
-                    e.dataTransfer.setData('text', data);
-                    send(e.dataTransfer, {
-                        type: 'PURE_TAGS',
-                        data,
-                    });
-                }}
-                onclick={() => {
-                    copy(getTagString());
-                    Notice.success(t('toolbar2.hint.copy'));
-                }}
-                title={t('toolbar2.hint.copy_drag')}
+            <DragPoster
+                send={(send) => send('PURE_TAGS', getTagString())}
+                text={() => getTagString()}
             >
-                {iconBtn() ? 'copy' : t('toolbar2.copy')}
-            </span>
+                <span
+                    class="btn"
+                    onclick={() => {
+                        copy(getTagString());
+                        Notice.success(t('toolbar2.hint.copy'));
+                    }}
+                    title={t('toolbar2.hint.copy_drag')}
+                >
+                    {iconBtn() ? 'copy' : t('toolbar2.copy')}
+                </span>
+            </DragPoster>
         </header>
     );
 }

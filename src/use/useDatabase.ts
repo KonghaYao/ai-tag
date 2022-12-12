@@ -46,7 +46,7 @@ export function useDatabase(store: IStoreData) {
                 refreshData();
                 return res;
             });
-    });
+    }, []);
 
     // 预先筛选 searchText，减少需要查找的区间
     const searchText = atom<string>('');
@@ -116,7 +116,7 @@ export function useDatabase(store: IStoreData) {
     // 监听 URL 地址变化
     createIgnoreFirst(async () => {
         const tags = searchParams.tags;
-        if (stateTag === tags) return;
+        if (stateTag === tags || !lists.isReady()) return;
         stateTag = tags;
 
         // console.log('url => ', tags);

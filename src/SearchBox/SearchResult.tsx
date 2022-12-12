@@ -5,7 +5,7 @@ import { reflect } from '@cn-ui/use';
 import { untrack } from 'solid-js/web';
 import { CreateIData } from '../use/TagsConvertor';
 import { useTranslation } from '../../i18n';
-import { useDragAndDropData } from '../use/useDragAndDropData';
+import { DragPoster } from '../components/DnD';
 
 export const SearchResult = () => {
     const { usersCollection, result, tagsPerPage } = useContext(Data);
@@ -19,7 +19,6 @@ export const SearchResult = () => {
     createEffect(on(showingResult, () => searchResult.scrollTo(0, 0)));
 
     const { t } = useTranslation();
-    const { send } = useDragAndDropData();
     return (
         <section
             class="search-results my-2 flex h-full flex-wrap content-start  overflow-y-auto overflow-x-hidden"
@@ -27,17 +26,12 @@ export const SearchResult = () => {
         >
             <For each={showingResult()} fallback={() => <div>{t('hint.LoadingData')}</div>}>
                 {(item) => (
-                    <TagButton
-                        draggable={true}
-                        onDragStart={(item, data) => {
-                            send(data, {
-                                type: 'ADD_BEFORE',
-                                data: item.en,
-                            });
-                        }}
-                        data={item}
-                        onClick={(item) => usersCollection((i) => [...i, CreateIData(item)])}
-                    ></TagButton>
+                    <DragPoster send={(send) => send('ADD_BEFORE', item.en)}>
+                        <TagButton
+                            data={item}
+                            onClick={(item) => usersCollection((i) => [...i, CreateIData(item)])}
+                        ></TagButton>
+                    </DragPoster>
                 )}
             </For>
         </section>

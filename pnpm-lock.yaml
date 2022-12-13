@@ -29,12 +29,11 @@ specifiers:
   notyf: ^3.10.0
   number-precision: ^1.6.0
   papaparse: ^5.3.2
-  png-chunk-text: ^1.0.0
-  png-chunks-extract: ^1.0.0
   postcss: ^8.4.16
   prettier: 2.6.0
   prettier-plugin-tailwindcss: ^0.1.13
   pretty-bytes: ^6.0.0
+  prompt-extractor: ^1.1.1
   promptor: ^1.0.3
   rollup-plugin-visualizer: ^5.8.3
   solid-js: ^1.6.1
@@ -67,9 +66,8 @@ dependencies:
   notyf: 3.10.0
   number-precision: 1.6.0
   papaparse: 5.3.2
-  png-chunk-text: 1.0.0
-  png-chunks-extract: 1.0.0
   pretty-bytes: 6.0.0
+  prompt-extractor: 1.1.1
   promptor: 1.0.3
   solid-js: 1.6.1
   sortablejs: 1.15.0
@@ -1708,6 +1706,14 @@ packages:
   /pretty-bytes/6.0.0:
     resolution: {integrity: sha512-6UqkYefdogmzqAZWzJ7laYeJnaXDy2/J+ZqiiMtS7t7OfpXWTlaeGMwX8U6EFvPV/YWWEKRkS8hKS4k60WHTOg==}
     engines: {node: ^14.13.1 || >=16.0.0}
+    dev: false
+
+  /prompt-extractor/1.1.1:
+    resolution: {integrity: sha512-f0fY11Ij0Cw4coDCmlEdW+TJYdg3unIT9FSq/EYNwWBQ0SPqcBCniSgIdFzEnYBnmD49CnmLcKl4RbBUC82MLw==}
+    dependencies:
+      png-chunk-text: 1.0.0
+      png-chunks-extract: 1.0.0
+      pretty-bytes: 6.0.0
     dev: false
 
   /promptor/1.0.3:

@@ -7,6 +7,7 @@ import { stringToTags, TagsToString } from './TagsConvertor';
 import { proxy } from 'comlink';
 import { CSVToJSON } from '../utils/CSVToJSON';
 import { initWorker } from '../worker';
+import { throttle } from 'lodash-es';
 const { searchWorker, sharedWorker } = initWorker();
 
 const refreshData = () => {
@@ -101,16 +102,20 @@ export function useDatabase(store: IStoreData) {
     const [searchParams, setSearchParams] = useSearchParams();
 
     // 将 usersCollection 推向标签栏
-    createIgnoreFirst(() => {
-        const tags = TagsToString(usersCollection(), store.emphasizeSymbol());
-        setSearchParams(
-            {
-                ...untrack(() => searchParams),
-                tags,
-            },
-            {}
-        );
-    }, [usersCollection]);
+    createIgnoreFirst(
+        // fixed: 添加 throttle 防止重复启动
+        throttle(() => {
+            const tags = TagsToString(usersCollection(), store.emphasizeSymbol());
+            setSearchParams(
+                {
+                    ...untrack(() => searchParams),
+                    tags,
+                },
+                {}
+            );
+        }, 300),
+        [usersCollection]
+    );
 
     let stateTag = '';
     // 监听 URL 地址变化

@@ -50,8 +50,6 @@ export const PublicPanel = () => {
     createEffect(on(visible, (vis) => vis && showing.refetch()));
     createEffect(on(searchText, (text) => text === '' && showing.refetch()));
 
-    /** 搜索词汇改变 */
-    const changeSearch = debounce(refetchData, 1000);
     const { t } = useTranslation();
     return (
         <Panel id="gallery">

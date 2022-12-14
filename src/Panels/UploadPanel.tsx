@@ -127,8 +127,8 @@ export const UploadPanel = () => {
         >
             <header class="w-full py-2 text-center font-bold">{t('uploadPanel.title')}</header>
 
-            <main class="flex flex-1 flex-col overflow-auto">
-                <div class="my-2 mx-4 flex items-center justify-between">
+            <main class="mx-4 flex flex-1 flex-col gap-2 overflow-auto">
+                <div class=" flex items-center justify-between">
                     <label class="flex-none ">{t('uploadPanel.YourName')}</label>
                     <input
                         placeholder="那菈的名字"
@@ -141,7 +141,7 @@ export const UploadPanel = () => {
                         }}
                     />
                 </div>
-                <div class="my-2 mx-4 flex items-center justify-between">
+                <div class=" flex items-center justify-between">
                     <label class="flex-none ">{t('uploadPanel.description')}</label>
                     <input
                         placeholder="曲调名称"
@@ -154,8 +154,9 @@ export const UploadPanel = () => {
                         }}
                     />
                 </div>
+                <div class="text-green-600">上传的图片将会在 画廊 进行展示，感谢您的分享！</div>
                 <div
-                    class="my-2 mx-4 flex items-center justify-between"
+                    class=" flex items-center justify-between"
                     onclick={() => set('r18', !store.r18)}
                 >
                     <label class="flex-none text-green-600">
@@ -169,13 +170,9 @@ export const UploadPanel = () => {
                         }}
                     ></div>
                 </div>
-                <div class="my-2 mx-4 text-center text-sm text-green-700">
-                    {t('uploadPanel.hint1')}
-                </div>
-                <div class="my-2 mx-4 text-center text-sm text-green-700">
-                    {t('uploadPanel.hint2')}
-                </div>
-                <div class="my-2 mx-4 flex items-center justify-between ">
+                <div class=" text-center text-sm text-green-700">{t('uploadPanel.hint1')}</div>
+                <div class=" text-center text-sm text-green-700">{t('uploadPanel.hint2')}</div>
+                <div class=" flex items-center justify-between ">
                     <div class="flex-none">{t('uploadPanel.autoDetect')}</div>
                     <UploadButton accept="image/*" onUpload={changeFile}>
                         {t('upload')}
@@ -195,7 +192,7 @@ export const UploadPanel = () => {
                         loading="lazy"
                     />
                 )}
-                <div class="my-2 mx-4 flex items-center justify-between">
+                <div class=" flex items-center justify-between">
                     <label class="flex-none ">{t('uploadPanel.prompt')}</label>
                     <textarea
                         placeholder="曲调内容"
@@ -210,10 +207,10 @@ export const UploadPanel = () => {
                     />
                 </div>
 
-                <div class="my-2 mx-4 flex items-center justify-between">
+                <div class=" flex items-center justify-between">
                     <label class="flex-none ">{t('uploadPanel.seed')}</label>
                     <input
-                        placeholder="如果没有可以不填"
+                        placeholder="自动识别，如果没有可以不填"
                         class="input ml-1 w-full"
                         type="text"
                         value={store.seed}

@@ -1,10 +1,12 @@
-import { useContext } from 'solid-js';
+import { For, useContext } from 'solid-js';
 import { Data } from './App';
 import { stringToTags } from './use/TagsConvertor';
 import { Notice } from './utils/notice';
 import { useTranslation } from '../i18n';
 import { useWebView, WebViewLink } from './Panels/Webview';
 import isMobile from 'is-mobile';
+import { FloatPanel } from './components/FloatPanel';
+import { LocalPower } from './Panels/HomePanel';
 export function HeaderFirst() {
     const { enMode, usersCollection, visibleId, lists, emphasizeSymbol, iconBtn } =
         useContext(Data);
@@ -36,9 +38,7 @@ export function HeaderFirst() {
             >
                 {iconBtn() ? 'add_circle' : t('toolbar1.Import')}
             </div>
-            <span class="btn bg-green-700" onclick={() => visibleId('')}>
-                {iconBtn() ? 'apps' : t('toolbar1.Home')}
-            </span>
+            <MainFloat></MainFloat>
             <span class="btn bg-teal-700" onclick={() => visibleId('gallery')}>
                 {iconBtn() ? 'collections' : t('toolbar1.Gallery')}
             </span>
@@ -67,3 +67,39 @@ export function HeaderFirst() {
         </header>
     );
 }
+export const MainFloat = () => {
+    const { visibleId, iconBtn } = useContext(Data);
+    const { t } = useTranslation();
+
+    return (
+        <FloatPanel
+            class="btn h-full bg-green-700"
+            popup={
+                <div class="grid w-48 grid-cols-3 gap-2">
+                    <For each={LocalPower}>
+                        {(item, index) => {
+                            return (
+                                <div
+                                    class="flex cursor-pointer flex-col items-center justify-center bg-slate-800 hover:bg-slate-700"
+                                    style={{
+                                        color: `hwb(${index() * 20}deg 9% 21%)`,
+                                    }}
+                                    onclick={() => {
+                                        visibleId(item.src);
+                                    }}
+                                >
+                                    <div class="font-icon text-xl">{item.icon}</div>
+                                    <span class="text-sm ">{item.name}</span>
+                                </div>
+                            );
+                        }}
+                    </For>
+                </div>
+            }
+        >
+            <span class="h-full w-full" onclick={() => visibleId('')}>
+                {iconBtn() ? 'apps' : t('toolbar1.Home')}
+            </span>
+        </FloatPanel>
+    );
+};

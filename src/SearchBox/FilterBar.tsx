@@ -5,6 +5,7 @@ import { useTranslation } from '../../i18n';
 import { sampleSize } from '../utils/sampleSize';
 import { CSVToJSON } from '../utils/CSVToJSON';
 import { atom, resource } from '@cn-ui/use';
+import { FloatPanel } from '../components/FloatPanel';
 
 const ClassFilter = () => {
     const { result, lists } = useContext(Data);
@@ -34,47 +35,39 @@ const ClassFilter = () => {
     });
     const show = atom(false);
     return (
-        <div class="relative">
+        <FloatPanel
+            popup={
+                <div class=" flex h-64  w-32 flex-col gap-2 ">
+                    <Show when={data.isReady()}>
+                        <For each={[...FilterClass.values()]}>
+                            {(item) => {
+                                return (
+                                    <div
+                                        class="btn"
+                                        classList={{
+                                            'bg-green-600': isSelect(item),
+                                        }}
+                                        onclick={() => {
+                                            selectType(item);
+                                        }}
+                                    >
+                                        {item}
+                                    </div>
+                                );
+                            }}
+                        </For>
+                    </Show>
+                </div>
+            }
+        >
             <div
                 class="btn relative bg-pink-700 text-neutral-300"
-                onMouseEnter={() => show(true)}
+                onmouseover={() => show(true)}
                 onclick={() => show((i) => !i)}
             >
                 {selectType}
             </div>
-            <section
-                class="blur-background absolute top-[150%] left-2 z-50 flex h-64 w-32 flex-col gap-2  overflow-scroll rounded-md p-2 text-slate-300 ring-1 ring-gray-500 transition-transform duration-300"
-                classList={{
-                    'scale-0': !show(),
-                    'scale-100': show(),
-                }}
-                onMouseLeave={() => {
-                    setTimeout(() => {
-                        show(false);
-                    }, 500);
-                }}
-            >
-                <Show when={data.isReady()}>
-                    <For each={[...FilterClass.values()]}>
-                        {(item) => {
-                            return (
-                                <div
-                                    class="btn"
-                                    classList={{
-                                        'bg-green-600': isSelect(item),
-                                    }}
-                                    onclick={() => {
-                                        selectType(item);
-                                    }}
-                                >
-                                    {item}
-                                </div>
-                            );
-                        }}
-                    </For>
-                </Show>
-            </section>
-        </div>
+        </FloatPanel>
     );
 };
 

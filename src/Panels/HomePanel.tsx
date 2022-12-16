@@ -21,12 +21,13 @@ const EnableSites = [
 
 const { t } = useTranslation();
 
-const LocalPower = [
-    { name: t('home.btn.Setting'), src: 'setting' },
-    { name: t('home.btn.Gallery'), src: 'gallery' },
-    { name: t('home.btn.feedback'), src: 'feedback' },
-    { name: t('home.btn.ai_prompt'), src: 'ai-prompt' },
-    { name: t('home.btn.prompt_extractor'), src: 'prompt-extractor' },
+export const LocalPower = [
+    { name: t('home.btn.Setting'), src: 'setting', icon: 'settings' },
+    { name: t('home.btn.Gallery'), src: 'gallery', icon: 'photo' },
+    { name: t('home.btn.feedback'), src: 'feedback', icon: 'email' },
+    { name: t('home.btn.ai_prompt'), src: 'ai-prompt', icon: '😄' },
+    { name: t('home.btn.prompt_extractor'), src: 'prompt-extractor', icon: 'wallpaper' },
+    { name: t('toolbar1.Share'), src: 'uploader', icon: 'backup' },
 ];
 export const HomePanel = () => {
     const { visibleId } = useContext(Data);

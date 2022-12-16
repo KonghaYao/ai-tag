@@ -1,5 +1,5 @@
 import { createDeferred, createEffect, createResource, createSignal, untrack } from 'solid-js';
-import { Atom, atom, createIgnoreFirst, reflect, resource } from '@cn-ui/use';
+import { Atom, atom, createIgnoreFirst, reflect, resource, ResourceAtom } from '@cn-ui/use';
 import { useSearchParams } from '@solidjs/router';
 import { IData, IStoreData } from '../App';
 import { getTagInURL } from '../utils/getTagInURL';
@@ -8,6 +8,7 @@ import { proxy } from 'comlink';
 import { CSVToJSON } from '../utils/CSVToJSON';
 import { initWorker } from '../worker';
 import { throttle } from 'lodash-es';
+import { addUnknownReporter, addUnknowns } from '../utils/UnKnowReporter';
 const { searchWorker, sharedWorker } = initWorker();
 
 const refreshData = () => {
@@ -23,11 +24,11 @@ const refreshData = () => {
 /** 加载 Tag 数据库 */
 export function useDatabase(store: IStoreData) {
     console.log('重绘');
-    const rebuildSearchSet = async () => {
+    const rebuildSearchSet = () => {
         if (!lists.isReady()) return [];
         const r18 = r18Mode();
         const numberLimit = searchNumberLimit();
-        await searchWorker.rebuild({ r18, numberLimit });
+        return searchWorker.rebuild({ r18, numberLimit });
     };
     const lists = resource<IData[]>(async () => {
         return fetch('https://cdn.jsdelivr.net/gh/konghayao/tag-collection/data/tags.csv')
@@ -54,6 +55,7 @@ export function useDatabase(store: IStoreData) {
     const { r18Mode, searchNumberLimit, tagsPerPage } = store;
     createEffect(rebuildSearchSet);
 
+    /** 筛选过后的数组 */
     const result = atom<IData[]>([]);
 
     /** 安全的数据列表，对外提供操作 */
@@ -99,6 +101,10 @@ export function useDatabase(store: IStoreData) {
             );
         }
     };
+
+    // 汇报未知的单词
+    // TODO 测试阶段
+    addUnknownReporter(lists, usersCollection);
     const [searchParams, setSearchParams] = useSearchParams();
 
     // 将 usersCollection 推向标签栏

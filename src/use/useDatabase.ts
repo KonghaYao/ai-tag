@@ -7,7 +7,7 @@ import { stringToTags, TagsToString } from './TagsConvertor';
 import { proxy } from 'comlink';
 import { CSVToJSON } from '../utils/CSVToJSON';
 import { initWorker } from '../worker';
-import { throttle } from 'lodash-es';
+import { debounce, throttle } from 'lodash-es';
 import { addUnknownReporter, addUnknowns } from '../utils/UnKnowReporter';
 const { searchWorker, sharedWorker } = initWorker();
 
@@ -107,38 +107,10 @@ export function useDatabase(store: IStoreData) {
     addUnknownReporter(lists, usersCollection);
     const [searchParams, setSearchParams] = useSearchParams();
 
-    // 将 usersCollection 推向标签栏
-    createIgnoreFirst(
-        // fixed: 添加 throttle 防止重复启动
-        throttle(() => {
-            const tags = TagsToString(usersCollection(), store.emphasizeSymbol());
-            setSearchParams(
-                {
-                    ...untrack(() => searchParams),
-                    tags,
-                },
-                {}
-            );
-        }, 300),
-        [usersCollection]
-    );
+    // ! 不再将 usersCollection 推向标签栏，因为这个是给用户分享用的，用完第一次就不需要了
+    // 持续更新到标签栏反而耗费性能，所以只在分享 URL 的时候进行一个生成即可。
 
     let stateTag = '';
-    // 监听 URL 地址变化
-    createIgnoreFirst(async () => {
-        const tags = searchParams.tags;
-        if (stateTag === tags || !lists.isReady()) return;
-        stateTag = tags;
-
-        // console.log('url => ', tags);
-        const urlTags = getTagInURL(lists());
-
-        // 载入 URL 中的 Prompt
-        usersCollection(urlTags);
-        await sharedWorker.changeData({
-            prompt: tags,
-        });
-    }, [() => searchParams.tags]);
 
     // 初始化 usersCollection
     const initUsersCollection = async () => {

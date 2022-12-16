@@ -83,7 +83,8 @@
       "Gallery": "魔咒画廊",
       "RandomMaker": "三分之二魔咒生成器",
       "feedback": "反馈信息",
-      "ai_prompt": "黑魔法生成器"
+      "ai_prompt": "黑魔法生成器",
+      "prompt_extractor": "法术解析"
     },
     "hint": {
       "clickBelow": "点击下面的主页即是返回"

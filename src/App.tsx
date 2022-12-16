@@ -50,8 +50,10 @@ import { useLocalData } from './use/useLocalData';
 import { Message } from './MessageHint';
 import { Background } from './components/Background';
 import { DropReceiver } from '@cn-ui/headless';
+import { initUnknownReporter } from './utils/UnKnowReporter';
 
 export const App = () => {
+    initUnknownReporter();
     const enMode = atom(true);
     const r18Mode = atom(false);
     const sideAppMode = atom(!isMobile());

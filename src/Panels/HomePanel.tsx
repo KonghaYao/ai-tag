@@ -26,6 +26,7 @@ const LocalPower = [
     { name: t('home.btn.Gallery'), src: 'gallery' },
     { name: t('home.btn.feedback'), src: 'feedback' },
     { name: t('home.btn.ai_prompt'), src: 'ai-prompt' },
+    { name: t('home.btn.prompt_extractor'), src: 'prompt-extractor' },
 ];
 export const HomePanel = () => {
     const { visibleId } = useContext(Data);

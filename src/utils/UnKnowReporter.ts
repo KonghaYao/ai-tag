@@ -1,6 +1,5 @@
 import { ResourceAtom, Atom } from '@cn-ui/use';
 import { IData } from '../App';
-import { Notice } from './notice';
 export const initUnknownReporter = async () => {
     await import(
         /** @vite-ignore */

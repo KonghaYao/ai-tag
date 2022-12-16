@@ -9,6 +9,8 @@ import { FeedBackPanel } from './Feedback/Feedback';
 import { MyFeedBackPanel } from './Feedback/MyFeedback';
 import { MessageHint } from './MessageHint';
 import { AIPrompt } from './Panels/AIPrompt';
+import { PromptExtractor } from 'prompt-extractor';
+import { PromptExtractorPanel } from './Panels/PromptExtractor';
 export type PanelIds =
     | 'setting'
     | 'ai-prompt'
@@ -17,6 +19,7 @@ export type PanelIds =
     | 'webview'
     | 'feedback'
     | 'my-feedback'
+    | 'prompt-extractor'
     // gallery 的 panel
     | 'detail';
 export const SideApp = () => {
@@ -41,6 +44,7 @@ export const SideApp = () => {
                 <FeedBackPanel></FeedBackPanel>
                 <MyFeedBackPanel></MyFeedBackPanel>
                 <AIPrompt></AIPrompt>
+                <PromptExtractorPanel></PromptExtractorPanel>
             </div>
             <MessageHint></MessageHint>
         </main>

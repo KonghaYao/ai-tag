@@ -22,15 +22,16 @@ export const useViewer = (props?: Options) => {
         // 懒加载完成
         v.view = (nextIndex: number) => {
             let imagelist = images;
-            imagelist[nextIndex].src = imagelist[nextIndex].origin;
+            const origin = imagelist[nextIndex]?.origin || imagelist[nextIndex]?.src;
+            imagelist[nextIndex].src = origin;
             /**@ts-ignore */
-            v.images[nextIndex].src = imagelist[nextIndex].origin;
+            v.images[nextIndex].src = origin;
             /**@ts-ignore */
-            v.images[nextIndex].dataset.originalUrl = imagelist[nextIndex].origin;
+            v.images[nextIndex].dataset.originalUrl = origin;
             /**@ts-ignore */
             if (v.items && v.items[nextIndex])
                 /**@ts-ignore */
-                v.items[nextIndex].firstChild.dataset.originalUrl = imagelist[nextIndex].origin;
+                v.items[nextIndex].firstChild.dataset.originalUrl = origin;
 
             return a.call(v, nextIndex);
         };

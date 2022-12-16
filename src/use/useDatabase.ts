@@ -118,6 +118,7 @@ export function useDatabase(store: IStoreData) {
         if (stateTag === tags) return;
         stateTag = tags;
 
+        // URL > Shared Worker
         const urlTags = getTagInURL(lists());
         if (!urlTags?.length) {
             await sharedWorker.getData().then((data) => {

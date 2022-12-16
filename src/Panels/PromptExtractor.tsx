@@ -2,15 +2,23 @@ import { atom, createIgnoreFirst, resource } from '@cn-ui/use';
 
 import { Panel } from '../components/Panel';
 import { AIImageInfo, PromptExtractor } from 'prompt-extractor';
-import { createAC } from '@cn-ui/headless';
+import { DropReceiver, createAC } from '@cn-ui/headless';
 import { Component, Show, createEffect, on } from 'solid-js';
+import { AIImageInfoShower } from '../components/AIImageInfoShower';
+import { untrack } from 'solid-js/web';
+import { Message } from '../MessageHint';
 
 export const PromptExtractorPanel = () => {
     const file = atom<File>(null);
     const data = resource<AIImageInfo | null>(async () => {
-        if (file()) return null;
+        if (file() === null) return null;
         const info = await file().arrayBuffer();
         return PromptExtractor(info);
+    });
+    let last = atom('');
+    createEffect(() => {
+        untrack(last) && URL.revokeObjectURL(untrack(last));
+        file() && last(URL.createObjectURL(file()));
     });
     createEffect(
         on(file, () => {
@@ -21,15 +29,32 @@ export const PromptExtractorPanel = () => {
     return (
         <Panel id="prompt-extractor">
             <div class="py-2 text-center text-lg text-white">法术解析</div>
-            <div class="flex-1 select-text overflow-hidden p-2">
-                <div
-                    class="flex h-64  w-full select-none items-center justify-center rounded-lg outline-dashed outline-4 outline-slate-400 hover:bg-slate-700"
-                    onclick={() => inputRef.click()}
+            <div class="flex  flex-1 flex-col gap-4 overflow-hidden p-2">
+                <DropReceiver
+                    detect={{
+                        extra(dataTransfer: DataTransfer) {
+                            if (dataTransfer.types.includes('Files'))
+                                Message.success('松开，法术解析图片');
+                        },
+                    }}
+                    receive={{
+                        extra(_, dataTransfer: DataTransfer) {
+                            const item = [...dataTransfer.files].find((i) => {
+                                return i.type.startsWith('image/');
+                            });
+                            item && file(item);
+                        },
+                    }}
                 >
-                    <div class="font-icon h-fit w-fit" style={{ 'font-size': '120px' }}>
-                        add
+                    <div
+                        class="flex h-32 w-full  flex-none select-none items-center justify-center rounded-lg outline-dashed outline-4 outline-slate-400 hover:bg-slate-700"
+                        onclick={() => inputRef.click()}
+                    >
+                        <div class="font-icon h-fit w-fit" style={{ 'font-size': '120px' }}>
+                            add
+                        </div>
                     </div>
-                </div>
+                </DropReceiver>
                 <input
                     ref={inputRef}
                     class="hidden"
@@ -37,15 +62,13 @@ export const PromptExtractorPanel = () => {
                     accept="image/*"
                     oninput={(e) => file((e.target as HTMLInputElement).files[0])}
                 />
+                <nav class="flex flex-1 flex-col gap-2 overflow-scroll break-words p-1 text-white">
+                    <img src={last()} alt="" />
+                    <Show when={data.isReady() && data()}>
+                        <AIImageInfoShower data={data}></AIImageInfoShower>
+                    </Show>
+                </nav>
             </div>
-            <nav>
-                <Show when={data()}>
-                    <AIImageShower data={data()}></AIImageShower>
-                </Show>
-            </nav>
         </Panel>
     );
-};
-export const AIImageShower: Component<{ data: AIImageInfo }> = (props) => {
-    return <div></div>;
 };

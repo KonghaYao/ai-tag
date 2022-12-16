@@ -19,7 +19,7 @@ export const GalleryColumn: Component<{ images: (StoreData & { index: number })[
                             <img
                                 loading="lazy"
                                 src={getImagePath(item.image)}
-                                class="w-full overflow-hidden rounded-lg object-cover "
+                                class="w-full overflow-hidden rounded-lg object-cover  "
                                 alt=""
                                 style={{
                                     'min-height': '6rem',

@@ -24,7 +24,7 @@ export const DetailPanel = () => {
     return (
         <GalleryPanel id="detail">
             <Show when={ShowingPicture()}>
-                <main class="z-10 flex h-full flex-col  gap-4 overflow-auto p-4  sm:flex-row">
+                <main class="z-10 flex h-full flex-col  gap-4 overflow-auto break-words  p-4 sm:flex-row">
                     <nav
                         class="flex cursor-pointer flex-col items-center justify-center"
                         onclick={() => {

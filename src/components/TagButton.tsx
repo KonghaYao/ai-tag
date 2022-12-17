@@ -105,7 +105,7 @@ export const TagButton: Component<{
             <nav>{split()[0]}</nav>
             <main class="flex flex-col">{contentFormat()}</main>
             <nav>{split()[1]}</nav>
-            {showCount() && (
+            {showCount() && item.count >= 0 && (
                 <div
                     class={
                         ' pointer-events-none absolute -right-4 -top-2 rounded-lg px-1  text-xs   font-thin text-gray-400 ' +

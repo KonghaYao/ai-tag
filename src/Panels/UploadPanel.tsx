@@ -81,7 +81,7 @@ export const UploadPanel = () => {
         if (isPanelVisible('uploader')) {
             const list = untrack(usersCollection);
             batch(() => {
-                set('tags', TagsToString(list, emphasizeSymbol()));
+                set('tags', TagsToString(list, emphasizeSymbol(), true));
             });
         }
     });

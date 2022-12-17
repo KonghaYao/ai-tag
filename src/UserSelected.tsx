@@ -29,6 +29,7 @@ export const UserSelected = () => {
         }
     });
     const { send } = useDragAndDropData();
+    let breakCounter = 0;
     return (
         <DropReceiver
             detect={{
@@ -70,13 +71,21 @@ export const UserSelected = () => {
                         item && send(data, { type: 'USER_SELECTED', data: item });
                     }}
                     each={usersCollection}
-                    getId={(el) => el.en}
                     options={{}}
                     disabled={disabledSortable}
                 >
                     {(item) => {
+                        const id = item.text === '\n' ? `\n${breakCounter++}` : item.en;
+                        console.log(id);
+                        // 强行装入一个副作用
+                        (item as any).id = id;
                         return (
-                            <div data-id={item.en}>
+                            <div
+                                data-id={id}
+                                classList={{
+                                    ['basis-full']: item.text === '\n',
+                                }}
+                            >
                                 <DropReceiver
                                     detect={{
                                         ADD_BEFORE() {

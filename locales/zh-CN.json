@@ -24,7 +24,8 @@
     "Share": "分享",
     "hint": {
       "bracketsChange": "强调括号更换",
-      "ImportHint": "请输入魔咒, 魔咒将会覆盖哦"
+      "ImportHint": "请输入魔咒, 魔咒将会覆盖哦",
+      "addBreakLine": "添加分隔符号"
     }
   },
   "toolbar2": {

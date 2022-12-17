@@ -1,6 +1,6 @@
 import { For, useContext } from 'solid-js';
 import { Data } from './App';
-import { stringToTags } from './use/TagsConvertor';
+import { breakSymbol, stringToTags } from './use/TagsConvertor';
 import { Notice } from './utils/notice';
 import { useTranslation } from '../i18n';
 import { useWebView, WebViewLink } from './Panels/Webview';
@@ -57,6 +57,16 @@ export function HeaderFirst() {
                 {emphasizeSymbol().split('').join(' ')}
             </span>
             <span
+                class="btn font-icon bg-indigo-700   text-sm "
+                onClick={() => {
+                    usersCollection((i) => [...i, { ...breakSymbol }]);
+                    Notice.success(t('toolbar1.hint.addBreakLine'));
+                }}
+                title="添加分隔符到末尾"
+            >
+                mediation
+            </span>
+            <span
                 class="btn  bg-purple-700 font-bold  "
                 onclick={() => {
                     nav('./notebook.html');
@@ -67,6 +77,8 @@ export function HeaderFirst() {
         </header>
     );
 }
+
+/** 主页面板的直接展示，免得打开太麻烦 */
 export const MainFloat = () => {
     const { visibleId, iconBtn } = useContext(Data);
     const { t } = useTranslation();

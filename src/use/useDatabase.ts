@@ -1,13 +1,12 @@
-import { createDeferred, createEffect, createResource, createSignal, untrack } from 'solid-js';
-import { Atom, atom, createIgnoreFirst, reflect, resource, ResourceAtom } from '@cn-ui/use';
+import { createDeferred, createEffect, createSignal, untrack } from 'solid-js';
+import { Atom, atom, reflect, resource } from '@cn-ui/use';
 import { useSearchParams } from '@solidjs/router';
 import { IData, IStoreData } from '../App';
 import { getTagInURL } from '../utils/getTagInURL';
-import { stringToTags, TagsToString } from './TagsConvertor';
+import { stringToTags } from './TagsConvertor';
 import { proxy } from 'comlink';
 import { CSVToJSON } from '../utils/CSVToJSON';
 import { initWorker } from '../worker';
-import { debounce, throttle } from 'lodash-es';
 import { addUnknownReporter, addUnknowns } from '../utils/UnKnowReporter';
 const { searchWorker, sharedWorker } = initWorker();
 
@@ -92,11 +91,12 @@ export function useDatabase(store: IStoreData) {
             if (typeof data === 'function') {
                 data = data(U());
             }
-            data = data.filter((i) => i);
             return setU(
                 data.filter(
-                    (item, index) =>
-                        (data as IData[]).findIndex((next) => next.en === item.en) === index
+                    (item: IData, index: number) =>
+                        item &&
+                        (item.text === '\n' ||
+                            (data as IData[]).findIndex((next) => next.en === item.en) === index)
                 )
             );
         }
@@ -105,7 +105,7 @@ export function useDatabase(store: IStoreData) {
     // 汇报未知的单词
     // TODO 测试阶段
     addUnknownReporter(lists, usersCollection);
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
 
     // ! 不再将 usersCollection 推向标签栏，因为这个是给用户分享用的，用完第一次就不需要了
     // 持续更新到标签栏反而耗费性能，所以只在分享 URL 的时候进行一个生成即可。

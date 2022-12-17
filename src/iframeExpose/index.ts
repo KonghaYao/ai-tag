@@ -23,7 +23,7 @@ export const useIframeExpose = () => {
 
             onPromptChange(cb) {
                 const sendBack = debounce(() => {
-                    cb(TagsToString(usersCollection()));
+                    cb(TagsToString(usersCollection(), '()', true));
                 }, 200);
                 callbacks.push(sendBack);
             },

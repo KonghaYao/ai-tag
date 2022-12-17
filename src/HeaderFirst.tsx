@@ -21,11 +21,6 @@ export function HeaderFirst() {
                 'text-sm': !iconBtn(),
             }}
         >
-            <span class="btn bg-yellow-700 text-sm" onclick={() => enMode((i) => !i)}>
-                {iconBtn()
-                    ? t('toolbar1.' + (enMode() ? 'en' : 'zh'))[0]
-                    : t('toolbar1.' + (enMode() ? 'en' : 'zh'))}
-            </span>
             <div
                 class="btn bg-lime-700"
                 onclick={() => {
@@ -48,16 +43,16 @@ export function HeaderFirst() {
                 </span>
             )}
             <span
-                class="btn  bg-indigo-700   text-sm "
-                onClick={() => {
-                    emphasizeSymbol((i) => (i === '{}' ? '()' : '{}'));
-                    Notice.success(t('toolbar1.hint.bracketsChange'));
+                class="btn  bg-blue-700 font-bold  "
+                onclick={() => {
+                    nav('./notebook.html');
                 }}
             >
-                {emphasizeSymbol().split('').join(' ')}
+                {iconBtn() ? 'book' : t('notebook')}
             </span>
+            <ToolBox></ToolBox>
             <span
-                class="btn font-icon bg-indigo-700   text-sm "
+                class="btn font-icon bg-violet-700   text-sm "
                 onClick={() => {
                     usersCollection((i) => [...i, { ...breakSymbol }]);
                     Notice.success(t('toolbar1.hint.addBreakLine'));
@@ -66,18 +61,41 @@ export function HeaderFirst() {
             >
                 mediation
             </span>
-            <span
-                class="btn  bg-purple-700 font-bold  "
-                onclick={() => {
-                    nav('./notebook.html');
-                }}
-            >
-                {iconBtn() ? 'book' : t('notebook')}
-            </span>
         </header>
     );
 }
+export const ToolBox = () => {
+    const { enMode, usersCollection, visibleId, lists, emphasizeSymbol, iconBtn } =
+        useContext(Data);
 
+    const { t } = useTranslation();
+    return (
+        <FloatPanel
+            class="btn h-full bg-indigo-700"
+            popup={
+                <div class=" flex flex-col gap-2">
+                    {/* 中英文切换符号 */}
+                    <span class="btn bg-yellow-700 text-sm" onclick={() => enMode((i) => !i)}>
+                        {iconBtn()
+                            ? t('toolbar1.' + (enMode() ? 'en' : 'zh'))[0]
+                            : t('toolbar1.' + (enMode() ? 'en' : 'zh'))}
+                    </span>
+                    <span
+                        class="btn  bg-indigo-700   text-sm "
+                        onClick={() => {
+                            emphasizeSymbol((i) => (i === '{}' ? '()' : '{}'));
+                            Notice.success(t('toolbar1.hint.bracketsChange'));
+                        }}
+                    >
+                        {emphasizeSymbol().split('').join(' ')}
+                    </span>
+                </div>
+            }
+        >
+            <span class="font-icon h-full w-full">build</span>
+        </FloatPanel>
+    );
+};
 /** 主页面板的直接展示，免得打开太麻烦 */
 export const MainFloat = () => {
     const { visibleId, iconBtn } = useContext(Data);

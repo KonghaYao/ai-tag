@@ -23,6 +23,7 @@
     -   [x] 跨编辑器拖拽文本
 -   [x] ICON 样式
 -   [x] 词汇分类库
+-   [x] 换行符作为通用的区域划分
 
 ### v4 计划
 
@@ -75,6 +76,7 @@
     -   [x] 搜索标签排除
     -   [x] 搜索卡顿消除（采用 Worker 和 Shared Worker）
     -   [x] tag 符号 `{}` `()` 切换
+    -   [x] 支持换行符进行分割，SD 不识别换行符，所以可以在文本中使用
     -   [x] 支持 [数值加权](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#attentionemphasis) ,[Prompt editing](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#prompt-editing), [Alternating Words](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#alternating-words), （Stable Diffusion 专有）
 -   系统方面
     -   [x] 设置面板可以更改系统参数

@@ -56,7 +56,8 @@ export const TagsToString = (
                 lastStart = index + 1;
             }
         }
-        return final.join('\n');
+        // 在每一句的末尾写入一个逗号，这样会比较好
+        return final.join(',\n');
     } else {
         return TagsToPrompt(
             data.filter((i) => i.text !== '\n'),

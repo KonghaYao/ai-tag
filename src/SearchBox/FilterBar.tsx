@@ -33,7 +33,6 @@ const ClassFilter = () => {
             }
         }
     });
-    const show = atom(false);
     return (
         <FloatPanel
             popup={
@@ -60,13 +59,7 @@ const ClassFilter = () => {
                 </div>
             }
         >
-            <div
-                class="btn relative bg-pink-700 text-neutral-300"
-                onmouseover={() => show(true)}
-                onclick={() => show((i) => !i)}
-            >
-                {selectType}
-            </div>
+            <div class="btn relative bg-pink-700 text-neutral-300">{selectType}</div>
         </FloatPanel>
     );
 };

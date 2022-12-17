@@ -20,7 +20,29 @@ const EnableSites = [
 ];
 
 const { t } = useTranslation();
-
+export const MainGridOfInner = () => {
+    const { visibleId, iconBtn } = useContext(Data);
+    return (
+        <For each={LocalPower}>
+            {(item, index) => {
+                return (
+                    <div
+                        class="blur-background flex cursor-pointer flex-col items-center justify-center bg-slate-800 text-slate-100 hover:brightness-90"
+                        style={{
+                            'background-color': `hwb(${(index() * 36) % 360}deg 20% 40%)`,
+                        }}
+                        onclick={() => {
+                            visibleId(item.src);
+                        }}
+                    >
+                        <div class="font-icon text-xl">{item.icon}</div>
+                        <span class="text-sm ">{item.name}</span>
+                    </div>
+                );
+            }}
+        </For>
+    );
+};
 export const LocalPower = [
     { name: t('home.btn.Setting'), src: 'setting', icon: 'settings' },
     { name: t('home.btn.Gallery'), src: 'gallery', icon: 'photo' },
@@ -28,6 +50,7 @@ export const LocalPower = [
     { name: t('home.btn.ai_prompt'), src: 'ai-prompt', icon: '😄' },
     { name: t('home.btn.prompt_extractor'), src: 'prompt-extractor', icon: 'wallpaper' },
     { name: t('toolbar1.Share'), src: 'uploader', icon: 'backup' },
+    { name: t('header.FeedBack'), src: 'feedback', icon: 'feedback' },
 ];
 export const HomePanel = () => {
     const { visibleId } = useContext(Data);
@@ -41,20 +64,8 @@ export const HomePanel = () => {
 
                 <div class="py-2 font-bold text-yellow-500"> {t('home.title.localFunc')}</div>
 
-                <div class="flex flex-wrap gap-1 ">
-                    <For each={LocalPower}>
-                        {(item, index) => (
-                            <div
-                                class="cursor-pointer rounded-sm px-2 py-1 text-white transition-all hover:brightness-90"
-                                style={{
-                                    'background-color': `hwb(${index() * 20}deg 9% 21%)`,
-                                }}
-                                onclick={() => visibleId(item.src)}
-                            >
-                                {item.name}
-                            </div>
-                        )}
-                    </For>
+                <div class="grid grid-cols-3 gap-4 ">
+                    <MainGridOfInner></MainGridOfInner>
                 </div>
                 <div class="py-2 font-bold text-yellow-500"> {t('home.title.FriendsLink')}</div>
                 <div class="flex flex-wrap gap-1 ">

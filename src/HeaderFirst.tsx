@@ -6,7 +6,7 @@ import { useTranslation } from '../i18n';
 import { useWebView, WebViewLink } from './Panels/Webview';
 import isMobile from 'is-mobile';
 import { FloatPanel } from './components/FloatPanel';
-import { LocalPower } from './Panels/HomePanel';
+import { LocalPower, MainGridOfInner } from './Panels/HomePanel';
 export function HeaderFirst() {
     const { enMode, usersCollection, visibleId, lists, emphasizeSymbol, iconBtn } =
         useContext(Data);
@@ -96,6 +96,7 @@ export const ToolBox = () => {
         </FloatPanel>
     );
 };
+
 /** 主页面板的直接展示，免得打开太麻烦 */
 export const MainFloat = () => {
     const { visibleId, iconBtn } = useContext(Data);
@@ -104,32 +105,21 @@ export const MainFloat = () => {
     return (
         <FloatPanel
             class="btn h-full bg-green-700"
+            show
             popup={
-                <div class="grid w-48 grid-cols-3 gap-2">
-                    <For each={LocalPower}>
-                        {(item, index) => {
-                            return (
-                                <div
-                                    class="flex cursor-pointer flex-col items-center justify-center bg-slate-800 hover:bg-slate-700"
-                                    style={{
-                                        color: `hwb(${index() * 20}deg 9% 21%)`,
-                                    }}
-                                    onclick={() => {
-                                        visibleId(item.src);
-                                    }}
-                                >
-                                    <div class="font-icon text-xl">{item.icon}</div>
-                                    <span class="text-sm ">{item.name}</span>
-                                </div>
-                            );
-                        }}
-                    </For>
+                <div class="flex flex-col gap-2">
+                    <nav class="flex justify-end">
+                        <div class="font-icon btn" onclick={() => visibleId('')}>
+                            apps
+                        </div>
+                    </nav>
+                    <div class="grid w-48 grid-cols-3 gap-2">
+                        <MainGridOfInner></MainGridOfInner>
+                    </div>
                 </div>
             }
         >
-            <span class="h-full w-full" onclick={() => visibleId('')}>
-                {iconBtn() ? 'apps' : t('toolbar1.Home')}
-            </span>
+            <span class="h-full w-full">{iconBtn() ? 'apps' : t('toolbar1.Home')}</span>
         </FloatPanel>
     );
 };

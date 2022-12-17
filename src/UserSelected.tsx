@@ -113,7 +113,16 @@ export const UserSelected = () => {
                                         data={item}
                                         en={enMode}
                                         cn={reflect(() => !enMode())}
-                                        onClick={item.text === '\n' ? null : clickEvent}
+                                        onClick={
+                                            item.text === '\n'
+                                                ? () => {
+                                                      deleteMode() &&
+                                                          usersCollection((i) =>
+                                                              i.filter((it) => it !== item)
+                                                          );
+                                                  }
+                                                : clickEvent
+                                        }
                                         onWheel={(info, delta, e) => {
                                             e.preventDefault();
                                             wheelEvent(info, delta);

@@ -105,7 +105,6 @@ export const MainFloat = () => {
     return (
         <FloatPanel
             class="btn h-full bg-green-700"
-            show
             popup={
                 <div class="flex flex-col gap-2">
                     <nav class="flex justify-end">

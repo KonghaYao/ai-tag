@@ -50,6 +50,11 @@ export const UserSelected = () => {
                     usersCollection(stringToTags(tags, lists()));
                     Notice.success(t('publicPanel.hint.CopySuccess'));
                 },
+                extra(_, dataTransfer: DataTransfer) {
+                    console.log('接收到数据');
+                    const text = dataTransfer.getData('text');
+                    text && usersCollection(stringToTags(text, lists()));
+                },
             }}
         >
             <main class="user-selected my-2 flex w-full flex-col rounded-xl border border-solid border-gray-600 p-2 ">
@@ -70,7 +75,6 @@ export const UserSelected = () => {
                 >
                     {(item) => {
                         const id = item.text === '\n' ? `\n${breakCounter++}` : item.en;
-                        console.log(id);
                         // 强行装入一个副作用
                         (item as any).id = id;
                         return (

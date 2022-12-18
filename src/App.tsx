@@ -53,6 +53,7 @@ import { Message } from './MessageHint';
 import { Background } from './components/Background';
 import { DropReceiver } from '@cn-ui/headless';
 import { initUnknownReporter } from './utils/UnKnowReporter';
+import { stringToTags } from './use/TagsConvertor';
 
 export const App = () => {
     initUnknownReporter();
@@ -139,23 +140,28 @@ export const App = () => {
                         }}
                     >
                         <Background image={backgroundImage()}></Background>
+
                         <main class=" flex h-full w-full max-w-4xl flex-col overflow-hidden px-2 pt-2 text-gray-400 sm:px-4 sm:pt-4">
                             <h2 class="cursor-pointer text-center text-xl font-bold text-gray-300">
                                 AI 绘画三星法器 —— 魔导绪论
                                 <sup class="px-2 text-xs text-yellow-300">{__version__}</sup>
                                 <div class="flex items-center  justify-center gap-2 text-xs font-thin text-[#f5f3c2]">
-                                    <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
+                                    <a
+                                        href="https://www.notion.so/magic-tag/ee1a0ab136724eb183a29d1fcc56a3d2"
+                                        target="_blank"
+                                    >
                                         {t('header.Doc')}
+                                        <sup class="italic text-rose-600">NEW</sup>
                                     </a>
-                                    ·
+
                                     <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
                                         Github
                                     </a>
-                                    ·
+
                                     <a href="./gallery.html" target="_blank">
                                         {t('header.Gallery')}
                                     </a>
-                                    ·
+
                                     <span onClick={() => visibleId('feedback')}>
                                         {t('header.FeedBack')}
                                     </span>

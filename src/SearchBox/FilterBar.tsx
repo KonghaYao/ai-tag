@@ -69,7 +69,7 @@ export const FilterBar = () => {
 
     const { t } = useTranslation();
     return (
-        <nav class="flex flex-col justify-between text-sm text-gray-400 md:flex-row">
+        <nav class="flex flex-col justify-between text-sm text-gray-400 sm:flex-row">
             <span class="flex-none">
                 {t('searchBox.searchResult')} {result().length} /
                 {lists() ? lists().length : t('loading')}

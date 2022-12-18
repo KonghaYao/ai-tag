@@ -1,6 +1,5 @@
 import { atom, resource } from '@cn-ui/use';
-import { debounce } from 'lodash-es';
-import { createEffect, createMemo, createResource, For, on, Show, useContext } from 'solid-js';
+import { createEffect, createMemo, For, on, Show, useContext } from 'solid-js';
 import { API, StoreData } from '../api/notion';
 import { Data } from '../App';
 import { Panel, PanelContext } from '../components/Panel';

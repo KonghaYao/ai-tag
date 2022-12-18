@@ -20,13 +20,7 @@ export const UserSelected = () => {
     const { wheelEvent, clickEvent } = useTagController();
 
     const disabledSortable = reflect(() => {
-        if (isMobile()) {
-            // 修复移动端多重状态 BUG
-            return emphasizeAddMode() || emphasizeSubMode() || deleteMode();
-        } else {
-            // 电脑端没有这个 BUG
-            return false;
-        }
+        return isMobile() ? emphasizeAddMode() || emphasizeSubMode() || deleteMode() : false;
     });
     const { send } = useDragAndDropData();
     let breakCounter = 0;

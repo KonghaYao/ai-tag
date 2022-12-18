@@ -10,7 +10,7 @@ export const PreProcess = (s: string) => {
 export const breakSymbol: IData = {
     text: '\n',
     en: `\n`,
-    cn: '这是一个换行符，你可以使用它进行词汇分割，不影响结果',
+    cn: '\n',
     r18: 0,
     count: -1,
     emphasize: 0,

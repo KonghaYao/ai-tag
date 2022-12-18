@@ -1,5 +1,5 @@
-import { atom, createIgnoreFirst, resource } from '@cn-ui/use';
-import { createEffect, createResource, Show, useContext } from 'solid-js';
+import { atom, resource } from '@cn-ui/use';
+import { Show, useContext } from 'solid-js';
 import { useTranslation } from '../../i18n';
 import { Data } from '../App';
 import { Panel } from '../components/Panel';

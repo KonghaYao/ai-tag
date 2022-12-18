@@ -1,9 +1,9 @@
-import { atom, createIgnoreFirst, resource } from '@cn-ui/use';
+import { atom, resource } from '@cn-ui/use';
 
 import { Panel } from '../components/Panel';
 import { AIImageInfo, PromptExtractor } from 'prompt-extractor';
-import { DropReceiver, createAC } from '@cn-ui/headless';
-import { Component, Show, createEffect, on } from 'solid-js';
+import { DropReceiver } from '@cn-ui/headless';
+import { Show, createEffect, on } from 'solid-js';
 import { AIImageInfoShower } from '../components/AIImageInfoShower';
 import { untrack } from 'solid-js/web';
 import { Message } from '../MessageHint';

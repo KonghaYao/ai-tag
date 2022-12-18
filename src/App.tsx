@@ -27,6 +27,8 @@ export interface IStoreData {
     emphasizeSymbol: Atom<string>;
     defaultFont: Atom<boolean>;
     iconBtn: Atom<boolean>;
+    nonBreakLine: Atom<boolean>;
+    forceEN: Atom<boolean>;
 }
 export interface IGlobalData extends IStoreData {
     emphasizeAddMode: Atom<boolean>;
@@ -71,9 +73,13 @@ export const App = () => {
     const visibleId = atom<PanelIds | ''>('');
     const isPanelVisible = createSelector(visibleId);
     const username = atom('');
+    const nonBreakLine = atom<boolean>(false);
+    const forceEN = atom<boolean>(false);
 
     /** 需要持久化的变量写这里 */
     const storageSetting = {
+        nonBreakLine,
+        forceEN,
         emphasizeAddMode,
         emphasizeSubMode,
         emphasizeSymbol,
@@ -132,7 +138,7 @@ export const App = () => {
                         }}
                     >
                         <Background image={backgroundImage()}></Background>
-                        <main class=" flex h-full w-full max-w-4xl flex-col overflow-hidden  p-2 text-gray-400 sm:p-4">
+                        <main class=" flex h-full w-full max-w-4xl flex-col overflow-hidden px-2 pt-2 text-gray-400 sm:px-4 sm:pt-4">
                             <h2 class="cursor-pointer text-center text-xl font-bold text-gray-300">
                                 AI 绘画三星法器 —— 魔导绪论
                                 <sup class="px-2 text-xs text-yellow-300">{__version__}</sup>

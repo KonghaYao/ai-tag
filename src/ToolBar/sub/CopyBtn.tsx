@@ -1,20 +1,28 @@
 import copy from 'copy-to-clipboard';
-import { useContext } from 'solid-js';
+import { Component, useContext } from 'solid-js';
 import { useTranslation } from '../../../i18n';
 import { Data } from '../../App';
 import { DragPoster } from '@cn-ui/headless';
 import { TagsToString } from '../../use/TagsConvertor';
 import { Notice } from '../../utils/notice';
 import { FloatPanel } from '../../components/FloatPanel';
+import { Atom, atom } from '@cn-ui/use';
+
+export const CheckBox: Component<{
+    value: Atom<boolean>;
+}> = (props) => {
+    return <input type="checkbox" checked={props.value()}></input>;
+};
 
 export function CopyBtn() {
-    const { enMode, usersCollection, emphasizeSymbol, iconBtn } = useContext(Data);
+    const { enMode, usersCollection, emphasizeSymbol, iconBtn, nonBreakLine, forceEN } =
+        useContext(Data);
     const { t } = useTranslation();
     const getTagString = () => {
-        return TagsToString(
+        let final = TagsToString(
             usersCollection().map((i) => {
                 // 中英文模式下的不同修改
-                if (enMode()) {
+                if (forceEN() || enMode()) {
                     return i;
                 } else {
                     return { ...i, text: i.cn };
@@ -22,19 +30,19 @@ export function CopyBtn() {
             }),
             emphasizeSymbol()
         );
+        nonBreakLine() && (final = final.replace('\n', ''));
+        return final;
     };
     return (
         <FloatPanel
             popup={
-                <div class="flex w-24 flex-col">
-                    <span
-                        class="btn flex-none"
-                        onclick={() => {
-                            copy(getTagString().replace('\n', ''));
-                            Notice.success(t('toolbar2.hint.copy'));
-                        }}
-                    >
-                        {iconBtn() ? 'copy' : t('toolbar2.copyWithoutBreak')}
+                <div class="flex w-32 flex-col gap-2">
+                    <span class="btn flex-none" onclick={() => nonBreakLine((i) => !i)}>
+                        <CheckBox value={nonBreakLine}></CheckBox> {t('toolbar2.copyWithoutBreak')}
+                    </span>
+
+                    <span class="btn flex-none" onclick={() => forceEN((i) => !i)}>
+                        <CheckBox value={forceEN}></CheckBox> {t('toolbar2.copyOnlyEN')}
                     </span>
                 </div>
             }

@@ -20,6 +20,7 @@ export const ToolBox = () => {
                             ? t('toolbar1.' + (enMode() ? 'en' : 'zh'))[0]
                             : t('toolbar1.' + (enMode() ? 'en' : 'zh'))}
                     </span>
+                    {/* 强调括号更换 */}
                     <span
                         class="btn  bg-indigo-700   text-sm "
                         onClick={() => {
@@ -28,6 +29,15 @@ export const ToolBox = () => {
                         }}
                     >
                         {emphasizeSymbol().split('').join(' ')}
+                    </span>
+                    {/* 清空所有 TAG  */}
+                    <span
+                        class="btn  bg-violet-700 text-sm "
+                        onClick={() => {
+                            globalThis.confirm('清空所有 TAG') && usersCollection([]);
+                        }}
+                    >
+                        清空所有 TAG
                     </span>
                 </div>
             }

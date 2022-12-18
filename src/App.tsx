@@ -135,6 +135,7 @@ export const App = () => {
                         class=" flex h-screen w-screen justify-center"
                         classList={{
                             'font-global': !defaultFont(),
+                            'opacity-70': !!backgroundImage(),
                         }}
                     >
                         <Background image={backgroundImage()}></Background>

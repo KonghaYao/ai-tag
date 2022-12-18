@@ -35,6 +35,7 @@ export function CopyBtn() {
     };
     return (
         <FloatPanel
+            class="h-full w-full"
             popup={
                 <div class="flex w-32 flex-col gap-2">
                     <span class="btn flex-none" onclick={() => nonBreakLine((i) => !i)}>
@@ -52,7 +53,7 @@ export function CopyBtn() {
                 text={() => getTagString()}
             >
                 <span
-                    class="btn"
+                    class="btn h-full w-full"
                     onclick={() => {
                         copy(getTagString());
                         Notice.success(t('toolbar2.hint.copy'));

@@ -68,7 +68,7 @@ export const TagButton: Component<{
 
     return (
         <nav
-            class="tag-button text-col relative mx-2 my-2 flex cursor-pointer select-none items-center gap-1  rounded-md  px-2 py-1 text-center transition-colors active:brightness-90"
+            class="tag-button text-col relative mx-2 my-2 flex cursor-pointer select-none items-center gap-1  rounded-md  px-2 py-1 text-center transition-colors active:brightness-90 "
             onContextMenu={(e) => {
                 e.preventDefault();
                 props.onClick && props.onClick(item, true);

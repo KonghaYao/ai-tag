@@ -78,7 +78,10 @@ export const FilterBar = () => {
             <div class="flex gap-1">
                 <ClassFilter></ClassFilter>
                 <div
-                    class={'btn flex-none ' + _emColor[searchNumberLimit().toString().length - 1]}
+                    class={
+                        'btn flex-none  text-slate-200 ' +
+                        _emColor[searchNumberLimit().toString().length - 1]
+                    }
                     onclick={() => {
                         searchNumberLimit((i) => {
                             if (i === 0) return 10;
@@ -92,7 +95,7 @@ export const FilterBar = () => {
                         : `> ${searchNumberLimit().toLocaleString('en')}`}
                 </div>
                 <span
-                    class="btn flex-none bg-cyan-700"
+                    class="btn flex-none bg-cyan-700 text-slate-200 "
                     onclick={() => {
                         result(sampleSize(lists(), tagsPerPage()));
                     }}

@@ -41,10 +41,10 @@ body {
     -webkit-backdrop-filter: blur(8px);
 }
 .btn {
-    @apply mx-1  flex-none cursor-pointer select-none rounded  border border-solid border-gray-700  bg-gray-800 px-2 text-center align-middle font-thin transition-all active:bg-gray-700;
+    @apply mx-1  flex-none cursor-pointer select-none rounded bg-slate-800  px-2 text-center align-middle font-thin ring-1 ring-slate-700  transition-all active:bg-gray-700;
 }
 .input {
-    @apply rounded-lg border border-solid border-gray-600 bg-gray-700 px-4 py-1 text-gray-200 shadow-md outline-none;
+    @apply rounded-lg bg-gradient-to-br from-slate-800 to-slate-900 px-4 py-1 text-gray-200 shadow-md outline-none ring-1 ring-slate-700;
 }
 
 .special-tags {

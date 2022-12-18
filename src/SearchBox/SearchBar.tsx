@@ -40,7 +40,7 @@ export const SearchBar = () => {
                     }}
                 >
                     <div
-                        class="btn flex-none bg-red-800 px-4"
+                        class="btn flex-none bg-rose-700 px-4 text-slate-200"
                         onclick={() => triggerSearch('')}
                         title={t('searchBox.hint.deleteHint')}
                     >

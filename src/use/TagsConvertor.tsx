@@ -1,6 +1,6 @@
 import { IData } from '../App';
 
-import { IPromptData, PromptToTags, TagsToPrompt } from 'promptor';
+import { PromptToTags, TagsToPrompt } from 'promptor';
 
 /** 预处理来源字符出串，将一些字符进行转换 */
 export const PreProcess = (s: string) => {

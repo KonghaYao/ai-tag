@@ -5,8 +5,7 @@ import { useTranslation } from '../../../i18n';
 import { FloatPanel } from '../../components/FloatPanel';
 
 export const ToolBox = () => {
-    const { enMode, usersCollection, visibleId, lists, emphasizeSymbol, iconBtn } =
-        useContext(Data);
+    const { enMode, usersCollection, emphasizeSymbol, iconBtn } = useContext(Data);
 
     const { t } = useTranslation();
     return (

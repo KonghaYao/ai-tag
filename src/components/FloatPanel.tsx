@@ -1,6 +1,5 @@
 import { children, Component, JSXElement } from 'solid-js';
-import { Atom, atom, atomization } from '@cn-ui/use';
-import { debounce } from 'lodash-es';
+import { Atom, atomization } from '@cn-ui/use';
 
 /** 鼠标浮动上去显示的东西 */
 export const FloatPanel: Component<{
@@ -11,7 +10,7 @@ export const FloatPanel: Component<{
 }> = (props) => {
     const el = children(() => props.children)() as HTMLElement;
     const show = atomization(props.show ?? false);
-    const mouseover = debounce(() => show(true), 300);
+    const mouseover = () => show(true);
     el.addEventListener('mouseover', mouseover);
     return (
         <div

@@ -22,7 +22,7 @@ export const FloatPanel: Component<{
         >
             {el}
             <section
-                class="blur-background absolute top-[150%] left-2 z-50 origin-top-left overflow-scroll rounded-md p-2 text-slate-300 shadow-md shadow-slate-700 ring-1 ring-slate-600  transition-all duration-300"
+                class="blur-background absolute top-[150%] left-2 z-40 origin-top-left overflow-scroll rounded-md p-2 text-slate-300 shadow-md shadow-slate-700 ring-1 ring-slate-600  transition-all duration-300"
                 classList={{
                     'scale-0 opacity-0': !show(),
                     'scale-100  opacity-100': show(),

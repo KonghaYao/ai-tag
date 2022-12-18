@@ -36,7 +36,8 @@
     "hint": {
       "copy": "复制魔法释放",
       "copy_drag": "试着把我拖到笔记本里面"
-    }
+    },
+    "copyWithoutBreak": "无断行复制"
   },
   "searchBox": {
     "hint": {

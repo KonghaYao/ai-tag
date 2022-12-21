@@ -1,6 +1,6 @@
 {
     "name": "magic-tag",
-    "version": "3.11.3",
+    "version": "3.11.4",
     "main": "./dist/es/index.js",
     "description": "",
     "scripts": {

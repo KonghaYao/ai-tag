@@ -147,7 +147,7 @@ export const App = () => {
                                 <sup class="px-2 text-xs text-yellow-300">{__version__}</sup>
                                 <div class="flex items-center  justify-center gap-2 text-xs font-thin text-[#f5f3c2]">
                                     <a
-                                        href="https://www.notion.so/magic-tag/ee1a0ab136724eb183a29d1fcc56a3d2"
+                                        href="https://magic-tag.notion.site/ee1a0ab136724eb183a29d1fcc56a3d2"
                                         target="_blank"
                                     >
                                         {t('header.Doc')}

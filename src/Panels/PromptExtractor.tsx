@@ -30,6 +30,7 @@ export const PromptExtractorPanel = () => {
         <Panel id="prompt-extractor">
             <div class="py-2 text-center text-lg text-white">法术解析</div>
             <div class="flex  flex-1 flex-col gap-4 overflow-hidden p-2">
+                <div>支持对 SD、Novel AI、Paddle 的生成图片解析</div>
                 <DropReceiver
                     detect={{
                         extra(dataTransfer: DataTransfer) {

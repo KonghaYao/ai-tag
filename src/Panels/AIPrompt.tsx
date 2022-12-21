@@ -64,7 +64,7 @@ export const AIPrompt = () => {
                         Notice.success(t('publicPanel.hint.CopySuccess'));
                     }}
                 >
-                    复制魔法
+                    {t('publicPanel.CopyMagic')}
                 </button>
                 <button
                     class="btn"

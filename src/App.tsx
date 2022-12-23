@@ -42,7 +42,7 @@ export interface IGlobalData extends IStoreData {
 }
 export const Data = createContext<IGlobalData>();
 import isMobile from 'is-mobile';
-import { useWindowResize } from './use/useWindowResize';
+import { useWindowResize } from '@cn-ui/use';
 import { IPromptData } from 'promptor';
 import { PanelContext } from './components/Panel';
 import { FontSupport } from './components/FontSupport';
@@ -53,8 +53,6 @@ import { Message } from './MessageHint';
 import { Background } from './components/Background';
 import { DropReceiver } from '@cn-ui/headless';
 import { initUnknownReporter } from './utils/UnKnowReporter';
-import { stringToTags } from './use/TagsConvertor';
-
 export const App = () => {
     initUnknownReporter();
     const enMode = atom(true);

@@ -3,8 +3,7 @@ import { GalleryGlobal } from './App';
 import { ScrollLoading } from './ScrollLoading';
 import { PictureCard } from './GalleryColumn';
 import { WaterFall } from '@cn-ui/core';
-import { reflect } from '@cn-ui/use';
-import { useWindowResize } from '../src/use/useWindowResize';
+import { reflect, useBreakpoints } from '@cn-ui/use';
 export const Gallery = () => {
     const { showingData, page, changePage } = useContext(GalleryGlobal);
     const images = reflect(() =>
@@ -12,17 +11,20 @@ export const Gallery = () => {
             .flat()
             .filter((i) => i)
     );
-    const { width } = useWindowResize();
+
+    const { size } = useBreakpoints();
     const columns = reflect(() => {
-        const w = width();
-        if (w < 300) {
-            return 1;
-        } else if (w < 600) {
-            return 2;
-        } else if (w < 1200) {
-            return 3;
-        } else {
-            return 4;
+        switch (size()) {
+            case 'md':
+                return 3;
+            case 'lg':
+                return 3;
+            case 'xl':
+                return 4;
+            case '2xl':
+                return 4;
+            default:
+                return 2;
         }
     });
     const { ScrollEvent } = ScrollLoading(() => changePage(page() + 1));

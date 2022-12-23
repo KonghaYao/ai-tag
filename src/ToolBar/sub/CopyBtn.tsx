@@ -30,7 +30,7 @@ export function CopyBtn() {
             }),
             emphasizeSymbol()
         );
-        nonBreakLine() && (final = final.replace('\n', ''));
+        nonBreakLine() && (final = final.replace(/\n/g, ''));
         return final;
     };
     return (

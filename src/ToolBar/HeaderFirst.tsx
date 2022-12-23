@@ -14,7 +14,7 @@ export function HeaderFirst() {
     const { t } = useTranslation();
     return (
         <header
-            class="flex w-full whitespace-nowrap border-b border-slate-700 pb-2  font-bold text-neutral-300"
+            class="flex w-full gap-2 whitespace-nowrap border-b border-slate-700 pb-2  font-bold text-neutral-300"
             classList={{
                 'font-icon': iconBtn(),
                 'text-xl': iconBtn(),
@@ -52,7 +52,7 @@ export function HeaderFirst() {
             </span>
             <ToolBox></ToolBox>
             <span
-                class="btn font-icon bg-violet-700   text-sm "
+                class="btn font-icon bg-violet-700 text-sm "
                 onClick={() => {
                     usersCollection((i) => [...i, { ...breakSymbol }]);
                     Notice.success(t('toolbar1.hint.addBreakLine'));

@@ -11,7 +11,7 @@ export const ToolBox = () => {
     return (
         <FloatPanel
             popup={() => (
-                <div class="blur-background pointer-events-auto flex flex-col gap-2 p-2">
+                <div class="blur-background pointer-events-auto flex flex-col gap-2 rounded-md p-2">
                     {/* 中英文切换符号 */}
                     <span class="btn bg-yellow-700 text-sm" onclick={() => enMode((i) => !i)}>
                         {iconBtn()
@@ -40,7 +40,7 @@ export const ToolBox = () => {
                 </div>
             )}
         >
-            <span class="font-icon btn h-full  w-full bg-indigo-700">build</span>
+            <div class="font-icon btn m-0 h-full w-full bg-indigo-700">build</div>
         </FloatPanel>
     );
 };

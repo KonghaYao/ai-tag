@@ -12,16 +12,16 @@ export const SearchBar = () => {
     const triggerSearch = debounce(searchText, 200) as Setter<string>;
     const { t } = useTranslation();
     return (
-        <nav class="flex w-full items-center">
+        <nav class="flex w-full items-center gap-2">
             <input
-                class="input my-2 mr-1 flex-1"
+                class="input my-2 flex-1"
                 value={searchText()}
                 placeholder={t('searchBox.hint.searchPlaceholder')}
                 oninput={(e: any) => triggerSearch(e.target.value)}
             ></input>
 
             <div
-                class="flex "
+                class="flex gap-2"
                 classList={{
                     'font-icon': iconBtn(),
                 }}

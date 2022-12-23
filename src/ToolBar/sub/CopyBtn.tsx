@@ -36,7 +36,7 @@ export function CopyBtn() {
     return (
         <FloatPanel
             popup={() => (
-                <div class="blur-background mt-1 flex h-full w-32 flex-col gap-2 rounded-md p-2">
+                <div class="blur-background pointer-events-auto mt-1 flex h-full w-32 flex-col gap-2 rounded-md p-2">
                     <span class="btn flex-none" onclick={() => nonBreakLine((i) => !i)}>
                         <CheckBox value={nonBreakLine}></CheckBox> {t('toolbar2.copyWithoutBreak')}
                     </span>
@@ -51,8 +51,8 @@ export function CopyBtn() {
                 send={(send) => send('PURE_TAGS', getTagString())}
                 text={() => getTagString()}
             >
-                <span
-                    class="btn h-full w-full"
+                <div
+                    class="btn m-0 h-full w-full "
                     onclick={() => {
                         copy(getTagString());
                         Notice.success(t('toolbar2.hint.copy'));
@@ -60,7 +60,7 @@ export function CopyBtn() {
                     title={t('toolbar2.hint.copy_drag')}
                 >
                     {iconBtn() ? 'copy' : t('toolbar2.copy')}
-                </span>
+                </div>
             </DragPoster>
         </FloatPanel>
     );

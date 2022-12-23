@@ -9,7 +9,6 @@ import { FeedBackPanel } from './Feedback/Feedback';
 import { MyFeedBackPanel } from './Feedback/MyFeedback';
 import { MessageHint } from './MessageHint';
 import { AIPrompt } from './Panels/AIPrompt';
-import { PromptExtractor } from 'prompt-extractor';
 import { PromptExtractorPanel } from './Panels/PromptExtractor';
 export type PanelIds =
     | 'setting'

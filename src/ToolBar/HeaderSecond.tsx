@@ -4,20 +4,12 @@ import { Data } from '../App';
 import { CopyBtn } from './sub/CopyBtn';
 
 export function HeaderSecond() {
-    const {
-        enMode,
-        emphasizeAddMode,
-        emphasizeSubMode,
-        deleteMode,
-        usersCollection,
-        emphasizeSymbol,
-        iconBtn,
-    } = useContext(Data);
+    const { emphasizeAddMode, emphasizeSubMode, deleteMode, iconBtn } = useContext(Data);
     const { t } = useTranslation();
 
     return (
         <header
-            class="flex border-t border-slate-700 pt-2 font-bold text-neutral-300"
+            class="flex gap-2 border-t border-slate-700 pt-2 font-bold text-neutral-300"
             classList={{
                 'font-icon': iconBtn(),
                 'text-lg': iconBtn(),

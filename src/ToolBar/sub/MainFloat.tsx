@@ -11,9 +11,8 @@ export const MainFloat = () => {
 
     return (
         <FloatPanel
-            class="btn h-full bg-green-700"
             popup={
-                <div class="flex flex-col gap-2">
+                <div class="blur-background pointer-events-auto flex flex-col gap-2 rounded-md p-2">
                     <nav class="flex justify-end">
                         <div class="font-icon btn" onclick={() => visibleId('')}>
                             apps
@@ -25,7 +24,9 @@ export const MainFloat = () => {
                 </div>
             }
         >
-            <span class="h-full w-full">{iconBtn() ? 'apps' : t('toolbar1.Home')}</span>
+            <div class="btn m-0 h-full  w-full bg-green-700">
+                {iconBtn() ? 'apps' : t('toolbar1.Home')}
+            </div>
         </FloatPanel>
     );
 };

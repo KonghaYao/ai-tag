@@ -7,6 +7,7 @@ import { Show, createEffect, on } from 'solid-js';
 import { AIImageInfoShower } from '../components/AIImageInfoShower';
 import { untrack } from 'solid-js/web';
 import { Message } from '../MessageHint';
+import { AC } from '../components/AC';
 
 export const PromptExtractorPanel = () => {
     const file = atom<File>(null);
@@ -43,7 +44,7 @@ export const PromptExtractorPanel = () => {
                             const item = [...dataTransfer.files].find((i) => {
                                 return i.type.startsWith('image/');
                             });
-                            item && file(item);
+                            item && file(() => item);
                         },
                     }}
                 >
@@ -61,13 +62,17 @@ export const PromptExtractorPanel = () => {
                     class="hidden"
                     type="file"
                     accept="image/*"
-                    oninput={(e) => file((e.target as HTMLInputElement).files[0])}
+                    oninput={(e) => {
+                        file(() => (e.target as HTMLInputElement).files[0]);
+                    }}
                 />
                 <nav class="flex flex-1 flex-col gap-2 overflow-scroll break-words p-1 text-white">
                     <img src={last()} alt="" />
-                    <Show when={data.isReady() && data()}>
-                        <AIImageInfoShower data={data}></AIImageInfoShower>
-                    </Show>
+                    <AC resource={data}>
+                        <Show when={data()}>
+                            <AIImageInfoShower data={data}></AIImageInfoShower>
+                        </Show>
+                    </AC>
                 </nav>
             </div>
         </Panel>

@@ -49,7 +49,9 @@ export default defineConfig(({ mode }) => {
             },
         },
         resolve: {
-            alias: {},
+            alias: {
+                '@fontsource/material-icons-rounded/index.css': '/src/index.css',
+            },
         },
         define: {
             __version__: JSON.stringify(p.version),

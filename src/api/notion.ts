@@ -74,6 +74,7 @@ export const API = {
             .then((res) => {
                 this.end = !res.has_more;
                 this.start_cursor[index] = res.next_cursor;
+                // console.log(res);
                 return res;
             })
             .then(treeToArray)

@@ -1,29 +1,42 @@
-import { For, createMemo, useContext, Switch, Match } from 'solid-js';
-import { StoreData } from '../src/api/notion';
+import { useContext } from 'solid-js';
 import { GalleryGlobal } from './App';
 import { ScrollLoading } from './ScrollLoading';
-import { GalleryColumn } from './GalleryColumn';
-
-export const Gallery = (props) => {
+import { PictureCard } from './GalleryColumn';
+import { WaterFall } from '@cn-ui/core';
+import { reflect } from '@cn-ui/use';
+import { useWindowResize } from '../src/use/useWindowResize';
+export const Gallery = () => {
     const { showingData, page, changePage } = useContext(GalleryGlobal);
-    const images = createMemo(() =>
+    const images = reflect(() =>
         showingData()
             .flat()
             .filter((i) => i)
-            .reduce((cols, item, index) => {
-                cols[index % cols.length].push({ index, ...item });
-                return cols;
-            }, [...Array(props.column).keys()].map(() => []) as (StoreData & { index: number })[][])
+            .map((i, index) => {
+                i.index = index;
+                return i;
+            })
     );
-
+    const { width } = useWindowResize();
+    const columns = reflect(() => {
+        const w = width();
+        if (w < 300) {
+            return 1;
+        } else if (w < 600) {
+            return 2;
+        } else if (w < 1200) {
+            return 3;
+        } else {
+            return 4;
+        }
+    });
     const { ScrollEvent } = ScrollLoading(() => changePage(page() + 1));
     return (
-        <div class="mx-[5%]  flex h-full  gap-4 overflow-auto  " onScroll={ScrollEvent}>
-            <For each={images()}>
+        <div onscroll={ScrollEvent} class=" flex justify-center overflow-auto px-4">
+            <WaterFall items={images} column={columns}>
                 {(item) => {
-                    return <GalleryColumn images={item}></GalleryColumn>;
+                    return <PictureCard {...item}></PictureCard>;
                 }}
-            </For>
+            </WaterFall>
         </div>
     );
 };

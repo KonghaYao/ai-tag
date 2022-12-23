@@ -3,8 +3,6 @@ import { StoreData, API } from '../src/api/notion';
 import { atom, useSingleAsync } from '@cn-ui/use';
 import { useViewer } from '../src/use/useViewer';
 import { notionSearch } from '../src/utils/searchDecode';
-import { useSearchParams } from '@solidjs/router';
-
 export const useGalleryInfo = () => {
     const { replaceImages, getViewer } = useViewer();
     const page = atom(0);

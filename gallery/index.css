@@ -1,9 +1,10 @@
 .single-pic .title-item {
-    @apply opacity-0 transition-all duration-300;
+    @apply transition-all duration-300;
 }
 .single-pic:hover .title-item {
     @apply opacity-100;
 }
+
 .single-pic {
     transform: rotateX(0deg) rotateY(12deg);
 }

@@ -39,16 +39,11 @@ export const SearchBar = () => {
                 oninput={() => {
                     searchText(searchInputEl.value);
                 }}
-            />
-            <div
-                class="font-icon cursor-pointer px-2"
-                onclick={() => {
+                onblur={() => {
                     clearAndResearch();
-                    Notice.success('搜索成功');
                 }}
-            >
-                search
-            </div>
+            />
+
             <div
                 class="font-icon cursor-pointer px-2"
                 onclick={() => {

@@ -7,6 +7,7 @@ import { WebViewLink } from './Webview';
 const Translators = [{ name: 'Bing 翻译', src: 'https://cn.bing.com/translator/' }];
 
 const EnableSites = [
+    { name: '魔导绪论图库', src: './gallery.html' },
     { name: 'NovelAi-魔导学概论', src: 'https://noveltags.com/' },
     {
         name: 'Novel AI 教程',

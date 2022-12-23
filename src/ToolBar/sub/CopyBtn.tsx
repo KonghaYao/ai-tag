@@ -5,7 +5,7 @@ import { Data } from '../../App';
 import { DragPoster } from '@cn-ui/headless';
 import { TagsToString } from '../../use/TagsConvertor';
 import { Notice } from '../../utils/notice';
-import { FloatPanel } from '../../components/FloatPanel';
+import { FloatPanel } from '@cn-ui/core';
 import { Atom, atom } from '@cn-ui/use';
 
 export const CheckBox: Component<{
@@ -35,9 +35,8 @@ export function CopyBtn() {
     };
     return (
         <FloatPanel
-            class="h-full w-full"
-            popup={
-                <div class="flex w-32 flex-col gap-2">
+            popup={() => (
+                <div class="blur-background mt-1 flex h-full w-32 flex-col gap-2 rounded-md p-2">
                     <span class="btn flex-none" onclick={() => nonBreakLine((i) => !i)}>
                         <CheckBox value={nonBreakLine}></CheckBox> {t('toolbar2.copyWithoutBreak')}
                     </span>
@@ -46,7 +45,7 @@ export function CopyBtn() {
                         <CheckBox value={forceEN}></CheckBox> {t('toolbar2.copyOnlyEN')}
                     </span>
                 </div>
-            }
+            )}
         >
             <DragPoster
                 send={(send) => send('PURE_TAGS', getTagString())}

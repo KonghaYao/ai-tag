@@ -7,9 +7,8 @@ import { StoreData } from '../src/api/notion';
 import { useGalleryInfo } from './useGalleryInfo';
 import { keepStore } from '../src/use/useStorage';
 import { Background } from '../src/components/Background';
-import { useWindowResize } from '../src/use/useWindowResize';
 import { SearchBar } from './SearchBar';
-import { FloatPanel } from '../src/components/FloatPanel';
+import { FloatPanel } from '@cn-ui/core';
 
 export const GalleryGlobal = createContext<
     {

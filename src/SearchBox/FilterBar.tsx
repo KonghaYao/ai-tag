@@ -5,7 +5,7 @@ import { useTranslation } from '../../i18n';
 import { sampleSize } from '../utils/sampleSize';
 import { CSVToJSON } from '../utils/CSVToJSON';
 import { atom, resource } from '@cn-ui/use';
-import { FloatPanel } from '../components/FloatPanel';
+import { FloatPanel } from '@cn-ui/core';
 
 const ClassFilter = () => {
     const { result, lists } = useContext(Data);
@@ -35,8 +35,8 @@ const ClassFilter = () => {
     });
     return (
         <FloatPanel
-            popup={
-                <div class=" flex h-64  w-32 flex-col gap-2 ">
+            popup={() => (
+                <div class="blur-background mt-4 flex h-64 w-32 flex-col  gap-2 overflow-auto rounded-xl  p-2 ">
                     <Show when={data.isReady()}>
                         <For each={[...FilterClass.values()]}>
                             {(item) => {
@@ -57,7 +57,7 @@ const ClassFilter = () => {
                         </For>
                     </Show>
                 </div>
-            }
+            )}
         >
             <div class="btn relative bg-pink-700 text-neutral-300">{selectType}</div>
         </FloatPanel>

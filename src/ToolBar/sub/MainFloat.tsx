@@ -1,11 +1,10 @@
 import { useContext } from 'solid-js';
 import { Data } from '../../App';
 import { useTranslation } from '../../../i18n';
-import { FloatPanel } from '../../components/FloatPanel';
+import { FloatPanel } from '@cn-ui/core';
 import { MainGridOfInner } from '../../Panels/HomePanel';
 
 /** 主页面板的直接展示，免得打开太麻烦 */
-
 export const MainFloat = () => {
     const { visibleId, iconBtn } = useContext(Data);
     const { t } = useTranslation();

@@ -11,10 +11,6 @@ export const Gallery = () => {
         showingData()
             .flat()
             .filter((i) => i)
-            .map((i, index) => {
-                i.index = index;
-                return i;
-            })
     );
     const { width } = useWindowResize();
     const columns = reflect(() => {
@@ -33,8 +29,8 @@ export const Gallery = () => {
     return (
         <div onscroll={ScrollEvent} class=" flex justify-center overflow-auto px-4">
             <WaterFall items={images} column={columns}>
-                {(item) => {
-                    return <PictureCard {...item}></PictureCard>;
+                {(item, index) => {
+                    return <PictureCard {...item} index={index()}></PictureCard>;
                 }}
             </WaterFall>
         </div>

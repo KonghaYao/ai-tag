@@ -5,7 +5,7 @@ import { GalleryGlobal } from './App';
 import { getImagePath } from './Panels/Detail';
 import { saveAs } from 'file-saver';
 
-export const PictureCard: Component<StoreData & { index: string }> = (item) => {
+export const PictureCard: Component<StoreData & { index: number }> = (item) => {
     const { visibleId } = useContext(PanelContext);
     const { ShowingPicture, getViewer, backgroundImage, searchText } = useContext(GalleryGlobal);
 

@@ -2,7 +2,7 @@ import { useContext } from 'solid-js';
 import { Data } from '../../App';
 import { Notice } from '../../utils/notice';
 import { useTranslation } from '../../../i18n';
-import { FloatPanel } from '../../components/FloatPanel';
+import { FloatPanel } from '@cn-ui/core';
 
 export const ToolBox = () => {
     const { enMode, usersCollection, emphasizeSymbol, iconBtn } = useContext(Data);
@@ -10,9 +10,8 @@ export const ToolBox = () => {
     const { t } = useTranslation();
     return (
         <FloatPanel
-            class="btn h-full bg-indigo-700"
-            popup={
-                <div class=" flex flex-col gap-2">
+            popup={() => (
+                <div class="blur-background pointer-events-auto flex flex-col gap-2 p-2">
                     {/* 中英文切换符号 */}
                     <span class="btn bg-yellow-700 text-sm" onclick={() => enMode((i) => !i)}>
                         {iconBtn()
@@ -39,9 +38,9 @@ export const ToolBox = () => {
                         清空所有 TAG
                     </span>
                 </div>
-            }
+            )}
         >
-            <span class="font-icon h-full w-full">build</span>
+            <span class="font-icon btn h-full  w-full bg-indigo-700">build</span>
         </FloatPanel>
     );
 };

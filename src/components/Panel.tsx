@@ -32,14 +32,15 @@ export const Panel: Component<PanelEl> = (props) => {
     const visible = createMemo(() => isPanelVisible(props.id));
 
     return (
-        <Tab id={props.id}>
+        <Tab
+            id={props.id}
+            destroyOnHide
+            class="blur-background absolute top-0 left-0 flex h-screen  w-full flex-col items-center  justify-center"
+        >
             <nav
                 ref={container}
-                class="absolute top-0 left-0 flex h-full w-full flex-col items-center justify-center p-6 transition-all duration-500"
+                class="flex h-full place-content-center p-6"
                 classList={{
-                    'scale-100': visible(),
-                    'scale-0': !visible(),
-                    'translate-y-full': !visible(),
                     'pointer-event-none': !visible(),
                 }}
                 ondragover={props.ondragover}
@@ -48,7 +49,7 @@ export const Panel: Component<PanelEl> = (props) => {
                     if (e.target === container) visibleId(null);
                 }}
             >
-                <main class="blur-background flex h-full w-full max-w-sm flex-col  overflow-auto rounded-2xl border-2 border-solid border-slate-700 bg-gray-700/60 transition-all sm:max-w-md">
+                <main class=" flex h-full w-full max-w-sm flex-col  overflow-auto rounded-2xl border-2 border-solid border-slate-700 bg-gray-700/60 transition-all sm:max-w-md">
                     {props.children}
 
                     <ControlBar></ControlBar>

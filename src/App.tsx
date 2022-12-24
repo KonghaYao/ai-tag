@@ -1,5 +1,5 @@
 import { Accessor, createContext, createEffect, createSelector, Show } from 'solid-js';
-import { Atom, atom } from '@cn-ui/use';
+import { Atom, atom, useBreakpoints } from '@cn-ui/use';
 import { SearchBox } from './SearchBox/SearchBox';
 import { UserSelected } from './UserSelected';
 import { useDatabase } from './use/useDatabase';
@@ -100,9 +100,9 @@ export const App = () => {
     const { recover, tracking } = useStorage(storageSetting);
     const { backgroundImage } = useLocalData();
     const { t } = useTranslation();
-    const { width } = useWindowResize();
+    const { isSize } = useBreakpoints();
     // 自动变换 SideAPP 状态
-    createEffect(() => sideAppMode(width() > 888));
+    createEffect(() => sideAppMode(!(isSize('xs') || isSize('sm'))));
     recover();
     tracking();
     return (

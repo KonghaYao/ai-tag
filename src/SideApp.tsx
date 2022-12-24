@@ -1,4 +1,4 @@
-import { createMemo, Show, useContext } from 'solid-js';
+import { createMemo, useContext } from 'solid-js';
 import { SettingPanel } from './Panels/SettingPanel';
 import { PublicPanel } from './Panels/PublicPanel';
 import { UploadPanel } from './Panels/UploadPanel';
@@ -11,6 +11,7 @@ import { MessageHint } from './MessageHint';
 import { AIPrompt } from './Panels/AIPrompt';
 import { PromptExtractorPanel } from './Panels/PromptExtractor';
 import { Tabs } from '@cn-ui/core';
+import { Anime } from '@cn-ui/transition';
 export type PanelIds =
     | 'setting'
     | 'ai-prompt'
@@ -26,27 +27,30 @@ export type PanelIds =
 export const SideApp = () => {
     const { sideAppMode, visibleId } = useContext(Data);
     const hasOpened = createMemo(() => visibleId() !== null);
-
     return (
         <Tabs activeId={visibleId} lazyload>
             <main
-                class="flex h-full w-1/3 max-w-sm flex-none flex-col bg-gray-900 text-gray-400 transition-all duration-300"
+                class=" flex h-full w-full flex-none flex-col place-content-center text-gray-400 transition-all duration-500"
                 classList={{
-                    'flex-1': hasOpened(),
-                    'w-0': !sideAppMode() || !hasOpened(),
+                    'flex-1 blur-background md:w-96': hasOpened(),
+                    'pointer-events-none w-0': !hasOpened(),
+
+                    fixed: !sideAppMode(),
                 }}
             >
-                <div class="flex-1" classList={{ relative: sideAppMode() }}>
-                    <SettingPanel></SettingPanel>
-                    <PublicPanel></PublicPanel>
-                    <UploadPanel></UploadPanel>
-                    <HomePanel></HomePanel>
-                    <Webview></Webview>
+                <div class="relative flex-1">
+                    <Anime group in="zoom_in" out="zoom_out" appear>
+                        <SettingPanel></SettingPanel>
+                        <PublicPanel></PublicPanel>
+                        <UploadPanel></UploadPanel>
+                        <HomePanel></HomePanel>
+                        <Webview></Webview>
 
-                    <FeedBackPanel></FeedBackPanel>
-                    <MyFeedBackPanel></MyFeedBackPanel>
-                    <AIPrompt></AIPrompt>
-                    <PromptExtractorPanel></PromptExtractorPanel>
+                        <FeedBackPanel></FeedBackPanel>
+                        <MyFeedBackPanel></MyFeedBackPanel>
+                        <AIPrompt></AIPrompt>
+                        <PromptExtractorPanel></PromptExtractorPanel>
+                    </Anime>
                 </div>
                 <MessageHint></MessageHint>
             </main>

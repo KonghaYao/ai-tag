@@ -3,7 +3,6 @@ import { useTranslation } from '../../i18n';
 import { Data } from '../App';
 import { Panel } from '../components/Panel';
 import { UploadButton } from '../components/UploadButton';
-import { useLocalData } from '../use/useLocalData';
 import { Notice } from '../utils/notice';
 
 export const SettingPanel = () => {

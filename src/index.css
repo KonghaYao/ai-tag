@@ -1,4 +1,5 @@
-@import url('./anime.css');
+@import '@cn-ui/core/dist/style.css';
+@import '@cn-ui/animate/src/jump.css';
 body {
     margin: 0;
     overflow: hidden;

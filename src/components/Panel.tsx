@@ -1,19 +1,9 @@
 import { Atom, atom } from '@cn-ui/use';
-import { pick } from 'lodash-es';
-import {
-    Component,
-    createContext,
-    createEffect,
-    createMemo,
-    JSX,
-    JSXElement,
-    Show,
-    useContext,
-    useTransition,
-} from 'solid-js';
+import { Component, createContext, createMemo, JSX, JSXElement, useContext } from 'solid-js';
 import { PanelIds } from '../SideApp';
 import { ControlBar } from './ControlBar';
 import { Tab } from '@cn-ui/core';
+import { Animate } from '@cn-ui/animate';
 
 export interface IPanelData {
     visibleId: Atom<string>;

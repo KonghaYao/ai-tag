@@ -1,7 +1,8 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@cn-ui/core': ^1.2.3
+  '@cn-ui/animate': ^1.0.1
+  '@cn-ui/core': ^1.3.0
   '@cn-ui/headless': ^1.9.3
   '@cn-ui/sortable': ^2.1.3
   '@cn-ui/transition': ^1.7.3
@@ -14,7 +15,6 @@ specifiers:
   '@types/lodash-es': ^4.17.6
   '@types/md5': ^2.3.2
   '@types/papaparse': ^5.3.5
-  animate.css: ^4.1.1
   autoprefixer: ^10.4.13
   browserslist: ^4.21.4
   comlink: ^4.3.1
@@ -47,13 +47,13 @@ specifiers:
   vitest: ^0.24.5
 
 dependencies:
-  '@cn-ui/core': 1.2.3_6pwvfuh5ve4byhlplml4vsg4vi
+  '@cn-ui/animate': 1.0.1_5s3motkzycdibged2z6bxqx7fq
+  '@cn-ui/core': 1.3.0_6pwvfuh5ve4byhlplml4vsg4vi
   '@cn-ui/headless': 1.9.3_solid-js@1.6.6
   '@cn-ui/sortable': 2.1.3_25mtapqjam74svcgnwtxvygqsa
   '@cn-ui/transition': 1.7.3_25mtapqjam74svcgnwtxvygqsa
   '@cn-ui/use': 1.9.0_solid-js@1.6.6
   '@solidjs/router': 0.5.1_solid-js@1.6.6
-  animate.css: 4.1.1
   comlink: 4.3.1
   copy-to-clipboard: 3.3.3
   file-saver: 2.0.5
@@ -418,19 +418,31 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@cn-ui/core/1.2.3_6pwvfuh5ve4byhlplml4vsg4vi:
-    resolution: {integrity: sha512-KrO6zRxaZiTS1KLNn+yUSyjddQiT8knZU4ftTGr6/96SADAZ8of13nSyXPXbOje1SEbyurG+sLQQKO4NhUIJ2g==}
+  /@cn-ui/animate/1.0.1_5s3motkzycdibged2z6bxqx7fq:
+    resolution: {integrity: sha512-kIWQXn8lEA0p8LYc2hdD79GZyiwBDxvRZR/DEA/gn7PjXDIS1bBxJDE/NnGabPU241F98sOvlI0pYAqa9fW4QQ==}
+    peerDependencies:
+      '@cn-ui/transition': ^1.7.3
+      '@cn-ui/use': ^1.9.0
+      solid-js: ^1.5.7
+    dependencies:
+      '@cn-ui/transition': 1.7.3_25mtapqjam74svcgnwtxvygqsa
+      '@cn-ui/use': 1.9.0_solid-js@1.6.6
+      solid-js: 1.6.6
+    dev: false
+
+  /@cn-ui/core/1.3.0_6pwvfuh5ve4byhlplml4vsg4vi:
+    resolution: {integrity: sha512-KjXjKnvRmnxYgZ5RfnSxq9spDbI0AtZPxnqJQP660RQ8CNeqF5ji7kXDTEmt3aBJAgHvM07V/H9neRLcdAlO7A==}
     peerDependencies:
       '@fontsource/material-icons-rounded': ^4.5.4
       '@solidjs/router': ^0.5.0
       solid-js: ^1.5.7
       tailwindcss: ^3.1.8
     dependencies:
+      '@cn-ui/animate': 1.0.1_5s3motkzycdibged2z6bxqx7fq
       '@cn-ui/transition': 1.7.3_25mtapqjam74svcgnwtxvygqsa
       '@cn-ui/use': 1.9.0_solid-js@1.6.6
       '@solidjs/router': 0.5.1_solid-js@1.6.6
       '@vant/area-data': 1.3.2
-      animate.css: 3.7.2
       consola: 2.15.3
       copy-to-clipboard: 3.3.3
       highlight.js: 11.7.0
@@ -702,14 +714,6 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
     dev: true
-
-  /animate.css/3.7.2:
-    resolution: {integrity: sha512-0bE8zYo7C0KvgOYrSVfrzkbYk6IOTVPNqkiHg2cbyF4Pq/PXzilz4BRWA3hwEUBoMp5VBgrC29lQIZyhRWdBTw==}
-    dev: false
-
-  /animate.css/4.1.1:
-    resolution: {integrity: sha512-+mRmCTv6SbCmtYJCN4faJMNFVNN5EuCTTprDTAo7YzIGji2KADmakjVA3+8mVDkZ2Bf09vayB35lSQIex2+QaQ==}
-    dev: false
 
   /ansi-regex/5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}

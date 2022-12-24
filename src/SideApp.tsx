@@ -23,7 +23,7 @@ export type PanelIds =
     | 'prompt-extractor'
     // gallery 的 panel
     | 'detail';
-
+import '@cn-ui/animate/src/jump.css';
 export const SideApp = () => {
     const { sideAppMode, visibleId } = useContext(Data);
     const hasOpened = createMemo(() => visibleId() !== null);
@@ -39,7 +39,7 @@ export const SideApp = () => {
                 }}
             >
                 <div class="relative flex-1">
-                    <Anime group in="zoom_in" out="zoom_out" appear>
+                    <Anime group in="jumpFromBottom" out="jumpFromBottom animated-reverse" appear>
                         <SettingPanel></SettingPanel>
                         <PublicPanel></PublicPanel>
                         <UploadPanel></UploadPanel>

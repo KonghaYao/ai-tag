@@ -33,7 +33,7 @@ specifiers:
   prettier: 2.6.0
   prettier-plugin-tailwindcss: ^0.1.13
   pretty-bytes: ^6.0.0
-  prompt-extractor: ^1.1.4
+  prompt-extractor: ^1.2.0
   promptor: ^1.0.4
   rollup-plugin-visualizer: ^5.8.3
   solid-js: ^1.6.6
@@ -64,7 +64,7 @@ dependencies:
   number-precision: 1.6.0
   papaparse: 5.3.2
   pretty-bytes: 6.0.0
-  prompt-extractor: 1.1.4
+  prompt-extractor: 1.2.0
   promptor: 1.0.4
   solid-js: 1.6.6
   sortablejs: 1.15.0
@@ -1995,8 +1995,8 @@ packages:
     engines: {node: ^14.13.1 || >=16.0.0}
     dev: false
 
-  /prompt-extractor/1.1.4:
-    resolution: {integrity: sha512-zeEHQ3NqRSUAcH3ruIeYXQegRjP2GuXbEJpA2E3IKL7dWjkIa1GjjeRDs/gF7Y5jaB8xil08UxWRtQ76zozPuw==}
+  /prompt-extractor/1.2.0:
+    resolution: {integrity: sha512-b7FeWmJkNsb68Rb1moXluGU71qC/TttJV7ShV2WbLhSWPI7wFFyZJEjyfRYAh46f/ZUj6pHQ0jyut0ktuHMd8w==}
     dependencies:
       png-chunk-text: 1.0.0
       png-chunks-extract: 1.0.0

@@ -3,21 +3,27 @@ import { Data, IData } from '../App';
 import { CSVToJSON } from '../utils/CSVToJSON';
 import { atom, resource } from '@cn-ui/use';
 import { FloatPanelWithAnimate } from '@cn-ui/core';
+import { memoize } from 'lodash-es';
 
+const getClassify = memoize(async () => {
+    const binary = await fetch('./tagClassify.csv').then((res) => res.blob());
+    const data = await CSVToJSON<{ en: string; cn: string; type: string }>(binary);
+
+    return data;
+});
 export const useClassFilter = () => {
     const { result, lists } = useContext(Data);
     const FilterClass = new Set(['全部']);
-    const data = resource(async () => {
-        const binary = await fetch('./tagClassify.csv').then((res) => res.blob());
-        const data = await CSVToJSON<{ en: string; cn: string; type: string }>(binary);
-
-        return data.map((i) => {
-            FilterClass.add(i.type);
-            return { ...i, r18: 0, count: Infinity, text: i.en, emphasize: 0 } as IData & {
-                type: string;
-            };
-        });
-    });
+    const data = resource(() =>
+        getClassify().then((res) =>
+            res.map((i) => {
+                FilterClass.add(i.type);
+                return { ...i, r18: 0, count: Infinity, text: i.en, emphasize: 0 } as IData & {
+                    type: string;
+                };
+            })
+        )
+    );
     const selectType = atom('全部');
     const isSelect = createSelector(selectType);
     createEffect(() => {

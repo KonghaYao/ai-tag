@@ -7,7 +7,7 @@ import { Data } from '../App';
 const SearchSideBar = () => {
     const { ClassFilterList } = useClassFilter();
     return (
-        <div class="flex flex-none flex-col gap-2 overflow-scroll pb-4 text-sm">
+        <div class="flex flex-none flex-col gap-2 overflow-scroll px-2 pb-4 text-sm">
             <ClassFilterList></ClassFilterList>
         </div>
     );
@@ -19,7 +19,7 @@ export const SearchBox = () => {
             <SearchBar></SearchBar>
             <section class="flex h-full w-full flex-1 flex-col gap-2 overflow-hidden">
                 <FilterBar></FilterBar>
-                <section class="flex flex-1 gap-2 overflow-auto">
+                <section class="flex flex-1 overflow-auto">
                     <Show when={showClassify()}>
                         <SearchSideBar></SearchSideBar>
                     </Show>

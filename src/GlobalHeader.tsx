@@ -12,7 +12,6 @@ export function GlobalHeader() {
         >
             <h2 class="text-slate-200">魔导绪论</h2>
             <sup class="px-2 text-xs text-yellow-300">{__version__}</sup>
-            <sub class="h-fit text-xs text-slate-200">AI 绘画三星法器</sub>
             <div class="flex-1"></div>
             <div class="flex cursor-pointer items-center  justify-center gap-2  text-xs font-thin text-[#f5f3c2]">
                 {!r18Mode() && (

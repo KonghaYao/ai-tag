@@ -127,11 +127,14 @@ export const UploadPanel = () => {
         >
             <header class="w-full py-2 text-center font-bold">{t('uploadPanel.title')}</header>
 
-            <main class="mx-4 flex flex-1 flex-col gap-2 overflow-auto">
+            <main class="mx-4 flex flex-1 flex-col gap-4 overflow-auto">
+                <div class="rounded-md bg-slate-700 p-2 text-xs">
+                    上传的图片将会在 画廊 进行展示，感谢您的分享！
+                </div>
                 <div class=" flex items-center justify-between">
                     <label class="flex-none ">{t('uploadPanel.YourName')}</label>
                     <input
-                        placeholder="那菈的名字"
+                        placeholder={t('uploadPanel.YourName')}
                         class="input ml-1 w-full"
                         type="text"
                         value={username()}
@@ -144,7 +147,7 @@ export const UploadPanel = () => {
                 <div class=" flex items-center justify-between">
                     <label class="flex-none ">{t('uploadPanel.description')}</label>
                     <input
-                        placeholder="曲调名称"
+                        placeholder="描述这张图片吧"
                         class="input ml-1 w-full"
                         type="text"
                         value={store.description}
@@ -154,7 +157,6 @@ export const UploadPanel = () => {
                         }}
                     />
                 </div>
-                <div class="text-green-600">上传的图片将会在 画廊 进行展示，感谢您的分享！</div>
                 <div
                     class=" flex items-center justify-between"
                     onclick={() => set('r18', !store.r18)}
@@ -170,8 +172,7 @@ export const UploadPanel = () => {
                         }}
                     ></div>
                 </div>
-                <div class=" text-center text-sm text-green-700">{t('uploadPanel.hint1')}</div>
-                <div class=" text-center text-sm text-green-700">{t('uploadPanel.hint2')}</div>
+                <div class="rounded-md bg-slate-700 p-2 text-xs">{t('uploadPanel.hint2')}</div>
                 <div class=" flex items-center justify-between ">
                     <div class="flex-none">{t('uploadPanel.autoDetect')}</div>
                     <UploadButton accept="image/*" onUpload={changeFile}>
@@ -220,14 +221,19 @@ export const UploadPanel = () => {
                         }}
                     />
                 </div>
+
                 <a
-                    class="px-2 text-sky-600"
+                    class="w-full px-2 text-sky-600"
                     target="_blank"
                     href="https://creativecommons.org/share-your-work/public-domain/cc0/"
                 >
-                    <div class="p-2 text-sm text-green-600">{t('uploadPanel.license')}</div>
+                    <div class="w-full rounded-md bg-slate-700 p-2 text-xs">
+                        {t('uploadPanel.license')}
+                    </div>
                 </a>
-                <div class="p-2 text-sm text-red-600">{t('uploadPanel.notice')}</div>
+                <div class="w-full rounded-md bg-slate-700 p-2 text-xs text-rose-500">
+                    {t('uploadPanel.notice')}
+                </div>
             </main>
             <div class="cursor-pointer bg-green-600 p-2  text-center text-white" onClick={upload}>
                 {t('uploadPanel.hint.commit')}

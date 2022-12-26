@@ -29,7 +29,7 @@ export const Gallery = () => {
     });
     const { ScrollEvent } = ScrollLoading(() => changePage(page() + 1));
     return (
-        <div onscroll={ScrollEvent} class=" flex justify-center overflow-auto px-4">
+        <div onscroll={ScrollEvent} class=" flex justify-center overflow-auto px-4 pt-20">
             <WaterFall items={images} column={columns}>
                 {(item, index) => {
                     return <PictureCard {...item} index={index()}></PictureCard>;

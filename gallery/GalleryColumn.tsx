@@ -36,7 +36,7 @@ export const PictureCard: Component<StoreData & { index: number }> = (item) => {
             >
                 {item.username}
             </div>
-            <div class="title-item  absolute  bottom-0 left-0 flex w-full  flex-col  items-center justify-between gap-1 px-4 py-2 text-slate-700 opacity-100 sm:flex-row sm:opacity-0">
+            <div class="title-item  absolute  bottom-0 left-0 flex w-full  flex-col  items-center justify-between gap-1 px-4 py-2 text-slate-700  opacity-0 sm:flex-row">
                 <div class=" w-full rounded-lg bg-slate-200  px-2  text-center line-clamp-1 ">
                     {item.description}
                 </div>

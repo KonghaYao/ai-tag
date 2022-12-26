@@ -7,6 +7,7 @@ import { TagsToString } from '../../use/TagsConvertor';
 import { Notice } from '../../utils/notice';
 import { FloatPanel } from '@cn-ui/core';
 import { Atom, atom } from '@cn-ui/use';
+import { Animate } from '@cn-ui/animate';
 
 export const CheckBox: Component<{
     value: Atom<boolean>;
@@ -35,16 +36,23 @@ export function CopyBtn() {
     };
     return (
         <FloatPanel
-            popup={() => (
-                <div class="blur-background pointer-events-auto mt-1 flex h-full w-32 flex-col gap-2 rounded-md p-2">
-                    <span class="btn flex-none" onclick={() => nonBreakLine((i) => !i)}>
-                        <CheckBox value={nonBreakLine}></CheckBox> {t('toolbar2.copyWithoutBreak')}
-                    </span>
+            popup={({ show, TailwindOriginClass }) => (
+                <Animate
+                    trigger={show}
+                    extraClass={'animate-duration-300 ' + TailwindOriginClass}
+                    anime="scale"
+                >
+                    <div class="blur-background pointer-events-auto mt-1 flex h-full w-32 flex-col gap-2 rounded-md p-2">
+                        <span class="btn flex-none" onclick={() => nonBreakLine((i) => !i)}>
+                            <CheckBox value={nonBreakLine}></CheckBox>{' '}
+                            {t('toolbar2.copyWithoutBreak')}
+                        </span>
 
-                    <span class="btn flex-none" onclick={() => forceEN((i) => !i)}>
-                        <CheckBox value={forceEN}></CheckBox> {t('toolbar2.copyOnlyEN')}
-                    </span>
-                </div>
+                        <span class="btn flex-none" onclick={() => forceEN((i) => !i)}>
+                            <CheckBox value={forceEN}></CheckBox> {t('toolbar2.copyOnlyEN')}
+                        </span>
+                    </div>
+                </Animate>
             )}
         >
             <DragPoster

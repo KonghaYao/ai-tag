@@ -1,5 +1,6 @@
 @import '@cn-ui/core/dist/style.css';
 @import '@cn-ui/animate/src/jump.css';
+@import '@cn-ui/animate/src/scale.css';
 body {
     margin: 0;
     overflow: hidden;

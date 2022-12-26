@@ -1,8 +1,8 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@cn-ui/animate': ^1.0.2
-  '@cn-ui/core': ^1.3.1
+  '@cn-ui/animate': ^1.0.3
+  '@cn-ui/core': ^1.4.0
   '@cn-ui/headless': ^1.9.3
   '@cn-ui/sortable': ^2.1.3
   '@cn-ui/transition': ^1.7.3
@@ -47,8 +47,8 @@ specifiers:
   vitest: ^0.24.5
 
 dependencies:
-  '@cn-ui/animate': 1.0.2_5s3motkzycdibged2z6bxqx7fq
-  '@cn-ui/core': 1.3.1_6pwvfuh5ve4byhlplml4vsg4vi
+  '@cn-ui/animate': 1.0.3_5s3motkzycdibged2z6bxqx7fq
+  '@cn-ui/core': 1.4.0_6pwvfuh5ve4byhlplml4vsg4vi
   '@cn-ui/headless': 1.9.3_solid-js@1.6.6
   '@cn-ui/sortable': 2.1.3_25mtapqjam74svcgnwtxvygqsa
   '@cn-ui/transition': 1.7.3_25mtapqjam74svcgnwtxvygqsa
@@ -418,8 +418,8 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@cn-ui/animate/1.0.2_5s3motkzycdibged2z6bxqx7fq:
-    resolution: {integrity: sha512-wWNj8WvkGizsj1GtWcduDh7vzHb0i7UV1V4pgDodqBxrAiug3mC5l93irRlASL9gee+gC/UKU1FurBvfm68Aig==}
+  /@cn-ui/animate/1.0.3_5s3motkzycdibged2z6bxqx7fq:
+    resolution: {integrity: sha512-L2YIsBlvOR8Ptd9EUmliDMEBSmIiOzOHNQQGvo7MPwJaRQO1+81Nz0gvlXQ/le0AwO1pOtDAXRh9+DFtdbAgrA==}
     peerDependencies:
       '@cn-ui/transition': ^1.7.3
       '@cn-ui/use': ^1.9.0
@@ -430,15 +430,15 @@ packages:
       solid-js: 1.6.6
     dev: false
 
-  /@cn-ui/core/1.3.1_6pwvfuh5ve4byhlplml4vsg4vi:
-    resolution: {integrity: sha512-gIM+0t74SMQ/MyEEctPGT8Xk3AqI5W4YVFXZwBq5eQMMpmFCOVuAl7MKVtT9LhWDQiVeXQYa7ZylypdiE9qftQ==}
+  /@cn-ui/core/1.4.0_6pwvfuh5ve4byhlplml4vsg4vi:
+    resolution: {integrity: sha512-DlDr52Ctwqd8APpY5MYdn9U+1bVpxQy4guOZcAy+7c0+fdciGIljhL5+54oz60siVBzjDhhu7Vx9hxWBJmOILQ==}
     peerDependencies:
       '@fontsource/material-icons-rounded': ^4.5.4
       '@solidjs/router': ^0.5.0
       solid-js: ^1.6.6
       tailwindcss: ^3.1.8
     dependencies:
-      '@cn-ui/animate': 1.0.2_5s3motkzycdibged2z6bxqx7fq
+      '@cn-ui/animate': 1.0.3_5s3motkzycdibged2z6bxqx7fq
       '@cn-ui/transition': 1.7.3_25mtapqjam74svcgnwtxvygqsa
       '@cn-ui/use': 1.9.0_solid-js@1.6.6
       '@solidjs/router': 0.5.1_solid-js@1.6.6

@@ -42,6 +42,10 @@ body {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
+.blur-background-none {
+    backdrop-filter: blur(0);
+    -webkit-backdrop-filter: blur(0);
+}
 .btn {
     @apply flex-none cursor-pointer select-none rounded bg-slate-800  px-2 text-center align-middle font-thin ring-1 ring-slate-700  transition-all active:bg-gray-700;
 }

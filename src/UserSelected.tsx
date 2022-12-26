@@ -60,7 +60,7 @@ export const UserSelected = () => {
             <main class="user-selected  my-2 flex w-full flex-col rounded-xl border border-solid border-gray-600 p-2 ">
                 <HeaderFirst></HeaderFirst>
                 <SortableList
-                    class="flex flex-wrap overflow-y-auto overflow-x-hidden text-sm "
+                    class="scroll-box flex flex-wrap overflow-y-auto overflow-x-hidden text-sm"
                     style={{
                         'max-height': '40vh',
                         'min-height': '10vh',

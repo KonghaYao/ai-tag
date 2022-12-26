@@ -8,7 +8,7 @@ import { useGalleryInfo } from './useGalleryInfo';
 import { keepStore } from '../src/use/useStorage';
 import { Background } from '../src/components/Background';
 import { SearchBar } from './SearchBar';
-import { FloatPanel } from '@cn-ui/core';
+import { FloatPanel, FloatPanelWithAnimate } from '@cn-ui/core';
 import { Animate } from '@cn-ui/animate';
 
 export const GalleryGlobal = createContext<
@@ -49,20 +49,16 @@ export const App = () => {
                     <header class=" absolute top-0 left-0 z-10   w-full p-4 text-xl ">
                         <div class=" flex justify-between rounded-xl bg-slate-600 py-2 px-4 ">
                             <span class="flex-none">魔导绪论图库</span>
-                            <FloatPanel
-                                popup={({ show, TailwindOriginClass }) => (
-                                    <Animate
-                                        trigger={show}
-                                        extraClass={'animate-duration-300 ' + TailwindOriginClass}
-                                        anime="scale"
-                                    >
-                                        <SearchBar></SearchBar>
-                                    </Animate>
-                                )}
+                            <FloatPanelWithAnimate
+                                animateProps={{
+                                    extraClass: 'animate-duration-300',
+                                    anime: 'scale',
+                                }}
+                                popup={() => <SearchBar></SearchBar>}
                                 position="br"
                             >
                                 <div class="font-icon cursor-pointer px-2">search</div>
-                            </FloatPanel>
+                            </FloatPanelWithAnimate>
                         </div>
                     </header>
 

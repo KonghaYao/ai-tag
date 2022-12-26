@@ -31,6 +31,7 @@ export const initWorker = () => {
     // 初始化搜索 worker
     const searchWorker = wrap<{
         init: (input: IData[]) => Promise<void>;
+        add: (input: IData[]) => Promise<void>;
         rebuild: (a: { r18: boolean; numberLimit: number }) => Promise<true>;
         search: (a: { text: string; limit: number }) => Promise<number[]>;
     }>(

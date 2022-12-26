@@ -34,12 +34,12 @@
         "vitest": "^0.24.5"
     },
     "dependencies": {
-        "@cn-ui/animate": "^1.0.3",
-        "@cn-ui/core": "^1.4.0",
+        "@cn-ui/animate": "^1.0.5",
+        "@cn-ui/core": "^1.5.1",
         "@cn-ui/headless": "^1.9.3",
         "@cn-ui/sortable": "^2.1.3",
-        "@cn-ui/transition": "^1.7.3",
-        "@cn-ui/use": "^1.9.0",
+        "@cn-ui/transition": "^1.7.4",
+        "@cn-ui/use": "^1.9.1",
         "@solidjs/router": "^0.5.1",
         "comlink": "^4.3.1",
         "copy-to-clipboard": "^3.3.3",

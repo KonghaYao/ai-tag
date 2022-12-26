@@ -24,6 +24,7 @@ export type PanelIds =
     // gallery 的 panel
     | 'detail';
 import '@cn-ui/animate/src/jump.css';
+import { Animate } from '@cn-ui/animate';
 export const SideApp = () => {
     const { sideAppMode, visibleId } = useContext(Data);
     const hasOpened = createMemo(() => visibleId() !== null);
@@ -39,7 +40,7 @@ export const SideApp = () => {
                 }}
             >
                 <div class="relative flex-1">
-                    <Anime group in="jumpFromBottom" out="jumpFromBottom animated-reverse" appear>
+                    <Animate group anime="jumpFromBottom" appear>
                         <SettingPanel></SettingPanel>
                         <PublicPanel></PublicPanel>
                         <UploadPanel></UploadPanel>
@@ -50,7 +51,7 @@ export const SideApp = () => {
                         <MyFeedBackPanel></MyFeedBackPanel>
                         <AIPrompt></AIPrompt>
                         <PromptExtractorPanel></PromptExtractorPanel>
-                    </Anime>
+                    </Animate>
                 </div>
                 <MessageHint></MessageHint>
             </main>

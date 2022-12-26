@@ -53,7 +53,6 @@ export const LocalPower = [
     { name: t('toolbar1.Share'), src: 'uploader', icon: 'backup' },
 ];
 export const HomePanel = () => {
-    const { visibleId } = useContext(Data);
     return (
         <Panel id="">
             <header class="w-full border-b-4 border-gray-800 py-2 text-center">

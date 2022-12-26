@@ -29,6 +29,8 @@ export interface IStoreData {
     iconBtn: Atom<boolean>;
     nonBreakLine: Atom<boolean>;
     forceEN: Atom<boolean>;
+    showClassify: Atom<boolean>;
+    tag_version: Atom<string>;
 }
 export interface IGlobalData extends IStoreData {
     emphasizeAddMode: Atom<boolean>;
@@ -42,17 +44,16 @@ export interface IGlobalData extends IStoreData {
 }
 export const Data = createContext<IGlobalData>();
 import isMobile from 'is-mobile';
-import { useWindowResize } from '@cn-ui/use';
 import { IPromptData } from 'promptor';
 import { PanelContext } from './components/Panel';
 import { FontSupport } from './components/FontSupport';
 import { useTranslation } from '../i18n';
-import { Notice } from './utils/notice';
 import { useLocalData } from './use/useLocalData';
 import { Message } from './MessageHint';
 import { Background } from './components/Background';
 import { DropReceiver } from '@cn-ui/headless';
 import { initUnknownReporter } from './utils/UnKnowReporter';
+import { GlobalHeader } from './GlobalHeader';
 export const App = () => {
     initUnknownReporter();
     const enMode = atom(true);
@@ -69,14 +70,18 @@ export const App = () => {
     const MaxEmphasize = atom<number>(10);
     const searchNumberLimit = atom<number>(1000);
     const webviewURL = atom('');
-    const visibleId = atom<PanelIds | ''>('');
+    const visibleId = atom<PanelIds | ''>(null);
     const isPanelVisible = createSelector(visibleId);
     const username = atom('');
     const nonBreakLine = atom<boolean>(false);
     const forceEN = atom<boolean>(false);
+    const showClassify = atom<boolean>(true);
+    const tag_version = atom('2.0.2');
 
     /** 需要持久化的变量写这里 */
     const storageSetting = {
+        tag_version,
+        showClassify,
         nonBreakLine,
         forceEN,
         emphasizeAddMode,
@@ -140,44 +145,7 @@ export const App = () => {
                         <Background image={backgroundImage()}></Background>
 
                         <main class=" flex h-full w-full max-w-4xl flex-col overflow-hidden px-2 pt-2 text-gray-400 sm:px-4 sm:pt-4">
-                            <h2 class="cursor-pointer text-center text-xl font-bold text-gray-300">
-                                AI 绘画三星法器 —— 魔导绪论
-                                <sup class="px-2 text-xs text-yellow-300">{__version__}</sup>
-                                <div class="flex items-center  justify-center gap-2 text-xs font-thin text-[#f5f3c2]">
-                                    <a
-                                        href="https://magic-tag.notion.site/ee1a0ab136724eb183a29d1fcc56a3d2"
-                                        target="_blank"
-                                    >
-                                        {t('header.Doc')}
-                                        <sup class="italic text-rose-600">NEW</sup>
-                                    </a>
-
-                                    <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
-                                        Github
-                                    </a>
-
-                                    <a href="./gallery.html" target="_blank">
-                                        {t('header.Gallery')}
-                                    </a>
-
-                                    <span onClick={() => visibleId('feedback')}>
-                                        {t('header.FeedBack')}
-                                    </span>
-                                    <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
-                                        {'{{ By 江夏尧 }}'}
-                                    </a>
-                                    {!r18Mode() && (
-                                        <span
-                                            class="btn bg-green-700"
-                                            onClick={() => {
-                                                Notice.success(t('header.hint.teen'));
-                                            }}
-                                        >
-                                            {t('header.TeenagerMode')}
-                                        </span>
-                                    )}
-                                </div>
-                            </h2>
+                            <GlobalHeader></GlobalHeader>
                             <UserSelected></UserSelected>
                             <SearchBox></SearchBox>
                         </main>

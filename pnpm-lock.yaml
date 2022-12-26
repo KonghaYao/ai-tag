@@ -1,12 +1,12 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@cn-ui/animate': ^1.0.3
-  '@cn-ui/core': ^1.4.0
+  '@cn-ui/animate': ^1.0.5
+  '@cn-ui/core': ^1.5.1
   '@cn-ui/headless': ^1.9.3
   '@cn-ui/sortable': ^2.1.3
-  '@cn-ui/transition': ^1.7.3
-  '@cn-ui/use': ^1.9.0
+  '@cn-ui/transition': ^1.7.4
+  '@cn-ui/use': ^1.9.1
   '@netlify/functions': ^1.3.0
   '@notionhq/client': ^2.2.3
   '@solidjs/router': ^0.5.1
@@ -47,12 +47,12 @@ specifiers:
   vitest: ^0.24.5
 
 dependencies:
-  '@cn-ui/animate': 1.0.3_5s3motkzycdibged2z6bxqx7fq
-  '@cn-ui/core': 1.4.0_6pwvfuh5ve4byhlplml4vsg4vi
+  '@cn-ui/animate': 1.0.5_pbaio3yt5vlzattohyk63b4rdm
+  '@cn-ui/core': 1.5.1_6pwvfuh5ve4byhlplml4vsg4vi
   '@cn-ui/headless': 1.9.3_solid-js@1.6.6
-  '@cn-ui/sortable': 2.1.3_25mtapqjam74svcgnwtxvygqsa
-  '@cn-ui/transition': 1.7.3_25mtapqjam74svcgnwtxvygqsa
-  '@cn-ui/use': 1.9.0_solid-js@1.6.6
+  '@cn-ui/sortable': 2.1.3_j4gpw5x3dsqostmkud2euib4xu
+  '@cn-ui/transition': 1.7.4_j4gpw5x3dsqostmkud2euib4xu
+  '@cn-ui/use': 1.9.1_solid-js@1.6.6
   '@solidjs/router': 0.5.1_solid-js@1.6.6
   comlink: 4.3.1
   copy-to-clipboard: 3.3.3
@@ -124,7 +124,7 @@ packages:
       '@babel/code-frame': 7.18.6
       '@babel/generator': 7.20.7
       '@babel/helper-compilation-targets': 7.20.7_@babel+core@7.20.7
-      '@babel/helper-module-transforms': 7.20.7
+      '@babel/helper-module-transforms': 7.20.11
       '@babel/helpers': 7.20.7
       '@babel/parser': 7.20.7
       '@babel/template': 7.20.7
@@ -228,8 +228,8 @@ packages:
       '@babel/types': 7.20.7
     dev: true
 
-  /@babel/helper-module-transforms/7.20.7:
-    resolution: {integrity: sha512-FNdu7r67fqMUSVuQpFQGE6BPdhJIhitoxhGzDbAXNcA07uoVG37fOiMk3OSV8rEICuyG6t8LGkd9EE64qIEoIA==}
+  /@babel/helper-module-transforms/7.20.11:
+    resolution: {integrity: sha512-uRy78kN4psmji1s2QtbtcCSaj/LILFDp0f/ymhpQH5QY3nljUZCaNWz9X1dEj/8MBdBEFECs7yRhKn8i7NjZgg==}
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/helper-environment-visitor': 7.18.9
@@ -418,29 +418,29 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@cn-ui/animate/1.0.3_5s3motkzycdibged2z6bxqx7fq:
-    resolution: {integrity: sha512-L2YIsBlvOR8Ptd9EUmliDMEBSmIiOzOHNQQGvo7MPwJaRQO1+81Nz0gvlXQ/le0AwO1pOtDAXRh9+DFtdbAgrA==}
+  /@cn-ui/animate/1.0.5_pbaio3yt5vlzattohyk63b4rdm:
+    resolution: {integrity: sha512-xPA689p11U9AABjL67xvCW88MBJpLqo0DvMlrpKbjJFIz8fDkl8DJlJwwK5NoewECKLtVkJ2h848nv9BYWBFPQ==}
     peerDependencies:
-      '@cn-ui/transition': ^1.7.3
+      '@cn-ui/transition': ^1.7.4
       '@cn-ui/use': ^1.9.0
       solid-js: ^1.5.7
     dependencies:
-      '@cn-ui/transition': 1.7.3_25mtapqjam74svcgnwtxvygqsa
-      '@cn-ui/use': 1.9.0_solid-js@1.6.6
+      '@cn-ui/transition': 1.7.4_j4gpw5x3dsqostmkud2euib4xu
+      '@cn-ui/use': 1.9.1_solid-js@1.6.6
       solid-js: 1.6.6
     dev: false
 
-  /@cn-ui/core/1.4.0_6pwvfuh5ve4byhlplml4vsg4vi:
-    resolution: {integrity: sha512-DlDr52Ctwqd8APpY5MYdn9U+1bVpxQy4guOZcAy+7c0+fdciGIljhL5+54oz60siVBzjDhhu7Vx9hxWBJmOILQ==}
+  /@cn-ui/core/1.5.1_6pwvfuh5ve4byhlplml4vsg4vi:
+    resolution: {integrity: sha512-Frl+5yehS5FRZKaOnVarmpXoOj2mA2ib99jxTegZS4YwFH8CNRpQ0cPsgjKa5/2saZxfhZkYKyD2UFxngXwm+g==}
     peerDependencies:
       '@fontsource/material-icons-rounded': ^4.5.4
       '@solidjs/router': ^0.5.0
       solid-js: ^1.6.6
       tailwindcss: ^3.1.8
     dependencies:
-      '@cn-ui/animate': 1.0.3_5s3motkzycdibged2z6bxqx7fq
-      '@cn-ui/transition': 1.7.3_25mtapqjam74svcgnwtxvygqsa
-      '@cn-ui/use': 1.9.0_solid-js@1.6.6
+      '@cn-ui/animate': 1.0.5_pbaio3yt5vlzattohyk63b4rdm
+      '@cn-ui/transition': 1.7.4_j4gpw5x3dsqostmkud2euib4xu
+      '@cn-ui/use': 1.9.1_solid-js@1.6.6
       '@solidjs/router': 0.5.1_solid-js@1.6.6
       '@vant/area-data': 1.3.2
       consola: 2.15.3
@@ -464,44 +464,42 @@ packages:
     peerDependencies:
       solid-js: ^1.5.7
     dependencies:
-      '@cn-ui/use': 1.9.0_solid-js@1.6.6
+      '@cn-ui/use': 1.9.1_solid-js@1.6.6
       solid-js: 1.6.6
     dev: false
 
-  /@cn-ui/sortable/2.1.3_25mtapqjam74svcgnwtxvygqsa:
+  /@cn-ui/sortable/2.1.3_j4gpw5x3dsqostmkud2euib4xu:
     resolution: {integrity: sha512-XEEkiZx4Y7kzOijmYkTMsYEhHiw1GNbXCdPfdqMGqkBnSLrafEmxqWfEpZvEYANTSWj5KCV7GTYyJD3OkH3eeg==}
     peerDependencies:
       '@cn-ui/use': ^1.5.0
       solid-js: ''
     dependencies:
-      '@cn-ui/use': 1.9.0_solid-js@1.6.6
+      '@cn-ui/use': 1.9.1_solid-js@1.6.6
       solid-js: 1.6.6
       sortablejs: 1.15.0
     transitivePeerDependencies:
       - solid-js
     dev: false
 
-  /@cn-ui/transition/1.7.3_25mtapqjam74svcgnwtxvygqsa:
-    resolution: {integrity: sha512-DYdL1Er5yoHpnXlP3NoIduxkSZlv3wYKuuPqaYOmdUUNxuDw9NPuO4fGIVFbH9L/X6RjIy6N/6T1wVmhnKcGdw==}
+  /@cn-ui/transition/1.7.4_j4gpw5x3dsqostmkud2euib4xu:
+    resolution: {integrity: sha512-HWtT76Mh4mNcB6HGdmWySeicXX6iVtDLXXe0e/c4orTdUhtneF7LX2qJSV1TusPM0qzaY+zquRQe9vD9FvUEiw==}
     peerDependencies:
       '@cn-ui/use': ''
       solid-js: ^1.5.7
     dependencies:
-      '@cn-ui/use': 1.9.0_solid-js@1.6.6
+      '@cn-ui/use': 1.9.1_solid-js@1.6.6
       lodash-es: 4.17.21
       solid-js: 1.6.6
     transitivePeerDependencies:
       - '@cn-ui/use'
     dev: false
 
-  /@cn-ui/use/1.9.0_solid-js@1.6.6:
-    resolution: {integrity: sha512-1FxfxL//jtcsX061pguBJW97yTvAzQSCe/uKpqI5T5KikFzJL7rKc1sh8jWREYGz1uiksBGcNo5Q47ddWad/kg==}
+  /@cn-ui/use/1.9.1_solid-js@1.6.6:
+    resolution: {integrity: sha512-1UBTlEp88QUgnvvDb4RUr13xLLdoe339DKhJeM6QGe+tRMign6lmIxoATbhorFLxwkZSFpD8pKJWSKUBP7TaXA==}
     peerDependencies:
-      solid-js: ''
+      solid-js: ^1.6.6
     dependencies:
       solid-js: 1.6.6
-    transitivePeerDependencies:
-      - solid-js
     dev: false
 
   /@esbuild/android-arm/0.15.18:

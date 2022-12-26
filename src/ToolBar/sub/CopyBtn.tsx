@@ -5,7 +5,7 @@ import { Data } from '../../App';
 import { DragPoster } from '@cn-ui/headless';
 import { TagsToString } from '../../use/TagsConvertor';
 import { Notice } from '../../utils/notice';
-import { FloatPanel } from '@cn-ui/core';
+import { FloatPanel, FloatPanelWithAnimate } from '@cn-ui/core';
 import { Atom, atom } from '@cn-ui/use';
 import { Animate } from '@cn-ui/animate';
 
@@ -35,24 +35,21 @@ export function CopyBtn() {
         return final;
     };
     return (
-        <FloatPanel
+        <FloatPanelWithAnimate
+            animateProps={{
+                extraClass: 'animate-duration-300',
+                anime: 'scale',
+            }}
             popup={({ show, TailwindOriginClass }) => (
-                <Animate
-                    trigger={show}
-                    extraClass={'animate-duration-300 ' + TailwindOriginClass}
-                    anime="scale"
-                >
-                    <div class="blur-background pointer-events-auto mt-1 flex h-full w-32 flex-col gap-2 rounded-md p-2">
-                        <span class="btn flex-none" onclick={() => nonBreakLine((i) => !i)}>
-                            <CheckBox value={nonBreakLine}></CheckBox>{' '}
-                            {t('toolbar2.copyWithoutBreak')}
-                        </span>
+                <div class="blur-background pointer-events-auto mt-1 flex h-full w-32 flex-col gap-2 rounded-md p-2">
+                    <span class="btn flex-none" onclick={() => nonBreakLine((i) => !i)}>
+                        <CheckBox value={nonBreakLine}></CheckBox> {t('toolbar2.copyWithoutBreak')}
+                    </span>
 
-                        <span class="btn flex-none" onclick={() => forceEN((i) => !i)}>
-                            <CheckBox value={forceEN}></CheckBox> {t('toolbar2.copyOnlyEN')}
-                        </span>
-                    </div>
-                </Animate>
+                    <span class="btn flex-none" onclick={() => forceEN((i) => !i)}>
+                        <CheckBox value={forceEN}></CheckBox> {t('toolbar2.copyOnlyEN')}
+                    </span>
+                </div>
             )}
         >
             <DragPoster
@@ -70,6 +67,6 @@ export function CopyBtn() {
                     {iconBtn() ? 'copy' : t('toolbar2.copy')}
                 </div>
             </DragPoster>
-        </FloatPanel>
+        </FloatPanelWithAnimate>
     );
 }

@@ -21,7 +21,7 @@ export const SearchResult = () => {
     const { t } = useTranslation();
     return (
         <section
-            class="search-results flex h-full flex-wrap content-start  overflow-y-auto overflow-x-hidden"
+            class="search-results flex h-full flex-wrap content-start  overflow-y-auto overflow-x-hidden pb-4"
             ref={searchResult}
         >
             <For each={showingResult()} fallback={() => <div>{t('hint.LoadingData')}</div>}>

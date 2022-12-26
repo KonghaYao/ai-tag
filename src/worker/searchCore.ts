@@ -14,6 +14,14 @@ export const init = async (input: IndexedData[]) => {
     Search.data = input;
     return true;
 };
+export const add = async (input: IndexedData[]) => {
+    console.log('更新数据 ', input.length);
+    Search.data.push(...input);
+    Search.data.sort((a, b) => b.count - a.count);
+    Search.data.forEach((i, index) => (i.id = index));
+    return true;
+};
+
 const createQuery = (data: IData[]) => {
     Search.query = new Fuse(data, {
         // isCaseSensitive: false,

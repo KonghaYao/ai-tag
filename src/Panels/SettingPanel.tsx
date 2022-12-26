@@ -29,19 +29,11 @@ export const SettingPanel = () => {
         { title: t('settingPanel.lists.everyTimeTags'), bind: tagsPerPage },
         { title: t('settingPanel.lists.maxEm'), bind: MaxEmphasize },
     ];
-    const reloadCache = async () => {
-        await fetch('https://cdn.jsdelivr.net/gh/konghayao/tag-collection/data/tags.csv', {
-            cache: 'reload',
-        }).then(() => {
-            Notice.success(t('settingPanel.hint.updated'));
-        });
-    };
+
     return (
         <Panel id="setting">
             <h3 class="my-2 text-center text-lg font-bold">{t('settingPanel.title')}</h3>
-            <div class="bg-slate-700 p-2 text-center transition-colors" onclick={reloadCache}>
-                {t('settingPanel.hint.refresh')}
-            </div>
+
             <For each={list}>
                 {(item) => {
                     return (

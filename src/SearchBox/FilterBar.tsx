@@ -1,83 +1,22 @@
-import { createEffect, createMemo, createSelector, For, Show, useContext } from 'solid-js';
-import { Data, IData } from '../App';
+import { createMemo, useContext } from 'solid-js';
+import { Data } from '../App';
 import { _emColor } from '../components/TagButton';
 import { useTranslation } from '../../i18n';
 import { sampleSize } from '../utils/sampleSize';
-import { CSVToJSON } from '../utils/CSVToJSON';
-import { atom, resource } from '@cn-ui/use';
-import { FloatPanel } from '@cn-ui/core';
-import { Animate } from '@cn-ui/animate';
-
-const ClassFilter = () => {
-    const { result, lists } = useContext(Data);
-    const FilterClass = new Set(['全部']);
-    const data = resource(async () => {
-        const binary = await fetch('./tagClassify.csv').then((res) => res.blob());
-        const data = await CSVToJSON<{ en: string; cn: string; type: string }>(binary);
-
-        return data.map((i) => {
-            FilterClass.add(i.type);
-            return { ...i, r18: 0, count: Infinity, text: i.en, emphasize: 0 } as IData & {
-                type: string;
-            };
-        });
-    });
-    const selectType = atom('全部');
-    const isSelect = createSelector(selectType);
-    createEffect(() => {
-        if (FilterClass.has(selectType()) && data.isReady()) {
-            if (selectType() === '全部') {
-                result(lists().slice(0, 500));
-            } else {
-                const showing = data().filter((i) => i.type === selectType());
-                result(showing);
-            }
-        }
-    });
-    return (
-        <FloatPanel
-            popup={({ show, TailwindOriginClass }) => (
-                <Animate
-                    trigger={show}
-                    extraClass={'animate-duration-300 ' + TailwindOriginClass}
-                    anime="scale"
-                >
-                    <div class="blur-background mt-4 flex h-64 w-32 flex-col  gap-2 overflow-auto rounded-xl  p-2 ">
-                        <Show when={data.isReady()}>
-                            <For each={[...FilterClass.values()]}>
-                                {(item) => {
-                                    return (
-                                        <div
-                                            class="btn"
-                                            classList={{
-                                                'bg-green-600': isSelect(item),
-                                            }}
-                                            onclick={() => {
-                                                selectType(item);
-                                            }}
-                                        >
-                                            {item}
-                                        </div>
-                                    );
-                                }}
-                            </For>
-                        </Show>
-                    </div>
-                </Animate>
-            )}
-        >
-            <div class="btn relative bg-pink-700 text-neutral-300">{selectType}</div>
-        </FloatPanel>
-    );
-};
-
+import { ClassFilter } from './ClassFilter';
 export const FilterBar = () => {
-    const { result, lists, tagsPerPage, searchNumberLimit } = useContext(Data);
+    const { result, lists, tagsPerPage, searchNumberLimit, showClassify } = useContext(Data);
 
     const { t } = useTranslation();
     return (
         <nav class="flex flex-col justify-between text-sm text-gray-400 sm:flex-row">
-            <span class="flex-none">
+            <span class="flex flex-none gap-1">
+                <div
+                    class="font-icon  rounded-md px-1 hover:bg-slate-700"
+                    onclick={() => showClassify((i) => !i)}
+                >
+                    {!showClassify() ? 'navigate_next' : 'navigate_before'}
+                </div>
                 {t('searchBox.searchResult')} {result().length} /
                 {lists() ? lists().length : t('loading')}
             </span>

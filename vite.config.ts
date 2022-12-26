@@ -51,6 +51,7 @@ export default defineConfig(({ mode }) => {
         resolve: {
             alias: {
                 '@fontsource/material-icons-rounded/index.css': '/src/index.css',
+                // '@cn-ui/animate': '/node_modules/@cn-ui/animate/src/index.tsx',
             },
         },
         define: {

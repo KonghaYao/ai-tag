@@ -10,19 +10,8 @@ import { initWorker } from '../worker';
 import { addUnknownReporter, addUnknowns } from '../utils/UnKnowReporter';
 const { searchWorker, sharedWorker } = initWorker();
 
-const refreshData = () => {
-    createDeferred(
-        () =>
-            fetch('https://cdn.jsdelivr.net/gh/konghayao/tag-collection/data/tags.csv', {
-                cache: 'no-cache',
-            }),
-        { timeoutMs: 2000 }
-    );
-};
-
-/** 加载 Tag 数据库 */
-export function useDatabase(store: IStoreData) {
-    console.log('重绘');
+export const useTagDataLoader = (store: IStoreData) => {
+    const { r18Mode, searchNumberLimit, tag_version } = store;
     const rebuildSearchSet = () => {
         if (!lists.isReady()) return [];
         const r18 = r18Mode();
@@ -30,7 +19,7 @@ export function useDatabase(store: IStoreData) {
         return searchWorker.rebuild({ r18, numberLimit });
     };
     const lists = resource<IData[]>(async () => {
-        return fetch('https://cdn.jsdelivr.net/gh/konghayao/tag-collection/data/tags.csv')
+        return fetch(`https://unpkg.com/tag-collection@${tag_version()}/data/split/small.csv`)
             .then((res) => res.blob())
             .then((res) => CSVToJSON<IData>(res))
             .then(async (res) => {
@@ -42,12 +31,46 @@ export function useDatabase(store: IStoreData) {
                 return res;
             })
             .then((res) => {
-                // 添加缺失的属性
+                // 添加缺失的属性,只在 UI 展示有用
                 res.forEach((i) => (i.emphasize = 0));
-                refreshData();
+
                 return res;
             });
     }, []);
+    createEffect(() => {
+        lists.isReady() &&
+            [...Array(5).keys()]
+                .reduce((col, i) => {
+                    return col.then(() =>
+                        fetch(
+                            `https://unpkg.com/tag-collection@${tag_version()}/data/split/bigger_${i}.csv`
+                        )
+                            .then((res) => res.blob())
+                            .then((res) => CSVToJSON<IData>(res))
+                            .then(async (res) => {
+                                // <200 ms 可以被接受
+                                await searchWorker.add(res);
+                                await rebuildSearchSet();
+                                return res;
+                            })
+                            .then((res) => {
+                                // 添加缺失的属性,只在 UI 展示有用
+                                res.filter((i) => i).forEach((i) => (i.emphasize = 0));
+                                lists((i) => [...i, ...res].sort((a, b) => b.count - a.count));
+                            })
+                    );
+                }, Promise.resolve())
+                .then(() => {
+                    console.log('数据全部更新完成');
+                });
+    });
+    return { lists, rebuildSearchSet };
+};
+
+/** 加载 Tag 数据库 */
+export function useDatabase(store: IStoreData) {
+    console.log('重绘');
+    const { lists, rebuildSearchSet } = useTagDataLoader(store);
 
     // 预先筛选 searchText，减少需要查找的区间
     const searchText = atom<string>('');
@@ -76,8 +99,11 @@ export function useDatabase(store: IStoreData) {
         // 返回形式为 Index 数组，所以非常快
         const r = await searchWorker.search({ text, limit: tagsPerPage() });
         console.timeEnd('搜索');
+
         const data = lists();
-        result(r.map((i) => data[i]));
+        const allData = r.map((i) => data[i]);
+        // console.log(allData);
+        result(allData);
     });
 
     const [U, setU] = createSignal<IData[]>([]);

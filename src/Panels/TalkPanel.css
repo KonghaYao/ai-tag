@@ -1,0 +1,13 @@
+.v[data-class='v'] .vwrap {
+    border: 0 !important;
+}
+.v[data-class='v'] .vinput,
+.v[data-class='v'] .veditor,
+.v[data-class='v'] p,
+.v[data-class='v'] pre code,
+.v[data-class='v'] .status-bar {
+    color: inherit !important;
+}
+.vsys {
+    display: none !important;
+}

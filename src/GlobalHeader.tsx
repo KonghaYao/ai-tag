@@ -41,6 +41,9 @@ export function GlobalHeader() {
                 </a>
 
                 <span onClick={() => visibleId('feedback')}>{t('header.FeedBack')}</span>
+                <span onClick={() => visibleId('talk')}>
+                    讨论区 <sup class="italic text-rose-600">NEW</sup>
+                </span>
                 <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
                     {'{{ By 江夏尧 }}'}
                 </a>

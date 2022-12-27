@@ -19,6 +19,7 @@ export const PictureCard: Component<StoreData & { index: number }> = (item) => {
                 draggable={false}
                 style={{
                     'min-height': '6rem',
+                    'aspect-ratio': item.size.replace('x', '/'),
                 }}
                 onclick={() => {
                     batch(() => {

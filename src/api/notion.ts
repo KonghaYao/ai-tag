@@ -89,6 +89,7 @@ export const API = {
                         tags: i.tags[0]?.plain_text,
                         seed: i.seed[0]?.plain_text,
                         other: i.other[0]?.plain_text,
+                        size: i.size.name,
                     };
                 });
             });

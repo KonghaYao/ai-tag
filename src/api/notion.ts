@@ -20,6 +20,7 @@ export type StoreData = {
     seed?: string;
     /** 图片信息抽取 */
     other?: string;
+    size: string;
 };
 // Notion 的 Text 格式生成器
 const NotionText = (text: string, prop?: string) => {
@@ -111,6 +112,12 @@ export const API = {
                 tags: NotionText(data.tags),
                 seed: NotionText(data.seed ?? ''),
                 other: NotionText(data.other ?? ''),
+                size: {
+                    type: 'select',
+                    select: {
+                        name: data.size,
+                    },
+                },
             },
         };
         return fetch('./.netlify/functions/notion_create', {

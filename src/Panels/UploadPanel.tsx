@@ -19,6 +19,7 @@ const init = {
     description: '',
     seed: '',
     other: '',
+    size: '',
 } as StoreData;
 const [store, set] = createStore({ ...init });
 
@@ -68,7 +69,19 @@ const useSharedUpload = (uploading: Atom<boolean>) => {
     };
     return { upload, uploadPicture };
 };
-
+export const getImageSize = async (file: File) => {
+    const url = URL.createObjectURL(file);
+    return new Promise<string>((res, rej) => {
+        const image = new Image();
+        image.onload = () => {
+            const { width, height } = image;
+            res(`${width}x${height}`);
+        };
+        image.src = url;
+    }).finally(() => {
+        URL.revokeObjectURL(url);
+    });
+};
 export const UploadPanel = () => {
     const { t } = useTranslation();
     const { isPanelVisible } = useContext(PanelContext);
@@ -108,6 +121,8 @@ export const UploadPanel = () => {
         seed?.length && set('seed', seed);
 
         set('other', JSON.stringify(data));
+        const size = await getImageSize(file);
+        set('size', size);
         console.log(data);
         uploadPicture(file);
     };

@@ -22,7 +22,7 @@ const EnableSites = [
 
 const { t } = useTranslation();
 export const MainGridOfInner = () => {
-    const { visibleId, iconBtn } = useContext(Data);
+    const { visibleId } = useContext(Data);
     return (
         <For each={LocalPower}>
             {(item, index) => {
@@ -46,7 +46,6 @@ export const MainGridOfInner = () => {
 };
 export const LocalPower = [
     { name: t('home.btn.Setting'), src: 'setting', icon: 'settings' },
-    { name: t('home.btn.Gallery'), src: 'gallery', icon: 'photo' },
     { name: t('home.btn.feedback'), src: 'feedback', icon: 'email' },
     { name: t('home.btn.ai_prompt'), src: 'ai-prompt', icon: '😄' },
     { name: t('home.btn.prompt_extractor'), src: 'prompt-extractor', icon: 'wallpaper' },

@@ -1,3 +1,5 @@
+import { Animate } from '@cn-ui/animate';
+import { reflect } from '@cn-ui/use';
 import { debounce } from 'lodash-es';
 import { createStore } from 'solid-js/store';
 
@@ -33,18 +35,19 @@ export const Message = {
     }, 1000),
 };
 export const MessageHint = () => {
+    const visible = reflect(() => MessageStore.visible);
     return (
         <section class="pointer-events-none fixed top-5 left-0 z-50 flex h-fit w-full justify-center text-center">
-            <div
-                classList={{
-                    'translate-y-0 scale-100 opacity-100': MessageStore.visible,
-                    '-translate-y-40 scale-0 opacity-0': !MessageStore.visible,
-                    [MessageStore.color || 'bg-green-600']: true,
-                }}
-                class="w-64 rounded-lg  text-white  transition-transform duration-300"
-            >
-                {MessageStore.hint}
-            </div>
+            <Animate anime="jumpFromBottom" trigger={visible}>
+                <div
+                    classList={{
+                        [MessageStore.color || 'bg-green-600']: true,
+                    }}
+                    class="w-64 rounded-lg  text-white  transition-transform duration-300"
+                >
+                    {MessageStore.hint}
+                </div>
+            </Animate>
         </section>
     );
 };

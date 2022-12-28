@@ -35,7 +35,7 @@ export function HeaderFirst() {
             <MainFloat></MainFloat>
             <span
                 class="btn bg-teal-700"
-                onclick={() => nav('./gallery.html#/?r18=' + r18Mode() ? 'true' : '')}
+                onclick={() => nav('./gallery.html#/?r18=' + (r18Mode() ? 'true' : ''))}
             >
                 {iconBtn() ? 'collections' : t('toolbar1.Gallery')}
             </span>

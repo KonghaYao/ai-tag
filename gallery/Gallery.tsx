@@ -48,8 +48,17 @@ export const Gallery = () => {
 
     const { ScrollEvent } = ScrollLoading(() => changePage(page() + 1));
     return (
-        <div onscroll={ScrollEvent} class=" flex justify-center overflow-auto px-4 pt-20">
-            <WaterFall items={images} column={columns}>
+        <div
+            onscroll={ScrollEvent}
+            class=" flex justify-center overflow-auto px-2 pt-16 sm:px-4 sm:pt-20"
+        >
+            {/*  WaterFall 暂时不能更改 gap */}
+            <WaterFall
+                items={images}
+                column={columns}
+                class="gap-2 sm:gap-4"
+                colClass="gap-2 sm:gap-4"
+            >
                 {(item, index) => {
                     // item 为否定值时，表示为占位符
                     if (!item) return null;

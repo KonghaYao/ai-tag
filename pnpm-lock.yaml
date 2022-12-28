@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@cn-ui/animate': ^1.0.5
-  '@cn-ui/core': ^1.5.1
+  '@cn-ui/core': ^1.5.2
   '@cn-ui/headless': ^1.9.3
   '@cn-ui/sortable': ^2.1.3
   '@cn-ui/transition': ^1.7.4
@@ -48,7 +48,7 @@ specifiers:
 
 dependencies:
   '@cn-ui/animate': 1.0.5_pbaio3yt5vlzattohyk63b4rdm
-  '@cn-ui/core': 1.5.1_6pwvfuh5ve4byhlplml4vsg4vi
+  '@cn-ui/core': 1.5.2_6pwvfuh5ve4byhlplml4vsg4vi
   '@cn-ui/headless': 1.9.3_solid-js@1.6.6
   '@cn-ui/sortable': 2.1.3_j4gpw5x3dsqostmkud2euib4xu
   '@cn-ui/transition': 1.7.4_j4gpw5x3dsqostmkud2euib4xu
@@ -430,8 +430,8 @@ packages:
       solid-js: 1.6.6
     dev: false
 
-  /@cn-ui/core/1.5.1_6pwvfuh5ve4byhlplml4vsg4vi:
-    resolution: {integrity: sha512-Frl+5yehS5FRZKaOnVarmpXoOj2mA2ib99jxTegZS4YwFH8CNRpQ0cPsgjKa5/2saZxfhZkYKyD2UFxngXwm+g==}
+  /@cn-ui/core/1.5.2_6pwvfuh5ve4byhlplml4vsg4vi:
+    resolution: {integrity: sha512-L8RZQrOy78MjN0P6PE0p0gHCw6hHdrZ8Xqj9NFBT1eyKH8rRx+IjRDfpzdtlumSVK0sfUIu6+D1hs7/GPeas3Q==}
     peerDependencies:
       '@fontsource/material-icons-rounded': ^4.5.4
       '@solidjs/router': ^0.5.0

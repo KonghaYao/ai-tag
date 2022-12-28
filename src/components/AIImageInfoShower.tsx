@@ -20,7 +20,10 @@ export const AIImageInfoShower: Component<{
             <nav class="flex flex-col rounded-lg bg-emerald-700 p-2">
                 <nav class="my-1 flex justify-between rounded-lg bg-emerald-800  px-2">
                     <span>正面魔咒</span>
-                    <div class="font-icon " onclick={() => copy(details().Description)}>
+                    <div
+                        class="font-icon  cursor-pointer hover:scale-125"
+                        onclick={() => copy(details().Description)}
+                    >
                         copy
                     </div>
                 </nav>
@@ -31,7 +34,10 @@ export const AIImageInfoShower: Component<{
             <div class="flex flex-col rounded-lg bg-emerald-700 p-2">
                 <nav class="my-1 flex justify-between rounded-lg bg-emerald-800 px-2">
                     <span>负面魔咒</span>
-                    <div class="font-icon " onclick={() => copy(Comment().uc)}>
+                    <div
+                        class="font-icon  cursor-pointer hover:scale-125"
+                        onclick={() => copy(Comment().uc)}
+                    >
                         copy
                     </div>
                 </nav>

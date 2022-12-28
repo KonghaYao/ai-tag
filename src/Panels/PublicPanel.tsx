@@ -52,6 +52,7 @@ export const PublicPanel = () => {
     const { t } = useTranslation();
     return (
         <Panel id="gallery">
+            {/*  因为直接使用了新的 Gallery 而被废除 */}
             <header class="flex w-full items-end justify-between p-2 text-center text-lg font-bold">
                 <a href="./gallery.html">
                     <div class="font-icon btn float-right cursor-pointer px-2 text-xl  text-green-700">

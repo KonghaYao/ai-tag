@@ -18,8 +18,9 @@ export const useWebView = () => {
     const { visibleId, webviewURL } = useContext(Data);
     return {
         nav(url: string) {
+            const pos = new URL(url, globalThis.location.toString());
             batch(() => {
-                webviewURL(url);
+                webviewURL(pos.toString());
                 visibleId('webview');
             });
         },

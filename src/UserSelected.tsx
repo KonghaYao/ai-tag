@@ -49,9 +49,9 @@ export const UserSelected = () => {
                 INPUT_MAGIC(tags: string) {
                     usersCollection(stringToTags(tags, lists()));
                     Notice.success(t('publicPanel.hint.CopySuccess'));
+                    return false;
                 },
                 extra(_, dataTransfer: DataTransfer) {
-                    console.log('接收到数据');
                     const text = dataTransfer.getData('text');
                     text && usersCollection(stringToTags(text, lists()));
                 },

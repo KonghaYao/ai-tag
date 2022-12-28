@@ -46,7 +46,7 @@ export const App = () => {
             >
                 <Background image={backgroundImage()}></Background>
                 <main class="font-global absolute top-0 left-0 z-10 flex h-screen w-screen flex-col overflow-hidden text-gray-200">
-                    <header class=" absolute top-0 left-0 z-10   w-full p-4 text-xl ">
+                    <header class=" absolute top-0 left-0 z-10   w-full p-2 text-xl sm:p-4 ">
                         <div class=" flex justify-between rounded-xl bg-slate-600 py-2 px-4 ">
                             <span class="flex-none">魔导绪论图库</span>
                             <FloatPanelWithAnimate

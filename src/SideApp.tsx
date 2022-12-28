@@ -56,7 +56,6 @@ export const SideApp = () => {
                         <TalkPanel></TalkPanel>
                     </Animate>
                 </div>
-                <MessageHint></MessageHint>
             </main>
         </Tabs>
     );

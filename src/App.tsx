@@ -49,7 +49,7 @@ import { PanelContext } from './components/Panel';
 import { FontSupport } from './components/FontSupport';
 import { useTranslation } from '../i18n';
 import { useLocalData } from './use/useLocalData';
-import { Message } from './MessageHint';
+import { Message, MessageHint } from './MessageHint';
 import { Background } from './components/Background';
 import { DropReceiver } from '@cn-ui/headless';
 import { initUnknownReporter } from './utils/UnKnowReporter';
@@ -150,6 +150,7 @@ export const App = () => {
                             <SearchBox></SearchBox>
                         </main>
                         <SideApp></SideApp>
+                        <MessageHint></MessageHint>
                         <Show when={!defaultFont()}>
                             <FontSupport delay={200} show={atom(false)}></FontSupport>
                         </Show>

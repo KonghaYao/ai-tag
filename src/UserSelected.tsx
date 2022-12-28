@@ -15,24 +15,16 @@ import { CombineMagic } from './utils/CombineMagic';
 import { DropReceiver, useDragAndDropData } from '@cn-ui/headless';
 import tinykeys from 'tinykeys';
 export const BindHistoryKey = () => {
-    const { usersCollection, TagsHistory, lists } = useContext(Data);
+    const { redo, undo } = useContext(Data);
+
     tinykeys(window, {
         '$mod+KeyZ': (event) => {
             event.preventDefault();
-            const res = TagsHistory.back();
-            if (res) {
-                TagsHistory.addToHistory(TagsToString(usersCollection()), false);
-                usersCollection(stringToTags(res, lists()));
-                Message.success('撤销成功');
-            }
+            undo();
         },
         '$mod+KeyY': (event) => {
             event.preventDefault();
-            const res = TagsHistory.go();
-            if (res) {
-                usersCollection(stringToTags(res, lists()));
-                Message.success('恢复成功');
-            }
+            redo();
         },
     });
 };

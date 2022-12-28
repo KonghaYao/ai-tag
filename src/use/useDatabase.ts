@@ -3,12 +3,13 @@ import { Atom, atom, reflect, resource } from '@cn-ui/use';
 import { useSearchParams } from '@solidjs/router';
 import { IData, IStoreData } from '../App';
 import { getTagInURL } from '../utils/getTagInURL';
-import { stringToTags } from './TagsConvertor';
+import { TagsToString, stringToTags } from './TagsConvertor';
 import { proxy } from 'comlink';
 import { CSVToJSON } from '../utils/CSVToJSON';
 import { initWorker } from '../worker';
 import { addUnknownReporter, addUnknowns } from '../utils/UnKnowReporter';
 import { useHistory } from './useTagHistory';
+import { Message } from '@cn-ui/core';
 const { searchWorker, sharedWorker } = initWorker();
 
 /** 用于初始化线程和 TAG 数据加载 */
@@ -173,5 +174,21 @@ export function useDatabase(store: IStoreData) {
     );
 
     const TagsHistory = useHistory<string>();
-    return { result, lists: safeList, searchText, usersCollection, TagsHistory };
+    const undo = () => {
+        const res = TagsHistory.back();
+        if (res) {
+            const old = TagsToString(usersCollection());
+            usersCollection(stringToTags(res, lists()));
+            TagsHistory.addToHistory(old, false);
+            Message.success('撤销成功');
+        }
+    };
+    const redo = () => {
+        const res = TagsHistory.go();
+        if (res) {
+            usersCollection(stringToTags(res, lists()));
+            Message.success('恢复成功');
+        }
+    };
+    return { result, lists: safeList, searchText, usersCollection, TagsHistory, redo, undo };
 }

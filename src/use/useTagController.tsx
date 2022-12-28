@@ -3,16 +3,26 @@ import { Data, IData } from '../App';
 import { useIframeExpose } from '../iframeExpose';
 import { plus, minus } from 'number-precision';
 import { debounce } from 'lodash-es';
+import { TagsToString } from './TagsConvertor';
 
 export const useTagController = () => {
-    const { deleteMode, usersCollection, emphasizeAddMode, emphasizeSubMode, MaxEmphasize } =
-        useContext(Data);
+    const {
+        deleteMode,
+        usersCollection,
+        emphasizeAddMode,
+        emphasizeSubMode,
+        MaxEmphasize,
+        TagsHistory,
+    } = useContext(Data);
 
     useIframeExpose();
 
     /** 左点击加权，右点击减权 */
     const clickEvent = (item: IData, rightClick?: boolean) => {
-        deleteMode() && usersCollection((i) => i.filter((it) => it !== item));
+        if (deleteMode()) {
+            TagsHistory.addToHistory(TagsToString(usersCollection()));
+            usersCollection((i) => i.filter((it) => it !== item));
+        }
 
         if ((emphasizeAddMode() && !rightClick) || (rightClick && emphasizeSubMode())) {
             // 加权操作
@@ -49,6 +59,7 @@ export const useTagController = () => {
         }
     };
 
+    //TODO wheel 事件无效
     /** 滚轮事件，调节对象的数值类型权重 */
     const wheelEvent = debounce((item: IData, delta: number) => {
         const diff = delta / 150;

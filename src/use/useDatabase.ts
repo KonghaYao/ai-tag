@@ -8,8 +8,10 @@ import { proxy } from 'comlink';
 import { CSVToJSON } from '../utils/CSVToJSON';
 import { initWorker } from '../worker';
 import { addUnknownReporter, addUnknowns } from '../utils/UnKnowReporter';
+import { useHistory } from './useTagHistory';
 const { searchWorker, sharedWorker } = initWorker();
 
+/** 用于初始化线程和 TAG 数据加载 */
 export const useTagDataLoader = (store: IStoreData) => {
     const { r18Mode, searchNumberLimit, tag_version } = store;
     const rebuildSearchSet = () => {
@@ -169,5 +171,7 @@ export function useDatabase(store: IStoreData) {
             }
         })
     );
-    return { result, lists: safeList, searchText, usersCollection };
+
+    const TagsHistory = useHistory<string>();
+    return { result, lists: safeList, searchText, usersCollection, TagsHistory };
 }

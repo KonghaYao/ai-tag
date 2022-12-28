@@ -42,7 +42,7 @@ export interface IGlobalData extends IStoreData {
     lists: Accessor<IData[]>;
     backgroundImage: Atom<string>;
 }
-export const Data = createContext<IGlobalData>();
+export const Data = createContext<IGlobalData & ReturnType<typeof useDatabase>>();
 import isMobile from 'is-mobile';
 import { IPromptData } from 'promptor';
 import { PanelContext } from './components/Panel';
@@ -100,7 +100,6 @@ export const App = () => {
         defaultFont,
         iconBtn,
     };
-    const { result, lists, searchText, usersCollection } = useDatabase(storageSetting);
 
     const { recover, tracking } = useStorage(storageSetting);
     const { backgroundImage } = useLocalData();
@@ -113,11 +112,8 @@ export const App = () => {
     return (
         <Data.Provider
             value={{
-                usersCollection,
                 sideAppMode,
-                result,
-                lists,
-                searchText,
+                ...useDatabase(storageSetting),
                 backgroundImage,
                 ...storageSetting,
             }}

@@ -37,11 +37,12 @@ export const Webview = () => {
     return (
         <Panel id="webview">
             <Show when={isPanelVisible('webview')}>
-                <div>
+                {/* <div class="flex">
                     <a href={webviewURL()} target="_blank">
                         <div class="btn m-2"> {t('WebView.newPage')}</div>
                     </a>
-                </div>
+                    <div></div>
+                </div> */}
                 <div class="relative h-full w-full">
                     {loading() && <div> {t('upload')}</div>}
                     <ErrorBoundary

@@ -42,7 +42,7 @@ export const Panel: Component<PanelEl> = (props) => {
                 <main class=" flex h-full w-full max-w-sm flex-col  overflow-auto rounded-2xl border-2 border-solid border-slate-700 bg-gray-700/60 transition-all sm:max-w-md">
                     {props.children}
 
-                    <ControlBar></ControlBar>
+                    {/* <ControlBar></ControlBar> */}
                 </main>
             </nav>
         </Tab>

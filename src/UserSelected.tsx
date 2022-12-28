@@ -1,4 +1,4 @@
-import { For, useContext } from 'solid-js';
+import { For, createEffect, useContext } from 'solid-js';
 import { Data, IData } from './App';
 import { TagButton } from './components/TagButton';
 import { reflect } from '@cn-ui/use';
@@ -8,22 +8,53 @@ import { HeaderFirst } from './ToolBar/HeaderFirst';
 import { HeaderSecond } from './ToolBar/HeaderSecond';
 import { t } from 'i18next';
 import { useTagController } from './use/useTagController';
-import { stringToTags } from './use/TagsConvertor';
+import { TagsToString, stringToTags } from './use/TagsConvertor';
 import { Notice } from './utils/notice';
 import { Message } from './MessageHint';
 import { CombineMagic } from './utils/CombineMagic';
 import { DropReceiver, useDragAndDropData } from '@cn-ui/headless';
+import tinykeys from 'tinykeys';
+export const BindHistoryKey = () => {
+    const { usersCollection, TagsHistory, lists } = useContext(Data);
+    tinykeys(window, {
+        '$mod+KeyZ': (event) => {
+            event.preventDefault();
+            const res = TagsHistory.back();
+            if (res) {
+                TagsHistory.addToHistory(TagsToString(usersCollection()), false);
+                usersCollection(stringToTags(res, lists()));
+                Message.success('撤销成功');
+            }
+        },
+        '$mod+KeyY': (event) => {
+            event.preventDefault();
+            const res = TagsHistory.go();
+            if (res) {
+                usersCollection(stringToTags(res, lists()));
+                Message.success('恢复成功');
+            }
+        },
+    });
+};
 
 export const UserSelected = () => {
-    const { deleteMode, enMode, usersCollection, emphasizeAddMode, emphasizeSubMode, lists } =
-        useContext(Data);
+    const {
+        deleteMode,
+        enMode,
+        usersCollection,
+        emphasizeAddMode,
+        emphasizeSubMode,
+        lists,
+        TagsHistory,
+    } = useContext(Data);
     const { wheelEvent, clickEvent } = useTagController();
-
+    BindHistoryKey();
     const disabledSortable = reflect(() => {
         return isMobile() ? emphasizeAddMode() || emphasizeSubMode() || deleteMode() : false;
     });
     const { send } = useDragAndDropData();
     let breakCounter = 0;
+
     return (
         <DropReceiver
             detect={{
@@ -42,18 +73,23 @@ export const UserSelected = () => {
                     usersCollection((i) => [...i, ...stringToTags(info, lists())]);
                 },
                 COMBINE_MAGIC(tags: string) {
+                    TagsHistory.addToHistory(TagsToString(usersCollection()));
                     const input = stringToTags(tags, lists());
                     CombineMagic(input, usersCollection);
                     Message.success(t('publicPanel.hint.CombineSuccess'));
                 },
                 INPUT_MAGIC(tags: string) {
+                    TagsHistory.addToHistory(TagsToString(usersCollection()));
                     usersCollection(stringToTags(tags, lists()));
                     Notice.success(t('publicPanel.hint.CopySuccess'));
                     return false;
                 },
                 extra(_, dataTransfer: DataTransfer) {
                     const text = dataTransfer.getData('text');
-                    text && usersCollection(stringToTags(text, lists()));
+                    if (text) {
+                        TagsHistory.addToHistory(TagsToString(usersCollection()));
+                        usersCollection(stringToTags(text, lists()));
+                    }
                 },
             }}
         >

@@ -41,6 +41,7 @@ specifiers:
   solid-js: ^1.6.6
   sortablejs: ^1.15.0
   tailwindcss: ^3.2.4
+  tinykeys: ^1.4.0
   viewerjs: ^1.11.1
   vite: ^3.2.5
   vite-plugin-solid: ^2.5.0
@@ -73,6 +74,7 @@ dependencies:
   solid-js: 1.6.6
   sortablejs: 1.15.0
   tailwindcss: 3.2.4_postcss@8.4.20
+  tinykeys: 1.4.0
   viewerjs: 1.11.1
 
 devDependencies:
@@ -2230,6 +2232,10 @@ packages:
   /tinybench/2.3.1:
     resolution: {integrity: sha512-hGYWYBMPr7p4g5IarQE7XhlyWveh1EKhy4wUBS1LrHXCKYgvz+4/jCqgmJqZxxldesn05vccrtME2RLLZNW7iA==}
     dev: true
+
+  /tinykeys/1.4.0:
+    resolution: {integrity: sha512-ysnVd2E4nWbNXIbHaUidcKGLTmNimqP0hdpsD0Ph5hPJ84ntCF6PHj+Jg3im9nZt9/hNsBg/E6m1psHc2KaPnQ==}
+    dev: false
 
   /tinypool/0.3.0:
     resolution: {integrity: sha512-NX5KeqHOBZU6Bc0xj9Vr5Szbb1j8tUHIeD18s41aDJaPeC5QTdEhK0SpdpUrZlj2nv5cctNcSjaKNanXlfcVEQ==}

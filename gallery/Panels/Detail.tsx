@@ -24,7 +24,7 @@ export const DetailPanel = () => {
     return (
         <GalleryPanel id="detail">
             <Show when={ShowingPicture()}>
-                <main class="z-10 flex h-full flex-col  gap-4 overflow-auto break-words  p-4 sm:flex-row">
+                <main class="z-10 flex h-full flex-col  gap-4 overflow-auto break-words p-2 sm:flex-row sm:p-4">
                     <nav
                         class="flex cursor-pointer flex-col items-center justify-center"
                         onclick={() => {
@@ -42,7 +42,7 @@ export const DetailPanel = () => {
                         <header class="my-2 rounded-lg bg-lime-600 px-4 text-center text-2xl font-bold text-slate-200">
                             {ShowingPicture().description}
                         </header>
-                        <main class="blur-background flex max-w-2xl flex-col gap-4 rounded-lg p-4 text-slate-200 sm:overflow-auto">
+                        <main class="blur-background flex max-w-2xl flex-col gap-4 rounded-lg text-slate-200 sm:overflow-auto sm:p-4">
                             <nav class="flex justify-between rounded-lg bg-emerald-700 px-2">
                                 <div>作者: {ShowingPicture().username}</div>
                                 <div>种子号码: {ShowingPicture().seed}</div>

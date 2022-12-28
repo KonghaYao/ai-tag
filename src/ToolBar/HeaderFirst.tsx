@@ -8,8 +8,7 @@ import isMobile from 'is-mobile';
 import { MainFloat } from './sub/MainFloat';
 import { ToolBox } from './sub/ToolBox';
 export function HeaderFirst() {
-    const { enMode, usersCollection, visibleId, lists, emphasizeSymbol, iconBtn } =
-        useContext(Data);
+    const { r18Mode, usersCollection, visibleId, lists, iconBtn } = useContext(Data);
     const { nav } = useWebView();
     const { t } = useTranslation();
     return (
@@ -34,7 +33,10 @@ export function HeaderFirst() {
                 {iconBtn() ? 'add_circle' : t('toolbar1.Import')}
             </div>
             <MainFloat></MainFloat>
-            <span class="btn bg-teal-700" onclick={() => visibleId('gallery')}>
+            <span
+                class="btn bg-teal-700"
+                onclick={() => nav('./gallery.html#/?r18=' + r18Mode() ? 'true' : '')}
+            >
                 {iconBtn() ? 'collections' : t('toolbar1.Gallery')}
             </span>
             {!isMobile() && (

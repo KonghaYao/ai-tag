@@ -58,17 +58,17 @@ export const AIImageInfoShower: Component<{
                 </For>
             </nav>
             <Show when={details().others}>
-                <nav class="flex flex-col justify-between gap-2 rounded-lg bg-emerald-700 px-2">
-                    <header class="my-1 flex justify-between rounded-lg bg-emerald-800 px-2 text-center">
+                <nav class="grid grid-cols-2 justify-between gap-2 rounded-lg bg-emerald-700 px-2">
+                    <header class="col-span-2 my-1 flex justify-between rounded-lg bg-emerald-800 px-2 text-center">
                         其他参数
                     </header>
                     <For each={Object.entries(details().others)}>
                         {([key, value]) => {
                             return (
-                                <div class="flex justify-between gap-2">
-                                    <span>{key}： </span>
-                                    <span class="select-all">{value as string}</span>
-                                </div>
+                                <>
+                                    <div>{key}： </div>
+                                    <div class="select-all">{value as string}</div>
+                                </>
                             );
                         }}
                     </For>

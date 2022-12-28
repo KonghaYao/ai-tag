@@ -65,6 +65,12 @@ export const API = {
                     ...filters,
                 ].filter((i) => i),
             },
+            sorts: [
+                {
+                    property: 'Last edited time',
+                    direction: 'descending',
+                },
+            ],
         };
         const start_cursor = this.start_cursor[index - 1];
         /**@ts-ignore */ // 在交给云函数过程中，不能有 undefined 值

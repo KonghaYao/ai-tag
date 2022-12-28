@@ -14,7 +14,7 @@ export const GalleryPanel: Component<{ children?: JSXElement; id: PanelIds | '' 
     return (
         <nav
             ref={container}
-            class="absolute top-0 left-0 z-20 flex h-full w-full flex-col items-center justify-center p-6 transition-all duration-500"
+            class="absolute top-0 left-0 z-20 flex h-full w-full flex-col items-center justify-center p-2 transition-all duration-500 sm:p-6"
             classList={{
                 'scale-100': visible(),
                 'scale-0': !visible(),

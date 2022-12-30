@@ -1,5 +1,5 @@
-import { For, createEffect, useContext } from 'solid-js';
-import { Data, IData } from './App';
+import { useContext } from 'solid-js';
+import { Data } from './App';
 import { TagButton } from './components/TagButton';
 import { reflect } from '@cn-ui/use';
 import isMobile from 'is-mobile';
@@ -152,6 +152,7 @@ export const UserSelected = () => {
                                         }
                                         onWheel={(info, delta, e) => {
                                             e.preventDefault();
+                                            // console.log('onWheel');
                                             wheelEvent(info, delta);
                                         }}
                                     ></TagButton>

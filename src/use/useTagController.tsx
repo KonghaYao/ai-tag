@@ -59,7 +59,6 @@ export const useTagController = () => {
         }
     };
 
-    //TODO wheel 事件无效
     /** 滚轮事件，调节对象的数值类型权重 */
     const wheelEvent = debounce((item: IData, delta: number) => {
         const diff = delta / 150;

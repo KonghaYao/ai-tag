@@ -70,7 +70,7 @@ export const App = () => {
     const MaxEmphasize = atom<number>(10);
     const searchNumberLimit = atom<number>(1000);
     const webviewURL = atom('');
-    const visibleId = atom<PanelIds | ''>(null);
+    const visibleId = atom<PanelIds | ''>('gallery');
     const isPanelVisible = createSelector(visibleId);
     const username = atom('');
     const nonBreakLine = atom<boolean>(false);

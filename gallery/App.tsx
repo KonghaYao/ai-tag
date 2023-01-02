@@ -1,5 +1,5 @@
 import { Show, createSelector, createContext } from 'solid-js';
-import { Atom, atom, reflect, useSingleAsync } from '@cn-ui/use';
+import { Atom, atom } from '@cn-ui/use';
 import { PanelContext } from '../src/components/Panel';
 import { Gallery } from './Gallery';
 import { DetailPanel } from './Panels/Detail';
@@ -8,9 +8,10 @@ import { useGalleryInfo } from './useGalleryInfo';
 import { keepStore } from '../src/use/useStorage';
 import { Background } from '../src/components/Background';
 import { SearchBar } from './SearchBar';
-import { FloatPanel, FloatPanelWithAnimate } from '@cn-ui/core';
+import { FloatPanelWithAnimate, Tabs } from '@cn-ui/core';
 import { Animate } from '@cn-ui/animate';
-
+import '../src/index.css';
+import { UploadPanel } from '../src/Panels/UploadPanel';
 export const GalleryGlobal = createContext<
     {
         username: Atom<string>;
@@ -49,21 +50,34 @@ export const App = () => {
                     <header class=" absolute top-0 left-0 z-10   w-full p-2 text-xl sm:p-4 ">
                         <div class=" flex justify-between rounded-xl bg-slate-600 py-2 px-4 ">
                             <span class="flex-none">魔导绪论图库</span>
-                            <FloatPanelWithAnimate
-                                animateProps={{
-                                    extraClass: 'animate-duration-300',
-                                    anime: 'scale',
-                                }}
-                                popup={() => <SearchBar></SearchBar>}
-                                position="br"
-                            >
-                                <div class="font-icon cursor-pointer px-2">search</div>
-                            </FloatPanelWithAnimate>
+                            <nav class="flex gap-2">
+                                <FloatPanelWithAnimate
+                                    animateProps={{
+                                        extraClass: 'animate-duration-300',
+                                        anime: 'scale',
+                                    }}
+                                    popup={() => <SearchBar></SearchBar>}
+                                    position="br"
+                                >
+                                    <div class="font-icon cursor-pointer px-2">search</div>
+                                </FloatPanelWithAnimate>
+                                <div
+                                    class="font-icon cursor-pointer px-2"
+                                    onclick={() => visibleId('uploader')}
+                                >
+                                    upload
+                                </div>
+                            </nav>
                         </div>
                     </header>
 
                     <Gallery></Gallery>
-                    <DetailPanel></DetailPanel>
+                    <Tabs activeId={visibleId} lazyload>
+                        <Animate group anime="jumpFromBottom" appear>
+                            <DetailPanel></DetailPanel>
+                            <UploadPanel context={GalleryGlobal}></UploadPanel>
+                        </Animate>
+                    </Tabs>
                 </main>
             </PanelContext.Provider>
         </GalleryGlobal.Provider>

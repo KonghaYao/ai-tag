@@ -13,6 +13,7 @@ export const PictureCard: Component<StoreData & { index: number }> = (item) => {
     return (
         <DragPoster send={(send) => send('INPUT_MAGIC', item.tags)}>
             <div class="single-pic relative  w-full  cursor-pointer  rounded-md  shadow-lg transition-transform  duration-500 ">
+                {/* 展示的图片 */}
                 <img
                     loading="lazy"
                     src={getImagePath(item.image)}
@@ -45,6 +46,7 @@ export const PictureCard: Component<StoreData & { index: number }> = (item) => {
                     </div>
 
                     <nav class="flex gap-2">
+                        {/*  操作按钮 */}
                         <div
                             class="font-icon h-7 w-7 cursor-pointer rounded-full bg-lime-500  text-center text-lg  text-white"
                             onclick={() => getViewer().view(item.index)}

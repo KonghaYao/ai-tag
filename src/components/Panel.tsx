@@ -25,7 +25,7 @@ export const Panel: Component<PanelEl> = (props) => {
         <Tab
             id={props.id}
             destroyOnHide
-            class="blur-background absolute top-0 left-0 flex h-screen  w-full flex-col items-center  justify-center"
+            class="blur-background absolute top-0 left-0 z-40 flex h-screen w-full flex-col items-center  justify-center"
         >
             <nav
                 ref={container}
@@ -41,8 +41,6 @@ export const Panel: Component<PanelEl> = (props) => {
             >
                 <main class=" flex h-full w-full max-w-sm flex-col  overflow-auto rounded-2xl border-2 border-solid border-slate-700 bg-gray-700/60 transition-all sm:max-w-md">
                     {props.children}
-
-                    {/* <ControlBar></ControlBar> */}
                 </main>
             </nav>
         </Tab>

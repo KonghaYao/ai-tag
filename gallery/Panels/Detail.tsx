@@ -2,8 +2,8 @@ import { reflect } from '@cn-ui/use';
 import { AIImageInfo } from 'prompt-extractor';
 import { Show, useContext } from 'solid-js';
 import { GalleryGlobal } from '../App';
-import { GalleryPanel } from '../components/GalleryPanel';
 import { AIImageInfoShower } from '../../src/components/AIImageInfoShower';
+import { Panel } from '../../src/components/Panel';
 
 export const getImagePath = (s: string) => {
     return s.replace('/t/', '/s/').replace('.jpg', '.png');
@@ -22,7 +22,7 @@ export const DetailPanel = () => {
         return information;
     });
     return (
-        <GalleryPanel id="detail">
+        <Panel id="detail">
             <Show when={ShowingPicture()}>
                 <main class="z-10 flex h-full flex-col  gap-4 overflow-auto break-words p-2 sm:flex-row sm:p-4">
                     <nav
@@ -54,6 +54,6 @@ export const DetailPanel = () => {
                     </main>
                 </main>
             </Show>
-        </GalleryPanel>
+        </Panel>
     );
 };

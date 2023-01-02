@@ -47,7 +47,6 @@ import isMobile from 'is-mobile';
 import { IPromptData } from 'promptor';
 import { PanelContext } from './components/Panel';
 import { FontSupport } from './components/FontSupport';
-import { useTranslation } from '../i18n';
 import { useLocalData } from './use/useLocalData';
 import { Message, MessageHint } from './MessageHint';
 import { Background } from './components/Background';
@@ -103,7 +102,6 @@ export const App = () => {
 
     const { recover, tracking } = useStorage(storageSetting);
     const { backgroundImage } = useLocalData();
-    const { t } = useTranslation();
     const { isSize } = useBreakpoints();
     // 自动变换 SideAPP 状态
     createEffect(() => sideAppMode(!(isSize('xs') || isSize('sm'))));

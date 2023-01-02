@@ -7,11 +7,9 @@ import { HomePanel } from './Panels/HomePanel';
 import { Webview } from './Panels/Webview';
 import { FeedBackPanel } from './Feedback/Feedback';
 import { MyFeedBackPanel } from './Feedback/MyFeedback';
-import { MessageHint } from './MessageHint';
 import { AIPrompt } from './Panels/AIPrompt';
 import { PromptExtractorPanel } from './Panels/PromptExtractor';
 import { Tabs } from '@cn-ui/core';
-import { Anime } from '@cn-ui/transition';
 export type PanelIds =
     | 'setting'
     | 'ai-prompt'

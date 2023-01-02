@@ -1,14 +1,12 @@
-import { createEffect, For, useContext, useTransition } from 'solid-js';
+import { Context, useContext } from 'solid-js';
 import { Data } from '../App';
 import { createStore } from 'solid-js/store';
-import { Panel, PanelContext } from '../components/Panel';
+import { Panel } from '../components/Panel';
 import { API, StoreData } from '../api/notion';
 import { Atom, atom, useSingleAsync } from '@cn-ui/use';
 import { Notice } from '../utils/notice';
-import { TagsToString } from '../use/TagsConvertor';
 import { batch } from 'solid-js';
 import { readFileInfo } from '../utils/getPromptsFromPic';
-import { untrack } from 'solid-js/web';
 import { useTranslation } from '../../i18n';
 import { UploadButton } from '../components/UploadButton';
 const init = {
@@ -23,9 +21,8 @@ const init = {
 } as StoreData;
 const [store, set] = createStore({ ...init });
 
-const useSharedUpload = (uploading: Atom<boolean>) => {
+const useSharedUpload = (uploading: Atom<boolean>, username: Atom<string>) => {
     const { t } = useTranslation();
-    const { username } = useContext(Data);
 
     // 上传前检查
     const check = () => {
@@ -82,22 +79,17 @@ export const getImageSize = async (file: File) => {
         URL.revokeObjectURL(url);
     });
 };
-export const UploadPanel = () => {
+export const UploadPanel = (props: {
+    context?: Context<{
+        username: Atom<string>;
+    }>;
+}) => {
     const { t } = useTranslation();
-    const { isPanelVisible } = useContext(PanelContext);
-    const { username, usersCollection, emphasizeSymbol } = useContext(Data);
+    const { username } = useContext(props.context ?? Data);
     const uploading = atom(false);
 
-    const { upload, uploadPicture } = useSharedUpload(uploading);
+    const { upload, uploadPicture } = useSharedUpload(uploading, username);
 
-    createEffect(() => {
-        if (isPanelVisible('uploader')) {
-            const list = untrack(usersCollection);
-            batch(() => {
-                set('tags', TagsToString(list, emphasizeSymbol(), true));
-            });
-        }
-    });
     /** 输入文件事件 */
     const changeFile = async (files: FileList) => {
         const file = files[0];

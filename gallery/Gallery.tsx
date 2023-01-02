@@ -4,9 +4,11 @@ import { ScrollLoading } from './ScrollLoading';
 import { PictureCard } from './GalleryColumn';
 import { WaterFall } from '@cn-ui/core';
 import { reflect, useBreakpoints } from '@cn-ui/use';
-export const Gallery = () => {
+
+const rebuildArray = () => {
     const { showingData, page, changePage } = useContext(GalleryGlobal);
     const { size } = useBreakpoints();
+    /** 根据屏幕长度转换列数 */
     const columns = reflect(() => {
         switch (size()) {
             case 'md':
@@ -21,6 +23,7 @@ export const Gallery = () => {
                 return 2;
         }
     });
+    /** 显示的图片 */
     const images = reflect(() => {
         const data = showingData()
             .flat()
@@ -45,7 +48,12 @@ export const Gallery = () => {
         }
         return final;
     });
+    return { images, columns };
+};
 
+export const Gallery = () => {
+    const { page, changePage } = useContext(GalleryGlobal);
+    const { images, columns } = rebuildArray();
     const { ScrollEvent } = ScrollLoading(() => changePage(page() + 1));
     return (
         <div

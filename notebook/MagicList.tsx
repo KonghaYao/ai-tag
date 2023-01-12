@@ -1,14 +1,15 @@
 import { resource } from '@cn-ui/use';
-import copy from 'copy-to-clipboard';
-import { Component, For, Show, useContext } from 'solid-js';
-import { DragPoster, DropReceiver } from '@cn-ui/headless';
+import { For, Resource, Show, useContext } from 'solid-js';
+import { DropReceiver } from '@cn-ui/headless';
 import { Message } from '../src/MessageHint';
 
 import { Notice } from '../src/utils/notice';
 import { NoteBookContext } from './App';
-import { AsyncImage } from './components/AsyncImage';
 import { ExpendText } from './components/ExpendText';
 import { SingleMagic, useIndexedDB } from './use/useIndexedDB';
+import '@cn-ui/animate/src/scale.css';
+import { MagicControl } from './MagicList/MagicControl';
+import { ImageCard } from './MagicList/ImageCard';
 
 export const MagicList = () => {
     const { IndexList, store, DeleteMagic, ChangeMagic, AddDemoImage, DeleteImage } =
@@ -16,7 +17,7 @@ export const MagicList = () => {
     const { hidImage } = useContext(NoteBookContext);
 
     return (
-        <div class="flex flex-col gap-4 overflow-y-scroll py-12">
+        <div class="flex flex-col gap-4 overflow-y-scroll py-2">
             <For
                 each={IndexList()}
                 fallback={
@@ -160,47 +161,10 @@ export const MagicList = () => {
                                             {data().description || '没有描述信息哦'}
                                         </span>
                                     </ExpendText>
+                                    <MagicControl data={data}></MagicControl>
 
-                                    <DragPoster
-                                        send={(send, transfer) => {
-                                            send('INPUT_MAGIC', data().tags);
-                                            transfer.setData('text', data().tags);
-                                            Message.success('您可以拖拽魔咒到其他页面');
-                                        }}
-                                    >
-                                        <ExpendText
-                                            open={null}
-                                            title="点击展开，魔咒可以被拖到任何地方"
-                                        >
-                                            <span
-                                                class="font-icon btn whitespace-nowrap bg-green-600 text-white"
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    const cb = prompt('请修改魔咒', data().tags);
-                                                    if (cb)
-                                                        ChangeMagic({ ...data(), tags: cb })
-                                                            .then(data.refetch)
-                                                            .then(() => {
-                                                                Notice.success('修改魔咒成功');
-                                                            });
-                                                }}
-                                            >
-                                                edit
-                                            </span>
-                                            <span
-                                                class="font-icon btn mr-2 whitespace-nowrap bg-sky-600 text-white"
-                                                onclick={() => {
-                                                    copy(data().tags);
-                                                    Notice.success('复制成功');
-                                                }}
-                                            >
-                                                copy
-                                            </span>
-                                            {data().tags}
-                                        </ExpendText>
-                                    </DragPoster>
                                     <Show when={!hidImage()}>
-                                        <div class="flex flex-nowrap gap-4 overflow-y-auto">
+                                        <div class="my-1 flex flex-nowrap gap-4 overflow-y-auto">
                                             <For
                                                 each={data().demos}
                                                 fallback={
@@ -237,25 +201,5 @@ export const MagicList = () => {
                 }}
             </For>
         </div>
-    );
-};
-const ImageCard: Component<{ data: SingleMagic; id: string }> = (props) => {
-    const { getImage } = useIndexedDB();
-    return (
-        <DragPoster
-            send={(send) =>
-                send('MAGIC_IMAGE', {
-                    origin: props.data,
-                    position: props.id,
-                })
-            }
-        >
-            <div
-                class="h-32 w-32 flex-none cursor-pointer overflow-hidden rounded-lg"
-                title="点击查看\n拖动到删除按钮删除"
-            >
-                <AsyncImage fetch={() => getImage(props.id)}></AsyncImage>
-            </div>
-        </DragPoster>
     );
 };

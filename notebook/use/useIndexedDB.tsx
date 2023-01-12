@@ -1,4 +1,4 @@
-import { atom, createIgnoreFirst } from '@cn-ui/use';
+import { atom } from '@cn-ui/use';
 import localforage from 'localforage';
 import { memoize } from 'lodash-es';
 import md5 from 'md5';
@@ -20,19 +20,15 @@ const initDatabase = memoize(() => {
         name: 'magic_notebook',
         driver: [localforage.INDEXEDDB],
     });
+
     const images = localforage.createInstance({
         name: 'magic_images',
         driver: [localforage.INDEXEDDB],
     });
 
     const IndexList = atom<string[]>([]);
-
-    createIgnoreFirst(() => {
-        store.setItem('MasterKey', IndexList());
-    }, [IndexList]);
-
-    store.getItem('MasterKey').then((res: string[] = []) => {
-        return IndexList(res ?? []);
+    store.keys().then((res) => {
+        IndexList(res ?? []);
     });
 
     return { store, IndexList, images };
@@ -64,6 +60,7 @@ export const useIndexedDB = () => {
             last_update: new Date().toISOString(),
         });
     };
+
     return {
         ...database,
         addMagic,
@@ -86,5 +83,50 @@ export const useIndexedDB = () => {
             await database.images.removeItem(id);
             return ChangeMagic(oldMagic);
         },
+
+        async ExportText() {
+            const data = await IndexedBackup.backup(database.store);
+            return new Blob([JSON.stringify(data)]);
+        },
+        async ExportImage(sliceReady: (blob: Blob, index: number) => Promise<void>) {
+            const { default: JSZip } = await import(
+                /*** @ts-ignore */
+                /* @vite-ignore*/ 'https://esm.sh/jszip@3.10.1'
+            );
+            console.log('JSZip 加载完成');
+
+            let zip = new JSZip();
+            let sizeCounter = 0;
+            let index = 0;
+            const keys = await database.images.keys();
+            for (const key of keys) {
+                const file = await database.images.getItem<File>(key);
+
+                sizeCounter += file.size;
+                zip.file(file.name.replace(/(.*)(?=\.\w+$)/, key), file);
+                if (sizeCounter >= 1 * 1024 * 1024) {
+                    sizeCounter = 0;
+                    const blob = await zip.generateAsync({ type: 'blob' });
+                    zip = new JSZip();
+                    await sliceReady(blob, index);
+                }
+                index++;
+            }
+        },
     };
+};
+
+const IndexedBackup = {
+    async backup<T>(store: LocalForage) {
+        const collection = [];
+        await store.iterate((value, key) => {
+            collection.push([key, value]);
+        });
+        return collection as [string, T][];
+    },
+    async recover<T>(store: LocalForage, backup: [string, T][]) {
+        for (const [key, value] of backup) {
+            await store.setItem(key, value);
+        }
+    },
 };

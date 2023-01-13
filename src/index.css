@@ -49,7 +49,7 @@ body {
     -webkit-backdrop-filter: blur(0);
 }
 .btn {
-    @apply flex-none cursor-pointer select-none rounded bg-slate-800  px-2 text-center align-middle font-thin shadow-slate-900  ring-1 ring-slate-700 transition-all active:scale-90 active:bg-gray-700;
+    @apply flex-none cursor-pointer select-none rounded bg-slate-800  px-2 text-center align-middle font-thin   ring-1 ring-slate-700 transition-all active:scale-90 active:bg-gray-700;
 }
 .input {
     @apply rounded-lg bg-gradient-to-br from-slate-800 to-slate-900 px-4 py-1 text-gray-200 shadow-md outline-none ring-1 ring-slate-700;

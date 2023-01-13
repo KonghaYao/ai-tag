@@ -88,6 +88,25 @@ export const useIndexedDB = () => {
             const data = await IndexedBackup.backup(database.store);
             return new Blob([JSON.stringify(data)]);
         },
+        async ImportText(blob: Blob) {
+            const data = await blob.text();
+            const it = JSON.parse(data);
+            await IndexedBackup.recover(database.store, it);
+        },
+        async ImportImage(blob: Blob) {
+            const { default: JSZip } = await import(
+                /*** @ts-ignore */
+                /* @vite-ignore*/ 'https://esm.sh/jszip@3.10.1'
+            );
+            const zip = new JSZip();
+            return zip.loadAsync(blob).then(async () => {
+                console.log(zip.files);
+                for (const name in zip.files) {
+                    const blob = await zip.file(name).async('blob');
+                    database.images.setItem(name.split('.')[0], new File([blob], name));
+                }
+            });
+        },
         async ExportImage(sliceReady: (blob: Blob, index: number) => Promise<void>) {
             const { default: JSZip } = await import(
                 /*** @ts-ignore */

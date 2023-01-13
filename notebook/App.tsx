@@ -1,5 +1,5 @@
 import { Atom, atom } from '@cn-ui/use';
-import { createContext, Show, Suspense } from 'solid-js';
+import { createContext, createSelector, Show, Suspense } from 'solid-js';
 import { useTranslation } from '../i18n';
 import { DropReceiver } from '@cn-ui/headless';
 import { Message, MessageHint } from '../src/MessageHint';
@@ -13,7 +13,7 @@ export const App = () => {
     const { addMagic, IndexList } = useIndexedDB();
     const { t } = useTranslation();
     const hidImage = atom(false);
-    const hidBackup = atom(true);
+    const visibleId = atom('backup');
     return (
         <NoteBookContext.Provider value={{ hidImage }}>
             <DropReceiver
@@ -61,7 +61,7 @@ export const App = () => {
                             >
                                 📝 {IndexList().length}
                             </div>
-                            <div class="font-icon" onclick={() => hidBackup(false)}>
+                            <div class="font-icon" onclick={() => visibleId('backup')}>
                                 sync
                             </div>
                         </div>
@@ -73,9 +73,20 @@ export const App = () => {
                     <main class="mx-auto mt-4 flex w-full flex-col overflow-auto">
                         <MagicList></MagicList>
                     </main>
-                    <Show when={!hidBackup()}>
-                        <BackupPanel></BackupPanel>
-                    </Show>
+                    <PanelContext.Provider
+                        value={{
+                            visibleId,
+                            isPanelVisible: createSelector(visibleId),
+                        }}
+                    >
+                        <Tabs activeId={visibleId} lazyload>
+                            <Animate group anime="jumpFromBottom" appear>
+                                <BackupPanel></BackupPanel>
+                                <div></div>
+                            </Animate>
+                        </Tabs>
+                    </PanelContext.Provider>
+
                     <MessageHint></MessageHint>
                 </main>
             </DropReceiver>
@@ -83,3 +94,6 @@ export const App = () => {
     );
 };
 import { BackupPanel } from './BackupPanel';
+import { Tabs } from '@cn-ui/core';
+import { Animate } from '@cn-ui/animate';
+import { PanelContext } from '../src/components/Panel';

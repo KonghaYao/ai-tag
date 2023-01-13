@@ -21,7 +21,8 @@ export type PanelIds =
     | 'prompt-extractor'
     | 'talk'
     // gallery 的 panel
-    | 'detail';
+    | 'detail'
+    | 'backup';
 import '@cn-ui/animate/src/jump.css';
 import { Animate } from '@cn-ui/animate';
 import { TalkPanel } from './Panels/TalkPanel';

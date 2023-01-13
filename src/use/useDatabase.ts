@@ -131,9 +131,6 @@ export function useDatabase(store: IStoreData) {
         }
     };
 
-    // 汇报未知的单词
-    // TODO 测试阶段
-    addUnknownReporter(lists, usersCollection);
     const [searchParams] = useSearchParams();
 
     // ! 不再将 usersCollection 推向标签栏，因为这个是给用户分享用的，用完第一次就不需要了

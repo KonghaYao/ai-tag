@@ -17,12 +17,15 @@ export const MagicList = () => {
     const { hidImage } = useContext(NoteBookContext);
 
     return (
-        <div class="flex flex-col gap-4 overflow-y-scroll py-2">
+        <div class="grid grid-cols-1 gap-4 overflow-y-scroll py-2 pt-24 md:grid-cols-2">
             <For
                 each={IndexList()}
                 fallback={
                     <div class="w-full text-center">
-                        数据为空, 你可以
+                        <div class="text-center text-sm text-amber-500">
+                            你可以拖拽任意的字符串到这个网站作为 TAG！
+                        </div>
+                        <span>数据为空, 你可以</span>
                         <ol class=" px-4 text-left">
                             <li>1. 直接拖拽魔咒文本到这里</li>
                             <li>2. 在魔导绪论拖拽一键复制按钮到这里</li>
@@ -97,7 +100,7 @@ export const MagicList = () => {
                                 },
                             }}
                         >
-                            <div class="mx-4 rounded-md bg-slate-800 p-4 ">
+                            <div class=" rounded-md bg-slate-800 p-4 shadow-lg shadow-gray-900">
                                 <Show when={data() === null}>
                                     <div class="flex justify-between">
                                         <span>
@@ -164,12 +167,12 @@ export const MagicList = () => {
                                     <MagicControl data={data}></MagicControl>
 
                                     <Show when={!hidImage()}>
-                                        <div class="my-1 flex flex-nowrap gap-4 overflow-y-auto">
+                                        <div class="my-2 flex flex-nowrap gap-4 overflow-y-auto overflow-x-visible">
                                             <For
                                                 each={data().demos}
                                                 fallback={
                                                     <span class="text-gray-500">
-                                                        拖拽图片到这里添加
+                                                        拖拽图片到这里添加 Demo
                                                     </span>
                                                 }
                                             >

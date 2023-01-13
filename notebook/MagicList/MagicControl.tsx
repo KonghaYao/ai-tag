@@ -14,23 +14,8 @@ export const MagicControl: Component<{
 
     return (
         <section class="flex gap-2">
-            <span
-                class="font-icon btn whitespace-nowrap bg-green-600 text-white"
-                onClick={(e) => {
-                    e.stopPropagation();
-                    const cb = prompt('请修改魔咒', props.data().tags);
-                    if (cb)
-                        ChangeMagic({ ...props.data(), tags: cb })
-                            .then(props.data.refetch)
-                            .then(() => {
-                                Notice.success('修改魔咒成功');
-                            });
-                }}
-            >
-                edit
-            </span>
             <FloatPanelWithAnimate
-                class="btn flex-1  whitespace-nowrap text-sm text-white"
+                class="btn whitespace-nowrap text-sm text-white"
                 animateProps={{ anime: 'scale' }}
                 popup={() => (
                     <div class=" pointer-events-none mt-2  w-[70vw] whitespace-pre-wrap rounded-md border border-slate-600 bg-slate-800 p-2 text-left text-sm">
@@ -48,9 +33,23 @@ export const MagicControl: Component<{
                     <span>查看魔咒</span>
                 </DragPoster>
             </FloatPanelWithAnimate>
-
             <span
-                class="font-icon btn mr-2 whitespace-nowrap bg-sky-600 text-white"
+                class="font-icon btn whitespace-nowrap bg-green-600 text-sm text-white"
+                onClick={(e) => {
+                    e.stopPropagation();
+                    const cb = prompt('请修改魔咒', props.data().tags);
+                    if (cb)
+                        ChangeMagic({ ...props.data(), tags: cb })
+                            .then(props.data.refetch)
+                            .then(() => {
+                                Notice.success('修改魔咒成功');
+                            });
+                }}
+            >
+                edit
+            </span>
+            <span
+                class="font-icon btn mr-2 whitespace-nowrap bg-sky-600 text-sm text-white"
                 onclick={() => {
                     copy(props.data().tags);
                     Notice.success('复制成功');

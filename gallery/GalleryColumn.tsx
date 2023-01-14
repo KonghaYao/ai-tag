@@ -1,4 +1,4 @@
-import { For, Component, useContext, batch, ErrorBoundary } from 'solid-js';
+import { Component, useContext, batch } from 'solid-js';
 import { StoreData } from '../src/api/notion';
 import { PanelContext } from '../src/components/Panel';
 import { GalleryGlobal } from './App';

@@ -20,6 +20,9 @@ const init = {
     size: '',
 } as StoreData;
 const [store, set] = createStore({ ...init });
+const backupRemoteImage = async (image: string) => {
+    return fetch('./.netlify/functions/sync_image?image=' + image).then((res) => res.json());
+};
 
 const useSharedUpload = (uploading: Atom<boolean>, username: Atom<string>) => {
     const { t } = useTranslation();
@@ -58,6 +61,7 @@ const useSharedUpload = (uploading: Atom<boolean>, username: Atom<string>) => {
                 uploading(false);
                 set('image', res.data.thumb);
                 Notice.success(t('uploadPanel.hint.uploadPicDone'));
+                backupRemoteImage(res.data.thumb);
             })
             .catch((err) => {
                 console.warn(err);

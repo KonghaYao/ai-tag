@@ -3,10 +3,9 @@ import ImageKit from 'imagekit';
 export const getImagePath = (s: string) => {
     return s.replace('/t/', '/s/').replace('.jpg', '.png');
 };
-const value = process.env.IMAGEKIT_MASTER!;
 const imagekit = new ImageKit({
     publicKey: 'public_HuJxbWdbzJt+kG28eWEjHZfiJws=',
-    privateKey: value,
+    privateKey: process.env.IMAGEKIT_MASTER!,
     urlEndpoint: 'https://ik.imagekit.io/dfidfiskkxn/',
 });
 export const handler: Handler = async (event, content) => {
@@ -28,6 +27,7 @@ export const handler: Handler = async (event, content) => {
         .catch((error) => {
             return [iterator, error];
         });
+    console.log(data);
     return {
         statusCode: 200,
         body: JSON.stringify(data),

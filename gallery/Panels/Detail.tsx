@@ -4,13 +4,22 @@ import { Show, useContext } from 'solid-js';
 import { GalleryGlobal } from '../App';
 import { AIImageInfoShower } from '../../src/components/AIImageInfoShower';
 import { Panel } from '../../src/components/Panel';
+import { BackupImage } from '../BackupImage';
 
 export const getImagePath = (s: string) => {
     return s.replace('/t/', '/s/').replace('.jpg', '.png');
 };
+export const getImagePathBackup = (s: string, tail: string) => {
+    return (
+        `https://ik.imagekit.io/dfidfiskkxn/save/${getImagePath(s)
+            .replace(/\.\w+$/, '')
+            .split('/')
+            .at(-1)}?` + tail
+    );
+};
 
 export const DetailPanel = () => {
-    const { ShowingPicture, showingData, getViewer } = useContext(GalleryGlobal);
+    const { ShowingPicture, showingData, getViewer, replaceImages } = useContext(GalleryGlobal);
     const details = reflect(() => {
         if (!ShowingPicture()) return null;
         const information = Object.fromEntries(
@@ -28,14 +37,22 @@ export const DetailPanel = () => {
                     <nav
                         class="flex cursor-pointer flex-col items-center justify-center"
                         onclick={() => {
-                            const index = showingData()
-                                .flat()
-                                .findIndex((i) => i.image === ShowingPicture().image);
-                            console.log(index);
-                            getViewer().view(index);
+                            const { image, description } = ShowingPicture();
+                            replaceImages([
+                                {
+                                    alt: description,
+                                    src: image,
+                                    origin: image,
+                                },
+                            ]);
+                            getViewer().view(0);
                         }}
                     >
-                        <img loading="lazy" src={getImagePath(ShowingPicture().image)} alt="" />
+                        <BackupImage
+                            src={getImagePathBackup(ShowingPicture().image, 'q=50')}
+                            aspect={ShowingPicture().size.replace('x', '/')}
+                            fallbackSrc={getImagePath(ShowingPicture().image)}
+                        ></BackupImage>
                         <div class="btn ">点击查看大图</div>
                     </nav>
                     <main class="flex select-text flex-col sm:overflow-hidden">

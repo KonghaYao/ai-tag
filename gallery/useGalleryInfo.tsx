@@ -13,32 +13,17 @@ export const useGalleryInfo = () => {
     const showingData = atom<StoreData[][]>([]);
     const loadMore = async (LoadingPage: number, clear = false) => {
         let filters = searchText() ? notionSearch(searchText(), ['username', 'tags']) : [];
-        return API.getData(LoadingPage, !!searchParams.r18, filters, clear)
-            .then((res) => {
-                if (res.length) {
-                    showingData((i) => {
-                        i[LoadingPage] = res;
-                        return [...i];
-                    });
-                } else if (clear) {
-                    showingData([]);
-                }
-                end(API.end);
-            })
-            .then(() => {
-                replaceImages(
-                    showingData()
-                        .flat()
-                        .filter((i) => i)
-                        .map((i) => {
-                            return {
-                                alt: i.description,
-                                src: i.image,
-                                origin: i.image.replace('/t/', '/s/'),
-                            };
-                        })
-                );
-            });
+        return API.getData(LoadingPage, !!searchParams.r18, filters, clear).then((res) => {
+            if (res.length) {
+                showingData((i) => {
+                    i[LoadingPage] = res;
+                    return [...i];
+                });
+            } else if (clear) {
+                showingData([]);
+            }
+            end(API.end);
+        });
     };
 
     createEffect(on(searchText, (text) => text === '' && loadMore(0, true)));
@@ -54,5 +39,6 @@ export const useGalleryInfo = () => {
         searchText,
         showingData,
         getViewer,
+        replaceImages,
     };
 };

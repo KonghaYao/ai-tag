@@ -1,10 +1,11 @@
-import { For, Component, useContext, batch } from 'solid-js';
+import { For, Component, useContext, batch, ErrorBoundary } from 'solid-js';
 import { StoreData } from '../src/api/notion';
 import { PanelContext } from '../src/components/Panel';
 import { GalleryGlobal } from './App';
-import { getImagePath } from './Panels/Detail';
+import { getImagePath, getImagePathBackup } from './Panels/Detail';
 import { saveAs } from 'file-saver';
 import { DragPoster } from '@cn-ui/headless';
+import { BackupImage } from './BackupImage';
 
 export const PictureCard: Component<StoreData & { index: number }> = (item) => {
     const { visibleId } = useContext(PanelContext);
@@ -14,24 +15,19 @@ export const PictureCard: Component<StoreData & { index: number }> = (item) => {
         <DragPoster send={(send) => send('INPUT_MAGIC', item.tags)}>
             <div class="single-pic relative  w-full  cursor-pointer  rounded-md  shadow-lg transition-transform  duration-500 ">
                 {/* 展示的图片 */}
-                <img
-                    loading="lazy"
-                    src={getImagePath(item.image)}
-                    class="w-full overflow-hidden rounded-lg object-cover  "
-                    alt=""
-                    draggable={false}
-                    style={{
-                        'min-height': '6rem',
-                        'aspect-ratio': item.size.replace('x', '/'),
-                    }}
-                    onclick={() => {
+                <BackupImage
+                    src={getImagePathBackup(item.image, 'q=50')}
+                    aspect={item.size.replace('x', '/')}
+                    fallbackSrc={getImagePath(item.image)}
+                    onClick={(src) => {
                         batch(() => {
                             ShowingPicture(item);
                             visibleId('detail');
-                            backgroundImage(getImagePath(item.image));
+                            backgroundImage(src);
                         });
                     }}
-                />
+                ></BackupImage>
+
                 <div
                     class="absolute top-2 right-2 h-fit cursor-pointer rounded-xl bg-lime-600  px-1  text-slate-200 line-clamp-1"
                     onclick={() => {

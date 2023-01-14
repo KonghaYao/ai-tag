@@ -19,7 +19,8 @@ export const getImagePathBackup = (s: string, tail: string) => {
 };
 
 export const DetailPanel = () => {
-    const { ShowingPicture, showingData, getViewer, replaceImages } = useContext(GalleryGlobal);
+    const { ShowingPicture, getViewer, replaceImages, ShowingPictureURL } =
+        useContext(GalleryGlobal);
     const details = reflect(() => {
         if (!ShowingPicture()) return null;
         const information = Object.fromEntries(
@@ -37,7 +38,8 @@ export const DetailPanel = () => {
                     <nav
                         class="flex cursor-pointer flex-col items-center justify-center"
                         onclick={() => {
-                            const { image, description } = ShowingPicture();
+                            const { description } = ShowingPicture();
+                            const image = ShowingPictureURL();
                             replaceImages([
                                 {
                                     alt: description,

@@ -17,6 +17,7 @@ export const GalleryGlobal = createContext<
         username: Atom<string>;
         backgroundImage: Atom<string>;
         ShowingPicture: Atom<null | StoreData>;
+        ShowingPictureURL: Atom<null | string>;
     } & ReturnType<typeof useGalleryInfo>
 >();
 export const App = () => {
@@ -29,12 +30,14 @@ export const App = () => {
     const visibleId = atom('');
 
     const ShowingPicture = atom<null | StoreData>(null);
+    const ShowingPictureURL = atom<null | string>(null);
 
     return (
         <GalleryGlobal.Provider
             value={{
                 username,
                 ShowingPicture,
+                ShowingPictureURL,
                 ...galleryInfo,
                 backgroundImage,
             }}

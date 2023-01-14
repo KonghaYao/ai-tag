@@ -9,7 +9,8 @@ import { BackupImage } from './BackupImage';
 
 export const PictureCard: Component<StoreData & { index: number }> = (item) => {
     const { visibleId } = useContext(PanelContext);
-    const { ShowingPicture, getViewer, backgroundImage, searchText } = useContext(GalleryGlobal);
+    const { ShowingPicture, getViewer, backgroundImage, searchText, ShowingPictureURL } =
+        useContext(GalleryGlobal);
 
     return (
         <DragPoster send={(send) => send('INPUT_MAGIC', item.tags)}>
@@ -24,6 +25,7 @@ export const PictureCard: Component<StoreData & { index: number }> = (item) => {
                             ShowingPicture(item);
                             visibleId('detail');
                             backgroundImage(src);
+                            ShowingPictureURL(src.replace('q=50', ''));
                         });
                     }}
                 ></BackupImage>

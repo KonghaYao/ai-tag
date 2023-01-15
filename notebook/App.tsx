@@ -50,8 +50,8 @@ export const App = () => {
                 }}
             >
                 <main class="font-global m-auto flex h-screen w-full max-w-6xl flex-col items-center overflow-y-hidden overflow-x-visible   text-gray-400">
-                    <header class="absolute  w-full max-w-6xl ">
-                        <main class="z-10  my-4  mx-2 flex items-center divide-x-2 divide-gray-700 rounded-md bg-slate-800 p-2 shadow-lg shadow-gray-900">
+                    <header class="absolute z-10  w-full max-w-6xl ">
+                        <main class=" my-4  mx-2 flex items-center divide-x-2 divide-gray-700 rounded-md bg-slate-800 p-2 shadow-lg shadow-gray-900">
                             <header class=" pl-2 pr-4 text-xl">魔咒记忆器</header>
                             <div class="flex flex-1 items-center justify-end ">
                                 <div

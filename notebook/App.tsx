@@ -1,5 +1,5 @@
 import { Atom, atom } from '@cn-ui/use';
-import { createContext, createSelector, Show, Suspense } from 'solid-js';
+import { createContext, createSelector } from 'solid-js';
 import { useTranslation } from '../i18n';
 import { DropReceiver } from '@cn-ui/headless';
 import { Message, MessageHint } from '../src/MessageHint';
@@ -54,6 +54,18 @@ export const App = () => {
                         <main class=" my-4  mx-2 flex items-center divide-x-2 divide-gray-700 rounded-md bg-slate-800 p-2 shadow-lg shadow-gray-900">
                             <header class=" pl-2 pr-4 text-xl">魔咒记忆器</header>
                             <div class="flex flex-1 items-center justify-end ">
+                                <div
+                                    class="font-icon h-8 w-8 cursor-pointer rounded-md p-1 text-center transition-colors hover:bg-slate-700"
+                                    onclick={() => {
+                                        const cb = prompt('请输入需要添加的魔咒');
+                                        if (cb) {
+                                            addMagic(cb);
+                                            Notice.success('创建魔咒成功');
+                                        }
+                                    }}
+                                >
+                                    add
+                                </div>
                                 <div
                                     class="font-icon h-8 w-8 cursor-pointer rounded-md p-1 text-center transition-colors hover:bg-slate-700"
                                     onclick={() => visibleId('backup')}

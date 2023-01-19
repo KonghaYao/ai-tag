@@ -9,6 +9,7 @@ import { batch } from 'solid-js';
 import { readFileInfo } from '../utils/getPromptsFromPic';
 import { useTranslation } from '../../i18n';
 import { UploadButton } from '../components/UploadButton';
+
 const init = {
     username: '',
     tags: '',
@@ -21,6 +22,7 @@ const init = {
 } as StoreData;
 const [store, set] = createStore({ ...init });
 import ImageKit from 'imagekit';
+import md5 from 'md5';
 const imagekit = new ImageKit({
     publicKey: 'public_LHy/8l68lZCtxUj9yIEj1Ibz8yE=',
     privateKey: import.meta.env.VITE_IMAGEKIT_MASTER!,
@@ -108,7 +110,9 @@ export const UploadPanel = (props: {
 
     /** 输入文件事件 */
     const changeFile = async (files: FileList) => {
-        const file = files[0];
+        const buffer = await files[0].arrayBuffer();
+        const id = md5(new Uint8Array(buffer));
+        const file = new File([files[0]], id);
         const data = await readFileInfo(file).catch((error) => {
             console.warn(error);
             return [];
@@ -132,6 +136,7 @@ export const UploadPanel = (props: {
         const size = await getImageSize(file);
         set('size', size);
         console.log(data);
+
         uploadPicture(file);
     };
     return (

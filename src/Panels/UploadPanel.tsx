@@ -64,13 +64,20 @@ const useSharedUpload = (uploading: Atom<boolean>, username: Atom<string>) => {
                 overwriteFile: false,
             })
             .then((res) => {
+                // TODO 解决上传重复文件报错问题
                 uploading(false);
+
                 set('image', res.url);
                 Notice.success(t('uploadPanel.hint.uploadPicDone'));
             })
             .catch((err) => {
                 console.warn(err);
-                Notice.error(t('uploadPanel.hint.uploadError'));
+                if (err.message.startsWith('A file with the same name already')) {
+                    set('image', `https://ik.imagekit.io/dfidfiskkxn/save/${file.name}`);
+                } else {
+                    Notice.error(t('uploadPanel.hint.uploadError'));
+                }
+                uploading(false);
             });
     };
     return { upload, uploadPicture };

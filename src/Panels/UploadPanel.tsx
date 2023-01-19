@@ -60,8 +60,8 @@ const useSharedUpload = (uploading: Atom<boolean>, username: Atom<string>) => {
                 file: file as any,
                 fileName: file.name,
                 folder: 'save',
-                useUniqueFileName: true,
-                overwriteFile: false, // 添加这个防止覆盖图片
+                useUniqueFileName: false,
+                overwriteFile: false,
             })
             .then((res) => {
                 uploading(false);

@@ -22,10 +22,13 @@ const init = {
 const [store, set] = createStore({ ...init });
 import ImageKit from 'imagekit';
 const imagekit = new ImageKit({
-    publicKey: 'public_HuJxbWdbzJt+kG28eWEjHZfiJws=',
+    publicKey: 'public_LHy/8l68lZCtxUj9yIEj1Ibz8yE=',
     privateKey: import.meta.env.VITE_IMAGEKIT_MASTER!,
     urlEndpoint: 'https://ik.imagekit.io/dfidfiskkxn/',
+    /** @ts-ignore */
+    authenticationEndpoint: './.netlify/functions/upload_auth',
 });
+
 const useSharedUpload = (uploading: Atom<boolean>, username: Atom<string>) => {
     const { t } = useTranslation();
 
@@ -62,7 +65,6 @@ const useSharedUpload = (uploading: Atom<boolean>, username: Atom<string>) => {
             })
             .then((res) => {
                 uploading(false);
-                console.log(res);
                 set('image', res.url);
                 Notice.success(t('uploadPanel.hint.uploadPicDone'));
             })

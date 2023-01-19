@@ -4,7 +4,7 @@ export const getImagePath = (s: string) => {
     return s.replace('/t/', '/s/').replace('.jpg', '.png');
 };
 const imagekit = new ImageKit({
-    publicKey: 'public_HuJxbWdbzJt+kG28eWEjHZfiJws=',
+    publicKey: 'public_LHy/8l68lZCtxUj9yIEj1Ibz8yE=',
     privateKey: process.env.VITE_IMAGEKIT_MASTER!,
     urlEndpoint: 'https://ik.imagekit.io/dfidfiskkxn/',
 });

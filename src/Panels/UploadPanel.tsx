@@ -20,9 +20,12 @@ const init = {
     size: '',
 } as StoreData;
 const [store, set] = createStore({ ...init });
-const backupRemoteImage = async (image: string) => {
-    return fetch('./.netlify/functions/sync_image?image=' + image).then((res) => res.json());
-};
+import ImageKit from 'imagekit';
+const imagekit = new ImageKit({
+    publicKey: 'public_HuJxbWdbzJt+kG28eWEjHZfiJws=',
+    privateKey: import.meta.env.VITE_IMAGEKIT_MASTER!,
+    urlEndpoint: 'https://ik.imagekit.io/dfidfiskkxn/',
+});
 const useSharedUpload = (uploading: Atom<boolean>, username: Atom<string>) => {
     const { t } = useTranslation();
 
@@ -37,7 +40,7 @@ const useSharedUpload = (uploading: Atom<boolean>, username: Atom<string>) => {
     const upload = useSingleAsync(() => {
         if (check()) {
             Notice.success(t('uploadPanel.hint.uploading'));
-            backupRemoteImage(store.image);
+            // backupRemoteImage(store.image);
             return API.uploadData({ ...store, username: username() }).then(() => {
                 set((i) => ({ ...i, image: '', description: '', seed: '' }));
                 Notice.success(t('uploadPanel.hint.uploadDone'));
@@ -49,17 +52,18 @@ const useSharedUpload = (uploading: Atom<boolean>, username: Atom<string>) => {
     const uploadPicture = async (file: File) => {
         Notice.success(t('uploadPanel.hint.uploadingImage'));
         uploading(true);
-        const fd = new FormData();
-        fd.append('key', '0000239c0acbbcb3bdedc2b1c6983537');
-        fd.append('media', file);
-        return fetch('https://thumbsnap.com/api/upload', {
-            method: 'post',
-            body: fd,
-        })
-            .then((res) => res.json())
+        return imagekit
+            .upload({
+                file: file as any,
+                fileName: file.name,
+                folder: 'save',
+                useUniqueFileName: true,
+                overwriteFile: false, // 添加这个防止覆盖图片
+            })
             .then((res) => {
                 uploading(false);
-                set('image', res.data.thumb);
+                console.log(res);
+                set('image', res.url);
                 Notice.success(t('uploadPanel.hint.uploadPicDone'));
             })
             .catch((err) => {

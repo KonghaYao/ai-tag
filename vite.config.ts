@@ -48,6 +48,8 @@ export default defineConfig(({ mode }) => {
                     'http://localhost:9999/.netlify/functions/notion_create',
                 '/.netlify/functions/sync_image':
                     'http://localhost:9999/.netlify/functions/sync_image',
+                '/.netlify/functions/upload_image':
+                    'http://localhost:9999/.netlify/functions/upload_image',
             },
         },
         resolve: {

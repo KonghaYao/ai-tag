@@ -5,7 +5,7 @@ export const getImagePath = (s: string) => {
 };
 const imagekit = new ImageKit({
     publicKey: 'public_HuJxbWdbzJt+kG28eWEjHZfiJws=',
-    privateKey: process.env.IMAGEKIT_MASTER!,
+    privateKey: process.env.VITE_IMAGEKIT_MASTER!,
     urlEndpoint: 'https://ik.imagekit.io/dfidfiskkxn/',
 });
 export const handler: Handler = async (event, content) => {

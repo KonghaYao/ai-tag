@@ -37,7 +37,7 @@
     },
     "dependencies": {
         "@cn-ui/animate": "^1.0.5",
-        "@cn-ui/core": "^1.5.2",
+        "@cn-ui/core": "^1.7.0",
         "@cn-ui/headless": "^1.9.3",
         "@cn-ui/markdown": "^1.0.0",
         "@cn-ui/sortable": "^2.1.3",

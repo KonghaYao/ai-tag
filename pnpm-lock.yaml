@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@cn-ui/animate': ^1.0.5
-  '@cn-ui/core': ^1.5.2
+  '@cn-ui/core': ^1.7.0
   '@cn-ui/headless': ^1.9.3
   '@cn-ui/markdown': ^1.0.0
   '@cn-ui/sortable': ^2.1.3
@@ -54,7 +54,7 @@ specifiers:
 
 dependencies:
   '@cn-ui/animate': 1.0.5_pbaio3yt5vlzattohyk63b4rdm
-  '@cn-ui/core': 1.5.2_6pwvfuh5ve4byhlplml4vsg4vi
+  '@cn-ui/core': 1.7.0_6pwvfuh5ve4byhlplml4vsg4vi
   '@cn-ui/headless': 1.9.3_solid-js@1.6.6
   '@cn-ui/markdown': 1.0.0_j4gpw5x3dsqostmkud2euib4xu
   '@cn-ui/sortable': 2.1.3_j4gpw5x3dsqostmkud2euib4xu
@@ -449,8 +449,8 @@ packages:
       solid-js: 1.6.6
     dev: false
 
-  /@cn-ui/core/1.5.2_6pwvfuh5ve4byhlplml4vsg4vi:
-    resolution: {integrity: sha512-L8RZQrOy78MjN0P6PE0p0gHCw6hHdrZ8Xqj9NFBT1eyKH8rRx+IjRDfpzdtlumSVK0sfUIu6+D1hs7/GPeas3Q==}
+  /@cn-ui/core/1.7.0_6pwvfuh5ve4byhlplml4vsg4vi:
+    resolution: {integrity: sha512-+Jev6a6sI3HFo14rvX54nlsZYrh+onImyWVxPGHeg4Bolx8Ham1u2Colmx0Bt/3KUdMy/NHXtSe5htL4v6cq3g==}
     peerDependencies:
       '@fontsource/material-icons-rounded': ^4.5.4
       '@solidjs/router': ^0.5.0
@@ -464,18 +464,10 @@ packages:
       '@vant/area-data': 1.3.2
       consola: 2.15.3
       copy-to-clipboard: 3.3.3
-      highlight.js: 11.7.0
       lodash-es: 4.17.21
       mitt: 3.0.0
-      rehype-stringify: 9.0.3
-      remark-parse: 10.0.1
-      remark-rehype: 10.1.0
       solid-js: 1.6.6
       tailwindcss: 3.2.4_postcss@8.4.20
-      tippy.js: 6.3.7
-      unified: 10.1.2
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /@cn-ui/headless/1.9.3_solid-js@1.6.6:
@@ -683,10 +675,6 @@ packages:
     transitivePeerDependencies:
       - encoding
     dev: true
-
-  /@popperjs/core/2.11.6:
-    resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
-    dev: false
 
   /@solidjs/router/0.5.1_solid-js@1.6.6:
     resolution: {integrity: sha512-igyrwUqm/9T26Lb6l7oXwpc4lLUVqbhbN92wOL3NgLoLVmkQlUNTZciuAe+Su8XeJXlrWjl6oxDJDLt+6pws/g==}
@@ -2800,12 +2788,6 @@ packages:
     resolution: {integrity: sha512-bSGlgwLBYf7PnUsQ6WOc6SJ3pGOcd+d8AA6EUnLDDM0kWEstC1JIlSZA3UNliDXhd9ABoS7hiRBDCu+XP/sf1Q==}
     engines: {node: '>=14.0.0'}
     dev: true
-
-  /tippy.js/6.3.7:
-    resolution: {integrity: sha512-E1d3oP2emgJ9dRQZdf3Kkn0qJgI6ZLpyS5z6ZkY1DF3kaQaBsGZsndEpHwx+eC+tYM41HaSNvNtLx8tU57FzTQ==}
-    dependencies:
-      '@popperjs/core': 2.11.6
-    dev: false
 
   /to-fast-properties/2.0.0:
     resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}

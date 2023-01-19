@@ -1,5 +1,4 @@
 import { Component, mergeProps } from 'solid-js';
-import AV from 'leancloud-storage';
 import { InputArea } from './InputArea';
 import { CommentList } from './CommentList';
 import { TalkConfig, TalkContext } from './TalkContext';
@@ -12,11 +11,7 @@ export const TalkDefault: Component<TalkConfig> = (props) => {
         ...props,
     } as Required<TalkConfig>;
     const atSomeone = atom(null);
-    AV.init({
-        appId: props.appId,
-        appKey: props.appKey,
-        serverURLs: props.serverURLs,
-    });
+
     return (
         <TalkContext.Provider value={{ ...input, atSomeone, refreshPage: atom(() => {}) }}>
             <div class="flex flex-col border-slate-500">

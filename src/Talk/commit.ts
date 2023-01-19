@@ -1,4 +1,4 @@
-import AV from 'leancloud-storage';
+import { AV } from '../api/cloud';
 import { CommentObject } from './CommentList';
 export const useCommitComment = () => {
     // setting access

@@ -1,10 +1,11 @@
 import { atom, resource } from '@cn-ui/use';
 import { Component, For, Show, createEffect, useContext } from 'solid-js';
-import AV from 'leancloud-storage';
+import { AV } from '../api/cloud';
 import { usePagination } from '@cn-ui/headless';
 import { timeAgo } from './timeage';
 import { TalkMarkdown } from './TalkMarkdown';
 import { TalkContext } from './TalkContext';
+import { Queriable } from 'leancloud-storage';
 
 export const createSubQuery = async (DatabaseName: string, idsArr: string[]) => {
     let ids = JSON.stringify(idsArr).replace(/(\[|\])/g, '');
@@ -112,7 +113,7 @@ export interface CommentData {
     url: string;
     QQAvatar: string;
 }
-export type CommentObject = { attributes: CommentData } & AV.Queriable;
+export type CommentObject = { attributes: CommentData } & Queriable;
 
 export const CommentItem: Component<{
     data: CommentObject;

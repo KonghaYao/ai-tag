@@ -15,7 +15,7 @@ export const FontSupport: Component<{ show?: boolean | Atom<boolean>; delay?: nu
             <Show when={show()}>
                 <link
                     rel="stylesheet"
-                    href="https://cdn.jsdelivr.net/gh/KonghaYao/chinese-free-web-font-storage/build/江西拙楷2.0/result.css"
+                    href="https://unpkg.com/@chinese-fonts/jxzk@1.1.0/dist/江西拙楷/result.css"
                 ></link>
                 <link
                     rel="stylesheet"

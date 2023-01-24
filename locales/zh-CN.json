@@ -148,7 +148,7 @@
     "suitableForTeen": "是否适合未成年",
     "hint1": " 注意上传正确的图片和 tag 否则会被清理。",
     "hint2": "为了持续服务，请不要上传 “你懂的” 的类型。",
-    "autoDetect": "自动识别图片=>",
+    "autoDetect": "自动识别图片信息=>",
     "prompt": "魔咒文本",
     "DetectResult": "检测结果：",
     "seed": "种子号码",

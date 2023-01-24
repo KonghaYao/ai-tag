@@ -7,10 +7,11 @@ import { TagsToString, stringToTags } from './TagsConvertor';
 import { proxy } from 'comlink';
 import { CSVToJSON } from '../utils/CSVToJSON';
 import { initWorker } from '../worker';
-import { addUnknownReporter, addUnknowns } from '../utils/UnKnowReporter';
 import { useHistory } from './useTagHistory';
 import { Message } from '@cn-ui/core';
 const { searchWorker, sharedWorker } = initWorker();
+
+const cdn = 'https://cdn.jsdelivr.net/npm';
 
 /** 用于初始化线程和 TAG 数据加载 */
 export const useTagDataLoader = (store: IStoreData) => {
@@ -22,7 +23,7 @@ export const useTagDataLoader = (store: IStoreData) => {
         return searchWorker.rebuild({ r18, numberLimit });
     };
     const lists = resource<IData[]>(async () => {
-        return fetch(`https://unpkg.com/tag-collection@${tag_version()}/data/split/small.csv`)
+        return fetch(cdn + `/tag-collection@${tag_version()}/data/split/small.csv`)
             .then((res) => res.blob())
             .then((res) => CSVToJSON<IData>(res))
             .then(async (res) => {
@@ -45,9 +46,7 @@ export const useTagDataLoader = (store: IStoreData) => {
             [...Array(5).keys()]
                 .reduce((col, i) => {
                     return col.then(() =>
-                        fetch(
-                            `https://unpkg.com/tag-collection@${tag_version()}/data/split/bigger_${i}.csv`
-                        )
+                        fetch(cdn + `/tag-collection@${tag_version()}/data/split/bigger_${i}.csv`)
                             .then((res) => res.blob())
                             .then((res) => CSVToJSON<IData>(res))
                             .then(async (res) => {

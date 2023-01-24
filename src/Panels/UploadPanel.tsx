@@ -47,7 +47,7 @@ const useSharedUpload = (uploading: Atom<boolean>, username: Atom<string>) => {
             Notice.success(t('uploadPanel.hint.uploading'));
             // backupRemoteImage(store.image);
             return API.uploadData({ ...store, username: username() }).then(() => {
-                set((i) => ({ ...i, image: '', description: '', seed: '' }));
+                set((i) => ({ ...i, image: '', description: '', seed: '', tags: '' }));
                 Notice.success(t('uploadPanel.hint.uploadDone'));
             });
         } else {
@@ -160,6 +160,7 @@ export const UploadPanel = (props: {
                     上传的图片将会在 画廊 进行展示，感谢您的分享！
                 </div>
                 <div class=" flex items-center justify-between">
+                    <sup class="text-xl text-red-600">*</sup>
                     <label class="flex-none ">{t('uploadPanel.YourName')}</label>
                     <input
                         placeholder={t('uploadPanel.YourName')}
@@ -173,9 +174,12 @@ export const UploadPanel = (props: {
                     />
                 </div>
                 <div class=" flex items-center justify-between">
-                    <label class="flex-none ">{t('uploadPanel.description')}</label>
+                    <label class="flex-none ">
+                        <sup class="text-xl text-red-600">*</sup>
+                        {t('uploadPanel.description')}
+                    </label>
                     <input
-                        placeholder="描述这张图片吧"
+                        placeholder="这张图片的描述"
                         class="input ml-1 w-full"
                         type="text"
                         value={store.description}
@@ -202,7 +206,9 @@ export const UploadPanel = (props: {
                 </div>
                 <div class="rounded-md bg-slate-700 p-2 text-xs">{t('uploadPanel.hint2')}</div>
                 <div class=" flex items-center justify-between ">
-                    <div class="flex-none">{t('uploadPanel.autoDetect')}</div>
+                    <div class="flex-none">
+                        <sup class="text-xl text-red-600">*</sup> {t('uploadPanel.autoDetect')}
+                    </div>
                     <UploadButton accept="image/*" onUpload={changeFile}>
                         {t('upload')}
                     </UploadButton>
@@ -222,9 +228,10 @@ export const UploadPanel = (props: {
                     />
                 )}
                 <div class=" flex items-center justify-between">
+                    <sup class="text-xl text-red-600">*</sup>
                     <label class="flex-none ">{t('uploadPanel.prompt')}</label>
                     <textarea
-                        placeholder="曲调内容"
+                        placeholder="请填入您的 Tags, 一般为英文字符串"
                         class="input ml-1"
                         value={store.tags}
                         oninput={(e) => {
@@ -251,7 +258,7 @@ export const UploadPanel = (props: {
                 </div>
 
                 <a
-                    class="w-full px-2 text-sky-600"
+                    class="w-full text-sky-600"
                     target="_blank"
                     href="https://creativecommons.org/share-your-work/public-domain/cc0/"
                 >

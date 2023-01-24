@@ -10,6 +10,7 @@ import { SingleMagic, useIndexedDB } from './use/useIndexedDB';
 import '@cn-ui/animate/src/scale.css';
 import { MagicControl } from './MagicList/MagicControl';
 import { ImageCard } from './MagicList/ImageCard';
+import { AC } from '../src/components/AC';
 
 export const MagicList = () => {
     const { IndexList, store, DeleteMagic, ChangeMagic, AddDemoImage, DeleteImage } =
@@ -134,36 +135,33 @@ export const MagicList = () => {
                                                     );
                                             }}
                                         >
-                                            <span class="font-icon">edit</span>
                                             <span>{data().title}</span>
+
+                                            <span class="font-icon">edit</span>
                                         </div>
 
                                         <div class="flex ">{DeleteButton}</div>
                                     </header>
                                     <nav class="my-1 w-full bg-gray-700" style="height:1px"></nav>
-                                    <ExpendText open={null}>
-                                        <span class="text-gray-500">
-                                            <span
-                                                class="font-icon btn whitespace-nowrap bg-green-600 text-white"
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    const cb = prompt(
-                                                        '请修改描述',
-                                                        data().description
-                                                    );
-                                                    if (cb)
-                                                        ChangeMagic({
-                                                            ...data(),
-                                                            description: cb,
-                                                        }).then(data.refetch);
-                                                }}
-                                            >
-                                                edit
-                                            </span>
 
-                                            {data().description || '没有描述信息哦'}
+                                    <span class="cursor-pointer  text-gray-500">
+                                        {data().description || '没有描述信息哦'}
+
+                                        <span
+                                            class="font-icon float-right whitespace-nowrap "
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                const cb = prompt('请修改描述', data().description);
+                                                if (cb)
+                                                    ChangeMagic({
+                                                        ...data(),
+                                                        description: cb,
+                                                    }).then(data.refetch);
+                                            }}
+                                        >
+                                            edit
                                         </span>
-                                    </ExpendText>
+                                    </span>
                                     <MagicControl data={data}></MagicControl>
 
                                     <Show when={!hidImage()}>

@@ -163,7 +163,7 @@ export const UserSelected = () => {
                 </SortableList>
 
                 {usersCollection().length === 0 && (
-                    <span class="h-16 whitespace-pre-wrap text-center font-light text-sky-500">
+                    <span class=" whitespace-pre-wrap text-center font-light text-sky-500">
                         {t('userSelect.hint.add')}
                     </span>
                 )}

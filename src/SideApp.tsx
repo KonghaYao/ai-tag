@@ -1,6 +1,5 @@
 import { createMemo, useContext } from 'solid-js';
 import { SettingPanel } from './Panels/SettingPanel';
-import { PublicPanel } from './Panels/PublicPanel';
 import { UploadPanel } from './Panels/UploadPanel';
 import { Data } from './App';
 import { HomePanel } from './Panels/HomePanel';
@@ -43,7 +42,7 @@ export const SideApp = () => {
                 <div class="relative flex-1">
                     <Animate group anime="jumpFromBottom" appear>
                         <SettingPanel></SettingPanel>
-                        <PublicPanel></PublicPanel>
+
                         <UploadPanel></UploadPanel>
                         <HomePanel></HomePanel>
                         <Webview></Webview>

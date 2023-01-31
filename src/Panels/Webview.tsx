@@ -37,12 +37,6 @@ export const Webview = () => {
     return (
         <Panel id="webview">
             <Show when={isPanelVisible('webview')}>
-                {/* <div class="flex">
-                    <a href={webviewURL()} target="_blank">
-                        <div class="btn m-2"> {t('WebView.newPage')}</div>
-                    </a>
-                    <div></div>
-                </div> */}
                 <div class="relative h-full w-full">
                     {loading() && <div> {t('upload')}</div>}
                     <ErrorBoundary
@@ -57,7 +51,7 @@ export const Webview = () => {
                     >
                         <iframe
                             ref={container}
-                            sandbox="allow-scripts allow-popups allow-same-origin allow-modals"
+                            sandbox="allow-scripts  allow-modals allow-same-origin"
                             class="absolute top-0 left-0 h-full w-full"
                             src={webviewURL()}
                             onload={(e) => {
@@ -66,6 +60,14 @@ export const Webview = () => {
                             }}
                         ></iframe>
                     </ErrorBoundary>
+                    <div
+                        class="btn fixed bottom-4 right-4"
+                        onclick={() => {
+                            window.open(webviewURL(), '_blank');
+                        }}
+                    >
+                        原站
+                    </div>
                 </div>
             </Show>
         </Panel>

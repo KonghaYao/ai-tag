@@ -11,13 +11,24 @@ export const SearchBar = () => {
     const { usersCollection, lists, searchText, iconBtn } = useContext(Data);
     const triggerSearch = debounce(searchText, 200) as Setter<string>;
     const { t } = useTranslation();
+    const addToList = () => {
+        const name = searchText();
+        usersCollection((i) => [...i, ...stringToTags(name, lists())]);
+        searchText('');
+    };
     return (
         <nav class="flex w-full items-center gap-2">
             <input
                 class="input my-2 flex-1"
+                type="search"
                 value={searchText()}
                 placeholder={t('searchBox.hint.searchPlaceholder')}
-                oninput={(e: any) => triggerSearch(e.target.value)}
+                oninput={(e: any) => {
+                    triggerSearch(e.target.value);
+                }}
+                onkeydown={(e) => {
+                    if (e.code === 'Enter' && searchText()) addToList();
+                }}
             ></input>
 
             <div
@@ -47,13 +58,7 @@ export const SearchBar = () => {
                         {iconBtn() ? 'clear' : t('clear')}
                     </div>
                 </DropReceiver>
-                <span
-                    class="btn flex-none"
-                    onclick={() => {
-                        const name = searchText();
-                        usersCollection((i) => [...i, ...stringToTags(name, lists())]);
-                    }}
-                >
+                <span class="btn flex-none" onclick={addToList}>
                     {iconBtn() ? 'create' : t('searchBox.create')}
                 </span>
             </div>

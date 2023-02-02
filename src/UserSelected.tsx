@@ -50,7 +50,6 @@ export const UserSelected = () => {
     const injectTags = (old: IData[], input: IData[], isCombine = false) => {
         if (isCombine) {
             const list = CombineMagic(input, old);
-            console.log(old, list, input);
             usersCollection(list);
             Message.success(t('publicPanel.hint.CombineSuccess'));
         } else {

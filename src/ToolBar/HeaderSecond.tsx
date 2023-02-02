@@ -4,7 +4,8 @@ import { Data } from '../App';
 import { CopyBtn } from './sub/CopyBtn';
 
 export function HeaderSecond() {
-    const { emphasizeAddMode, emphasizeSubMode, deleteMode, iconBtn } = useContext(Data);
+    const { emphasizeAddMode, emphasizeSubMode, deleteMode, iconBtn, usersCollection } =
+        useContext(Data);
     const { t } = useTranslation();
 
     return (
@@ -63,6 +64,9 @@ export function HeaderSecond() {
             </span>
 
             <CopyBtn></CopyBtn>
+            <span class="btn cursor-default" title="Tag 个数">
+                {usersCollection().length}
+            </span>
         </header>
     );
 }

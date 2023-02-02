@@ -7,20 +7,20 @@ import { useSearchParams } from '@solidjs/router';
 export const useGalleryInfo = () => {
     const { replaceImages, getViewer } = useViewer();
     const [searchParams] = useSearchParams();
-    const page = atom(0);
+    const currentIndex = atom(0);
     const end = atom(false);
     const searchText = atom('');
-    const showingData = atom<StoreData[][]>([]);
+    const dataSlice = atom<StoreData[][]>([]);
     const loadMore = async (LoadingPage: number, clear = false) => {
         let filters = searchText() ? notionSearch(searchText(), ['username', 'tags']) : [];
         return API.getData(LoadingPage, !!searchParams.r18, filters, clear).then((res) => {
             if (res.length) {
-                showingData((i) => {
+                dataSlice((i) => {
                     i[LoadingPage] = res;
                     return [...i];
                 });
             } else if (clear) {
-                showingData([]);
+                dataSlice([]);
             }
             end(API.end);
         });
@@ -28,16 +28,16 @@ export const useGalleryInfo = () => {
 
     createEffect(on(searchText, (text) => text === '' && loadMore(0, true)));
     return {
-        page,
+        page: currentIndex,
         end,
         changePage: useSingleAsync(async (number: number) => {
-            return loadMore(number).then(() => page(number));
+            return loadMore(number).then(() => currentIndex(number));
         }),
         clearAndResearch: useSingleAsync(async () => {
             return loadMore(0, true);
         }),
         searchText,
-        showingData,
+        showingData: dataSlice,
         getViewer,
         replaceImages,
     };

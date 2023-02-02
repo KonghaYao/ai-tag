@@ -29,7 +29,7 @@ export const useIframeExpose = () => {
             },
             /** 载入 prompt 字符串，但是以合并的方式 */
             combinePrompt(promptString: string) {
-                CombineMagic(stringToTags(promptString), usersCollection);
+                usersCollection(CombineMagic(stringToTags(promptString), usersCollection()));
                 return true;
             },
             /** 获取 prompt 字符串 */

@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@cn-ui/animate': ^1.0.5
   '@cn-ui/core': ^1.7.0
-  '@cn-ui/headless': ^1.11.0
+  '@cn-ui/headless': ^1.11.2
   '@cn-ui/markdown': ^1.0.0
   '@cn-ui/sortable': ^2.1.3
   '@cn-ui/transition': ^1.7.4
@@ -56,7 +56,7 @@ specifiers:
 dependencies:
   '@cn-ui/animate': 1.0.5_pbaio3yt5vlzattohyk63b4rdm
   '@cn-ui/core': 1.7.0_6pwvfuh5ve4byhlplml4vsg4vi
-  '@cn-ui/headless': 1.11.0_solid-js@1.6.6
+  '@cn-ui/headless': 1.11.2_solid-js@1.6.6
   '@cn-ui/markdown': 1.0.0_j4gpw5x3dsqostmkud2euib4xu
   '@cn-ui/sortable': 2.1.3_j4gpw5x3dsqostmkud2euib4xu
   '@cn-ui/transition': 1.7.4_j4gpw5x3dsqostmkud2euib4xu
@@ -472,8 +472,8 @@ packages:
       tailwindcss: 3.2.4_postcss@8.4.20
     dev: false
 
-  /@cn-ui/headless/1.11.0_solid-js@1.6.6:
-    resolution: {integrity: sha512-+iOIxWLxXr3dBq9JWkGAfJagh6lSU/aGnZYuPB2TqOhz1ovqUnmSgkd5/2YtA4tKyKkEWKLgBTHGO50Ybu9SXA==}
+  /@cn-ui/headless/1.11.2_solid-js@1.6.6:
+    resolution: {integrity: sha512-f7D2Oc7IEIkYzDnYqVHEycTgYpvEiJqupaKY7+QpGwLvGgASX1upeCl2bEgzX+Ssb8Td8gzoAyVmzJTucL50tA==}
     peerDependencies:
       solid-js: ^1.5.7
     dependencies:

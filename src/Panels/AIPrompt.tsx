@@ -70,7 +70,8 @@ export const AIPrompt = () => {
                     class="btn"
                     onClick={() => {
                         const input = stringToTags(data().prompt, lists());
-                        CombineMagic(input, usersCollection);
+
+                        usersCollection(CombineMagic(input, usersCollection()));
                         Notice.success(t('publicPanel.hint.CombineSuccess'));
                     }}
                 >

@@ -1,5 +1,5 @@
 import { useContext } from 'solid-js';
-import { Data } from './App';
+import { Data, IData } from './App';
 import { TagButton } from './components/TagButton';
 import { reflect } from '@cn-ui/use';
 import isMobile from 'is-mobile';
@@ -47,6 +47,17 @@ export const UserSelected = () => {
     const { send } = useDragAndDropData();
     let breakCounter = 0;
 
+    const injectTags = (old: IData[], input: IData[], isCombine = false) => {
+        if (isCombine) {
+            const list = CombineMagic(input, old);
+            console.log(old, list, input);
+            usersCollection(list);
+            Message.success(t('publicPanel.hint.CombineSuccess'));
+        } else {
+            usersCollection(input);
+            Notice.success(t('publicPanel.hint.CopySuccess'));
+        }
+    };
     return (
         <DropReceiver
             detect={{
@@ -66,25 +77,25 @@ export const UserSelected = () => {
                 ADD_BEFORE(info) {
                     usersCollection((i) => [...i, ...stringToTags(info, lists())]);
                 },
-                INPUT_MAGIC(tags: string, transfer, e: DragEvent) {
-                    TagsHistory.addToHistory(TagsToString(usersCollection()));
+                INPUT_MAGIC(tags: string, _, e: DragEvent) {
+                    const old = usersCollection();
+                    TagsHistory.addToHistory(TagsToString(old));
                     let isCombine = e.ctrlKey;
-                    // Combine 和 覆盖直接换为一个
-                    if (isCombine) {
-                        const input = stringToTags(tags, lists());
-                        CombineMagic(input, usersCollection);
-                        Message.success(t('publicPanel.hint.CombineSuccess'));
-                    } else {
-                        usersCollection(stringToTags(tags, lists()));
-                        Notice.success(t('publicPanel.hint.CopySuccess'));
-                        return false;
-                    }
+
+                    const input = stringToTags(tags, lists());
+                    injectTags(old, input, isCombine);
+                    return false;
                 },
-                extra(_, dataTransfer: DataTransfer) {
+                extra(_, dataTransfer: DataTransfer, e: DragEvent) {
+                    // TODO 修复 Ctrl 问题
+
                     const text = dataTransfer.getData('text');
+                    console.log('触发文字传递');
                     if (text) {
-                        TagsHistory.addToHistory(TagsToString(usersCollection()));
-                        usersCollection(stringToTags(text, lists()));
+                        const old = usersCollection();
+                        TagsHistory.addToHistory(TagsToString(old));
+                        const input = stringToTags(text, lists());
+                        injectTags(old, input, e.ctrlKey);
                     }
                 },
             }}

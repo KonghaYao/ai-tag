@@ -13,7 +13,7 @@ export const useHistory = <T>() => {
             if (cursor <= 0) {
                 cursor = 0;
             }
-            console.log(cursor);
+            // console.log(cursor);
             return info[cursor];
         },
         go(step = 1) {
@@ -24,7 +24,7 @@ export const useHistory = <T>() => {
             if (cursor >= info.length - 1) {
                 cursor = info.length - 1;
             }
-            console.log(cursor);
+            // console.log(cursor);
             return info[cursor];
         },
         addToHistory(item: T, moveForward = true) {
@@ -33,7 +33,7 @@ export const useHistory = <T>() => {
             }
             info.length = cursor + 1;
             info.push(item);
-            console.log(info);
+            // console.log(info);
             moveForward && (cursor = info.length);
         },
     };

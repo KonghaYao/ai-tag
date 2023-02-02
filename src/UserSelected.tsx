@@ -53,28 +53,32 @@ export const UserSelected = () => {
                 ADD_BEFORE() {
                     Message.success(t('userSelect.message.addTail'));
                 },
-                COMBINE_MAGIC() {
-                    Message.success(t('userSelect.message.combine'));
-                },
-                INPUT_MAGIC() {
-                    Message.success(t('userSelect.message.input'));
+                INPUT_MAGIC(_, e: DragEvent) {
+                    let isCombine = e.ctrlKey;
+                    if (isCombine) {
+                        Message.success(t('userSelect.message.combine'));
+                    } else {
+                        Message.success(t('userSelect.message.input'));
+                    }
                 },
             }}
             receive={{
                 ADD_BEFORE(info) {
                     usersCollection((i) => [...i, ...stringToTags(info, lists())]);
                 },
-                COMBINE_MAGIC(tags: string) {
+                INPUT_MAGIC(tags: string, transfer, e: DragEvent) {
                     TagsHistory.addToHistory(TagsToString(usersCollection()));
-                    const input = stringToTags(tags, lists());
-                    CombineMagic(input, usersCollection);
-                    Message.success(t('publicPanel.hint.CombineSuccess'));
-                },
-                INPUT_MAGIC(tags: string) {
-                    TagsHistory.addToHistory(TagsToString(usersCollection()));
-                    usersCollection(stringToTags(tags, lists()));
-                    Notice.success(t('publicPanel.hint.CopySuccess'));
-                    return false;
+                    let isCombine = e.ctrlKey;
+                    // Combine 和 覆盖直接换为一个
+                    if (isCombine) {
+                        const input = stringToTags(tags, lists());
+                        CombineMagic(input, usersCollection);
+                        Message.success(t('publicPanel.hint.CombineSuccess'));
+                    } else {
+                        usersCollection(stringToTags(tags, lists()));
+                        Notice.success(t('publicPanel.hint.CopySuccess'));
+                        return false;
+                    }
                 },
                 extra(_, dataTransfer: DataTransfer) {
                     const text = dataTransfer.getData('text');

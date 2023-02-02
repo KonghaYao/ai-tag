@@ -6,9 +6,16 @@ export const FontSupport: Component<{ show?: boolean | Atom<boolean>; delay?: nu
 ) => {
     const show = atomization(props.show ?? true);
     if (typeof props.delay === 'number') {
-        setTimeout(() => {
-            show(true);
-        }, props.delay);
+        requestIdleCallback(
+            (deadline) => {
+                if (deadline.timeRemaining() > 0) {
+                    show(true);
+                }
+            },
+            {
+                timeout: 500,
+            }
+        );
     }
     return (
         <>

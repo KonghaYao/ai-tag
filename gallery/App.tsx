@@ -31,7 +31,7 @@ export const App = () => {
 
     const ShowingPicture = atom<null | StoreData>(null);
     const ShowingPictureURL = atom<null | string>(null);
-
+    const showSearch = atom(false);
     return (
         <GalleryGlobal.Provider
             value={{
@@ -55,11 +55,17 @@ export const App = () => {
                             <span class="flex-none">魔导绪论图库</span>
                             <nav class="flex gap-2">
                                 <FloatPanelWithAnimate
+                                    disabled={showSearch}
                                     animateProps={{
                                         extraClass: 'animate-duration-300',
                                         anime: 'scale',
                                     }}
-                                    popup={() => <SearchBar></SearchBar>}
+                                    popup={
+                                        <SearchBar
+                                            onfocus={() => showSearch(true)}
+                                            onblur={() => showSearch(false)}
+                                        ></SearchBar>
+                                    }
                                     position="br"
                                 >
                                     <div class="font-icon cursor-pointer px-2">search</div>

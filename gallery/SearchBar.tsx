@@ -1,10 +1,13 @@
-import { createEffect, onMount, useContext } from 'solid-js';
+import { Component, createEffect, onMount, useContext } from 'solid-js';
 import { debounce } from 'lodash-es';
 import { Notice } from '../src/utils/notice';
 import { useSearchParams } from '@solidjs/router';
 import { GalleryGlobal } from './App';
 
-export const SearchBar = () => {
+export const SearchBar: Component<{
+    onfocus?: () => void;
+    onblur?: () => void;
+}> = (props) => {
     const [_, setSearchParams] = useSearchParams();
     const { clearAndResearch, searchText, username } = useContext(GalleryGlobal);
     let searchInputEl: HTMLInputElement;
@@ -36,11 +39,13 @@ export const SearchBar = () => {
                 value={searchText()}
                 name=""
                 id=""
+                onfocus={() => props?.onfocus()}
                 oninput={() => {
                     searchText(searchInputEl.value);
                 }}
                 onblur={() => {
                     clearAndResearch();
+                    props?.onblur();
                 }}
             />
 

@@ -5,9 +5,8 @@ import { Data } from '../../App';
 import { DragPoster } from '@cn-ui/headless';
 import { TagsToString } from '../../use/TagsConvertor';
 import { Notice } from '../../utils/notice';
-import { FloatPanel, FloatPanelWithAnimate } from '@cn-ui/core';
-import { Atom, atom } from '@cn-ui/use';
-import { Animate } from '@cn-ui/animate';
+import { FloatPanelWithAnimate } from '@cn-ui/core';
+import { Atom } from '@cn-ui/use';
 
 export const CheckBox: Component<{
     value: Atom<boolean>;

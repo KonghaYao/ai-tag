@@ -19,12 +19,14 @@ export type PanelIds =
     | 'my-feedback'
     | 'prompt-extractor'
     | 'talk'
+    | 'artist'
     // gallery 的 panel
     | 'detail'
     | 'backup';
 import '@cn-ui/animate/src/jump.css';
 import { Animate } from '@cn-ui/animate';
 import { TalkPanel } from './Panels/TalkPanel';
+import { ArtistPanel } from './Panels/artist';
 export const SideApp = () => {
     const { sideAppMode, visibleId } = useContext(Data);
     const hasOpened = createMemo(() => visibleId() !== null);
@@ -52,6 +54,7 @@ export const SideApp = () => {
                         <AIPrompt></AIPrompt>
                         <PromptExtractorPanel></PromptExtractorPanel>
                         <TalkPanel></TalkPanel>
+                        <ArtistPanel></ArtistPanel>
                     </Animate>
                 </div>
             </main>

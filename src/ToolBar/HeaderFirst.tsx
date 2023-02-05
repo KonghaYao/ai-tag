@@ -40,9 +40,14 @@ export function HeaderFirst() {
                 {iconBtn() ? 'collections' : t('toolbar1.Gallery')}
             </span>
             {!isMobile() && (
-                <span class="btn bg-sky-700" onclick={() => visibleId('uploader')}>
-                    {iconBtn() ? 'upload' : t('toolbar1.Share')}
-                </span>
+                <>
+                    <span class="btn bg-sky-700" onclick={() => visibleId('uploader')}>
+                        {iconBtn() ? 'upload' : t('toolbar1.Share')}
+                    </span>
+                    <span class="btn bg-sky-700" onclick={() => visibleId('artist')}>
+                        {iconBtn() ? 'upload' : '艺术家列表'}
+                    </span>
+                </>
             )}
             <span
                 class="btn  bg-blue-700 font-bold  "

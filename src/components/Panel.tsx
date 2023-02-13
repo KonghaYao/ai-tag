@@ -28,7 +28,7 @@ export const Panel: Component<PanelEl> = (props) => {
             class="blur-background absolute top-0 left-0 z-40 flex h-screen w-full flex-col items-center  justify-center"
         >
             <div
-                class="absolute right-4 top-4 z-40 flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg bg-emerald-700 ring-2 ring-emerald-800"
+                class="btn absolute right-4 top-4 z-40 flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg"
                 onclick={() => {
                     visibleId(null);
                 }}

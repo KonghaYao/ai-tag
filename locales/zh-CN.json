@@ -59,7 +59,8 @@
       "addBefore": "松开，添加到这个之前",
       "addTail": "松开，添加元素在末尾",
       "combine": "检测到融合魔法！",
-      "input": "松手，复制魔咒"
+      "input": "松手，复制魔咒 | Ctrl | Alt",
+      "TailAdd": "将代码添加到末尾"
     }
   },
   "feedback": {

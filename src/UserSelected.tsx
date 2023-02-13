@@ -47,15 +47,31 @@ export const UserSelected = () => {
     const { send } = useDragAndDropData();
     let breakCounter = 0;
 
-    const injectTags = (old: IData[], input: IData[], isCombine = false) => {
+    /** 注入拖拽值得方式 */
+    const injectTags = (old: IData[], input: IData[], isCombine = false, isTailAdd = false) => {
         if (isCombine) {
             const list = CombineMagic(input, old);
             usersCollection(list);
             Message.success(t('publicPanel.hint.CombineSuccess'));
+        } else if (isTailAdd) {
+            usersCollection((i) => [...i, ...input]);
+            Notice.success(t('publicPanel.hint.CopySuccess'));
         } else {
             usersCollection(input);
             Notice.success(t('publicPanel.hint.CopySuccess'));
         }
+    };
+    const INPUT_MAGIC = (tags: string, _, e: DragEvent) => {
+        const old = usersCollection();
+        TagsHistory.addToHistory(TagsToString(old));
+        let isCombine = e.ctrlKey;
+        let isTailAdd = e.altKey;
+
+        const input = stringToTags(tags, lists());
+        injectTags(old, input, isCombine, isTailAdd);
+        /** @ts-ignore 往里面加一个 done 值，然后可以整个结构传递 */
+        e.done = true;
+        return false;
     };
     return (
         <DropReceiver
@@ -64,9 +80,10 @@ export const UserSelected = () => {
                     Message.success(t('userSelect.message.addTail'));
                 },
                 INPUT_MAGIC(_, e: DragEvent) {
-                    let isCombine = e.ctrlKey;
-                    if (isCombine) {
+                    if (e.ctrlKey) {
                         Message.success(t('userSelect.message.combine'));
+                    } else if (e.altKey) {
+                        Message.success(t('userSelect.message.TailAdd'));
                     } else {
                         Message.success(t('userSelect.message.input'));
                     }
@@ -76,18 +93,9 @@ export const UserSelected = () => {
                 ADD_BEFORE(info) {
                     usersCollection((i) => [...i, ...stringToTags(info, lists())]);
                 },
-                INPUT_MAGIC(tags: string, _, e: DragEvent) {
-                    const old = usersCollection();
-                    TagsHistory.addToHistory(TagsToString(old));
-                    let isCombine = e.ctrlKey;
-
-                    const input = stringToTags(tags, lists());
-                    injectTags(old, input, isCombine);
-                    return false;
-                },
+                INPUT_MAGIC,
                 extra(_, dataTransfer: DataTransfer, e: DragEvent) {
-                    // TODO 修复 Ctrl 问题
-
+                    if ((e as any).ignore) return;
                     const text = dataTransfer.getData('text');
                     console.log('触发文字传递');
                     if (text) {
@@ -148,6 +156,7 @@ export const UserSelected = () => {
                                             });
                                             Notice.success(t('success'));
                                         },
+                                        INPUT_MAGIC,
                                     }}
                                 >
                                     <TagButton

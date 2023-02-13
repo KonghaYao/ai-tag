@@ -5,7 +5,8 @@ import { useTranslation } from '../../../i18n';
 import { FloatPanelWithAnimate } from '@cn-ui/core';
 
 export const ToolBox = () => {
-    const { enMode, usersCollection, emphasizeSymbol, iconBtn, redo, undo } = useContext(Data);
+    const { enMode, usersCollection, emphasizeSymbol, iconBtn, redo, undo, visibleId } =
+        useContext(Data);
 
     const { t } = useTranslation();
     return (
@@ -47,6 +48,9 @@ export const ToolBox = () => {
                     {/* 清空所有 TAG  */}
                     <span class="btn  bg-fuchsia-700 text-sm " onClick={() => redo()}>
                         重做
+                    </span>
+                    <span class="btn bg-sky-700" onclick={() => visibleId('artist')}>
+                        {iconBtn() ? 'upload' : '艺术家列表'}
                     </span>
                 </div>
             )}

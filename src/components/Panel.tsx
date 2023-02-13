@@ -28,12 +28,12 @@ export const Panel: Component<PanelEl> = (props) => {
             class="blur-background absolute top-0 left-0 z-40 flex h-screen w-full flex-col items-center  justify-center"
         >
             <div
-                class="btn absolute right-4 top-4 z-40 flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg"
+                class="btn absolute right-4 top-4 z-40 flex h-6 w-6 cursor-pointer items-center justify-center rounded-lg font-sans text-2xl"
                 onclick={() => {
                     visibleId(null);
                 }}
             >
-                <Icon name="close" size={24}></Icon>
+                ×
             </div>
             <nav
                 ref={container}

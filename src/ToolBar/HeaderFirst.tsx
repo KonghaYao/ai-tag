@@ -44,8 +44,11 @@ export function HeaderFirst() {
                     <span class="btn bg-sky-700" onclick={() => visibleId('uploader')}>
                         {iconBtn() ? 'upload' : t('toolbar1.Share')}
                     </span>
-                    <span class="btn bg-sky-700" onclick={() => visibleId('artist')}>
-                        {iconBtn() ? 'upload' : '艺术家列表'}
+                    <span
+                        class="btn bg-sky-700"
+                        onclick={() => nav('https://cn.bing.com/translator/')}
+                    >
+                        {iconBtn() ? 'translation' : '翻译'}
                     </span>
                 </>
             )}

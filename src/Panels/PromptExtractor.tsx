@@ -31,42 +31,46 @@ export const PromptExtractorPanel = () => {
         <Panel id="prompt-extractor">
             <div class="py-2 text-center text-lg text-white">法术解析</div>
             <div class="flex  flex-1 flex-col gap-4 overflow-hidden p-2">
-                <div>支持对 SD、Novel AI、Paddle 的生成图片解析</div>
-                <DropReceiver
-                    detect={{
-                        extra(dataTransfer: DataTransfer) {
-                            if (dataTransfer.types.includes('Files'))
-                                Message.success('松开，法术解析图片');
-                        },
-                    }}
-                    receive={{
-                        extra(_, dataTransfer: DataTransfer) {
-                            const item = [...dataTransfer.files].find((i) => {
-                                return i.type.startsWith('image/');
-                            });
-                            item && file(() => item);
-                        },
-                    }}
-                >
-                    <div
-                        class="flex h-32 w-full  flex-none select-none items-center justify-center rounded-lg outline-dashed outline-4 outline-slate-400 hover:bg-slate-700"
-                        onclick={() => inputRef.click()}
-                    >
-                        <div class="font-icon h-fit w-fit" style={{ 'font-size': '120px' }}>
-                            add
-                        </div>
-                    </div>
-                </DropReceiver>
-                <input
-                    ref={inputRef}
-                    class="hidden"
-                    type="file"
-                    accept="image/*"
-                    oninput={(e) => {
-                        file(() => (e.target as HTMLInputElement).files[0]);
-                    }}
-                />
                 <nav class="flex flex-1 flex-col gap-2 overflow-scroll break-words p-1 text-white">
+                    <div>支持对 SD、Novel AI、Paddle 的生成图片解析</div>
+                    <DropReceiver
+                        detect={{
+                            extra(dataTransfer: DataTransfer) {
+                                if (dataTransfer.types.includes('Files'))
+                                    Message.success('松开，法术解析图片');
+                            },
+                        }}
+                        receive={{
+                            extra(_, dataTransfer: DataTransfer) {
+                                const item = [...dataTransfer.files].find((i) => {
+                                    return i.type.startsWith('image/');
+                                });
+                                item && file(() => item);
+                            },
+                        }}
+                    >
+                        <div
+                            class="flex  w-full  flex-none select-none items-center justify-center rounded-lg outline-dashed outline-4 outline-slate-400 hover:bg-slate-700"
+                            classList={{
+                                'h-32': !last(),
+                                'h-16': !!last(),
+                            }}
+                            onclick={() => inputRef.click()}
+                        >
+                            <div class="font-icon h-fit w-fit" style={{ 'font-size': '120px' }}>
+                                add
+                            </div>
+                        </div>
+                    </DropReceiver>
+                    <input
+                        ref={inputRef}
+                        class="hidden"
+                        type="file"
+                        accept="image/*"
+                        oninput={(e) => {
+                            file(() => (e.target as HTMLInputElement).files[0]);
+                        }}
+                    />
                     <img src={last()} alt="" />
                     <AC resource={data}>
                         <Show when={data()}>

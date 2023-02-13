@@ -37,9 +37,9 @@ export const DetailPanel = () => {
     return (
         <Panel id="detail">
             <Show when={ShowingPicture()}>
-                <main class="z-10 flex h-full flex-col  gap-4 overflow-auto break-words p-2 sm:flex-row sm:p-4">
+                <main class="z-10 flex h-full flex-col gap-4 overflow-auto break-words p-2 sm:flex-row sm:justify-evenly sm:p-4">
                     <nav
-                        class="flex cursor-pointer flex-col items-center justify-center"
+                        class="flex h-[30vh] max-w-[50vw] cursor-pointer flex-col items-center justify-center sm:h-full"
                         onclick={() => {
                             const { description } = ShowingPicture();
                             const image = ShowingPictureURL();
@@ -58,12 +58,13 @@ export const DetailPanel = () => {
                             aspect={ShowingPicture().size.replace('x', '/')}
                             fallbackSrc={getImagePath(ShowingPicture().image)}
                         ></BackupImage>
+
                         <div class="btn ">点击查看大图</div>
-                    </nav>
-                    <main class="flex select-text flex-col sm:overflow-hidden">
-                        <header class="my-2 rounded-lg bg-lime-600 px-4 text-center text-2xl font-bold text-slate-200">
+                        <header class="my-2 w-full rounded-lg bg-lime-600 py-2 px-4 text-center text-2xl font-bold text-slate-200">
                             {ShowingPicture().description}
                         </header>
+                    </nav>
+                    <section class="flex select-text flex-col sm:overflow-hidden">
                         <main class="blur-background flex max-w-2xl flex-col gap-4 rounded-lg text-slate-200 sm:overflow-auto sm:p-4">
                             <nav class="flex justify-between rounded-lg bg-emerald-700 px-2">
                                 <div>作者: {ShowingPicture().username}</div>
@@ -73,7 +74,7 @@ export const DetailPanel = () => {
                                 <AIImageInfoShower data={details}></AIImageInfoShower>
                             </Show>
                         </main>
-                    </main>
+                    </section>
                 </main>
             </Show>
         </Panel>

@@ -64,17 +64,25 @@ export const AIImageInfoShower: Component<{
                 </For>
             </nav>
             <Show when={details().others}>
-                <nav class="grid grid-cols-2 justify-between gap-2 rounded-lg bg-emerald-700 px-2">
-                    <header class="col-span-2 my-1 flex justify-between rounded-lg bg-emerald-800 px-2 text-center">
+                <nav class="flex flex-col  divide-y divide-slate-400 rounded-lg bg-emerald-700 px-2">
+                    <header class="my-1  flex w-full justify-between rounded-lg bg-emerald-800 px-2 text-center">
                         其他参数
                     </header>
                     <For each={Object.entries(details().others)}>
                         {([key, value]) => {
+                            const tooLong = value.length > 40;
                             return (
-                                <>
-                                    <div>{key}： </div>
-                                    <div class="select-all">{value as string}</div>
-                                </>
+                                <nav
+                                    class="flex w-full justify-between py-2"
+                                    classList={{ 'flex-col': tooLong }}
+                                >
+                                    <div class="rounded-lg bg-emerald-800 px-2 text-white">
+                                        {key}
+                                    </div>
+                                    <div class="select-all" classList={{ 'text-sm': tooLong }}>
+                                        {value as string}
+                                    </div>
+                                </nav>
                             );
                         }}
                     </For>

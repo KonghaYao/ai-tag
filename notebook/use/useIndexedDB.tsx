@@ -36,6 +36,11 @@ const initDatabase = memoize(() => {
 
 export const useIndexedDB = () => {
     const database = initDatabase();
+
+    // const searchMagic = (text:string)=>{
+    //     return database.IndexList.
+    // }
+
     const addMagic = async (tags: string) => {
         const id = Math.ceil(Math.random() * 100000000).toString();
         const data: SingleMagic = {

@@ -2,7 +2,7 @@ import { Atom, atom } from '@cn-ui/use';
 import { Component, createContext, createMemo, JSX, JSXElement, useContext } from 'solid-js';
 import { PanelIds } from '../SideApp';
 import { ControlBar } from './ControlBar';
-import { Tab } from '@cn-ui/core';
+import { Icon, Tab } from '@cn-ui/core';
 import { Animate } from '@cn-ui/animate';
 
 export interface IPanelData {
@@ -27,6 +27,14 @@ export const Panel: Component<PanelEl> = (props) => {
             destroyOnHide
             class="blur-background absolute top-0 left-0 z-40 flex h-screen w-full flex-col items-center  justify-center"
         >
+            <div
+                class="absolute right-4 top-4 z-40 flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg bg-emerald-700 ring-2 ring-emerald-800"
+                onclick={() => {
+                    visibleId(null);
+                }}
+            >
+                <Icon name="close" size={24}></Icon>
+            </div>
             <nav
                 ref={container}
                 class="flex h-full place-content-center p-6"
@@ -39,7 +47,7 @@ export const Panel: Component<PanelEl> = (props) => {
                     if (e.target === container) visibleId(null);
                 }}
             >
-                <main class=" flex h-full w-full max-w-sm flex-col  overflow-auto rounded-2xl border-2 border-solid border-slate-700 bg-gray-700/60 transition-all sm:max-w-md">
+                <main class=" flex h-full w-full flex-col  overflow-auto rounded-2xl border-2 border-solid border-slate-700 bg-gray-700/60 transition-all ">
                     {props.children}
                 </main>
             </nav>

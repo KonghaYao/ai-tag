@@ -7,6 +7,10 @@ export const PreProcess = (s: string) => {
     return s.replace(/_/g, ' ').split(/\r?\n/g);
 };
 
+export const isBreakSymbol = (a: IData) => {
+    return a.text === breakSymbol.text && a.en === breakSymbol.en && a.cn === breakSymbol.cn;
+};
+
 export const breakSymbol: IData = {
     text: '\n',
     en: `\n`,

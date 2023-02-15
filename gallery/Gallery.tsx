@@ -58,7 +58,7 @@ export const Gallery = () => {
     return (
         <div
             onscroll={ScrollEvent}
-            class=" flex justify-center overflow-auto px-2 pt-16 sm:px-4 sm:pt-20"
+            class=" flex  justify-center overflow-auto px-2 pt-16 sm:px-4 sm:pt-20"
         >
             {/*  WaterFall 暂时不能更改 gap */}
             <WaterFall

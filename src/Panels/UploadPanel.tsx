@@ -141,6 +141,7 @@ export const UploadPanel = (props: {
     };
     return (
         <Panel
+            class="max-w-xl"
             id="uploader"
             ondragover={(e) => {
                 e.preventDefault();

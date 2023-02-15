@@ -52,7 +52,17 @@ export const App = () => {
                 <main class="font-global absolute top-0 left-0 z-10 flex h-screen w-screen flex-col overflow-hidden text-gray-200">
                     <header class=" absolute top-0 left-0 z-10   w-full p-2 text-xl sm:p-4 ">
                         <div class=" flex justify-between rounded-xl bg-slate-600 py-2 px-4 ">
-                            <span class="flex-none">魔导绪论图库</span>
+                            <span class="flex-none">
+                                <a class="transition-colors hover:text-amber-400" href="/">
+                                    魔导绪论
+                                </a>
+                                <a
+                                    class="transition-colors hover:text-amber-400"
+                                    href="/gallery.html"
+                                >
+                                    图库
+                                </a>
+                            </span>
                             <nav class="flex gap-2">
                                 <FloatPanelWithAnimate
                                     disabled={showSearch}
@@ -84,6 +94,7 @@ export const App = () => {
                     <Tabs activeId={visibleId} lazyload>
                         <Animate group anime="jumpFromBottom" appear>
                             <DetailPanel></DetailPanel>
+
                             <UploadPanel context={GalleryGlobal}></UploadPanel>
                         </Animate>
                     </Tabs>

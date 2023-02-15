@@ -15,6 +15,7 @@ export const PanelContext = createContext<IPanelData>();
 interface PanelEl extends JSX.HTMLAttributes<HTMLDivElement> {
     children?: JSXElement;
     id: PanelIds | '';
+    class?: string;
 }
 export const Panel: Component<PanelEl> = (props) => {
     const { visibleId, isPanelVisible } = useContext(PanelContext);
@@ -37,7 +38,7 @@ export const Panel: Component<PanelEl> = (props) => {
             </div>
             <nav
                 ref={container}
-                class="flex h-full place-content-center p-6"
+                class={'m-auto flex h-full place-content-center p-6 ' + (props.class ?? '')}
                 classList={{
                     'pointer-event-none': !visible(),
                 }}

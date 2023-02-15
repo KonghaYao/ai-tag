@@ -2,7 +2,6 @@ import { createEffect, on } from 'solid-js';
 import { StoreData, API } from '../src/api/notion';
 import { atom, useSingleAsync } from '@cn-ui/use';
 import { useViewer } from '../src/use/useViewer';
-import { notionSearch } from '../src/utils/searchDecode';
 import { useSearchParams } from '@solidjs/router';
 export const useGalleryInfo = () => {
     const { replaceImages, getViewer } = useViewer();
@@ -12,15 +11,20 @@ export const useGalleryInfo = () => {
     const searchText = atom('');
     const dataSlice = atom<StoreData[][]>([]);
     const loadMore = async (LoadingPage: number, clear = false) => {
-        let filters = searchText() ? notionSearch(searchText(), ['username', 'tags']) : [];
-        return API.getData(LoadingPage, !!searchParams.r18, filters, clear).then((res) => {
+        return API.getData(LoadingPage, !!searchParams.r18, (q) => {
+            if (searchText()) {
+                console.log(searchText());
+                q.contains('description', searchText());
+            }
+        }).then((res) => {
             if (res.length) {
                 dataSlice((i) => {
                     i[LoadingPage] = res;
                     return [...i];
                 });
-            } else if (clear) {
-                dataSlice([]);
+            }
+            if (clear) {
+                dataSlice([res]);
             }
             end(API.end);
         });
@@ -31,6 +35,7 @@ export const useGalleryInfo = () => {
         page: currentIndex,
         end,
         changePage: useSingleAsync(async (number: number) => {
+            if (end()) return;
             return loadMore(number).then(() => currentIndex(number));
         }),
         clearAndResearch: useSingleAsync(async () => {

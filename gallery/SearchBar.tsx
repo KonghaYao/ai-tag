@@ -49,7 +49,7 @@ export const SearchBar: Component<{
                 }}
             />
 
-            <div
+            {/* <div
                 class="font-icon cursor-pointer px-2"
                 onclick={() => {
                     searchText((i) => `username:=${username()} ` + i);
@@ -57,7 +57,7 @@ export const SearchBar: Component<{
                 }}
             >
                 account_box
-            </div>
+            </div> */}
         </div>
     );
 };

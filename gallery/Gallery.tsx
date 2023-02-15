@@ -52,7 +52,7 @@ const rebuildArray = () => {
 };
 
 export const Gallery = () => {
-    const { page, changePage } = useContext(GalleryGlobal);
+    const { page, changePage, end } = useContext(GalleryGlobal);
     const { images, columns } = rebuildArray();
     const { ScrollEvent } = ScrollLoading(() => changePage(page() + 1));
     return (

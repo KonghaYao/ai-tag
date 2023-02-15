@@ -3,6 +3,7 @@ import { StoreData, API } from '../src/api/notion';
 import { atom, useSingleAsync } from '@cn-ui/use';
 import { useViewer } from '../src/use/useViewer';
 import { useSearchParams } from '@solidjs/router';
+import { Notice } from '../src/utils/notice';
 export const useGalleryInfo = () => {
     const { replaceImages, getViewer } = useViewer();
     const [searchParams] = useSearchParams();
@@ -22,11 +23,14 @@ export const useGalleryInfo = () => {
                     i[LoadingPage] = res;
                     return [...i];
                 });
+            } else {
+                end(true);
+                Notice.success('到底啦');
             }
             if (clear) {
                 dataSlice([res]);
+                clear = false;
             }
-            end(API.end);
         });
     };
 

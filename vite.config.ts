@@ -4,11 +4,20 @@ import solidPlugin from 'vite-plugin-solid';
 import p from './package.json';
 import visualizer from 'rollup-plugin-visualizer';
 import fs from 'fs';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 export default defineConfig(({ mode }) => {
     const __isDev__ = mode === 'development';
     return {
         base: './',
         plugins: [
+            viteStaticCopy({
+                targets: [
+                    {
+                        src: 'node_modules/@chinese-fonts/jxzk/dist/江西拙楷/*.{css,woff2}',
+                        dest: 'font',
+                    },
+                ],
+            }),
             solidPlugin(),
             {
                 enforce: 'pre',

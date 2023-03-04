@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@chinese-fonts/jxzk': ^1.1.0
   '@cn-ui/animate': ^1.0.5
   '@cn-ui/core': ^1.7.0
   '@cn-ui/headless': ^1.11.2
@@ -51,9 +52,11 @@ specifiers:
   viewerjs: ^1.11.1
   vite: ^3.2.5
   vite-plugin-solid: ^2.5.0
+  vite-plugin-static-copy: ^0.13.1
   vitest: ^0.24.5
 
 dependencies:
+  '@chinese-fonts/jxzk': 1.1.0
   '@cn-ui/animate': 1.0.5_pbaio3yt5vlzattohyk63b4rdm
   '@cn-ui/core': 1.7.0_6pwvfuh5ve4byhlplml4vsg4vi
   '@cn-ui/headless': 1.11.2_solid-js@1.6.6
@@ -106,6 +109,7 @@ devDependencies:
   rollup-plugin-visualizer: 5.8.3
   vite: 3.2.5
   vite-plugin-solid: 2.5.0_solid-js@1.6.6+vite@3.2.5
+  vite-plugin-static-copy: 0.13.1_vite@3.2.5
   vitest: 0.24.5
 
 packages:
@@ -438,6 +442,10 @@ packages:
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
     dev: true
+
+  /@chinese-fonts/jxzk/1.1.0:
+    resolution: {integrity: sha512-w2deiHESbTW3LYk66aT5KinwWfshb5D7/IUzbAhfouUTufG+VFBvvaCd5cZLzQdwGAj+ojcUb4LpUoJGUYTDUg==}
+    dev: false
 
   /@cn-ui/animate/1.0.5_pbaio3yt5vlzattohyk63b4rdm:
     resolution: {integrity: sha512-xPA689p11U9AABjL67xvCW88MBJpLqo0DvMlrpKbjJFIz8fDkl8DJlJwwK5NoewECKLtVkJ2h848nv9BYWBFPQ==}
@@ -1560,6 +1568,15 @@ packages:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
     dev: true
 
+  /fs-extra/11.1.0:
+    resolution: {integrity: sha512-0rcTq621PD5jM/e0a3EJoGC/1TC5ZBCERW82LQuwfGnCa1V8w7dpYH1yNu+SLb6E5dkeCBzKEyLGlFrnr+dUyw==}
+    engines: {node: '>=14.14'}
+    dependencies:
+      graceful-fs: 4.2.10
+      jsonfile: 6.1.0
+      universalify: 2.0.0
+    dev: true
+
   /fs.realpath/1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
     dev: true
@@ -1631,6 +1648,10 @@ packages:
   /globals/11.12.0:
     resolution: {integrity: sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==}
     engines: {node: '>=4'}
+    dev: true
+
+  /graceful-fs/4.2.10:
+    resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
     dev: true
 
   /hamming-distance/1.0.0:
@@ -1832,6 +1853,14 @@ packages:
     resolution: {integrity: sha512-46Tk9JiOL2z7ytNQWFLpj99RZkVgeHf87yGQKsIkaPz1qSH9UczKH1rO7K3wgRselo0tYMUNfecYpm/p1vC7tQ==}
     engines: {node: '>=6'}
     hasBin: true
+    dev: true
+
+  /jsonfile/6.1.0:
+    resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
+    dependencies:
+      universalify: 2.0.0
+    optionalDependencies:
+      graceful-fs: 4.2.10
     dev: true
 
   /kleur/4.1.5:
@@ -2890,6 +2919,11 @@ packages:
       unist-util-visit-parents: 5.1.1
     dev: false
 
+  /universalify/2.0.0:
+    resolution: {integrity: sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==}
+    engines: {node: '>= 10.0.0'}
+    dev: true
+
   /update-browserslist-db/1.0.10_browserslist@4.21.4:
     resolution: {integrity: sha512-OztqDenkfFkbSG+tRxBeAnCVPckDBcvibKd35yDONx6OU8N7sqgwc7rCbkJ/WcYtVRZ4ba68d6byhC21GFh7sQ==}
     hasBin: true
@@ -2962,6 +2996,19 @@ packages:
       vitefu: 0.2.4_vite@3.2.5
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /vite-plugin-static-copy/0.13.1_vite@3.2.5:
+    resolution: {integrity: sha512-KwIcGBT1aOxSq+laK3VmSngoEa3HXWj/6ZEXdv+y59eZ7p/XSuPahoDo+CfYW22JjTdnstgeKWiX+78KNgDu6g==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    peerDependencies:
+      vite: ^3.0.0 || ^4.0.0
+    dependencies:
+      chokidar: 3.5.3
+      fast-glob: 3.2.12
+      fs-extra: 11.1.0
+      picocolors: 1.0.0
+      vite: 3.2.5
     dev: true
 
   /vite/3.2.5:

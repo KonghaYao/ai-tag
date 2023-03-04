@@ -73,7 +73,7 @@ export const App = () => {
     const nonBreakLine = atom<boolean>(false);
     const forceEN = atom<boolean>(false);
     const showClassify = atom<boolean>(true);
-    const tag_version = atom('2.1.1');
+    const tag_version = atom('2.1.3');
 
     /** 需要持久化的变量写这里 */
     const storageSetting = {

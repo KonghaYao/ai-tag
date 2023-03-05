@@ -1,5 +1,5 @@
 import { Accessor, createContext, createEffect, createSelector, Show } from 'solid-js';
-import { Atom, atom, useBreakpoints } from '@cn-ui/use';
+import { Atom, atom, isAtom, useBreakpoints } from '@cn-ui/use';
 import { SearchBox } from './SearchBox/SearchBox';
 import { UserSelected } from './UserSelected';
 import { useDatabase } from './use/useDatabase';

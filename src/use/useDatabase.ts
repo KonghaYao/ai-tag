@@ -1,5 +1,5 @@
 import { createDeferred, createEffect, createSignal, untrack } from 'solid-js';
-import { Atom, atom, reflect, resource } from '@cn-ui/use';
+import { ArrayAtom, Atom, AtomTypeSymbol, atom, reflect, resource } from '@cn-ui/use';
 import { useSearchParams } from '@solidjs/router';
 import { IData, IStoreData } from '../App';
 import { getTagInURL } from '../utils/getTagInURL';
@@ -71,6 +71,29 @@ export const useTagDataLoader = (store: IStoreData) => {
     });
     return { lists, rebuildSearchSet };
 };
+const useOwnAtom = () => {
+    // 添加去重功能的 Atom，实现较拉😂
+    const usersCollection = atom<IData[]>([]);
+    const changeUsersCollection = usersCollection.reflux(usersCollection(), (data) =>
+        data.filter(
+            (item: IData, index: number) =>
+                item &&
+                (item.text === '\n' ||
+                    (data as IData[]).findIndex((next) => next.en === item.en) === index)
+        )
+    );
+    return Object.assign(
+        function () {
+            if (arguments.length === 0) {
+                return usersCollection();
+            } else {
+                /** @ts-ignore */
+                return changeUsersCollection(...(arguments as any));
+            }
+        },
+        { [AtomTypeSymbol]: 'atom' }
+    ) as any as Atom<IData[]>;
+};
 
 /** 加载 Tag 数据库 */
 export function useDatabase(store: IStoreData) {
@@ -111,28 +134,7 @@ export function useDatabase(store: IStoreData) {
         result(allData);
     });
 
-    const [U, setU] = createSignal<IData[]>([]);
-    // 添加去重功能，但是实现极其不行
-    /** @ts-ignore */
-    const usersCollection: Atom<IData[]> = (...args) => {
-        if (args.length === 0) {
-            return U();
-        } else {
-            let [data] = args;
-            if (typeof data === 'function') {
-                data = data(U());
-            }
-            return setU(
-                data.filter(
-                    (item: IData, index: number) =>
-                        item &&
-                        (item.text === '\n' ||
-                            (data as IData[]).findIndex((next) => next.en === item.en) === index)
-                )
-            );
-        }
-    };
-
+    const usersCollection = useOwnAtom();
     const [searchParams] = useSearchParams();
 
     // ! 不再将 usersCollection 推向标签栏，因为这个是给用户分享用的，用完第一次就不需要了

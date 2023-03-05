@@ -1,7 +1,7 @@
 import { useContext } from 'solid-js';
 import { Data, IData } from './App';
 import { TagButton } from './components/TagButton';
-import { reflect } from '@cn-ui/use';
+import { isAtom, reflect } from '@cn-ui/use';
 import isMobile from 'is-mobile';
 import { SortableList } from '@cn-ui/sortable';
 import { HeaderFirst } from './ToolBar/HeaderFirst';
@@ -41,6 +41,7 @@ export const UserSelected = () => {
     } = useContext(Data);
     const { wheelEvent, clickEvent } = useTagController();
     BindHistoryKey();
+    console.log(isAtom(usersCollection));
     const disabledSortable = reflect(() => {
         return isMobile() ? emphasizeAddMode() || emphasizeSubMode() || deleteMode() : false;
     });

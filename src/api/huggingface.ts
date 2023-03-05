@@ -20,7 +20,7 @@ export const useAIWritePrompt = (inputs: string, API_TOKEN?: string) => {
                 Referer: 'https://huggingface.co/',
                 'Referrer-Policy': 'strict-origin-when-cross-origin',
             },
-            body: JSON.stringify({ inputs }),
+            body: JSON.stringify({ inputs: inputs ? inputs : ' ' }),
             method: 'POST',
         }
     )

@@ -25,14 +25,18 @@ export const AIPrompt = () => {
 
             return fetch('./.netlify/functions/ai_write_prompt' + part)
                 .then((res) => res.json())
-                .then((res: { generated_text: string; time: number }) => {
-                    res.generated_text = res.generated_text.replaceAll('\n', '');
-                    const old = res.generated_text;
-                    res.generated_text = res.generated_text.replace(part, preInput());
-                    if (old === res.generated_text) {
-                        res.generated_text = preInput() + old;
+                .then((res: { error?: string; generated_text: string; time: number }) => {
+                    if (res.generated_text) {
+                        res.generated_text = res.generated_text.replaceAll('\n', '');
+                        const old = res.generated_text;
+                        res.generated_text = res.generated_text.replace(part, preInput());
+                        if (old === res.generated_text) {
+                            res.generated_text = preInput() + old;
+                        }
+                        return res;
+                    } else {
+                        throw new Error(res.error);
                     }
-                    return res;
                 });
         },
         {

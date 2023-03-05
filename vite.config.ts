@@ -51,10 +51,8 @@ export default defineConfig(({ mode }) => {
             port: 3000,
             proxy: {
                 // 配合 netlify 的云函数
-                '/.netlify/functions/notion_get':
-                    'http://localhost:9999/.netlify/functions/notion_get',
-                '/.netlify/functions/notion_create':
-                    'http://localhost:9999/.netlify/functions/notion_create',
+                '/.netlify/functions/ai_write_prompt':
+                    'http://localhost:9999/.netlify/functions/ai_write_prompt',
                 '/.netlify/functions/sync_image':
                     'http://localhost:9999/.netlify/functions/sync_image',
                 '/.netlify/functions/upload_auth':

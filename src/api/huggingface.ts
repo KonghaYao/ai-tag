@@ -1,5 +1,9 @@
-/** 使用 huggingface 提供的跨域服务进行 prompt 生成 */
+import fetch from 'node-fetch';
+/** 使用 huggingface 提供的跨域服务进行 prompt 生成, 需要后端进行管理 */
 export const useAIWritePrompt = (inputs: string, API_TOKEN?: string) => {
+    if (!API_TOKEN) {
+        console.warn('API Token 缺失');
+    }
     const start = Date.now();
     return fetch(
         // https://huggingface.co/Gustavosta/MagicPrompt-Stable-Diffusion 这个可以自动生成 tag
@@ -25,12 +29,22 @@ export const useAIWritePrompt = (inputs: string, API_TOKEN?: string) => {
         }
     )
         .then((res) => res.json())
-        .then<{
-            generated_text: string;
-            time: number;
-        }>((res) => {
-            return Object.assign(res[0], {
-                time: Date.now() - start,
-            });
-        });
+        .then(
+            (
+                res: {
+                    generated_text: string;
+                    time: number;
+                }[]
+            ) => {
+                if (res.length) {
+                    return Object.assign(res[0], {
+                        time: Date.now() - start,
+                    });
+                } else {
+                    return Object.assign(res, {
+                        time: Date.now() - start,
+                    });
+                }
+            }
+        );
 };

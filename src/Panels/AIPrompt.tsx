@@ -24,15 +24,17 @@ export const AIPrompt = () => {
 
             const part = input.length >= 100 ? cutTheString(input, 50) : input;
 
-            return useAIWritePrompt(part, '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').then((res) => {
-                res.generated_text = res.generated_text.replaceAll('\n', '');
-                const old = res.generated_text;
-                res.generated_text = res.generated_text.replace(part, preInput());
-                if (old === res.generated_text) {
-                    res.generated_text = preInput() + old;
-                }
-                return res;
-            });
+            return fetch('./.netlify/functions/ai_write_prompt' + part)
+                .then((res) => res.json())
+                .then((res: { generated_text: string; time: number }) => {
+                    res.generated_text = res.generated_text.replaceAll('\n', '');
+                    const old = res.generated_text;
+                    res.generated_text = res.generated_text.replace(part, preInput());
+                    if (old === res.generated_text) {
+                        res.generated_text = preInput() + old;
+                    }
+                    return res;
+                });
         },
         {
             initValue: { generated_text: '', time: 0 },

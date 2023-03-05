@@ -4,7 +4,7 @@ import { Data } from '../App';
 import { CopyBtn } from './sub/CopyBtn';
 
 export function HeaderSecond() {
-    const { emphasizeAddMode, emphasizeSubMode, deleteMode, iconBtn, usersCollection } =
+    const { emphasizeAddMode, emphasizeSubMode, visibleId, deleteMode, iconBtn, usersCollection } =
         useContext(Data);
     const { t } = useTranslation();
 
@@ -66,6 +66,15 @@ export function HeaderSecond() {
             <CopyBtn></CopyBtn>
             <span class="btn cursor-default" title="Tag 个数">
                 {usersCollection().length}
+            </span>
+            <span
+                class="btn"
+                onClick={() => {
+                    visibleId('ai-prompt');
+                }}
+                title="AI 助手"
+            >
+                🤗
             </span>
         </header>
     );

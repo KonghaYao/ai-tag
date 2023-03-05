@@ -5,7 +5,6 @@ import { Data } from '../App';
 import { Panel } from '../components/Panel';
 import { TagsToString, stringToTags } from '../use/TagsConvertor';
 import { Notice } from '../utils/notice';
-import { useAIWritePrompt } from '../api/huggingface';
 import { AC } from '../components/AC';
 
 const cutTheString = (input: string, partLength: number) => {
@@ -47,7 +46,10 @@ export const AIPrompt = () => {
         <Panel id="ai-prompt">
             <header class="py-2 text-center text-lg text-white">AI 魔咒助手</header>
             <section class="flex flex-1 select-text flex-col gap-1 overflow-hidden p-2">
-                <div class="text-sm text-red-300">研发测试中，PowerBy HuggingFace 🤗</div>
+                <div class="text-sm text-red-300">
+                    研发测试中，
+                    <span class="btn">PowerBy HuggingFace🤗</span>
+                </div>
 
                 <textarea
                     class=" h-[40%] w-full rounded-lg bg-slate-800 p-2 px-4 text-sm outline-none"

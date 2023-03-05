@@ -143,9 +143,8 @@ export const App = () => {
                         </main>
                         <SideApp></SideApp>
                         <MessageHint></MessageHint>
-                        <Show when={!defaultFont()}>
-                            <FontSupport delay={200} show={atom(false)}></FontSupport>
-                        </Show>
+
+                        <FontSupport delay={200} show={atom(false)}></FontSupport>
                     </div>
                 </DropReceiver>
             </PanelContext.Provider>

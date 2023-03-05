@@ -1,19 +1,21 @@
 import { Atom, atomization } from '@cn-ui/use';
-import { Component, Show } from 'solid-js';
+import { Component, Show, onMount } from 'solid-js';
 // import '@chinese-fonts/jxzk/dist/江西拙楷/result.css';
 export const FontSupport: Component<{ show?: boolean | Atom<boolean>; delay?: number }> = (
     props
 ) => {
     const show = atomization(props.show ?? true);
 
-    setTimeout(
-        (deadline) => {
-            show(true);
-            console.log('渲染字体');
-        },
+    onMount(() => {
+        setTimeout(
+            (deadline) => {
+                show(true);
+                console.log('渲染字体');
+            },
 
-        props.delay ?? 1000
-    );
+            props.delay ?? 1000
+        );
+    });
 
     return (
         <>

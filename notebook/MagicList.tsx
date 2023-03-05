@@ -83,7 +83,7 @@ export const MagicList = () => {
                             receive={{
                                 PURE_TAGS(tags: string) {
                                     ChangeMagic({ ...data(), tags })
-                                        .then(data.refetch)
+                                        .then(() => data.refetch())
                                         .then(() => {
                                             Notice.success('修改魔咒成功');
                                         });

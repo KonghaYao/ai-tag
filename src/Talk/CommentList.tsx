@@ -35,8 +35,7 @@ export const CommentList = () => {
             if (rootIds.length === 0) return [];
             return createSubQuery(DatabaseName, rootIds);
         },
-        [],
-        false
+        { initValue: [], immediately: false }
     );
 
     const { currentData, currentPage, maxPage, next, prev } = usePagination((page, maxPage) => {

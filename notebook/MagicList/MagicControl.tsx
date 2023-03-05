@@ -39,7 +39,7 @@ export const MagicControl: Component<{
                         const cb = prompt('请修改魔咒', props.data().tags);
                         if (cb)
                             ChangeMagic({ ...props.data(), tags: cb })
-                                .then(props.data.refetch)
+                                .then(() => props.data.refetch())
                                 .then(() => {
                                     Notice.success('修改魔咒成功');
                                 });

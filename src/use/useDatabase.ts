@@ -22,25 +22,28 @@ export const useTagDataLoader = (store: IStoreData) => {
         const numberLimit = searchNumberLimit();
         return searchWorker.rebuild({ r18, numberLimit });
     };
-    const lists = resource<IData[]>(async () => {
-        return fetch(cdn + `/tag-collection@${tag_version()}/data/split/small.csv`)
-            .then((res) => res.blob())
-            .then((res) => CSVToJSON<IData>(res))
-            .then(async (res) => {
-                // <200 ms 可以被接受
-                console.time('初始化线程');
-                await searchWorker.init(res);
-                console.timeEnd('初始化线程');
-                await rebuildSearchSet();
-                return res;
-            })
-            .then((res) => {
-                // 添加缺失的属性,只在 UI 展示有用
-                res.forEach((i) => (i.emphasize = 0));
+    const lists = resource<IData[]>(
+        async () => {
+            return fetch(cdn + `/tag-collection@${tag_version()}/data/split/small.csv`)
+                .then((res) => res.blob())
+                .then((res) => CSVToJSON<IData>(res))
+                .then(async (res) => {
+                    // <200 ms 可以被接受
+                    console.time('初始化线程');
+                    await searchWorker.init(res);
+                    console.timeEnd('初始化线程');
+                    await rebuildSearchSet();
+                    return res;
+                })
+                .then((res) => {
+                    // 添加缺失的属性,只在 UI 展示有用
+                    res.forEach((i) => (i.emphasize = 0));
 
-                return res;
-            });
-    }, []);
+                    return res;
+                });
+        },
+        { initValue: [] }
+    );
     createEffect(() => {
         lists.isReady() &&
             [...Array(5).keys()]

@@ -8,9 +8,8 @@ specifiers:
   '@cn-ui/markdown': ^1.0.0
   '@cn-ui/sortable': ^2.1.3
   '@cn-ui/transition': ^1.7.4
-  '@cn-ui/use': ^1.9.1
+  '@cn-ui/use': ^2.0.1
   '@netlify/functions': ^1.3.0
-  '@notionhq/client': ^2.2.3
   '@solidjs/router': ^0.5.1
   '@tailwindcss/line-clamp': ^0.4.2
   '@types/formidable': ^2.0.5
@@ -57,13 +56,13 @@ specifiers:
 
 dependencies:
   '@chinese-fonts/jxzk': 1.1.0
-  '@cn-ui/animate': 1.0.5_pbaio3yt5vlzattohyk63b4rdm
+  '@cn-ui/animate': 1.0.5_owgye5t5fefsy77gklenohd46y
   '@cn-ui/core': 1.7.0_6pwvfuh5ve4byhlplml4vsg4vi
   '@cn-ui/headless': 1.11.2_solid-js@1.6.6
-  '@cn-ui/markdown': 1.0.0_j4gpw5x3dsqostmkud2euib4xu
-  '@cn-ui/sortable': 2.1.3_j4gpw5x3dsqostmkud2euib4xu
-  '@cn-ui/transition': 1.7.4_j4gpw5x3dsqostmkud2euib4xu
-  '@cn-ui/use': 1.9.1_solid-js@1.6.6
+  '@cn-ui/markdown': 1.0.0_oj5exwuwp46khkcuvwjmb5evzy
+  '@cn-ui/sortable': 2.1.3_oj5exwuwp46khkcuvwjmb5evzy
+  '@cn-ui/transition': 1.7.4_oj5exwuwp46khkcuvwjmb5evzy
+  '@cn-ui/use': 2.0.1
   '@solidjs/router': 0.5.1_solid-js@1.6.6
   comlink: 4.3.1
   copy-to-clipboard: 3.3.3
@@ -91,7 +90,6 @@ dependencies:
 
 devDependencies:
   '@netlify/functions': 1.3.0
-  '@notionhq/client': 2.2.3
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.4
   '@types/formidable': 2.0.5
   '@types/fs-extra': 9.0.13
@@ -447,6 +445,18 @@ packages:
     resolution: {integrity: sha512-w2deiHESbTW3LYk66aT5KinwWfshb5D7/IUzbAhfouUTufG+VFBvvaCd5cZLzQdwGAj+ojcUb4LpUoJGUYTDUg==}
     dev: false
 
+  /@cn-ui/animate/1.0.5_owgye5t5fefsy77gklenohd46y:
+    resolution: {integrity: sha512-xPA689p11U9AABjL67xvCW88MBJpLqo0DvMlrpKbjJFIz8fDkl8DJlJwwK5NoewECKLtVkJ2h848nv9BYWBFPQ==}
+    peerDependencies:
+      '@cn-ui/transition': ^1.7.4
+      '@cn-ui/use': ^1.9.0
+      solid-js: ^1.5.7
+    dependencies:
+      '@cn-ui/transition': 1.7.4_oj5exwuwp46khkcuvwjmb5evzy
+      '@cn-ui/use': 2.0.1
+      solid-js: 1.6.6
+    dev: false
+
   /@cn-ui/animate/1.0.5_pbaio3yt5vlzattohyk63b4rdm:
     resolution: {integrity: sha512-xPA689p11U9AABjL67xvCW88MBJpLqo0DvMlrpKbjJFIz8fDkl8DJlJwwK5NoewECKLtVkJ2h848nv9BYWBFPQ==}
     peerDependencies:
@@ -489,13 +499,13 @@ packages:
       solid-js: 1.6.6
     dev: false
 
-  /@cn-ui/markdown/1.0.0_j4gpw5x3dsqostmkud2euib4xu:
+  /@cn-ui/markdown/1.0.0_oj5exwuwp46khkcuvwjmb5evzy:
     resolution: {integrity: sha512-Nt4L1A9OpbFyknMcM/WH9igU3KEccfjxdl8ck+ce4WsIVPvTGSlDigcSUfJeL+ICIkTXLAEqg6Rzzc52eqJUeQ==}
     peerDependencies:
       '@cn-ui/use': ^1.9.1
       solid-js: ^1.5.7
     dependencies:
-      '@cn-ui/use': 1.9.1_solid-js@1.6.6
+      '@cn-ui/use': 2.0.1
       highlight.js: 11.7.0
       rehype-stringify: 9.0.3
       remark-parse: 10.0.1
@@ -506,13 +516,21 @@ packages:
       - supports-color
     dev: false
 
-  /@cn-ui/sortable/2.1.3_j4gpw5x3dsqostmkud2euib4xu:
+  /@cn-ui/reactive/2.0.1:
+    resolution: {integrity: sha512-J7tB9TkchJta/6BSDnwiHIghjLUa5sna0VdAAPRufqZ4NLMzUzPwnctHeaJFIN6J/dDo2O/3sjYeE3m5LOhLJg==}
+    dependencies:
+      lodash-es: 4.17.21
+      mitt: 3.0.0
+      solid-js: 1.6.11
+    dev: false
+
+  /@cn-ui/sortable/2.1.3_oj5exwuwp46khkcuvwjmb5evzy:
     resolution: {integrity: sha512-XEEkiZx4Y7kzOijmYkTMsYEhHiw1GNbXCdPfdqMGqkBnSLrafEmxqWfEpZvEYANTSWj5KCV7GTYyJD3OkH3eeg==}
     peerDependencies:
       '@cn-ui/use': ^1.5.0
       solid-js: ''
     dependencies:
-      '@cn-ui/use': 1.9.1_solid-js@1.6.6
+      '@cn-ui/use': 2.0.1
       solid-js: 1.6.6
       sortablejs: 1.15.0
     transitivePeerDependencies:
@@ -532,12 +550,34 @@ packages:
       - '@cn-ui/use'
     dev: false
 
+  /@cn-ui/transition/1.7.4_oj5exwuwp46khkcuvwjmb5evzy:
+    resolution: {integrity: sha512-HWtT76Mh4mNcB6HGdmWySeicXX6iVtDLXXe0e/c4orTdUhtneF7LX2qJSV1TusPM0qzaY+zquRQe9vD9FvUEiw==}
+    peerDependencies:
+      '@cn-ui/use': ''
+      solid-js: ^1.5.7
+    dependencies:
+      '@cn-ui/use': 2.0.1
+      lodash-es: 4.17.21
+      solid-js: 1.6.6
+    transitivePeerDependencies:
+      - '@cn-ui/use'
+    dev: false
+
   /@cn-ui/use/1.9.1_solid-js@1.6.6:
     resolution: {integrity: sha512-1UBTlEp88QUgnvvDb4RUr13xLLdoe339DKhJeM6QGe+tRMign6lmIxoATbhorFLxwkZSFpD8pKJWSKUBP7TaXA==}
     peerDependencies:
       solid-js: ^1.6.6
     dependencies:
       solid-js: 1.6.6
+    dev: false
+
+  /@cn-ui/use/2.0.1:
+    resolution: {integrity: sha512-NLXZ7dlADtYIOaH15PuPV80PO1wUTyi/nGb160ydvNfanMFcU6+CvdprFmdPqjJEO5GWdlxP5mS9KzFdjPAr2g==}
+    dependencies:
+      '@cn-ui/reactive': 2.0.1
+      '@types/lodash-es': 4.17.6
+      lodash-es: 4.17.21
+      solid-js: 1.6.11
     dev: false
 
   /@esbuild/android-arm/0.15.18:
@@ -676,16 +716,6 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.14.0
 
-  /@notionhq/client/2.2.3:
-    resolution: {integrity: sha512-ZqUzY0iRg/LIrwS+wzz/6osSB2nxIpmqdAtdUwzpcimc9Jlu1j85FeYdaU26Shr193CFrl2TLFeKqpk/APRQ4g==}
-    engines: {node: '>=12'}
-    dependencies:
-      '@types/node-fetch': 2.6.2
-      node-fetch: 2.6.7
-    transitivePeerDependencies:
-      - encoding
-    dev: true
-
   /@solidjs/router/0.5.1_solid-js@1.6.6:
     resolution: {integrity: sha512-igyrwUqm/9T26Lb6l7oXwpc4lLUVqbhbN92wOL3NgLoLVmkQlUNTZciuAe+Su8XeJXlrWjl6oxDJDLt+6pws/g==}
     peerDependencies:
@@ -744,11 +774,9 @@ packages:
     resolution: {integrity: sha512-R+zTeVUKDdfoRxpAryaQNRKk3105Rrgx2CFRClIgRGaqDTdjsm8h6IYA8ir584W3ePzkZfst5xIgDwYrlh9HLg==}
     dependencies:
       '@types/lodash': 4.14.191
-    dev: true
 
   /@types/lodash/4.14.191:
     resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
-    dev: true
 
   /@types/md5/2.3.2:
     resolution: {integrity: sha512-v+JFDu96+UYJ3/UWzB0mEglIS//MZXgRaJ4ubUPwOM0gvLc/kcQ3TWNYwENEK7/EcXGQVrW8h/XqednSjBd/Og==}
@@ -763,13 +791,6 @@ packages:
   /@types/ms/0.7.31:
     resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
     dev: false
-
-  /@types/node-fetch/2.6.2:
-    resolution: {integrity: sha512-DHqhlq5jeESLy19TYhLakJ07kNumXWjcDdxXsLUMJZ6ue8VZJj4kLPQVE/2mdHh3xZziNF1xppu5lwmS53HR+A==}
-    dependencies:
-      '@types/node': 18.11.17
-      form-data: 3.0.1
-    dev: true
 
   /@types/node/18.11.17:
     resolution: {integrity: sha512-HJSUJmni4BeDHhfzn6nF0sVmd1SMezP7/4F0Lq+aXzmp2xm9O7WXrUtHW/CHlYVtZUbByEvWidHqRtcJXGF2Ng==}
@@ -2288,18 +2309,6 @@ packages:
     engines: {node: '>=10.5.0'}
     dev: true
 
-  /node-fetch/2.6.7:
-    resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
-    engines: {node: 4.x || >=6.0.0}
-    peerDependencies:
-      encoding: ^0.1.0
-    peerDependenciesMeta:
-      encoding:
-        optional: true
-    dependencies:
-      whatwg-url: 5.0.0
-    dev: true
-
   /node-fetch/3.3.0:
     resolution: {integrity: sha512-BKwRP/O0UvoMKp7GNdwPlObhYGB5DQqwhEDQlNKuoqwVYSxkSZCSbHjnFFmUEtwSKRPU4kNK8PbDYYitwaE3QA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -2660,6 +2669,12 @@ packages:
       object-inspect: 1.12.2
     dev: true
 
+  /solid-js/1.6.11:
+    resolution: {integrity: sha512-JquQQHPArGq+i2PLURxJ99Pcz2/1docpbycSio/cKSA0SeI3z5zRjy0TNcH4NRYvbOLrcini+iovXwnexKabyw==}
+    dependencies:
+      csstype: 3.1.1
+    dev: false
+
   /solid-js/1.6.6:
     resolution: {integrity: sha512-5x33mEbPI8QLuywvFjQP4krjWDr8xiYFgZx9KCBH7b0ZzypQCHaUubob7bK6i+1u6nhaAqhWtvXS587Kb8DShA==}
     dependencies:
@@ -2840,10 +2855,6 @@ packages:
   /toggle-selection/1.0.6:
     resolution: {integrity: sha512-BiZS+C1OS8g/q2RRbJmy59xpyghNBqrr6k5L/uKBGRsTfxmu3ffiRnd8mlGPUVayg8pvfi5urfnu8TU7DVOkLQ==}
     dev: false
-
-  /tr46/0.0.3:
-    resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
-    dev: true
 
   /trim-lines/3.0.1:
     resolution: {integrity: sha512-kRj8B+YHZCc9kQYdWfJB2/oUl9rA99qbowYYBtr4ui4mZyAQ2JpvVBd/6U2YloATfqBhBTSMhTpgBHtU0Mf3Rg==}
@@ -3134,17 +3145,6 @@ packages:
   /web-streams-polyfill/3.2.1:
     resolution: {integrity: sha512-e0MO3wdXWKrLbL0DgGnUV7WHVuw9OUvL4hjgnPkIeEvESk74gAITi5G606JtZPp39cd8HA9VQzCIvA49LpPN5Q==}
     engines: {node: '>= 8'}
-    dev: true
-
-  /webidl-conversions/3.0.1:
-    resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
-    dev: true
-
-  /whatwg-url/5.0.0:
-    resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
-    dependencies:
-      tr46: 0.0.3
-      webidl-conversions: 3.0.1
     dev: true
 
   /window-size/0.1.4:

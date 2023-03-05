@@ -30,8 +30,7 @@ export const InputArea = () => {
                 Notice.success('发布成功');
             });
         },
-        undefined,
-        false
+        { initValue: undefined, immediately: false }
     );
     const mainText = atom('');
     const PreviewMode = atom(false);

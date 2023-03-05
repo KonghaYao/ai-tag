@@ -9,7 +9,7 @@ import { DropReceiver } from '@cn-ui/headless';
 
 export const SearchBar = () => {
     const { usersCollection, lists, searchText, iconBtn } = useContext(Data);
-    const triggerSearch = debounce(searchText, 200) as Setter<string>;
+    const triggerSearch = debounce(searchText, 200);
     const { t } = useTranslation();
     const addToList = () => {
         const name = searchText();

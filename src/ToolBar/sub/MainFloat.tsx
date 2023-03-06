@@ -4,6 +4,7 @@ import { useTranslation } from '../../../i18n';
 import { FloatPanel, FloatPanelWithAnimate } from '@cn-ui/core';
 import { MainGridOfInner } from '../../Panels/HomePanel';
 import { Animate } from '@cn-ui/animate';
+import { ToolBarColor } from '../ColorJar';
 
 /** 主页面板的直接展示，免得打开太麻烦 */
 export const MainFloat = () => {
@@ -29,7 +30,7 @@ export const MainFloat = () => {
                 </div>
             )}
         >
-            <div class="btn m-0 h-full  w-full bg-green-700">
+            <div class={'btn m-0 h-full  w-full ' + ToolBarColor.pick(1)}>
                 {iconBtn() ? 'apps' : t('toolbar1.Home')}
             </div>
         </FloatPanelWithAnimate>

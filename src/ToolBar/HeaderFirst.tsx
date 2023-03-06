@@ -1,4 +1,4 @@
-import { useContext } from 'solid-js';
+import { Show, useContext } from 'solid-js';
 import { Data } from '../App';
 import { breakSymbol, stringToTags } from '../use/TagsConvertor';
 import { Notice } from '../utils/notice';
@@ -7,6 +7,7 @@ import { useWebView } from '../Panels/Webview';
 import isMobile from 'is-mobile';
 import { MainFloat } from './sub/MainFloat';
 import { ToolBox } from './sub/ToolBox';
+import { ToolBarColor } from './ColorJar';
 export function HeaderFirst() {
     const { r18Mode, usersCollection, visibleId, lists, iconBtn } = useContext(Data);
     const { nav } = useWebView();
@@ -20,8 +21,8 @@ export function HeaderFirst() {
                 'text-sm': !iconBtn(),
             }}
         >
-            <div
-                class="btn bg-lime-700"
+            <span
+                class={'btn ' + ToolBarColor.pick(0)}
                 onclick={() => {
                     const text = prompt(t('toolbar1.hint.ImportHint'), '');
                     console.log(text);
@@ -31,29 +32,29 @@ export function HeaderFirst() {
                 }}
             >
                 {iconBtn() ? 'add_circle' : t('toolbar1.Import')}
-            </div>
+            </span>
             <MainFloat></MainFloat>
             <span
-                class="btn bg-teal-700"
+                class={'btn ' + ToolBarColor.pick(2)}
                 onclick={() => nav('./gallery.html#/?r18=' + (r18Mode() ? 'true' : ''))}
             >
                 {iconBtn() ? 'collections' : t('toolbar1.Gallery')}
             </span>
-            {!isMobile() && (
-                <>
-                    <span class="btn bg-sky-700" onclick={() => visibleId('uploader')}>
-                        {iconBtn() ? 'upload' : t('toolbar1.Share')}
-                    </span>
-                    <span
-                        class="btn bg-sky-700"
-                        onclick={() => nav('https://cn.bing.com/translator/')}
-                    >
-                        {iconBtn() ? 'translation' : '翻译'}
-                    </span>
-                </>
-            )}
+
+            <Show when={!isMobile()}>
+                <span class={'btn ' + ToolBarColor.pick(3)} onclick={() => visibleId('uploader')}>
+                    {iconBtn() ? 'upload' : t('toolbar1.Share')}
+                </span>
+                <span
+                    class={'btn ' + ToolBarColor.pick(4)}
+                    onclick={() => nav('https://cn.bing.com/translator/')}
+                >
+                    {iconBtn() ? 'translation' : '翻译'}
+                </span>
+            </Show>
+
             <span
-                class="btn  bg-blue-700 font-bold  "
+                class={'btn font-bold ' + ToolBarColor.pick(5)}
                 onclick={() => {
                     nav('./notebook.html');
                 }}
@@ -62,7 +63,7 @@ export function HeaderFirst() {
             </span>
             <ToolBox></ToolBox>
             <span
-                class="btn font-icon bg-violet-700 text-sm "
+                class={'btn font-icon text-sm ' + ToolBarColor.pick()}
                 onClick={() => {
                     usersCollection((i) => [...i, { ...breakSymbol }]);
                     Notice.success(t('toolbar1.hint.addBreakLine'));

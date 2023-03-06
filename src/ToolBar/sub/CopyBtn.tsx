@@ -1,18 +1,12 @@
 import copy from 'copy-to-clipboard';
-import { Component, useContext } from 'solid-js';
+import { useContext } from 'solid-js';
 import { useTranslation } from '../../../i18n';
 import { Data } from '../../App';
 import { DragPoster } from '@cn-ui/headless';
 import { TagsToString } from '../../use/TagsConvertor';
 import { Notice } from '../../utils/notice';
 import { FloatPanelWithAnimate } from '@cn-ui/core';
-import { Atom } from '@cn-ui/use';
-
-export const CheckBox: Component<{
-    value: Atom<boolean>;
-}> = (props) => {
-    return <input type="checkbox" checked={props.value()}></input>;
-};
+import { CheckBox } from './CheckBox';
 
 export function CopyBtn() {
     const { enMode, usersCollection, emphasizeSymbol, iconBtn, nonBreakLine, forceEN } =
@@ -57,14 +51,8 @@ export function CopyBtn() {
                 }}
                 popup={() => (
                     <div class="blur-background pointer-events-auto mt-1 flex h-full w-32 flex-col gap-2 rounded-md p-2">
-                        <span class="btn flex-none" onclick={() => nonBreakLine((i) => !i)}>
-                            <CheckBox value={nonBreakLine}></CheckBox>{' '}
-                            {t('toolbar2.copyWithoutBreak')}
-                        </span>
-
-                        <span class="btn flex-none" onclick={() => forceEN((i) => !i)}>
-                            <CheckBox value={forceEN}></CheckBox> {t('toolbar2.copyOnlyEN')}
-                        </span>
+                        <CheckBox value={nonBreakLine}>{t('toolbar2.copyWithoutBreak')}</CheckBox>
+                        <CheckBox value={forceEN}>{t('toolbar2.copyOnlyEN')}</CheckBox>
                     </div>
                 )}
             >

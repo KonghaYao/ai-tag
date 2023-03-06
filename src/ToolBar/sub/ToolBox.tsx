@@ -3,7 +3,8 @@ import { Data } from '../../App';
 import { Notice } from '../../utils/notice';
 import { useTranslation } from '../../../i18n';
 import { FloatPanelWithAnimate } from '@cn-ui/core';
-import { CheckBox } from './CopyBtn';
+import { CheckBox } from './CheckBox';
+import { ToolBarColor } from '../ColorJar';
 
 export const ToolBox = () => {
     const {
@@ -27,18 +28,23 @@ export const ToolBox = () => {
             popup={() => (
                 <div class="blur-background pointer-events-auto flex flex-col gap-2 rounded-md p-2">
                     {/* 中英文切换符号 */}
-                    <span class="btn bg-blue-700 text-sm" onclick={() => enMode((i) => !i)}>
+
+                    <span
+                        class={'btn text-sm ' + ToolBarColor.pick(8)}
+                        onclick={() => enMode((i) => !i)}
+                    >
                         {iconBtn()
                             ? t('toolbar1.' + (enMode() ? 'en' : 'zh'))[0]
                             : t('toolbar1.' + (enMode() ? 'en' : 'zh'))}
                     </span>
-                    <span class="btn flex-none" onclick={() => showLangInLine1((i) => !i)}>
-                        <CheckBox value={showLangInLine1}></CheckBox>
+
+                    <CheckBox class={'' + ToolBarColor.pick(9)} value={showLangInLine1}>
                         {t('toolbar1.showLang')}
-                    </span>
+                    </CheckBox>
+
                     {/* 强调括号更换 */}
                     <span
-                        class="btn  bg-indigo-700   text-sm "
+                        class={'btn text-sm ' + ToolBarColor.pick(10)}
                         onClick={() => {
                             emphasizeSymbol((i) => (i === '{}' ? '()' : '{}'));
                             Notice.success(t('toolbar1.hint.bracketsChange'));
@@ -48,27 +54,30 @@ export const ToolBox = () => {
                     </span>
                     {/* 清空所有 TAG  */}
                     <span
-                        class="btn  bg-violet-700 text-sm "
+                        class={'btn text-sm ' + ToolBarColor.pick()}
                         onClick={() => {
                             globalThis.confirm('清空所有 TAG') && usersCollection([]);
                         }}
                     >
                         清空所有 TAG
                     </span>
-                    <span class="btn  bg-purple-700 text-sm " onClick={() => undo()}>
+                    <span class={'btn text-sm ' + ToolBarColor.pick()} onClick={() => undo()}>
                         撤销
                     </span>
                     {/* 清空所有 TAG  */}
-                    <span class="btn  bg-fuchsia-700 text-sm " onClick={() => redo()}>
+                    <span class={'btn text-sm ' + ToolBarColor.pick()} onClick={() => redo()}>
                         重做
                     </span>
-                    <span class="btn bg-sky-700" onclick={() => visibleId('artist')}>
+                    <span
+                        class={'btn text-sm ' + ToolBarColor.pick()}
+                        onclick={() => visibleId('artist')}
+                    >
                         {iconBtn() ? 'upload' : '艺术家列表'}
                     </span>
                 </div>
             )}
         >
-            <div class="font-icon btn m-0 h-full w-full bg-indigo-700">build</div>
+            <div class={'font-icon btn m-0 h-full w-full ' + ToolBarColor.pick()}>build</div>
         </FloatPanelWithAnimate>
     );
 };

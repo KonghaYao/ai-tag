@@ -1,4 +1,4 @@
-import { atom, useSingleAsync } from '@cn-ui/use';
+import { atom, asyncLock } from '@cn-ui/use';
 import { For, useContext } from 'solid-js';
 import i18n, { useTranslation } from '../../i18n';
 import { Data } from '../App';
@@ -20,7 +20,7 @@ export const FeedBackPanel = () => {
         return form.title && form.body ? true : false;
     };
     /** 提交请求 */
-    const Commit = useSingleAsync(() => {
+    const Commit = asyncLock(() => {
         if (checks()) {
             const form = callbacks();
             Notice.success(t('feedback.hint.uploading'));
@@ -52,7 +52,8 @@ export const FeedBackPanel = () => {
                 </div>
 
                 <div class="p-2 text-sm ">
-                    <div>{t('feedback.beforeFeedback')}</div>
+                    <p>{t('feedback.beforeFeedback')}</p>
+                    <p>{t('feedback.callbackTime')}</p>
                 </div>
                 <div class="flex justify-between">
                     <span class="flex-none">{t('feedback.IWantTo')}</span>

@@ -4,6 +4,7 @@ import { CSVToJSON } from '../utils/CSVToJSON';
 import { atom, resource } from '@cn-ui/use';
 import { FloatPanelWithAnimate } from '@cn-ui/core';
 import { memoize } from 'lodash-es';
+import { ColorPicker } from '../utils/ColorPicker';
 
 const getClassify = memoize(async () => {
     const binary = await fetch('./tagClassify.csv').then((res) => res.blob());
@@ -13,6 +14,7 @@ const getClassify = memoize(async () => {
 });
 export const useClassFilter = () => {
     const { result, lists } = useContext(Data);
+    const Colors = new ColorPicker();
     const FilterClass = new Set(['全部']);
     const data = resource(() =>
         getClassify().then((res) =>
@@ -43,9 +45,9 @@ export const useClassFilter = () => {
                     {(item) => {
                         return (
                             <div
-                                class="btn"
+                                class={'btn  '}
                                 classList={{
-                                    'bg-green-600 text-white': isSelect(item),
+                                    [Colors.pick() + 'text-white ']: isSelect(item),
                                 }}
                                 onclick={() => {
                                     selectType(item);

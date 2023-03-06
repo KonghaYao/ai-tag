@@ -26,7 +26,8 @@
       "bracketsChange": "强调括号更换",
       "ImportHint": "请输入魔咒, 魔咒将会覆盖哦",
       "addBreakLine": "添加分隔符号"
-    }
+    },
+    "showLang": "同时显示中文"
   },
   "toolbar2": {
     "deleteMode": "删除模式",

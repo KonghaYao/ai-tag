@@ -38,6 +38,7 @@ export const UserSelected = () => {
         emphasizeSubMode,
         lists,
         TagsHistory,
+        showLangInLine1,
     } = useContext(Data);
     const { wheelEvent, clickEvent } = useTagController();
     BindHistoryKey();
@@ -163,7 +164,7 @@ export const UserSelected = () => {
                                     <TagButton
                                         data={item}
                                         en={enMode}
-                                        cn={reflect(() => !enMode())}
+                                        cn={reflect(() => showLangInLine1() || !enMode())}
                                         onClick={
                                             item.text === '\n'
                                                 ? () => {

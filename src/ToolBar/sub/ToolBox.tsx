@@ -3,10 +3,19 @@ import { Data } from '../../App';
 import { Notice } from '../../utils/notice';
 import { useTranslation } from '../../../i18n';
 import { FloatPanelWithAnimate } from '@cn-ui/core';
+import { CheckBox } from './CopyBtn';
 
 export const ToolBox = () => {
-    const { enMode, usersCollection, emphasizeSymbol, iconBtn, redo, undo, visibleId } =
-        useContext(Data);
+    const {
+        enMode,
+        usersCollection,
+        emphasizeSymbol,
+        iconBtn,
+        redo,
+        undo,
+        visibleId,
+        showLangInLine1,
+    } = useContext(Data);
 
     const { t } = useTranslation();
     return (
@@ -22,6 +31,10 @@ export const ToolBox = () => {
                         {iconBtn()
                             ? t('toolbar1.' + (enMode() ? 'en' : 'zh'))[0]
                             : t('toolbar1.' + (enMode() ? 'en' : 'zh'))}
+                    </span>
+                    <span class="btn flex-none" onclick={() => showLangInLine1((i) => !i)}>
+                        <CheckBox value={showLangInLine1}></CheckBox>
+                        {t('toolbar1.showLang')}
                     </span>
                     {/* 强调括号更换 */}
                     <span

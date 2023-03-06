@@ -33,6 +33,7 @@ export interface IStoreData {
     tag_version: Atom<string>;
 }
 export interface IGlobalData extends IStoreData {
+    showLangInLine1: Atom<boolean>;
     emphasizeAddMode: Atom<boolean>;
     emphasizeSubMode: Atom<boolean>;
     sideAppMode: Atom<boolean>;
@@ -74,6 +75,7 @@ export const App = () => {
     const forceEN = atom<boolean>(false);
     const showClassify = atom<boolean>(true);
     const tag_version = atom('2.1.3');
+    const showLangInLine1 = atom(false);
 
     /** 需要持久化的变量写这里 */
     const storageSetting = {
@@ -96,6 +98,7 @@ export const App = () => {
         MaxEmphasize,
         defaultFont,
         iconBtn,
+        showLangInLine1,
     };
 
     const { recover, tracking } = useStorage(storageSetting);

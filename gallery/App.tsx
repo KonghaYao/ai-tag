@@ -12,6 +12,7 @@ import { FloatPanelWithAnimate, Tabs } from '@cn-ui/core';
 import { Animate } from '@cn-ui/animate';
 import '../src/index.css';
 import { UploadPanel } from '../src/Panels/UploadPanel';
+import { Notice } from '../src/utils/notice';
 export const GalleryGlobal = createContext<
     {
         username: Atom<string>;
@@ -56,6 +57,17 @@ export const App = () => {
                                 <a
                                     class="pr-2 underline underline-offset-8 transition-colors hover:text-amber-400"
                                     href="/"
+                                    target="_blank"
+                                    onClick={(e) => {
+                                        // 判断是否为被本应用嵌套
+                                        if (
+                                            top !== window &&
+                                            top.location.origin === location.origin
+                                        ) {
+                                            e.preventDefault();
+                                            Notice.success('您已经在魔导绪论啦😄');
+                                        }
+                                    }}
                                 >
                                     魔导绪论
                                 </a>

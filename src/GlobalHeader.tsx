@@ -33,7 +33,7 @@ export function GlobalHeader() {
                         return (
                             <div class="blur-background pointer-events-auto mt-2 flex flex-col  gap-2 rounded-md border border-slate-500 p-2">
                                 <a
-                                    href={'./gallery.html#/r18=' + (r18Mode() ? 'true' : '')}
+                                    href={'./gallery.html#/?r18=' + (r18Mode() ? 'true' : '')}
                                     target="_blank"
                                 >
                                     {t('header.Gallery')}

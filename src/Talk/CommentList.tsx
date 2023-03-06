@@ -122,12 +122,12 @@ export const CommentItem: Component<{
     const attr = props.data.attributes;
     const { atSomeone } = useContext(TalkContext);
     return (
-        <div>
-            <header class="mt-2 flex justify-between text-sm">
+        <div class="">
+            <header class=" mt-2 flex justify-between text-sm">
                 <div>{attr.nick === 'Anonymous' ? '匿名' : attr.nick}</div>
                 <div class="text-xs">{timeAgo(new Date(props.data.createdAt))}</div>
             </header>
-            <main class="p-2" style="letter-spacing: 0.05em;">
+            <main class="select-text  p-2" style="letter-spacing: 0.05em;word-break: break-all;">
                 <TalkMarkdown code={attr.comment}></TalkMarkdown>
             </main>
 

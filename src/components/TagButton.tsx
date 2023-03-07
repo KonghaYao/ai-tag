@@ -155,7 +155,7 @@ function createContent(item: IData, cn: Atom<boolean>, en: Atom<boolean>) {
         }
         return (
             <>
-                {cn() && <div>{item.cn}</div>}
+                {(cn() && (!en() || en() && item.cn !== item.en)) && <div>{item.cn}</div>}
                 {en() && <div class="en-words">{item.en}</div>}
             </>
         );

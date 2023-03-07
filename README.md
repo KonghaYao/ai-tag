@@ -87,6 +87,9 @@ pnpm i netlify-cli -g # 需要全局安装
 pnpm function # 开启 netlify 的调试云函数，主要是社区需要使用
 pnpm dev # 开发者模式查看
 pnpm build # 打包版本，一般 Netlify 自动打包
+
+# 注意，调试某些面板需要使用环境变量，只有我才有，所以会报错😂
+
 ```
 
 ## 关于社区的搜索方式

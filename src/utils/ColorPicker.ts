@@ -31,7 +31,7 @@ export class ColorPicker {
         if (this.cursor === this.store.length) {
             this.cursor = 0;
         }
-        console.log(this.cursor);
+        // console.log(this.cursor);
         return this.store[this.cursor++] + ` color${this.cursor} `;
     }
 }

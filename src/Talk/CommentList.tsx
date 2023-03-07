@@ -1,4 +1,4 @@
-import { atom, resource } from '@cn-ui/use';
+import { resource } from '@cn-ui/use';
 import { Component, For, Show, createEffect, useContext } from 'solid-js';
 import { AV } from '../api/cloud';
 import { usePagination } from '@cn-ui/headless';

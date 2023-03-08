@@ -9,6 +9,7 @@ import { CSVToJSON } from '../utils/CSVToJSON';
 import { initWorker } from '../worker';
 import { useHistory } from './useTagHistory';
 import { Message } from '@cn-ui/core';
+import { TradToSimple } from '../utils/TradToSimple';
 const { searchWorker, sharedWorker } = initWorker();
 
 const cdn = 'https://cdn.jsdelivr.net/npm';
@@ -118,7 +119,8 @@ export function useDatabase(store: IStoreData) {
 
     createEffect(async () => {
         if (!lists.isReady()) result([]);
-        const text = searchText();
+        // 繁体搜索问题
+        const text = TradToSimple(searchText());
         if (!text) {
             result(safeList().slice(0, tagsPerPage()));
             return;

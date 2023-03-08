@@ -21,22 +21,27 @@ export const AIPrompt = () => {
     const data = resource(
         () => {
             const input = preInput();
-
+            console.log(input);
             /**  */
             let sampledText =
-                input.length >= 100 ? cutTheString(input, sampleRate()).join(',') : input;
+                (input.length >= 100 ? cutTheString(input, sampleRate()).join(',') : input) || ',';
 
-            return fetch('./.netlify/functions/ai_write_prompt' + sampledText)
+            return fetch(
+                './.netlify/functions/ai_write_prompt?inputs=' +
+                    sampledText +
+                    '&token=' +
+                    (localStorage.getItem('huggingface_token') ?? '')
+            )
                 .then((res) => res.json())
                 .then((res: { error?: string; generated_text: string; time: number }) => {
                     if (res.generated_text) {
-                        // 处理返回的数据，不需要断行和头部的提示词，头部替换回去即可
+                        // 处理返回的数据，不需要断行和头部的提示词，头部替后面会换回去
+                        res.generated_text = res.generated_text.replace(sampledText, '');
+                        // console.log([res.generated_text, sampledText]);
+                        //! 断行会严重影响 ai 生成，所以删除
                         res.generated_text = res.generated_text.replaceAll('\n', '');
-                        const old = res.generated_text;
-                        res.generated_text = res.generated_text.replace(sampledText, preInput());
-                        if (old === res.generated_text) {
-                            res.generated_text = preInput() + old;
-                        }
+
+                        console.log(res.generated_text, sampledText);
                         return res;
                     } else {
                         throw new Error(res.error);
@@ -55,7 +60,6 @@ export const AIPrompt = () => {
             <header class="py-2 text-center text-lg text-white">AI 魔咒助手</header>
             <section class="flex flex-1 select-text flex-col gap-1 overflow-hidden p-2">
                 <div class="text-sm text-red-300">
-                    研发测试中，
                     <a href="http://huggingface.co">
                         <span class="btn">PowerBy HuggingFace🤗</span>
                     </a>
@@ -105,7 +109,7 @@ export const AIPrompt = () => {
                                 batch(() => {
                                     const text = data().generated_text;
 
-                                    preInput(text.endsWith(',') ? text : text + ',');
+                                    preInput((i) => i + (text.endsWith(',') ? text : text + ','));
                                     data.mutate({ generated_text: '', time: 0 });
                                 });
                             }}
@@ -136,11 +140,7 @@ export const AIPrompt = () => {
                                 );
                             }}
                         >
-                            {data() && (
-                                <span class="text-green-600 ">
-                                    {data().generated_text.replace(preInput(), '')}
-                                </span>
-                            )}
+                            {data() && <span class="text-green-600 ">{data().generated_text}</span>}
                         </AC>
                     </p>
                 </article>
@@ -156,6 +156,20 @@ export const AIPrompt = () => {
                 >
                     {t('publicPanel.CopyMagic')}
                 </button>
+                <span
+                    class="btn"
+                    onclick={() => {
+                        const token = prompt(
+                            '请输入您的 HuggingFace Token，Token 只在本地存储，Token 等于专属加速😄',
+                            localStorage.getItem('huggingface_token') ?? undefined
+                        );
+                        if (token) {
+                            localStorage.setItem('huggingface_token', token);
+                        }
+                    }}
+                >
+                    使用 Token
+                </span>
             </div>
         </Panel>
     );

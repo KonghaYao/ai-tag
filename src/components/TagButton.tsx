@@ -37,6 +37,7 @@ const useColorStep = (data: Accessor<number>) => {
 export const TagButton: Component<{
     data: IData;
     onClick?: (item: IData, rightClick?: boolean) => void;
+    onMouseEnter(item: IData): void;
     onWheel?: (item: IData, delta: number, e: Event) => void;
     onDragStart?: (item: IData, dragData: DataTransfer, e: Event) => void;
     onDrop?: (item: IData, dropData: DataTransfer, e: Event) => void;
@@ -99,7 +100,12 @@ export const TagButton: Component<{
                 e.preventDefault();
                 props.onDrop && props.onDrop(item, e.dataTransfer, e);
             }}
-            title={`${item.cn ?? item.en}\n左点击加，右点击减，滚轮改变小数点`}
+            onmouseenter={() => props.onMouseEnter && props.onMouseEnter(item)}
+            title={
+                item.count !== Infinity
+                    ? `${item.cn ?? item.en}\n左点击加，右点击减，滚轮改变小数点`
+                    : undefined
+            }
             data-id={item.en}
         >
             <nav>{split()[0]}</nav>
@@ -155,7 +161,7 @@ function createContent(item: IData, cn: Atom<boolean>, en: Atom<boolean>) {
         }
         return (
             <>
-                {(cn() && (!en() || en() && item.cn !== item.en)) && <div>{item.cn}</div>}
+                {cn() && (!en() || (en() && item.cn !== item.en)) && <div>{item.cn}</div>}
                 {en() && <div class="en-words">{item.en}</div>}
             </>
         );

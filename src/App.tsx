@@ -53,6 +53,7 @@ import { Message, MessageHint } from './MessageHint';
 import { Background } from './components/Background';
 import { DropReceiver } from '@cn-ui/headless';
 import { GlobalHeader } from './GlobalHeader';
+import { TranslationPanel } from './plugins/globalTranslate/TranslationPanel';
 export const App = () => {
     const enMode = atom(true);
     const r18Mode = atom(false);
@@ -147,6 +148,7 @@ export const App = () => {
                         <SideApp></SideApp>
                         <MessageHint></MessageHint>
 
+                        <TranslationPanel></TranslationPanel>
                         <FontSupport delay={200} show={atom(false)}></FontSupport>
                     </div>
                 </DropReceiver>

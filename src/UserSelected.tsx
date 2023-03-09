@@ -14,6 +14,7 @@ import { Message } from './MessageHint';
 import { CombineMagic } from './utils/CombineMagic';
 import { DropReceiver, useDragAndDropData } from '@cn-ui/headless';
 import tinykeys from 'tinykeys';
+import { GlobalPlugin, useBlackBoard } from './plugins/GlobalPlugin';
 export const BindHistoryKey = () => {
     const { redo, undo } = useContext(Data);
 
@@ -42,7 +43,6 @@ export const UserSelected = () => {
     } = useContext(Data);
     const { wheelEvent, clickEvent } = useTagController();
     BindHistoryKey();
-    console.log(isAtom(usersCollection));
     const disabledSortable = reflect(() => {
         return isMobile() ? emphasizeAddMode() || emphasizeSubMode() || deleteMode() : false;
     });
@@ -75,6 +75,7 @@ export const UserSelected = () => {
         e.done = true;
         return false;
     };
+    const translate = useBlackBoard(GlobalPlugin, 'translation');
     return (
         <DropReceiver
             detect={{
@@ -175,6 +176,10 @@ export const UserSelected = () => {
                                                   }
                                                 : clickEvent
                                         }
+                                        onMouseEnter={(item) => {
+                                            item.count === Infinity &&
+                                                translate().translate(item.en);
+                                        }}
                                         onWheel={(info, delta, e) => {
                                             e.preventDefault();
                                             // console.log('onWheel');

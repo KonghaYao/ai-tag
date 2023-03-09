@@ -48,8 +48,9 @@ export const TranslationPanel = () => {
         { value: 'zh', label: '英语' },
         { value: 'en', label: '简中' },
     ];
+    let hovering = false;
     const delayClose = debounce(() => {
-        show(false);
+        !hovering && show(false);
     }, 2000);
     createEffect(() => data.isReady() && delayClose());
     GlobalPlugin.register('translation', {
@@ -66,19 +67,20 @@ export const TranslationPanel = () => {
     return (
         <Animate anime="scale" trigger={show}>
             <nav
-                class="fixed z-50  max-w-xs rounded-md bg-slate-700 ring-2  ring-slate-700 transition-all ease-linear "
+                class="fixed z-40  max-w-xs rounded-md bg-slate-700 ring-2  ring-slate-700 transition-all ease-linear "
                 onmouseenter={() => {
                     disabled(true);
+                    hovering = true;
                     delayClose();
                 }}
-                onmousemove={() => delayClose()}
                 onmouseleave={() => {
                     disabled(false);
-                    show(false);
+                    hovering = false;
+                    delayClose();
                 }}
                 style={{
-                    top: y() + 5 + 'px',
-                    left: x() + 10 + 'px',
+                    top: y() + 20 + 'px',
+                    left: x() + 20 + 'px',
                 }}
             >
                 <header class="flex border-b border-slate-400 px-2 py-1">
@@ -97,6 +99,7 @@ export const TranslationPanel = () => {
                                 const a = target();
                                 target(source());
                                 source(a);
+                                data.refetch();
                             });
                         }}
                     >
@@ -105,7 +108,9 @@ export const TranslationPanel = () => {
                     <Select value={target} options={langs}></Select>
                 </div>
                 <AC resource={data}>
-                    <p>{data()}</p>
+                    <p class="whitespace-pre-wrap p-2" style="word-break: break-all;">
+                        {data()}
+                    </p>
                 </AC>
             </nav>
         </Animate>

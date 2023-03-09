@@ -1,6 +1,6 @@
 import { createEffect, on } from 'solid-js';
 import { StoreData, API } from '../src/api/notion';
-import { atom, useSingleAsync } from '@cn-ui/use';
+import { asyncLock, atom } from '@cn-ui/use';
 import { useViewer } from '../src/use/useViewer';
 import { useSearchParams } from '@solidjs/router';
 import { Notice } from '../src/utils/notice';
@@ -38,11 +38,11 @@ export const useGalleryInfo = () => {
     return {
         page: currentIndex,
         end,
-        changePage: useSingleAsync(async (number: number) => {
+        changePage: asyncLock(async (number: number) => {
             if (end()) return;
             return loadMore(number).then(() => currentIndex(number));
         }),
-        clearAndResearch: useSingleAsync(async () => {
+        clearAndResearch: asyncLock(async () => {
             return loadMore(0, true);
         }),
         searchText,

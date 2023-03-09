@@ -232,7 +232,7 @@ export const UploadPanel = (props: {
                     <sup class="text-xl text-red-600">*</sup>
                     <label class="flex-none ">{t('uploadPanel.prompt')}</label>
                     <textarea
-                        placeholder="请填入您的 Tags, 一般为英文字符串"
+                        placeholder="自动识别, 如果没有可以填写正面描述"
                         class="input ml-1"
                         value={store.tags}
                         oninput={(e) => {

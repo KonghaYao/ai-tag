@@ -11,9 +11,14 @@ export const PictureCard: Component<StoreData & { index: number }> = (item) => {
     const { visibleId } = useContext(PanelContext);
     const { ShowingPicture, getViewer, backgroundImage, searchText, ShowingPictureURL } =
         useContext(GalleryGlobal);
-
+    let tag = item.tags;
+    try {
+        const tags = JSON.parse(item.other);
+        const map = new Map<string, string>(tags);
+        tag = map.get('Description') || item.tags;
+    } catch (e) {}
     return (
-        <DragPoster send={(send) => send('INPUT_MAGIC', item.tags)}>
+        <DragPoster send={(send) => send('INPUT_MAGIC', tag)}>
             <div class="single-pic relative  w-full  cursor-pointer  rounded-md  shadow-lg transition-transform  duration-500 ">
                 {/* 展示的图片 */}
                 <BackupImage

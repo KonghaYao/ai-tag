@@ -66,7 +66,7 @@ export const TranslationPanel = () => {
     return (
         <Animate anime="scale" trigger={show}>
             <nav
-                class="fixed z-50   rounded-md bg-slate-700 ring-2  ring-slate-700 transition-all ease-linear "
+                class="fixed z-50  max-w-xs rounded-md bg-slate-700 ring-2  ring-slate-700 transition-all ease-linear "
                 onmouseenter={() => {
                     disabled(true);
                     delayClose();
@@ -104,7 +104,9 @@ export const TranslationPanel = () => {
                     </button>
                     <Select value={target} options={langs}></Select>
                 </div>
-                <AC resource={data}>{data()}</AC>
+                <AC resource={data}>
+                    <p>{data()}</p>
+                </AC>
             </nav>
         </Animate>
     );

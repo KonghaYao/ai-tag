@@ -37,13 +37,13 @@ export const CommentList = () => {
         },
         { initValue: [], immediately: false }
     );
-
+    const pageCount = 10;
     const { currentData, currentPage, maxPage, next, prev } = usePagination((page, maxPage) => {
-        maxPage(() => Math.ceil(total() / 5));
+        maxPage(() => Math.ceil(total() / pageCount));
 
         return createCommonQuery(DatabaseName, url)
-            .limit(5)
-            .skip(5 * page)
+            .limit(pageCount)
+            .skip(pageCount * page)
             .find()
             .then((res) => {
                 rootIds = res.map((i) => i.id);
@@ -120,7 +120,7 @@ export const CommentItem: Component<{
     subMode: boolean;
 }> = (props) => {
     const attr = props.data.attributes;
-    const { atSomeone } = useContext(TalkContext);
+    const { atSomeone, backToTop } = useContext(TalkContext);
     return (
         <div class="">
             <header class=" mt-2 flex justify-between text-sm">
@@ -151,6 +151,7 @@ export const CommentItem: Component<{
                     class="my-1 w-full  cursor-pointer rounded bg-slate-700 text-center text-sm transition-colors"
                     onclick={() => {
                         atSomeone(props.data);
+                        backToTop();
                     }}
                 >
                     添加回复

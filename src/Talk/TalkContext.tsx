@@ -16,5 +16,6 @@ export const TalkContext = createContext<
     Required<TalkConfig> & {
         atSomeone: Atom<CommentObject | null>;
         refreshPage: Atom<() => void>;
+        backToTop: () => void;
     }
 >();

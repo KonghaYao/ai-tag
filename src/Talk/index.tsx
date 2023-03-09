@@ -11,13 +11,23 @@ export const TalkDefault: Component<TalkConfig> = (props) => {
         ...props,
     } as Required<TalkConfig>;
     const atSomeone = atom(null);
+    let ref: HTMLDivElement;
 
     return (
-        <TalkContext.Provider value={{ ...input, atSomeone, refreshPage: atom(() => {}) }}>
-            <div class="flex flex-col border-slate-500">
+        <TalkContext.Provider
+            value={{
+                ...input,
+                atSomeone,
+                backToTop() {
+                    ref.scrollIntoView();
+                },
+                refreshPage: atom(() => {}),
+            }}
+        >
+            <section class="flex flex-col border-slate-500" ref={ref}>
                 <InputArea></InputArea>
                 <CommentList></CommentList>
-            </div>
+            </section>
         </TalkContext.Provider>
     );
 };

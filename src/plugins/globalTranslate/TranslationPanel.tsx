@@ -34,7 +34,6 @@ export const Select = (props: {
 export const TranslationPanel = () => {
     const show = atom(false);
     const disabled = reflect(() => !show());
-    const { x, y } = useMouse({ type: 'client', disabled });
     const input = atom('');
     const data = resource(
         () => {
@@ -55,19 +54,18 @@ export const TranslationPanel = () => {
     createEffect(() => data.isReady() && delayClose());
     GlobalPlugin.register('translation', {
         show,
-        translate(text) {
+        translate: debounce((text) => {
             batch(() => {
                 show(true);
                 input(text);
-                delayClose();
             });
-        },
+        }, 500),
     });
 
     return (
         <Animate anime="scale" trigger={show}>
             <nav
-                class="fixed z-40  max-w-xs rounded-md bg-slate-700 ring-2  ring-slate-700 transition-all ease-linear "
+                class="fixed z-20  max-w-xs rounded-md bg-slate-700/80 ring-2  ring-slate-600 transition-all ease-linear "
                 onmouseenter={() => {
                     disabled(true);
                     hovering = true;
@@ -79,8 +77,8 @@ export const TranslationPanel = () => {
                     delayClose();
                 }}
                 style={{
-                    top: y() + 20 + 'px',
-                    left: x() + 20 + 'px',
+                    left: '20px',
+                    bottom: '20px',
                 }}
             >
                 <header class="flex border-b border-slate-400 px-2 py-1">

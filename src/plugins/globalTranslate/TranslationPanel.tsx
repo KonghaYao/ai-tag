@@ -50,7 +50,7 @@ export const TranslationPanel = () => {
     let hovering = false;
     const delayClose = debounce(() => {
         !hovering && show(false);
-    }, 2000);
+    }, 3000);
     createEffect(() => data.isReady() && delayClose());
     GlobalPlugin.register('translation', {
         show,
@@ -63,54 +63,54 @@ export const TranslationPanel = () => {
     });
 
     return (
-        <Animate anime="scale" trigger={show}>
-            <nav
-                class="fixed z-20  max-w-xs rounded-md bg-slate-700/80 ring-2  ring-slate-600 transition-all ease-linear "
-                onmouseenter={() => {
-                    disabled(true);
-                    hovering = true;
-                    delayClose();
-                }}
-                onmouseleave={() => {
-                    disabled(false);
-                    hovering = false;
-                    delayClose();
-                }}
-                style={{
-                    left: '20px',
-                    bottom: '20px',
-                }}
-            >
-                <header class="flex border-b border-slate-400 px-2 py-1">
-                    <div>魔导翻译器</div>
-                    <div class="flex-1"></div>
-                    <button class="btn" onclick={() => show(false)}>
-                        x
-                    </button>
-                </header>
-                <div class="flex justify-between gap-2 py-1">
-                    <Select value={source} options={langs}></Select>
-                    <button
-                        class="btn"
-                        onClick={() => {
-                            batch(() => {
-                                const a = target();
-                                target(source());
-                                source(a);
-                                data.refetch();
-                            });
-                        }}
-                    >
-                        ♾️
-                    </button>
-                    <Select value={target} options={langs}></Select>
-                </div>
-                <AC resource={data}>
-                    <p class="whitespace-pre-wrap p-2" style="word-break: break-all;">
-                        {data()}
-                    </p>
-                </AC>
-            </nav>
-        </Animate>
+        <nav
+            // 动画很碍眼，故删除
+            class="fixed z-20  max-w-xs rounded-md bg-slate-700/80 ring-2  ring-slate-600 "
+            classList={{ hidden: !show() }}
+            onmouseenter={() => {
+                disabled(true);
+                hovering = true;
+                delayClose();
+            }}
+            onmouseleave={() => {
+                disabled(false);
+                hovering = false;
+                delayClose();
+            }}
+            style={{
+                left: '20px',
+                bottom: '20px',
+            }}
+        >
+            <header class="flex border-b border-slate-400 px-2 py-1">
+                <div>魔导翻译器</div>
+                <div class="flex-1"></div>
+                <button class="btn" onclick={() => show(false)}>
+                    x
+                </button>
+            </header>
+            <div class="flex justify-between gap-2 py-1">
+                <Select value={source} options={langs}></Select>
+                <button
+                    class="btn"
+                    onClick={() => {
+                        batch(() => {
+                            const a = target();
+                            target(source());
+                            source(a);
+                            data.refetch();
+                        });
+                    }}
+                >
+                    ♾️
+                </button>
+                <Select value={target} options={langs}></Select>
+            </div>
+            <AC resource={data}>
+                <p class="whitespace-pre-wrap p-2" style="word-break: break-all;">
+                    {data()}
+                </p>
+            </AC>
+        </nav>
     );
 };

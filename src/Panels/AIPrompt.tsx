@@ -17,6 +17,7 @@ export const AIPrompt = () => {
     const { usersCollection, lists } = useContext(Data);
     const preInput = atom('');
     const sampleRate = atom(50);
+    const lengthOfText = atom(70);
     const data = resource(
         () => {
             const input = preInput().trim();
@@ -28,7 +29,9 @@ export const AIPrompt = () => {
                     : input
                 ).replaceAll('\n', '') || ',';
             console.log(sampledText);
-            return fetch('https://magic-prompts.deno.dev?length=30&text=' + sampledText)
+            return fetch(
+                `https://magic-prompts.deno.dev?length=${lengthOfText()}&text=` + sampledText
+            )
                 .then((res) => res.json())
                 .then((res: { error?: string; text: string; time: number }) => {
                     if (res.text) {
@@ -68,7 +71,7 @@ export const AIPrompt = () => {
                     value={preInput()}
                     onchange={(e) => preInput((e.target as any).value)}
                 />
-                <nav class="flex justify-between gap-2 text-center text-xs">
+                <nav class="grid grid-cols-2 gap-2 text-center text-xs">
                     <button
                         onClick={() => {
                             preInput(TagsToString(usersCollection()).replace(/\n/g, ''));
@@ -77,11 +80,12 @@ export const AIPrompt = () => {
                     >
                         导入魔咒
                     </button>
+                    <div></div>
                     <label
-                        class="inline-flex items-center"
+                        class="inline-flex flex-col items-center"
                         title="采样率越低，生成长度越长；反之亦然。"
                     >
-                        采样率 {sampleRate()}
+                        <span>采样率 {sampleRate()}</span>
                         <input
                             class=" px-2"
                             type="range"
@@ -91,6 +95,20 @@ export const AIPrompt = () => {
                             value={sampleRate()}
                             oninput={(e) => {
                                 sampleRate(parseInt((e.target as any).value));
+                            }}
+                        />
+                    </label>
+                    <label class="inline-flex flex-col items-center" title="生成长度">
+                        <span>长度 {lengthOfText()}</span>
+                        <input
+                            class=" px-2"
+                            type="range"
+                            min="50"
+                            max="100"
+                            step="1"
+                            value={lengthOfText()}
+                            oninput={(e) => {
+                                lengthOfText(parseInt((e.target as any).value));
                             }}
                         />
                     </label>

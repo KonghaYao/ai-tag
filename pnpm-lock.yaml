@@ -12,6 +12,7 @@ specifiers:
   '@netlify/functions': ^1.3.0
   '@solidjs/router': ^0.5.1
   '@tailwindcss/line-clamp': ^0.4.2
+  '@tsndr/cloudflare-worker-jwt': ^2.2.1
   '@types/formidable': ^2.0.5
   '@types/fs-extra': ^9.0.13
   '@types/lodash-es': ^4.17.6
@@ -64,6 +65,7 @@ dependencies:
   '@cn-ui/transition': 1.7.4_ff7tjlzg2eegtjch7dqtskp3nu
   '@cn-ui/use': 2.0.3
   '@solidjs/router': 0.5.1_solid-js@1.6.14
+  '@tsndr/cloudflare-worker-jwt': 2.2.1
   comlink: 4.3.1
   copy-to-clipboard: 3.3.3
   file-saver: 2.0.5
@@ -758,6 +760,10 @@ packages:
     dependencies:
       tailwindcss: 3.2.4_postcss@8.4.20
     dev: true
+
+  /@tsndr/cloudflare-worker-jwt/2.2.1:
+    resolution: {integrity: sha512-yYxjmag5AXXs7FDCUlse8cCTQlug3fbrqUb4/s4kvdauOg5wq2V6BayHD/OUWOGmgohefFRqu4vA5phU3+Cyng==}
+    dev: false
 
   /@types/babel__core/7.20.0:
     resolution: {integrity: sha512-+n8dL/9GWblDO0iU6eZAwEIJVr5DWigtle+Q6HLOrh/pdbXOhOtqzq8VPPE2zvNJzSKY4vH/z3iT3tn0A3ypiQ==}

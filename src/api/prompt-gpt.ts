@@ -1,32 +1,66 @@
 import { sign } from '@tsndr/cloudflare-worker-jwt';
+async function* readStreamAsTextLines(stream: ReadableStream<Uint8Array>) {
+    const linesReader = stream
+        .pipeThrough(new TextDecoderStream())
+
+        .getReader();
+    while (true) {
+        const { value, done } = await linesReader.read();
+        if (done) break;
+        yield value;
+    }
+}
+interface Notify {
+    (text: string, per: number): void;
+}
 export class PromptGPT {
     constructor() {}
-    async query(data: { prompt: string; id: string }, notify: (text: string, per: number) => void) {
-        // Create a new XHR object
-        var xhr = new XMLHttpRequest();
 
-        // Define the request method, URL and async status
-        xhr.open('POST', 'https://prompt-gpt.deno.dev/ai');
+    /**
+     * 基础描述文本生成长文本
+     */
+    textToText(text: string, length = 20, notify: Notify) {
+        return this.query(
+            {
+                prompt: `一句描述${text}的画作的专业评价语句，${length} 词以上，发挥想象，英文，直接描述不要输出多余的话，不要引号`,
+                id: '0',
+            },
+            notify
+        );
+    } /**
+    * 基础描述文本生成 Tags 组
+
+    */
+    textToTags(text: string, length = 20, notify: Notify) {
+        return this.query(
+            {
+                prompt: `获取一句描述${text}的画作的专业评价语句中的关键词，${length} 关键词以上，发挥想象，英文，不要引号，直接描述不要输出多余的话，不要开头的 Key Words`,
+                id: '0',
+            },
+            notify
+        );
+    }
+
+    async query(data: { prompt: string; id: string }, notify: Notify) {
         const token = await this.getToken();
-        xhr.setRequestHeader('Content-type', 'application/json');
-        // Set the request headers (optional)
-        xhr.setRequestHeader('Authorization', 'Barer ' + token);
-
-        // Set up a callback function to handle the response
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                // Handle the response data
-                notify(xhr.responseText, 100);
+        let allText = '';
+        return fetch('https://prompt-gpt.deno.dev/ai', {
+            method: 'POST',
+            headers: {
+                Authorization: 'Barer ' + token,
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        }).then(async (res) => {
+            const stream = res.body;
+            for await (const text of readStreamAsTextLines(stream)) {
+                if (!text) continue;
+                // if (text === 'data: [DONE]') break;
+                // if (!text.startsWith('data: ')) throw new Error('Unexpected text: ' + text);
+                allText += text;
+                notify(allText, 50);
             }
-        };
-        // Set up a callback function to handle the progress event
-        xhr.onprogress = function (event) {
-            if (event.lengthComputable) {
-                var percentComplete = (event.loaded / event.total) * 100;
-                notify(xhr.responseText, percentComplete);
-            }
-        };
-        xhr.send(JSON.stringify(data));
+        });
     }
     getToken() {
         return sign(
@@ -38,3 +72,4 @@ export class PromptGPT {
         );
     }
 }
+export const GlobalGPT = new PromptGPT();

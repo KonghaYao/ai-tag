@@ -6,7 +6,6 @@ import { HomePanel } from './Panels/HomePanel';
 import { Webview } from './Panels/Webview';
 import { FeedBackPanel } from './Feedback/Feedback';
 import { MyFeedBackPanel } from './Feedback/MyFeedback';
-import { AIPrompt } from './Panels/AIPrompt';
 import { PromptExtractorPanel } from './Panels/PromptExtractor';
 import { Tabs } from '@cn-ui/core';
 export type PanelIds =
@@ -27,6 +26,7 @@ import '@cn-ui/animate/src/jump.css';
 import { Animate } from '@cn-ui/animate';
 import { TalkPanel } from './Panels/TalkPanel';
 import { ArtistPanel } from './Panels/artist';
+import { PromptGPT } from './PromptGPT/PromptGPT';
 export const SideApp = () => {
     const { sideAppMode, visibleId } = useContext(Data);
     const hasOpened = createMemo(() => visibleId() !== null);
@@ -51,7 +51,7 @@ export const SideApp = () => {
 
                         <FeedBackPanel></FeedBackPanel>
                         <MyFeedBackPanel></MyFeedBackPanel>
-                        <AIPrompt></AIPrompt>
+                        <PromptGPT></PromptGPT>
                         <PromptExtractorPanel></PromptExtractorPanel>
                         <TalkPanel></TalkPanel>
                         <ArtistPanel></ArtistPanel>

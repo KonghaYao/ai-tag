@@ -36,6 +36,7 @@ const InstructGPT = (_prompt: string, token: string) => {
     });
 };
 const DefaultGPT = async (_prompt: string) => {
+    console.log('使用默认服务: ', _prompt);
     const token = await sign(
         {
             name: Math.random().toString() + Date.now(),
@@ -67,14 +68,26 @@ export class PromptGPT {
             },
             notify
         );
-    } /**
-    * 基础描述文本生成 Tags 组
-
-    */
+    }
+    /**
+     * 基础描述文本生成 Tags 组
+     */
     textToTags(text: string, length = 20, notify: Notify) {
         return this.query(
             {
                 prompt: `获取一句描述${text}的画作的专业评价语句中的关键词，${length} 关键词以上，发挥想象，英文，不要引号，直接描述不要输出多余的话，不要开头的 Key Words`,
+                id: '0',
+            },
+            notify
+        );
+    }
+    /**
+     * Tags 转化为文本
+     */
+    TagsToText(text: string, length = 20, notify: Notify) {
+        return this.query(
+            {
+                prompt: `将关键词组合成描述画面的语句，英文回答，直接描述不讲废话，写到长度 ${length}： ${text}`,
                 id: '0',
             },
             notify
@@ -92,6 +105,7 @@ export class PromptGPT {
     }
     async query(data: { prompt: string; id: string }, notify: Notify) {
         let allText = '';
+
         return this.GPT(data.prompt, this.ownKey).then(async (res) => {
             const stream = res.body;
             for await (const text of readStreamAsTextLines(stream)) {

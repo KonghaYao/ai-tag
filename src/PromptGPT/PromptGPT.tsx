@@ -37,7 +37,16 @@ const Presets = {
             value: '日本 JK 萝莉',
         },
         {
-            value: '机械风格的日式美少女',
+            value: '超短裙女孩在绑单马尾',
+        },
+        {
+            value: '人形机器美少女，脸部很自然',
+        },
+        {
+            value: '少女百合日常',
+        },
+        {
+            value: '两个女生一起逛街的人物画像',
         },
         {
             value: '沙滩上的泳装少女',
@@ -50,6 +59,9 @@ const Presets = {
         },
         {
             value: '浪花般的樱花的风景图',
+        },
+        {
+            value: '太空大战',
         },
         {
             value: '精致的少女穿着黑丝和白衬衫',
@@ -88,7 +100,25 @@ export const PromptGPT = () => {
 
             <section class="flex flex-1 select-text flex-col gap-1 overflow-hidden p-2">
                 <label>
-                    <div class="my-4 text-lg ">输入你想画的东西</div>
+                    <div class="my-4 text-lg ">
+                        输入你想画的东西
+                        <span
+                            class="float-right"
+                            onclick={() => {
+                                const token = prompt(
+                                    '输入 OpenAI 的 token。我们不会保存你的 token，完全在你的设备上使用它, 空白为删除你的 token。',
+                                    GlobalGPT.ownKey
+                                );
+                                if (token) {
+                                    GlobalGPT.ownKey = token;
+                                } else {
+                                    GlobalGPT.ownKey = '';
+                                }
+                            }}
+                        >
+                            🔑
+                        </span>
+                    </div>
                     <div class="flex ">
                         <Select
                             each={Presets.description}

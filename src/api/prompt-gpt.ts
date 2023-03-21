@@ -13,6 +13,46 @@ async function* readStreamAsTextLines(stream: ReadableStream<Uint8Array>) {
 interface Notify {
     (text: string, per: number): void;
 }
+
+const InstructGPT = (_prompt: string, token: string) => {
+    console.log('使用自己的TOKEN: ', _prompt);
+    return fetch('https://openai-proxy-magic.deno.dev', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+            model: 'text-babbage-001',
+            temperature: 0.9,
+            max_tokens: 150,
+            top_p: 1,
+            frequency_penalty: 0,
+            presence_penalty: 0.6,
+            stop: ['\n提问:', '\nAI:'],
+            prompt: `\n提问:` + _prompt + `\nAI:`,
+            stream: true,
+        }),
+    });
+};
+const DefaultGPT = async (_prompt: string) => {
+    const token = await sign(
+        {
+            name: Math.random().toString() + Date.now(),
+        },
+        // 如果你看到这一行的具体数据，那么你应该忘记它，而不是使用它！
+        import.meta.env.VITE_JWT_PROMPT
+    );
+    return fetch('https://prompt-gpt.deno.dev/ai', {
+        method: 'POST',
+        headers: {
+            Authorization: 'Barer ' + token,
+            'Content-type': 'application/json',
+        },
+        body: JSON.stringify({ prompt: _prompt, id: '0' }),
+    });
+};
+
 export class PromptGPT {
     constructor() {}
 
@@ -22,7 +62,7 @@ export class PromptGPT {
     textToText(text: string, length = 20, notify: Notify) {
         return this.query(
             {
-                prompt: `一句描述${text}的画作的专业评价语句，${length} 词以上，发挥想象，英文，直接描述不要输出多余的话，不要引号`,
+                prompt: `一句描述${text}的画作的专业评价语句，${length} 词以上，发挥想象力扩展文字，英文，直接描述不要输出多余的话，不要引号`,
                 id: '0',
             },
             notify
@@ -41,35 +81,25 @@ export class PromptGPT {
         );
     }
 
+    get ownKey() {
+        return localStorage.getItem('open_ai_key');
+    }
+    set ownKey(str: string) {
+        localStorage.setItem('open_ai_key', str);
+    }
+    get GPT() {
+        return this.ownKey ? InstructGPT : DefaultGPT;
+    }
     async query(data: { prompt: string; id: string }, notify: Notify) {
-        const token = await this.getToken();
         let allText = '';
-        return fetch('https://prompt-gpt.deno.dev/ai', {
-            method: 'POST',
-            headers: {
-                Authorization: 'Barer ' + token,
-                'Content-type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        }).then(async (res) => {
+        return this.GPT(data.prompt, this.ownKey).then(async (res) => {
             const stream = res.body;
             for await (const text of readStreamAsTextLines(stream)) {
                 if (!text) continue;
-                // if (text === 'data: [DONE]') break;
-                // if (!text.startsWith('data: ')) throw new Error('Unexpected text: ' + text);
                 allText += text;
                 notify(allText, 50);
             }
         });
-    }
-    getToken() {
-        return sign(
-            {
-                name: Math.random().toString() + Date.now(),
-            },
-            // 如果你看到这一行的具体数据，那么你应该忘记它，而不是使用它！
-            import.meta.env.VITE_JWT_PROMPT
-        );
     }
 }
 export const GlobalGPT = new PromptGPT();

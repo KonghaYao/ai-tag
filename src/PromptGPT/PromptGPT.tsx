@@ -10,14 +10,16 @@ export const PromptGPT = () => {
     const isShowing = createSelector(activeId);
     return (
         <Panel id="ai-prompt" class="p-2">
-            <header class="py-2 text-center text-lg text-white">AI 魔咒助手</header>
+            <header class="py-2 text-center text-lg text-white" title="AI 辅助加强文本">
+                AI 魔咒助手
+            </header>
             <Tabs activeId={activeId}>
                 <nav class="flex w-full items-end px-4 ">
                     <TabsHeader class="flex-1">
                         {(item) => {
                             return (
                                 <button
-                                    class="my-4  "
+                                    class="  "
                                     classList={{
                                         'text-lg': isShowing(item),
                                     }}
@@ -29,10 +31,10 @@ export const PromptGPT = () => {
                         }}
                     </TabsHeader>
                     <span
-                        class="float-right"
+                        class="float-right cursor-pointer"
                         onclick={() => {
                             const token = prompt(
-                                '输入 OpenAI 的 token。我们不会保存你的 token，完全在你的设备上使用它, 空白为删除你的 token。',
+                                '输入 OpenAI 的 token。我们不会保存你的 token，它只保存在你的设备中； 空白为删除你的 token。',
                                 GlobalGPT.ownKey
                             );
                             if (token) {

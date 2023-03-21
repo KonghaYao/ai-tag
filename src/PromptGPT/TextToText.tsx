@@ -80,7 +80,7 @@ export const TextToText = () => {
             <div class="flex ">
                 <Select each={Presets.description} onChange={(text) => preInput(text)}></Select>
                 <textarea
-                    class="w-full flex-1  rounded-lg bg-slate-800 p-2 px-4 text-sm outline-none"
+                    class="w-full flex-1  rounded-lg bg-slate-800  px-4 text-sm outline-none"
                     placeholder="输入你想画的东西,不用太长，可以中文😄"
                     cols="2"
                     value={preInput()}

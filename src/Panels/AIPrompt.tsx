@@ -13,6 +13,10 @@ const cutTheString = (input: string, sampleRate: number = 50, borderRange = 20) 
     const after = input.split(/\s|,/g).slice(input.length - borderRange);
     return after.slice(Math.ceil(sampleRate / 100));
 };
+/**
+ * @deprecated 因为 Chat GPT 太好用了，所以直接放弃了自己训练的计划😂
+ * @returns
+ */
 export const AIPrompt = () => {
     const { usersCollection, lists } = useContext(Data);
     const preInput = atom('');

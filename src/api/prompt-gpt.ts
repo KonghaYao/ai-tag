@@ -23,7 +23,7 @@ const InstructGPT = (_prompt: string, token: string) => {
             Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-            model: 'text-babbage-001',
+            model: 'text-davinci-003',
             temperature: 0.9,
             max_tokens: 150,
             top_p: 1,

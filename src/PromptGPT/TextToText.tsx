@@ -152,14 +152,15 @@ export const TextToText = () => {
                 <button class="btn flex-1 " onClick={asyncLock(() => data.refetch())}>
                     开始生成 Prompt
                 </button>
-                <div
+                <button
+                    class="cursor-pointer"
                     onClick={() => {
                         copy(AIOutput());
                         Notice.success('复制成功');
                     }}
                 >
                     📝
-                </div>
+                </button>
             </nav>
 
             <article class="h-full flex-1 overflow-scroll">

@@ -74,7 +74,7 @@ export function HeaderSecond() {
                 }}
                 title="AI 助手"
             >
-                🤗
+                🤗{'AI'}
             </span>
         </header>
     );

@@ -4,9 +4,9 @@ import { EmojiList, TalkMarkdown } from './TalkMarkdown';
 import { TalkContext } from './TalkContext';
 import { FloatPanelWithAnimate } from '@cn-ui/core';
 import '@cn-ui/animate/src/scale.css';
-import { Data } from '../App';
+import { Data } from '../../app/main/App';
 import { useCommitComment } from './commit';
-import { Notice } from '../utils/notice';
+import { Notice } from '../../utils/notice';
 import { CommentItem } from './CommentList';
 export const InputArea = () => {
     const { username } = useContext(Data);

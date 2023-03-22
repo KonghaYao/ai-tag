@@ -1,11 +1,11 @@
 import { asyncLock, atom, resource } from '@cn-ui/use';
 import { useContext } from 'solid-js';
-import { useTranslation } from '../../i18n';
-import { Data } from '../App';
-import { TagsToString, stringToTags } from '../use/TagsConvertor';
-import { Notice } from '../utils/notice';
-import { AC } from '../components/AC';
-import { GlobalGPT } from '../api/prompt-gpt';
+import { useTranslation } from '../../../i18n';
+import { Data } from '../../app/main/App';
+import { TagsToString, stringToTags } from '../../use/TagsConvertor';
+import { Notice } from '../../utils/notice';
+import { AC } from '../../components/AC';
+import { GlobalGPT } from '../../api/prompt-gpt';
 import { Select } from './Select';
 import copy from 'copy-to-clipboard';
 

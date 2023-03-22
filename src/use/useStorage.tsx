@@ -1,11 +1,10 @@
-import { Atom, createIgnoreFirst } from '@cn-ui/use';
-import { createEffect } from 'solid-js';
+import { Atom, useEffectWithoutFirst } from '@cn-ui/use';
 /** 持续向 localStorage 注入参数 */
 export const keepStore = <T,>(name: string, atom: Atom<T>, firstInject = true) => {
     try {
-        firstInject && atom(JSON.parse(localStorage.getItem(name)));
+        firstInject && atom(JSON.parse(localStorage.getItem(name)!));
     } catch (e) {}
-    createIgnoreFirst(() => {
+    useEffectWithoutFirst(() => {
         localStorage.setItem(name, JSON.stringify(atom()));
     }, [atom]);
 };
@@ -20,7 +19,7 @@ export const useStorage = (data: { [name: string]: Atom<any> }) => {
         },
         tracking() {
             Object.entries(data).map(([name, value]) => {
-                createIgnoreFirst(() => {
+                useEffectWithoutFirst(() => {
                     console.log('存储设置');
                     localStorage.setItem(name, JSON.stringify(value()));
                 }, [value]);

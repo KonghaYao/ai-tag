@@ -1,7 +1,7 @@
 import { atom } from '@cn-ui/use';
 import { Component, JSXElement, useContext, createMemo, createEffect } from 'solid-js';
 import { PanelContext } from '../../src/components/Panel';
-import { PanelIds } from '../../src/SideApp';
+import { PanelIds } from '../../src/app/main/SideApp';
 
 export const GalleryPanel: Component<{ children?: JSXElement; id: PanelIds | '' }> = (props) => {
     const { visibleId, isPanelVisible } = useContext(PanelContext);

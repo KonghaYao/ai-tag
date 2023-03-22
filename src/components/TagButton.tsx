@@ -1,7 +1,7 @@
 import { Atom, atomization, reflect } from '@cn-ui/use';
 import copy from 'copy-to-clipboard';
 import { Accessor, Component, For, useContext } from 'solid-js';
-import { Data, IData } from '../App';
+import { Data, IData } from '../app/main/App';
 import { Notice } from '../utils/notice';
 
 /** 正向颜色 */
@@ -37,7 +37,7 @@ const useColorStep = (data: Accessor<number>) => {
 export const TagButton: Component<{
     data: IData;
     onClick?: (item: IData, rightClick?: boolean) => void;
-    onMouseEnter(item: IData): void;
+    onMouseEnter?(item: IData): void;
     onWheel?: (item: IData, delta: number, e: Event) => void;
     onDragStart?: (item: IData, dragData: DataTransfer, e: Event) => void;
     onDrop?: (item: IData, dropData: DataTransfer, e: Event) => void;
@@ -45,7 +45,7 @@ export const TagButton: Component<{
     en?: Atom<boolean>;
     cn?: Atom<boolean>;
 }> = (props) => {
-    const { showCount, enMode, MaxEmphasize, emphasizeSymbol } = useContext(Data);
+    const { showCount, enMode, MaxEmphasize, emphasizeSymbol } = useContext(Data)!;
     const en = atomization(props.en ?? true);
     const cn = atomization(props.cn ?? true);
     const item = props.data;

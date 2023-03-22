@@ -1,14 +1,14 @@
 import { Component, createMemo, useContext } from 'solid-js';
-import { Data } from '../App';
-import { _emColor } from '../components/TagButton';
-import { useTranslation } from '../../i18n';
-import { sampleSize } from '../utils/sampleSize';
+import { Data } from '../../app/main/App';
+import { _emColor } from '../TagButton';
+import { useTranslation } from '../../../i18n';
+import { sampleSize } from '../../utils/sampleSize';
 import { ClassFilter } from './ClassFilter';
-import { Atom } from '@cn-ui/use';
+import type { Atom } from '@cn-ui/use';
 export const FilterBar: Component<{
-    classifyType?: Atom<string>;
+    classifyType: Atom<string>;
 }> = (props) => {
-    const { result, lists, tagsPerPage, searchNumberLimit, showClassify } = useContext(Data);
+    const { result, lists, tagsPerPage, searchNumberLimit, showClassify } = useContext(Data)!;
 
     const { t } = useTranslation();
     return (

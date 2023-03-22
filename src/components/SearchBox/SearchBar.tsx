@@ -1,15 +1,15 @@
 import { Setter, useContext } from 'solid-js';
 import debounce from 'lodash-es/debounce';
-import { Data } from '../App';
-import { stringToTags } from '../use/TagsConvertor';
-import { useTranslation } from '../../i18n';
-import { Notice } from '../utils/notice';
-import { Message } from '../MessageHint';
+import { Data } from '../../app/main/App';
+import { stringToTags } from '../../use/TagsConvertor';
+import { useTranslation } from '../../../i18n';
+import { Notice } from '../../utils/notice';
+import { Message } from '../MessageHInt';
 import { DropReceiver } from '@cn-ui/headless';
-import { TradToSimple } from '../utils/TradToSimple';
+import { TradToSimple } from '../../utils/TradToSimple';
 
 export const SearchBar = () => {
-    const { usersCollection, lists, searchText, iconBtn } = useContext(Data);
+    const { usersCollection, lists, searchText, iconBtn } = useContext(Data)!;
     const triggerSearch = debounce(searchText, 200);
     const { t } = useTranslation();
     const addToList = () => {

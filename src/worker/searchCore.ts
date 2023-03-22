@@ -1,4 +1,4 @@
-import { IData } from '../App';
+import type { IData } from '../app/main/App';
 import Fuse from 'fuse.js';
 type IndexedData = IData & { id?: number };
 

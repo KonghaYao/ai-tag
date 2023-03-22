@@ -1,5 +1,5 @@
 import { useContext } from 'solid-js';
-import { Data } from '../../App';
+import { Data } from '../../app/main/App';
 import { Notice } from '../../utils/notice';
 import { useTranslation } from '../../../i18n';
 import { FloatPanelWithAnimate } from '@cn-ui/core';

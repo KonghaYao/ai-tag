@@ -1,6 +1,6 @@
 import { batch, useContext } from 'solid-js';
 import { useTranslation } from '../../i18n';
-import { Data } from '../App';
+import { Data } from '../app/main/App';
 import { CopyBtn } from './sub/CopyBtn';
 
 export function HeaderSecond() {

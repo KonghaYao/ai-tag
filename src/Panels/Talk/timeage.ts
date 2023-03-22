@@ -37,7 +37,7 @@ export const timeAgo = (date: Date) => {
     }
 };
 
-const dateFormat = (date) => {
+const dateFormat = (date: Date) => {
     var vDay = padWithZeros(date.getDate(), 2);
     var vMonth = padWithZeros(date.getMonth() + 1, 2);
     var vYear = padWithZeros(date.getFullYear(), 2);
@@ -47,7 +47,7 @@ const dateFormat = (date) => {
     return `${vYear}-${vMonth}-${vDay}`;
 };
 
-const padWithZeros = (vNumber, width) => {
+const padWithZeros = (vNumber: number, width: number) => {
     var numAsString = vNumber.toString();
     while (numAsString.length < width) {
         numAsString = '0' + numAsString;

@@ -1,9 +1,9 @@
 import { Accessor, createContext, createEffect, createSelector, onMount, Show } from 'solid-js';
 import { Atom, atom, isAtom, useBreakpoints } from '@cn-ui/use';
-import { SearchBox } from './SearchBox/SearchBox';
+import { SearchBox } from '../../components/SearchBox/SearchBox';
 import { UserSelected } from './UserSelected';
-import { useDatabase } from './use/useDatabase';
-import { useStorage } from './use/useStorage';
+import { useGlobalTags } from '../../use/useGlobalTags';
+import { useStorage } from '../../use/useStorage';
 import { PanelIds, SideApp } from './SideApp';
 
 export interface IData extends IPromptData {
@@ -13,27 +13,9 @@ export interface IData extends IPromptData {
     r18: 0 | 1;
     count: number;
 }
-export interface IStoreData {
-    deleteMode: Atom<boolean>;
-    visibleId: Atom<string>;
-    enMode: Atom<boolean>;
-    r18Mode: Atom<boolean>;
-    showCount: Atom<boolean>;
-    searchNumberLimit: Atom<number>;
-    tagsPerPage: Atom<number>;
-    MaxEmphasize: Atom<number>;
-    username: Atom<string>;
-    webviewURL: Atom<string>;
-    emphasizeSymbol: Atom<string>;
-    defaultFont: Atom<boolean>;
-    iconBtn: Atom<boolean>;
-    nonBreakLine: Atom<boolean>;
-    forceEN: Atom<boolean>;
-    showClassify: Atom<boolean>;
-    tag_version: Atom<string>;
-}
+import { initGlobalData, IStoreData } from '../../store/index';
+export type { IStoreData } from '../../store/index';
 export interface IGlobalData extends IStoreData {
-    showLangInLine1: Atom<boolean>;
     emphasizeAddMode: Atom<boolean>;
     emphasizeSubMode: Atom<boolean>;
     sideAppMode: Atom<boolean>;
@@ -43,64 +25,24 @@ export interface IGlobalData extends IStoreData {
     lists: Accessor<IData[]>;
     backgroundImage: Atom<string>;
 }
-export const Data = createContext<IGlobalData & ReturnType<typeof useDatabase>>();
+export const Data = createContext<IGlobalData & ReturnType<typeof useGlobalTags>>();
 import isMobile from 'is-mobile';
-import { IPromptData } from 'promptor';
-import { PanelContext } from './components/Panel';
-import { FontSupport } from './components/FontSupport';
-import { useLocalData } from './use/useLocalData';
-import { Message, MessageHint } from './MessageHint';
-import { Background } from './components/Background';
+import type { IPromptData } from 'promptor';
+import { PanelContext } from '../../components/Panel';
+import { FontSupport } from '../../components/FontSupport';
+import { useLocalData } from '../../use/useLocalData';
+import { Message, MessageHint } from '../../components/MessageHInt';
+import { Background } from '../../components/Background';
 import { DropReceiver } from '@cn-ui/headless';
 import { GlobalHeader } from './GlobalHeader';
-import { TranslationPanel } from './plugins/globalTranslate/TranslationPanel';
-export const App = () => {
-    const enMode = atom(true);
-    const r18Mode = atom(false);
+import { TranslationPanel } from '../../plugins/globalTranslate/TranslationPanel';
+export const Main = () => {
     const sideAppMode = atom(!isMobile());
-    const showCount = atom(true);
-    const deleteMode = atom(false);
-    const defaultFont = atom(false);
-    const iconBtn = atom(false);
-    const emphasizeAddMode = atom(false);
-    const emphasizeSubMode = atom(false);
-    const emphasizeSymbol = atom('{}');
-    const tagsPerPage = atom<number>(500);
-    const MaxEmphasize = atom<number>(10);
-    const searchNumberLimit = atom<number>(1000);
-    const webviewURL = atom('');
     const visibleId = atom<PanelIds | ''>('ai-prompt');
     const isPanelVisible = createSelector(visibleId);
-    const username = atom('');
-    const nonBreakLine = atom<boolean>(false);
-    const forceEN = atom<boolean>(false);
-    const showClassify = atom<boolean>(true);
-    const tag_version = atom('2.1.3');
-    const showLangInLine1 = atom(false);
 
     /** 需要持久化的变量写这里 */
-    const storageSetting = {
-        tag_version,
-        showClassify,
-        nonBreakLine,
-        forceEN,
-        emphasizeAddMode,
-        emphasizeSubMode,
-        emphasizeSymbol,
-        enMode,
-        tagsPerPage,
-        r18Mode,
-        deleteMode,
-        showCount,
-        username,
-        searchNumberLimit,
-        visibleId,
-        webviewURL,
-        MaxEmphasize,
-        defaultFont,
-        iconBtn,
-        showLangInLine1,
-    };
+    const storageSetting = initGlobalData();
 
     const { recover, tracking } = useStorage(storageSetting);
     const { backgroundImage } = useLocalData();
@@ -113,7 +55,7 @@ export const App = () => {
         <Data.Provider
             value={{
                 sideAppMode,
-                ...useDatabase(storageSetting),
+                ...useGlobalTags(storageSetting),
                 backgroundImage,
                 ...storageSetting,
             }}
@@ -134,7 +76,7 @@ export const App = () => {
                     <section
                         class=" flex h-screen w-screen justify-center"
                         classList={{
-                            'font-global': !defaultFont(),
+                            'font-global': !storageSetting.defaultFont(),
                             'opacity-70': !!backgroundImage(),
                         }}
                     >

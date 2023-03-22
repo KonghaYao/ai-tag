@@ -1,5 +1,5 @@
 import { Context, useContext } from 'solid-js';
-import { Data } from '../App';
+import { Data } from '../app/main/App';
 import { createStore } from 'solid-js/store';
 import { Panel } from '../components/Panel';
 import { API, StoreData } from '../api/notion';

@@ -1,6 +1,6 @@
 import { resource } from '@cn-ui/use';
 import { Component, For, Show, createEffect, useContext } from 'solid-js';
-import { AV } from '../api/cloud';
+import { AV } from '../../api/cloud';
 import { usePagination } from '@cn-ui/headless';
 import { timeAgo } from './timeage';
 import { TalkMarkdown } from './TalkMarkdown';

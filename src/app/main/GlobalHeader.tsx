@@ -1,11 +1,11 @@
 import { useContext } from 'solid-js';
-import { useTranslation } from '../i18n';
-import { Notice } from './utils/notice';
+import { useTranslation } from '../../../i18n';
+import { Notice } from '../../utils/notice';
 import { Data } from './App';
 import { FloatPanelWithAnimate } from '@cn-ui/core';
 
 export function GlobalHeader() {
-    const { r18Mode, visibleId } = useContext(Data);
+    const { r18Mode, visibleId } = useContext(Data)!;
     const { t } = useTranslation();
     return (
         <header

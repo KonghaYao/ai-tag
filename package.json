@@ -4,11 +4,14 @@
     "main": "./dist/es/index.js",
     "description": "",
     "scripts": {
-        "dev": "vite dev",
         "function": "netlify functions:serve",
-        "build": "vite build  ",
         "analyze": "vite build --mode analyze",
-        "test": "vitest"
+        "test": "vitest",
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro"
     },
     "license": "MIT",
     "devDependencies": {
@@ -36,6 +39,8 @@
         "vitest": "^0.24.5"
     },
     "dependencies": {
+        "@astrojs/solid-js": "^2.1.0",
+        "@astrojs/tailwind": "^3.1.1",
         "@chinese-fonts/jxzk": "^1.1.0",
         "@cn-ui/animate": "^1.0.5",
         "@cn-ui/core": "^1.7.0",
@@ -46,6 +51,7 @@
         "@cn-ui/use": "^2.0.3",
         "@solidjs/router": "^0.5.1",
         "@tsndr/cloudflare-worker-jwt": "^2.2.1",
+        "astro": "^2.1.4",
         "comlink": "^4.3.1",
         "copy-to-clipboard": "^3.3.3",
         "file-saver": "^2.0.5",

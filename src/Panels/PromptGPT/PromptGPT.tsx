@@ -1,7 +1,7 @@
 import { atom } from '@cn-ui/use';
 import { Show, batch, createSelector } from 'solid-js';
-import { Panel } from '../components/Panel';
-import { GlobalGPT } from '../api/prompt-gpt';
+import { Panel } from '../../components/Panel';
+import { GlobalGPT } from '../../api/prompt-gpt';
 import { Tab, Tabs, TabsHeader } from '@cn-ui/core';
 import { TextToText } from './TextToText';
 

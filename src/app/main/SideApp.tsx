@@ -1,12 +1,12 @@
 import { createMemo, useContext } from 'solid-js';
-import { SettingPanel } from './Panels/SettingPanel';
-import { UploadPanel } from './Panels/UploadPanel';
+import { SettingPanel } from '../../Panels/SettingPanel';
+import { UploadPanel } from '../../Panels/UploadPanel';
 import { Data } from './App';
-import { HomePanel } from './Panels/HomePanel';
-import { Webview } from './Panels/Webview';
-import { FeedBackPanel } from './Feedback/Feedback';
-import { MyFeedBackPanel } from './Feedback/MyFeedback';
-import { PromptExtractorPanel } from './Panels/PromptExtractor';
+import { HomePanel } from '../../Panels/HomePanel';
+import { Webview } from '../../Panels/Webview';
+import { FeedBackPanel } from '../../Feedback/Feedback';
+import { MyFeedBackPanel } from '../../Feedback/MyFeedback';
+import { PromptExtractorPanel } from '../../Panels/PromptExtractor';
 import { Tabs } from '@cn-ui/core';
 export type PanelIds =
     | 'setting'
@@ -24,11 +24,11 @@ export type PanelIds =
     | 'backup';
 import '@cn-ui/animate/src/jump.css';
 import { Animate } from '@cn-ui/animate';
-import { TalkPanel } from './Panels/TalkPanel';
-import { ArtistPanel } from './Panels/artist';
-import { PromptGPT } from './PromptGPT/PromptGPT';
+import { TalkPanel } from '../../Panels/TalkPanel';
+import { ArtistPanel } from '../../Panels/artist';
+import { PromptGPT } from '../../Panels/PromptGPT/PromptGPT';
 export const SideApp = () => {
-    const { sideAppMode, visibleId } = useContext(Data);
+    const { sideAppMode, visibleId } = useContext(Data)!;
     const hasOpened = createMemo(() => visibleId() !== null);
     return (
         <Tabs activeId={visibleId} lazyload>

@@ -1,22 +1,22 @@
 import { useContext } from 'solid-js';
 import { Data, IData } from './App';
-import { TagButton } from './components/TagButton';
+import { TagButton } from '../../components/TagButton';
 import { isAtom, reflect } from '@cn-ui/use';
 import isMobile from 'is-mobile';
 import { SortableList } from '@cn-ui/sortable';
-import { HeaderFirst } from './ToolBar/HeaderFirst';
-import { HeaderSecond } from './ToolBar/HeaderSecond';
+import { HeaderFirst } from '../../ToolBar/HeaderFirst';
+import { HeaderSecond } from '../../ToolBar/HeaderSecond';
 import { t } from 'i18next';
-import { useTagController } from './use/useTagController';
-import { TagsToString, stringToTags } from './use/TagsConvertor';
-import { Notice } from './utils/notice';
-import { Message } from './MessageHint';
-import { CombineMagic } from './utils/CombineMagic';
+import { useTagController } from '../../use/useTagController';
+import { TagsToString, stringToTags } from '../../use/TagsConvertor';
+import { Notice } from '../../utils/notice';
+import { Message } from '../../components/MessageHInt';
+import { CombineMagic } from '../../utils/CombineMagic';
 import { DropReceiver, useDragAndDropData } from '@cn-ui/headless';
 import tinykeys from 'tinykeys';
-import { GlobalPlugin, useBlackBoard } from './plugins/GlobalPlugin';
+import { GlobalPlugin, useBlackBoard } from '../../plugins/GlobalPlugin';
 export const BindHistoryKey = () => {
-    const { redo, undo } = useContext(Data);
+    const { redo, undo } = useContext(Data)!;
 
     tinykeys(window, {
         '$mod+KeyZ': (event) => {
@@ -40,7 +40,7 @@ export const UserSelected = () => {
         lists,
         TagsHistory,
         showLangInLine1,
-    } = useContext(Data);
+    } = useContext(Data)!;
     const { wheelEvent, clickEvent } = useTagController();
     BindHistoryKey();
     const disabledSortable = reflect(() => {
@@ -82,7 +82,7 @@ export const UserSelected = () => {
                 ADD_BEFORE() {
                     Message.success(t('userSelect.message.addTail'));
                 },
-                INPUT_MAGIC(_, e: DragEvent) {
+                INPUT_MAGIC(_, e) {
                     if (e.ctrlKey) {
                         Message.success(t('userSelect.message.combine'));
                     } else if (e.altKey) {

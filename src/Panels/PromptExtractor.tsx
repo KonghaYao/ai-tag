@@ -6,7 +6,7 @@ import { DropReceiver } from '@cn-ui/headless';
 import { Show, createEffect, on } from 'solid-js';
 import { AIImageInfoShower } from '../components/AIImageInfoShower';
 import { untrack } from 'solid-js/web';
-import { Message } from '../MessageHint';
+import { Message } from '../components/MessageHInt';
 import { AC } from '../components/AC';
 
 export const PromptExtractorPanel = () => {

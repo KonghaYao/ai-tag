@@ -1,5 +1,5 @@
 import { uniqBy } from 'lodash-es';
-import { IData } from '../App';
+import { IData } from '../app/main/App';
 import { breakSymbol, isBreakSymbol } from '../use/TagsConvertor';
 
 /** 融合魔法，折叠融合魔咒 */

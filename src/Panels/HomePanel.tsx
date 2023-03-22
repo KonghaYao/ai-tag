@@ -1,6 +1,6 @@
 import { For, useContext } from 'solid-js';
 import { useTranslation } from '../../i18n';
-import { Data } from '../App';
+import { Data } from '../app/main/App';
 import { Panel } from '../components/Panel';
 import { WebViewLink } from './Webview';
 

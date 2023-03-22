@@ -1,5 +1,5 @@
 import { Show, useContext } from 'solid-js';
-import { Data } from '../App';
+import { Data } from '../app/main/App';
 import { breakSymbol, stringToTags } from '../use/TagsConvertor';
 import { Notice } from '../utils/notice';
 import { useTranslation } from '../../i18n';

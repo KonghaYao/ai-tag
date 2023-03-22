@@ -1,7 +1,7 @@
 import { atom, createIgnoreFirst, useSingleAsync } from '@cn-ui/use';
 import { For, useContext } from 'solid-js';
 import { FeedBackMessage, getIssueState, Labels } from '.';
-import { Data } from '../App';
+import { Data } from '../app/main/App';
 import { Panel } from '../components/Panel';
 export const MyFeedBackPanel = () => {
     const { visibleId } = useContext(Data);

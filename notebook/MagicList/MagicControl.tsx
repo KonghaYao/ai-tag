@@ -2,7 +2,7 @@ import { ResourceAtom } from '@cn-ui/use';
 import copy from 'copy-to-clipboard';
 import { Component } from 'solid-js';
 import { DragPoster } from '@cn-ui/headless';
-import { Message } from '../../src/MessageHint';
+import { Message } from '../../src/components/MessageHInt';
 import { Notice } from '../../src/utils/notice';
 import { SingleMagic, useIndexedDB } from '../use/useIndexedDB';
 import { FloatPanelWithAnimate } from '@cn-ui/core';

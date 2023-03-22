@@ -58,8 +58,3 @@ body {
 .special-tags {
     @apply underline underline-offset-2;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@tailwind variants;

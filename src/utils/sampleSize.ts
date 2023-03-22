@@ -1,4 +1,4 @@
-import { IData } from '../App';
+import { IData } from '../app/main/App';
 import { sampleSize as _sampleSize } from 'lodash-es';
 
 /** 重新设计的随机函数, 很明显，数量大的 tag 的支持度更高，所以使用排序手法 */

@@ -1,28 +1,7 @@
-import { IData, IStoreData } from '../App';
+import type { IData } from '../app/main/App';
 import { proxy, wrap } from 'comlink';
-import { SharedDataAPI } from '../worker/dataShared';
-/** Vite 识别不了动态的。。。 */
-// const WorkerWrapper = (url: string) => {
-//     if ('SharedWorker' in globalThis) {
-//         return new SharedWorker(
-//             new URL(url, import.meta.url),
-//             __isDev__
-//                 ? {
-//                       type: 'module',
-//                   }
-//                 : {}
-//         ).port;
-//     } else {
-//         return new Worker(
-//             new URL(url, import.meta.url),
-//             __isDev__
-//                 ? {
-//                       type: 'module',
-//                   }
-//                 : {}
-//         );
-//     }
-// };
+import type { SharedDataAPI } from './dataShared';
+/** Vite 识别不了动态的 Worker 创建。。。 */
 
 // 主线程的激活函数
 export const initWorker = () => {

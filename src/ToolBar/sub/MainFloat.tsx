@@ -1,5 +1,5 @@
 import { useContext } from 'solid-js';
-import { Data } from '../../App';
+import { Data } from '../../app/main/App';
 import { useTranslation } from '../../../i18n';
 import { FloatPanel, FloatPanelWithAnimate } from '@cn-ui/core';
 import { MainGridOfInner } from '../../Panels/HomePanel';

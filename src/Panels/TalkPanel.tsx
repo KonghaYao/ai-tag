@@ -1,9 +1,9 @@
 import { Panel } from '../components/Panel';
 
 import './TalkPanel.css';
-import { TalkDefault } from '../Talk';
+import { TalkDefault } from './Talk';
 import { useContext } from 'solid-js';
-import { Data } from '../App';
+import { Data } from '../app/main/App';
 export const TalkPanel = () => {
     const { username } = useContext(Data);
     return (

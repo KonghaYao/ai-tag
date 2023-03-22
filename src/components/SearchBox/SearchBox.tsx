@@ -3,9 +3,9 @@ import { SearchResult } from './SearchResult';
 import { SearchBar } from './SearchBar';
 import { useClassFilter } from './ClassFilter';
 import { Show, useContext } from 'solid-js';
-import { Data } from '../App';
+import { Data } from '../../app/main/App';
 export const SearchBox = () => {
-    const { showClassify } = useContext(Data);
+    const { showClassify } = useContext(Data)!;
     const { ClassFilterList, selectType } = useClassFilter();
     return (
         <>

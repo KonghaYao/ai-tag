@@ -1,4 +1,4 @@
-import { IData } from '../App';
+import { IData } from '../app/main/App';
 
 import { PromptToTags, TagsToPrompt } from 'promptor';
 

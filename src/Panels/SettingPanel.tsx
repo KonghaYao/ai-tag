@@ -1,6 +1,6 @@
 import { For, useContext } from 'solid-js';
 import { useTranslation } from '../../i18n';
-import { Data } from '../App';
+import { Data } from '../app/main/App';
 import { Panel } from '../components/Panel';
 import { UploadButton } from '../components/UploadButton';
 import { Notice } from '../utils/notice';

@@ -1,7 +1,7 @@
 import { resource } from '@cn-ui/use';
 import { For, Resource, Show, useContext } from 'solid-js';
 import { DropReceiver } from '@cn-ui/headless';
-import { Message } from '../src/MessageHint';
+import { Message } from '../src/components/MessageHInt';
 
 import { Notice } from '../src/utils/notice';
 import { NoteBookContext } from './App';

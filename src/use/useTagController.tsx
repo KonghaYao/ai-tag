@@ -1,5 +1,5 @@
 import { useContext } from 'solid-js';
-import { Data, IData } from '../App';
+import { Data, IData } from '../app/main/App';
 import { useIframeExpose } from '../iframeExpose';
 import { plus, minus } from 'number-precision';
 import { debounce } from 'lodash-es';
@@ -14,8 +14,6 @@ export const useTagController = () => {
         MaxEmphasize,
         TagsHistory,
     } = useContext(Data);
-
-    useIframeExpose();
 
     /** 左点击加权，右点击减权 */
     const clickEvent = (item: IData, rightClick?: boolean) => {

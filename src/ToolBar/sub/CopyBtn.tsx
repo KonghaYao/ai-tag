@@ -1,7 +1,7 @@
 import copy from 'copy-to-clipboard';
 import { useContext } from 'solid-js';
 import { useTranslation } from '../../../i18n';
-import { Data } from '../../App';
+import { Data } from '../../app/main/App';
 import { DragPoster } from '@cn-ui/headless';
 import { TagsToString } from '../../use/TagsConvertor';
 import { Notice } from '../../utils/notice';

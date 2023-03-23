@@ -1,5 +1,4 @@
-import { usePagination } from '@cn-ui/headless';
-import { Atom, atom } from '@cn-ui/use';
+import { Atom, atom, usePagination } from '@cn-ui/use';
 import { batch } from 'solid-js';
 
 /** 逐页查询组件，但是是滑动加载的那种，不会清除上次数据
@@ -31,6 +30,7 @@ export const usePaginationStack = <T>(
                 p.currentData.refetch();
             });
         },
+        /** 这个才是需要渲染的最终数据 */
         dataSlices,
     };
 };

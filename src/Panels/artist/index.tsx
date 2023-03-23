@@ -86,13 +86,12 @@ const artistTypeList = {
     brutalism: '野蛮主义',
     Caravaggisti: '卡拉瓦乔主义',
 };
-import { DragPoster, usePagination, useSelect } from '@cn-ui/headless';
+import { DragPoster, useSelect } from '@cn-ui/headless';
 import { Panel } from '../../components/Panel';
 import { AV } from '../../api/cloud';
-import { Component, For, Show, createContext, createMemo, useContext } from 'solid-js';
+import { For, Show, createContext, createMemo, useContext } from 'solid-js';
 import { Atom, atom } from '@cn-ui/use';
 import { usePaginationStack } from './usePaginationStack';
-import { Notice } from '../../utils/notice';
 import { ScrollLoading } from '../../../gallery/ScrollLoading';
 
 export const ArtistPanel = () => {
@@ -145,7 +144,7 @@ export const ArtistPanel = () => {
                         search
                     </div>
                 </nav>
-                <TypeFilter filter={filter}></TypeFilter>
+                <TypeFilter></TypeFilter>
 
                 <div
                     class=" flex flex-col divide-y divide-slate-600 overflow-auto"
@@ -159,7 +158,7 @@ export const ArtistPanel = () => {
                     </Show>
                     <For each={list()}>
                         {(item) => {
-                            const { isSelected, changeSelected } = useContext(TypeFilterContext);
+                            const { isSelected, changeSelected } = useContext(TypeFilterContext)!;
                             const createTag = () => 'by ' + item.get('name').replace(',', ' ');
                             return (
                                 <DragPoster send={(send) => send('ADD_BEFORE', createTag())}>
@@ -174,7 +173,7 @@ export const ArtistPanel = () => {
 
                                         <div class="flex flex-1 flex-row-reverse flex-wrap gap-1">
                                             <For each={item.get('tags')}>
-                                                {(item: string) => {
+                                                {(item: keyof typeof artistTypeList) => {
                                                     return (
                                                         <div
                                                             class="btn text-xs"
@@ -213,15 +212,18 @@ const useTypeFilter = (props: { filter: Atom<string[]> }) => {
     const filterList = createMemo(() => {
         const selected = props.filter();
         return [
-            ...selected.map((i) => [i, artistTypeList[i]]),
+            ...selected.map<[keyof typeof artistTypeList, string]>((i) =>
+                /** @ts-ignore ignore: 有点复杂， */
+                [i, artistTypeList[i]]
+            ),
             ...Object.entries(artistTypeList).filter((i) => !selected.includes(i[0])),
         ];
     });
     return { ...s, filterList, hiddenUnCheck, filter: props.filter };
 };
-export const TypeFilter = (props) => {
+export const TypeFilter = () => {
     const { filterList, filter, hiddenUnCheck, isSelected, changeSelected } =
-        useContext(TypeFilterContext);
+        useContext(TypeFilterContext)!;
     return (
         <main class="flex flex-wrap gap-1 p-2">
             <Show when={filter().length === 0}>

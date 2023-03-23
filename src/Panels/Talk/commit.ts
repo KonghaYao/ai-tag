@@ -1,5 +1,5 @@
 import { AV } from '../../api/cloud';
-import { CommentObject } from './CommentList';
+import type { CommentObject } from './CommentList';
 export const useCommitComment = () => {
     // setting access
     let getAcl = () => {

@@ -4,7 +4,6 @@ import { AV } from '../../api/cloud';
 import { usePagination } from '@cn-ui/headless';
 import { timeAgo } from './timeage';
 import { TalkMarkdown } from './TalkMarkdown';
-import { TalkContext } from './TalkContext';
 import type { Queriable } from 'leancloud-storage';
 import { GlobalData } from '../../store/GlobalData';
 

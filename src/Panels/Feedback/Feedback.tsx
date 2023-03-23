@@ -1,7 +1,6 @@
 import { atom, asyncLock } from '@cn-ui/use';
 import { For, useContext } from 'solid-js';
 import i18n, { useTranslation } from '../../i18n';
-import { Data } from '../../app/main/App';
 import { Panel } from '../../components/Panel';
 import { Notice } from '../../utils/notice';
 import { commitFeedBack, FeedBackMessage, Labels } from './index';

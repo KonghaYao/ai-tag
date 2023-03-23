@@ -4,7 +4,7 @@ import { Data } from '../app/main/App';
 import { Panel } from '../components/Panel';
 import { WebViewLink } from './Webview';
 import { GlobalData } from '../store/GlobalData';
-import type { PanelIds } from '../app/main/SideApp';
+import type { PanelIds } from '../app/SideApp';
 
 const Translators = [{ name: 'Bing 翻译', src: 'https://cn.bing.com/translator/' }];
 

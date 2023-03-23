@@ -1,6 +1,6 @@
 import type { Atom } from '@cn-ui/use';
 import { Component, createContext, createMemo, JSX, JSXElement, useContext } from 'solid-js';
-import type { PanelIds } from '../app/main/SideApp';
+import type { PanelIds } from '../app/SideApp';
 import { Tab } from '@cn-ui/core';
 import { GlobalData } from '../store/GlobalData';
 

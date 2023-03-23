@@ -1,6 +1,6 @@
 import { atom } from '@cn-ui/use';
 import isMobile from 'is-mobile';
-import type { PanelIds } from '../app/main/SideApp';
+import type { PanelIds } from '../app/SideApp';
 import { createSelector } from 'solid-js';
 import { GlobalData } from './GlobalData';
 

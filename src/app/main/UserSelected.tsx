@@ -61,7 +61,7 @@ export const UserSelected = () => {
             Notice.success(t('publicPanel.hint.CopySuccess'));
         }
     };
-    const INPUT_MAGIC = (tags: string, _: DataTransfer, e: DragEvent) => {
+    const INPUT_MAGIC: any = (tags: string, _: DataTransfer, e: DragEvent) => {
         const old = usersCollection();
         TagsHistory.addToHistory(TagsToString(old));
         let isCombine = e.ctrlKey;
@@ -95,15 +95,15 @@ export const UserSelected = () => {
                     usersCollection((i) => [...i, ...stringToTags(info, lists())]);
                 },
                 INPUT_MAGIC,
-                extra(_, dataTransfer: DataTransfer, e: DragEvent) {
+                extra(_, dataTransfer, e) {
                     if ((e as any).ignore) return;
-                    const text = dataTransfer.getData('text');
+                    const text = dataTransfer && dataTransfer!.getData('text');
                     console.log('触发文字传递');
                     if (text) {
                         const old = usersCollection();
                         TagsHistory.addToHistory(TagsToString(old));
                         const input = stringToTags(text, lists());
-                        injectTags(old, input, e.ctrlKey);
+                        injectTags(old, input, (e as any).ctrlKey);
                     }
                 },
             }}

@@ -1,5 +1,5 @@
 import { Atom, atom } from '@cn-ui/use';
-import type { PanelIds } from '../app/main/SideApp';
+import type { PanelIds } from '../app/SideApp';
 import { useStorage } from '../use/useStorage';
 import { GlobalData } from './GlobalData';
 import { useLocalData } from '../use/useLocalData';

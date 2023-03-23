@@ -1,8 +1,12 @@
 ---
 import { Main } from '../app/main/App';
+import { SideApp } from '../app/SideApp';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="魔导绪论">
-    <Main client:only="solid-js" />
+    <section class="flex font-global justify-center w-screen h-screen overflow-hidden">
+        <Main client:only="solid-js" />
+        <SideApp client:only="solid-js" />
+    </section>
 </Layout>

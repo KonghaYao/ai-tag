@@ -4,7 +4,7 @@ import { SearchBox } from '../../components/SearchBox/SearchBox';
 
 import { initGlobalTags } from '../../store/useGlobalTags';
 
-import { SideApp } from './SideApp';
+import { SideApp } from '../SideApp';
 
 export interface ITagData extends IPromptData {
     en: string;
@@ -58,9 +58,8 @@ export const Main = () => {
                 }}
             >
                 <section
-                    class=" flex h-screen w-screen justify-center"
+                    class="  flex justify-center"
                     classList={{
-                        'font-global': !storageSetting.defaultFont(),
                         'opacity-70': !!storageSetting.backgroundImage(),
                     }}
                 >

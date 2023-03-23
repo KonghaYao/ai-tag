@@ -170,6 +170,6 @@
     }
   },
   "hint": {
-    "LoadingData": "第一次加载需要一定时间"
+    "LoadingData": "加载中请稍等"
   }
 }

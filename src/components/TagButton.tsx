@@ -1,8 +1,9 @@
 import { Atom, atomization, reflect } from '@cn-ui/use';
 import copy from 'copy-to-clipboard';
 import { Accessor, Component, For, useContext } from 'solid-js';
-import { Data, ITagData } from '../app/main/App';
+import type { ITagData } from '../app/main/App';
 import { Notice } from '../utils/notice';
+import { GlobalData } from '../store/GlobalData';
 
 /** 正向颜色 */
 export const emColor = [
@@ -60,7 +61,7 @@ export const TagButton: Component<{
 
     // 强调括号
     const split = reflect(() => {
-        const count = Math.abs(props.data.emphasize);
+        const count = Math.abs(props.data.emphasize ?? 0);
         const [left, right] = props.data.emphasize > 0 ? emphasizeSymbol() : '[]';
         return [Array(count).fill(left).join(''), Array(count).fill(right).join('')];
     });
@@ -69,7 +70,7 @@ export const TagButton: Component<{
 
     return (
         <nav
-            class="tag-button text-col relative mx-2 my-2 flex cursor-pointer select-none items-center gap-1  rounded-md  px-2 py-1 text-center transition-colors active:brightness-90 "
+            class="tag-button text-col relative mx-2 my-2 flex cursor-pointer select-none items-center gap-1 rounded-md  bg-slate-800  px-2 py-1 text-center transition-colors active:brightness-90 "
             onContextMenu={(e) => {
                 e.preventDefault();
                 props.onClick && props.onClick(item, true);
@@ -92,20 +93,15 @@ export const TagButton: Component<{
             }}
             draggable={props.draggable ?? false}
             ondragstart={(e) => {
-                props.onDragStart && props.onDragStart(item, e.dataTransfer, e);
+                props.onDragStart && props.onDragStart(item, e.dataTransfer!, e);
             }}
             onDragOver={(e) => e.preventDefault()}
             onDrop={(e) => {
                 //阻止文件打开默认行为
                 e.preventDefault();
-                props.onDrop && props.onDrop(item, e.dataTransfer, e);
+                props.onDrop && props.onDrop(item, e.dataTransfer!, e);
             }}
             onmouseenter={() => props.onMouseEnter && props.onMouseEnter(item)}
-            title={
-                item.count !== Infinity
-                    ? `${item.cn ?? item.en}\n左点击加，右点击减，滚轮改变小数点`
-                    : undefined
-            }
             data-id={item.en}
         >
             <nav>{split()[0]}</nav>

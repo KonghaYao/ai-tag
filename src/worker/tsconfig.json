@@ -3,5 +3,6 @@
     "compilerOptions": {
         "lib": ["WebWorker"]
     },
-    "includes": ["."]
+    "includes": ["."],
+    "exclude": ["./index.ts"]
 }

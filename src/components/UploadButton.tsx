@@ -1,4 +1,4 @@
-import { Component, JSX, JSXElement } from 'solid-js';
+import type { Component, JSX, JSXElement } from 'solid-js';
 
 export const UploadButton: Component<
     {
@@ -6,7 +6,7 @@ export const UploadButton: Component<
         onUpload: (file: FileList) => void;
     } & JSX.InputHTMLAttributes<HTMLInputElement>
 > = (props) => {
-    let input: HTMLInputElement;
+    let input!: HTMLInputElement;
     return (
         <>
             <button

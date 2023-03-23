@@ -74,7 +74,7 @@ export const Main = () => {
                         <UserSelected></UserSelected>
                         <SearchBox></SearchBox>
                     </main>
-                    <SideApp></SideApp>
+                    {/* <SideApp></SideApp> */}
                     <MessageHint></MessageHint>
 
                     <FontSupport delay={200} show={atom(false)}></FontSupport>

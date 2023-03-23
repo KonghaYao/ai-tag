@@ -18,17 +18,10 @@ export default defineConfig(({ mode }) => {
                     },
                 ],
             }),
-            solidPlugin(),
+            // solidPlugin(),
             {
                 enforce: 'pre',
-                transformIndexHtml(code) {
-                    // 替换 HTML 中的模板位置为搜索引擎的东西
-                    if (!__isDev__)
-                        return code.replace(
-                            '<!-- Info Inject -->',
-                            fs.readFileSync('./html/searchEngine.html', 'utf8')
-                        );
-                },
+
                 resolveId(id) {
                     if (id === 'viewerjs') {
                         return {
@@ -57,6 +50,8 @@ export default defineConfig(({ mode }) => {
                     'http://localhost:9999/.netlify/functions/sync_image',
                 '/.netlify/functions/upload_auth':
                     'http://localhost:9999/.netlify/functions/upload_auth',
+                '/.netlify/functions/search_tags':
+                    'http://localhost:9999/.netlify/functions/search_tags',
             },
         },
         resolve: {
@@ -70,15 +65,15 @@ export default defineConfig(({ mode }) => {
             __isDev__: JSON.stringify(__isDev__),
         },
 
-        build: {
-            rollupOptions: {
-                input: {
-                    index: './index.html',
-                    gallery: './gallery.html',
-                    notebook: './notebook.html',
-                },
-            },
-        },
+        // build: {
+        //     rollupOptions: {
+        //         input: {
+        //             index: './index.html',
+        //             gallery: './gallery.html',
+        //             notebook: './notebook.html',
+        //         },
+        //     },
+        // },
         worker: { format: 'iife' },
     };
 });

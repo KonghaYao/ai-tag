@@ -1,14 +1,21 @@
-import { atom, createIgnoreFirst, useSingleAsync } from '@cn-ui/use';
+import {
+    asyncLock,
+    atom,
+    createIgnoreFirst,
+    useEffectWithoutFirst,
+    useSingleAsync,
+} from '@cn-ui/use';
 import { For, useContext } from 'solid-js';
 import { FeedBackMessage, getIssueState, Labels } from '.';
-import { Data } from '../app/main/App';
-import { Panel } from '../components/Panel';
+import { Data } from '../../app/main/App';
+import { Panel } from '../../components/Panel';
+import { GlobalData } from '../../store/GlobalData';
 export const MyFeedBackPanel = () => {
-    const { visibleId } = useContext(Data);
+    const { visibleId } = GlobalData.getApp('data');
     const data = atom<(FeedBackMessage & { url: string; state?: string })[]>(
         JSON.parse(localStorage.getItem('__my_feedback__') ?? '[]')
     );
-    createIgnoreFirst(() => {
+    useEffectWithoutFirst(() => {
         localStorage.setItem('__my_feedback__', JSON.stringify(data()));
     }, [data]);
     return (
@@ -34,7 +41,7 @@ export const MyFeedBackPanel = () => {
                                                 'bg-purple-700': item.state === 'closed',
                                                 'bg-gray-700': item.state === undefined,
                                             }}
-                                            onClick={useSingleAsync(async () => {
+                                            onClick={asyncLock(async () => {
                                                 if (item.state !== 'open') {
                                                     const state = await getIssueState(item.url);
                                                     data((i) => {

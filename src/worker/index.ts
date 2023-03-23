@@ -1,4 +1,4 @@
-import type { IData } from '../app/main/App';
+import type { ITagData } from '../app/main/App';
 import { proxy, wrap } from 'comlink';
 import type { SharedDataAPI } from './dataShared';
 /** Vite 识别不了动态的 Worker 创建。。。 */
@@ -9,8 +9,8 @@ export const initWorker = () => {
 
     // 初始化搜索 worker
     const searchWorker = wrap<{
-        init: (input: IData[]) => Promise<void>;
-        add: (input: IData[]) => Promise<void>;
+        init: (input: ITagData[]) => Promise<void>;
+        add: (input: ITagData[]) => Promise<void>;
         rebuild: (a: { r18: boolean; numberLimit: number }) => Promise<true>;
         search: (a: { text: string; limit: number }) => Promise<number[]>;
     }>(

@@ -5,7 +5,7 @@ import { CopyBtn } from './sub/CopyBtn';
 
 export function HeaderSecond() {
     const { emphasizeAddMode, emphasizeSubMode, visibleId, deleteMode, iconBtn, usersCollection } =
-        useContext(Data);
+        GlobalData.getApp('data');
     const { t } = useTranslation();
 
     return (

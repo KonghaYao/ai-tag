@@ -1,12 +1,12 @@
 import { reflect } from '@cn-ui/use';
 import copy from 'copy-to-clipboard';
-import { AIImageInfo } from 'prompt-extractor';
-import { Component, For, Show } from 'solid-js';
+import type { AIImageInfo } from 'prompt-extractor';
+import { Accessor, Component, For, Show, createMemo } from 'solid-js';
 
 export const AIImageInfoShower: Component<{
-    data: () => AIImageInfo;
+    data: Accessor<AIImageInfo | null>;
 }> = (props) => {
-    const details = props.data;
+    const details = createMemo(() => props.data()!);
     const Comment = reflect(() => {
         return Object.assign({}, details()?.Comment);
     });
@@ -68,7 +68,7 @@ export const AIImageInfoShower: Component<{
                     <header class="my-1  flex w-full justify-between rounded-lg bg-emerald-800 px-2 text-center">
                         其他参数
                     </header>
-                    <For each={Object.entries(details().others)}>
+                    <For each={Object.entries(details().others ?? {})}>
                         {([key, value]) => {
                             const tooLong = value.length > 40;
                             return (

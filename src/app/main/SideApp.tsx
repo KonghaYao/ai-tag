@@ -4,8 +4,8 @@ import { UploadPanel } from '../../Panels/UploadPanel';
 import { Data } from './App';
 import { HomePanel } from '../../Panels/HomePanel';
 import { Webview } from '../../Panels/Webview';
-import { FeedBackPanel } from '../../Feedback/Feedback';
-import { MyFeedBackPanel } from '../../Feedback/MyFeedback';
+import { FeedBackPanel } from '../../Panels/Feedback/Feedback';
+import { MyFeedBackPanel } from '../../Panels/Feedback/MyFeedback';
 import { PromptExtractorPanel } from '../../Panels/PromptExtractor';
 import { Tabs } from '@cn-ui/core';
 export type PanelIds =
@@ -19,6 +19,7 @@ export type PanelIds =
     | 'prompt-extractor'
     | 'talk'
     | 'artist'
+    | 'home'
     // gallery 的 panel
     | 'detail'
     | 'backup';
@@ -27,12 +28,13 @@ import { Animate } from '@cn-ui/animate';
 import { TalkPanel } from '../../Panels/TalkPanel';
 import { ArtistPanel } from '../../Panels/artist';
 import { PromptGPT } from '../../Panels/PromptGPT/PromptGPT';
+import { GlobalData } from '../../store/GlobalData';
 export const SideApp = () => {
-    const { sideAppMode, visibleId } = useContext(Data)!;
-    const hasOpened = createMemo(() => visibleId() !== null);
+    const { sideAppMode, visibleId } = GlobalData.getApp('side-app')!;
+    const hasOpened = createMemo(() => visibleId() !== '');
     return (
         <Tabs activeId={visibleId} lazyload>
-            <main
+            <section
                 class=" flex h-full w-full flex-none flex-col place-content-center text-gray-400 transition-all duration-500"
                 classList={{
                     'flex-1 blur-background md:w-96': hasOpened(),
@@ -41,7 +43,7 @@ export const SideApp = () => {
                     fixed: !sideAppMode(),
                 }}
             >
-                <div class="relative flex-1">
+                <nav class="relative flex-1">
                     <Animate group anime="jumpFromBottom" appear>
                         <SettingPanel></SettingPanel>
 
@@ -56,8 +58,8 @@ export const SideApp = () => {
                         <TalkPanel></TalkPanel>
                         <ArtistPanel></ArtistPanel>
                     </Animate>
-                </div>
-            </main>
+                </nav>
+            </section>
         </Tabs>
     );
 };

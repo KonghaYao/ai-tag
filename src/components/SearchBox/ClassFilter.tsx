@@ -1,10 +1,11 @@
 import { createEffect, createSelector, For, Show, useContext } from 'solid-js';
-import { Data, IData } from '../../app/main/App';
+import type { ITagData } from '../../app/main/App';
 import { CSVToJSON } from '../../utils/CSVToJSON';
 import { atom, resource } from '@cn-ui/use';
 import { FloatPanelWithAnimate } from '@cn-ui/core';
 import { memoize } from 'lodash-es';
 import { ColorPicker } from '../../utils/ColorPicker';
+import { GlobalData } from '../../store/GlobalData';
 
 const getClassify = memoize(async () => {
     const binary = await fetch('./tagClassify.csv').then((res) => res.blob());
@@ -13,14 +14,14 @@ const getClassify = memoize(async () => {
     return data;
 });
 export const useClassFilter = () => {
-    const { result, lists } = useContext(Data)!;
+    const { result, lists } = GlobalData.getApp('tag-control')!;
     const Colors = new ColorPicker();
     const FilterClass = new Set(['全部']);
     const data = resource(() =>
         getClassify().then((res) =>
             res.map((i) => {
                 FilterClass.add(i.type);
-                return { ...i, r18: 0, count: Infinity, text: i.en, emphasize: 0 } as IData & {
+                return { ...i, r18: 0, count: Infinity, text: i.en, emphasize: 0 } as ITagData & {
                     type: string;
                 };
             })

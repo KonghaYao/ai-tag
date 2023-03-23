@@ -1,5 +1,5 @@
 import { atom } from '@cn-ui/use';
-import { Show, batch, createSelector } from 'solid-js';
+import { createSelector } from 'solid-js';
 import { Panel } from '../../components/Panel';
 import { GlobalGPT } from '../../api/prompt-gpt';
 import { Tab, Tabs, TabsHeader } from '@cn-ui/core';

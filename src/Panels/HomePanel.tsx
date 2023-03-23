@@ -3,6 +3,8 @@ import { useTranslation } from '../../i18n';
 import { Data } from '../app/main/App';
 import { Panel } from '../components/Panel';
 import { WebViewLink } from './Webview';
+import { GlobalData } from '../store/GlobalData';
+import type { PanelIds } from '../app/main/SideApp';
 
 const Translators = [{ name: 'Bing 翻译', src: 'https://cn.bing.com/translator/' }];
 
@@ -22,7 +24,7 @@ const EnableSites = [
 
 const { t } = useTranslation();
 export const MainGridOfInner = () => {
-    const { visibleId } = useContext(Data);
+    const { visibleId } = GlobalData.getApp('data');
     return (
         <For each={LocalPower}>
             {(item, index) => {
@@ -33,7 +35,7 @@ export const MainGridOfInner = () => {
                             'background-color': `hwb(${(index() * 36) % 360}deg 20% 40%)`,
                         }}
                         onclick={() => {
-                            visibleId(item.src);
+                            visibleId(item.src as PanelIds);
                         }}
                     >
                         <div class="font-icon text-xl">{item.icon}</div>
@@ -53,7 +55,7 @@ export const LocalPower = [
 ];
 export const HomePanel = () => {
     return (
-        <Panel id="">
+        <Panel id="home">
             <header class="w-full border-b-4 border-gray-800 py-2 text-center">
                 {t('home.title.home')}
             </header>

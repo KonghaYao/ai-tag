@@ -5,7 +5,7 @@ import { usePagination } from '@cn-ui/headless';
 import { timeAgo } from './timeage';
 import { TalkMarkdown } from './TalkMarkdown';
 import { TalkContext } from './TalkContext';
-import { Queriable } from 'leancloud-storage';
+import type { Queriable } from 'leancloud-storage';
 
 export const createSubQuery = async (DatabaseName: string, idsArr: string[]) => {
     let ids = JSON.stringify(idsArr).replace(/(\[|\])/g, '');

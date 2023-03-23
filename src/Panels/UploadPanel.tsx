@@ -1,5 +1,3 @@
-import { Context, useContext } from 'solid-js';
-import { Data } from '../app/main/App';
 import { createStore } from 'solid-js/store';
 import { Panel } from '../components/Panel';
 import { API, StoreData } from '../api/notion';
@@ -23,9 +21,10 @@ const init = {
 const [store, set] = createStore({ ...init });
 import ImageKit from 'imagekit';
 import md5 from 'md5';
+import { GlobalData } from '../store/GlobalData';
 const imagekit = new ImageKit({
     publicKey: 'public_LHy/8l68lZCtxUj9yIEj1Ibz8yE=',
-    privateKey: import.meta.env.VITE_IMAGEKIT_MASTER!,
+    privateKey: import.meta.env.PUBLIC_IMAGEKIT_MASTER!,
     urlEndpoint: 'https://ik.imagekit.io/dfidfiskkxn/',
     /** @ts-ignore */
     authenticationEndpoint: './.netlify/functions/upload_auth',
@@ -86,7 +85,7 @@ const useSharedUpload = (uploading: Atom<boolean>, username: Atom<string>) => {
 };
 export const getImageSize = async (file: File) => {
     const url = URL.createObjectURL(file);
-    return new Promise<string>((res, rej) => {
+    return new Promise<string>((res) => {
         const image = new Image();
         image.onload = () => {
             const { width, height } = image;
@@ -97,13 +96,9 @@ export const getImageSize = async (file: File) => {
         URL.revokeObjectURL(url);
     });
 };
-export const UploadPanel = (props: {
-    context?: Context<{
-        username: Atom<string>;
-    }>;
-}) => {
+export const UploadPanel = () => {
     const { t } = useTranslation();
-    const { username } = useContext(props.context ?? Data);
+    const { username } = GlobalData.getApp('data');
     const uploading = atom(false);
 
     const { upload, uploadPicture } = useSharedUpload(uploading, username);
@@ -148,10 +143,12 @@ export const UploadPanel = (props: {
             }}
             ondrop={(e) => {
                 e.preventDefault();
-                const getFile = [...e.dataTransfer.files].filter((i) =>
-                    i.type.startsWith('image/')
-                ) as any as FileList;
-                changeFile(getFile);
+                if (e.dataTransfer) {
+                    const getFile = [...e.dataTransfer.files].filter((i) =>
+                        i.type.startsWith('image/')
+                    ) as any as FileList;
+                    changeFile(getFile);
+                }
             }}
         >
             <header class="w-full py-2 text-center font-bold">{t('uploadPanel.title')}</header>

@@ -1,22 +1,39 @@
 ---
+import SearchEngine from './comp/searchEngine.astro';
 import './index.css';
 export interface Props {
-    title: string;
+    title?: string;
+    description?: string;
 }
 
-const { title } = Astro.props;
+const {
+    title = '魔导绪论',
+    description = '魔咒生成器,tag 字典,prompt generator,ai作画,ai绘图网站，novel ai tag,writing prompts,journal prompts,drawing prompts,novelai,stable diffusion webui,stable diffusion ai',
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
+        <!-- Info Inject -->
+        <meta name="keywords" content={description} />
+        <meta name="description" content={description} />
+        <meta property="og:locale" content="zh" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content="https://magic-tag.netlify.app" />
+        <meta property="og:site_name" content={title} />
+        <SearchEngine />
     </head>
     <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+
         <slot />
     </body>
 </html>

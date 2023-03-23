@@ -8,7 +8,7 @@ import { ToolBarColor } from '../ColorJar';
 
 /** 主页面板的直接展示，免得打开太麻烦 */
 export const MainFloat = () => {
-    const { visibleId, iconBtn } = useContext(Data);
+    const { visibleId, iconBtn } = GlobalData.getApp('data');
     const { t } = useTranslation();
 
     return (

@@ -1,21 +1,13 @@
-import { For, useContext } from 'solid-js';
+import { For } from 'solid-js';
 import { useTranslation } from '../../i18n';
-import { Data } from '../app/main/App';
 import { Panel } from '../components/Panel';
 import { UploadButton } from '../components/UploadButton';
-import { Notice } from '../utils/notice';
+import { GlobalData } from '../store/GlobalData';
 
 export const SettingPanel = () => {
-    const {
-        r18Mode,
-        showCount,
-        tagsPerPage,
-        sideAppMode,
-        MaxEmphasize,
-        defaultFont,
-        backgroundImage,
-        iconBtn,
-    } = useContext(Data);
+    const { backgroundImage, r18Mode, showCount, tagsPerPage, MaxEmphasize, defaultFont, iconBtn } =
+        GlobalData.getApp('data');
+    const { sideAppMode } = GlobalData.getApp('side-app');
 
     const { t } = useTranslation();
     const list = [

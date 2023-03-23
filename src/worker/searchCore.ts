@@ -1,6 +1,6 @@
-import type { IData } from '../app/main/App';
+import type { ITagData } from '../app/main/App';
 import Fuse from 'fuse.js';
-type IndexedData = IData & { id?: number };
+type IndexedData = ITagData & { id?: number };
 
 class Search {
     static data: IndexedData[];
@@ -22,7 +22,7 @@ export const add = async (input: IndexedData[]) => {
     return true;
 };
 
-const createQuery = (data: IData[]) => {
+const createQuery = (data: ITagData[]) => {
     Search.query = new Fuse(data, {
         // isCaseSensitive: false,
         // includeScore: false,

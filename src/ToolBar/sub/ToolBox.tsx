@@ -16,7 +16,7 @@ export const ToolBox = () => {
         undo,
         visibleId,
         showLangInLine1,
-    } = useContext(Data);
+    } = GlobalData.getApp('data');
 
     const { t } = useTranslation();
     return (

@@ -1,26 +1,26 @@
 import { createEffect, untrack } from 'solid-js';
 import { Atom, AtomTypeSymbol, atom, reflect } from '@cn-ui/use';
-import { useSearchParams } from '@solidjs/router';
-import type { IData, IStoreData } from '../app/main/App';
+import type { ITagData, IStoreData } from '../app/main/App';
 import { getTagInURL } from '../utils/getTagInURL';
-import { TagsToString, stringToTags } from './TagsConvertor';
+import { TagsToString, stringToTags } from '../use/TagsConvertor';
 import { proxy } from 'comlink';
-import { useHistory } from './useTagHistory';
+import { useHistory } from '../use/useTagHistory';
 import { Message } from '@cn-ui/core';
 import { TradToSimple } from '../utils/TradToSimple';
-import { useTagDataLoader } from './useTagDataLoader';
-import { searchWorker, sharedWorker } from './searchWorker';
+import { useTagDataLoader } from '../use/useTagDataLoader';
+import { searchWorker, sharedWorker } from '../use/searchWorker';
+import { GlobalData } from './GlobalData';
 export const cdn = 'https://cdn.jsdelivr.net/npm';
 
 const useOwnAtom = () => {
     // 添加去重功能的 Atom，实现较拉😂
-    const usersCollection = atom<IData[]>([]);
+    const usersCollection = atom<ITagData[]>([]);
     const changeUsersCollection = usersCollection.reflux(usersCollection(), (data) =>
         data.filter(
-            (item: IData, index: number) =>
+            (item: ITagData, index: number) =>
                 item &&
                 (item.text === '\n' ||
-                    (data as IData[]).findIndex((next) => next.en === item.en) === index)
+                    (data as ITagData[]).findIndex((next) => next.en === item.en) === index)
         )
     );
     return Object.assign(
@@ -33,11 +33,16 @@ const useOwnAtom = () => {
             }
         },
         { [AtomTypeSymbol]: 'atom' }
-    ) as any as Atom<IData[]>;
+    ) as any as Atom<ITagData[]>;
 };
 
-/** 加载 Tag 数据库 */
-export function useGlobalTags(store: IStoreData) {
+export type ITagStore = ReturnType<typeof initGlobalTags>;
+
+/** 加载 Tag 数据库,  */
+export function initGlobalTags(
+    /** 为防止数据回环，不能在内部引用 store */
+    store: IStoreData
+) {
     console.log('重绘');
     const { lists, rebuildSearchSet } = useTagDataLoader(store);
 
@@ -47,7 +52,7 @@ export function useGlobalTags(store: IStoreData) {
     createEffect(rebuildSearchSet);
 
     /** 筛选过后的数组 */
-    const result = atom<IData[]>([]);
+    const result = atom<ITagData[]>([]);
 
     /** 安全的数据列表，对外提供操作 */
     const safeList = reflect(() => {
@@ -77,7 +82,6 @@ export function useGlobalTags(store: IStoreData) {
     });
 
     const usersCollection = useOwnAtom();
-    const [searchParams] = useSearchParams();
 
     // ! 不再将 usersCollection 推向标签栏，因为这个是给用户分享用的，用完第一次就不需要了
     // 持续更新到标签栏反而耗费性能，所以只在分享 URL 的时候进行一个生成即可。
@@ -86,7 +90,7 @@ export function useGlobalTags(store: IStoreData) {
 
     // 初始化 usersCollection
     const initUsersCollection = async () => {
-        const tags = searchParams.tags ?? '';
+        const tags = '';
         if (stateTag === tags) return;
         stateTag = tags;
 
@@ -134,5 +138,15 @@ export function useGlobalTags(store: IStoreData) {
             Message.success('恢复成功');
         }
     };
-    return { result, lists: safeList, searchText, usersCollection, TagsHistory, redo, undo };
+    const context = {
+        result,
+        lists: safeList,
+        searchText,
+        usersCollection,
+        TagsHistory,
+        redo,
+        undo,
+    };
+    GlobalData.register('tag-control', context);
+    return context;
 }

@@ -9,7 +9,7 @@ import { MainFloat } from './sub/MainFloat';
 import { ToolBox } from './sub/ToolBox';
 import { ToolBarColor } from './ColorJar';
 export function HeaderFirst() {
-    const { r18Mode, usersCollection, visibleId, lists, iconBtn } = useContext(Data);
+    const { r18Mode, usersCollection, visibleId, lists, iconBtn } = GlobalData.getApp('data');
     const { nav } = useWebView();
     const { t } = useTranslation();
     return (

@@ -1,4 +1,4 @@
-import { Component, JSXElement } from 'solid-js';
+import type { Component, JSXElement } from 'solid-js';
 import { Atom, classNames } from '@cn-ui/use';
 
 export const CheckBox: Component<{

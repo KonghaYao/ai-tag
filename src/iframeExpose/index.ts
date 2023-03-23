@@ -1,15 +1,15 @@
 import { expose, windowEndpoint } from 'comlink';
 import { DebouncedFunc, debounce } from 'lodash-es';
 import { createEffect, on, useContext } from 'solid-js';
-import { Data, IData } from '../app/main/App';
+import { Data, ITagData } from '../app/main/App';
 import { stringToTags, TagsToString } from '../use/TagsConvertor';
 import { CombineMagic } from '../utils/CombineMagic';
 
 /** 可以对外提供 iframe 服务，但是现在没有在用 */
 export const useIframeExpose = () => {
-    const { usersCollection } = useContext(Data)!;
+    const { usersCollection } = GlobalData.getApp('data')!;
     if (self != top) {
-        let callbacks: DebouncedFunc<(data: IData[]) => void>[] = [];
+        let callbacks: DebouncedFunc<(data: ITagData[]) => void>[] = [];
         createEffect(
             on(usersCollection, (data) => {
                 callbacks.forEach((i) => i(data));

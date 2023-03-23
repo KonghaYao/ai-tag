@@ -1,9 +1,9 @@
 import { uniqBy } from 'lodash-es';
-import { IData } from '../app/main/App';
+import type { ITagData } from '../app/main/App';
 import { breakSymbol, isBreakSymbol } from '../use/TagsConvertor';
 
 /** 融合魔法，折叠融合魔咒 */
-export const CombineMagic = (input: IData[], old: IData[]) => {
+export const CombineMagic = (input: ITagData[], old: ITagData[]) => {
     // 根据断行分为多个 Part，多个 Part 之间进行合并
     const [inputPart, oldPart] = ([input, old] as const).map((i) =>
         i
@@ -16,7 +16,7 @@ export const CombineMagic = (input: IData[], old: IData[]) => {
                     }
                     return col;
                 },
-                [[]] as IData[][]
+                [[]] as ITagData[][]
             )
             .filter((i) => i.length)
     );
@@ -42,12 +42,12 @@ export const CombineMagic = (input: IData[], old: IData[]) => {
     );
 };
 /** 将两个数组差序合并 */
-const baseCombineMagic = (input: IData[], old: IData[]): IData[] => {
+const baseCombineMagic = (input: ITagData[], old: ITagData[]): ITagData[] => {
     // 折叠融合，这样才符合 tags 的先后顺序
     const newArr = [];
     while (old.length || input.length) {
         newArr.length && newArr.push(old.shift());
         input.length && newArr.push(input.shift());
     }
-    return newArr.filter(Boolean);
+    return newArr.filter(Boolean) as ITagData[];
 };

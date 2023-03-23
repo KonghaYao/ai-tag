@@ -4,6 +4,7 @@ import { ErrorBoundary } from 'solid-js';
 import { useTranslation } from '../../i18n';
 import { Data } from '../app/main/App';
 import { Panel, PanelContext } from '../components/Panel';
+import { GlobalData } from '../store/GlobalData';
 
 export const WebViewLink: Component<{ children: JSXElement; href: string }> = (props) => {
     const { nav } = useWebView();
@@ -15,7 +16,7 @@ export const WebViewLink: Component<{ children: JSXElement; href: string }> = (p
 };
 
 export const useWebView = () => {
-    const { visibleId, webviewURL } = useContext(Data);
+    const { visibleId, webviewURL } = GlobalData.getApp('data');
     return {
         nav(url: string) {
             const pos = new URL(url, globalThis.location.toString());
@@ -30,7 +31,7 @@ export const useWebView = () => {
 export const Webview = () => {
     const { t } = useTranslation();
     const { isPanelVisible } = useContext(PanelContext);
-    const { webviewURL } = useContext(Data);
+    const { webviewURL } = GlobalData.getApp('data');
 
     let container: HTMLIFrameElement;
     const loading = atom(true);

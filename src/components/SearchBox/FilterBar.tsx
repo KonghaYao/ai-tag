@@ -1,15 +1,14 @@
-import { Component, createMemo, useContext } from 'solid-js';
-import { Data } from '../../app/main/App';
+import type { Component } from 'solid-js';
 import { _emColor } from '../TagButton';
 import { useTranslation } from '../../../i18n';
 import { sampleSize } from '../../utils/sampleSize';
-import { ClassFilter } from './ClassFilter';
 import type { Atom } from '@cn-ui/use';
+import { GlobalData } from '../../store/GlobalData';
 export const FilterBar: Component<{
     classifyType: Atom<string>;
 }> = (props) => {
-    const { result, lists, tagsPerPage, searchNumberLimit, showClassify } = useContext(Data)!;
-
+    const { tagsPerPage, searchNumberLimit, showClassify } = GlobalData.getApp('data')!;
+    const { result, lists } = GlobalData.getApp('tag-control')!;
     const { t } = useTranslation();
     return (
         <nav class="flex flex-col justify-between text-sm text-gray-400 sm:flex-row">

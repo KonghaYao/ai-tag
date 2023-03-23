@@ -6,9 +6,11 @@ import { untrack } from 'solid-js/web';
 import { CreateIData } from '../../use/TagsConvertor';
 import { useTranslation } from '../../../i18n';
 import { DragPoster } from '@cn-ui/headless';
+import { GlobalData } from '../../store/GlobalData';
 
 export const SearchResult = () => {
-    const { usersCollection, result, tagsPerPage } = useContext(Data)!;
+    const { tagsPerPage } = GlobalData.getApp('data')!;
+    const { usersCollection, result } = GlobalData.getApp('tag-control')!;
     const showingResult = reflect(() => {
         const num = untrack(tagsPerPage);
         return result().slice(0, num);

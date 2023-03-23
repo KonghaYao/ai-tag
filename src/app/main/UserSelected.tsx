@@ -1,5 +1,5 @@
-import { useContext } from 'solid-js';
-import { Data, IData } from './App';
+import { useContext, useTransition } from 'solid-js';
+import { Data, ITagData } from './App';
 import { TagButton } from '../../components/TagButton';
 import { isAtom, reflect } from '@cn-ui/use';
 import isMobile from 'is-mobile';
@@ -15,8 +15,10 @@ import { CombineMagic } from '../../utils/CombineMagic';
 import { DropReceiver, useDragAndDropData } from '@cn-ui/headless';
 import tinykeys from 'tinykeys';
 import { GlobalPlugin, useBlackBoard } from '../../plugins/GlobalPlugin';
+import { GlobalData } from '../../store/GlobalData';
+import { useTranslation } from '../../../i18n';
 export const BindHistoryKey = () => {
-    const { redo, undo } = useContext(Data)!;
+    const { redo, undo } = GlobalData.getApp('tag-control')!;
 
     tinykeys(window, {
         '$mod+KeyZ': (event) => {
@@ -31,16 +33,9 @@ export const BindHistoryKey = () => {
 };
 
 export const UserSelected = () => {
-    const {
-        deleteMode,
-        enMode,
-        usersCollection,
-        emphasizeAddMode,
-        emphasizeSubMode,
-        lists,
-        TagsHistory,
-        showLangInLine1,
-    } = useContext(Data)!;
+    const { deleteMode, enMode, emphasizeAddMode, emphasizeSubMode, showLangInLine1 } =
+        GlobalData.getApp('data')!;
+    const { usersCollection, lists, TagsHistory } = GlobalData.getApp('tag-control');
     const { wheelEvent, clickEvent } = useTagController();
     BindHistoryKey();
     const disabledSortable = reflect(() => {
@@ -48,9 +43,14 @@ export const UserSelected = () => {
     });
     const { send } = useDragAndDropData();
     let breakCounter = 0;
-
+    const { t } = useTranslation();
     /** 注入拖拽值得方式 */
-    const injectTags = (old: IData[], input: IData[], isCombine = false, isTailAdd = false) => {
+    const injectTags = (
+        old: ITagData[],
+        input: ITagData[],
+        isCombine = false,
+        isTailAdd = false
+    ) => {
         if (isCombine) {
             const list = CombineMagic(input, old);
             usersCollection(list);

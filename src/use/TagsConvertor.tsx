@@ -1,4 +1,4 @@
-import { IData } from '../app/main/App';
+import type { ITagData } from '../app/main/App';
 
 import { PromptToTags, TagsToPrompt } from 'promptor';
 
@@ -7,11 +7,11 @@ export const PreProcess = (s: string) => {
     return s.replace(/_/g, ' ').split(/\r?\n/g);
 };
 
-export const isBreakSymbol = (a: IData) => {
+export const isBreakSymbol = (a: ITagData) => {
     return a.text === breakSymbol.text && a.en === breakSymbol.en && a.cn === breakSymbol.cn;
 };
 
-export const breakSymbol: IData = {
+export const breakSymbol: ITagData = {
     text: '\n',
     en: `\n`,
     cn: '\n',
@@ -20,7 +20,7 @@ export const breakSymbol: IData = {
     emphasize: 0,
 };
 /** 将字符串转化为 Tag 数组 */
-export const stringToTags = (s: string, list: IData[] = []): IData[] => {
+export const stringToTags = (s: string, list: ITagData[] = []): ITagData[] => {
     //* 添加对换行符的处理，认为换行符是一个组的标记
     const data = PreProcess(s).map((i, index) => PromptToTags(i));
     return data.flatMap((part, index) => {
@@ -35,7 +35,7 @@ export const stringToTags = (s: string, list: IData[] = []): IData[] => {
                 count: Infinity,
                 r18: 0,
                 ...i,
-            } as IData;
+            } as ITagData;
         });
         if (index === 0) return [...res];
         return [{ ...breakSymbol }, ...res];
@@ -44,7 +44,7 @@ export const stringToTags = (s: string, list: IData[] = []): IData[] => {
 
 /** 将用户的 Tag 转化为字符串 */
 export const TagsToString = (
-    data: IData[],
+    data: ITagData[],
     positive = '()',
     /** 默认是保留分隔符的 */
     keepBreakLine = true
@@ -71,7 +71,7 @@ export const TagsToString = (
 };
 
 /** 守卫类型正确 */
-export const CreateIData = (data: IData) => {
+export const CreateIData = (data: ITagData) => {
     if (data.text === undefined) data.text = data.en;
     if (data.en === undefined) data.en = data.text;
     if (data.cn === undefined) data.cn = data.text;

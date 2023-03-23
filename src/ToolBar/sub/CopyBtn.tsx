@@ -10,7 +10,7 @@ import { CheckBox } from './CheckBox';
 
 export function CopyBtn() {
     const { enMode, usersCollection, emphasizeSymbol, iconBtn, nonBreakLine, forceEN } =
-        useContext(Data);
+        GlobalData.getApp('data')!;
     const { t } = useTranslation();
     const getTagString = () => {
         let final = TagsToString(

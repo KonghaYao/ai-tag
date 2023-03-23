@@ -9,7 +9,7 @@ import { useCommitComment } from './commit';
 import { Notice } from '../../utils/notice';
 import { CommentItem } from './CommentList';
 export const InputArea = () => {
-    const { username } = useContext(Data);
+    const { username } = GlobalData.getApp('data');
     const { url, atSomeone, refreshPage } = useContext(TalkContext);
     const { commit } = useCommitComment();
     const CommitResource = resource(

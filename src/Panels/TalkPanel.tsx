@@ -1,11 +1,9 @@
 import { Panel } from '../components/Panel';
-
 import './TalkPanel.css';
 import { TalkDefault } from './Talk';
-import { useContext } from 'solid-js';
-import { Data } from '../app/main/App';
+import { GlobalData } from '../store/GlobalData';
 export const TalkPanel = () => {
-    const { username } = useContext(Data);
+    const { username } = GlobalData.getApp('data');
     return (
         <Panel id="talk">
             <div class="w-full flex-1 overflow-auto p-2">

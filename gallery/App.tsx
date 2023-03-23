@@ -61,6 +61,7 @@ export const App = () => {
                                     onClick={(e) => {
                                         // 判断是否为被本应用嵌套
                                         if (
+                                            top &&
                                             top !== window &&
                                             top.location.origin === location.origin
                                         ) {

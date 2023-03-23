@@ -1,13 +1,14 @@
 import { atom, asyncLock } from '@cn-ui/use';
 import { For, useContext } from 'solid-js';
-import i18n, { useTranslation } from '../../i18n';
-import { Data } from '../app/main/App';
-import { Panel } from '../components/Panel';
-import { Notice } from '../utils/notice';
+import i18n, { useTranslation } from '../../../i18n';
+import { Data } from '../../app/main/App';
+import { Panel } from '../../components/Panel';
+import { Notice } from '../../utils/notice';
 import { commitFeedBack, FeedBackMessage, Labels } from './index';
+import { GlobalData } from '../../store/GlobalData';
 export const FeedBackPanel = () => {
     const { t } = useTranslation();
-    const { visibleId, username } = useContext(Data);
+    const { visibleId, username } = GlobalData.getApp('data')!;
     /** 反馈信息 */
     const callbacks = atom<FeedBackMessage>({
         author: username(),

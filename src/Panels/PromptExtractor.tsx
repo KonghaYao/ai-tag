@@ -9,24 +9,27 @@ import { untrack } from 'solid-js/web';
 import { Message } from '../components/MessageHInt';
 import { AC } from '../components/AC';
 
+/** 图片解析面板 */
 export const PromptExtractorPanel = () => {
-    const file = atom<File>(null);
+    const file = atom<File | null>(null);
     const data = resource<AIImageInfo | null>(async () => {
-        if (file() === null) return null;
-        const info = await file().arrayBuffer();
+        const f = file();
+        if (f === null) return null;
+        const info = await f.arrayBuffer();
         return PromptExtractor(info);
     });
     let last = atom('');
     createEffect(() => {
         untrack(last) && URL.revokeObjectURL(untrack(last));
-        file() && last(URL.createObjectURL(file()));
+        const f = file();
+        f && last(URL.createObjectURL(f));
     });
     createEffect(
         on(file, () => {
             data.refetch();
         })
     );
-    let inputRef: HTMLInputElement;
+    let inputRef!: HTMLInputElement;
     return (
         <Panel id="prompt-extractor">
             <div class="py-2 text-center text-lg text-white">法术解析</div>
@@ -68,7 +71,10 @@ export const PromptExtractorPanel = () => {
                         type="file"
                         accept="image/*"
                         oninput={(e) => {
-                            file(() => (e.target as HTMLInputElement).files[0]);
+                            file(() => {
+                                const f = (e.target as HTMLInputElement).files;
+                                return f ? f[0] : f;
+                            });
                         }}
                     />
                     <img src={last()} alt="" />

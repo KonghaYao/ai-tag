@@ -8,8 +8,8 @@ export const GlobalPlugin = createBlackBoard<{
     };
 }>();
 
-export const useBlackBoard = <T,E extends keyof T>(bd:ReturnType<typeof createBlackBoard<T>>,name:E)=>{
-    const app = atom<T[E]>(null)
+export const useBlackBoard = <T extends Record<string,any>,E extends keyof T>(bd:ReturnType<typeof createBlackBoard<T>>,name:E)=>{
+    const app = atom<T[E]>(null as any)
     onMount(() => {
         const ready= bd.getApp(name)
         app(()=>ready)

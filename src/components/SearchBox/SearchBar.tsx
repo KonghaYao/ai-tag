@@ -7,9 +7,11 @@ import { Notice } from '../../utils/notice';
 import { Message } from '../MessageHInt';
 import { DropReceiver } from '@cn-ui/headless';
 import { TradToSimple } from '../../utils/TradToSimple';
+import { GlobalData } from '../../store/GlobalData';
 
 export const SearchBar = () => {
-    const { usersCollection, lists, searchText, iconBtn } = useContext(Data)!;
+    const { iconBtn } = GlobalData.getApp('data')!;
+    const { usersCollection, lists, searchText } = GlobalData.getApp('tag-control')!;
     const triggerSearch = debounce(searchText, 200);
     const { t } = useTranslation();
     const addToList = () => {

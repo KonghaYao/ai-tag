@@ -43,7 +43,7 @@ type TupleToUnion<T extends any[]> = T[number]['value'];
 /**@ts-ignore */
 export type FeedBackTags = TupleToUnion<typeof Labels> | 'bot';
 export interface FeedBackMessage {
-    author: string;
+    author?: string;
     title: string;
     body: string;
     labels: FeedBackTags[];
@@ -56,7 +56,7 @@ export const commitFeedBack = async (data: FeedBackMessage) => {
         method: 'POST',
         headers: {
             accept: 'application/vnd.github+json',
-            Authorization: 'Bearer ' + import.meta.env.VITE_GITHUB_TOKEN,
+            Authorization: 'Bearer ' + import.meta.env.PUBLIC_GITHUB_TOKEN,
         },
         body: JSON.stringify(data),
     }).then((res) => res.json());
@@ -66,7 +66,7 @@ export const getIssueState = async (url: string) => {
     return fetch(url.replace('github.com/', 'api.github.com/repos/'), {
         headers: {
             accept: 'application/vnd.github+json',
-            Authorization: 'Bearer ' + import.meta.env.VITE_GITHUB_TOKEN,
+            Authorization: 'Bearer ' + import.meta.env.PUBLIC_GITHUB_TOKEN,
         },
     })
         .then((res) => res.json())

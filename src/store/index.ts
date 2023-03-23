@@ -1,6 +1,8 @@
 import { Atom, atom } from '@cn-ui/use';
 import type { PanelIds } from '../app/main/SideApp';
 import { useStorage } from '../use/useStorage';
+import { GlobalData } from './GlobalData';
+import { useLocalData } from '../use/useLocalData';
 
 const ObjectToAtoms = <T extends Object>(
     obj: T
@@ -15,6 +17,7 @@ const ObjectToAtoms = <T extends Object>(
     );
 };
 export type IStoreData = ReturnType<typeof initGlobalData>;
+
 export const initGlobalData = () => {
     /** 需要持久化的变量写这里 */
     const storageSetting = {
@@ -36,14 +39,15 @@ export const initGlobalData = () => {
         webviewURL: '',
         MaxEmphasize: 10,
         defaultFont: false,
-        /** @deprecated */
+        /** @deprecated 取消使用 */
         iconBtn: false,
         showLangInLine1: false,
     };
-    const context = ObjectToAtoms(storageSetting);
+    const context = { ...ObjectToAtoms(storageSetting), ...useLocalData() };
     const { recover, tracking } = useStorage(context);
     // 从 localstorage 恢复并开始统计数据
     recover();
     tracking();
+    GlobalData.register('data', context);
     return context;
 };

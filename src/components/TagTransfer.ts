@@ -1,5 +1,5 @@
 import { SingleMagic } from '../../notebook/use/useIndexedDB';
-import { IData } from '../app/main/App';
+import { ITagData } from '../app/main/App';
 
 /** 整个APP中的传输信息 */
 
@@ -11,7 +11,7 @@ export type TagTransfer =
       }
     | {
           type: 'USER_SELECTED';
-          data: IData;
+          data: ITagData;
       }
     | {
           type: 'MAGIC_IMAGE';

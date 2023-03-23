@@ -8,6 +8,7 @@ import { AC } from '../../components/AC';
 import { GlobalGPT } from '../../api/prompt-gpt';
 import { Select } from './Select';
 import copy from 'copy-to-clipboard';
+import { GlobalData } from '../../store/GlobalData';
 
 const Presets = {
     description: [
@@ -60,7 +61,7 @@ const Presets = {
 };
 
 export const TextToText = () => {
-    const { usersCollection, lists } = useContext(Data);
+    const { usersCollection, lists } = GlobalData.getApp('tag-control');
     const preInput = atom('');
     const lengthOfText = atom(30);
     const AIOutput = atom('');

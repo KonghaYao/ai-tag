@@ -1,7 +1,7 @@
 import { Atom, atomization, reflect } from '@cn-ui/use';
 import copy from 'copy-to-clipboard';
 import { Accessor, Component, For, useContext } from 'solid-js';
-import { Data, IData } from '../app/main/App';
+import { Data, ITagData } from '../app/main/App';
 import { Notice } from '../utils/notice';
 
 /** 正向颜色 */
@@ -35,17 +35,17 @@ const useColorStep = (data: Accessor<number>) => {
 };
 
 export const TagButton: Component<{
-    data: IData;
-    onClick?: (item: IData, rightClick?: boolean) => void;
-    onMouseEnter?(item: IData): void;
-    onWheel?: (item: IData, delta: number, e: Event) => void;
-    onDragStart?: (item: IData, dragData: DataTransfer, e: Event) => void;
-    onDrop?: (item: IData, dropData: DataTransfer, e: Event) => void;
+    data: ITagData;
+    onClick?: (item: ITagData, rightClick?: boolean) => void;
+    onMouseEnter?(item: ITagData): void;
+    onWheel?: (item: ITagData, delta: number, e: Event) => void;
+    onDragStart?: (item: ITagData, dragData: DataTransfer, e: Event) => void;
+    onDrop?: (item: ITagData, dropData: DataTransfer, e: Event) => void;
     draggable?: boolean;
     en?: Atom<boolean>;
     cn?: Atom<boolean>;
 }> = (props) => {
-    const { showCount, enMode, MaxEmphasize, emphasizeSymbol } = useContext(Data)!;
+    const { showCount, enMode, MaxEmphasize, emphasizeSymbol } = GlobalData.getApp('data')!;
     const en = atomization(props.en ?? true);
     const cn = atomization(props.cn ?? true);
     const item = props.data;
@@ -125,7 +125,7 @@ export const TagButton: Component<{
     );
 };
 /** 写出文本操作 */
-function createContent(item: IData, cn: Atom<boolean>, en: Atom<boolean>) {
+function createContent(item: ITagData, cn: Atom<boolean>, en: Atom<boolean>) {
     return () => {
         if (item.alternatingArr && item.alternatingArr.length)
             return (

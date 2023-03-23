@@ -1,9 +1,10 @@
 import { useContext } from 'solid-js';
-import { Data, IData } from '../app/main/App';
+import { Data, ITagData } from '../app/main/App';
 import { useIframeExpose } from '../iframeExpose';
 import { plus, minus } from 'number-precision';
 import { debounce } from 'lodash-es';
 import { TagsToString } from './TagsConvertor';
+import { GlobalData } from '../store/GlobalData';
 
 export const useTagController = () => {
     const {
@@ -13,10 +14,10 @@ export const useTagController = () => {
         emphasizeSubMode,
         MaxEmphasize,
         TagsHistory,
-    } = useContext(Data);
+    } = GlobalData.getApp('data');
 
     /** 左点击加权，右点击减权 */
-    const clickEvent = (item: IData, rightClick?: boolean) => {
+    const clickEvent = (item: ITagData, rightClick?: boolean) => {
         if (deleteMode()) {
             TagsHistory.addToHistory(TagsToString(usersCollection()));
             usersCollection((i) => i.filter((it) => it !== item));
@@ -58,7 +59,7 @@ export const useTagController = () => {
     };
 
     /** 滚轮事件，调节对象的数值类型权重 */
-    const wheelEvent = debounce((item: IData, delta: number) => {
+    const wheelEvent = debounce((item: ITagData, delta: number) => {
         const diff = delta / 150;
         if (emphasizeAddMode() || emphasizeSubMode()) {
             // console.log(diff);

@@ -3,7 +3,7 @@ import { WebViewLink } from '../Panels/Webview';
 import { PanelContext } from './Panel';
 
 export const ControlBar = () => {
-    const { visibleId } = useContext(PanelContext);
+    const { visibleId } = GlobalData.getApp('side-app');
     return (
         <div class="flex h-8 items-center justify-evenly bg-gray-800">
             <WebViewLink href="./notebook.html">

@@ -8,7 +8,7 @@ import { DragPoster } from '@cn-ui/headless';
 import { BackupImage } from './BackupImage';
 
 export const PictureCard: Component<StoreData & { index: number }> = (item) => {
-    const { visibleId } = useContext(PanelContext);
+    const { visibleId } = GlobalData.getApp('side-app');
     const { ShowingPicture, getViewer, backgroundImage, searchText, ShowingPictureURL } =
         useContext(GalleryGlobal);
     let tag = item.tags;

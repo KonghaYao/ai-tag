@@ -35,7 +35,6 @@ export const initGlobalData = () => {
         showCount: true,
         username: '',
         searchNumberLimit: 1000,
-        visibleId: 'ai-prompt' as PanelIds | '',
         webviewURL: '',
         MaxEmphasize: 10,
         defaultFont: false,

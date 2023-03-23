@@ -24,7 +24,7 @@ const EnableSites = [
 
 const { t } = useTranslation();
 export const MainGridOfInner = () => {
-    const { visibleId } = GlobalData.getApp('data');
+    const { visibleId } = GlobalData.getApp('side-app');
     return (
         <For each={LocalPower}>
             {(item, index) => {

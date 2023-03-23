@@ -9,7 +9,9 @@ import { ToolBox } from './sub/ToolBox';
 import { ToolBarColor } from './ColorJar';
 import { GlobalData } from '../../../store/GlobalData';
 export function HeaderFirst() {
-    const { r18Mode, visibleId, iconBtn } = GlobalData.getApp('data');
+    const { r18Mode, iconBtn } = GlobalData.getApp('data');
+    const { visibleId } = GlobalData.getApp('side-app');
+
     const { usersCollection, lists } = GlobalData.getApp('tag-control');
     const { nav } = useWebView();
     const { t } = useTranslation();

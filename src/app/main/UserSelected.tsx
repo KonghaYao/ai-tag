@@ -61,7 +61,7 @@ export const UserSelected = () => {
             Notice.success(t('publicPanel.hint.CopySuccess'));
         }
     };
-    const INPUT_MAGIC = (tags: string, _, e: DragEvent) => {
+    const INPUT_MAGIC = (tags: string, _: DataTransfer, e: DragEvent) => {
         const old = usersCollection();
         TagsHistory.addToHistory(TagsToString(old));
         let isCombine = e.ctrlKey;

@@ -36,10 +36,11 @@ import { DropReceiver } from '@cn-ui/headless';
 import { GlobalHeader } from './GlobalHeader';
 import { TranslationPanel } from '../../plugins/globalTranslate/TranslationPanel';
 import { initSideApp } from '../../store/SideAppStore';
+import { UserSelected } from './UserSelected';
 
 export const Main = () => {
     const sideAPP = initSideApp();
-    const { sideAppMode, visibleId, isPanelVisible } = sideAPP;
+    const { sideAppMode } = sideAPP;
     /** 需要持久化的变量写这里 */
     const storageSetting = initGlobalData();
     initGlobalTags(storageSetting);
@@ -48,12 +49,7 @@ export const Main = () => {
     createEffect(() => sideAppMode(!(isSize('xs') || isSize('sm'))));
 
     return (
-        <PanelContext.Provider
-            value={{
-                visibleId,
-                isPanelVisible,
-            }}
-        >
+        <>
             <DropReceiver
                 detect={{
                     PURE_TAGS() {
@@ -75,7 +71,7 @@ export const Main = () => {
                         class=" flex h-full w-full max-w-4xl flex-col overflow-visible px-2 pt-2 text-gray-400 sm:px-4 sm:pt-4"
                     >
                         <GlobalHeader></GlobalHeader>
-                        {/* <UserSelected></UserSelected> */}
+                        <UserSelected></UserSelected>
                         <SearchBox></SearchBox>
                     </main>
                     <SideApp></SideApp>
@@ -85,6 +81,6 @@ export const Main = () => {
                 </section>
             </DropReceiver>
             <TranslationPanel></TranslationPanel>
-        </PanelContext.Provider>
+        </>
     );
 };

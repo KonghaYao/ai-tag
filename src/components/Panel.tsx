@@ -1,7 +1,8 @@
 import type { Atom } from '@cn-ui/use';
 import { Component, createContext, createMemo, JSX, JSXElement, useContext } from 'solid-js';
 import type { PanelIds } from '../app/main/SideApp';
-import { Icon, Tab } from '@cn-ui/core';
+import { Tab } from '@cn-ui/core';
+import { GlobalData } from '../store/GlobalData';
 
 export interface IPanelData {
     visibleId: Atom<PanelIds | ''>;
@@ -16,7 +17,7 @@ interface PanelEl extends JSX.HTMLAttributes<HTMLDivElement> {
     class?: string;
 }
 export const Panel: Component<PanelEl> = (props) => {
-    const { visibleId, isPanelVisible } = useContext(PanelContext)!;
+    const { visibleId, isPanelVisible } = GlobalData.getApp('side-app')!;
     let container!: HTMLDivElement;
     const visible = createMemo(() => isPanelVisible(props.id));
 

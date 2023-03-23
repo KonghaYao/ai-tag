@@ -5,12 +5,13 @@ import { CopyBtn } from './sub/CopyBtn';
 import { GlobalData } from '../../../store/GlobalData';
 
 export function HeaderSecond() {
-    const { emphasizeAddMode, emphasizeSubMode, visibleId, deleteMode } = GlobalData.getApp('data');
+    const { emphasizeAddMode, emphasizeSubMode, deleteMode } = GlobalData.getApp('data');
+    const { visibleId } = GlobalData.getApp('side-app');
     const { usersCollection } = GlobalData.getApp('tag-control');
     const { t } = useTranslation();
 
     return (
-        <header class="flex gap-2 border-t border-slate-700 pt-2 font-bold text-neutral-300">
+        <header class="flex gap-2 border-t border-slate-700 pt-2 text-sm font-bold text-neutral-300">
             <span
                 class="btn"
                 classList={{

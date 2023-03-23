@@ -86,13 +86,13 @@ export const SettingPanel = () => {
                     accept="image/*"
                     onUpload={([file]) => {
                         if (file) {
-                            new Promise((res) => {
+                            new Promise<string>((res) => {
                                 let oFileReader = new FileReader();
                                 oFileReader.onloadend = function (e) {
-                                    res(e.target.result);
+                                    res(e.target!.result as string);
                                 };
                                 oFileReader.readAsDataURL(file);
-                            }).then((res: string) => {
+                            }).then((res) => {
                                 backgroundImage(res);
                             });
                         }

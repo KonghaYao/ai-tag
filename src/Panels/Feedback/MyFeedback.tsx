@@ -11,7 +11,7 @@ import { Data } from '../../app/main/App';
 import { Panel } from '../../components/Panel';
 import { GlobalData } from '../../store/GlobalData';
 export const MyFeedBackPanel = () => {
-    const { visibleId } = GlobalData.getApp('data');
+    const { visibleId } = GlobalData.getApp('side-app');
     const data = atom<(FeedBackMessage & { url: string; state?: string })[]>(
         JSON.parse(localStorage.getItem('__my_feedback__') ?? '[]')
     );

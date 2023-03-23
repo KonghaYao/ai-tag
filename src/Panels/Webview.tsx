@@ -16,7 +16,9 @@ export const WebViewLink: Component<{ children: JSXElement; href: string }> = (p
 };
 
 export const useWebView = () => {
-    const { visibleId, webviewURL } = GlobalData.getApp('data');
+    const { webviewURL } = GlobalData.getApp('data');
+    const { visibleId } = GlobalData.getApp('side-app');
+
     return {
         nav(url: string) {
             const pos = new URL(url, globalThis.location.toString());
@@ -30,10 +32,10 @@ export const useWebView = () => {
 
 export const Webview = () => {
     const { t } = useTranslation();
-    const { isPanelVisible } = useContext(PanelContext);
+    const { isPanelVisible } = GlobalData.getApp('side-app');
     const { webviewURL } = GlobalData.getApp('data');
 
-    let container: HTMLIFrameElement;
+    let container!: HTMLIFrameElement;
     const loading = atom(true);
     return (
         <Panel id="webview">

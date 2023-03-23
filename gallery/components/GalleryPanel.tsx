@@ -4,7 +4,7 @@ import { PanelContext } from '../../src/components/Panel';
 import { PanelIds } from '../../src/app/main/SideApp';
 
 export const GalleryPanel: Component<{ children?: JSXElement; id: PanelIds | '' }> = (props) => {
-    const { visibleId, isPanelVisible } = useContext(PanelContext);
+    const { visibleId, isPanelVisible } = GlobalData.getApp('side-app');
     let container: HTMLDivElement;
     const visible = createMemo(() => isPanelVisible(props.id));
     const hidden = atom(!visible());

@@ -6,6 +6,7 @@ import { timeAgo } from './timeage';
 import { TalkMarkdown } from './TalkMarkdown';
 import { TalkContext } from './TalkContext';
 import type { Queriable } from 'leancloud-storage';
+import { GlobalData } from '../../store/GlobalData';
 
 export const createSubQuery = async (DatabaseName: string, idsArr: string[]) => {
     let ids = JSON.stringify(idsArr).replace(/(\[|\])/g, '');
@@ -25,7 +26,7 @@ export const createCommonQuery = (DatabaseName: string, url: string) => {
 };
 
 export const CommentList = () => {
-    const { DatabaseName, url, refreshPage } = useContext(TalkContext);
+    const { DatabaseName, url, refreshPage } = GlobalData.getApp('talk');
     const total = resource(() => {
         return createCommonQuery(DatabaseName, url).count();
     });
@@ -46,7 +47,7 @@ export const CommentList = () => {
             .skip(pageCount * page)
             .find()
             .then((res) => {
-                rootIds = res.map((i) => i.id);
+                rootIds = res.map((i) => i.id!);
                 subQuery.refetch();
                 return res as CommentObject[];
             });
@@ -120,12 +121,12 @@ export const CommentItem: Component<{
     subMode: boolean;
 }> = (props) => {
     const attr = props.data.attributes;
-    const { atSomeone, backToTop } = useContext(TalkContext);
+    const { atSomeone, backToTop } = GlobalData.getApp('talk');
     return (
         <div class="">
             <header class=" mt-2 flex justify-between text-sm">
                 <div>{attr.nick === 'Anonymous' ? '匿名' : attr.nick}</div>
-                <div class="text-xs">{timeAgo(new Date(props.data.createdAt))}</div>
+                <div class="text-xs">{timeAgo(new Date(props.data.createdAt!))}</div>
             </header>
             <main class="select-text  p-2" style="letter-spacing: 0.05em;word-break: break-all;">
                 <TalkMarkdown code={attr.comment}></TalkMarkdown>

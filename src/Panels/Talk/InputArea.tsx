@@ -1,28 +1,27 @@
 import { atom, resource } from '@cn-ui/use';
-import { For, Show, useContext } from 'solid-js';
+import { Show } from 'solid-js';
 import { EmojiList, TalkMarkdown } from './TalkMarkdown';
-import { TalkContext } from './TalkContext';
 import { FloatPanelWithAnimate } from '@cn-ui/core';
 import '@cn-ui/animate/src/scale.css';
-import { Data } from '../../app/main/App';
 import { useCommitComment } from './commit';
 import { Notice } from '../../utils/notice';
 import { CommentItem } from './CommentList';
+import { GlobalData } from '../../store/GlobalData';
 export const InputArea = () => {
     const { username } = GlobalData.getApp('data');
-    const { url, atSomeone, refreshPage } = useContext(TalkContext);
+    const { url, atSomeone, refreshPage } = GlobalData.getApp('talk');
     const { commit } = useCommitComment();
     const CommitResource = resource(
         async () => {
-            if (!mainText()) return Notice.error('请输入文本捏') as null;
-            if (!username()) return Notice.error('请输入一个名称吧') as null;
+            if (!mainText()) return Notice.error('请输入文本捏');
+            if (!username()) return Notice.error('请输入一个名称吧');
             return commit(
                 {
                     url,
                     comment: mainText(),
                     nick: username(),
                 },
-                atSomeone()
+                atSomeone()!
             ).then(() => {
                 mainText('');
                 atSomeone(null);
@@ -50,7 +49,7 @@ export const InputArea = () => {
                             ❌
                         </div>
                     </header>
-                    <CommentItem data={atSomeone()} subChildren={[]} subMode={true}></CommentItem>
+                    <CommentItem data={atSomeone()!} subChildren={[]} subMode={true}></CommentItem>
                 </div>
             </Show>
 

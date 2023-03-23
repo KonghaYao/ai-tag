@@ -2,9 +2,7 @@ import { Accessor, createContext, createEffect } from 'solid-js';
 import { Atom, atom, useBreakpoints } from '@cn-ui/use';
 import { SearchBox } from '../../components/SearchBox/SearchBox';
 
-import { initGlobalTags } from '../../store/useGlobalTags';
-
-import { SideApp } from '../SideApp';
+import type { initGlobalTags } from '../../store/useGlobalTags';
 
 export interface ITagData extends IPromptData {
     en: string;
@@ -13,7 +11,7 @@ export interface ITagData extends IPromptData {
     r18: 0 | 1;
     count: number;
 }
-import { initGlobalData, IStoreData } from '../../store/index';
+import type { IStoreData } from '../../store/index';
 export type { IStoreData } from '../../store/index';
 export interface IGlobalData extends IStoreData {
     emphasizeAddMode: Atom<boolean>;
@@ -27,24 +25,20 @@ export interface IGlobalData extends IStoreData {
 }
 export const Data = createContext<IGlobalData & ReturnType<typeof initGlobalTags>>();
 import type { IPromptData } from 'promptor';
-import { PanelContext } from '../../components/Panel';
 import { FontSupport } from '../../components/FontSupport';
-import { useLocalData } from '../../use/useLocalData';
 import { Message, MessageHint } from '../../components/MessageHInt';
 import { Background } from '../../components/Background';
 import { DropReceiver } from '@cn-ui/headless';
 import { GlobalHeader } from './GlobalHeader';
 import { TranslationPanel } from '../../plugins/globalTranslate/TranslationPanel';
-import { initSideApp } from '../../store/SideAppStore';
 import { UserSelected } from './UserSelected';
+import { GlobalData } from '../../store/GlobalData';
 
 export const Main = () => {
-    const sideAPP = initSideApp();
-    const { sideAppMode } = sideAPP;
-    /** 需要持久化的变量写这里 */
-    const storageSetting = initGlobalData();
-    initGlobalTags(storageSetting);
     const { isSize } = useBreakpoints();
+
+    const { backgroundImage } = GlobalData.getApp('data');
+    const { sideAppMode } = GlobalData.getApp('side-app');
     // 自动变换 SideAPP 状态
     createEffect(() => sideAppMode(!(isSize('xs') || isSize('sm'))));
 
@@ -60,10 +54,10 @@ export const Main = () => {
                 <section
                     class="  flex justify-center"
                     classList={{
-                        'opacity-70': !!storageSetting.backgroundImage(),
+                        'opacity-70': !!backgroundImage(),
                     }}
                 >
-                    <Background image={storageSetting.backgroundImage()}></Background>
+                    <Background image={backgroundImage()}></Background>
 
                     <main
                         id="main-panel"

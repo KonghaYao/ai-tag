@@ -11,9 +11,10 @@ export const ToolBox = () => {
 
         emphasizeSymbol,
         iconBtn,
-        visibleId,
+
         showLangInLine1,
     } = GlobalData.getApp('data');
+    const { visibleId } = GlobalData.getApp('side-app');
     const { usersCollection, redo, undo } = GlobalData.getApp('tag-control');
 
     const { t } = useTranslation();

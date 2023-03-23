@@ -1,5 +1,4 @@
 import { createEffect, For, on, useContext } from 'solid-js';
-import { Data } from '../../app/main/App';
 import { TagButton } from '../TagButton';
 import { reflect } from '@cn-ui/use';
 import { untrack } from 'solid-js/web';
@@ -9,8 +8,8 @@ import { DragPoster } from '@cn-ui/headless';
 import { GlobalData } from '../../store/GlobalData';
 
 export const SearchResult = () => {
-    const { tagsPerPage } = GlobalData.getApp('data')!;
-    const { usersCollection, result } = GlobalData.getApp('tag-control')!;
+    const { tagsPerPage } = GlobalData.getApp('data');
+    const { usersCollection, result } = GlobalData.getApp('tag-control');
     const showingResult = reflect(() => {
         const num = untrack(tagsPerPage);
         return result().slice(0, num);

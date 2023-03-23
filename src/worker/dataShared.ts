@@ -3,7 +3,7 @@ import { expose, ProxyMarked } from 'comlink';
 const GlobalData = {
     prompt: '',
 };
-const listeners = [];
+const listeners: (() => void)[] = [];
 const api = {
     async changeData(newValue: Partial<typeof GlobalData>) {
         const needUpdate = Object.entries(newValue).some(([key, value]) => {

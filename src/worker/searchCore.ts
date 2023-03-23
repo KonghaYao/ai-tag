@@ -41,12 +41,12 @@ const createQuery = (data: ITagData[]) => {
         keys: ['cn', 'en'],
     });
 };
-export const rebuild = async ({ r18, numberLimit }) => {
+export const rebuild = async ({ r18, numberLimit }: { r18: boolean; numberLimit: number }) => {
     const querySet = Search.data.filter((i) => (r18 || !i.r18) && i.count >= numberLimit);
     createQuery(querySet);
     return true;
 };
-export const search = ({ text, limit }) => {
+export const search = ({ text, limit }: { text: string; limit: number }) => {
     console.log('搜索 ', text, limit);
 
     return Search.query

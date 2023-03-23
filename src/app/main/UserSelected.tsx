@@ -32,7 +32,7 @@ export const BindHistoryKey = () => {
 
 export const UserSelected = () => {
     const { deleteMode, enMode, emphasizeAddMode, emphasizeSubMode, showLangInLine1 } =
-        GlobalData.getApp('data')!;
+        GlobalData.getApp('data');
     const { usersCollection, lists, TagsHistory } = GlobalData.getApp('tag-control');
     const { wheelEvent, clickEvent } = useTagController();
     BindHistoryKey();

@@ -2,7 +2,6 @@ import { atom } from '@cn-ui/use';
 import { batch, Component, JSXElement, Show, useContext } from 'solid-js';
 import { ErrorBoundary } from 'solid-js';
 import { useTranslation } from '../i18n';
-import { Data } from '../app/main/App';
 import { Panel, PanelContext } from '../components/Panel';
 import { GlobalData } from '../store/GlobalData';
 

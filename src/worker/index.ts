@@ -22,7 +22,7 @@ export const initWorker = () => {
                   type: 'module',
               })
     );
-
+    console.log(import.meta.url);
     const sharedWorker = wrap<SharedDataAPI>(
         'SharedWorker' in globalThis
             ? new SharedWorker(new URL('../worker/dataShared', import.meta.url), {

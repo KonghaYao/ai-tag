@@ -8,7 +8,8 @@ import { commitFeedBack, FeedBackMessage, Labels } from './index';
 import { GlobalData } from '../../store/GlobalData';
 export const FeedBackPanel = () => {
     const { t } = useTranslation();
-    const { visibleId, username } = GlobalData.getApp('data')!;
+    const { username } = GlobalData.getApp('data');
+    const { visibleId } = GlobalData.getApp('side-app');
     /** 反馈信息 */
     const callbacks = atom<FeedBackMessage>({
         author: username(),

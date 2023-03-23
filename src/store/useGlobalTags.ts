@@ -89,26 +89,26 @@ export function initGlobalTags(
     let stateTag = '';
 
     // 初始化 usersCollection
-    const initUsersCollection = async () => {
-        const tags = '';
-        if (stateTag === tags) return;
-        stateTag = tags;
+    // const initUsersCollection = async () => {
+    //     const tags = '';
+    //     if (stateTag === tags) return;
+    //     stateTag = tags;
 
-        // URL > Shared Worker
-        const urlTags = getTagInURL(lists());
-        if (!urlTags?.length) {
-            await sharedWorker.getData().then((data) => {
-                if (data.prompt) usersCollection(stringToTags(data.prompt, untrack(lists)));
-            });
-            return;
-        } else {
-            usersCollection(urlTags);
-            await sharedWorker.changeData({
-                prompt: tags,
-            });
-        }
-    };
-    untrack(initUsersCollection);
+    //     // URL > Shared Worker
+    //     const urlTags = getTagInURL(lists());
+    //     if (!urlTags?.length) {
+    //         await sharedWorker.getData().then((data) => {
+    //             if (data.prompt) usersCollection(stringToTags(data.prompt, untrack(lists)));
+    //         });
+    //         return;
+    //     } else {
+    //         usersCollection(urlTags);
+    //         await sharedWorker.changeData({
+    //             prompt: tags,
+    //         });
+    //     }
+    // };
+    // untrack(initUsersCollection);
     sharedWorker.onUpdate(
         proxy(({ prompt = '' }) => {
             if (prompt !== stateTag) {

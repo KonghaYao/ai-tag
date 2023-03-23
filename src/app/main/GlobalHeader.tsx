@@ -1,4 +1,4 @@
-import { useTranslation } from '../../../i18n';
+import { useTranslation } from '../../i18n';
 import { Notice } from '../../utils/notice';
 
 import { FloatPanelWithAnimate } from '@cn-ui/core';

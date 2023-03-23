@@ -1,6 +1,6 @@
 import { asyncLock, atom, resource } from '@cn-ui/use';
 import { useContext } from 'solid-js';
-import { useTranslation } from '../../../i18n';
+import { useTranslation } from '../../i18n';
 import { Data } from '../../app/main/App';
 import { TagsToString, stringToTags } from '../../use/TagsConvertor';
 import { Notice } from '../../utils/notice';

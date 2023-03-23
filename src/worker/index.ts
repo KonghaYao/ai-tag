@@ -32,5 +32,6 @@ export const initWorker = () => {
                   type: 'module',
               })
     );
+    console.log('Worker 线程创建完成');
     return { searchWorker, sharedWorker };
 };

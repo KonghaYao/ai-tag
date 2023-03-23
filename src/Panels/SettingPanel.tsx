@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { useTranslation } from '../../i18n';
+import { useTranslation } from '../i18n';
 import { Panel } from '../components/Panel';
 import { UploadButton } from '../components/UploadButton';
 import { GlobalData } from '../store/GlobalData';

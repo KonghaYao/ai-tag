@@ -1,6 +1,6 @@
 import type { Component } from 'solid-js';
 import { _emColor } from '../TagButton';
-import { useTranslation } from '../../../i18n';
+import { useTranslation } from '../../i18n';
 import { sampleSize } from '../../utils/sampleSize';
 import type { Atom } from '@cn-ui/use';
 import { GlobalData } from '../../store/GlobalData';

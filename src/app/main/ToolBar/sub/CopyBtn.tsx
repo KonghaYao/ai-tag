@@ -1,16 +1,15 @@
 import copy from 'copy-to-clipboard';
-import { useContext } from 'solid-js';
-import { useTranslation } from '../../../i18n';
-import { Data } from '../../app/main/App';
+import { useTranslation } from '../../../../i18n';
 import { DragPoster } from '@cn-ui/headless';
-import { TagsToString } from '../../use/TagsConvertor';
-import { Notice } from '../../utils/notice';
+import { TagsToString } from '../../../../use/TagsConvertor';
+import { Notice } from '../../../../utils/notice';
 import { FloatPanelWithAnimate } from '@cn-ui/core';
 import { CheckBox } from './CheckBox';
+import { GlobalData } from '../../../../store/GlobalData';
 
 export function CopyBtn() {
-    const { enMode, usersCollection, emphasizeSymbol, iconBtn, nonBreakLine, forceEN } =
-        GlobalData.getApp('data')!;
+    const { enMode, emphasizeSymbol, iconBtn, nonBreakLine, forceEN } = GlobalData.getApp('data')!;
+    const { usersCollection } = GlobalData.getApp('tag-control')!;
     const { t } = useTranslation();
     const getTagString = () => {
         let final = TagsToString(

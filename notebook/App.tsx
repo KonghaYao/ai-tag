@@ -1,6 +1,6 @@
 import { Atom, atom } from '@cn-ui/use';
 import { createContext, createSelector } from 'solid-js';
-import { useTranslation } from '../i18n';
+import { useTranslation } from '../src/i18n';
 import { DropReceiver } from '@cn-ui/headless';
 import { Message, MessageHint } from '../src/components/MessageHInt';
 import { Notice } from '../src/utils/notice';

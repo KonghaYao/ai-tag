@@ -1,15 +1,16 @@
 import { Show, useContext } from 'solid-js';
-import { Data } from '../app/main/App';
-import { breakSymbol, stringToTags } from '../use/TagsConvertor';
-import { Notice } from '../utils/notice';
-import { useTranslation } from '../../i18n';
-import { useWebView } from '../Panels/Webview';
+import { breakSymbol, stringToTags } from '../../../use/TagsConvertor';
+import { Notice } from '../../../utils/notice';
+import { useTranslation } from '../../../i18n';
+import { useWebView } from '../../../Panels/Webview';
 import isMobile from 'is-mobile';
 import { MainFloat } from './sub/MainFloat';
 import { ToolBox } from './sub/ToolBox';
 import { ToolBarColor } from './ColorJar';
+import { GlobalData } from '../../../store/GlobalData';
 export function HeaderFirst() {
-    const { r18Mode, usersCollection, visibleId, lists, iconBtn } = GlobalData.getApp('data');
+    const { r18Mode, visibleId, iconBtn } = GlobalData.getApp('data');
+    const { usersCollection, lists } = GlobalData.getApp('tag-control');
     const { nav } = useWebView();
     const { t } = useTranslation();
     return (

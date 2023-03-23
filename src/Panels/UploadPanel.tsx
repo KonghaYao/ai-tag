@@ -5,7 +5,7 @@ import { Atom, atom, useSingleAsync } from '@cn-ui/use';
 import { Notice } from '../utils/notice';
 import { batch } from 'solid-js';
 import { readFileInfo } from '../utils/getPromptsFromPic';
-import { useTranslation } from '../../i18n';
+import { useTranslation } from '../i18n';
 import { UploadButton } from '../components/UploadButton';
 
 const init = {

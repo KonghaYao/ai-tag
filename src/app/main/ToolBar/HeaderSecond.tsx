@@ -1,22 +1,16 @@
 import { batch, useContext } from 'solid-js';
-import { useTranslation } from '../../i18n';
-import { Data } from '../app/main/App';
+import { useTranslation } from '../../../i18n';
+
 import { CopyBtn } from './sub/CopyBtn';
+import { GlobalData } from '../../../store/GlobalData';
 
 export function HeaderSecond() {
-    const { emphasizeAddMode, emphasizeSubMode, visibleId, deleteMode, iconBtn, usersCollection } =
-        GlobalData.getApp('data');
+    const { emphasizeAddMode, emphasizeSubMode, visibleId, deleteMode } = GlobalData.getApp('data');
+    const { usersCollection } = GlobalData.getApp('tag-control');
     const { t } = useTranslation();
 
     return (
-        <header
-            class="flex gap-2 border-t border-slate-700 pt-2 font-bold text-neutral-300"
-            classList={{
-                'font-icon': iconBtn(),
-                'text-lg': iconBtn(),
-                'text-sm': !iconBtn(),
-            }}
-        >
+        <header class="flex gap-2 border-t border-slate-700 pt-2 font-bold text-neutral-300">
             <span
                 class="btn"
                 classList={{
@@ -30,7 +24,7 @@ export function HeaderSecond() {
                     })
                 }
             >
-                {iconBtn() ? 'delete' : t('toolbar2.deleteMode')}
+                {t('toolbar2.deleteMode')}
             </span>
             <span
                 class="btn"
@@ -45,7 +39,7 @@ export function HeaderSecond() {
                     })
                 }
             >
-                {iconBtn() ? 'text_increase' : t('toolbar2.addWeight')}
+                {t('toolbar2.addWeight')}
             </span>
             <span
                 class="btn"
@@ -60,7 +54,7 @@ export function HeaderSecond() {
                     })
                 }
             >
-                {iconBtn() ? 'text_decrease' : t('toolbar2.subWeight')}
+                {t('toolbar2.subWeight')}
             </span>
 
             <CopyBtn></CopyBtn>

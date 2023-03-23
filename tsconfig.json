@@ -17,5 +17,5 @@
         "isolatedModules": true,
         "resolveJsonModule": true
     },
-    "include": ["src/**/*", "demo/**/*", "gallery/**/*", "generator/**/*", "notebook/**/*"]
+    "include": ["src/**/*", "demo/**/*", "gallery/**/*", "generator/**/*", "notebook/**/*", "i18n"]
 }

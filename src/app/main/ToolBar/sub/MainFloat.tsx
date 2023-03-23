@@ -1,10 +1,8 @@
-import { useContext } from 'solid-js';
-import { Data } from '../../app/main/App';
-import { useTranslation } from '../../../i18n';
+import { useTranslation } from '../../../../i18n';
 import { FloatPanel, FloatPanelWithAnimate } from '@cn-ui/core';
-import { MainGridOfInner } from '../../Panels/HomePanel';
-import { Animate } from '@cn-ui/animate';
+import { MainGridOfInner } from '../../../../Panels/HomePanel';
 import { ToolBarColor } from '../ColorJar';
+import { GlobalData } from '../../../../store/GlobalData';
 
 /** 主页面板的直接展示，免得打开太麻烦 */
 export const MainFloat = () => {

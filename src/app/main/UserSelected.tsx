@@ -1,12 +1,10 @@
-import { useContext, useTransition } from 'solid-js';
-import { Data, ITagData } from './App';
+import type { ITagData } from './App';
 import { TagButton } from '../../components/TagButton';
-import { isAtom, reflect } from '@cn-ui/use';
+import { reflect } from '@cn-ui/use';
 import isMobile from 'is-mobile';
 import { SortableList } from '@cn-ui/sortable';
-import { HeaderFirst } from '../../ToolBar/HeaderFirst';
-import { HeaderSecond } from '../../ToolBar/HeaderSecond';
-import { t } from 'i18next';
+import { HeaderFirst } from './ToolBar/HeaderFirst';
+import { HeaderSecond } from './ToolBar/HeaderSecond';
 import { useTagController } from '../../use/useTagController';
 import { TagsToString, stringToTags } from '../../use/TagsConvertor';
 import { Notice } from '../../utils/notice';
@@ -16,7 +14,7 @@ import { DropReceiver, useDragAndDropData } from '@cn-ui/headless';
 import tinykeys from 'tinykeys';
 import { GlobalPlugin, useBlackBoard } from '../../plugins/GlobalPlugin';
 import { GlobalData } from '../../store/GlobalData';
-import { useTranslation } from '../../../i18n';
+import { useTranslation } from '../../i18n';
 export const BindHistoryKey = () => {
     const { redo, undo } = GlobalData.getApp('tag-control')!;
 
@@ -82,7 +80,7 @@ export const UserSelected = () => {
                 ADD_BEFORE() {
                     Message.success(t('userSelect.message.addTail'));
                 },
-                INPUT_MAGIC(_, e) {
+                INPUT_MAGIC(_, e: any) {
                     if (e.ctrlKey) {
                         Message.success(t('userSelect.message.combine'));
                     } else if (e.altKey) {

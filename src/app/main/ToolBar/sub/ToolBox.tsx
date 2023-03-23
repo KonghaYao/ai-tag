@@ -1,22 +1,20 @@
-import { useContext } from 'solid-js';
-import { Data } from '../../app/main/App';
-import { Notice } from '../../utils/notice';
-import { useTranslation } from '../../../i18n';
+import { Notice } from '../../../../utils/notice';
+import { useTranslation } from '../../../../i18n';
 import { FloatPanelWithAnimate } from '@cn-ui/core';
 import { CheckBox } from './CheckBox';
 import { ToolBarColor } from '../ColorJar';
+import { GlobalData } from '../../../../store/GlobalData';
 
 export const ToolBox = () => {
     const {
         enMode,
-        usersCollection,
+
         emphasizeSymbol,
         iconBtn,
-        redo,
-        undo,
         visibleId,
         showLangInLine1,
     } = GlobalData.getApp('data');
+    const { usersCollection, redo, undo } = GlobalData.getApp('tag-control');
 
     const { t } = useTranslation();
     return (

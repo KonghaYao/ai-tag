@@ -40,26 +40,26 @@ export default defineConfig(({ mode }) => {
             mode === 'analyze' &&
                 (visualizer({ open: true, filename: 'visualizer/stat.html' }) as any),
         ],
-        server: {
-            port: 3000,
-            proxy: {
-                // 配合 netlify 的云函数
-                '/.netlify/functions/ai_write_prompt':
-                    'http://localhost:9999/.netlify/functions/ai_write_prompt',
-                '/.netlify/functions/sync_image':
-                    'http://localhost:9999/.netlify/functions/sync_image',
-                '/.netlify/functions/upload_auth':
-                    'http://localhost:9999/.netlify/functions/upload_auth',
-                '/.netlify/functions/search_tags':
-                    'http://localhost:9999/.netlify/functions/search_tags',
-            },
-        },
-        resolve: {
-            alias: {
-                '@fontsource/material-icons-rounded/index.css': '/src/index.css',
-                // '@cn-ui/animate': '/node_modules/@cn-ui/animate/src/index.tsx',
-            },
-        },
+        // server: {
+        //     port: 3000,
+        //     proxy: {
+        //         // 配合 netlify 的云函数
+        //         '/.netlify/functions/ai_write_prompt':
+        //             'http://localhost:9999/.netlify/functions/ai_write_prompt',
+        //         '/.netlify/functions/sync_image':
+        //             'http://localhost:9999/.netlify/functions/sync_image',
+        //         '/.netlify/functions/upload_auth':
+        //             'http://localhost:9999/.netlify/functions/upload_auth',
+        //         '/.netlify/functions/search_tags':
+        //             'http://localhost:9999/.netlify/functions/search_tags',
+        //     },
+        // },
+        // resolve: {
+        //     alias: {
+        //         '@fontsource/material-icons-rounded/index.css': '/src/index.css',
+        //         // '@cn-ui/animate': '/node_modules/@cn-ui/animate/src/index.tsx',
+        //     },
+        // },
         define: {
             __version__: JSON.stringify(p.version),
             __isDev__: JSON.stringify(__isDev__),

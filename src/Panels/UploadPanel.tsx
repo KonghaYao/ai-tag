@@ -1,7 +1,6 @@
 import { createStore } from 'solid-js/store';
-import { Panel } from '../components/Panel';
 import { API, StoreData } from '../api/notion';
-import { Atom, atom, useSingleAsync } from '@cn-ui/use';
+import { Atom, asyncLock, atom } from '@cn-ui/use';
 import { Notice } from '../utils/notice';
 import { batch } from 'solid-js';
 import { readFileInfo } from '../utils/getPromptsFromPic';
@@ -19,15 +18,14 @@ const init = {
     size: '',
 } as StoreData;
 const [store, set] = createStore({ ...init });
-import ImageKit from 'imagekit';
+import ImageKit from 'imagekit-javascript';
 import md5 from 'md5';
 import { GlobalData } from '../store/GlobalData';
 const imagekit = new ImageKit({
-    publicKey: 'public_LHy/8l68lZCtxUj9yIEj1Ibz8yE=',
-    privateKey: import.meta.env.PUBLIC_IMAGEKIT_MASTER!,
+    publicKey: 'public_49Srlf9AEpmrR1xMPR7Gh2JafbU=',
     urlEndpoint: 'https://ik.imagekit.io/dfidfiskkxn/',
     /** @ts-ignore */
-    authenticationEndpoint: './.netlify/functions/upload_auth',
+    authenticationEndpoint: new URL('/api/upload_auth', location),
 });
 
 const useSharedUpload = (uploading: Atom<boolean>, username: Atom<string>) => {
@@ -41,7 +39,7 @@ const useSharedUpload = (uploading: Atom<boolean>, username: Atom<string>) => {
         return false;
     };
     /** 上传接口 */
-    const upload = useSingleAsync(() => {
+    const upload = asyncLock(() => {
         if (check()) {
             Notice.success(t('uploadPanel.hint.uploading'));
             // backupRemoteImage(store.image);

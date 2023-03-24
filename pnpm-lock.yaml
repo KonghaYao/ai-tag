@@ -33,6 +33,7 @@ specifiers:
   i18next: 22.0.4
   i18next-browser-languagedetector: ^7.0.1
   imagekit: ^4.1.2
+  imagekit-javascript: ^1.5.5
   is-mobile: ^3.1.1
   leancloud-storage: ^4.14.0
   localforage: ^1.10.0
@@ -82,6 +83,7 @@ dependencies:
   gemoji: 8.0.0
   i18next: 22.0.4
   i18next-browser-languagedetector: 7.0.1
+  imagekit-javascript: 1.5.5
   is-mobile: 3.1.1
   localforage: 1.10.0
   lodash-es: 4.17.21
@@ -2630,6 +2632,10 @@ packages:
 
   /ieee754/1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
+    dev: false
+
+  /imagekit-javascript/1.5.5:
+    resolution: {integrity: sha512-WnEq7zIiYx+bN1fUzLEqSD33xOCEhHpDmlo3SxQkXPiLBnnnLGhBZi583wNhBXP3RB/yQQEKOBeOelnZ7WVgPA==}
     dev: false
 
   /imagekit/4.1.2:

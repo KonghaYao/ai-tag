@@ -95,7 +95,7 @@ export class PromptGPT {
     }
 
     get ownKey() {
-        return localStorage.getItem('open_ai_key');
+        return localStorage.getItem('open_ai_key') ?? '';
     }
     set ownKey(str: string) {
         localStorage.setItem('open_ai_key', str);
@@ -108,7 +108,7 @@ export class PromptGPT {
 
         return this.GPT(data.prompt, this.ownKey).then(async (res) => {
             const stream = res.body;
-            for await (const text of readStreamAsTextLines(stream)) {
+            for await (const text of readStreamAsTextLines(stream!)) {
                 if (!text) continue;
                 allText += text;
                 notify(allText, 50);

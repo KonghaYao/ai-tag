@@ -1,4 +1,4 @@
-import { Handler } from '@netlify/functions';
+import { APIRoute } from 'astro';
 import ImageKit from 'imagekit';
 export const getImagePath = (s: string) => {
     return s.replace('/t/', '/s/').replace('.jpg', '.png');
@@ -8,8 +8,9 @@ const imagekit = new ImageKit({
     privateKey: process.env.VITE_IMAGEKIT_MASTER!,
     urlEndpoint: 'https://ik.imagekit.io/dfidfiskkxn/',
 });
-export const handler: Handler = async (event, content) => {
-    const iterator = event.queryStringParameters?.image!;
+
+export const get: APIRoute = async ({ params, request }) => {
+    const iterator = params?.image!;
     const data = await imagekit
         .upload({
             file: getImagePath(iterator), //required
@@ -27,7 +28,7 @@ export const handler: Handler = async (event, content) => {
         .catch((error) => {
             return [iterator, error];
         });
-    console.log(data);
+    // console.log(data);
     return {
         statusCode: 200,
         body: JSON.stringify(data),

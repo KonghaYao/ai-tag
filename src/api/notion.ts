@@ -57,7 +57,7 @@ export const API = {
             .find()
             .then((res) => res.map((i) => i.toJSON()))
             .then((res) => {
-                console.log(res);
+                // console.log(res);
                 this.end = res.length === 0;
                 return res as StoreData[];
             });

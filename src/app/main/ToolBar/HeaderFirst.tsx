@@ -28,7 +28,7 @@ export function HeaderFirst() {
                 class={'btn ' + ToolBarColor.pick(0)}
                 onclick={() => {
                     const text = prompt(t('toolbar1.hint.ImportHint'), '');
-                    console.log(text);
+                    // console.log(text);
                     if (text) {
                         usersCollection(stringToTags(text, lists()));
                     }

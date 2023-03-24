@@ -26,7 +26,7 @@ export const DetailPanel = () => {
         GlobalData.getApp('gallery');
     const { sideAppMode } = GlobalData.getApp('side-app');
 
-    console.log(sideAppMode());
+    // console.log(sideAppMode());
 
     const details = reflect(() => {
         if (!ShowingPicture()) return null;

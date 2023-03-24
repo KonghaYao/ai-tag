@@ -51,6 +51,9 @@ export const initGalleryStore = ExposeToGlobal('gallery', () => {
 
     const ShowingPicture = atom<null | StoreData>(null);
     const ShowingPictureURL = atom<null | string>(null);
+    createEffect(() => {
+        console.log(currentIndex());
+    });
     return {
         ShowingPicture,
         ShowingPictureURL,
@@ -58,7 +61,7 @@ export const initGalleryStore = ExposeToGlobal('gallery', () => {
         end,
         changePage: asyncLock(async (number: number) => {
             if (end()) return;
-            return loadMore(number).then(() => currentIndex(number));
+            return loadMore(number);
         }),
         clearAndResearch: asyncLock(async () => {
             return loadMore(0, true);

@@ -1,0 +1,15 @@
+---
+import { GlobalInit } from '../app/Global';
+import { Writer } from '../app/Writer/App';
+import { SideApp } from '../app/SideApp';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="魔导绪论">
+    <section class="flex font-global justify-center w-screen h-screen overflow-hidden">
+        <GlobalInit client:only="solid-js">
+            <Writer client:only="solid-js" />
+            <SideApp defaultPanel="" client:only="solid-js" />
+        </GlobalInit>
+    </section>
+</Layout>

@@ -34,25 +34,25 @@ export function HeaderFirst() {
                     }
                 }}
             >
-                {iconBtn() ? 'add_circle' : t('toolbar1.Import')}
+                {t('toolbar1.Import')}
             </span>
             <MainFloat></MainFloat>
             <span
                 class={'btn ' + ToolBarColor.pick(2)}
                 onclick={() => nav('./gallery.html#/?r18=' + (r18Mode() ? 'true' : ''))}
             >
-                {iconBtn() ? 'collections' : t('toolbar1.Gallery')}
+                {t('toolbar1.Gallery')}
             </span>
 
             <Show when={!isMobile()}>
                 <span class={'btn ' + ToolBarColor.pick(3)} onclick={() => visibleId('uploader')}>
-                    {iconBtn() ? 'upload' : t('toolbar1.Share')}
+                    {t('toolbar1.Share')}
                 </span>
                 <span
                     class={'btn ' + ToolBarColor.pick(4)}
                     onclick={() => nav('https://cn.bing.com/translator/')}
                 >
-                    {iconBtn() ? 'translation' : '翻译'}
+                    {'翻译'}
                 </span>
             </Show>
 
@@ -62,7 +62,7 @@ export function HeaderFirst() {
                     nav('./notebook.html');
                 }}
             >
-                {iconBtn() ? 'book' : t('notebook')}
+                {t('notebook')}
             </span>
             <ToolBox></ToolBox>
             <span

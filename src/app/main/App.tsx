@@ -51,7 +51,7 @@ export const Main = () => {
                         'opacity-90': !!backgroundImage(),
                     }}
                 >
-                    <Background image={backgroundImage()}></Background>
+                    {/* <Background image={backgroundImage()}></Background> */}
 
                     <main
                         id="main-panel"

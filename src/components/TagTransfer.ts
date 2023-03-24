@@ -1,5 +1,5 @@
-import { SingleMagic } from '../../notebook/use/useIndexedDB';
-import { ITagData } from '../app/main/App';
+import type { SingleMagic } from '../../notebook/use/useIndexedDB';
+import type { ITagData } from '../app/main/App';
 
 /** 整个APP中的传输信息 */
 

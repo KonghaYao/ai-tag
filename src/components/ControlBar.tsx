@@ -1,6 +1,7 @@
 import { useContext } from 'solid-js';
 import { WebViewLink } from '../Panels/Webview';
 import { PanelContext } from './Panel';
+import { GlobalData } from '../store/GlobalData';
 
 export const ControlBar = () => {
     const { visibleId } = GlobalData.getApp('side-app');
@@ -12,10 +13,10 @@ export const ControlBar = () => {
             <button class="btn bg-green-700 text-gray-300" onclick={() => visibleId('feedback')}>
                 反馈
             </button>
-            <button class="btn bg-amber-700 text-gray-300" onclick={() => visibleId('')}>
+            <button class="btn bg-amber-700 text-gray-300" onclick={() => visibleId('home')}>
                 主页
             </button>
-            <button class="btn bg-pink-700 text-gray-300" onclick={() => visibleId(null)}>
+            <button class="btn bg-pink-700 text-gray-300" onclick={() => visibleId('')}>
                 关闭
             </button>
         </div>

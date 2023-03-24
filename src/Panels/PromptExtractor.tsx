@@ -60,8 +60,8 @@ export const PromptExtractorPanel = () => {
                             }}
                             onclick={() => inputRef.click()}
                         >
-                            <div class="font-icon h-fit w-fit" style={{ 'font-size': '120px' }}>
-                                add
+                            <div class="font-icon h-fit w-fit" style={{ 'font-size': '64px' }}>
+                                ➕
                             </div>
                         </div>
                     </DropReceiver>

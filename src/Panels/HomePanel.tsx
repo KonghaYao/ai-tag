@@ -47,11 +47,11 @@ export const MainGridOfInner = () => {
     );
 };
 export const LocalPower = [
-    { name: t('home.btn.Setting'), src: 'setting', icon: 'settings' },
-    { name: t('home.btn.feedback'), src: 'feedback', icon: 'email' },
+    { name: t('home.btn.Setting'), src: 'setting', icon: '🛠️' },
+    { name: t('home.btn.feedback'), src: 'feedback', icon: '📮' },
     { name: t('home.btn.ai_prompt'), src: 'ai-prompt', icon: '😄' },
-    { name: t('home.btn.prompt_extractor'), src: 'prompt-extractor', icon: 'wallpaper' },
-    { name: t('toolbar1.Share'), src: 'uploader', icon: 'backup' },
+    { name: t('home.btn.prompt_extractor'), src: 'prompt-extractor', icon: '📷' },
+    { name: t('toolbar1.Share'), src: 'uploader', icon: '⬆️' },
 ];
 export const HomePanel = () => {
     return (

@@ -73,7 +73,7 @@ export function HeaderFirst() {
                 }}
                 title="添加分隔符到末尾"
             >
-                mediation
+                ——
             </span>
         </header>
     );

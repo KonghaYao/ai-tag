@@ -55,7 +55,7 @@ export function CopyBtn() {
                     </div>
                 )}
             >
-                <div class="font-icon btn">settings</div>
+                <div class="font-icon btn">▼</div>
             </FloatPanelWithAnimate>
         </>
     );

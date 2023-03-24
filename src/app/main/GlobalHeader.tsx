@@ -3,7 +3,6 @@ import { Notice } from '../../utils/notice';
 
 import { FloatPanelWithAnimate } from '@cn-ui/core';
 import { GlobalData } from '../../store/GlobalData';
-
 export function GlobalHeader() {
     const { r18Mode } = GlobalData.getApp('data');
     const { visibleId } = GlobalData.getApp('side-app');

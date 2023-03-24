@@ -33,6 +33,8 @@ export const stringToTags = (s: string, list: ITagData[] = []): ITagData[] => {
                 en: i.text,
                 cn: i.text,
                 count: Infinity,
+                /** @ts-ignore */
+                emphasize: 0,
                 r18: 0,
                 ...i,
             } as ITagData;

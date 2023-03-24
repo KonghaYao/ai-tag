@@ -76,7 +76,7 @@ export const ToolBox = () => {
                 </div>
             )}
         >
-            <div class={'font-icon btn m-0 h-full w-full ' + ToolBarColor.pick()}>build</div>
+            <div class={'font-icon btn m-0 h-full w-full ' + ToolBarColor.pick()}>🔧</div>
         </FloatPanelWithAnimate>
     );
 };

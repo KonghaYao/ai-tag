@@ -40,11 +40,11 @@ export const SideApp = (props: { defaultPanel?: '' | PanelIds }) => {
     createEffect(() => sideAppMode(!(isSize('xs') || isSize('sm'))));
     const hasOpened = createMemo(() => visibleId() !== '');
     return (
-        <Tabs activeId={visibleId} lazyload>
+        <Tabs activeId={visibleId} lazyload class="w-full">
             <section
                 class=" flex h-full w-full flex-none flex-col place-content-center text-gray-400 transition-all duration-500"
                 classList={{
-                    'flex-1 blur-background md:w-96': hasOpened(),
+                    'flex-1 blur-background w-full md:w-96': hasOpened(),
                     'pointer-events-none w-0': !hasOpened(),
 
                     fixed: !sideAppMode(),

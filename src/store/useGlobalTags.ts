@@ -34,14 +34,8 @@ const useOwnAtom = () => {
 export type ITagStore = ReturnType<typeof initGlobalTags>;
 
 /** 加载 Tag 数据库,  */
-export function initGlobalTags(
-    /** 为防止数据回环，不能在内部引用 store */
-    store: IStoreData
-) {
+export function initGlobalTags() {
     console.log('重绘');
-
-    // 预先筛选 searchText，减少需要查找的区间
-    const { r18Mode, searchNumberLimit, tagsPerPage } = store;
     const lists = atom([] as ITagData[]);
 
     const usersCollection = useOwnAtom();

@@ -37,7 +37,7 @@ export const Webview = () => {
     let container!: HTMLIFrameElement;
     const loading = atom(true);
     return (
-        <Panel id="webview">
+        <>
             <Show when={isPanelVisible('webview')}>
                 <div class="relative h-full w-full">
                     {loading() && <div> {t('upload')}</div>}
@@ -72,6 +72,6 @@ export const Webview = () => {
                     </div>
                 </div>
             </Show>
-        </Panel>
+        </>
     );
 };

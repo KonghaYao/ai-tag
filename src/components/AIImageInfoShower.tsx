@@ -13,12 +13,12 @@ export const AIImageInfoShower: Component<{
     return (
         <>
             {details().Software && (
-                <nav class="flex justify-between rounded-lg bg-emerald-700 px-2">
+                <nav class="flex justify-between  bg-emerald-700 px-2">
                     软件：{details().Software}
                 </nav>
             )}
-            <nav class="flex flex-col rounded-lg bg-emerald-700 p-2">
-                <nav class="my-1 flex justify-between rounded-lg bg-emerald-800  px-2">
+            <nav class="flex flex-col  bg-emerald-700 p-2">
+                <nav class="my-1 flex justify-between  bg-emerald-800  px-2">
                     <span>正面魔咒</span>
                     <div
                         class="font-icon  cursor-pointer hover:scale-125"
@@ -31,8 +31,8 @@ export const AIImageInfoShower: Component<{
                     {details().Description}
                 </code>
             </nav>
-            <div class="flex flex-col rounded-lg bg-emerald-700 p-2">
-                <nav class="my-1 flex justify-between rounded-lg bg-emerald-800 px-2">
+            <div class="flex flex-col  bg-emerald-700 p-2">
+                <nav class="my-1 flex justify-between  bg-emerald-800 px-2">
                     <span>负面魔咒</span>
                     <div
                         class="font-icon  cursor-pointer hover:scale-125"
@@ -46,8 +46,8 @@ export const AIImageInfoShower: Component<{
                 </code>
             </div>
 
-            <nav class="flex flex-col justify-between gap-2 rounded-lg bg-emerald-700 px-2">
-                <header class="my-1 flex justify-between rounded-lg bg-emerald-800 px-2 text-center">
+            <nav class="flex flex-col justify-between gap-2  bg-emerald-700 px-2">
+                <header class="my-1 flex justify-between  bg-emerald-800 px-2 text-center">
                     参数
                 </header>
 
@@ -55,7 +55,7 @@ export const AIImageInfoShower: Component<{
                     {([key, value]) => {
                         if (key === 'uc') return null;
                         return (
-                            <div class="flex justify-between gap-2">
+                            <div class="flex flex-wrap justify-between gap-2">
                                 <span>{key}： </span>
                                 <span class="select-all">{value as string}</span>
                             </div>
@@ -64,8 +64,8 @@ export const AIImageInfoShower: Component<{
                 </For>
             </nav>
             <Show when={details().others}>
-                <nav class="flex flex-col  divide-y divide-slate-400 rounded-lg bg-emerald-700 px-2">
-                    <header class="my-1  flex w-full justify-between rounded-lg bg-emerald-800 px-2 text-center">
+                <nav class="flex flex-col  divide-y divide-slate-400  bg-emerald-700 px-2">
+                    <header class="my-1  flex w-full justify-between  bg-emerald-800 px-2 text-center">
                         其他参数
                     </header>
                     <For each={Object.entries(details().others ?? {})}>
@@ -73,12 +73,10 @@ export const AIImageInfoShower: Component<{
                             const tooLong = value.length > 40;
                             return (
                                 <nav
-                                    class="flex w-full justify-between py-2"
+                                    class="flex w-full flex-wrap justify-between py-2"
                                     classList={{ 'flex-col': tooLong }}
                                 >
-                                    <div class="rounded-lg bg-emerald-800 px-2 text-white">
-                                        {key}
-                                    </div>
+                                    <div class=" bg-emerald-800 px-2 text-white">{key}</div>
                                     <div class="select-all" classList={{ 'text-sm': tooLong }}>
                                         {value as string}
                                     </div>

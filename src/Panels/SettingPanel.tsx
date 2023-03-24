@@ -23,7 +23,7 @@ export const SettingPanel = () => {
     ];
 
     return (
-        <Panel id="setting">
+        <>
             <h3 class="my-2 text-center text-lg font-bold">{t('settingPanel.title')}</h3>
 
             <For each={list}>
@@ -106,6 +106,6 @@ export const SettingPanel = () => {
             </nav>
 
             <div class="flex-1"></div>
-        </Panel>
+        </>
     );
 };

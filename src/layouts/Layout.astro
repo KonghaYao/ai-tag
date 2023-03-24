@@ -1,4 +1,5 @@
 ---
+import { FontSupport } from '../components/FontSupport';
 import SearchEngine from './comp/searchEngine.astro';
 import './index.css';
 import '@cn-ui/animate/src/jump.css';
@@ -36,5 +37,6 @@ const {
         <noscript>You need to enable JavaScript to run this app.</noscript>
 
         <slot />
+        <FontSupport client:only="solid-js" delay={200} show={false} />
     </body>
 </html>

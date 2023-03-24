@@ -55,7 +55,7 @@ export const PictureCard: Component<StoreData & { index: number }> = (item) => {
                             class="font-icon h-7 w-7 cursor-pointer rounded-full bg-lime-500  text-center text-lg  text-white"
                             onclick={() => getViewer().view(item.index)}
                         >
-                            photo
+                            📷
                         </div>
                         <div
                             class="font-icon h-7 w-7 cursor-pointer rounded-full bg-lime-500  text-center text-lg  text-white"
@@ -66,7 +66,7 @@ export const PictureCard: Component<StoreData & { index: number }> = (item) => {
                                 saveAs(data, item.description + '-' + item.username + '.png');
                             }}
                         >
-                            download
+                            📥
                         </div>
                     </nav>
                 </div>

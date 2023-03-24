@@ -19,7 +19,7 @@ export const MyFeedBackPanel = () => {
         localStorage.setItem('__my_feedback__', JSON.stringify(data()));
     }, [data]);
     return (
-        <Panel id="my-feedback">
+        <>
             <h3 class="my-2 text-center text-lg font-bold">我的反馈</h3>
             <div class="flex flex-col overflow-hidden">
                 <div
@@ -78,6 +78,6 @@ export const MyFeedBackPanel = () => {
                 </div>
             </div>
             <div class="flex-1"></div>
-        </Panel>
+        </>
     );
 };

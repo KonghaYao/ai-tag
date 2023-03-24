@@ -1,6 +1,6 @@
 ---
+import { GalleryRoot } from '../app/gallery/App';
 import { GlobalInit } from '../app/Global';
-import { Main } from '../app/main/App';
 import { SideApp } from '../app/SideApp';
 import Layout from '../layouts/Layout.astro';
 ---
@@ -8,8 +8,8 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="魔导绪论-画廊">
     <section class="flex font-global justify-center w-screen h-screen overflow-hidden">
         <GlobalInit client:only="solid-js">
-            <Main client:only="solid-js" />
-            <SideApp client:only="solid-js" />
+            <GalleryRoot client:only="solid-js" />
+            <SideApp defaultPanel="" client:only="solid-js" />
         </GlobalInit>
     </section>
 </Layout>

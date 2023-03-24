@@ -1,30 +1,24 @@
 import { Component, createEffect, onMount, useContext } from 'solid-js';
 import { debounce } from 'lodash-es';
-import { useSearchParams } from '@solidjs/router';
 import { GlobalData } from '../../store/GlobalData';
 
 export const SearchBar: Component<{
     onfocus?: () => void;
     onblur?: () => void;
 }> = (props) => {
-    const [_, setSearchParams] = useSearchParams();
     const { clearAndResearch, searchText } = GlobalData.getApp('gallery');
-    let searchInputEl!: HTMLInputElement;
+
     const searching = debounce(async () => {
-        setSearchParams({
-            q: searchText(),
-        });
         clearAndResearch();
     }, 1000);
+    let last = searchText();
     createEffect(() => {
-        searchText();
-        searching();
-    });
-    onMount(() => {
-        if (_.q) {
-            searchText(_.q);
+        if (last !== searchText()) {
+            last = searchText();
+            searching();
         }
     });
+    let searchInputEl!: HTMLInputElement;
     return (
         <div class="flex overflow-hidden rounded-lg bg-slate-700 ">
             <input
@@ -36,27 +30,15 @@ export const SearchBar: Component<{
                 placeholder={'搜索标题'}
                 type="search"
                 value={searchText()}
-                name=""
-                id=""
                 onfocus={() => props.onfocus && props.onfocus()}
                 oninput={() => {
                     searchText(searchInputEl.value);
                 }}
                 onblur={() => {
-                    clearAndResearch();
+                    // clearAndResearch();
                     props.onblur && props.onblur();
                 }}
             />
-
-            {/* <div
-                class="font-icon cursor-pointer px-2"
-                onclick={() => {
-                    searchText((i) => `username:=${username()} ` + i);
-                    Notice.success('添加用户检索');
-                }}
-            >
-                account_box
-            </div> */}
         </div>
     );
 };

@@ -1,4 +1,4 @@
-import { createMemo, useContext } from 'solid-js';
+import { For, createEffect, createMemo, useContext } from 'solid-js';
 import { SettingPanel } from '../Panels/SettingPanel';
 import { UploadPanel } from '../Panels/UploadPanel';
 import { HomePanel } from '../Panels/HomePanel';
@@ -28,8 +28,16 @@ import { TalkPanel } from '../Panels/TalkPanel';
 import { ArtistPanel } from '../Panels/artist';
 import { PromptGPT } from '../Panels/PromptGPT/PromptGPT';
 import { GlobalData } from '../store/GlobalData';
-export const SideApp = () => {
-    const { sideAppMode, visibleId } = GlobalData.getApp('side-app')!;
+import { Panel } from '../components/Panel';
+import { useBreakpoints } from '@cn-ui/use';
+export const SideApp = (props: { defaultPanel?: '' | PanelIds }) => {
+    const { sideAppMode, visibleId, extraPanels } = GlobalData.getApp('side-app')!;
+
+    if (typeof props.defaultPanel === 'string') visibleId(props.defaultPanel);
+    console.log(visibleId());
+    const { isSize } = useBreakpoints();
+    // 自动变换 SideAPP 状态
+    createEffect(() => sideAppMode(!(isSize('xs') || isSize('sm'))));
     const hasOpened = createMemo(() => visibleId() !== '');
     return (
         <Tabs activeId={visibleId} lazyload>
@@ -44,18 +52,47 @@ export const SideApp = () => {
             >
                 <nav class="relative flex-1">
                     <Animate group anime="jumpFromBottom" appear>
-                        <SettingPanel></SettingPanel>
+                        <Panel id="setting">
+                            <SettingPanel></SettingPanel>
+                        </Panel>
 
-                        <UploadPanel></UploadPanel>
-                        <HomePanel></HomePanel>
-                        <Webview></Webview>
+                        <Panel id="uploader">
+                            <UploadPanel></UploadPanel>
+                        </Panel>
+                        <Panel id="home">
+                            <HomePanel></HomePanel>
+                        </Panel>
+                        <Panel id="webview">
+                            <Webview></Webview>
+                        </Panel>
 
-                        <FeedBackPanel></FeedBackPanel>
-                        <MyFeedBackPanel></MyFeedBackPanel>
-                        <PromptGPT></PromptGPT>
-                        <PromptExtractorPanel></PromptExtractorPanel>
-                        <TalkPanel></TalkPanel>
-                        <ArtistPanel></ArtistPanel>
+                        <Panel id="feedback">
+                            <FeedBackPanel></FeedBackPanel>
+                        </Panel>
+                        <Panel id="my-feedback">
+                            <MyFeedBackPanel></MyFeedBackPanel>
+                        </Panel>
+                        <Panel id="ai-prompt" class="p-2">
+                            <PromptGPT></PromptGPT>
+                        </Panel>
+                        <Panel id="prompt-extractor">
+                            <PromptExtractorPanel></PromptExtractorPanel>
+                        </Panel>
+                        <Panel id="talk">
+                            <TalkPanel></TalkPanel>
+                        </Panel>
+                        <Panel id="artist" class="flex h-full flex-col overflow-hidden">
+                            <ArtistPanel></ArtistPanel>
+                        </Panel>
+                        <For each={[...extraPanels().entries()]}>
+                            {([key, Comp]) => {
+                                return (
+                                    <Panel id={key}>
+                                        <Comp></Comp>
+                                    </Panel>
+                                );
+                            }}
+                        </For>
                     </Animate>
                 </nav>
             </section>

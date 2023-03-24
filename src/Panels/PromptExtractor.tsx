@@ -31,7 +31,7 @@ export const PromptExtractorPanel = () => {
     );
     let inputRef!: HTMLInputElement;
     return (
-        <Panel id="prompt-extractor">
+        <>
             <div class="py-2 text-center text-lg text-white">法术解析</div>
             <div class="flex  flex-1 flex-col gap-4 overflow-hidden p-2">
                 <nav class="flex flex-1 flex-col gap-2 overflow-scroll break-words p-1 text-white">
@@ -85,6 +85,6 @@ export const PromptExtractorPanel = () => {
                     </AC>
                 </nav>
             </div>
-        </Panel>
+        </>
     );
 };

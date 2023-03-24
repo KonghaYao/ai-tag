@@ -1,32 +1,26 @@
-import { Show, createSelector, createContext } from 'solid-js';
-import { Atom, atom } from '@cn-ui/use';
+import { atom } from '@cn-ui/use';
 import { Gallery } from './Gallery';
 import { DetailPanel } from './Panels/Detail';
-import type { StoreData } from '../../api/notion';
-import { keepStore } from '../../use/useStorage';
 import { Background } from '../../components/Background';
 import { SearchBar } from './SearchBar';
 import { FloatPanelWithAnimate, Tabs } from '@cn-ui/core';
-import { Animate } from '@cn-ui/animate';
+
 import './index.css';
-import { UploadPanel } from '../../Panels/UploadPanel';
 import { Notice } from '../../utils/notice';
 import { initGalleryStore } from '../../store/GalleryStore';
+import { GlobalData } from '../../store/GlobalData';
 
-export const App = () => {
-    const username = atom('');
-    keepStore('username', username, true);
-    const backgroundImage = atom('');
-    keepStore('gallery:backgroundImage', backgroundImage, true);
+export const GalleryRoot = () => {
+    const { backgroundImage } = GlobalData.getApp('data');
+    const { registerPanel, visibleId } = GlobalData.getApp('side-app');
+    registerPanel('detail', DetailPanel);
     initGalleryStore();
-
-    const visibleId = atom('');
 
     const showSearch = atom(false);
     return (
-        <main class="font-global absolute top-0 left-0 z-10 flex h-screen w-screen flex-col overflow-hidden text-gray-200">
+        <main class="font-global  flex h-screen  flex-col overflow-hidden text-gray-200">
             <Background image={backgroundImage()}></Background>
-            <header class=" absolute top-0 left-0 z-10   w-full p-2 text-xl sm:p-4 ">
+            <header class="   w-full p-2 text-xl sm:p-4 ">
                 <div class=" flex justify-between rounded-xl bg-slate-600 py-2 px-4 ">
                     <span class="flex-none">
                         <a
@@ -66,26 +60,19 @@ export const App = () => {
                             }
                             position="br"
                         >
-                            <div class="font-icon cursor-pointer px-2">search</div>
+                            <div class="font-icon cursor-pointer px-2">🔍</div>
                         </FloatPanelWithAnimate>
                         <div
                             class="font-icon cursor-pointer px-2"
                             onclick={() => visibleId('uploader')}
                         >
-                            upload
+                            ⬆️
                         </div>
                     </nav>
                 </div>
             </header>
 
             <Gallery></Gallery>
-            <Tabs activeId={visibleId} lazyload>
-                <Animate group anime="jumpFromBottom" appear>
-                    <DetailPanel></DetailPanel>
-
-                    <UploadPanel></UploadPanel>
-                </Animate>
-            </Tabs>
         </main>
     );
 };

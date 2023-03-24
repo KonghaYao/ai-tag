@@ -1,4 +1,4 @@
-import { asyncLock, atom } from '@cn-ui/use';
+import { asyncLock, atom, useEffectWithoutFirst } from '@cn-ui/use';
 import { ExposeToGlobal } from './GlobalData';
 import { useViewer } from '../use/useViewer';
 import { API, StoreData } from '../api/notion';
@@ -16,24 +16,24 @@ export const initGalleryStore = ExposeToGlobal('gallery', () => {
     const { dataSlices, next, currentIndex, resetStack } = usePaginationStack(
         async (page, maxPage) => {
             if (end()) return [] as StoreData[];
+            console.info(page);
             return API.getData(page, !!r18, (q) => {
                 if (searchText()) {
-                    console.log(searchText());
                     q.contains('description', searchText());
                 }
             }).then((res) => {
-                maxPage(Infinity);
+                maxPage(page + 2);
+                if (res.length === 0) end(true);
                 return res;
             });
         }
     );
-    const loadMore = async (LoadingPage: number, clear = false) => {
+    const loadMore = async (_: number, clear = false) => {
         if (clear) resetStack();
-
         return next();
     };
 
-    createEffect(on(searchText, (text) => text === '' && loadMore(0, true)));
+    useEffectWithoutFirst((text) => text === '' && loadMore(0, true), [searchText]);
 
     const ShowingPicture = atom<null | StoreData>(null);
     const ShowingPictureURL = atom<null | string>(null);

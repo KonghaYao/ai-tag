@@ -9,7 +9,7 @@ export const PromptGPT = () => {
     const activeId = atom('文生文');
     const isShowing = createSelector(activeId);
     return (
-        <Panel id="ai-prompt" class="p-2">
+        <>
             <header class="py-2 text-center text-lg text-white" title="AI 辅助加强文本">
                 AI 魔咒助手
             </header>
@@ -51,6 +51,6 @@ export const PromptGPT = () => {
                     <TextToText></TextToText>
                 </Tab>
             </Tabs>
-        </Panel>
+        </>
     );
 };

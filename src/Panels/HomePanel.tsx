@@ -55,7 +55,7 @@ export const LocalPower = [
 ];
 export const HomePanel = () => {
     return (
-        <Panel id="home">
+        <>
             <header class="w-full border-b-4 border-gray-800 py-2 text-center">
                 {t('home.title.home')}
             </header>
@@ -101,6 +101,6 @@ export const HomePanel = () => {
                     </For>
                 </div>
             </div>
-        </Panel>
+        </>
     );
 };

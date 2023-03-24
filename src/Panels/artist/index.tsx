@@ -92,7 +92,7 @@ import { AV } from '../../api/cloud';
 import { For, Show, createContext, createMemo, useContext } from 'solid-js';
 import { Atom, atom } from '@cn-ui/use';
 import { usePaginationStack } from './usePaginationStack';
-import { ScrollLoading } from '../../../gallery/ScrollLoading';
+import { ScrollLoading } from '../../app/gallery/ScrollLoading';
 
 export const ArtistPanel = () => {
     console.log('加载');
@@ -119,7 +119,7 @@ export const ArtistPanel = () => {
     const list = createMemo(() => dataSlices().flat());
     const { ScrollEvent } = ScrollLoading(next);
     return (
-        <Panel id="artist" class="flex h-full flex-col overflow-hidden">
+        <>
             <header class="w-full py-2 text-center">
                 艺术家搜索器
                 <a
@@ -198,7 +198,7 @@ export const ArtistPanel = () => {
                     </For>
                 </div>
             </TypeFilterContext.Provider>
-        </Panel>
+        </>
     );
 };
 export const TypeFilterContext = createContext<ReturnType<typeof useTypeFilter>>();

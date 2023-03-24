@@ -1,5 +1,5 @@
-import { Accessor, createContext, createEffect } from 'solid-js';
-import { Atom, atom, useBreakpoints } from '@cn-ui/use';
+import { Accessor, createContext } from 'solid-js';
+import type { Atom } from '@cn-ui/use';
 import { SearchBox } from '../../components/SearchBox/SearchBox';
 
 import type { initGlobalTags } from '../../store/useGlobalTags';
@@ -25,7 +25,6 @@ export interface IGlobalData extends IStoreData {
 }
 export const Data = createContext<IGlobalData & ReturnType<typeof initGlobalTags>>();
 import type { IPromptData } from 'promptor';
-import { FontSupport } from '../../components/FontSupport';
 import { Message, MessageHint } from '../../components/MessageHInt';
 import { Background } from '../../components/Background';
 import { DropReceiver } from '@cn-ui/headless';
@@ -35,12 +34,7 @@ import { UserSelected } from './UserSelected';
 import { GlobalData } from '../../store/GlobalData';
 
 export const Main = () => {
-    const { isSize } = useBreakpoints();
-
     const { backgroundImage } = GlobalData.getApp('data');
-    const { sideAppMode } = GlobalData.getApp('side-app');
-    // 自动变换 SideAPP 状态
-    createEffect(() => sideAppMode(!(isSize('xs') || isSize('sm'))));
 
     return (
         <>
@@ -54,7 +48,7 @@ export const Main = () => {
                 <section
                     class="  flex justify-center"
                     classList={{
-                        'opacity-70': !!backgroundImage(),
+                        'opacity-90': !!backgroundImage(),
                     }}
                 >
                     <Background image={backgroundImage()}></Background>
@@ -69,8 +63,6 @@ export const Main = () => {
                     </main>
                     {/* <SideApp></SideApp> */}
                     <MessageHint></MessageHint>
-
-                    <FontSupport delay={200} show={atom(false)}></FontSupport>
                 </section>
             </DropReceiver>
             <TranslationPanel></TranslationPanel>

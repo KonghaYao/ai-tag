@@ -42,7 +42,7 @@ export const FeedBackPanel = () => {
         } else Notice.error(t('feedback.hint.notFilled'));
     });
     return (
-        <Panel id="feedback">
+        <>
             <h3 class="my-2 text-center text-lg font-bold">{t('feedback.feedbackMessage')}</h3>
             <div class="flex flex-col gap-2 p-4">
                 <div
@@ -130,6 +130,6 @@ export const FeedBackPanel = () => {
             >
                 {t('feedback.UploadButton')}
             </div>
-        </Panel>
+        </>
     );
 };

@@ -135,9 +135,8 @@ export const UploadPanel = () => {
         uploadPicture(file);
     };
     return (
-        <Panel
+        <section
             class="max-w-xl"
-            id="uploader"
             ondragover={(e) => {
                 e.preventDefault();
             }}
@@ -272,6 +271,6 @@ export const UploadPanel = () => {
                 {t('uploadPanel.hint.commit')}
                 <span class="text-xs">{t('uploadPanel.hint.commitHint')}</span>
             </div>
-        </Panel>
+        </section>
     );
 };

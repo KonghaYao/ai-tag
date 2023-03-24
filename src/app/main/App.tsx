@@ -46,7 +46,7 @@ export const Main = () => {
                 }}
             >
                 <section
-                    class="  flex justify-center"
+                    class="  flex w-full justify-center"
                     classList={{
                         'opacity-90': !!backgroundImage(),
                     }}
@@ -55,7 +55,7 @@ export const Main = () => {
 
                     <main
                         id="main-panel"
-                        class=" flex h-full w-full max-w-4xl flex-col overflow-visible px-2 pt-2 text-gray-400 sm:px-4 sm:pt-4"
+                        class=" flex h-full  w-full max-w-4xl flex-1 flex-col overflow-visible px-2 pt-2 text-gray-400 sm:px-4 sm:pt-4"
                     >
                         <GlobalHeader></GlobalHeader>
                         <UserSelected></UserSelected>

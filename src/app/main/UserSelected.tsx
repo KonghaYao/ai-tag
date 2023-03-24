@@ -108,9 +108,9 @@ export const UserSelected = () => {
                 },
             }}
         >
-            <main
+            <section
                 id="user-select-prompt"
-                class="user-selected relative my-2 flex w-full flex-col overflow-visible rounded-xl border border-solid border-gray-600 p-2 "
+                class="user-selected blur-background relative my-2 flex w-full flex-col overflow-visible rounded-xl border border-solid border-gray-600 bg-slate-900/20 p-2"
             >
                 <HeaderFirst></HeaderFirst>
                 <SortableList
@@ -199,7 +199,7 @@ export const UserSelected = () => {
                     </span>
                 )}
                 <HeaderSecond></HeaderSecond>
-            </main>
+            </section>
         </DropReceiver>
     );
 };

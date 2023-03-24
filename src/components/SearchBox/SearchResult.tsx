@@ -32,26 +32,26 @@ export const SearchResult = () => {
         })
     );
 
-    const { t } = useTranslation();
-    result();
+    const render = (
+        <For each={result()} fallback={() => <div>数据为空</div>}>
+            {(item) => (
+                <DragPoster send={(send) => send('ADD_BEFORE', item.en)}>
+                    <TagButton
+                        data={item}
+                        onClick={(item) => usersCollection((i) => [...i, CreateIData(item)])}
+                    ></TagButton>
+                </DragPoster>
+            )}
+        </For>
+    );
     return (
         <section
             class="search-results flex h-full flex-wrap content-start  overflow-y-auto overflow-x-hidden  pb-4"
             ref={searchResult}
         >
-            <AC resource={result} loading={() => <div>{t('hint.LoadingData')}</div>}>
-                <For each={result()} fallback={() => <div>数据为空</div>}>
-                    {(item) => (
-                        <DragPoster send={(send) => send('ADD_BEFORE', item.en)}>
-                            <TagButton
-                                data={item}
-                                onClick={(item) =>
-                                    usersCollection((i) => [...i, CreateIData(item)])
-                                }
-                            ></TagButton>
-                        </DragPoster>
-                    )}
-                </For>
+            {/*  使用 loading 态同源来解决异步抖动问题 */}
+            <AC resource={result} loading={() => render}>
+                {render}
             </AC>
         </section>
     );

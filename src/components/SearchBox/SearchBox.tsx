@@ -1,9 +1,6 @@
-import { FilterBar } from './FilterBar';
 import { SearchResult } from './SearchResult';
 import { SearchBar } from './SearchBar';
 import { useClassFilter } from './ClassFilter';
-import { Show, useContext } from 'solid-js';
-import { Data } from '../../app/main/App';
 import { GlobalData } from '../../store/GlobalData';
 export const SearchBox = () => {
     const { showClassify } = GlobalData.getApp('data')!;

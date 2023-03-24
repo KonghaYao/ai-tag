@@ -1,12 +1,12 @@
-import { useContext } from 'solid-js';
-import { GalleryGlobal } from './App';
 import { ScrollLoading } from './ScrollLoading';
 import { PictureCard } from './GalleryColumn';
 import { WaterFall } from '@cn-ui/core';
 import { reflect, useBreakpoints } from '@cn-ui/use';
+import { GlobalData } from '../../store/GlobalData';
+import type { StoreData } from '../../api/notion';
 
 const rebuildArray = () => {
-    const { showingData, page, changePage } = useContext(GalleryGlobal);
+    const { showingData } = GlobalData.getApp('gallery');
     const { size } = useBreakpoints();
     /** 根据屏幕长度转换列数 */
     const columns = reflect(() => {
@@ -30,7 +30,7 @@ const rebuildArray = () => {
             .filter((i) => i);
 
         // 横竖图片排序算法
-        let vertical = [...Array(columns()).keys()].map((i) => []);
+        let vertical: StoreData[][] = [...Array(columns()).keys()].map((i) => []);
         let heights = Array(columns()).fill(0);
         data.forEach((element) => {
             // 计算高度，并将这个新图片插入到高度累计最小的一列，尽量保证瀑布流高度一致
@@ -52,7 +52,7 @@ const rebuildArray = () => {
 };
 
 export const Gallery = () => {
-    const { page, changePage, end } = useContext(GalleryGlobal);
+    const { page, changePage, end } = GlobalData.getApp('gallery');
     const { images, columns } = rebuildArray();
     const { ScrollEvent } = ScrollLoading(() => changePage(page() + 1));
     return (
@@ -70,7 +70,7 @@ export const Gallery = () => {
                 {(item, index) => {
                     // item 为否定值时，表示为占位符
                     if (!item) return null;
-                    return <PictureCard {...item} index={index()}></PictureCard>;
+                    return <PictureCard {...item} index={index!()}></PictureCard>;
                 }}
             </WaterFall>
         </div>

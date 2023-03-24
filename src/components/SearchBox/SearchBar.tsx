@@ -1,12 +1,9 @@
-import { Setter, useContext } from 'solid-js';
 import debounce from 'lodash-es/debounce';
-import { Data } from '../../app/main/App';
 import { stringToTags } from '../../use/TagsConvertor';
 import { useTranslation } from '../../i18n';
 import { Notice } from '../../utils/notice';
 import { Message } from '../MessageHInt';
 import { DropReceiver } from '@cn-ui/headless';
-import { TradToSimple } from '../../utils/TradToSimple';
 import { GlobalData } from '../../store/GlobalData';
 
 export const SearchBar = () => {

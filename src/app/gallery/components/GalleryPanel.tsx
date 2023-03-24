@@ -1,11 +1,12 @@
 import { atom } from '@cn-ui/use';
 import { Component, JSXElement, useContext, createMemo, createEffect } from 'solid-js';
-import { PanelContext } from '../../src/components/Panel';
-import { PanelIds } from '../../src/app/SideApp';
+import { PanelContext } from '../../../components/Panel';
+import type { PanelIds } from '../../SideApp';
+import { GlobalData } from '../../../store/GlobalData';
 
 export const GalleryPanel: Component<{ children?: JSXElement; id: PanelIds | '' }> = (props) => {
     const { visibleId, isPanelVisible } = GlobalData.getApp('side-app');
-    let container: HTMLDivElement;
+    let container!: HTMLDivElement;
     const visible = createMemo(() => isPanelVisible(props.id));
     const hidden = atom(!visible());
     createEffect(() => {
@@ -26,7 +27,7 @@ export const GalleryPanel: Component<{ children?: JSXElement; id: PanelIds | '' 
                 hidden(!visible());
             }}
             onClick={(e) => {
-                if (e.target === container) visibleId(null);
+                if (e.target === container) visibleId('');
                 // console.log(e);
             }}
         >

@@ -1,19 +1,20 @@
-import { Component, useContext, batch } from 'solid-js';
-import { StoreData } from '../src/api/notion';
-import { PanelContext } from '../src/components/Panel';
-import { GalleryGlobal } from './App';
+import { Component, batch } from 'solid-js';
+import type { StoreData } from '../../api/notion';
 import { getImagePath, getImagePathBackup } from './Panels/Detail';
 import { saveAs } from 'file-saver';
 import { DragPoster } from '@cn-ui/headless';
 import { BackupImage } from './BackupImage';
+import { GlobalData } from '../../store/GlobalData';
 
 export const PictureCard: Component<StoreData & { index: number }> = (item) => {
     const { visibleId } = GlobalData.getApp('side-app');
-    const { ShowingPicture, getViewer, backgroundImage, searchText, ShowingPictureURL } =
-        useContext(GalleryGlobal);
+    const { ShowingPicture, getViewer, searchText, ShowingPictureURL } =
+        GlobalData.getApp('gallery');
+
+    const { backgroundImage } = GlobalData.getApp('data');
     let tag = item.tags;
     try {
-        const tags = JSON.parse(item.other);
+        const tags = JSON.parse(item.other ?? '{}');
         const map = new Map<string, string>(tags);
         tag = map.get('Description') || item.tags;
     } catch (e) {}

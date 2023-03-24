@@ -14,7 +14,7 @@ const getClassify = memoize(async () => {
     return data;
 });
 export const useClassFilter = () => {
-    const { result, lists } = GlobalData.getApp('tag-control')!;
+    const { lists, result } = GlobalData.getApp('tag-control')!;
     const Colors = new ColorPicker();
     const FilterClass = new Set(['全部']);
     const data = resource(() =>

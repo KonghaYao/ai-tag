@@ -5,7 +5,6 @@ import { Background } from '../../components/Background';
 import { SearchBar } from './SearchBar';
 import { FloatPanelWithAnimate, Tabs } from '@cn-ui/core';
 
-import './index.css';
 import { Notice } from '../../utils/notice';
 import { initGalleryStore } from '../../store/GalleryStore';
 import { GlobalData } from '../../store/GlobalData';
@@ -18,7 +17,7 @@ export const GalleryRoot = () => {
 
     const showSearch = atom(false);
     return (
-        <main class="font-global  flex h-screen  flex-col overflow-hidden text-gray-200">
+        <main class="font-global  flex h-screen w-full  flex-col overflow-hidden text-gray-200">
             <Background image={backgroundImage()}></Background>
             <header class="   w-full p-2 text-xl sm:p-4 ">
                 <div class=" flex justify-between rounded-xl bg-slate-600 py-2 px-4 ">

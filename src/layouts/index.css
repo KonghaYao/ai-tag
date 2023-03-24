@@ -11,9 +11,7 @@ body {
 .font-global {
     font-family: 'aclonica', 'jiangxizhuokai';
 }
-.font-icon {
-    font-family: 'Material Icons Rounded', 'aclonica', 'jiangxizhuokai';
-}
+
 .font-global .en-words {
     font-size: 0.75rem;
 }

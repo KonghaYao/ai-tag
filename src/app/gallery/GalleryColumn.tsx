@@ -60,6 +60,7 @@ export const PictureCard: Component<StoreData & { index: number }> = (item) => {
                         <div
                             class="font-icon h-7 w-7 cursor-pointer rounded-full bg-lime-500  text-center text-lg  text-white"
                             onclick={async () => {
+                                // a 标签有下载缺陷，故采用 JS 内下载
                                 const data = await fetch(getImagePath(item.image)).then((res) =>
                                     res.blob()
                                 );

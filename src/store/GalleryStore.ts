@@ -5,6 +5,7 @@ import { API, StoreData } from '../api/notion';
 import { Notice } from '../utils/notice';
 import { createEffect, on } from 'solid-js';
 import { usePaginationStack } from '../Panels/artist/usePaginationStack';
+import { getImagePath, getImagePathBackup } from '../app/gallery/Panels/Detail';
 
 export type IGalleryStore = ReturnType<typeof initGalleryStore>;
 export const initGalleryStore = ExposeToGlobal('gallery', () => {
@@ -28,6 +29,19 @@ export const initGalleryStore = ExposeToGlobal('gallery', () => {
             });
         }
     );
+    createEffect(() => {
+        replaceImages(
+            dataSlices().flatMap((i) => {
+                return i.map((i) => {
+                    return {
+                        alt: i.description,
+                        src: getImagePathBackup(i!.image, 'q=50'),
+                        origin: getImagePath(i!.image)!,
+                    };
+                });
+            })
+        );
+    });
     const loadMore = async (_: number, clear = false) => {
         if (clear) resetStack();
         return next();

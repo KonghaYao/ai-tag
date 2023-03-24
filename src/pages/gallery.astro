@@ -3,12 +3,13 @@ import { GalleryRoot } from '../app/gallery/App';
 import { GlobalInit } from '../app/Global';
 import { SideApp } from '../app/SideApp';
 import Layout from '../layouts/Layout.astro';
+import '../app/gallery/index.css';
 ---
 
 <Layout title="魔导绪论-画廊">
     <section class="flex font-global justify-center w-screen h-screen overflow-hidden">
-        <GlobalInit client:only="solid-js">
-            <GalleryRoot client:only="solid-js" />
+        <GlobalInit client:only>
+            <GalleryRoot client:only />
             <SideApp defaultPanel="" client:only="solid-js" />
         </GlobalInit>
     </section>

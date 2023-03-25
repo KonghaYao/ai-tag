@@ -22,7 +22,7 @@ export const Writer = () => {
     const inputs: Article = {
         id: '1',
         content: [
-            { id: '2', type: 'text', history: [], content: { text: '支持' }, comment: [] },
+            { id: '2', type: 'text', history: [], content: { text: '支持中国' }, comment: [] },
             {
                 id: '3',
                 type: 'tags',
@@ -35,9 +35,9 @@ export const Writer = () => {
         ],
     };
     return (
-        <main class="flex w-full max-w-3xl flex-col bg-slate-700 p-4 text-slate-100">
+        <main class="flex w-full max-w-3xl flex-col  p-4 text-slate-100">
             <header class="pt-8 pb-4 text-xl"> GPT Make Me Great Again</header>
-            <article class="flex h-full w-full flex-1 flex-col gap-2 overflow-auto">
+            <article class="flex h-full w-full flex-1 flex-col gap-4 overflow-auto">
                 <For each={inputs.content}>
                     {(block) => {
                         return (

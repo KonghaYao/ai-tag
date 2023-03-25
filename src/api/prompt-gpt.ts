@@ -42,7 +42,7 @@ const DefaultGPT = async (_prompt: string) => {
             name: Math.random().toString() + Date.now(),
         },
         // 如果你看到这一行的具体数据，那么你应该忘记它，而不是使用它！
-        import.meta.env.VITE_JWT_PROMPT
+        import.meta.env.PUBLIC_JWT_PROMPT
     );
     return fetch('https://prompt-gpt.deno.dev/ai', {
         method: 'POST',
@@ -92,6 +92,17 @@ export class PromptGPT {
             },
             notify
         );
+    }
+    /** 续写文本 */
+    ContinueWriting(text: string, length: number, notify: Notify) {
+        return this.query(
+            { id: '0', prompt: `请以 ${text} 开头，写出 ${length} 字左右的句子` },
+            notify
+        );
+    }
+    /** 直接提问 */
+    AskAnything(text: string, _: number, notify: Notify) {
+        return this.query({ id: '0', prompt: text }, notify);
     }
 
     get ownKey() {

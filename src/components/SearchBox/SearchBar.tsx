@@ -55,11 +55,11 @@ export const SearchBar = () => {
                         onclick={() => triggerSearch('')}
                         title={t('searchBox.hint.deleteHint')}
                     >
-                        {iconBtn() ? 'clear' : t('clear')}
+                        {t('clear')}
                     </div>
                 </DropReceiver>
                 <span class="btn flex-none" onclick={addToList}>
-                    {iconBtn() ? 'create' : t('searchBox.create')}
+                    {t('searchBox.create')}
                 </span>
             </div>
         </nav>

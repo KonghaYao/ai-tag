@@ -46,7 +46,7 @@ export const SearchResult = () => {
     );
     return (
         <section
-            class="search-results flex h-full flex-wrap content-start  overflow-y-auto overflow-x-hidden  pb-4"
+            class="search-results flex h-full flex-wrap content-start  gap-4 overflow-y-auto overflow-x-hidden  pt-4 pb-4"
             ref={searchResult}
         >
             {/*  使用 loading 态同源来解决异步抖动问题 */}

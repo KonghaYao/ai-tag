@@ -1,25 +1,19 @@
 import type { ITagData } from '../app/main/App';
 import { plus, minus } from 'number-precision';
 import { debounce } from 'lodash-es';
-import { TagsToString } from './TagsConvertor';
 import { GlobalData } from '../store/GlobalData';
+import type { Atom } from '@cn-ui/use';
 
 /** tag 内部的加减 */
-export const useTagController = () => {
-    const {
-        deleteMode,
-
-        emphasizeAddMode,
-        emphasizeSubMode,
-        MaxEmphasize,
-    } = GlobalData.getApp('data');
-    const { TagsHistory, usersCollection } = GlobalData.getApp('tag-control');
+export const useTagController = ({ usersCollection }: { usersCollection: Atom<ITagData[]> }) => {
+    const { deleteMode, emphasizeAddMode, emphasizeSubMode, MaxEmphasize } =
+        GlobalData.getApp('data');
 
     /** 左点击加权，右点击减权 */
     const clickEvent = (item: ITagData, rightClick?: boolean) => {
+        // console.log(item);
         if (deleteMode()) {
-            TagsHistory.addToHistory(TagsToString(usersCollection()));
-            usersCollection((i) => i.filter((it) => it !== item));
+            return usersCollection((i) => i.filter((it) => it !== item));
         }
 
         if ((emphasizeAddMode() && !rightClick) || (rightClick && emphasizeSubMode())) {

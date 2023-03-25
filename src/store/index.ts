@@ -1,4 +1,4 @@
-import { Atom, atom } from '@cn-ui/use';
+import { Atom, ObjectAtom, atom, useSelect } from '@cn-ui/use';
 import type { PanelIds } from '../app/SideApp';
 import { useStorage } from '../use/useStorage';
 import { GlobalData } from './GlobalData';
@@ -27,11 +27,11 @@ export const initGlobalData = () => {
         forceEN: false,
         emphasizeAddMode: false,
         emphasizeSubMode: false,
+        deleteMode: false,
         emphasizeSymbol: '()',
         enMode: true,
         tagsPerPage: 500,
         r18Mode: false,
-        deleteMode: false,
         showCount: true,
         username: '',
         searchNumberLimit: 1000,
@@ -42,11 +42,27 @@ export const initGlobalData = () => {
         iconBtn: false,
         showLangInLine1: false,
     };
+
     const context = { ...ObjectToAtoms(storageSetting), ...useLocalData() };
+
     const { recover, tracking } = useStorage(context);
     // 从 localstorage 恢复并开始统计数据
     recover();
     tracking();
-    GlobalData.register('data', context);
-    return context;
+    const final = {
+        ...context,
+        changeTagMode(which: Atom<boolean>, val: boolean) {
+            return [context.emphasizeAddMode, context.emphasizeSubMode, context.deleteMode].forEach(
+                (i) => {
+                    if (i === which) {
+                        which(val);
+                    } else {
+                        i(false);
+                    }
+                }
+            );
+        },
+    };
+    GlobalData.register('data', final);
+    return final;
 };

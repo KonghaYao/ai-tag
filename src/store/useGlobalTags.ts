@@ -5,6 +5,9 @@ import { TagsToString, stringToTags } from '../use/TagsConvertor';
 import { useHistory } from '../use/useTagHistory';
 import { Message } from '@cn-ui/core';
 import { GlobalData } from './GlobalData';
+import { CombineMagic } from '../utils/CombineMagic';
+import { Notice } from '../utils/notice';
+import { useTranslation } from '../i18n';
 export const cdn = 'https://cdn.jsdelivr.net/npm';
 
 const useOwnAtom = () => {
@@ -65,6 +68,20 @@ export function initGlobalTags() {
         TagsHistory,
         redo,
         undo,
+        injectTags: (old: ITagData[], input: ITagData[], isCombine = false, isTailAdd = false) => {
+            const { t } = useTranslation();
+            if (isCombine) {
+                const list = CombineMagic(input, old);
+                usersCollection(list);
+                Message.success(t('publicPanel.hint.CombineSuccess'));
+            } else if (isTailAdd) {
+                usersCollection((i) => [...i, ...input]);
+                Notice.success(t('publicPanel.hint.CopySuccess'));
+            } else {
+                usersCollection(input);
+                Notice.success(t('publicPanel.hint.CopySuccess'));
+            }
+        },
     };
     GlobalData.register('tag-control', context);
     return context;

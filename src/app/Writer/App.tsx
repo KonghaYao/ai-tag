@@ -1,10 +1,9 @@
-import { For } from 'solid-js';
-import { ContentEditable } from '../../components/ContentEditable';
-import { GlobalData } from '../../store/GlobalData';
-import { atom } from '@cn-ui/use';
+import { For, Match, Switch } from 'solid-js';
+import { TextEditor } from './Editor/TextEditor';
+import { TagsEditor } from './Editor/TagsEditor';
 interface Comment {}
 
-interface Block {
+export interface Block {
     id: string;
     type: string;
     history: string[]; // 根据 id 获取到历史 Block
@@ -26,24 +25,31 @@ export const Writer = () => {
             { id: '2', type: 'text', history: [], content: { text: '支持' }, comment: [] },
             {
                 id: '3',
-                type: 'text',
+                type: 'tags',
                 history: [],
-                content: { text: 'masterpiece,username,' },
+                content: {
+                    text: '((best quality)),(((flat color))),thick outlines,((limited palette)),medium shot,album cover,depth of field,((falling petals)),snowy city street,snow ground and tree with light,gorgeous Norwegian girl,cute natural makeup,long wavy blonde hair,freckles,blue eyes',
+                },
                 comment: [],
             },
         ],
     };
     return (
-        <main class="flex w-full max-w-xl flex-col bg-slate-700 p-4 text-slate-100">
-            <header class="pt-8 pb-4 text-xl"> AI 自动机器</header>
-            <article class="flex h-full w-full flex-1 flex-col overflow-auto ">
+        <main class="flex w-full max-w-3xl flex-col bg-slate-700 p-4 text-slate-100">
+            <header class="pt-8 pb-4 text-xl"> GPT Make Me Great Again</header>
+            <article class="flex h-full w-full flex-1 flex-col gap-2 overflow-auto">
                 <For each={inputs.content}>
                     {(block) => {
-                        if (block.type === 'text') {
-                            const text = atom(block.content.text);
-
-                            return <ContentEditable value={text}></ContentEditable>;
-                        }
+                        return (
+                            <Switch>
+                                <Match when={block.type === 'text'}>
+                                    <TextEditor block={block}></TextEditor>
+                                </Match>
+                                <Match when={block.type === 'tags'}>
+                                    <TagsEditor block={block}></TagsEditor>
+                                </Match>
+                            </Switch>
+                        );
                     }}
                 </For>
             </article>

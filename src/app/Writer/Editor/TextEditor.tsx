@@ -5,6 +5,8 @@ import { FullTextEditor } from './Text/FullTextEditor';
 import { FloatPanel } from '@cn-ui/core';
 import { AIPlace, BaseModelName, CNModelName } from './AIPlace';
 import { GlobalGPT } from '../../../api/prompt-gpt';
+import copy from 'copy-to-clipboard';
+import { Notice } from '../../../utils/notice';
 export const splitTextToAutoComplete = (text: string) => {
     const stopChar = ' ,.;|/?？。，；';
     let index = text.length - 1;
@@ -46,7 +48,7 @@ export const AISupport = (props: { model: Atom<keyof typeof GlobalGPT> }) => {
                 );
             }}
         >
-            <nav>✨</nav>
+            <nav class="cursor-pointer">✨</nav>
         </FloatPanel>
     );
 };
@@ -58,13 +60,16 @@ const Transformers = () => {
                 return (
                     <Show when={show()}>
                         <ul class="w-full whitespace-nowrap rounded-lg  bg-slate-800 p-2">
+                            <li class="hover:bg-slate-600">上移</li>
                             <li class="hover:bg-slate-600">转为 Tags</li>
+                            <li class="hover:bg-slate-600">删除这块</li>
+                            <li class="hover:bg-slate-600">下移</li>
                         </ul>
                     </Show>
                 );
             }}
         >
-            <nav>🧬</nav>
+            <nav class="cursor-pointer">🧬</nav>
         </FloatPanel>
     );
 };
@@ -77,8 +82,16 @@ export const TextEditor: Component<{ block: Block }> = (props) => {
     return (
         <aside class="flex flex-col rounded-xl border border-slate-600  px-2 ">
             <div class="flex items-center gap-2">
-                <ul>
-                    <li>📄</li>
+                <ul class=" grid grid-cols-2">
+                    <li
+                        class="cursor-pointer"
+                        onclick={() => {
+                            copy(text());
+                            Notice.success('复制成功');
+                        }}
+                    >
+                        📄
+                    </li>
                     <AISupport model={model}></AISupport>
                     <Transformers></Transformers>
                 </ul>

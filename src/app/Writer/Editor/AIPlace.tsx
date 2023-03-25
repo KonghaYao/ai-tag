@@ -52,7 +52,7 @@ export const AIPlace = (props: {
                             length(parseInt((e.target as any).value));
                         }}
                     />
-                </label>{' '}
+                </label>
             </div>
             <p class="whitespace-pre-wrap p-4 text-sm">{AIOutput()}</p>
             <AC

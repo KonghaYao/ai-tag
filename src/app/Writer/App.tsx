@@ -18,6 +18,27 @@ interface Article {
     id: string;
     content: Block[];
 }
+import { nanoid } from 'nanoid';
+export class BlockConvert {
+    static extendsBlock(block: Block): Block {
+        return {
+            ...block,
+            comment: [...block.comment],
+            history: [block.id, ...block.history],
+            content: { ...block.content },
+            id: nanoid(),
+        };
+    }
+    static createBlock(): Block {
+        return {
+            type: 'text',
+            comment: [],
+            history: [],
+            content: { text: '' },
+            id: nanoid(),
+        };
+    }
+}
 
 export const useTagsArticle = (json: Article | undefined) => {
     const Article = json ?? { id: Date.now(), content: [] };
@@ -27,7 +48,7 @@ export const useTagsArticle = (json: Article | undefined) => {
 };
 
 export const Writer = () => {
-    const inputs: Article = {
+    const inputs = useTagsArticle({
         id: '1',
         content: [
             { id: '2', type: 'text', history: [], content: { text: '支持中国' }, comment: [] },
@@ -41,12 +62,12 @@ export const Writer = () => {
                 comment: [],
             },
         ],
-    };
+    });
     return (
         <main class="flex w-full max-w-3xl flex-col  p-4 text-slate-100">
             <header class="pt-8 pb-4 text-xl"> GPT Make Me Great Again</header>
             <article class="flex h-full w-full flex-1 flex-col gap-4 overflow-auto">
-                <For each={inputs.content}>
+                <For each={inputs.content()}>
                     {(block) => {
                         return (
                             <Switch>
@@ -60,6 +81,15 @@ export const Writer = () => {
                         );
                     }}
                 </For>
+                <aside class="h-full min-h-[20vh]">
+                    <div
+                        onclick={() => {
+                            inputs.content((i) => [...i, BlockConvert.createBlock()]);
+                        }}
+                    >
+                        添加
+                    </div>
+                </aside>
             </article>
         </main>
     );

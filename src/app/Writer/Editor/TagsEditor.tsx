@@ -51,9 +51,11 @@ export const TagsEditor: Component<{ block: Block }> = (props) => {
                 <Show when={inputMode()}>
                     <aside class="mx-2 flex items-center gap-2 rounded-md  border  border-solid border-slate-600 bg-slate-800 px-2">
                         <div>✒️</div>
-                        <ContentEditable
+                        <input
+                            class=" w-full flex-1 bg-transparent outline-none"
                             placeholder="在这里输入 Tags; Ctrl+Enter 添加"
-                            value={text}
+                            value={text()}
+                            oninput={(e) => text((e.target as any).value)}
                             onKeyDown={(e: any) => {
                                 if (e.ctrlKey && e.key === 'Enter') {
                                     batch(() => {
@@ -62,7 +64,7 @@ export const TagsEditor: Component<{ block: Block }> = (props) => {
                                     });
                                 }
                             }}
-                        ></ContentEditable>
+                        ></input>
                     </aside>
                 </Show>
             </div>

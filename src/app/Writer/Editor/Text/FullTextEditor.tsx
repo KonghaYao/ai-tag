@@ -26,7 +26,7 @@ export const FullTextEditor: Component<{
     const visible = reflect(() => !!infoList().length);
     return (
         <FloatPanel
-            class="flex w-full  items-center rounded-md py-1"
+            class="flex h-full w-full items-center rounded-md py-1"
             disabled={true}
             visible={visible}
             popup={({ show }) => {

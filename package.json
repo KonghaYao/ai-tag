@@ -66,6 +66,7 @@
         "lodash-es": "^4.17.21",
         "md5": "^2.3.0",
         "meilisearch": "^0.31.1",
+        "nanoid": "^4.0.1",
         "notyf": "^3.10.0",
         "number-precision": "^1.6.0",
         "papaparse": "^5.3.2",

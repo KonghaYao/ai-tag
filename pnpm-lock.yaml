@@ -40,6 +40,7 @@ specifiers:
   lodash-es: ^4.17.21
   md5: ^2.3.0
   meilisearch: ^0.31.1
+  nanoid: ^4.0.1
   notyf: ^3.10.0
   number-precision: ^1.6.0
   papaparse: ^5.3.2
@@ -89,6 +90,7 @@ dependencies:
   lodash-es: 4.17.21
   md5: 2.3.0
   meilisearch: 0.31.1
+  nanoid: 4.0.1
   notyf: 3.10.0
   number-precision: 1.6.0
   papaparse: 5.3.2
@@ -3478,6 +3480,12 @@ packages:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+
+  /nanoid/4.0.1:
+    resolution: {integrity: sha512-udKGtCCUafD3nQtJg9wBhRP3KMbPglUsgV5JVsXhvyBs/oefqb4sqMEhKBBgqZncYowu58p1prsZQBYvAj/Gww==}
+    engines: {node: ^14 || ^16 || >=18}
+    hasBin: true
+    dev: false
 
   /nlcst-to-string/3.1.1:
     resolution: {integrity: sha512-63mVyqaqt0cmn2VcI2aH6kxe1rLAmSROqHMA0i4qqg1tidkfExgpb0FGMikMCn86mw5dFtBtEANfmSSK7TjNHw==}

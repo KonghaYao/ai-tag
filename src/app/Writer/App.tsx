@@ -1,6 +1,7 @@
 import { For, Match, Switch } from 'solid-js';
 import { TextEditor } from './Editor/TextEditor';
 import { TagsEditor } from './Editor/TagsEditor';
+import { ArrayAtom, atom } from '@cn-ui/use';
 interface Comment {}
 
 export interface Block {
@@ -17,6 +18,13 @@ interface Article {
     id: string;
     content: Block[];
 }
+
+export const useTagsArticle = (json: Article | undefined) => {
+    const Article = json ?? { id: Date.now(), content: [] };
+    return {
+        content: ArrayAtom(atom(Article.content)),
+    };
+};
 
 export const Writer = () => {
     const inputs: Article = {

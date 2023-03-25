@@ -19,7 +19,6 @@ export const splitTextToAutoComplete = (text: string) => {
 export const AISupport = (props: { model: Atom<keyof typeof GlobalGPT> }) => {
     return (
         <FloatPanel
-            position="lt"
             popup={({ show }) => {
                 return (
                     <Show when={show()}>
@@ -52,18 +51,39 @@ export const AISupport = (props: { model: Atom<keyof typeof GlobalGPT> }) => {
     );
 };
 
+const Transformers = () => {
+    return (
+        <FloatPanel
+            popup={({ show }) => {
+                return (
+                    <Show when={show()}>
+                        <ul class="w-full whitespace-nowrap rounded-lg  bg-slate-800 p-2">
+                            <li class="hover:bg-slate-600">转为 Tags</li>
+                        </ul>
+                    </Show>
+                );
+            }}
+        >
+            <nav>🧬</nav>
+        </FloatPanel>
+    );
+};
+
 export const TextEditor: Component<{ block: Block }> = (props) => {
     const text = atom(props.block.content.text);
-    const showAIPanel = atom(true);
+    const showAIPanel = atom(false);
     const model = atom<keyof typeof GlobalGPT>('textToText', { equals: false });
     useEffectWithoutFirst(() => showAIPanel(true), [model]);
     return (
         <aside class="flex flex-col rounded-xl border border-slate-600  px-2 ">
             <div class="flex items-center gap-2">
-                <nav>📄</nav>
+                <ul>
+                    <li>📄</li>
+                    <AISupport model={model}></AISupport>
+                    <Transformers></Transformers>
+                </ul>
 
                 <FullTextEditor text={text}></FullTextEditor>
-                <AISupport model={model}></AISupport>
             </div>
             <Show when={showAIPanel()}>
                 <AIPlace

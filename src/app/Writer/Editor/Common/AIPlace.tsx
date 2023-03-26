@@ -1,7 +1,7 @@
 import { Atom, asyncLock, atom, reflect, resource } from '@cn-ui/use';
-import { GlobalGPT } from '../../../api/prompt-gpt';
-import { AC } from '../../../components/AC';
-import { InputOpenAIToken } from '../../../Panels/PromptGPT/PromptGPT';
+import { GlobalGPT } from '../../../../api/prompt-gpt';
+import { AC } from '../../../../components/AC';
+import { InputOpenAIToken } from '../../../../Panels/PromptGPT/PromptGPT';
 
 export const ProModelName = {
     ContinueWriting: '续写',

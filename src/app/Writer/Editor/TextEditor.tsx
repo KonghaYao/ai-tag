@@ -3,21 +3,11 @@ import { Atom, atom, reflect, useEffectWithoutFirst } from '@cn-ui/use';
 import type { Block } from '../App';
 import { FullTextEditor } from './Text/FullTextEditor';
 import { FloatPanel } from '@cn-ui/core';
-import { AIPlace, BaseModelName, CNModelName } from './AIPlace';
+import { AIPlace, BaseModelName, CNModelName } from './Common/AIPlace';
 import { GlobalGPT } from '../../../api/prompt-gpt';
 import copy from 'copy-to-clipboard';
 import { Notice } from '../../../utils/notice';
-export const splitTextToAutoComplete = (text: string) => {
-    const stopChar = ' ,.;|/?？。，；';
-    let index = text.length - 1;
-    for (; index > 0; index--) {
-        const element = text[index];
-        if (stopChar.includes(element)) break;
-    }
-    // console.log(index);
-    return [text.slice(0, index), text.slice(index)];
-};
-
+import { Transformers } from './Common/Transformers';
 export const AISupport = (props: { model: Atom<keyof typeof GlobalGPT> }) => {
     return (
         <FloatPanel
@@ -53,27 +43,6 @@ export const AISupport = (props: { model: Atom<keyof typeof GlobalGPT> }) => {
     );
 };
 
-const Transformers = () => {
-    return (
-        <FloatPanel
-            popup={({ show }) => {
-                return (
-                    <Show when={show()}>
-                        <ul class="w-full whitespace-nowrap rounded-lg  bg-slate-800 p-2">
-                            <li class="hover:bg-slate-600">上移</li>
-                            <li class="hover:bg-slate-600">转为 Tags</li>
-                            <li class="hover:bg-slate-600">删除这块</li>
-                            <li class="hover:bg-slate-600">下移</li>
-                        </ul>
-                    </Show>
-                );
-            }}
-        >
-            <nav class="cursor-pointer">🧬</nav>
-        </FloatPanel>
-    );
-};
-
 export const TextEditor: Component<{ block: Block }> = (props) => {
     const text = atom(props.block.content.text);
     const showAIPanel = atom(false);
@@ -93,7 +62,7 @@ export const TextEditor: Component<{ block: Block }> = (props) => {
                         📄
                     </li>
                     <AISupport model={model}></AISupport>
-                    <Transformers></Transformers>
+                    <Transformers block={props.block}></Transformers>
                 </ul>
 
                 <FullTextEditor text={text}></FullTextEditor>

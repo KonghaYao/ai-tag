@@ -19,6 +19,7 @@ interface Article {
     content: Block[];
 }
 import { nanoid } from 'nanoid';
+import { WriterContext } from './WriterContext';
 export class BlockConvert {
     static extendsBlock(block: Block): Block {
         return {
@@ -41,12 +42,19 @@ export class BlockConvert {
 }
 
 export const useTagsArticle = (json: Article | undefined) => {
-    const Article = json ?? { id: Date.now(), content: [] };
+    const Article: Article = json ?? { id: nanoid(), content: [] };
+    const content = ArrayAtom(atom(Article.content));
     return {
-        content: ArrayAtom(atom(Article.content)),
+        content,
+        move(which: Block, pos: 'up' | 'down') {
+            const old = content();
+            const index = old.indexOf(which);
+            const item = pos === 'up' ? old[index - 1] : old[index + 1];
+            item && content.switch(which, item);
+            console.log(index);
+        },
     };
 };
-
 export const Writer = () => {
     const inputs = useTagsArticle({
         id: '1',
@@ -64,33 +72,35 @@ export const Writer = () => {
         ],
     });
     return (
-        <main class="flex w-full max-w-3xl flex-col  p-4 text-slate-100">
-            <header class="pt-8 pb-4 text-xl"> GPT Make Me Great Again</header>
-            <article class="flex h-full w-full flex-1 flex-col gap-4 overflow-auto">
-                <For each={inputs.content()}>
-                    {(block) => {
-                        return (
-                            <Switch>
-                                <Match when={block.type === 'text'}>
-                                    <TextEditor block={block}></TextEditor>
-                                </Match>
-                                <Match when={block.type === 'tags'}>
-                                    <TagsEditor block={block}></TagsEditor>
-                                </Match>
-                            </Switch>
-                        );
-                    }}
-                </For>
-                <aside class="h-full min-h-[20vh]">
-                    <div
-                        onclick={() => {
-                            inputs.content((i) => [...i, BlockConvert.createBlock()]);
+        <WriterContext.Provider value={inputs}>
+            <main class="flex w-full max-w-3xl flex-col  p-4 text-slate-100">
+                <header class="pt-8 pb-4 text-xl"> GPT Make Me Great Again</header>
+                <article class="flex h-full w-full flex-1 flex-col gap-4 overflow-auto">
+                    <For each={inputs.content()}>
+                        {(block) => {
+                            return (
+                                <Switch>
+                                    <Match when={block.type === 'text'}>
+                                        <TextEditor block={block}></TextEditor>
+                                    </Match>
+                                    <Match when={block.type === 'tags'}>
+                                        <TagsEditor block={block}></TagsEditor>
+                                    </Match>
+                                </Switch>
+                            );
                         }}
-                    >
-                        添加
-                    </div>
-                </aside>
-            </article>
-        </main>
+                    </For>
+                    <aside class="h-full min-h-[20vh]">
+                        <div
+                            onclick={() => {
+                                inputs.content((i) => [...i, BlockConvert.createBlock()]);
+                            }}
+                        >
+                            添加
+                        </div>
+                    </aside>
+                </article>
+            </main>
+        </WriterContext.Provider>
     );
 };

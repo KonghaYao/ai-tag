@@ -40,9 +40,8 @@ export const FullTextEditor: Component<{
             <ContentEditable
                 placeholder={props.placeholder}
                 value={text}
-                onBlur={() => {
-                    visible(false);
-                }}
+                // 避免立即删除
+                onBlur={() => setTimeout(() => visible(false), 100)}
                 onKeyDown={(e: any) => {
                     if (e.ctrlKey && e.key === 'Enter') {
                         props.onConfirmEnter && props.onConfirmEnter();

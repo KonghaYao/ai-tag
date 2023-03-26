@@ -20,6 +20,7 @@ interface Article {
 }
 import { nanoid } from 'nanoid';
 import { WriterContext } from './WriterContext';
+import { GlobalHeader } from '../main/GlobalHeader';
 export class BlockConvert {
     static extendsBlock(block: Block): Block {
         return {
@@ -73,9 +74,11 @@ export const Writer = () => {
     });
     return (
         <WriterContext.Provider value={inputs}>
-            <main class="flex w-full max-w-3xl flex-col  p-4 text-slate-100">
-                <header class="pt-8 pb-4 text-xl"> GPT Make Me Great Again</header>
-                <article class="flex h-full w-full flex-1 flex-col gap-4 overflow-auto">
+            <main class="flex w-full max-w-3xl flex-col  overflow-auto  px-4 text-slate-100">
+                <nav class="sticky top-2 z-50 my-2">
+                    <GlobalHeader></GlobalHeader>
+                </nav>
+                <article class="flex h-full w-full flex-1 flex-col gap-4 ">
                     <For each={inputs.content()}>
                         {(block) => {
                             return (

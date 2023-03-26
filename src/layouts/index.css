@@ -33,10 +33,10 @@ body {
     background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px !important;
     background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px !important;
     background-blend-mode: difference !important;
-    background-image: linear-gradient(rgb(130 130 130 / 35%) 1px, transparent 1px),
-        linear-gradient(90deg, rgb(130 130 130 / 28%) 1px, transparent 1px),
-        linear-gradient(rgb(130 130 130 / 37%) 1px, transparent 1px),
-        linear-gradient(90deg, rgb(130 130 130 / 38%) 1px, transparent 1px) !important;
+    background-image: linear-gradient(rgb(100 100 100/ 35%) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(100 100 100/ 28%) 1px, transparent 1px),
+        linear-gradient(rgb(100 100 100/ 37%) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(100 100 100/ 38%) 1px, transparent 1px) !important;
 }
 .blur-background {
     backdrop-filter: blur(8px);

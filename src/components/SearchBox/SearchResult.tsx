@@ -9,13 +9,19 @@ import { AC } from '../AC';
 import type { ITagData } from '../../app/main/App';
 
 export const SearchResult = () => {
+    const { r18Mode } = GlobalData.getApp('data');
     const { usersCollection, searchText } = GlobalData.getApp('tag-control');
 
     const result = resource(
         () =>
             fetch('https://able-hare-95.deno.dev/tags', {
                 method: 'POST',
-                body: JSON.stringify({ text: searchText() }),
+                body: JSON.stringify({
+                    text: searchText(),
+                    options: {
+                        filter: !r18Mode() && `r18 != 1`,
+                    },
+                }),
             })
                 .then((res) => res.json())
                 .then((res) => {

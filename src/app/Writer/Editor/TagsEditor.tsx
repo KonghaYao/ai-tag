@@ -2,13 +2,15 @@ import { Component, For, Show, batch, createEffect } from 'solid-js';
 import type { Block } from '../App';
 import { TagsRow } from '../../main/UserSelected';
 import { Atom, DebounceAtom, ResourceAtom, addListener, atom, reflect, resource } from '@cn-ui/use';
-import { stringToTags } from '../../../use/TagsConvertor';
+import { TagsToString, stringToTags } from '../../../use/TagsConvertor';
 import { GlobalData } from '../../../store/GlobalData';
 import { ContentEditable } from '../../../components/ContentEditable';
 import type { ITagData } from '../../main/App';
 import { FloatPanel } from '@cn-ui/core';
 import { splitTextToAutoComplete } from './Common/splitTextToAutoComplete';
 import { Transformers } from './Common/Transformers';
+import copy from 'copy-to-clipboard';
+import { Notice } from '../../../utils/notice';
 
 export const TagsEditor: Component<{ block: Block }> = (props) => {
     const { emphasizeAddMode, deleteMode, changeTagMode } = GlobalData.getApp('data');
@@ -37,6 +39,15 @@ export const TagsEditor: Component<{ block: Block }> = (props) => {
                     onClick={() => changeTagMode(deleteMode, true)}
                 >
                     ❌
+                </li>
+                <li
+                    class="cursor-pointer"
+                    title="一键复制"
+                    onClick={() => (
+                        copy(TagsToString(userCollection())), Notice.success('复制成功')
+                    )}
+                >
+                    📝
                 </li>
                 <li
                     class="cursor-pointer"
@@ -100,8 +111,11 @@ export const ToolTips: Component<{
                                 'bg-slate-700': isSelect(),
                             }}
                             onclick={(e) => {
-                                infoList([]);
-                                text(item.originText + it.textContent + ' ');
+                                console.log(it.textContent);
+                                batch(() => {
+                                    text(item.originText + it.textContent + ' ');
+                                    infoList([]);
+                                });
                             }}
                         >
                             <span class="pr-4">{item.cn}</span>
@@ -124,13 +138,19 @@ export const ToolTips: Component<{
 
 export const TagsSearch = (props: { userCollection: Atom<ITagData[]> }) => {
     const text = atom('');
+    const { r18Mode } = GlobalData.getApp('data');
     const infoList = resource(
         async () => {
             const [originText, q] = splitTextToAutoComplete(text());
             if (!prompt) return [];
             return fetch('https://able-hare-95.deno.dev/tags', {
                 method: 'POST',
-                body: JSON.stringify({ text: q, options: { limit: 15 } }),
+                body: JSON.stringify({
+                    text: q,
+                    options: {
+                        filter: !r18Mode() && `r18 != 1`,
+                    },
+                }),
             })
                 .then((res) => res.json())
                 .then((res) => {
@@ -163,7 +183,8 @@ export const TagsSearch = (props: { userCollection: Atom<ITagData[]> }) => {
                     placeholder="在这里输入 Tags; Ctrl+Enter 添加"
                     value={text()}
                     oninput={(e) => text((e.target as any).value)}
-                    onblur={() => visible(false)}
+                    // 避免立即删除
+                    onblur={() => setTimeout(() => visible(false), 100)}
                     onKeyDown={(e: any) => {
                         if (e.ctrlKey && e.key === 'Enter') {
                             batch(() => {

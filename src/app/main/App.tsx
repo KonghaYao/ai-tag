@@ -46,7 +46,7 @@ export const Main = () => {
                 }}
             >
                 <section
-                    class="  flex w-full justify-center"
+                    class="  flex  justify-center"
                     classList={{
                         'opacity-90': !!backgroundImage(),
                     }}

@@ -1,9 +1,7 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
-import solidPlugin from 'vite-plugin-solid';
 import p from './package.json';
 import visualizer from 'rollup-plugin-visualizer';
-import fs from 'fs';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 export default defineConfig(({ mode }) => {
     const __isDev__ = mode === 'development';

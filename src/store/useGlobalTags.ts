@@ -37,7 +37,7 @@ const useOwnAtom = () => {
 export type ITagStore = ReturnType<typeof initGlobalTags>;
 
 /** 加载 Tag 数据库,  */
-export function initGlobalTags() {
+export function initGlobalTags(data: IStoreData) {
     console.log('重绘');
     const lists = atom([] as ITagData[]);
 
@@ -61,10 +61,29 @@ export function initGlobalTags() {
             Message.success('恢复成功');
         }
     };
+    const searchText = atom('');
+    const result = resource(
+        () =>
+            fetch('https://able-hare-95.deno.dev/tags', {
+                method: 'POST',
+                body: JSON.stringify({
+                    text: searchText(),
+                    options: {
+                        filter: !data.r18Mode() && `r18 != 1`,
+                    },
+                }),
+            })
+                .then((res) => res.json())
+                .then((res) => {
+                    return res.hits as ITagData[];
+                }),
+        { initValue: [], immediately: false, deps: [searchText] }
+    );
     const context = {
         lists,
+        result,
+        searchText,
         usersCollection,
-        searchText: atom(''),
         TagsHistory,
         redo,
         undo,

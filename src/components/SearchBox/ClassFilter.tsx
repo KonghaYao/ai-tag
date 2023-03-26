@@ -1,11 +1,12 @@
 import { createEffect, createSelector, For, Show, useContext } from 'solid-js';
 import type { ITagData } from '../../app/main/App';
 import { CSVToJSON } from '../../utils/CSVToJSON';
-import { atom, resource } from '@cn-ui/use';
+import { atom, resource, useEffectWithoutFirst } from '@cn-ui/use';
 import { FloatPanelWithAnimate } from '@cn-ui/core';
 import { memoize } from 'lodash-es';
 import { ColorPicker } from '../../utils/ColorPicker';
 import { GlobalData } from '../../store/GlobalData';
+import { Notice } from '../../utils/notice';
 
 const getClassify = memoize(async () => {
     const binary = await fetch('./tagClassify.csv').then((res) => res.blob());
@@ -14,7 +15,7 @@ const getClassify = memoize(async () => {
     return data;
 });
 export const useClassFilter = () => {
-    const { lists, result } = GlobalData.getApp('tag-control')!;
+    const { searchText, result } = GlobalData.getApp('tag-control')!;
     const Colors = new ColorPicker();
     const FilterClass = new Set(['全部']);
     const data = resource(() =>
@@ -29,16 +30,16 @@ export const useClassFilter = () => {
     );
     const selectType = atom('全部');
     const isSelect = createSelector(selectType);
-    createEffect(() => {
+    useEffectWithoutFirst(() => {
         if (FilterClass.has(selectType()) && data.isReady()) {
             if (selectType() === '全部') {
-                result(lists().slice(0, 500));
+                Notice.success('直接搜索即可');
             } else {
                 const showing = data().filter((i) => i.type === selectType());
                 result(showing);
             }
         }
-    });
+    }, [selectType]);
     const ClassFilterList = () => {
         return (
             <Show when={data.isReady()}>

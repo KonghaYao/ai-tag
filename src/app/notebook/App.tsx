@@ -6,13 +6,13 @@ import { Message, MessageHint } from '../../components/MessageHInt';
 import { Notice } from '../../utils/notice';
 import { MagicList } from './MagicList';
 import { GlobalData } from '../../store/GlobalData';
-import { SideApp } from '../SideApp';
 import { BackupPanel } from './BackupPanel';
 export const NoteBookContext = createContext<{
     hidImage: Atom<boolean>;
 }>();
 export const Notebook = () => {
-    const { visibleId } = GlobalData.getApp('side-app');
+    const { visibleId, registerPanel } = GlobalData.getApp('side-app');
+    registerPanel('backup', BackupPanel);
     const { t } = useTranslation();
     const { hidImage, addMagic, IndexList } = GlobalData.getApp('notebook');
 
@@ -94,13 +94,5 @@ export const Notebook = () => {
                 </main>
             </DropReceiver>
         </NoteBookContext.Provider>
-    );
-};
-
-export const NotebookSideApp = () => {
-    return (
-        <SideApp defaultPanel="">
-            <BackupPanel></BackupPanel>
-        </SideApp>
     );
 };

@@ -8,7 +8,7 @@ export type ISideAPPStore = ReturnType<typeof initSideApp>;
 
 export const initSideApp = () => {
     const sideAppMode = atom(!isMobile());
-    const visibleId = atom<PanelIds | ''>('ai-prompt');
+    const visibleId = atom<PanelIds | ''>('');
     const isPanelVisible = createSelector(visibleId);
     const extraPanels = atom(new Map<'' | PanelIds, Component>(), { equals: false });
     const context = {

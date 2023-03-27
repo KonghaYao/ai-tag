@@ -5,6 +5,7 @@
 body {
     margin: 0;
     overflow: hidden;
+    --default-font: 'aclonica', 'jiangxizhuokai';
     @apply select-none bg-slate-900 text-gray-400;
 }
 

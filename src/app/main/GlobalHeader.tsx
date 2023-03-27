@@ -3,6 +3,7 @@ import { Notice } from '../../utils/notice';
 
 import { FloatPanelWithAnimate } from '@cn-ui/core';
 import { GlobalData } from '../../store/GlobalData';
+import { WebViewLink } from '../../Panels/Webview';
 export function GlobalHeader() {
     const { r18Mode } = GlobalData.getApp('data');
     const { visibleId } = GlobalData.getApp('side-app');
@@ -15,12 +16,15 @@ export function GlobalHeader() {
             <sup class="px-2 text-xs text-yellow-300">{__version__}</sup>
             <div class="flex-1"></div>
             <div class="flex cursor-pointer gap-2 text-center text-xs font-thin text-[#f5f3c2]">
+                <WebViewLink href="/news">
+                    新闻
+                    <sup class="italic text-rose-600">NEW</sup>
+                </WebViewLink>
                 <a
                     href="https://magic-tag.notion.site/ee1a0ab136724eb183a29d1fcc56a3d2"
                     target="_blank"
                 >
                     {t('header.Doc')}
-                    <sup class="italic text-rose-600">NEW</sup>
                 </a>
 
                 <span onClick={() => visibleId('feedback')}>{t('header.FeedBack')}</span>

@@ -19,6 +19,7 @@ export type PanelIds =
     | 'talk'
     | 'artist'
     | 'home'
+    | 'news'
     // gallery 的 panel
     | 'detail'
     | 'backup';
@@ -33,8 +34,6 @@ import { useBreakpoints } from '@cn-ui/use';
 export const SideApp = (props: { defaultPanel?: '' | PanelIds; children?: JSXElement }) => {
     const { sideAppMode, visibleId, extraPanels } = GlobalData.getApp('side-app')!;
 
-    if (typeof props.defaultPanel === 'string') visibleId(props.defaultPanel);
-    console.log(visibleId());
     const { isSize } = useBreakpoints();
     // 自动变换 SideAPP 状态
     createEffect(() => sideAppMode(!(isSize('xs') || isSize('sm'))));
@@ -84,6 +83,7 @@ export const SideApp = (props: { defaultPanel?: '' | PanelIds; children?: JSXEle
                         <Panel id="artist" class="flex h-full flex-col overflow-hidden">
                             <ArtistPanel></ArtistPanel>
                         </Panel>
+
                         <For each={[...extraPanels().entries()]}>
                             {([key, Comp]) => {
                                 return (

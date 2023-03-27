@@ -3,14 +3,14 @@ import { GalleryRoot } from '../app/gallery/App';
 import { GlobalInit } from '../app/Global';
 import { SideApp } from '../app/SideApp';
 import Layout from '../layouts/Layout.astro';
-import { Notebook, NotebookSideApp } from '../app/notebook/App';
+import { Notebook } from '../app/notebook/App';
 ---
 
 <Layout title="魔导绪论-笔记">
     <section class="flex font-global justify-center w-screen h-screen overflow-hidden">
         <GlobalInit client:only>
             <Notebook client:only="solid-js" />
-            <NotebookSideApp client:only="solid-js" />
+            <SideApp client:only="solid-js" />
         </GlobalInit>
     </section>
 </Layout>

@@ -79,8 +79,8 @@ export const useIndexedDB = () => {
             return ChangeMagic({ ...oldMagic, demos: [...oldMagic.demos, id] });
         },
         getImage: memoize(async (id: string) => {
-            return database.images.getItem(id).then((res: File) => {
-                return URL.createObjectURL(res);
+            return database.images.getItem<File>(id).then((res) => {
+                return URL.createObjectURL(res!);
             });
         }) as (id: string) => Promise<string>,
         DeleteImage: async (oldMagic: SingleMagic, id: string) => {
@@ -125,7 +125,7 @@ export const useIndexedDB = () => {
             const keys = await database.images.keys();
             for (const key of keys) {
                 const file = await database.images.getItem<File>(key);
-
+                if (!file) throw new Error('访问图片错误 ' + key);
                 sizeCounter += file.size;
                 zip.file(file.name.replace(/(.*)(?=\.\w+$)/, key), file);
                 if (sizeCounter >= 1 * 1024 * 1024) {
@@ -142,11 +142,11 @@ export const useIndexedDB = () => {
 
 const IndexedBackup = {
     async backup<T>(store: LocalForage) {
-        const collection = [];
+        const collection: [string, T][] = [];
         await store.iterate((value, key) => {
-            collection.push([key, value]);
+            collection.push([key, value as T]);
         });
-        return collection as [string, T][];
+        return collection;
     },
     async recover<T>(store: LocalForage, backup: [string, T][]) {
         for (const [key, value] of backup) {

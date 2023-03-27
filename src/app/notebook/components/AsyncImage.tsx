@@ -1,6 +1,6 @@
 import { resource } from '@cn-ui/use';
 import { Component, createResource, Show } from 'solid-js';
-import { useViewer } from '../../src/use/useViewer';
+import { useViewer } from '../../../use/useViewer';
 
 export const AsyncImage: Component<{
     fetch: () => Promise<string>;

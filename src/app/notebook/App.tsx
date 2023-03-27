@@ -1,23 +1,21 @@
-import { Atom, atom } from '@cn-ui/use';
-import { createContext, createSelector } from 'solid-js';
-import { useTranslation } from '../src/i18n';
+import type { Atom } from '@cn-ui/use';
+import { createContext } from 'solid-js';
+import { useTranslation } from '../../i18n';
 import { DropReceiver } from '@cn-ui/headless';
-import { Message, MessageHint } from '../src/components/MessageHInt';
-import { Notice } from '../src/utils/notice';
+import { Message, MessageHint } from '../../components/MessageHInt';
+import { Notice } from '../../utils/notice';
 import { MagicList } from './MagicList';
-import { useIndexedDB } from './use/useIndexedDB';
+import { GlobalData } from '../../store/GlobalData';
+import { SideApp } from '../SideApp';
 import { BackupPanel } from './BackupPanel';
-import { Tabs } from '@cn-ui/core';
-import { Animate } from '@cn-ui/animate';
-import { PanelContext } from '../src/components/Panel';
 export const NoteBookContext = createContext<{
     hidImage: Atom<boolean>;
 }>();
-export const App = () => {
-    const { addMagic, IndexList } = useIndexedDB();
+export const Notebook = () => {
+    const { visibleId } = GlobalData.getApp('side-app');
     const { t } = useTranslation();
-    const hidImage = atom(false);
-    const visibleId = atom('');
+    const { hidImage, addMagic, IndexList } = GlobalData.getApp('notebook');
+
     return (
         <NoteBookContext.Provider value={{ hidImage }}>
             <DropReceiver
@@ -49,9 +47,9 @@ export const App = () => {
                     },
                 }}
             >
-                <main class="font-global m-auto flex h-screen w-full max-w-6xl flex-col items-center overflow-y-hidden overflow-x-visible   text-gray-400">
-                    <header class="absolute z-10  w-full max-w-6xl ">
-                        <main class=" my-4  mx-2 flex items-center divide-x-2 divide-gray-700 rounded-md bg-slate-800 p-2 shadow-lg shadow-gray-900">
+                <main class="font-global relative m-auto flex h-screen w-full max-w-6xl flex-col  items-center   overflow-y-auto overflow-x-visible text-gray-400">
+                    <header class="sticky top-2 z-50  w-full max-w-6xl ">
+                        <section class=" my-4  mx-2 flex items-center divide-x-2 divide-gray-700 rounded-md bg-slate-800 p-2 shadow-lg shadow-gray-900">
                             <header class=" pl-2 pr-4 text-xl">魔咒记忆器</header>
                             <div class="flex flex-1 items-center justify-end ">
                                 <div
@@ -64,19 +62,19 @@ export const App = () => {
                                         }
                                     }}
                                 >
-                                    add
+                                    ✒️
                                 </div>
                                 <div
                                     class="font-icon h-8 w-8 cursor-pointer rounded-md p-1 text-center transition-colors hover:bg-slate-700"
                                     onclick={() => visibleId('backup')}
                                 >
-                                    sync
+                                    🔃
                                 </div>
                                 <div
                                     class="font-icon h-8 w-8 cursor-pointer rounded-md p-1 text-center transition-colors hover:bg-slate-700"
                                     onclick={() => hidImage((i) => !i)}
                                 >
-                                    {hidImage() ? 'hide_image' : 'photo'}
+                                    {hidImage() ? '🪟' : '📷'}
                                 </div>
                                 <div
                                     class="h-fit rounded-md p-1 text-xs hover:bg-slate-700"
@@ -85,29 +83,24 @@ export const App = () => {
                                     📝 {IndexList().length}
                                 </div>
                             </div>
-                        </main>
+                        </section>
                     </header>
 
-                    <main class="flex w-full flex-col overflow-y-auto overflow-x-visible px-2">
+                    <section class="flex w-full flex-col  overflow-x-visible px-2">
                         <MagicList></MagicList>
-                    </main>
-                    <PanelContext.Provider
-                        value={{
-                            visibleId,
-                            isPanelVisible: createSelector(visibleId),
-                        }}
-                    >
-                        <Tabs activeId={visibleId} lazyload>
-                            <Animate group anime="jumpFromBottom" appear>
-                                <BackupPanel></BackupPanel>
-                                <div></div>
-                            </Animate>
-                        </Tabs>
-                    </PanelContext.Provider>
+                    </section>
 
                     <MessageHint></MessageHint>
                 </main>
             </DropReceiver>
         </NoteBookContext.Provider>
+    );
+};
+
+export const NotebookSideApp = () => {
+    return (
+        <SideApp defaultPanel="">
+            <BackupPanel></BackupPanel>
+        </SideApp>
     );
 };

@@ -1,5 +1,5 @@
 import { atom } from '@cn-ui/use';
-import { Component, JSXElement } from 'solid-js';
+import type { Component, JSXElement } from 'solid-js';
 
 export const ExpendText: Component<
     {

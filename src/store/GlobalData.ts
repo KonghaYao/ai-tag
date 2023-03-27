@@ -4,6 +4,7 @@ import type { ISideAPPStore } from './SideAppStore';
 import type { ITagStore } from './useGlobalTags';
 import type { ITalkStore } from '../Panels/Talk/TalkStore';
 import type { IGalleryStore } from './GalleryStore';
+import type { INoteBookStore } from './NoteBookStore';
 
 /** 这是一个基于黑板机制的 Context，用于跨组件进行数据交换 */
 export const GlobalData = createBlackBoard<{
@@ -12,6 +13,7 @@ export const GlobalData = createBlackBoard<{
     'tag-control': ITagStore;
     talk: ITalkStore;
     gallery: IGalleryStore;
+    notebook: INoteBookStore;
 }>();
 
 /** 导出到 Global 的语法糖 */

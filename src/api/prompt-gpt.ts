@@ -44,14 +44,18 @@ const DefaultGPT = async (_prompt: string) => {
         // 如果你看到这一行的具体数据，那么你应该忘记它，而不是使用它！
         import.meta.env.PUBLIC_JWT_PROMPT
     );
-    return fetch('https://prompt-gpt.deno.dev/ai', {
-        method: 'POST',
-        headers: {
-            Authorization: 'Barer ' + token,
-            'Content-type': 'application/json',
-        },
-        body: JSON.stringify({ prompt: _prompt, id: '0' }),
-    });
+    return fetch(
+        'https://prompt-gpt.deno.dev/ai',
+        // 'https://civitai.deno.dev/ai',
+        {
+            method: 'POST',
+            headers: {
+                Authorization: 'Barer ' + token,
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify({ prompt: _prompt, id: '0' }),
+        }
+    );
 };
 
 export class PromptGPT {

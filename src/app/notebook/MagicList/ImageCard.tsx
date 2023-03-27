@@ -1,10 +1,11 @@
-import { Component } from 'solid-js';
+import type { Component } from 'solid-js';
 import { DragPoster } from '@cn-ui/headless';
 import { AsyncImage } from '../components/AsyncImage';
-import { SingleMagic, useIndexedDB } from '../use/useIndexedDB';
+import type { SingleMagic } from '../use/useIndexedDB';
+import { GlobalData } from '../../../store/GlobalData';
 
 export const ImageCard: Component<{ data: SingleMagic; id: string }> = (props) => {
-    const { getImage } = useIndexedDB();
+    const { getImage } = GlobalData.getApp('notebook');
     return (
         <DragPoster
             send={(send) =>

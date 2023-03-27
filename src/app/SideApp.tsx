@@ -1,4 +1,4 @@
-import { For, createEffect, createMemo, useContext } from 'solid-js';
+import { For, JSXElement, createEffect, createMemo, useContext } from 'solid-js';
 import { SettingPanel } from '../Panels/SettingPanel';
 import { UploadPanel } from '../Panels/UploadPanel';
 import { HomePanel } from '../Panels/HomePanel';
@@ -30,7 +30,7 @@ import { PromptGPT } from '../Panels/PromptGPT/PromptGPT';
 import { GlobalData } from '../store/GlobalData';
 import { Panel } from '../components/Panel';
 import { useBreakpoints } from '@cn-ui/use';
-export const SideApp = (props: { defaultPanel?: '' | PanelIds }) => {
+export const SideApp = (props: { defaultPanel?: '' | PanelIds; children?: JSXElement }) => {
     const { sideAppMode, visibleId, extraPanels } = GlobalData.getApp('side-app')!;
 
     if (typeof props.defaultPanel === 'string') visibleId(props.defaultPanel);
@@ -93,6 +93,7 @@ export const SideApp = (props: { defaultPanel?: '' | PanelIds }) => {
                                 );
                             }}
                         </For>
+                        {props.children}
                     </Animate>
                 </nav>
             </section>

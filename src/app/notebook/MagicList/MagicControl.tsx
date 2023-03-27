@@ -1,16 +1,17 @@
-import { ResourceAtom } from '@cn-ui/use';
+import type { ResourceAtom } from '@cn-ui/use';
 import copy from 'copy-to-clipboard';
-import { Component } from 'solid-js';
+import type { Component } from 'solid-js';
 import { DragPoster } from '@cn-ui/headless';
-import { Message } from '../../src/components/MessageHInt';
-import { Notice } from '../../src/utils/notice';
-import { SingleMagic, useIndexedDB } from '../use/useIndexedDB';
+import { Message } from '../../../components/MessageHInt';
+import { Notice } from '../../../utils/notice';
+import type { SingleMagic } from '../use/useIndexedDB';
 import { FloatPanelWithAnimate } from '@cn-ui/core';
+import { GlobalData } from '../../../store/GlobalData';
 
 export const MagicControl: Component<{
     data: ResourceAtom<SingleMagic>;
 }> = (props) => {
-    const { ChangeMagic } = useIndexedDB();
+    const { ChangeMagic } = GlobalData.getApp('notebook');
 
     return (
         <DragPoster
@@ -45,7 +46,7 @@ export const MagicControl: Component<{
                                 });
                     }}
                 >
-                    edit
+                    ✒️
                 </span>
                 <span
                     class="font-icon btn mr-2 whitespace-nowrap bg-sky-600 text-sm text-white"
@@ -54,7 +55,7 @@ export const MagicControl: Component<{
                         Notice.success('复制成功');
                     }}
                 >
-                    copy
+                    📄
                 </span>
             </section>
         </DragPoster>

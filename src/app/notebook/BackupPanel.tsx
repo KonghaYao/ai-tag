@@ -1,10 +1,11 @@
 import { useIndexedDB } from './use/useIndexedDB';
 import { Tab, Tabs, TabsContext, TabsHeader } from '@cn-ui/core';
 import { saveAs } from 'file-saver';
-import { Panel } from '../src/components/Panel';
-import { UploadButton } from '../src/components/UploadButton';
-import { Notice } from '../src/utils/notice';
+import { Panel } from '../../components/Panel';
+import { UploadButton } from '../../components/UploadButton';
+import { Notice } from '../../utils/notice';
 import { useContext } from 'solid-js';
+import { GlobalData } from '../../store/GlobalData';
 
 export const BackupPanel = () => {
     return (
@@ -39,7 +40,7 @@ export const BackupPanel = () => {
 };
 
 export const Export = () => {
-    const { ExportText, ExportImage } = useIndexedDB();
+    const { ExportText, ExportImage } = GlobalData.getApp('notebook');
     return (
         <Tab id="导出">
             <div class="my-2 rounded bg-green-800 p-2 text-sm text-white">
@@ -53,7 +54,7 @@ export const Export = () => {
                         saveAs(data, `魔导绪论导出-${Date.now()}.json`);
                     }}
                 >
-                    <span class="font-icon">photo</span>
+                    <span class="font-icon">📷</span>
                     下载魔咒文件
                 </div>
                 <div
@@ -68,7 +69,7 @@ export const Export = () => {
                         }
                     }}
                 >
-                    <span class="font-icon">photo</span>
+                    <span class="font-icon">📷</span>
                     下载所有图片
                 </div>
             </section>
@@ -76,7 +77,7 @@ export const Export = () => {
     );
 };
 export const Import = () => {
-    const { ImportText, ImportImage } = useIndexedDB();
+    const { ImportText, ImportImage } = GlobalData.getApp('notebook');
     return (
         <Tab id="导入">
             <div class="my-2 rounded bg-blue-800 p-2 text-sm text-white">
@@ -91,7 +92,7 @@ export const Import = () => {
                         });
                     }}
                 >
-                    <span class="font-icon">photo</span>
+                    <span class="font-icon">📷</span>
                     导入魔咒文件
                 </UploadButton>
                 <UploadButton
@@ -105,7 +106,7 @@ export const Import = () => {
                         Notice.success('全部导入完成，请刷新页面');
                     }}
                 >
-                    <span class="font-icon">photo</span>
+                    <span class="font-icon">📷</span>
                     导入所有图片
                 </UploadButton>
             </section>

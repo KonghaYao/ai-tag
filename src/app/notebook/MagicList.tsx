@@ -1,24 +1,20 @@
 import { resource } from '@cn-ui/use';
-import { For, Resource, Show, useContext } from 'solid-js';
+import { For, Show, useContext } from 'solid-js';
 import { DropReceiver } from '@cn-ui/headless';
-import { Message } from '../src/components/MessageHInt';
+import { Message } from '../../components/MessageHInt';
 
-import { Notice } from '../src/utils/notice';
-import { NoteBookContext } from './App';
-import { ExpendText } from './components/ExpendText';
-import { SingleMagic, useIndexedDB } from './use/useIndexedDB';
-import '@cn-ui/animate/src/scale.css';
+import { Notice } from '../../utils/notice';
+import type { SingleMagic } from './use/useIndexedDB';
 import { MagicControl } from './MagicList/MagicControl';
 import { ImageCard } from './MagicList/ImageCard';
-import { AC } from '../src/components/AC';
+import { GlobalData } from '../../store/GlobalData';
 
 export const MagicList = () => {
-    const { IndexList, store, DeleteMagic, ChangeMagic, AddDemoImage, DeleteImage } =
-        useIndexedDB();
-    const { hidImage } = useContext(NoteBookContext);
+    const { hidImage, IndexList, store, DeleteMagic, ChangeMagic, AddDemoImage, DeleteImage } =
+        GlobalData.getApp('notebook');
 
     return (
-        <div class="grid grid-cols-1 gap-4 overflow-y-scroll py-2 pt-24 md:grid-cols-2">
+        <div class="grid grid-cols-1 gap-4 overflow-y-scroll py-2 pb-24 md:grid-cols-2">
             <For
                 each={IndexList()}
                 fallback={
@@ -35,7 +31,9 @@ export const MagicList = () => {
                 }
             >
                 {(item, index) => {
-                    const data = resource<SingleMagic>(() => store.getItem(item));
+                    const data = resource<SingleMagic>(() =>
+                        store.getItem(item).then((res) => res as SingleMagic)
+                    );
                     const DeleteButton = (
                         <DropReceiver
                             detect={{
@@ -65,7 +63,7 @@ export const MagicList = () => {
                                     }
                                 }}
                             >
-                                delete
+                                x
                             </div>
                         </DropReceiver>
                     );
@@ -137,7 +135,7 @@ export const MagicList = () => {
                                         >
                                             <span>{data().title}</span>
 
-                                            <span class="font-icon">edit</span>
+                                            <span class="font-icon">📝</span>
                                         </div>
 
                                         <div class="flex ">{DeleteButton}</div>
@@ -159,7 +157,7 @@ export const MagicList = () => {
                                                     }).then(data.refetch);
                                             }}
                                         >
-                                            edit
+                                            📝
                                         </span>
                                     </span>
                                     <MagicControl data={data}></MagicControl>

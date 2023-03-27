@@ -9,5 +9,5 @@ export default defineConfig({
     integrations: [solidJs(), tailwind()],
     // output: 'server',
 
-    // adapter: netlify(),
+    adapter: netlify(),
 });

@@ -25,7 +25,7 @@ const imagekit = new ImageKit({
     publicKey: 'public_49Srlf9AEpmrR1xMPR7Gh2JafbU=',
     urlEndpoint: 'https://ik.imagekit.io/dfidfiskkxn/',
     /** @ts-ignore */
-    authenticationEndpoint: new URL('/api/upload_auth', location),
+    authenticationEndpoint: new URL('/.netlify/functions/upload_auth', location),
 });
 
 const useSharedUpload = (uploading: Atom<boolean>, username: Atom<string>) => {

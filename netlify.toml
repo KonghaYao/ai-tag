@@ -1,6 +1,6 @@
 [[headers]]
   # Define which paths this specific [[headers]] block will cover.
-  for = "/*.woff2"
+  for = "/**/*.woff2"
 
   cache-control = '''
   public,

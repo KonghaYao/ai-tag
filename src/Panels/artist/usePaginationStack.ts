@@ -2,7 +2,7 @@ import { Atom, atom, usePagination } from '@cn-ui/use';
 import { batch } from 'solid-js';
 
 /** 逐页查询组件，但是是滑动加载的那种，不会清除上次数据
- * @test
+ * @deprecated 使用 @cn-ui/use 中的插件
  */
 export const usePaginationStack = <T>(
     getData: (pageNumber: number, maxPage: Atom<number>) => Promise<T>,

@@ -2,6 +2,8 @@ import { Atom, asyncLock, atom, reflect, resource } from '@cn-ui/use';
 import { GlobalGPT } from '../../../../api/prompt-gpt';
 import { AC } from '../../../../components/AC';
 import { InputOpenAIToken } from '../../../../Panels/PromptGPT/PromptGPT';
+import { Notice } from '../../../../utils/notice';
+import copy from 'copy-to-clipboard';
 
 export const ProModelName = {
     ContinueWriting: '续写',
@@ -73,7 +75,14 @@ export const AIPlace = (props: {
                 <InputOpenAIToken class="flex-1">
                     {GlobalGPT.ownKey ? '使用 Token 中' : '添加 Token 可以添加更多功能'}
                 </InputOpenAIToken>
-
+                <li
+                    onclick={() => {
+                        copy(AIOutput());
+                        Notice.success('复制成功');
+                    }}
+                >
+                    📄
+                </li>
                 <li
                     onclick={() => {
                         props.onConfirm && props.onConfirm(AIOutput());

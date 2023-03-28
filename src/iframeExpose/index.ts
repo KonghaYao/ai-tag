@@ -1,13 +1,14 @@
 import { expose, windowEndpoint } from 'comlink';
 import { DebouncedFunc, debounce } from 'lodash-es';
 import { createEffect, on, useContext } from 'solid-js';
-import { Data, ITagData } from '../app/main/App';
+import type { Data, ITagData } from '../app/main/App';
 import { stringToTags, TagsToString } from '../use/TagsConvertor';
 import { CombineMagic } from '../utils/CombineMagic';
+import { GlobalData } from '../store/GlobalData';
 
 /** 可以对外提供 iframe 服务，但是现在没有在用 */
 export const useIframeExpose = () => {
-    const { usersCollection } = GlobalData.getApp('data')!;
+    const { usersCollection } = GlobalData.getApp('tag-control')!;
     if (self != top) {
         let callbacks: DebouncedFunc<(data: ITagData[]) => void>[] = [];
         createEffect(
@@ -23,7 +24,7 @@ export const useIframeExpose = () => {
                 return true;
             },
 
-            onPromptChange(cb) {
+            onPromptChange(cb: any) {
                 const sendBack = debounce(() => {
                     cb(TagsToString(usersCollection(), '()', true));
                 }, 200);

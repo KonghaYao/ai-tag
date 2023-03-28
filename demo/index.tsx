@@ -7,8 +7,8 @@ import './index.css';
 import { useMagicAPI } from './useMagicAPI';
 
 const App = () => {
-    let container: HTMLIFrameElement;
-    let magic: ReturnType<typeof useMagicAPI>;
+    let container!: HTMLIFrameElement;
+    let magic!: ReturnType<typeof useMagicAPI>;
     onMount(() => {
         magic = useMagicAPI(container);
         magic.getMagicAPI().then(async (api) => {

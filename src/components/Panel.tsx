@@ -41,7 +41,9 @@ export const Panel: Component<PanelEl> = (props) => {
                 classList={{
                     'pointer-event-none': !visible(),
                 }}
+                /** @ts-ignore */
                 onDragOver={props.ondragover}
+                /** @ts-ignore */
                 onDrop={props.ondrop}
                 onClick={(e) => {
                     if (e.target === container) visibleId('');

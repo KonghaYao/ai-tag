@@ -30,7 +30,7 @@ import { ArtistPanel } from '../Panels/artist';
 import { PromptGPT } from '../Panels/PromptGPT/PromptGPT';
 import { GlobalData } from '../store/GlobalData';
 import { Panel } from '../components/Panel';
-import { useBreakpoints } from '@cn-ui/use';
+import { Atom, useBreakpoints } from '@cn-ui/use';
 export const SideApp = (props: { defaultPanel?: '' | PanelIds; children?: JSXElement }) => {
     const { sideAppMode, visibleId, extraPanels } = GlobalData.getApp('side-app')!;
 
@@ -39,7 +39,7 @@ export const SideApp = (props: { defaultPanel?: '' | PanelIds; children?: JSXEle
     createEffect(() => sideAppMode(!(isSize('xs') || isSize('sm'))));
     const hasOpened = createMemo(() => visibleId() !== '');
     return (
-        <Tabs activeId={visibleId} lazyload class="w-full">
+        <Tabs activeId={visibleId as Atom<string>} lazyload class="w-full">
             <section
                 class=" flex h-full w-full flex-none flex-col place-content-center text-gray-400 transition-all duration-500"
                 classList={{

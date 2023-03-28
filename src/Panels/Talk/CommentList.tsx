@@ -1,7 +1,7 @@
 import { resource } from '@cn-ui/use';
 import { Component, For, Show, createEffect, useContext } from 'solid-js';
 import { AV } from '../../api/cloud';
-import { usePagination } from '@cn-ui/headless';
+import { usePagination } from '@cn-ui/use';
 import { timeAgo } from './timeage';
 import { TalkMarkdown } from './TalkMarkdown';
 import type { Queriable } from 'leancloud-storage';

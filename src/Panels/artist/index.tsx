@@ -86,7 +86,8 @@ const artistTypeList = {
     brutalism: '野蛮主义',
     Caravaggisti: '卡拉瓦乔主义',
 };
-import { DragPoster, useSelect } from '@cn-ui/headless';
+import { DragPoster } from '@cn-ui/headless';
+import { useSelect } from '@cn-ui/use';
 import { Panel } from '../../components/Panel';
 import { AV } from '../../api/cloud';
 import { For, Show, createContext, createMemo, useContext } from 'solid-js';

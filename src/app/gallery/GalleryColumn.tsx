@@ -6,7 +6,8 @@ import { DragPoster } from '@cn-ui/headless';
 import { BackupImage } from './BackupImage';
 import { GlobalData } from '../../store/GlobalData';
 
-export const PictureCard: Component<StoreData & { index: number }> = (item) => {
+export const PictureCard: Component<{ index: number; data: StoreData }> = (props) => {
+    const { index, data: item } = props;
     const { visibleId } = GlobalData.getApp('side-app');
     const { ShowingPicture, getViewer, searchText, ShowingPictureURL } =
         GlobalData.getApp('gallery');
@@ -53,7 +54,7 @@ export const PictureCard: Component<StoreData & { index: number }> = (item) => {
                         {/*  操作按钮 */}
                         <div
                             class="font-icon h-7 w-7 cursor-pointer rounded-full bg-lime-500  text-center text-lg  text-white"
-                            onclick={() => getViewer().view(item.index)}
+                            onclick={() => getViewer().view(index)}
                         >
                             📷
                         </div>

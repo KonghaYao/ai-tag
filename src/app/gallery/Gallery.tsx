@@ -1,7 +1,7 @@
 import { ScrollLoading } from './ScrollLoading';
 import { PictureCard } from './GalleryColumn';
 import { WaterFall } from '@cn-ui/core';
-import { reflect, useBreakpoints } from '@cn-ui/use';
+import { Atom, reflect, useBreakpoints } from '@cn-ui/use';
 import { GlobalData } from '../../store/GlobalData';
 import type { StoreData } from '../../api/notion';
 
@@ -9,7 +9,7 @@ const rebuildArray = () => {
     const { showingData } = GlobalData.getApp('gallery');
     const { size } = useBreakpoints();
     /** 根据屏幕长度转换列数 */
-    const columns = reflect(() => {
+    const columns = reflect((): number => {
         switch (size()) {
             case 'md':
                 return 3;
@@ -42,9 +42,9 @@ const rebuildArray = () => {
             vertical[index].push(element);
         });
         let maxCount = Math.max(...vertical.map((i) => i.length));
-        let final = [];
+        let final: StoreData[] = [];
         for (let i = 0; i < maxCount; i++) {
-            final.push(...vertical.map((i) => i.shift()));
+            final.push(...vertical.map((i) => i.shift()!));
         }
         return final;
     });
@@ -63,11 +63,12 @@ export const Gallery = () => {
                 column={columns}
                 class="gap-2 sm:gap-4"
                 colClass="gap-2 sm:gap-4"
+                fallback={() => <div>没有数据哦</div>}
             >
                 {(item, index) => {
                     // item 为否定值时，表示为占位符
                     if (!item) return null;
-                    return <PictureCard {...item} index={index!()}></PictureCard>;
+                    return <PictureCard data={item} index={index!()}></PictureCard>;
                 }}
             </WaterFall>
         </div>

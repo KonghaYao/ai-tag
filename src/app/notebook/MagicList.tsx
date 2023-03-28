@@ -129,7 +129,7 @@ export const MagicList = () => {
                                                 );
                                                 if (cb)
                                                     ChangeMagic({ ...data(), title: cb }).then(
-                                                        data.refetch
+                                                        (res) => data.refetch()
                                                     );
                                             }}
                                         >
@@ -154,7 +154,7 @@ export const MagicList = () => {
                                                     ChangeMagic({
                                                         ...data(),
                                                         description: cb,
-                                                    }).then(data.refetch);
+                                                    }).then(() => data.refetch());
                                             }}
                                         >
                                             📝

@@ -10,7 +10,7 @@ export const useMagicAPI = (ifr: HTMLIFrameElement) => {
     let prepare = new Promise((resolve) => {
         ifr.onload = resolve;
     }).then(() => {
-        return wrap<MagicAPI>(windowEndpoint(ifr.contentWindow));
+        return wrap<MagicAPI>(windowEndpoint(ifr.contentWindow!));
     });
 
     return {

@@ -1,7 +1,7 @@
 import { pick } from 'lodash-es';
 import { nanoid } from 'nanoid';
 import type { GlobalGPT } from '../../api/prompt-gpt';
-import type { AllModelName } from './Editor/Common/AIPlace';
+import type { AllModelName } from '../../api/prompt-gpt/CNModelName';
 export interface Comment {}
 
 export interface Article {
@@ -31,7 +31,13 @@ export class BaseBlock {
 
 export class TextBlock extends BaseBlock {
     type = 'text';
-    supportAI = ['textToTags', 'TagsToText', 'textToText'] as const;
+    supportAI = [
+        'textToTags',
+        'TagsToText',
+        'textToText',
+        'ContinueWriting',
+        'AskAnything',
+    ] as const;
 }
 export class TagsBlock extends BaseBlock {
     type = 'tags';

@@ -57,7 +57,7 @@ export const ToolTips: Component<{
                                 {item.desc}
                             </span>
                             <Show when={isSelect()}>
-                                <span class="float-right">✅</span>
+                                <span class="float-right">↩️</span>
                             </Show>
                         </li>
                     );

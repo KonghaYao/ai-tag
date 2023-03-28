@@ -2,7 +2,7 @@ import { Component, Show } from 'solid-js';
 import { ContentEditable } from '../../../../components/ContentEditable';
 import { Atom, DebounceAtom, reflect, resource } from '@cn-ui/use';
 import { FloatPanel } from '@cn-ui/core';
-import { ToolTips } from './ToolTips';
+import { ToolTips } from '../Common/ToolTips';
 import { splitTextToAutoComplete } from '../Common/splitTextToAutoComplete';
 
 export const FullTextEditor: Component<{

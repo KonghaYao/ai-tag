@@ -9,9 +9,9 @@ export const Transformers = (props: { children?: JSXElement; block: BaseBlock })
         const { move, content } = useContext(WriterContext)!;
         const isConfirmDelete = atom(false);
         return (
-            <ul class="w-full whitespace-nowrap rounded-lg  bg-slate-800 p-2">
+            <ul class="w-full cursor-pointer whitespace-nowrap  rounded-lg bg-slate-800 p-2">
                 <li class="hover:bg-slate-600" onclick={() => move(props.block, 'up')}>
-                    上移
+                    🔼上移
                 </li>
                 <li
                     class="hover:bg-slate-600"
@@ -19,10 +19,10 @@ export const Transformers = (props: { children?: JSXElement; block: BaseBlock })
                         isConfirmDelete() ? content.remove(props.block) : isConfirmDelete(true)
                     }
                 >
-                    {isConfirmDelete() ? '你确定？' : '删除这块'}
+                    {isConfirmDelete() ? '⁉️你确定？' : '🚫删除这块'}
                 </li>
                 <li class="hover:bg-slate-600" onclick={() => move(props.block, 'down')}>
-                    下移
+                    🔽下移
                 </li>
             </ul>
         );

@@ -1,4 +1,4 @@
-import { For, Match, Switch } from 'solid-js';
+import { For, Match, Switch, useContext } from 'solid-js';
 import { TextEditor } from './Editor/TextEditor';
 import { TagsEditor } from './Editor/TagsEditor';
 import { ArrayAtom, atom } from '@cn-ui/use';
@@ -71,31 +71,28 @@ export const Writer = () => {
                             );
                         }}
                     </For>
-                    <aside class="h-full min-h-[20vh]">
-                        <div>
-                            <span
-                                onclick={() => {
-                                    inputs.content((i) => [...i, createBlockByType('text')]);
-                                }}
-                            >
-                                添加
-                            </span>
-                            <select
-                                class="bg-slate-200"
-                                oninput={(e) => {
-                                    inputs.content((i) => [
-                                        ...i,
-                                        createBlockByType((e.target as any).value),
-                                    ]);
-                                }}
-                            >
-                                <option value="text">文本</option>
-                                <option value="tags">标签</option>
-                            </select>
-                        </div>
+                    <aside class="flex h-full min-h-[20vh] justify-center">
+                        <BlockAdd></BlockAdd>
                     </aside>
                 </article>
             </main>
         </WriterContext.Provider>
+    );
+};
+
+export const BlockAdd = () => {
+    const inputs = useContext(WriterContext)!;
+    let ref!: HTMLSelectElement;
+    const addToBlocks = () => {
+        inputs.content((i) => [...i, createBlockByType(ref.value as any)]);
+    };
+    return (
+        <div class="cursor-pointer">
+            <span onclick={addToBlocks}>添加一个</span>
+            <select ref={ref} class="bg-slate-800" oninput={addToBlocks}>
+                <option value="text">文本</option>
+                <option value="tags">标签</option>
+            </select>
+        </div>
     );
 };

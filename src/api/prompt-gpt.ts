@@ -1,9 +1,7 @@
-import { sign } from '@tsndr/cloudflare-worker-jwt';
+import { DefaultGPT } from './prompt-gpt/DefaultGPT';
+import { InstructGPT } from './prompt-gpt/InstructGPT';
 async function* readStreamAsTextLines(stream: ReadableStream<Uint8Array>) {
-    const linesReader = stream
-        .pipeThrough(new TextDecoderStream())
-
-        .getReader();
+    const linesReader = stream.pipeThrough(new TextDecoderStream()).getReader();
     while (true) {
         const { value, done } = await linesReader.read();
         if (done) break;
@@ -13,50 +11,6 @@ async function* readStreamAsTextLines(stream: ReadableStream<Uint8Array>) {
 interface Notify {
     (text: string, per: number): void;
 }
-
-const InstructGPT = (_prompt: string, token: string) => {
-    console.log('使用自己的TOKEN: ', _prompt);
-    return fetch('https://openai-proxy-magic.deno.dev', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-            model: 'text-davinci-003',
-            temperature: 0.9,
-            max_tokens: 150,
-            top_p: 1,
-            frequency_penalty: 0,
-            presence_penalty: 0.6,
-            stop: ['\n提问:', '\nAI:'],
-            prompt: `\n提问:` + _prompt + `\nAI:`,
-            stream: true,
-        }),
-    });
-};
-const DefaultGPT = async (_prompt: string) => {
-    console.log('使用默认服务: ', _prompt);
-    const token = await sign(
-        {
-            name: Math.random().toString() + Date.now(),
-        },
-        // 如果你看到这一行的具体数据，那么你应该忘记它，而不是使用它！
-        import.meta.env.PUBLIC_JWT_PROMPT
-    );
-    return fetch(
-        'https://prompt-gpt.deno.dev/ai',
-        // 'https://civitai.deno.dev/ai',
-        {
-            method: 'POST',
-            headers: {
-                Authorization: 'Barer ' + token,
-                'Content-type': 'application/json',
-            },
-            body: JSON.stringify({ prompt: _prompt, id: '0' }),
-        }
-    );
-};
 
 export class PromptGPT {
     constructor() {}

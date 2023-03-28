@@ -4,18 +4,7 @@ import { AC } from '../../../../components/AC';
 import { InputOpenAIToken } from '../../../../Panels/PromptGPT/PromptGPT';
 import { Notice } from '../../../../utils/notice';
 import copy from 'copy-to-clipboard';
-
-export const ProModelName = {
-    ContinueWriting: '续写',
-    AskAnything: '提问',
-};
-export const BaseModelName = { textToTags: '文生词', TagsToText: '词生文', textToText: '文生文' };
-
-export const AllModelName = { ...BaseModelName, ...ProModelName };
-
-export const CNModelName = { ...BaseModelName, ...ProModelName } as {
-    [A in keyof typeof GlobalGPT]: string;
-};
+import { CNModelName } from '../../../../api/prompt-gpt/CNModelName';
 
 export const AIPlace = (props: {
     input: Atom<string>;
@@ -85,7 +74,7 @@ export const AIPlace = (props: {
                         Notice.success('复制成功');
                     }}
                 >
-                    📄
+                    📋
                 </li>
 
                 <li title="重新生成" onclick={asyncLock(() => data.refetch())}>

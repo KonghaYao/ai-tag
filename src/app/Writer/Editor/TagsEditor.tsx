@@ -11,7 +11,7 @@ import { splitTextToAutoComplete } from './Common/splitTextToAutoComplete';
 import { Transformers } from './Common/Transformers';
 import copy from 'copy-to-clipboard';
 import { Notice } from '../../../utils/notice';
-import { ToolTips } from './Text/ToolTips';
+import { ToolTips } from './Common/ToolTips';
 
 export const TagsEditor: Component<{ block: BaseBlock }> = (props) => {
     const { emphasizeAddMode, deleteMode, changeTagMode } = GlobalData.getApp('data');
@@ -48,7 +48,7 @@ export const TagsEditor: Component<{ block: BaseBlock }> = (props) => {
                         copy(TagsToString(userCollection())), Notice.success('复制成功')
                     )}
                 >
-                    📝
+                    📋
                 </li>
                 <li
                     class="cursor-pointer"

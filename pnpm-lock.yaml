@@ -8,6 +8,7 @@ specifiers:
   '@cn-ui/core': ^1.7.1
   '@cn-ui/headless': ^1.12.0
   '@cn-ui/markdown': ^1.0.0
+  '@cn-ui/reactive': 2.2.0
   '@cn-ui/sortable': ^2.1.3
   '@cn-ui/transition': ^1.7.4
   '@cn-ui/use': ^2.0.4
@@ -70,6 +71,7 @@ dependencies:
   '@cn-ui/core': 1.7.1_iyw26i6e4v7nzq54n6w5picx7a
   '@cn-ui/headless': 1.12.0
   '@cn-ui/markdown': registry.npmmirror.com/@cn-ui/markdown/1.0.0_spiagbkzsgdu545vwlmzvcqgkm
+  '@cn-ui/reactive': 2.2.0
   '@cn-ui/sortable': registry.npmmirror.com/@cn-ui/sortable/2.1.3_spiagbkzsgdu545vwlmzvcqgkm
   '@cn-ui/transition': registry.npmmirror.com/@cn-ui/transition/1.7.4_spiagbkzsgdu545vwlmzvcqgkm
   '@cn-ui/use': 2.0.4
@@ -217,10 +219,18 @@ packages:
       '@cn-ui/use': 2.0.4
     dev: false
 
+  /@cn-ui/reactive/2.2.0:
+    resolution: {integrity: sha512-E7i1R2rHbhk3rSVNxGQFmE9vlM14HwQg5PxjnFoH43E8SynwgANbEc3srSHAN4itd41KRgCMmNph1gmSxInvXA==}
+    dependencies:
+      lodash-es: 4.17.21
+      mitt: 3.0.0
+      solid-js: 1.6.16
+    dev: false
+
   /@cn-ui/use/2.0.4:
     resolution: {integrity: sha512-59m45uExbdkjVTaf/92SpvZ2LSONIqwXfr5veb7Pkp2ap6dMqKutf/Zj32/VW/KBAXLLKiQAhdeeZmCR7JUaRg==}
     dependencies:
-      '@cn-ui/reactive': registry.npmmirror.com/@cn-ui/reactive/2.1.2
+      '@cn-ui/reactive': 2.2.0
       '@types/lodash-es': registry.npmmirror.com/@types/lodash-es/4.17.7
       lodash-es: registry.npmmirror.com/lodash-es/4.17.21
       solid-js: registry.npmmirror.com/solid-js/1.6.16
@@ -440,6 +450,10 @@ packages:
     dev: false
     optional: true
 
+  /csstype/3.1.1:
+    resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
+    dev: false
+
   /esbuild-android-64/0.15.18:
     resolution: {integrity: sha512-wnpt3OXRhcjfIDSZu9bnzT4/TNTDsOUvip0foZOUBG7QbSt//w3QV4FInVJxNhKc/ErhUxc5z4QjHtMi7/TbgA==}
     engines: {node: '>=12'}
@@ -609,6 +623,20 @@ packages:
 
   /graceful-fs/4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
+
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: false
+
+  /mitt/3.0.0:
+    resolution: {integrity: sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==}
+    dev: false
+
+  /solid-js/1.6.16:
+    resolution: {integrity: sha512-Ng4CahvLlpGA3BXIMiiMdwhI8WpObZ8gXqm97GCKR4+MpnODs6Pdpco+tmVCY/4ZDFaEKDxz7WRLAAdoXdlY7w==}
+    dependencies:
+      csstype: 3.1.1
+    dev: false
 
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
@@ -1217,16 +1245,6 @@ packages:
       unified: registry.npmmirror.com/unified/10.1.2
     transitivePeerDependencies:
       - supports-color
-    dev: false
-
-  registry.npmmirror.com/@cn-ui/reactive/2.1.2:
-    resolution: {integrity: sha512-AG2/hVTab1/OAN8yxYZxbHh1Rh7gWK6bzi/WuitjF8e98oNWYtkRhISBZEhbHm3M+h9mdU1lQprsPX7dRwStGg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@cn-ui/reactive/-/reactive-2.1.2.tgz}
-    name: '@cn-ui/reactive'
-    version: 2.1.2
-    dependencies:
-      lodash-es: registry.npmmirror.com/lodash-es/4.17.21
-      mitt: registry.npmmirror.com/mitt/3.0.0
-      solid-js: registry.npmmirror.com/solid-js/1.6.16
     dev: false
 
   registry.npmmirror.com/@cn-ui/sortable/2.1.3_spiagbkzsgdu545vwlmzvcqgkm:

@@ -37,6 +37,7 @@ export const TextEditor: Component<{ block: BaseBlock }> = (props) => {
             </div>
             <Show when={showAIPanel()}>
                 <AIPlace
+                    block={props.block}
                     method={model}
                     input={text}
                     onClose={() => showAIPanel(false)}

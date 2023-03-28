@@ -1,5 +1,6 @@
 import { DefaultGPT } from './prompt-gpt/DefaultGPT';
 import { InstructGPT } from './prompt-gpt/InstructGPT';
+import { needToken } from './prompt-gpt/usingToken';
 async function* readStreamAsTextLines(stream: ReadableStream<Uint8Array>) {
     const linesReader = stream.pipeThrough(new TextDecoderStream()).getReader();
     while (true) {
@@ -11,13 +12,8 @@ async function* readStreamAsTextLines(stream: ReadableStream<Uint8Array>) {
 interface Notify {
     (text: string, per: number): void;
 }
-
 export class PromptGPT {
-    constructor() {}
-
-    /**
-     * 基础描述文本生成长文本
-     */
+    /** 基础描述文本生成长文本 */
     textToText(text: string, length = 20, notify: Notify) {
         return this.query(
             {
@@ -27,9 +23,7 @@ export class PromptGPT {
             notify
         );
     }
-    /**
-     * 基础描述文本生成 Tags 组
-     */
+    /** 基础描述文本生成 Tags 组     */
     textToTags(text: string, length = 20, notify: Notify) {
         return this.query(
             {
@@ -39,9 +33,7 @@ export class PromptGPT {
             notify
         );
     }
-    /**
-     * Tags 转化为文本
-     */
+    /** Tags 转化为文本 */
     TagsToText(text: string, length = 20, notify: Notify) {
         return this.query(
             {
@@ -52,6 +44,7 @@ export class PromptGPT {
         );
     }
     /** 续写文本 */
+    @needToken
     ContinueWriting(text: string, length: number, notify: Notify) {
         return this.query(
             { id: '0', prompt: `请以 ${text} 开头，写出 ${length} 字左右的句子` },
@@ -59,6 +52,7 @@ export class PromptGPT {
         );
     }
     /** 直接提问 */
+    @needToken
     AskAnything(text: string, _: number, notify: Notify) {
         return this.query({ id: '0', prompt: text }, notify);
     }

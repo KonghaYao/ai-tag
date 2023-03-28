@@ -8,18 +8,6 @@ import { WriterContext } from './WriterContext';
 import { GlobalHeader } from '../main/GlobalHeader';
 import { BaseBlock, Article, createBlockByType } from './interface';
 
-// export class BlockConvert {
-//     static createBlock(): BaseBlock {
-//         return {
-//             type: 'text',
-//             comment: [],
-//             history: [],
-//             content: { text: '' },
-//             id: nanoid(),
-//         };
-//     }
-// }
-
 export const useTagsArticle = (json: Article | undefined) => {
     const Article: Article = json ?? { id: nanoid(), content: [] };
     const content = ArrayAtom(atom(Article.content));

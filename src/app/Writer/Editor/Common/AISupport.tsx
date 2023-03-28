@@ -12,8 +12,6 @@ export const AISupport = (props: { model: Atom<keyof typeof GlobalGPT>; block: B
                 return (
                     <Show when={show()}>
                         <ul class="w-full whitespace-nowrap rounded-lg  bg-slate-800 p-2">
-                            <li>🎆AI 辅助</li>
-
                             <For
                                 each={props.block.supportAI.map((i) => {
                                     return [i, CNModelName[i]];

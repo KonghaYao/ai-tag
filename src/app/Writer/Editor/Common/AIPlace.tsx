@@ -5,15 +5,17 @@ import { InputOpenAIToken } from '../../../../Panels/PromptGPT/PromptGPT';
 import { Notice } from '../../../../utils/notice';
 import copy from 'copy-to-clipboard';
 import { CNModelName } from '../../../../api/prompt-gpt/CNModelName';
+import { For } from 'solid-js';
+import type { BaseBlock } from '../../interface';
 
 export const AIPlace = (props: {
+    block: BaseBlock;
     input: Atom<string>;
     onConfirm: (text: string) => void;
     onClose: () => void;
     method: Atom<keyof typeof GlobalGPT>;
 }) => {
     const method = props.method;
-    const modelName = reflect(() => CNModelName[method()]);
     const AIOutput = atom('');
     const length = atom(30);
     const data = resource(
@@ -28,7 +30,25 @@ export const AIPlace = (props: {
     return (
         <article class="h-full flex-1 overflow-scroll border-t border-solid border-slate-400 pt-2">
             <div>
-                ✨ <span class="px-2">{modelName()}</span>
+                ✨
+                <select
+                    class="mx-2 bg-slate-800 outline-none"
+                    value={method()}
+                    onchange={(e) => {
+                        method(() => (e.target as any).value);
+                        data.refetch();
+                    }}
+                >
+                    <For
+                        each={props.block.supportAI.map((i) => {
+                            return [CNModelName[i], i];
+                        })}
+                    >
+                        {([key, value]) => {
+                            return <option value={value}>{key}</option>;
+                        }}
+                    </For>
+                </select>
                 GPT for You
                 <label
                     class="float-right inline-flex items-center"
@@ -55,11 +75,7 @@ export const AIPlace = (props: {
                 error={(e) => {
                     console.error(e.error());
                     return (
-                        <div class="text-sm text-rose-600">
-                            发生错误了😂
-                            <br />
-                            <span class="text-sm text-rose-700">{e.error().message}</span>
-                        </div>
+                        <div class="text-sm text-rose-600">发生错误了😂:{e.error().message}</div>
                     );
                 }}
             ></AC>

@@ -1,7 +1,7 @@
-import { Component, For, Show, batch, createEffect } from 'solid-js';
-import type { Block } from '../App';
+import { Component, Show, batch } from 'solid-js';
+import type { BaseBlock } from '../interface';
 import { TagsRow } from '../../main/UserSelected';
-import { Atom, DebounceAtom, ResourceAtom, addListener, atom, reflect, resource } from '@cn-ui/use';
+import { Atom, DebounceAtom, atom, reflect, resource } from '@cn-ui/use';
 import { TagsToString, stringToTags } from '../../../use/TagsConvertor';
 import { GlobalData } from '../../../store/GlobalData';
 import { ContentEditable } from '../../../components/ContentEditable';
@@ -11,14 +11,15 @@ import { splitTextToAutoComplete } from './Common/splitTextToAutoComplete';
 import { Transformers } from './Common/Transformers';
 import copy from 'copy-to-clipboard';
 import { Notice } from '../../../utils/notice';
+import { ToolTips } from './Text/ToolTips';
 
-export const TagsEditor: Component<{ block: Block }> = (props) => {
+export const TagsEditor: Component<{ block: BaseBlock }> = (props) => {
     const { emphasizeAddMode, deleteMode, changeTagMode } = GlobalData.getApp('data');
     const userCollection = atom(stringToTags(props.block.content.text));
 
     const inputMode = atom(true);
     return (
-        <div class="flex items-center gap-2  rounded-xl border border-solid border-slate-600 p-2">
+        <nav class="flex items-center gap-2  rounded-xl border border-solid border-slate-600 p-2">
             <ul class="flex flex-col items-center gap-1">
                 <li
                     class="cursor-pointer"
@@ -68,71 +69,7 @@ export const TagsEditor: Component<{ block: Block }> = (props) => {
                     <TagsSearch userCollection={userCollection}></TagsSearch>
                 </Show>
             </div>
-        </div>
-    );
-};
-
-export const ToolTips: Component<{
-    infoList: ResourceAtom<(ITagData & { originText: string })[]>;
-    text: Atom<string>;
-}> = ({ infoList, text }) => {
-    const focusing = atom(0);
-    let container!: HTMLUListElement;
-    addListener(window, 'keydown', (e: any) => {
-        switch (e.key) {
-            case 'ArrowDown':
-                e.preventDefault();
-                focusing((i) => (i < infoList().length - 1 ? i + 1 : i));
-                break;
-            case 'ArrowUp':
-                e.preventDefault();
-                focusing((i) => (i > 0 ? i - 1 : i));
-                break;
-            case 'Enter':
-                e.preventDefault();
-                (container?.children[focusing()] as HTMLElement)?.click();
-                break;
-        }
-    });
-
-    return (
-        <ul ref={container} class="mt-2 w-full max-w-sm rounded-md bg-slate-800 p-2 text-slate-300">
-            <For each={infoList()}>
-                {(item, index) => {
-                    let it!: HTMLLIElement;
-                    const isSelect = reflect(() => focusing() === index());
-                    createEffect(() => {
-                        isSelect() && it!.scrollIntoView(false);
-                    });
-                    return (
-                        <li
-                            class="pl-2 hover:bg-slate-600"
-                            classList={{
-                                'bg-slate-700': isSelect(),
-                            }}
-                            onclick={(e) => {
-                                console.log(it.textContent);
-                                batch(() => {
-                                    text(item.originText + it.textContent + ' ');
-                                    infoList([]);
-                                });
-                            }}
-                        >
-                            <span class="pr-4">{item.cn}</span>
-                            <span
-                                ref={it}
-                                class="max-w-[50%] text-ellipsis whitespace-nowrap text-xs text-slate-200"
-                            >
-                                {item.en}
-                            </span>
-                            <Show when={isSelect()}>
-                                <span class="float-right">✅</span>
-                            </Show>
-                        </li>
-                    );
-                }}
-            </For>
-        </ul>
+        </nav>
     );
 };
 
@@ -161,6 +98,13 @@ export const TagsSearch = (props: { userCollection: Atom<ITagData[]> }) => {
         { immediately: false, initValue: [], deps: [DebounceAtom(text, 200)] }
     );
     const visible = reflect(() => !!infoList().length);
+    const tooltipsProvider = reflect<{ originText: string; value: string; desc?: string }[]>(() =>
+        infoList().map((i) => ({
+            originText: i.originText,
+            value: i.en,
+            desc: i.cn,
+        }))
+    );
     return (
         <FloatPanel
             class="flex h-full w-full items-center rounded-md py-1"
@@ -170,7 +114,10 @@ export const TagsSearch = (props: { userCollection: Atom<ITagData[]> }) => {
                 return (
                     <Show when={show()}>
                         <aside class="max-h-[50vh] overflow-auto">
-                            <ToolTips text={text} infoList={infoList}></ToolTips>
+                            <ToolTips
+                                onConfirm={(str) => text(str)}
+                                infoList={tooltipsProvider}
+                            ></ToolTips>
                         </aside>
                     </Show>
                 );
@@ -185,8 +132,9 @@ export const TagsSearch = (props: { userCollection: Atom<ITagData[]> }) => {
                     oninput={(e) => text((e.target as any).value)}
                     // 避免立即删除
                     onblur={() => setTimeout(() => visible(false), 100)}
-                    onKeyDown={(e: any) => {
+                    onKeyDown={(e: Event & any) => {
                         if (e.ctrlKey && e.key === 'Enter') {
+                            e.stopPropagation();
                             batch(() => {
                                 props.userCollection((i) => [...i, ...stringToTags(text(), [])]);
                                 text('');

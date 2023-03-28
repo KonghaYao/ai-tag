@@ -1,10 +1,10 @@
 import { JSXElement, Show, useContext } from 'solid-js';
 import { atom } from '@cn-ui/use';
-import type { Block } from '../../App';
+import type { BaseBlock } from '../../interface';
 import { WriterContext } from '../../WriterContext';
 import { FloatPanel } from '@cn-ui/core';
 
-export const Transformers = (props: { children?: JSXElement; block: Block }) => {
+export const Transformers = (props: { children?: JSXElement; block: BaseBlock }) => {
     const Floating = () => {
         const { move, content } = useContext(WriterContext)!;
         const isConfirmDelete = atom(false);

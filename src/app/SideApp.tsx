@@ -39,9 +39,9 @@ export const SideApp = (props: { defaultPanel?: '' | PanelIds; children?: JSXEle
     createEffect(() => sideAppMode(!(isSize('xs') || isSize('sm'))));
     const hasOpened = createMemo(() => visibleId() !== '');
     return (
-        <Tabs activeId={visibleId as Atom<string>} lazyload class="w-full">
+        <Tabs activeId={visibleId as Atom<string>} lazyload>
             <section
-                class=" flex h-full w-full flex-none flex-col place-content-center text-gray-400 transition-all duration-500"
+                class=" flex h-full  flex-none flex-col place-content-center text-gray-400 transition-all duration-500"
                 classList={{
                     'flex-1 blur-background w-full md:w-96': hasOpened(),
                     'pointer-events-none w-0': !hasOpened(),

@@ -1,6 +1,6 @@
 import { Component, For, Show, createEffect } from 'solid-js';
 import { Atom, atom, reflect, useEffectWithoutFirst } from '@cn-ui/use';
-import type { Block } from '../App';
+import type { BaseBlock } from '../interface';
 import { FullTextEditor } from './Text/FullTextEditor';
 import { FloatPanel } from '@cn-ui/core';
 import { AIPlace, BaseModelName, CNModelName } from './Common/AIPlace';
@@ -8,7 +8,7 @@ import { GlobalGPT } from '../../../api/prompt-gpt';
 import copy from 'copy-to-clipboard';
 import { Notice } from '../../../utils/notice';
 import { Transformers } from './Common/Transformers';
-export const AISupport = (props: { model: Atom<keyof typeof GlobalGPT> }) => {
+export const AISupport = (props: { model: Atom<keyof typeof GlobalGPT>; block: BaseBlock }) => {
     return (
         <FloatPanel
             popup={({ show }) => {
@@ -20,7 +20,7 @@ export const AISupport = (props: { model: Atom<keyof typeof GlobalGPT> }) => {
                             <For
                                 each={Object.entries(
                                     GlobalGPT.ownKey ? CNModelName : BaseModelName
-                                )}
+                                ).reverse()}
                             >
                                 {([key, value]) => {
                                     return (
@@ -43,7 +43,7 @@ export const AISupport = (props: { model: Atom<keyof typeof GlobalGPT> }) => {
     );
 };
 
-export const TextEditor: Component<{ block: Block }> = (props) => {
+export const TextEditor: Component<{ block: BaseBlock }> = (props) => {
     const text = atom(props.block.content.text);
     const showAIPanel = atom(false);
     const model = atom<keyof typeof GlobalGPT>('textToText', { equals: false });
@@ -61,11 +61,14 @@ export const TextEditor: Component<{ block: Block }> = (props) => {
                     >
                         📄
                     </li>
-                    <AISupport model={model}></AISupport>
+                    <AISupport model={model} block={props.block}></AISupport>
                     <Transformers block={props.block}></Transformers>
                 </ul>
 
-                <FullTextEditor text={text}></FullTextEditor>
+                <FullTextEditor
+                    placeholder="这里可以输入文本进行描述，通过 ✨ 按钮使用 AI"
+                    text={text}
+                ></FullTextEditor>
             </div>
             <Show when={showAIPanel()}>
                 <AIPlace

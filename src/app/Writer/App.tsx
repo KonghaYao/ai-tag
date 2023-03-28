@@ -2,52 +2,30 @@ import { For, Match, Switch } from 'solid-js';
 import { TextEditor } from './Editor/TextEditor';
 import { TagsEditor } from './Editor/TagsEditor';
 import { ArrayAtom, atom } from '@cn-ui/use';
-interface Comment {}
 
-export interface Block {
-    id: string;
-    type: string;
-    history: string[]; // 根据 id 获取到历史 Block
-    content: {
-        text: string;
-    };
-    comment: Comment[];
-}
-
-interface Article {
-    id: string;
-    content: Block[];
-}
 import { nanoid } from 'nanoid';
 import { WriterContext } from './WriterContext';
 import { GlobalHeader } from '../main/GlobalHeader';
-export class BlockConvert {
-    static extendsBlock(block: Block): Block {
-        return {
-            ...block,
-            comment: [...block.comment],
-            history: [block.id, ...block.history],
-            content: { ...block.content },
-            id: nanoid(),
-        };
-    }
-    static createBlock(): Block {
-        return {
-            type: 'text',
-            comment: [],
-            history: [],
-            content: { text: '' },
-            id: nanoid(),
-        };
-    }
-}
+import { BaseBlock, Article, createBlockByType } from './interface';
+
+// export class BlockConvert {
+//     static createBlock(): BaseBlock {
+//         return {
+//             type: 'text',
+//             comment: [],
+//             history: [],
+//             content: { text: '' },
+//             id: nanoid(),
+//         };
+//     }
+// }
 
 export const useTagsArticle = (json: Article | undefined) => {
     const Article: Article = json ?? { id: nanoid(), content: [] };
     const content = ArrayAtom(atom(Article.content));
     return {
         content,
-        move(which: Block, pos: 'up' | 'down') {
+        move(which: BaseBlock, pos: 'up' | 'down') {
             const old = content();
             const index = old.indexOf(which);
             const item = pos === 'up' ? old[index - 1] : old[index + 1];
@@ -70,7 +48,7 @@ export const Writer = () => {
                 },
                 comment: [],
             },
-        ],
+        ].map((i) => createBlockByType(i.type as any).fromJSON(i)),
     });
     return (
         <WriterContext.Provider value={inputs}>
@@ -94,12 +72,26 @@ export const Writer = () => {
                         }}
                     </For>
                     <aside class="h-full min-h-[20vh]">
-                        <div
-                            onclick={() => {
-                                inputs.content((i) => [...i, BlockConvert.createBlock()]);
-                            }}
-                        >
-                            添加
+                        <div>
+                            <span
+                                onclick={() => {
+                                    inputs.content((i) => [...i, createBlockByType('text')]);
+                                }}
+                            >
+                                添加
+                            </span>
+                            <select
+                                class="bg-slate-200"
+                                oninput={(e) => {
+                                    inputs.content((i) => [
+                                        ...i,
+                                        createBlockByType((e.target as any).value),
+                                    ]);
+                                }}
+                            >
+                                <option value="text">文本</option>
+                                <option value="tags">标签</option>
+                            </select>
                         </div>
                     </aside>
                 </article>

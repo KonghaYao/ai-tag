@@ -1,10 +1,10 @@
-import { Component, For, Show } from 'solid-js';
-import { Atom, ResourceAtom, addListener, atom } from '@cn-ui/use';
+import { Component, For, Show, batch, createEffect } from 'solid-js';
+import { Atom, addListener, atom, reflect } from '@cn-ui/use';
 
 export const ToolTips: Component<{
-    infoList: ResourceAtom<string[][]>;
-    text: Atom<string>;
-}> = ({ infoList, text }) => {
+    infoList: Atom<{ originText: string; value: string; desc?: string }[]>;
+    onConfirm: (output: string) => void;
+}> = ({ infoList, onConfirm }) => {
     const focusing = atom(0);
     let container!: HTMLUListElement;
     addListener(window, 'keydown', (e: any) => {
@@ -27,21 +27,36 @@ export const ToolTips: Component<{
     return (
         <ul ref={container} class="mt-2 w-full max-w-sm rounded-md bg-slate-800 p-2 text-slate-300">
             <For each={infoList()}>
-                {([item, originText], index) => {
+                {(item, index) => {
                     let it!: HTMLLIElement;
+                    const isSelect = reflect(() => focusing() === index());
+                    createEffect(() => {
+                        isSelect() && it!.scrollIntoView(false);
+                    });
                     return (
                         <li
                             class="pl-2 hover:bg-slate-600"
                             classList={{
-                                'bg-slate-700': focusing() === index(),
+                                'bg-slate-700': isSelect(),
                             }}
                             onclick={(e) => {
-                                infoList([]);
-                                text(originText + it.textContent + ' ');
+                                batch(() => {
+                                    const originText = item.originText.endsWith(' ')
+                                        ? item.originText
+                                        : item.originText + ' ';
+                                    onConfirm(originText + it.textContent);
+
+                                    infoList([]);
+                                });
                             }}
                         >
-                            <span innerHTML={item} ref={it}></span>
-                            <Show when={focusing() === index()}>
+                            <span class="pr-4" ref={it}>
+                                {item.value}
+                            </span>
+                            <span class="max-w-[50%] text-ellipsis whitespace-nowrap text-xs text-slate-200">
+                                {item.desc}
+                            </span>
+                            <Show when={isSelect()}>
                                 <span class="float-right">✅</span>
                             </Show>
                         </li>

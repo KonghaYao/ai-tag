@@ -18,7 +18,7 @@ export const FullTextEditor: Component<{
             return fetch('https://able-hare-95.deno.dev/complete/google?q=' + prompt)
                 .then<[[string][]]>((res) => res.json())
                 .then(([res]) => {
-                    return res.map((i) => [i[0], originText]);
+                    return res.map((i) => ({ value: i[0], originText }));
                 });
         },
         { immediately: false, initValue: [], deps: [DebounceAtom(text, 300)] }
@@ -32,7 +32,7 @@ export const FullTextEditor: Component<{
             popup={({ show }) => {
                 return (
                     <Show when={show()}>
-                        <ToolTips text={text} infoList={infoList}></ToolTips>
+                        <ToolTips onConfirm={() => text()} infoList={infoList}></ToolTips>
                     </Show>
                 );
             }}

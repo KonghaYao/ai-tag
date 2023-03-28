@@ -10,6 +10,9 @@ export const ProModelName = {
     AskAnything: '提问',
 };
 export const BaseModelName = { textToTags: '文生词', TagsToText: '词生文', textToText: '文生文' };
+
+export const AllModelName = { ...BaseModelName, ...ProModelName };
+
 export const CNModelName = { ...BaseModelName, ...ProModelName } as {
     [A in keyof typeof GlobalGPT]: string;
 };
@@ -56,7 +59,7 @@ export const AIPlace = (props: {
                     />
                 </label>
             </div>
-            <p class="whitespace-pre-wrap p-4 text-sm">{AIOutput()}</p>
+            <p class="select-text whitespace-pre-wrap p-4 text-sm">{AIOutput()}</p>
             <AC
                 resource={data}
                 loading={() => <div class="text-orange-600">AI 正在生成中。。。</div>}
@@ -71,11 +74,12 @@ export const AIPlace = (props: {
                     );
                 }}
             ></AC>
-            <ul class="flex w-full cursor-pointer justify-end gap-2">
-                <InputOpenAIToken class="flex-1">
+            <ul class="flex w-full cursor-pointer justify-end gap-2 text-lg">
+                <InputOpenAIToken class="flex-1 text-xs">
                     {GlobalGPT.ownKey ? '使用 Token 中' : '添加 Token 可以添加更多功能'}
                 </InputOpenAIToken>
                 <li
+                    title="复制文本"
                     onclick={() => {
                         copy(AIOutput());
                         Notice.success('复制成功');
@@ -83,7 +87,12 @@ export const AIPlace = (props: {
                 >
                     📄
                 </li>
+
+                <li title="重新生成" onclick={asyncLock(() => data.refetch())}>
+                    🔃
+                </li>
                 <li
+                    title="采纳 AI"
                     onclick={() => {
                         props.onConfirm && props.onConfirm(AIOutput());
                         props.onClose && props.onClose();
@@ -91,8 +100,9 @@ export const AIPlace = (props: {
                 >
                     ✅
                 </li>
-                <li onclick={asyncLock(() => data.refetch())}>🔃</li>
-                <li onclick={() => props.onClose && props.onClose()}>❎</li>
+                <li title="否定 AI" onclick={() => props.onClose && props.onClose()}>
+                    ❎
+                </li>
             </ul>
         </article>
     );

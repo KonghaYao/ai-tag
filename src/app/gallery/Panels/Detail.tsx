@@ -2,7 +2,6 @@ import { reflect } from '@cn-ui/use';
 import type { AIImageInfo } from 'prompt-extractor';
 import { Show, useContext } from 'solid-js';
 import { AIImageInfoShower } from '../../../components/AIImageInfoShower';
-import { Panel } from '../../../components/Panel';
 import { BackupImage } from '../BackupImage';
 import { GlobalData } from '../../../store/GlobalData';
 

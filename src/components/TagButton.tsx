@@ -54,7 +54,7 @@ export const TagButton: Component<{
     const { color } = useColorStep(() => item.count);
 
     const em = reflect(() => {
-        if (props.data.emphasize === 0) return 'bg-slate-700';
+        if (!props.data.emphasize) return 'bg-slate-700';
         const index = Math.floor((Math.abs(props.data.emphasize) * 4) / MaxEmphasize());
         return (props.data.emphasize > 0 ? emColor : _emColor)[index];
     });

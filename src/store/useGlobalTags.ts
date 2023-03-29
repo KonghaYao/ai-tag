@@ -87,17 +87,23 @@ export function initGlobalTags(data: IStoreData) {
         TagsHistory,
         redo,
         undo,
-        injectTags: (old: ITagData[], input: ITagData[], isCombine = false, isTailAdd = false) => {
+        injectTags: (
+            old: ITagData[],
+            input: ITagData[],
+            isCombine = false,
+            isTailAdd = false,
+            uc = usersCollection
+        ) => {
             const { t } = useTranslation();
             if (isCombine) {
                 const list = CombineMagic(input, old);
-                usersCollection(list);
+                uc(list);
                 Message.success(t('publicPanel.hint.CombineSuccess'));
             } else if (isTailAdd) {
-                usersCollection((i) => [...i, ...input]);
+                uc((i) => [...i, ...input]);
                 Notice.success(t('publicPanel.hint.CopySuccess'));
             } else {
-                usersCollection(input);
+                uc(input);
                 Notice.success(t('publicPanel.hint.CopySuccess'));
             }
         },

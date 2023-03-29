@@ -7,6 +7,7 @@ import { WriterContext } from './WriterContext';
 import { GlobalHeader } from '../main/GlobalHeader';
 import { BaseBlock, Article, createBlockByType } from './interface';
 import { HeaderFirst } from '../main/ToolBar/HeaderFirst';
+import { MessageHint } from '../../components/MessageHInt';
 
 export const useTagsArticle = (json: Article | undefined) => {
     const Article: Article = json ?? { id: nanoid(), content: [] };
@@ -86,6 +87,7 @@ export const BlockAdd = () => {
                 <option value="text">文本</option>
                 <option value="tags">魔咒</option>
             </select>
+            <MessageHint></MessageHint>
         </div>
     );
 };

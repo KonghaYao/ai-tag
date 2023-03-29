@@ -26,22 +26,17 @@ export function GlobalHeader() {
                 >
                     {t('header.Doc')}
                 </a>
+                <WebViewLink href={'./gallery.html#/?r18=' + (r18Mode() ? 'true' : '')}>
+                    {t('header.Gallery')}
+                </WebViewLink>
 
                 <span onClick={() => visibleId('feedback')}>{t('header.FeedBack')}</span>
-                <span onClick={() => visibleId('talk')}>
-                    讨论区 <sup class="italic text-rose-600">NEW</sup>
-                </span>
+                <span onClick={() => visibleId('talk')}>讨论区</span>
                 <FloatPanelWithAnimate
                     animateProps={{ anime: 'scale', extraClass: 'animate-duration-300' }}
                     popup={() => {
                         return (
                             <div class="blur-background pointer-events-auto mt-2 flex flex-col  gap-2 rounded-md border border-slate-500 p-2">
-                                <a
-                                    href={'./gallery.html#/?r18=' + (r18Mode() ? 'true' : '')}
-                                    target="_blank"
-                                >
-                                    {t('header.Gallery')}
-                                </a>
                                 <a href="https://github.com/KonghaYao/ai-tag" target="_blank">
                                     Github
                                 </a>

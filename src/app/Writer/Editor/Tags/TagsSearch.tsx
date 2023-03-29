@@ -41,13 +41,13 @@ export const TagsSearch = (props: { userCollection: Atom<ITagData[]> }) => {
     );
     return (
         <FloatPanel
-            class="flex h-full w-full items-center rounded-md py-1"
+            class="flex h-full w-full items-center rounded-md py-1 "
             disabled={true}
             visible={visible}
             popup={({ show }) => {
                 return (
                     <Show when={show()}>
-                        <aside class="max-h-[50vh] overflow-auto">
+                        <aside class="max-h-[30vh] overflow-auto">
                             <ToolTips
                                 onConfirm={(str) => text(str)}
                                 infoList={tooltipsProvider}

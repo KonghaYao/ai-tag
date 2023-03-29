@@ -2,14 +2,10 @@ import { For, Match, Switch, useContext } from 'solid-js';
 import { TextEditor } from './Editor/TextEditor';
 import { TagsEditor } from './Editor/TagsEditor';
 import { ArrayAtom, atom } from '@cn-ui/use';
-
 import { nanoid } from 'nanoid';
 import { WriterContext } from './WriterContext';
 import { GlobalHeader } from '../main/GlobalHeader';
 import { BaseBlock, Article, createBlockByType } from './interface';
-import { useTranslation } from '../../i18n';
-import { GlobalData } from '../../store/GlobalData';
-import { useWebView } from '../../Panels/Webview';
 import { HeaderFirst } from '../main/ToolBar/HeaderFirst';
 
 export const useTagsArticle = (json: Article | undefined) => {

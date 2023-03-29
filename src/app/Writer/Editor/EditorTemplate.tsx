@@ -7,7 +7,7 @@ export const EditorTemplate = (props: {
     tool: JSXElement;
 }) => {
     return (
-        <section class="flex items-center gap-2  rounded-xl border border-solid border-slate-600 p-2">
+        <section class="flex items-center gap-2  rounded-xl border border-solid border-slate-600 bg-gray-900 p-2">
             <ul class="flex flex-col items-center gap-1">{props.sideBar}</ul>
 
             <div class="flex-1 transition-all">

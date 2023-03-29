@@ -54,7 +54,7 @@ export const TagButton: Component<{
     const { color } = useColorStep(() => item.count);
 
     const em = reflect(() => {
-        if (props.data.emphasize === 0) return 'bg-gray-700';
+        if (props.data.emphasize === 0) return 'bg-slate-700';
         const index = Math.floor((Math.abs(props.data.emphasize) * 4) / MaxEmphasize());
         return (props.data.emphasize > 0 ? emColor : _emColor)[index];
     });
@@ -70,7 +70,7 @@ export const TagButton: Component<{
 
     return (
         <nav
-            class="tag-button text-col relative  flex cursor-pointer select-none items-center gap-1 rounded-md  bg-slate-800  px-2 py-1 text-center transition-colors active:brightness-90 "
+            class="tag-button text-col relative  flex cursor-pointer select-none items-center gap-1 rounded-md    px-2 py-1 text-center transition-colors active:brightness-90 "
             onContextMenu={(e) => {
                 e.preventDefault();
                 props.onClick && props.onClick(item, true);

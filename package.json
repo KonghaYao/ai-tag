@@ -40,6 +40,7 @@
         "vitest": "^0.24.5"
     },
     "dependencies": {
+        "@astrojs/sitemap": "^1.2.1",
         "@astrojs/solid-js": "^2.1.0",
         "@astrojs/tailwind": "^3.1.1",
         "@chinese-fonts/jxzk": "^1.1.0",

@@ -20,7 +20,7 @@ export const FontSupport: Component<{ show?: boolean | Atom<boolean>; delay?: nu
     return (
         <>
             <Show when={show()}>
-                <link rel="stylesheet" href="./font/result.css"></link>
+                <link rel="stylesheet" href="/font/result.css"></link>
             </Show>
             <link
                 rel="stylesheet"

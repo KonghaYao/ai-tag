@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
             viteStaticCopy({
                 targets: [
                     {
-                        src: 'node_modules/@chinese-fonts/jxzk/dist/江西拙楷/*.{css,woff2}',
+                        src: './node_modules/@chinese-fonts/jxzk/dist/江西拙楷/*.{css,woff2}',
                         dest: 'font',
                     },
                 ],

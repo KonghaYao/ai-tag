@@ -20,6 +20,9 @@ export const useTagsArticle = (json: Article | undefined) => {
             item && content.switch(which, item);
             console.log(index);
         },
+        transform(which: BaseBlock, to: BaseBlock) {
+            content.replace(which, to);
+        },
     };
 };
 

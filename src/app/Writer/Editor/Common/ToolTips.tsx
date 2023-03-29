@@ -1,8 +1,8 @@
-import { Component, For, Show, batch, createEffect } from 'solid-js';
+import { Component, For, JSXElement, Show, batch, createEffect } from 'solid-js';
 import { Atom, addListener, atom, reflect } from '@cn-ui/use';
-
+type TipsInput = { originText: string; value: string; desc?: string };
 export const ToolTips: Component<{
-    infoList: Atom<{ originText: string; value: string; desc?: string }[]>;
+    infoList: Atom<TipsInput[]>;
     onConfirm: (output: string) => void;
 }> = ({ infoList, onConfirm }) => {
     const focusing = atom(0);
@@ -56,6 +56,7 @@ export const ToolTips: Component<{
                             <span class="max-w-[50%] text-ellipsis whitespace-nowrap text-xs text-slate-200">
                                 {item.desc}
                             </span>
+
                             <Show when={isSelect()}>
                                 <span class="float-right">↩️</span>
                             </Show>

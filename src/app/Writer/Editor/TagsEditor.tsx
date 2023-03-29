@@ -1,5 +1,5 @@
-import { Component, Match, Show, Switch } from 'solid-js';
-import type { BaseBlock } from '../interface';
+import { Component, Match, Show, Switch, useContext } from 'solid-js';
+import { BaseBlock, TextBlock } from '../interface';
 import { TagsRow } from '../../main/UserSelected';
 import { atom, reflect, useEffectWithoutFirst } from '@cn-ui/use';
 import { TagsToString, stringToTags } from '../../../use/TagsConvertor';
@@ -10,6 +10,7 @@ import { TagsSearch } from './Tags/TagsSearch';
 import { SideBar } from './Tags/SideBar';
 import type { GlobalGPT } from '../../../api/prompt-gpt';
 import { AIPlace } from './Common/AIPlace';
+import { WriterContext } from '../WriterContext';
 
 export const TagsEditor: Component<{ block: BaseBlock }> = (props) => {
     const userCollection = atom(stringToTags(props.block.content.text));
@@ -18,6 +19,8 @@ export const TagsEditor: Component<{ block: BaseBlock }> = (props) => {
     const showAIPanel = atom(false);
     const text = reflect(() => TagsToString(userCollection()));
     useEffectWithoutFirst(() => showAIPanel(true), [model]);
+
+    const { transform } = useContext(WriterContext)!;
     return (
         <EditorTemplate
             sideBar={<SideBar model={model} block={props.block}></SideBar>}
@@ -34,7 +37,9 @@ export const TagsEditor: Component<{ block: BaseBlock }> = (props) => {
                             input={text}
                             onClose={() => showAIPanel(false)}
                             onConfirm={(ai) => {
-                                //TODO 转换
+                                const newBlock = props.block.transTo(TextBlock);
+                                newBlock.content.text = ai;
+                                transform(props.block, newBlock);
                             }}
                         ></AIPlace>
                     </Show>

@@ -6,15 +6,7 @@ import { ToolBarColor } from '../ColorJar';
 import { GlobalData } from '../../../../store/GlobalData';
 
 export const ToolBox = () => {
-    const {
-        enMode,
-
-        emphasizeSymbol,
-        iconBtn,
-
-        showLangInLine1,
-    } = GlobalData.getApp('data');
-    const { visibleId } = GlobalData.getApp('side-app');
+    const { enMode, emphasizeSymbol, iconBtn, showLangInLine1 } = GlobalData.getApp('data');
     const { usersCollection, redo, undo } = GlobalData.getApp('tag-control');
 
     const { t } = useTranslation();
@@ -66,12 +58,6 @@ export const ToolBox = () => {
                     {/* 清空所有 TAG  */}
                     <span class={'btn text-sm ' + ToolBarColor.pick()} onClick={() => redo()}>
                         重做
-                    </span>
-                    <span
-                        class={'btn text-sm ' + ToolBarColor.pick()}
-                        onclick={() => visibleId('artist')}
-                    >
-                        {iconBtn() ? 'upload' : '艺术家列表'}
                     </span>
                 </div>
             )}

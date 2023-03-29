@@ -7,6 +7,10 @@ import { nanoid } from 'nanoid';
 import { WriterContext } from './WriterContext';
 import { GlobalHeader } from '../main/GlobalHeader';
 import { BaseBlock, Article, createBlockByType } from './interface';
+import { useTranslation } from '../../i18n';
+import { GlobalData } from '../../store/GlobalData';
+import { useWebView } from '../../Panels/Webview';
+import { HeaderFirst } from '../main/ToolBar/HeaderFirst';
 
 export const useTagsArticle = (json: Article | undefined) => {
     const Article: Article = json ?? { id: nanoid(), content: [] };
@@ -22,6 +26,7 @@ export const useTagsArticle = (json: Article | undefined) => {
         },
     };
 };
+
 export const Writer = () => {
     const inputs = useTagsArticle({
         id: '1',
@@ -43,6 +48,7 @@ export const Writer = () => {
             <main class="flex w-full max-w-3xl flex-col  overflow-auto  px-4 text-slate-100">
                 <nav class="sticky top-2 z-50 my-2">
                     <GlobalHeader></GlobalHeader>
+                    <HeaderFirst></HeaderFirst>
                 </nav>
                 <article class="flex h-full w-full flex-1 flex-col gap-4 ">
                     <For each={inputs.content()}>
@@ -79,7 +85,7 @@ export const BlockAdd = () => {
             <span onclick={addToBlocks}>添加一个</span>
             <select ref={ref} class="bg-slate-800" oninput={addToBlocks}>
                 <option value="text">文本</option>
-                <option value="tags">标签</option>
+                <option value="tags">魔咒</option>
             </select>
         </div>
     );

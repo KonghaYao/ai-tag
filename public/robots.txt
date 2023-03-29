@@ -1,4 +1,5 @@
 User-agent: *
-Disallow: /.netlify/
-Allow: /**/*.html
-Sitemap: https://magic-tag.netlify.app/sitemap.xml
+Disallow:
+Crawl-delay: 120
+Disallow: /.netlify
+Sitemap: https://magic-tag.netlify.app/sitemap-index.xml

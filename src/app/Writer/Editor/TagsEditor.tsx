@@ -16,8 +16,11 @@ export const TagsEditor: Component<{ block: BaseBlock }> = (props) => {
     const userCollection = atom(stringToTags(props.block.content.text));
     const inputMode = atom(true);
     const model = atom<keyof typeof GlobalGPT>('textToText', { equals: false });
-    const showAIPanel = atom(false);
+    /** 原始的文本状态 */
     const text = reflect(() => TagsToString(userCollection()));
+    useEffectWithoutFirst(() => (props.block.content.text = text()), [text]); // 需要不断将文本状态写入静态中
+
+    const showAIPanel = atom(false);
     useEffectWithoutFirst(() => showAIPanel(true), [model]);
 
     const { transform } = useContext(WriterContext)!;

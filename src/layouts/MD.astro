@@ -3,7 +3,26 @@ import Layout from './Layout.astro';
 ---
 
 <Layout>
-    <article class="cn-typography h-full select-text bg-grid" style="color:white">
-        <slot />
-    </article>
+    <section class="flex justify-center h-screen overflow-auto">
+        <article class="cn-typography h-full select-text bg-grid max-w-2xl" style="color:aliceblue">
+            <slot />
+            <button
+                class="p-2 rounded-lg bg-purple-800 w-full my-4 hover:scale-95 transition-transform select-none"
+                onclick="recordNews()"
+            >
+                已读完，点我确认一下呗😽
+            </button>
+        </article>
+    </section>
+    <script>
+        window.onload = () => {
+            const items = [...document.getElementsByTagName('a')];
+            items.map((i) => (i.target = '_blank'));
+        };
+        /** @ts-ignore */
+        window.recordNews = () => {
+            localStorage.setItem('version_news', __version__);
+            window.close();
+        };
+    </script>
 </Layout>

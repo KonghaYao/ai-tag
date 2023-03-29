@@ -1,4 +1,3 @@
-import { Panel } from '../components/Panel';
 import './TalkPanel.css';
 import { TalkDefault } from './Talk';
 import { initTalkStore } from './Talk/TalkStore';

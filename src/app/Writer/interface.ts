@@ -10,6 +10,9 @@ export interface Article {
 }
 
 export class BaseBlock {
+    constructor(text?: string) {
+        if (text) this.content.text = text;
+    }
     id: string = nanoid();
     static label = '基本模块';
     readonly type: string = 'base';

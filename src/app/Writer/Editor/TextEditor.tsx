@@ -14,6 +14,7 @@ export const TextEditor: Component<{ block: BaseBlock }> = (props) => {
     const showAIPanel = atom(false);
     const model = atom<keyof typeof GlobalGPT>('textToText', { equals: false });
     useEffectWithoutFirst(() => showAIPanel(true), [model]);
+    useEffectWithoutFirst(() => (props.block.content.text = text()), [text]);
     return (
         <EditorTemplate
             sideBar={

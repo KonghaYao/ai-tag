@@ -48,7 +48,7 @@ export const Notebook = () => {
                 }}
             >
                 <main class="font-global relative m-auto flex h-screen w-full max-w-6xl flex-col  items-center   overflow-y-auto overflow-x-visible text-gray-400">
-                    <header class="sticky top-2 z-50  w-full max-w-6xl ">
+                    <header class="sticky top-2 z-40  w-full max-w-6xl ">
                         <section class=" my-4  mx-2 flex items-center divide-x-2 divide-gray-700 rounded-md bg-slate-800 p-2 shadow-lg shadow-gray-900">
                             <header class=" pl-2 pr-4 text-xl">魔咒记忆器</header>
                             <div class="flex flex-1 items-center justify-end ">

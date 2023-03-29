@@ -26,9 +26,6 @@ export function GlobalHeader() {
                 >
                     {t('header.Doc')}
                 </a>
-                <WebViewLink href={'./gallery.html#/?r18=' + (r18Mode() ? 'true' : '')}>
-                    {t('header.Gallery')}
-                </WebViewLink>
 
                 <span onClick={() => visibleId('feedback')}>{t('header.FeedBack')}</span>
                 <span onClick={() => visibleId('talk')}>讨论区</span>

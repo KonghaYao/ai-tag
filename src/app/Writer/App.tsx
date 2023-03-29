@@ -5,9 +5,12 @@ import { ArrayAtom, atom } from '@cn-ui/use';
 import { nanoid } from 'nanoid';
 import { WriterContext } from './WriterContext';
 import { GlobalHeader } from '../main/GlobalHeader';
-import { BaseBlock, Article, createBlockByType } from './interface';
+import { BaseBlock, Article, createBlockByType, TextBlock, TagsBlock } from './interface';
 import { HeaderFirst } from '../main/ToolBar/HeaderFirst';
-import { MessageHint } from '../../components/MessageHInt';
+import { Message, MessageHint } from '../../components/MessageHInt';
+import copy from 'copy-to-clipboard';
+import { Notice } from '../../utils/notice';
+import { Header } from './Header';
 
 export const useTagsArticle = (json: Article | undefined) => {
     const Article: Article = json ?? { id: nanoid(), content: [] };
@@ -31,24 +34,18 @@ export const Writer = () => {
     const inputs = useTagsArticle({
         id: '1',
         content: [
-            { id: '2', type: 'text', history: [], content: { text: '支持中国' }, comment: [] },
-            {
-                id: '3',
-                type: 'tags',
-                history: [],
-                content: {
-                    text: '((best quality)),(((flat color))),thick outlines,((limited palette)),medium shot,album cover,depth of field,((falling petals)),snowy city street,snow ground and tree with light,gorgeous Norwegian girl,cute natural makeup,long wavy blonde hair,freckles,blue eyes',
-                },
-                comment: [],
-            },
-        ].map((i) => createBlockByType(i.type as any).fromJSON(i)),
+            new TagsBlock(
+                '((best quality)),(((flat color))),thick outlines,((limited palette)),medium shot,album cover,depth of field,((falling petals)),snowy city street,snow ground and tree with light,gorgeous Norwegian girl,cute natural makeup,long wavy blonde hair,freckles,blue eyes'
+            ),
+            new TextBlock(),
+        ],
     });
     return (
         <WriterContext.Provider value={inputs}>
             <main class="flex w-full max-w-3xl flex-col  overflow-auto  px-4 text-slate-100">
                 <nav class="sticky top-2 z-50 my-2">
                     <GlobalHeader></GlobalHeader>
-                    <HeaderFirst></HeaderFirst>
+                    <Header></Header>
                 </nav>
                 <article class="flex h-full w-full flex-1 flex-col gap-4 ">
                     <For each={inputs.content()}>
@@ -65,10 +62,25 @@ export const Writer = () => {
                             );
                         }}
                     </For>
-                    <aside class="flex h-full min-h-[20vh] justify-center">
+                    <aside class="flex h-full min-h-[20vh] justify-center gap-4 pt-4">
                         <BlockAdd></BlockAdd>
+                        <div
+                            class="flex h-fit cursor-pointer items-center rounded-lg bg-sky-700 p-2 outline-none"
+                            onclick={() => {
+                                copy(
+                                    inputs
+                                        .content()
+                                        .map((i) => i.content.text)
+                                        .join('\n')
+                                );
+                                Notice.success('复制成功');
+                            }}
+                        >
+                            🐰复制全局
+                        </div>
                     </aside>
                 </article>
+                <MessageHint></MessageHint>
             </main>
         </WriterContext.Provider>
     );
@@ -81,13 +93,17 @@ export const BlockAdd = () => {
         inputs.content((i) => [...i, createBlockByType(ref.value as any)]);
     };
     return (
-        <div class="cursor-pointer">
-            <span onclick={addToBlocks}>添加一个</span>
-            <select ref={ref} class="bg-slate-800" oninput={addToBlocks}>
+        <div class="flex h-fit cursor-pointer items-center rounded-lg bg-purple-800  p-2 ">
+            <span onclick={addToBlocks}>😽添加一个</span>
+            {/* 不能使用 transparent, 因为option还是白色底 */}
+            <select
+                ref={ref}
+                class="bg-purple-800 px-2 text-xl outline-none "
+                oninput={addToBlocks}
+            >
                 <option value="text">文本</option>
                 <option value="tags">魔咒</option>
             </select>
-            <MessageHint></MessageHint>
         </div>
     );
 };

@@ -1,10 +1,11 @@
 ---
 import Layout from './Layout.astro';
+import './markdown.css';
 ---
 
 <Layout>
     <section class="flex justify-center h-screen overflow-auto">
-        <article class="cn-typography h-full select-text bg-grid max-w-2xl" style="color:aliceblue">
+        <article class="cn-typography h-fit select-text bg-grid max-w-2xl" style="color:aliceblue;">
             <slot />
             <button
                 class="p-2 rounded-lg bg-purple-800 w-full my-4 hover:scale-95 transition-transform select-none"

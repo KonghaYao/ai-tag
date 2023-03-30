@@ -1,0 +1,6 @@
+.cn-typography p {
+    text-indent: 2em;
+}
+.cn-typography img {
+    @apply rounded-md bg-slate-400;
+}

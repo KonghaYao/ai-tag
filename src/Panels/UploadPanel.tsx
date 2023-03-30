@@ -134,7 +134,7 @@ export const UploadPanel = () => {
     };
     return (
         <section
-            class="max-w-xl"
+            class="flex h-full max-w-xl flex-col"
             ondragover={(e) => {
                 e.preventDefault();
             }}
@@ -150,7 +150,7 @@ export const UploadPanel = () => {
         >
             <header class="w-full py-2 text-center font-bold">{t('uploadPanel.title')}</header>
 
-            <main class="mx-4 flex flex-1 flex-col gap-4 overflow-auto">
+            <main class="mx-4 flex flex-1 flex-col gap-4 overflow-auto ">
                 <div class="rounded-md bg-slate-700 p-2 text-xs">
                     上传的图片将会在 画廊 进行展示，感谢您的分享！
                 </div>
@@ -199,7 +199,7 @@ export const UploadPanel = () => {
                         }}
                     ></div>
                 </div>
-                <div class="rounded-md bg-slate-700 p-2 text-xs">{t('uploadPanel.hint2')}</div>
+
                 <div class=" flex items-center justify-between ">
                     <div class="flex-none">
                         <sup class="text-xl text-red-600">*</sup> {t('uploadPanel.autoDetect')}
@@ -222,36 +222,9 @@ export const UploadPanel = () => {
                         loading="lazy"
                     />
                 )}
-                <div class=" flex items-center justify-between">
-                    <sup class="text-xl text-red-600">*</sup>
-                    <label class="flex-none ">{t('uploadPanel.prompt')}</label>
-                    <textarea
-                        placeholder="自动识别, 如果没有可以填写正面描述"
-                        class="input ml-1"
-                        value={store.tags}
-                        oninput={(e) => {
-                            /** @ts-ignore */
-                            const text = e.target.value;
-                            set('tags', text);
-                            console.log(text);
-                        }}
-                    />
-                </div>
 
-                <div class=" flex items-center justify-between">
-                    <label class="flex-none ">{t('uploadPanel.seed')}</label>
-                    <input
-                        placeholder="自动识别，如果没有可以不填"
-                        class="input ml-1 w-full"
-                        type="text"
-                        value={store.seed}
-                        onChange={(e) => {
-                            /**@ts-ignore */
-                            set('seed', e.target.value);
-                        }}
-                    />
-                </div>
-
+                <nav class="flex-1"></nav>
+                <aside class="rounded-md bg-slate-700 p-2 text-xs">{t('uploadPanel.hint2')}</aside>
                 <a
                     class="w-full text-sky-600"
                     target="_blank"
@@ -261,14 +234,17 @@ export const UploadPanel = () => {
                         {t('uploadPanel.license')}
                     </div>
                 </a>
-                <div class="w-full rounded-md bg-slate-700 p-2 text-xs text-rose-500">
+                <aside class="w-full rounded-md bg-slate-700 p-2 text-xs text-rose-500">
                     {t('uploadPanel.notice')}
-                </div>
+                </aside>
             </main>
-            <div class="cursor-pointer bg-green-600 p-2  text-center text-white" onClick={upload}>
+            <button
+                class="cursor-pointer bg-green-600 p-2  text-center text-white"
+                onClick={upload}
+            >
                 {t('uploadPanel.hint.commit')}
                 <span class="text-xs">{t('uploadPanel.hint.commitHint')}</span>
-            </div>
+            </button>
         </section>
     );
 };

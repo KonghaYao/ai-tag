@@ -20,7 +20,7 @@ export const PictureCard: Component<{ index: number; data: StoreData }> = (props
         tag = map.get('Description') || item.tags;
     } catch (e) {}
     return (
-        <DragPoster send={(send) => send('INPUT_MAGIC', tag)}>
+        <DragPoster send={(send, d) => (send('INPUT_MAGIC', tag), d.setData('text', tag))}>
             <div class="single-pic relative  w-full  cursor-pointer  rounded-md  shadow-lg transition-transform  duration-500 ">
                 {/* 展示的图片 */}
                 <BackupImage

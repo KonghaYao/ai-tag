@@ -10,7 +10,7 @@ export function GlobalHeader() {
     const { t } = useTranslation();
     return (
         <header
-            class={`sticky top-0 flex items-baseline  rounded-lg  bg-slate-800 px-4 py-2 text-xl font-bold text-white`}
+            class={`sticky top-0 z-40 flex items-baseline rounded-lg  bg-slate-800 px-4 py-2 text-xl font-bold text-white`}
         >
             <h2 class="text-slate-200">魔导绪论</h2>
             <sup class="px-2 text-xs text-yellow-300">{__version__}</sup>

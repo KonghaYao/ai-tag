@@ -16,7 +16,7 @@ export const Header = () => {
             <MainFloat></MainFloat>
             <span
                 class={'btn ' + ToolBarColor.pick(2)}
-                onclick={() => nav('./gallery.html#/?r18=' + (r18Mode() ? 'true' : ''))}
+                onclick={() => nav('/gallery?r18=' + (r18Mode() ? 'true' : ''))}
             >
                 {t('toolbar1.Gallery')}
             </span>

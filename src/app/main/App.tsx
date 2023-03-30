@@ -32,10 +32,11 @@ import { GlobalHeader } from './GlobalHeader';
 import { TranslationPanel } from '../../plugins/globalTranslate/TranslationPanel';
 import { UserSelected } from './UserSelected';
 import { GlobalData } from '../../store/GlobalData';
+import { triggerNews } from '../../utils/newsReport';
 
 export const Main = () => {
     const { backgroundImage } = GlobalData.getApp('data');
-
+    triggerNews();
     return (
         <>
             <DropReceiver

@@ -9,21 +9,14 @@ import { ToolBox } from './sub/ToolBox';
 import { ToolBarColor } from './ColorJar';
 import { GlobalData } from '../../../store/GlobalData';
 export function HeaderFirst() {
-    const { r18Mode, iconBtn } = GlobalData.getApp('data');
+    const { r18Mode } = GlobalData.getApp('data');
     const { visibleId } = GlobalData.getApp('side-app');
 
     const { usersCollection, lists } = GlobalData.getApp('tag-control');
     const { nav } = useWebView();
     const { t } = useTranslation();
     return (
-        <header
-            class="flex w-full gap-2 whitespace-nowrap border-b border-slate-700 pb-2  font-bold text-neutral-300"
-            classList={{
-                'font-icon': iconBtn(),
-                'text-xl': iconBtn(),
-                'text-sm': !iconBtn(),
-            }}
-        >
+        <header class="flex w-full gap-2 whitespace-nowrap border-b border-slate-700 pb-2  font-bold text-neutral-300">
             <span
                 class={'btn ' + ToolBarColor.pick(0)}
                 onclick={() => {
@@ -39,7 +32,7 @@ export function HeaderFirst() {
             <MainFloat></MainFloat>
             <span
                 class={'btn ' + ToolBarColor.pick(2)}
-                onclick={() => nav('./gallery.html#/?r18=' + (r18Mode() ? 'true' : ''))}
+                onclick={() => nav('/gallery?r18=' + (r18Mode() ? 'true' : ''))}
             >
                 {t('toolbar1.Gallery')}
             </span>
@@ -59,7 +52,7 @@ export function HeaderFirst() {
             <span
                 class={'btn font-bold ' + ToolBarColor.pick(5)}
                 onclick={() => {
-                    nav('./notebook.html');
+                    nav('/notebook');
                 }}
             >
                 {t('notebook')}

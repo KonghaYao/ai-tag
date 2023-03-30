@@ -20,6 +20,10 @@ export const initSideApp = () => {
         visibleId,
         extraPanels,
         isPanelVisible,
+        isOpened() {
+            const id = visibleId();
+            return typeof id === 'string' && id;
+        },
         registerPanel: (name: '' | PanelIds, comp: Component) => {
             extraPanels((i) => i.set(name, comp));
         },

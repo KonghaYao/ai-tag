@@ -20,9 +20,10 @@ export const needToken = <B>(
 };
 import { AV } from '../cloud';
 import { GlobalData } from '../../store/GlobalData';
-const createResultRecord = (funcType: string, final: string) => {
+const createResultRecord = (input: string, funcType: string, final: string) => {
     const { username } = GlobalData.getApp('data');
     const record = new AV.Object('gpt_record');
+    record.set('input', input);
     record.set('func', funcType);
     record.set('result', final);
     record.set('user', username());
@@ -38,7 +39,7 @@ export const UploadResult = <B extends string>(
         value: async (...args: any[]) => {
             const result = await propertyDescriptor.value.apply(target, args);
             // console.log(memberName, result);
-            createResultRecord(memberName, result);
+            createResultRecord(args[0], memberName, result);
             return result;
         },
     };

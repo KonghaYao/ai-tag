@@ -8,12 +8,19 @@ export const EditorTemplate = (props: {
 }) => {
     return (
         <section class="flex items-center gap-2  rounded-xl border border-solid border-slate-600 bg-gray-900 p-2">
-            <ul class="flex flex-col items-center gap-1">{props.sideBar}</ul>
+            <ul class="flex flex-col items-center gap-1" style={{ 'line-height': 'initial' }}>
+                {props.sideBar}
+            </ul>
 
             <div class="flex-1 transition-all">
                 {props.children}
                 {props.tool}
-                <ul class="flex items-center justify-end gap-2 px-2 text-xl">{props.footer}</ul>
+                <ul
+                    class="flex items-center justify-end gap-2 px-2 text-xl "
+                    style={{ 'line-height': 'initial' }}
+                >
+                    {props.footer}
+                </ul>
             </div>
         </section>
     );

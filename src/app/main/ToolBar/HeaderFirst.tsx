@@ -16,7 +16,7 @@ export function HeaderFirst() {
     const { nav } = useWebView();
     const { t } = useTranslation();
     return (
-        <header class="flex w-full gap-2 whitespace-nowrap border-b border-slate-700 pb-2  font-bold text-neutral-300">
+        <header class="flex w-full gap-2 whitespace-nowrap border-b border-slate-700 pb-2 text-sm  text-neutral-300">
             <span
                 class={'btn ' + ToolBarColor.pick(0)}
                 onclick={() => {

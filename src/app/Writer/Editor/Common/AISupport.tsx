@@ -8,6 +8,7 @@ import type { GlobalGPT } from '../../../../api/prompt-gpt';
 export const AISupport = (props: { model: Atom<keyof typeof GlobalGPT>; block: BaseBlock }) => {
     return (
         <FloatPanel
+            position="rt"
             popup={({ show }) => {
                 return (
                     <Show when={show()}>

@@ -10,8 +10,8 @@ export const FilterBar: Component<{
     const { showClassify } = GlobalData.getApp('data')!;
     const { t } = useTranslation();
     return (
-        <nav class="flex flex-col justify-between text-sm text-gray-400 sm:flex-row">
-            <span class="flex flex-none gap-1">
+        <nav class="flex w-full flex-col justify-between text-sm text-gray-400 sm:flex-row">
+            <span class="flex flex-none gap-2">
                 <div
                     class="flex cursor-pointer items-center rounded-md bg-slate-700 px-1"
                     onclick={() => showClassify((i) => !i)}
@@ -20,6 +20,9 @@ export const FilterBar: Component<{
                     <span class="font-icon ">{!showClassify() ? '>' : '<'}</span>
                 </div>
                 <div>{t('searchBox.searchResult')}</div>
+                <a href="/writer">
+                    <button class="btn bg-purple-700 text-slate-100">新版编辑器</button>
+                </a>
             </span>
         </nav>
     );

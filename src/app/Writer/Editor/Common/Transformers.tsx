@@ -55,6 +55,7 @@ export const Transformers = (props: { children?: JSXElement; block: BaseBlock })
     };
     return (
         <FloatPanel
+            position="rt"
             popup={({ show }) => {
                 return (
                     <Show when={show()}>

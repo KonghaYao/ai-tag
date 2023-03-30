@@ -5,14 +5,36 @@ import type { ITagData } from '../../../main/App';
 import copy from 'copy-to-clipboard';
 import { Notice } from '../../../../utils/notice';
 import { useTranslation } from '../../../../i18n';
+import { GlobalData } from '../../../../store/GlobalData';
 
 export const Footer: Component<{
     userCollection: Atom<ITagData[]>;
     inputMode: Atom<boolean>;
 }> = ({ userCollection, inputMode }) => {
     const { t } = useTranslation();
+    const { emphasizeAddMode, deleteMode, changeTagMode } = GlobalData.getApp('data');
     return (
         <>
+            <li
+                class="cursor-pointer"
+                classList={{
+                    'rounded-md bg-slate-700': emphasizeAddMode(),
+                }}
+                title="添加模式，左键加权，右键减权"
+                onClick={() => changeTagMode(emphasizeAddMode, true)}
+            >
+                🏷️
+            </li>
+            <li
+                class="cursor-pointer"
+                classList={{
+                    'rounded-md bg-slate-700': deleteMode(),
+                }}
+                title="删除模式，点击删除"
+                onClick={() => changeTagMode(deleteMode, true)}
+            >
+                ❌
+            </li>
             <li
                 class=" cursor-pointer text-sm"
                 title="添加分割符号"
@@ -33,7 +55,7 @@ export const Footer: Component<{
             <li
                 class="cursor-pointer"
                 classList={{
-                    'rounded-md bg-slate-600': inputMode(),
+                    'rounded-md bg-slate-700': inputMode(),
                 }}
                 title="输入框特写"
                 onClick={() => inputMode((i) => !i)}

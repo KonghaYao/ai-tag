@@ -6,11 +6,11 @@ import { nanoid } from 'nanoid';
 import { WriterContext } from './WriterContext';
 import { GlobalHeader } from '../main/GlobalHeader';
 import { BaseBlock, Article, createBlockByType, TextBlock, TagsBlock } from './interface';
-import { HeaderFirst } from '../main/ToolBar/HeaderFirst';
 import { Message, MessageHint } from '../../components/MessageHInt';
 import copy from 'copy-to-clipboard';
 import { Notice } from '../../utils/notice';
 import { Header } from './Header';
+import { triggerNews } from '../../utils/newsReport';
 
 export const useTagsArticle = (json: Article | undefined) => {
     const Article: Article = json ?? { id: nanoid(), content: [] };
@@ -31,6 +31,7 @@ export const useTagsArticle = (json: Article | undefined) => {
 };
 
 export const Writer = () => {
+    triggerNews();
     const inputs = useTagsArticle({
         id: '1',
         content: [

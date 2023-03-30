@@ -1,6 +1,6 @@
 import { DefaultGPT } from './prompt-gpt/DefaultGPT';
 import { InstructGPT } from './prompt-gpt/InstructGPT';
-import { needToken } from './prompt-gpt/usingToken';
+import { UploadResult, needToken } from './prompt-gpt/decorators';
 async function* readStreamAsTextLines(stream: ReadableStream<Uint8Array>) {
     const linesReader = stream.pipeThrough(new TextDecoderStream()).getReader();
     while (true) {
@@ -14,6 +14,7 @@ interface Notify {
 }
 export class PromptGPT {
     /** 基础描述文本生成长文本 */
+    @UploadResult
     textToText(text: string, length = 20, notify: Notify) {
         return this.query(
             {
@@ -24,6 +25,7 @@ export class PromptGPT {
         );
     }
     /** 基础描述文本生成 Tags 组     */
+    @UploadResult
     textToTags(text: string, length = 20, notify: Notify) {
         return this.query(
             {
@@ -34,6 +36,7 @@ export class PromptGPT {
         );
     }
     /** Tags 转化为文本 */
+    @UploadResult
     TagsToText(text: string, length = 20, notify: Notify) {
         return this.query(
             {
@@ -45,6 +48,7 @@ export class PromptGPT {
     }
     /** 续写文本 */
     @needToken
+    @UploadResult
     ContinueWriting(text: string, length: number, notify: Notify) {
         return this.query(
             { id: '0', prompt: `请以 ${text} 开头，写出 ${length} 字左右的句子` },
@@ -53,6 +57,7 @@ export class PromptGPT {
     }
     /** 直接提问 */
     @needToken
+    @UploadResult
     AskAnything(text: string, _: number, notify: Notify) {
         return this.query({ id: '0', prompt: text }, notify);
     }
@@ -76,6 +81,7 @@ export class PromptGPT {
                 allText += text;
                 notify(allText, 50);
             }
+            return allText;
         });
     }
 }

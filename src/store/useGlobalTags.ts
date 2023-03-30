@@ -68,9 +68,11 @@ export function initGlobalTags(data: IStoreData) {
                 method: 'POST',
                 body: JSON.stringify({
                     text: searchText(),
-                    options: {
-                        filter: !data.r18Mode() && `r18 != 1`,
-                    },
+                    options: !data.r18Mode()
+                        ? {
+                              filter: `r18 != 1`,
+                          }
+                        : {},
                 }),
             })
                 .then((res) => res.json())

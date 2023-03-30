@@ -18,9 +18,9 @@ export const TagsSearch = (props: { userCollection: Atom<ITagData[]> }) => {
                 method: 'POST',
                 body: JSON.stringify({
                     text: q,
-                    options: {
-                        filter: !r18Mode() && `r18 != 1`,
-                    },
+                    options: !r18Mode() ?{
+                        filter:  `r18 != 1`,
+                    }:{},
                 }),
             })
                 .then((res) => res.json())

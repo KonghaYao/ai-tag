@@ -66,7 +66,16 @@ export function HeaderFirst() {
                 }}
                 title="添加分隔符到末尾"
             >
-                ——
+                —
+            </span>
+            <span
+                class={'btn font-icon text-sm ' + ToolBarColor.pick()}
+                onClick={() => {
+                    visibleId('emoji');
+                }}
+                title="添加分隔符到末尾"
+            >
+                😀
             </span>
         </header>
     );

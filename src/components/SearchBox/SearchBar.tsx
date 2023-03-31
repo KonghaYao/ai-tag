@@ -20,7 +20,7 @@ export const SearchBar = () => {
         <nav class="flex w-full items-center gap-2">
             <input
                 class="input my-2 flex-1"
-                type="search"
+                type="text"
                 value={searchText()}
                 placeholder={t('searchBox.hint.searchPlaceholder')}
                 oninput={(e: any) => {

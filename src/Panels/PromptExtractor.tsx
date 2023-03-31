@@ -1,6 +1,5 @@
 import { atom, resource } from '@cn-ui/use';
 
-import { Panel } from '../components/Panel';
 import { AIImageInfo, PromptExtractor } from 'prompt-extractor';
 import { DropReceiver } from '@cn-ui/headless';
 import { Show, createEffect, on } from 'solid-js';

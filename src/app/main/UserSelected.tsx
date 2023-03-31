@@ -94,8 +94,10 @@ export const TagsRow: Component<{ usersCollection: Atom<ITagData[]> }> = (props)
                 },
             }}
             receive={{
-                ADD_BEFORE(info) {
+                ADD_BEFORE(info, transfer, e) {
+                    (e as any).ignore = true;
                     usersCollection((i) => [...i, ...stringToTags(info, lists())]);
+                    return false;
                 },
                 INPUT_MAGIC,
                 extra(_, dataTransfer, e) {

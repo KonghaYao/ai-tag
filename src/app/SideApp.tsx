@@ -20,6 +20,7 @@ export type PanelIds =
     | 'artist'
     | 'home'
     | 'news'
+    | 'emoji'
     // gallery 的 panel
     | 'detail'
     | 'backup';
@@ -31,6 +32,7 @@ import { PromptGPT } from '../Panels/PromptGPT/PromptGPT';
 import { GlobalData } from '../store/GlobalData';
 import { Panel } from '../components/Panel';
 import { Atom, useBreakpoints } from '@cn-ui/use';
+import { Emoji } from '../Panels/Emoji';
 export const SideApp = (props: { defaultPanel?: '' | PanelIds; children?: JSXElement }) => {
     const { sideAppMode, visibleId, extraPanels, isOpened } = GlobalData.getApp('side-app')!;
 
@@ -82,6 +84,9 @@ export const SideApp = (props: { defaultPanel?: '' | PanelIds; children?: JSXEle
                         </Panel>
                         <Panel id="artist" class="flex h-full flex-col overflow-hidden">
                             <ArtistPanel></ArtistPanel>
+                        </Panel>
+                        <Panel id="emoji">
+                            <Emoji></Emoji>
                         </Panel>
 
                         <For each={[...extraPanels().entries()]}>

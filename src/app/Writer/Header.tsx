@@ -41,6 +41,14 @@ export const Header = () => {
             >
                 {t('notebook')}
             </span>
+            <span
+                class={'btn font-bold ' + ToolBarColor.pick(5)}
+                onclick={() => {
+                    visibleId('emoji');
+                }}
+            >
+                😀
+            </span>
         </header>
     );
 };

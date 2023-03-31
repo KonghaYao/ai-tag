@@ -1,4 +1,4 @@
-import { Atom, atom, useEffectWithoutFirst } from '@cn-ui/use';
+import { Atom, atom, useEffect, useEffectWithoutFirst } from '@cn-ui/use';
 import { createEffect } from 'solid-js';
 import './ContentEditable.css';
 export const ContentEditable = (props: {
@@ -12,7 +12,9 @@ export const ContentEditable = (props: {
     onKeyDown?: (e: Event) => void;
 }) => {
     const ref = atom<HTMLElement | null>(null);
-
+    useEffect(() => {
+        if (ref()) ref()!.dataset.replicatedValue = props.value();
+    }, [props.value, ref]);
     return (
         <div class="textarea-wrap" ref={ref}>
             <textarea
@@ -21,7 +23,6 @@ export const ContentEditable = (props: {
                 oninput={(e) => {
                     const val = (e.target as any).value;
                     props.value(val);
-                    ref()!.dataset.replicatedValue = val;
                 }}
                 onBlur={props.onBlur}
                 onKeyUp={props.onKeyUp}

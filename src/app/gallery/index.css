@@ -30,3 +30,7 @@
         transform: rotateX(0deg) rotateY(12deg);
     }
 }
+::-webkit-scrollbar {
+    width: 0; /* 竖向滚动条宽度 */
+    height: 0; /* 横向滚动条高度 */
+}

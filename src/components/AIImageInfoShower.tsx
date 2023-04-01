@@ -24,7 +24,7 @@ export const AIImageInfoShower: Component<{
                         class="font-icon  cursor-pointer hover:scale-125"
                         onclick={() => copy(details().Description)}
                     >
-                        copy
+                        📄
                     </div>
                 </nav>
                 <code class="select-all" onclick={() => copy(details().Description)}>
@@ -38,7 +38,7 @@ export const AIImageInfoShower: Component<{
                         class="font-icon  cursor-pointer hover:scale-125"
                         onclick={() => copy(Comment().uc)}
                     >
-                        copy
+                        📄
                     </div>
                 </nav>
                 <code class="select-all" onclick={() => copy(Comment().uc)}>

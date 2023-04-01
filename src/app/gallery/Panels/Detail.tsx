@@ -39,7 +39,7 @@ export const DetailPanel = () => {
     });
     return (
         <Show when={ShowingPicture()}>
-            <section class="z-10 flex h-full flex-col items-center gap-4 overflow-auto break-words  p-2 sm:p-4">
+            <section class="z-10 flex h-full flex-col items-center gap-4 overflow-auto break-words  p-2 sm:p-1">
                 <nav
                     class="flex h-[30vh]  cursor-pointer flex-col items-center justify-center sm:h-full"
                     onclick={() => {
@@ -66,7 +66,7 @@ export const DetailPanel = () => {
                         {ShowingPicture()!.description}
                     </header>
                 </nav>
-                <div class="flex w-full max-w-[100%]  flex-none flex-col gap-4  text-slate-200 sm:p-4">
+                <div class="flex w-full  flex-none flex-col gap-4  text-slate-200 sm:p-4">
                     <nav class="flex justify-between  bg-emerald-700 px-2">
                         <div>作者: {ShowingPicture()!.username}</div>
                         <div>种子号码: {ShowingPicture()!.seed}</div>

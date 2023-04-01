@@ -8,6 +8,7 @@ import { FloatPanelWithAnimate, Tabs } from '@cn-ui/core';
 import { Notice } from '../../utils/notice';
 import { initGalleryStore } from '../../store/GalleryStore';
 import { GlobalData } from '../../store/GlobalData';
+import { ScrollLoading } from './ScrollLoading';
 
 export const GalleryRoot = () => {
     const { backgroundImage } = GlobalData.getApp('data');
@@ -16,10 +17,16 @@ export const GalleryRoot = () => {
     initGalleryStore();
 
     const showSearch = atom(false);
+
+    const { page, changePage, end } = GlobalData.getApp('gallery');
+    const { ScrollEvent } = ScrollLoading(() => changePage(page() + 1));
     return (
-        <main class="font-global  flex h-screen w-full  flex-col overflow-hidden text-gray-200">
+        <main
+            class="font-global scroll-none flex h-screen w-full  flex-col overflow-auto  p-4 text-gray-200 sm:p-2"
+            onscroll={ScrollEvent}
+        >
             <Background image={backgroundImage()}></Background>
-            <header class="   w-full p-2 text-xl sm:p-4 ">
+            <header class="sticky top-0 z-40 w-full pb-2 text-xl">
                 <div class=" flex justify-between rounded-xl bg-slate-600 py-2 px-4 ">
                     <span class="flex-none">
                         <a

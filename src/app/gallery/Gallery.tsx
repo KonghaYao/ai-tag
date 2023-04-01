@@ -52,25 +52,20 @@ const rebuildArray = () => {
 };
 
 export const Gallery = () => {
-    const { page, changePage, end } = GlobalData.getApp('gallery');
     const { images, columns } = rebuildArray();
-    const { ScrollEvent } = ScrollLoading(() => changePage(page() + 1));
     return (
-        <div onscroll={ScrollEvent} class=" flex  justify-center overflow-auto px-2 sm:px-4 ">
-            {/*  WaterFall 暂时不能更改 gap */}
-            <WaterFall
-                items={images}
-                column={columns}
-                class="gap-2 sm:gap-4"
-                colClass="gap-2 sm:gap-4"
-                fallback={() => <div>没有数据哦</div>}
-            >
-                {(item, index) => {
-                    // item 为否定值时，表示为占位符
-                    if (!item) return null;
-                    return <PictureCard data={item} index={index!()}></PictureCard>;
-                }}
-            </WaterFall>
-        </div>
+        <WaterFall
+            items={images}
+            column={columns}
+            class="gap-2 sm:gap-4"
+            colClass="gap-2 sm:gap-4"
+            fallback={() => <div>没有数据哦</div>}
+        >
+            {(item, index) => {
+                // item 为否定值时，表示为占位符
+                if (!item) return null;
+                return <PictureCard data={item} index={index!()}></PictureCard>;
+            }}
+        </WaterFall>
     );
 };

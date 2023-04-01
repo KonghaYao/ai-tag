@@ -14,13 +14,15 @@ export const TagsSearch = (props: { userCollection: Atom<ITagData[]> }) => {
         async () => {
             const [originText, q] = splitTextToAutoComplete(text());
             if (!prompt) return [];
-            return fetch('https://able-hare-95.deno.dev/tags', {
+            return fetch('https://search-tag.deno.dev/tags', {
                 method: 'POST',
                 body: JSON.stringify({
                     text: q,
-                    options: !r18Mode() ?{
-                        filter:  `r18 != 1`,
-                    }:{},
+                    options: !r18Mode()
+                        ? {
+                              filter: `r18 != 1`,
+                          }
+                        : {},
                 }),
             })
                 .then((res) => res.json())

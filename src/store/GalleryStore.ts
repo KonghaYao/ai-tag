@@ -4,7 +4,7 @@ import { useViewer } from '../use/useViewer';
 import { API, StoreData } from '../api/notion';
 import { Notice } from '../utils/notice';
 import { createEffect, on } from 'solid-js';
-import { usePaginationStack } from '../Panels/artist/usePaginationStack';
+import { usePaginationStack } from '@cn-ui/use';
 import { getImagePath, getImagePathBackup } from '../app/gallery/Panels/Detail';
 
 export type IGalleryStore = ReturnType<typeof initGalleryStore>;
@@ -17,7 +17,6 @@ export const initGalleryStore = ExposeToGlobal('gallery', () => {
     const { dataSlices, next, currentIndex, resetStack } = usePaginationStack(
         async (page, maxPage) => {
             if (end()) return [] as StoreData[];
-            console.info(page);
             return API.getData(page, !!r18, (q) => {
                 if (searchText()) {
                     q.contains('description', searchText());
@@ -27,7 +26,8 @@ export const initGalleryStore = ExposeToGlobal('gallery', () => {
                 if (res.length === 0) end(true);
                 return res;
             });
-        }
+        },
+        {}
     );
     createEffect(() => {
         replaceImages(
@@ -51,9 +51,7 @@ export const initGalleryStore = ExposeToGlobal('gallery', () => {
 
     const ShowingPicture = atom<null | StoreData>(null);
     const ShowingPictureURL = atom<null | string>(null);
-    createEffect(() => {
-        console.log(currentIndex());
-    });
+
     return {
         ShowingPicture,
         ShowingPictureURL,

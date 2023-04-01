@@ -88,11 +88,10 @@ const artistTypeList = {
 };
 import { DragPoster } from '@cn-ui/headless';
 import { useSelect } from '@cn-ui/use';
-import { Panel } from '../../components/Panel';
 import { AV } from '../../api/cloud';
 import { For, Show, createContext, createMemo, useContext } from 'solid-js';
 import { Atom, atom } from '@cn-ui/use';
-import { usePaginationStack } from './usePaginationStack';
+import { usePaginationStack } from '@cn-ui/use';
 import { ScrollLoading } from '../../app/gallery/ScrollLoading';
 
 export const ArtistPanel = () => {
@@ -116,7 +115,7 @@ export const ArtistPanel = () => {
                 // console.log(a);
                 return a;
             });
-    });
+    }, {});
     const list = createMemo(() => dataSlices().flat());
     const { ScrollEvent } = ScrollLoading(next);
     return (

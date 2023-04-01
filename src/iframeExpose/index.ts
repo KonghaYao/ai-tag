@@ -6,7 +6,10 @@ import { stringToTags, TagsToString } from '../use/TagsConvertor';
 import { CombineMagic } from '../utils/CombineMagic';
 import { GlobalData } from '../store/GlobalData';
 
-/** 可以对外提供 iframe 服务，但是现在没有在用 */
+/**
+ * 可以对外提供 iframe 服务，但是现在没有在用
+ * @deprecated 因为没有人用
+ */
 export const useIframeExpose = () => {
     const { usersCollection } = GlobalData.getApp('tag-control')!;
     if (self != top) {

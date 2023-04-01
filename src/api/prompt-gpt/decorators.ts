@@ -1,6 +1,24 @@
 import { Notice } from '../../utils/notice';
 import type { PromptGPT } from '../prompt-gpt';
 
+export const checkInput = <B>(
+    target: PromptGPT,
+    memberName: B,
+    propertyDescriptor: PropertyDescriptor
+) => {
+    return {
+        value: (...args: any[]) => {
+            if (args[0].trim() === '') {
+                const reason = '💢请输入文本';
+                Notice.error(reason);
+                return Promise.reject(new Error(reason));
+            } else {
+                return propertyDescriptor.value.apply(target, args);
+            }
+        },
+    };
+};
+
 export const needToken = <B>(
     target: PromptGPT,
     memberName: B,

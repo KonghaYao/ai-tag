@@ -1,6 +1,6 @@
 import { DefaultGPT } from './prompt-gpt/DefaultGPT';
 import { InstructGPT } from './prompt-gpt/InstructGPT';
-import { UploadResult, needToken } from './prompt-gpt/decorators';
+import { UploadResult, checkInput, needToken } from './prompt-gpt/decorators';
 async function* readStreamAsTextLines(stream: ReadableStream<Uint8Array>) {
     const linesReader = stream.pipeThrough(new TextDecoderStream()).getReader();
     while (true) {
@@ -14,6 +14,7 @@ interface Notify {
 }
 export class PromptGPT {
     /** 基础描述文本生成长文本 */
+    @checkInput
     @UploadResult
     textToText(text: string, length = 20, notify: Notify) {
         return this.query(
@@ -25,6 +26,7 @@ export class PromptGPT {
         );
     }
     /** 基础描述文本生成 Tags 组     */
+    @checkInput
     @UploadResult
     textToTags(text: string, length = 20, notify: Notify) {
         return this.query(
@@ -36,6 +38,7 @@ export class PromptGPT {
         );
     }
     /** Tags 转化为文本 */
+    @checkInput
     @UploadResult
     TagsToText(text: string, length = 20, notify: Notify) {
         return this.query(
@@ -48,6 +51,7 @@ export class PromptGPT {
     }
     /** 续写文本 */
     @needToken
+    @checkInput
     @UploadResult
     ContinueWriting(text: string, length: number, notify: Notify) {
         return this.query(
@@ -57,6 +61,7 @@ export class PromptGPT {
     }
     /** 直接提问 */
     @needToken
+    @checkInput
     @UploadResult
     AskAnything(text: string, _: number, notify: Notify) {
         return this.query({ id: '0', prompt: text }, notify);

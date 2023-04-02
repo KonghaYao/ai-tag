@@ -1,8 +1,6 @@
-import { createEffect, untrack } from 'solid-js';
 import { Atom, AtomTypeSymbol, atom, resource } from '@cn-ui/use';
 import type { ITagData, IStoreData } from '../app/main/App';
-import { TagsToString, stringToTags } from '../use/TagsConvertor';
-import { useHistory } from '../use/useTagHistory';
+import { useHistoryTravel } from '../use/useHistoryTravel';
 import { Message } from '@cn-ui/core';
 import { GlobalData } from './GlobalData';
 import { CombineMagic } from '../utils/CombineMagic';
@@ -44,22 +42,14 @@ export function initGlobalTags(data: IStoreData) {
     const usersCollection = useOwnAtom();
 
     /**直接进行一个历史存储 */
-    const TagsHistory = useHistory<string>();
+    const TagsHistory = useHistoryTravel(usersCollection);
     const undo = () => {
-        const res = TagsHistory.back();
-        if (res) {
-            const old = TagsToString(usersCollection());
-            usersCollection(stringToTags(res, lists()));
-            TagsHistory.addToHistory(old, false);
-            Message.success('撤销成功');
-        }
+        TagsHistory.back();
+        Message.success('撤销成功');
     };
     const redo = () => {
-        const res = TagsHistory.go();
-        if (res) {
-            usersCollection(stringToTags(res, lists()));
-            Message.success('恢复成功');
-        }
+        TagsHistory.forward();
+        Message.success('恢复成功');
     };
     const searchText = atom('');
     const result = resource(

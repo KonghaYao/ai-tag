@@ -4,7 +4,9 @@ import { debounce } from 'lodash-es';
 import { GlobalData } from '../store/GlobalData';
 import type { Atom } from '@cn-ui/use';
 
-/** tag 内部的加减 */
+/**
+ * 主导 tagButton 内部的加减操作
+ */
 export const useTagController = ({ usersCollection }: { usersCollection: Atom<ITagData[]> }) => {
     const { deleteMode, emphasizeAddMode, emphasizeSubMode, MaxEmphasize } =
         GlobalData.getApp('data');

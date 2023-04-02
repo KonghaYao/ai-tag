@@ -10,14 +10,14 @@ import { TagsToString, stringToTags } from '../../use/TagsConvertor';
 import { Notice } from '../../utils/notice';
 import { Message } from '../../components/MessageHInt';
 import { DropReceiver, useDragAndDropData } from '@cn-ui/headless';
-import tinykeys from 'tinykeys';
+import tinyKey from 'tinykeys';
 import { GlobalData } from '../../store/GlobalData';
 import { useTranslation } from '../../i18n';
 import type { Component } from 'solid-js';
-export const BindHistoryKey = () => {
+export const BindHistoryKey = (dom: HTMLElement) => {
     const { redo, undo } = GlobalData.getApp('tag-control')!;
 
-    tinykeys(window, {
+    tinyKey(dom, {
         '$mod+KeyZ': (event) => {
             event.preventDefault();
             undo();
@@ -36,6 +36,9 @@ export const UserSelected = () => {
 
     return (
         <section
+            ref={(ref) => {
+                BindHistoryKey(ref);
+            }}
             id="user-select-prompt"
             class="user-selected blur-background relative my-2 flex w-full flex-col overflow-visible rounded-xl border border-solid border-gray-600 bg-slate-900/20 p-2"
         >
@@ -106,7 +109,7 @@ export const TagsRow: Component<{ usersCollection: Atom<ITagData[]> }> = (props)
                     console.log('触发文字传递');
                     if (text) {
                         const old = usersCollection();
-                        TagsHistory.addToHistory(TagsToString(old));
+                        TagsHistory.addToHistory(old);
                         const input = stringToTags(text, lists());
                         injectTags(
                             old,

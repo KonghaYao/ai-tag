@@ -1,6 +1,4 @@
-import { useContext } from 'solid-js';
 import { WebViewLink } from '../Panels/Webview';
-import { PanelContext } from './Panel';
 import { GlobalData } from '../store/GlobalData';
 
 export const ControlBar = () => {

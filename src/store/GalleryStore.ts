@@ -2,7 +2,6 @@ import { asyncLock, atom, useEffectWithoutFirst } from '@cn-ui/use';
 import { ExposeToGlobal } from './GlobalData';
 import { useViewer } from '../use/useViewer';
 import { API, StoreData } from '../api/notion';
-import { Notice } from '../utils/notice';
 import { createEffect, on } from 'solid-js';
 import { usePaginationStack } from '@cn-ui/use';
 import { getImagePath, getImagePathBackup } from '../app/gallery/Panels/Detail';

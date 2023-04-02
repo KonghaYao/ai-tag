@@ -8,7 +8,7 @@ export const keepStore = <T,>(name: string, atom: Atom<T>, firstInject = true) =
         localStorage.setItem(name, JSON.stringify(atom()));
     }, [atom]);
 };
-/** 使用本地存储 */
+/** 对一个响应式对象, 使用本地存储的数据,主动注入和备份 */
 export const useStorage = (data: { [name: string]: Atom<any> }) => {
     return {
         recover() {

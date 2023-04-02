@@ -33,7 +33,7 @@ const useOwnAtom = () => {
 };
 
 export type ITagStore = ReturnType<typeof initGlobalTags>;
-
+import qs from 'qs';
 /** 加载 Tag 数据库,  */
 export function initGlobalTags(data: IStoreData) {
     console.log('重绘');
@@ -54,17 +54,17 @@ export function initGlobalTags(data: IStoreData) {
     const searchText = atom('');
     const result = resource(
         () =>
-            fetch('https://search-tag.deno.dev/tags', {
-                method: 'POST',
-                body: JSON.stringify({
-                    text: searchText(),
-                    options: !data.r18Mode()
-                        ? {
-                              filter: `r18 != 1`,
-                          }
-                        : {},
-                }),
-            })
+            fetch(
+                'https://search-tag.deno.dev/tags?' +
+                    qs.stringify({
+                        text: searchText(),
+                        options: !data.r18Mode()
+                            ? {
+                                  filter: `r18 != 1`,
+                              }
+                            : {},
+                    })
+            )
                 .then((res) => res.json())
                 .then((res) => {
                     return res.hits as ITagData[];

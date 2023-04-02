@@ -54,7 +54,7 @@ export function initGlobalTags(data: IStoreData) {
     const searchText = atom('');
     const result = resource(
         () =>
-            fetch('https://able-hare-95.deno.dev/tags', {
+            fetch('https://search-tag.deno.dev/tags', {
                 method: 'POST',
                 body: JSON.stringify({
                     text: searchText(),

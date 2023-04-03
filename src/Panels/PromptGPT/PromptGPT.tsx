@@ -3,6 +3,7 @@ import { JSXElement, createSelector } from 'solid-js';
 import { GlobalGPT } from '../../api/prompt-gpt';
 import { Tab, Tabs, TabsHeader } from '@cn-ui/core';
 import { TextToText } from './TextToText';
+import { MeetsAI } from './MeetsAI';
 
 export const InputOpenAIToken = (props: { class?: string; children?: JSXElement }) => {
     return (
@@ -33,15 +34,15 @@ export const PromptGPT = () => {
             <header class="py-2 text-center text-lg text-white" title="AI 辅助加强文本">
                 AI 魔咒助手
             </header>
-            <Tabs activeId={activeId}>
+            <Tabs activeId={activeId} lazyload>
                 <nav class="flex w-full items-end px-4 ">
                     <TabsHeader class="flex-1">
                         {(item) => {
                             return (
                                 <button
-                                    class="  "
+                                    class="  underline-offset-2"
                                     classList={{
-                                        'text-lg': isShowing(item),
+                                        'text-2xl underline ': isShowing(item),
                                     }}
                                     onclick={() => activeId(item)}
                                 >
@@ -54,6 +55,9 @@ export const PromptGPT = () => {
                 </nav>
                 <Tab id="文生文" class="flex-1">
                     <TextToText></TextToText>
+                </Tab>
+                <Tab id="遇见 AI">
+                    <MeetsAI></MeetsAI>
                 </Tab>
             </Tabs>
         </>

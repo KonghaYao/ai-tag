@@ -9,8 +9,6 @@ export const MeetsAI = () => {
     const data = resource(
         () => {
             const q = new AV.Query('gpt_record')
-                .exists('r18')
-                .equalTo('r18', false)
                 .addDescending('createdAt')
                 .limit(10)
                 .skip((pageNum() - 1) * 10);

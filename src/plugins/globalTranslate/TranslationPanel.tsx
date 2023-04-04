@@ -1,14 +1,5 @@
 import { Atom, atom, reflect, resource } from '@cn-ui/use';
-import {
-    ErrorBoundary,
-    For,
-    JSXElement,
-    Show,
-    batch,
-    children,
-    createEffect,
-    onMount,
-} from 'solid-js';
+import { For, JSXElement, batch, children, createEffect, onMount } from 'solid-js';
 import { GlobalPlugin } from '../GlobalPlugin';
 import { Translate } from '.';
 import { AC } from '../../components/AC';

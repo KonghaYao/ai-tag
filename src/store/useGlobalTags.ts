@@ -34,6 +34,7 @@ const useOwnAtom = () => {
 
 export type ITagStore = ReturnType<typeof initGlobalTags>;
 import qs from 'qs';
+import { localSync } from '../utils/localSync';
 /** 加载 Tag 数据库,  */
 export function initGlobalTags(data: IStoreData) {
     console.log('重绘');
@@ -71,6 +72,9 @@ export function initGlobalTags(data: IStoreData) {
                 }),
         { initValue: [], immediately: false, deps: [searchText] }
     );
+
+    // 使用页面上次的呈现先fallback一下，保证用户看得见东西
+    localSync(result, 'the_search_data_of_main_page');
     const context = {
         lists,
         result,

@@ -1,7 +1,8 @@
-import { DebounceAtom, atom, resource } from '@cn-ui/reactive';
+import { DebounceAtom, atom, reflect, resource } from '@cn-ui/reactive';
 import { searchEmoji } from '../api/emoji';
 import { For } from 'solid-js';
 import { DragPoster } from '@cn-ui/headless';
+import { localSync } from '../utils/localSync';
 
 export const Emoji = () => {
     const searchText = atom('happy');
@@ -11,7 +12,8 @@ export const Emoji = () => {
         },
         { initValue: [], deps: [DebounceAtom(searchText, 300)] }
     );
-
+    // 使用页面上次的呈现先fallback一下，保证用户看得见东西
+    localSync(data, 'the_search_data_of_emoji_panel');
     return (
         <section class="flex flex-col gap-2">
             <header class="text-center text-xl">Emoji</header>

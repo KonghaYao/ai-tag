@@ -62,7 +62,7 @@ export const DetailPanel = () => {
                     ></BackupImage>
 
                     <div class="btn ">点击查看大图</div>
-                    <header class="my-2 w-full rounded-lg bg-lime-600 py-2 px-4 text-center text-2xl font-bold text-slate-200">
+                    <header class="my-2 w-full rounded-lg bg-lime-600 py-2 px-4 text-center text-2xl font-bold text-slate-200 line-clamp-1">
                         {ShowingPicture()!.description}
                     </header>
                 </nav>

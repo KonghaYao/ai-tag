@@ -1,0 +1,13 @@
+---
+import { GlobalInit } from '../../app/Global';
+import { CategoriesPicker } from '../../app/admin/categories/index';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="魔导绪论-画廊分类">
+    <section class="flex font-global justify-center w-screen h-screen overflow-hidden">
+        <GlobalInit client:only>
+            <CategoriesPicker client:only />
+        </GlobalInit>
+    </section>
+</Layout>

@@ -4,7 +4,6 @@ import { useViewer } from '../use/useViewer';
 import { API, StoreData } from '../api/notion';
 import { createEffect, on } from 'solid-js';
 import { usePaginationStack } from '@cn-ui/use';
-import { getImagePath, getImagePathBackup } from '../app/gallery/Panels/Detail';
 
 export type IGalleryStore = ReturnType<typeof initGalleryStore>;
 export const initGalleryStore = ExposeToGlobal('gallery', () => {
@@ -34,8 +33,8 @@ export const initGalleryStore = ExposeToGlobal('gallery', () => {
                 return i.map((i) => {
                     return {
                         alt: i.description,
-                        src: getImagePathBackup(i!.image, 'q=50'),
-                        origin: getImagePath(i!.image)!,
+                        src: i!.image + '?q=50',
+                        origin: i!.image,
                     };
                 });
             })

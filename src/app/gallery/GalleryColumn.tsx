@@ -1,6 +1,5 @@
 import { Component, batch } from 'solid-js';
 import type { StoreData } from '../../api/notion';
-import { getImagePath, getImagePathBackup } from './Panels/Detail';
 import { saveAs } from 'file-saver';
 import { DragPoster } from '@cn-ui/headless';
 import { BackupImage } from './BackupImage';
@@ -24,9 +23,9 @@ export const PictureCard: Component<{ index: number; data: StoreData }> = (props
             <div class="single-pic relative  w-full  cursor-pointer  rounded-md  shadow-lg transition-transform  duration-500 ">
                 {/* 展示的图片 */}
                 <BackupImage
-                    src={getImagePathBackup(item.image, 'q=50')}
+                    src={item.image + '?q=50'}
                     aspect={item.size.replace('x', '/')}
-                    fallbackSrc={getImagePath(item.image)}
+                    fallbackSrc={item.image}
                     onClick={(src) => {
                         batch(() => {
                             ShowingPicture(item);
@@ -62,9 +61,7 @@ export const PictureCard: Component<{ index: number; data: StoreData }> = (props
                             class="font-icon h-7 w-7 cursor-pointer rounded-full bg-lime-500  text-center text-lg  text-white"
                             onclick={async () => {
                                 // a 标签有下载缺陷，故采用 JS 内下载
-                                const data = await fetch(getImagePath(item.image)).then((res) =>
-                                    res.blob()
-                                );
+                                const data = await fetch(item.image).then((res) => res.blob());
                                 saveAs(data, item.description + '-' + item.username + '.png');
                             }}
                         >

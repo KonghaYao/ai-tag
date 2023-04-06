@@ -5,21 +5,6 @@ import { AIImageInfoShower } from '../../../components/AIImageInfoShower';
 import { BackupImage } from '../BackupImage';
 import { GlobalData } from '../../../store/GlobalData';
 
-export const getImagePath = (s: string) => {
-    return s.replace('/t/', '/s/').replace('.jpg', '.png');
-};
-export const getImagePathBackup = (s: string, tail: string) => {
-    // 兼容以前的 thumbsnap 的问题
-    if (s.startsWith('https://thumbsnap.com'))
-        return (
-            `https://ik.imagekit.io/dfidfiskkxn/save/${getImagePath(s)
-                .replace(/\.\w+$/, '')
-                .split('/')
-                .at(-1)}?` + tail
-        );
-    return s + `?` + tail;
-};
-
 export const DetailPanel = () => {
     const { ShowingPicture, getViewer, replaceImages, ShowingPictureURL } =
         GlobalData.getApp('gallery');
@@ -56,9 +41,9 @@ export const DetailPanel = () => {
                     }}
                 >
                     <BackupImage
-                        src={getImagePathBackup(ShowingPicture()!.image, 'q=50')}
+                        src={ShowingPicture()!.image + '?q=50'}
                         aspect={ShowingPicture()!.size.replace('x', '/')}
-                        fallbackSrc={getImagePath(ShowingPicture()!.image)}
+                        fallbackSrc={ShowingPicture()!.image}
                     ></BackupImage>
 
                     <div class="btn ">点击查看大图</div>

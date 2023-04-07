@@ -27,6 +27,7 @@ export const CategoriesInput: Component<{
                             <input
                                 type="text"
                                 class="rounded-md bg-slate-800 px-2 py-1 outline-none"
+                                placeholder="输入搜索或者创建"
                                 value={searchText()}
                                 oninput={(e) => searchText((e.target as any).value)}
                             />

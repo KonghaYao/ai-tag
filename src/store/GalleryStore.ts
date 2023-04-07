@@ -1,16 +1,22 @@
-import { asyncLock, atom, useEffectWithoutFirst } from '@cn-ui/use';
+import { asyncLock, atom, useEffect, useEffectWithoutFirst, useSelect } from '@cn-ui/use';
 import { ExposeToGlobal } from './GlobalData';
 import { useViewer } from '../use/useViewer';
 import { API, StoreData } from '../api/notion';
 import { createEffect, on } from 'solid-js';
 import { usePaginationStack } from '@cn-ui/use';
-
+import { AV } from '../api/cloud';
 export type IGalleryStore = ReturnType<typeof initGalleryStore>;
 export const initGalleryStore = ExposeToGlobal('gallery', () => {
     const { replaceImages, getViewer } = useViewer();
     const r18 = new URLSearchParams(location.search).get('r18');
     const end = atom(false);
     const searchText = atom('');
+    const categories = useSelect({ multi: false });
+    const updateCate = () => {
+        new AV.Query('gallery_category').find().then((i) => {
+            i.forEach((ii) => categories.register(ii.toJSON()['categories']));
+        });
+    };
 
     const { dataSlices, next, currentIndex, resetStack } = usePaginationStack(
         async (page, maxPage) => {
@@ -18,6 +24,9 @@ export const initGalleryStore = ExposeToGlobal('gallery', () => {
             return API.getData(page, !!r18, (q) => {
                 if (searchText()) {
                     q.contains('description', searchText());
+                }
+                if (categories.activeIds().size > 0) {
+                    q.containsAll('categories', [...categories.activeIds()]);
                 }
             }).then((res) => {
                 maxPage(page + 2);
@@ -27,6 +36,14 @@ export const initGalleryStore = ExposeToGlobal('gallery', () => {
         },
         {}
     );
+    let last = '';
+    useEffectWithoutFirst(() => {
+        const active = [...categories.activeIds()];
+        if (last !== active.join(',')) {
+            resetStack();
+            last = active.join(',');
+        }
+    }, [categories.activeIds]);
     createEffect(() => {
         replaceImages(
             dataSlices().flatMap((i) => {
@@ -65,6 +82,8 @@ export const initGalleryStore = ExposeToGlobal('gallery', () => {
         searchText,
         showingData: dataSlices,
         getViewer,
+        categories,
+        updateCate,
         replaceImages,
     };
 });

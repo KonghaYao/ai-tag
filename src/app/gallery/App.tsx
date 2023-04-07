@@ -9,6 +9,37 @@ import { Notice } from '../../utils/notice';
 import { initGalleryStore } from '../../store/GalleryStore';
 import { GlobalData } from '../../store/GlobalData';
 import { ScrollLoading } from './ScrollLoading';
+import { For } from 'solid-js';
+
+export const CategoriesBar = () => {
+    const { categories } = GlobalData.getApp('gallery');
+
+    const render = (item: string) => {
+        return (
+            <div
+                class="btn text-xs"
+                classList={{
+                    'bg-green-700 text-slate-200': categories.isSelected(item),
+                }}
+                onclick={() => categories.changeSelected(item)}
+            >
+                {item}
+            </div>
+        );
+    };
+    return (
+        <aside class="mb-2 flex flex-wrap gap-2 rounded-xl bg-slate-800 p-2 ">
+            <For each={[...categories.activeIds().values()]}>{render}</For>
+            <For
+                each={[...categories.allRegistered().values()].filter(
+                    (i) => !categories.isSelected(i)
+                )}
+            >
+                {render}
+            </For>
+        </aside>
+    );
+};
 
 export const GalleryRoot = () => {
     const { backgroundImage } = GlobalData.getApp('data');
@@ -18,7 +49,8 @@ export const GalleryRoot = () => {
 
     const showSearch = atom(false);
 
-    const { page, changePage, end } = GlobalData.getApp('gallery');
+    const { page, changePage, updateCate } = GlobalData.getApp('gallery');
+    updateCate();
     const { ScrollEvent } = ScrollLoading(() => changePage(page() + 1));
     return (
         <main
@@ -26,7 +58,7 @@ export const GalleryRoot = () => {
             onscroll={ScrollEvent}
         >
             <Background image={backgroundImage()}></Background>
-            <header class="sticky top-0 z-40 w-full pb-2 text-xl">
+            <header class="sticky top-0 z-40 flex w-full flex-col gap-2 pb-2 text-xl">
                 <div class=" flex justify-between rounded-xl bg-slate-600 py-2 px-4 ">
                     <span class="flex-none">
                         <a
@@ -77,6 +109,7 @@ export const GalleryRoot = () => {
                     </nav>
                 </div>
             </header>
+            <CategoriesBar></CategoriesBar>
 
             <Gallery></Gallery>
         </main>

@@ -2,7 +2,7 @@ import { createStore } from 'solid-js/store';
 import { API, StoreData } from '../api/notion';
 import { Atom, asyncLock, atom } from '@cn-ui/use';
 import { Notice } from '../utils/notice';
-import { batch } from 'solid-js';
+import { For, batch } from 'solid-js';
 import { readFileInfo } from '../utils/getPromptsFromPic';
 import { useTranslation } from '../i18n';
 import { UploadButton } from '../components/UploadButton';
@@ -21,6 +21,7 @@ const [store, set] = createStore({ ...init });
 import ImageKit from 'imagekit-javascript';
 import md5 from 'md5';
 import { GlobalData } from '../store/GlobalData';
+import { CategoriesInput } from '../app/admin/categories/CategoriesInput';
 const imagekit = new ImageKit({
     publicKey: 'public_49Srlf9AEpmrR1xMPR7Gh2JafbU=',
     urlEndpoint: 'https://ik.imagekit.io/dfidfiskkxn/',
@@ -222,7 +223,10 @@ export const UploadPanel = () => {
                         loading="lazy"
                     />
                 )}
-
+                <nav class="p-2 ">
+                    图片标签
+                    <CategoriesChoose></CategoriesChoose>
+                </nav>
                 <nav class="flex-1"></nav>
                 <aside class="rounded-md bg-slate-700 p-2 text-xs">{t('uploadPanel.hint2')}</aside>
                 <a
@@ -246,5 +250,23 @@ export const UploadPanel = () => {
                 <span class="text-xs">{t('uploadPanel.hint.commitHint')}</span>
             </button>
         </section>
+    );
+};
+
+const CategoriesChoose = () => {
+    const exist = atom<Set<string>>(new Set([]));
+    return (
+        <aside class="flex gap-2 rounded-lg bg-slate-800 p-2">
+            <For each={[...exist()]}>
+                {(item) => {
+                    return <button class="btn bg-green-600 text-slate-200">{item}</button>;
+                }}
+            </For>
+            <CategoriesInput
+                onselect={(cate) => {
+                    exist((i) => new Set([...i, cate]));
+                }}
+            ></CategoriesInput>
+        </aside>
     );
 };

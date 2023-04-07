@@ -11,7 +11,7 @@ export const CategoriesInput: Component<{
     const data = resource(
         () => {
             const ob = new AV.Query('gallery_category');
-            return ob.contains('categories', searchText()).limit(10).find();
+            return ob.contains('categories', searchText()).limit(100).find();
         },
         { initValue: [], immediately: false, deps: [DebounceAtom(searchText, 300)] }
     );
@@ -20,9 +20,9 @@ export const CategoriesInput: Component<{
         <FloatPanelWithAnimate
             animateProps={{ anime: 'scale' }}
             popup={() => {
-                updateData();
+                data().length === 0 && updateData();
                 return (
-                    <section class="rounded-lg bg-slate-900 p-2">
+                    <section class="w-fit rounded-lg bg-slate-900 p-2">
                         <header class="flex gap-2">
                             <input
                                 type="text"
@@ -35,17 +35,23 @@ export const CategoriesInput: Component<{
                                 创建
                             </button>
                         </header>
-                        <ul class="flex flex-col gap-1">
-                            <For each={data()}>
-                                {(item) => {
-                                    return (
-                                        <li onclick={() => props.onselect(item.get('categories'))}>
-                                            {item.get('categories')}
-                                        </li>
-                                    );
-                                }}
-                            </For>
-                        </ul>
+                        <div class="max-h-52 overflow-auto">
+                            <ul class="flex flex-col gap-1 ">
+                                <For each={data()}>
+                                    {(item) => {
+                                        return (
+                                            <li
+                                                onclick={() =>
+                                                    props.onselect(item.get('categories'))
+                                                }
+                                            >
+                                                {item.get('categories')}
+                                            </li>
+                                        );
+                                    }}
+                                </For>
+                            </ul>
+                        </div>
                     </section>
                 );
             }}

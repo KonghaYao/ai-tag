@@ -1,8 +1,8 @@
 import { createStore } from 'solid-js/store';
 import { API, StoreData } from '../api/notion';
-import { Atom, asyncLock, atom } from '@cn-ui/use';
+import { Atom, asyncLock, atom, atomization } from '@cn-ui/use';
 import { Notice } from '../utils/notice';
-import { For, batch } from 'solid-js';
+import { Component, For, batch, createEffect } from 'solid-js';
 import { readFileInfo } from '../utils/getPromptsFromPic';
 import { useTranslation } from '../i18n';
 import { UploadButton } from '../components/UploadButton';
@@ -16,6 +16,7 @@ const init = {
     seed: '',
     other: '',
     size: '',
+    categories: [],
 } as StoreData;
 const [store, set] = createStore({ ...init });
 import ImageKit from 'imagekit-javascript';
@@ -99,6 +100,10 @@ export const UploadPanel = () => {
     const { t } = useTranslation();
     const { username } = GlobalData.getApp('data');
     const uploading = atom(false);
+
+    // 更新图片种类
+    const cates = atom<Set<string>>(new Set([]));
+    createEffect(() => set('categories', [...cates()]));
 
     const { upload, uploadPicture } = useSharedUpload(uploading, username);
 
@@ -225,7 +230,7 @@ export const UploadPanel = () => {
                 )}
                 <nav class="p-2 ">
                     图片标签
-                    <CategoriesChoose></CategoriesChoose>
+                    <CategoriesChoose cates={cates}></CategoriesChoose>
                 </nav>
                 <nav class="flex-1"></nav>
                 <aside class="rounded-md bg-slate-700 p-2 text-xs">{t('uploadPanel.hint2')}</aside>
@@ -244,7 +249,10 @@ export const UploadPanel = () => {
             </main>
             <button
                 class="cursor-pointer bg-green-600 p-2  text-center text-white"
-                onClick={upload}
+                onClick={() => {
+                    upload();
+                    cates(new Set<string>([]));
+                }}
             >
                 {t('uploadPanel.hint.commit')}
                 <span class="text-xs">{t('uploadPanel.hint.commitHint')}</span>
@@ -253,13 +261,23 @@ export const UploadPanel = () => {
     );
 };
 
-const CategoriesChoose = () => {
-    const exist = atom<Set<string>>(new Set([]));
+const CategoriesChoose: Component<{ cates: Atom<Set<string>> }> = (props) => {
+    const exist = atomization(props.cates);
     return (
-        <aside class="flex gap-2 rounded-lg bg-slate-800 p-2">
+        <aside class="flex flex-wrap gap-2 rounded-lg bg-slate-800 p-2">
             <For each={[...exist()]}>
                 {(item) => {
-                    return <button class="btn bg-green-600 text-slate-200">{item}</button>;
+                    return (
+                        <button
+                            ondblclick={() => {
+                                exist().delete(item);
+                                exist((i) => new Set(i));
+                            }}
+                            class="btn bg-green-600 text-slate-200"
+                        >
+                            {item}
+                        </button>
+                    );
                 }}
             </For>
             <CategoriesInput
@@ -267,6 +285,7 @@ const CategoriesChoose = () => {
                     exist((i) => new Set([...i, cate]));
                 }}
             ></CategoriesInput>
+            <div class="btn"> 双击删除</div>
         </aside>
     );
 };

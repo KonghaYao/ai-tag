@@ -10,6 +10,7 @@ export type StoreData = {
     /** 图片信息抽取 */
     other?: string;
     size: string;
+    categories: string[];
 };
 export const API = {
     // 这次查询的列表 cursor

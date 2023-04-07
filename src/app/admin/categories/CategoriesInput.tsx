@@ -18,22 +18,23 @@ export const CategoriesInput: Component<{
     const updateData = debounce(() => data.refetch());
     return (
         <FloatPanelWithAnimate
+            position="bl"
             animateProps={{ anime: 'scale' }}
             popup={() => {
                 data().length === 0 && updateData();
                 return (
                     <section class="w-fit rounded-lg bg-slate-900 p-2">
                         <header class="flex gap-2">
+                            <button class="btn" onclick={() => props.onselect(searchText())}>
+                                创建
+                            </button>
                             <input
                                 type="text"
-                                class="rounded-md bg-slate-800 px-2 py-1 outline-none"
+                                class="w-full rounded-md bg-slate-800 px-2 py-1 outline-none"
                                 placeholder="输入搜索或者创建"
                                 value={searchText()}
                                 oninput={(e) => searchText((e.target as any).value)}
                             />
-                            <button class="btn" onclick={() => props.onselect(searchText())}>
-                                创建
-                            </button>
                         </header>
                         <div class="max-h-52 overflow-auto">
                             <ul class="flex flex-col gap-1 ">

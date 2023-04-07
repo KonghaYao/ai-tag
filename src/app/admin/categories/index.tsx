@@ -1,9 +1,17 @@
 import { usePagination } from '@cn-ui/reactive';
 import { AV } from '../../../api/cloud';
 import { For } from 'solid-js';
+import { FloatPanel } from '@cn-ui/core';
+import { CategoriesInput } from './CategoriesInput';
+import { createCategory } from './createCategory';
 
 export const CategoriesPicker = () => {
-    const { currentData, next, prev, currentPage, maxPage } = usePagination(
+    if (!AV.User.current()) {
+        const username = prompt('用户名');
+        const password = prompt('密码');
+        AV.User.logIn(username!, password!);
+    }
+    const { currentData, next, prev, currentPage, maxPage, refetch, goto } = usePagination(
         async (page, maxPage) => {
             const q = new AV.Query('gallery');
             q.addDescending('create_time');
@@ -19,14 +27,26 @@ export const CategoriesPicker = () => {
         },
         {}
     );
+
     return (
         <section>
             <header>
                 <button onclick={prev}>👈</button>
-                <span>
+                <span
+                    onclick={() => {
+                        const page = prompt('请输入页码');
+                        const pageNum = parseInt(page ?? '');
+                        !isNaN(pageNum) && goto(pageNum - 1);
+                    }}
+                >
                     {currentPage()}/{maxPage()}
                 </span>
                 <button onclick={next}>👉</button>
+                <span>按住图片可放大</span>
+                <button class="btn" onclick={() => refetch()}>
+                    {' '}
+                    更新
+                </button>
             </header>
             <main class="grid grid-cols-6">
                 <For each={currentData()}>
@@ -34,40 +54,50 @@ export const CategoriesPicker = () => {
                         const data = item.toJSON();
                         return (
                             <div>
-                                <img height="100" width="100" src={data.image} />
-                                <nav>
+                                <img
+                                    class="active:scale-[4]"
+                                    height="100"
+                                    width="100"
+                                    src={data.image}
+                                />
+                                <nav class="my-2 flex flex-wrap gap-2">
                                     <For each={data.categories}>
-                                        {(item, index) => {
+                                        {(cate, index) => {
                                             return (
                                                 <button
+                                                    class="btn "
                                                     title="双击删除"
-                                                    onclick={() => {
+                                                    ondblclick={async () => {
                                                         const arr = [...item.get('categories')];
-                                                        console.log(arr);
+
                                                         arr.splice(index(), 1);
                                                         item.set('categories', arr);
-                                                        item.save();
+                                                        await item.save();
+
+                                                        refetch();
                                                     }}
                                                 >
-                                                    {item}
+                                                    {cate}
                                                 </button>
                                             );
                                         }}
                                     </For>
-                                    <button
-                                        onclick={() => {
-                                            const cat = prompt('输入分类');
+                                    <CategoriesInput
+                                        onselect={async (cat) => {
                                             if (cat) {
-                                                item.set('categories', [
-                                                    ...item.get('categories'),
-                                                    cat,
-                                                ]);
-                                                item.save({ useMasterKey: true });
+                                                const origin = item.get('categories') as string[];
+                                                if (origin.includes(cat)) return;
+                                                item.set('categories', [...origin, cat]);
+                                                try {
+                                                    await AV.Object.saveAll([
+                                                        item as any,
+                                                        createCategory(cat),
+                                                    ]);
+                                                } catch (e) {}
+                                                refetch();
                                             }
                                         }}
-                                    >
-                                        +
-                                    </button>
+                                    ></CategoriesInput>
                                 </nav>
                             </div>
                         );

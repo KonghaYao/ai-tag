@@ -1,0 +1,13 @@
+---
+import { GlobalInit } from '../../app/Global';
+import { TagsChangePage } from '../../app/tags/change';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Tag 管理器">
+    <section class="flex font-global justify-center w-screen h-screen overflow-hidden">
+        <GlobalInit client:only>
+            <TagsChangePage client:only="solid-js" />
+        </GlobalInit>
+    </section>
+</Layout>

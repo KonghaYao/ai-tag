@@ -35,6 +35,7 @@ const useOwnAtom = () => {
 export type ITagStore = ReturnType<typeof initGlobalTags>;
 import qs from 'qs';
 import { localSync } from '../utils/localSync';
+import { TagAPI } from '../api/TagAPI';
 /** 加载 Tag 数据库,  */
 export function initGlobalTags(data: IStoreData) {
     console.log('重绘');
@@ -53,25 +54,11 @@ export function initGlobalTags(data: IStoreData) {
         Message.success('恢复成功');
     };
     const searchText = atom('');
-    const result = resource(
-        () =>
-            fetch(
-                'https://search-tag.deno.dev/tags?' +
-                    qs.stringify({
-                        text: searchText(),
-                        options: !data.r18Mode()
-                            ? {
-                                  filter: `r18 != 1`,
-                              }
-                            : {},
-                    })
-            )
-                .then((res) => res.json())
-                .then((res) => {
-                    return res.hits as ITagData[];
-                }),
-        { initValue: [], immediately: false, deps: [searchText] }
-    );
+    const result = resource(() => TagAPI.searchTags(searchText(), data.r18Mode()), {
+        initValue: [],
+        immediately: false,
+        deps: [searchText],
+    });
 
     // 使用页面上次的呈现先fallback一下，保证用户看得见东西
     localSync(result, 'the_search_data_of_main_page');

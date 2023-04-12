@@ -1,0 +1,13 @@
+---
+import { GlobalInit } from '../app/Global';
+import Layout from '../layouts/Layout.astro';
+import { TagsManager } from '../app/tags/App';
+---
+
+<Layout title="Tag 管理器">
+    <section class="flex font-global justify-center w-screen h-screen overflow-hidden">
+        <GlobalInit client:only>
+            <TagsManager client:only="solid-js" />
+        </GlobalInit>
+    </section>
+</Layout>

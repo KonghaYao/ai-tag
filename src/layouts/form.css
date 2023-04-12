@@ -1,0 +1,14 @@
+form input[type='text'],
+form input[type='number'] {
+    @apply mx-2 rounded-md bg-slate-800 px-2 py-1 outline-none;
+}
+form input[type='checkbox'] {
+    @apply h-6 w-6 rounded-md border border-solid border-slate-600 bg-slate-800 transition-colors duration-300;
+}
+form label {
+    @apply flex items-center justify-between;
+}
+
+form blockquote {
+    @apply my-1 rounded-md bg-green-800 p-2  text-slate-50;
+}

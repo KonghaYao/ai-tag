@@ -4,7 +4,7 @@ import { Notice } from '../../utils/notice';
 import { FloatPanelWithAnimate } from '@cn-ui/core';
 import { GlobalData } from '../../store/GlobalData';
 import { WebViewLink } from '../../Panels/Webview';
-export function GlobalHeader() {
+export function GlobalHeader(props: { title?: string }) {
     const { r18Mode } = GlobalData.getApp('data');
     const { visibleId } = GlobalData.getApp('side-app');
     const { t } = useTranslation();
@@ -12,7 +12,7 @@ export function GlobalHeader() {
         <header
             class={`sticky top-0 z-40 flex items-baseline rounded-lg  bg-slate-800 px-4 py-2 text-xl font-bold text-white`}
         >
-            <h2 class="text-slate-200">魔导绪论</h2>
+            <h2 class="text-slate-200">{props.title ?? '魔导绪论'}</h2>
             <sup class="px-2 text-xs text-yellow-300">{__version__}</sup>
             <div class="flex-1"></div>
             <div class="flex cursor-pointer gap-2 text-center text-xs font-thin text-[#f5f3c2]">

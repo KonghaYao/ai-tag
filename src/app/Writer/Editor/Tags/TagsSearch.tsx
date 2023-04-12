@@ -7,6 +7,7 @@ import { FloatPanel } from '@cn-ui/core';
 import { splitTextToAutoComplete } from '../Common/splitTextToAutoComplete';
 import { ToolTips } from '../Common/ToolTips';
 import qs from 'qs';
+import { TagAPI } from '../../../../api/TagAPI';
 export const TagsSearch = (props: { userCollection: Atom<ITagData[]> }) => {
     const text = atom('');
     const { r18Mode } = GlobalData.getApp('data');
@@ -14,23 +15,9 @@ export const TagsSearch = (props: { userCollection: Atom<ITagData[]> }) => {
         async () => {
             const [originText, q] = splitTextToAutoComplete(text());
             if (!prompt) return [];
-            return fetch(
-                'https://search-tag.deno.dev/tags?' +
-                    qs.stringify({
-                        text: q,
-                        options: !r18Mode()
-                            ? {
-                                  filter: `r18 != 1`,
-                              }
-                            : {},
-                    }),
-                {}
-            )
-                .then((res) => res.json())
-                .then((res) => {
-                    return res.hits as ITagData[];
-                })
-                .then((res) => res.map((i) => ({ ...i, originText })));
+            return TagAPI.searchTags(q, r18Mode()).then((res) =>
+                res.map((i) => ({ ...i, originText }))
+            );
         },
         { immediately: false, initValue: [], deps: [DebounceAtom(text, 200)] }
     );

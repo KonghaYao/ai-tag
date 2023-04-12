@@ -7,6 +7,7 @@ export const InstructGPT = (_prompt: string, token: string) => {
             Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
+            // davinci 比 turbo 模型要快不少，而且质量不会差
             model: 'text-davinci-003',
             temperature: 0.9,
             max_tokens: 150,

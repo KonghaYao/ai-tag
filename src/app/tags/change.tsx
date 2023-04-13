@@ -1,4 +1,3 @@
-import { Tab, Tabs } from '@cn-ui/core';
 import { Atom, DebounceAtom, ObjectAtom, resource, useEffectWithoutFirst } from '@cn-ui/reactive';
 import { TagAPI } from '../../api/TagAPI';
 import { For, batch } from 'solid-js';
@@ -9,18 +8,15 @@ export const TagsChangePage = () => {
     return (
         <section class="flex h-screen w-screen flex-col overflow-hidden p-4">
             <header class="my-2 w-full text-xl">Tag 编辑器</header>
-
-            <Tabs activeId={'增加与修改'}>
-                <Tab id="增加与修改" class="flex-1 overflow-hidden px-2">
-                    <TagsForm></TagsForm>
-                </Tab>
-                <Tab id="删除"></Tab>
-            </Tabs>
+            <section class="flex-1 overflow-hidden px-2">
+                <TagsForm></TagsForm>
+            </section>
         </section>
     );
 };
 
-export const TagsForm = (props: { mode?: 'change'; data?: ITagData }) => {
+/** 增删改全在一起😂 */
+export const TagsForm = () => {
     const objItem = ObjectAtom({ r18: 0, en: '', count: 0, cn: '' });
     const { en, count, cn, r18 } = objItem;
     return (
@@ -33,9 +29,13 @@ export const TagsForm = (props: { mode?: 'change'; data?: ITagData }) => {
                 const data: any = Object.fromEntries(fd.entries());
                 data.r18 = 'r18' in data ? 1 : 0;
                 data.delete = 'delete' in data ? true : false;
-                it.reset();
-                Notice.success('已经提交保存，等待审核完成，感谢您的参与😄');
-                console.log(data, fd);
+                data.count = parseInt(data.count);
+
+                TagAPI.uploadTag(data).then(() => {
+                    it.reset();
+                    Notice.success('已经提交保存，等待审核完成，感谢您的参与😄');
+                    console.log(data, fd);
+                });
             }}
         >
             <blockquote>请根据英文构造 Tag，填写下面表单并提交即可</blockquote>

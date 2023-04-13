@@ -1,40 +1,38 @@
 import { Tab, Tabs } from '@cn-ui/core';
-import { Atom, DebounceAtom, atom, resource } from '@cn-ui/reactive';
+import { Atom, DebounceAtom, ObjectAtom, resource, useEffectWithoutFirst } from '@cn-ui/reactive';
 import { TagAPI } from '../../api/TagAPI';
-import { For } from 'solid-js';
+import { For, batch } from 'solid-js';
 import { Notice } from '../../utils/notice';
+import type { ITagData } from '../main/App';
 
 export const TagsChangePage = () => {
     return (
-        <section class="w-screen p-4">
-            <div>Tag 编辑器</div>
+        <section class="flex h-screen w-screen flex-col overflow-hidden p-4">
+            <header class="my-2 w-full text-xl">Tag 编辑器</header>
 
-            <Tabs activeId={'增加'}>
-                <Tab id="增加">
-                    <TagsAdd></TagsAdd>
+            <Tabs activeId={'增加与修改'}>
+                <Tab id="增加与修改" class="flex-1 overflow-hidden px-2">
+                    <TagsForm></TagsForm>
                 </Tab>
-                <Tab id="修改"></Tab>
                 <Tab id="删除"></Tab>
             </Tabs>
         </section>
     );
 };
 
-export const TagsAdd = () => {
-    const text = atom('');
+export const TagsForm = (props: { mode?: 'change'; data?: ITagData }) => {
+    const objItem = ObjectAtom({ r18: 0, en: '', count: 0, cn: '' });
+    const { en, count, cn, r18 } = objItem;
     return (
         <form
-            class="flex w-full flex-col gap-2 "
+            class="flex h-full w-full flex-1 flex-col gap-2"
             onsubmit={(e) => {
                 e.preventDefault();
                 const it = e.target as HTMLFormElement;
                 const fd = new FormData(it);
                 const data: any = Object.fromEntries(fd.entries());
-                if ('r18' in data) {
-                    data.r18 = true;
-                } else {
-                    data.r18 = false;
-                }
+                data.r18 = 'r18' in data ? 1 : 0;
+                data.delete = 'delete' in data ? true : false;
                 it.reset();
                 Notice.success('已经提交保存，等待审核完成，感谢您的参与😄');
                 console.log(data, fd);
@@ -46,31 +44,54 @@ export const TagsAdd = () => {
                 <input
                     type="text"
                     name="en"
-                    value={text()}
+                    value={en()}
                     oninput={(e) => {
-                        text((e.target as any).value);
+                        en((e.target as any).value);
                     }}
                 />
             </label>
             <label>
                 <span>中文名称</span>
-                <input type="text" name="cn" />
+                <input type="text" name="cn" value={cn()} />
+            </label>
+            <label>
+                <span>🔞 R18</span>
+                <input type="checkbox" name="r18" value="1" checked={!!r18()} />
             </label>
             <label>
                 <span>大致效果数值</span>
-                <input type="number" name="count" min="0" max={Infinity} />
+                <input type="number" name="count" min="0" max={Infinity} value={count()} />
             </label>
-            <blockquote>大致效果数值是显示在右上角的数值，可以更好地对比该 Tag 的作用</blockquote>
-            <label>
-                <span>🔞 R18</span>
-                <input type="checkbox" name="r18" value="1" />
-            </label>
+            <blockquote>
+                大致效果数值是显示在右上角的数值，可以参考相似词汇的数值进行填写
+            </blockquote>
 
-            <output class="my-1 max-h-[50vh] overflow-auto rounded-md p-2 outline outline-1 outline-slate-400">
-                <div>相似词汇（如有，则不要添加了😄）</div>
-                <RelateTags text={text}></RelateTags>
+            <blockquote>相似词汇（如有，点击它，然后提交修改即可😄）</blockquote>
+            <output class="my-1 max-h-[50vh] flex-1 overflow-auto rounded-md p-2 outline outline-1  outline-slate-400">
+                <RelateTags
+                    text={en}
+                    onDataReturn={(data) => {
+                        count(data[0].count);
+                    }}
+                    onClick={(data) => {
+                        console.log(data);
+                        batch(() => {
+                            en(data.en);
+                            cn(data.cn);
+                            r18(data.r18);
+                            count(data.count);
+                        });
+                    }}
+                ></RelateTags>
             </output>
 
+            <label>
+                <span>
+                    🚫删除模式？
+                    <sub class="text-xs">是否删除这个 Tag</sub>
+                </span>
+                <input type="checkbox" name="delete" value="1" />
+            </label>
             <button class="btn rounded-md bg-green-700 text-slate-50" type="submit">
                 提交
             </button>
@@ -79,18 +100,28 @@ export const TagsAdd = () => {
 };
 
 /** 用于显示 Tags 的相似指数 */
-export const RelateTags = (props: { text: Atom<string> }) => {
+export const RelateTags = (props: {
+    text: Atom<string>;
+    onDataReturn?: (data: ITagData[]) => void;
+    onClick?: (data: ITagData) => void;
+}) => {
     const data = resource(() => TagAPI.searchTags(props.text(), true), {
         immediately: false,
         initValue: [],
         deps: [DebounceAtom(props.text, 300)],
     });
+    useEffectWithoutFirst(() => {
+        props.onDataReturn && props.onDataReturn(data());
+    }, [data]);
     return (
         <ul class=" text-xs">
-            <For each={data()}>
+            <For each={data()} fallback={<div> 空</div>}>
                 {(item) => {
                     return (
-                        <li class="flex gap-1 hover:bg-slate-600">
+                        <li
+                            class="flex cursor-pointer gap-1 hover:bg-slate-600"
+                            onclick={() => props.onClick && props.onClick(item)}
+                        >
                             <span>{item.en}</span>
                             <span>{item.cn}</span>
                             <span>{item.count}</span>

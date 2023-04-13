@@ -10,5 +10,5 @@ form label {
 }
 
 form blockquote {
-    @apply my-1 rounded-md bg-green-800 p-2  text-slate-50;
+    @apply my-1 rounded-md bg-green-800 p-2 text-xs  text-slate-50;
 }

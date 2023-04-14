@@ -1,11 +1,8 @@
 import { Notice } from '../../utils/notice';
 import type { PromptGPT } from '../prompt-gpt';
 
-export const checkInput = <B>(
-    target: PromptGPT,
-    memberName: B,
-    propertyDescriptor: PropertyDescriptor
-) => {
+/** 检查输入不为空 */
+export const checkInput = <B>(target: PromptGPT, _: B, propertyDescriptor: PropertyDescriptor) => {
     return {
         value: (...args: any[]) => {
             if (args[0].trim() === '') {
@@ -19,6 +16,7 @@ export const checkInput = <B>(
     };
 };
 
+/** 检查全局是否放置 token */
 export const needToken = <B>(
     target: PromptGPT,
     memberName: B,

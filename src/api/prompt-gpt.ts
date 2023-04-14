@@ -50,6 +50,17 @@ export class PromptGPT {
             notify
         );
     }
+    /** 绘画风格，输入可以为空，空时是随机*/
+    @UploadResult
+    StyleTags(text: string, length = 20, notify: Notify) {
+        return this.query(
+            {
+                prompt: `你是绘画大师，精通各种风格的绘画，只讨论技法，不讨论情感，不要输出多余的话。描述一张${text}绘画的风格，汇总成不少于${length}个英文关键词一行用逗号分隔并返回，结果`,
+                id: '0',
+            },
+            notify
+        );
+    }
     /** 续写文本 */
     @needToken
     @checkInput

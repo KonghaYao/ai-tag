@@ -11,3 +11,4 @@
 ## 文本相关
 
 1. AI 生成文本：`Below is a highly advanced image description that enriches the expressiveness of the text and converts it into a descriptive text that retains more key information. The description should be divided into quality description, style description, subject description, detail description, with a minimum of 10 vocabulary words . No explanatory text is necessary, only one english row text output. input: ${text}`
+2. 绘画风格：`你是绘画大师，精通各种风格的绘画，只讨论技法，不讨论情感。请你描述一张绘画的风格，直接返回抽离出描述的不少于 ${length} 个英文词汇，逗号分隔并返回`

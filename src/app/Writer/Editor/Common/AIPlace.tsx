@@ -51,6 +51,7 @@ export const AIPlace = (props: {
                         }}
                     </For>
                 </select>
+                <div class="flex-1"></div>
                 <label
                     class="float-right inline-flex items-center text-xs"
                     title="生成长度，不一定符合要求"

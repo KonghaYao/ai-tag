@@ -48,6 +48,7 @@ export class TextBlock extends BaseBlock {
         'textToTags',
         'TagsToText',
         'textToText',
+        'StyleTags',
         'ContinueWriting',
         'AskAnything',
     ] as const;

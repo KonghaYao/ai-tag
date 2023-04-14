@@ -5,10 +5,13 @@ import { Data } from '../../app/main/App';
 import { TagsToString, stringToTags } from '../../use/TagsConvertor';
 import { Notice } from '../../utils/notice';
 import { AC } from '../../components/AC';
-import { GlobalGPT } from '../../api/prompt-gpt';
+import type { GlobalGPT } from '../../api/prompt-gpt';
 import { Select } from './Select';
 import copy from 'copy-to-clipboard';
 import { GlobalData } from '../../store/GlobalData';
+import { AIPlace } from '../../app/Writer/Editor/Common/AIPlace';
+import { BaseBlock } from '../../app/Writer/interface';
+import { CNModelName } from '../../api/prompt-gpt/CNModelName';
 
 const Presets = {
     description: [
@@ -63,23 +66,10 @@ const Presets = {
 export const TextToText = () => {
     const { usersCollection, lists } = GlobalData.getApp('tag-control');
     const preInput = atom('');
-    const lengthOfText = atom(30);
-    const AIOutput = atom('');
-    const useOutputTagMode = atom(false);
-    const useInputTagMode = atom(false);
-    const data = resource(
-        () => {
-            const model = useInputTagMode()
-                ? GlobalGPT.TagsToText
-                : GlobalGPT[useOutputTagMode() ? 'textToTags' : 'textToText'];
-            return model.bind(GlobalGPT)(preInput(), lengthOfText(), (text) => AIOutput(text));
-        },
-        {
-            immediately: false,
-        }
-    );
-
+    const AIOutput = atom('输入描述词，点击🔃按钮可生成！');
     const { t } = useTranslation();
+    const block = new BaseBlock();
+    block.supportAI = Object.keys(CNModelName) as any[];
     return (
         <section class="flex flex-1 select-text flex-col gap-1 overflow-hidden p-2">
             <div class="flex ">
@@ -112,78 +102,18 @@ export const TextToText = () => {
                 >
                     {t('publicPanel.CopyMagic')}
                 </button>
-
-                <label
-                    class="inline-flex items-center justify-between"
-                    title="如果你的输入是 Tags，那么可以将 Tags 转化为文本"
-                >
-                    <input
-                        type="checkbox"
-                        oninput={(e) => {
-                            useInputTagMode((e.target as HTMLInputElement).checked);
-                        }}
-                    />
-                    <span>输入是 Tags</span>
-                </label>
-                <label
-                    class="inline-flex items-center justify-between"
-                    title="如果输出为文本，那么将会切割为 Tags"
-                >
-                    <input
-                        type="checkbox"
-                        oninput={(e) => {
-                            useOutputTagMode((e.target as HTMLInputElement).checked);
-                        }}
-                    />
-                    <span>生成 Tag 格式</span>
-                </label>
-
-                <label class="inline-flex  items-center" title="生成长度，不一定符合要求">
-                    <div class="flex-none">长度 {lengthOfText()}</div>
-                    <input
-                        class=" px-2"
-                        type="range"
-                        min="20"
-                        max="50"
-                        step="1"
-                        value={lengthOfText()}
-                        oninput={(e) => {
-                            lengthOfText(parseInt((e.target as any).value));
-                        }}
-                    />
-                </label>
-            </nav>
-            <nav class="flex gap-2">
-                <button class="btn flex-1 " onClick={asyncLock(() => data.refetch())}>
-                    开始生成 Prompt
-                </button>
-                <button
-                    class="cursor-pointer"
-                    onClick={() => {
-                        copy(AIOutput());
-                        Notice.success('复制成功');
-                    }}
-                >
-                    📝
-                </button>
             </nav>
 
             <article class="h-full flex-1 overflow-scroll">
-                <p class="whitespace-pre-wrap p-4 text-sm">{AIOutput()}</p>
-                <AC
-                    resource={data}
-                    loading={() => <div class="text-orange-600">AI 正在生成中。。。</div>}
-                    error={(e) => {
-                        console.error(e.error());
-                        return (
-                            <div class="text-sm text-rose-600">
-                                发生错误了😂
-                                <br />
-                                <span class="text-sm text-rose-700">{e.error().message}</span>
-                            </div>
-                        );
-                    }}
-                ></AC>
+                <AIPlace
+                    block={block}
+                    input={preInput}
+                    onClose={() => {}}
+                    onConfirm={() => {}}
+                    method={atom<keyof typeof GlobalGPT>('textToTags')}
+                    AIOutput={AIOutput}
+                    lazy
+                ></AIPlace>
             </article>
         </section>
     );

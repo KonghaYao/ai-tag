@@ -28,7 +28,7 @@ export const InputOpenAIToken = (props: { class?: string; children?: JSXElement 
 };
 
 export const PromptGPT = () => {
-    const activeId = atom('文生文');
+    const activeId = atom('AI 助手');
     const isShowing = createSelector(activeId);
     const { r18Mode } = GlobalData.getApp('data');
     return (
@@ -55,7 +55,7 @@ export const PromptGPT = () => {
                     </TabsHeader>
                     <InputOpenAIToken class="float-right"></InputOpenAIToken>
                 </nav>
-                <Tab id="文生文" class="flex-1">
+                <Tab id="AI 助手" class="flex-1">
                     <TextToText></TextToText>
                 </Tab>
                 <Show when={r18Mode()}>

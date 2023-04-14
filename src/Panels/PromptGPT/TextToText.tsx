@@ -1,13 +1,9 @@
-import { asyncLock, atom, resource } from '@cn-ui/use';
-import { useContext } from 'solid-js';
+import { atom } from '@cn-ui/use';
 import { useTranslation } from '../../i18n';
-import { Data } from '../../app/main/App';
 import { TagsToString, stringToTags } from '../../use/TagsConvertor';
 import { Notice } from '../../utils/notice';
-import { AC } from '../../components/AC';
 import type { GlobalGPT } from '../../api/prompt-gpt';
 import { Select } from './Select';
-import copy from 'copy-to-clipboard';
 import { GlobalData } from '../../store/GlobalData';
 import { AIPlace } from '../../app/Writer/Editor/Common/AIPlace';
 import { BaseBlock } from '../../app/Writer/interface';
@@ -66,13 +62,13 @@ const Presets = {
 export const TextToText = () => {
     const { usersCollection, lists } = GlobalData.getApp('tag-control');
     const preInput = atom('');
-    const AIOutput = atom('输入描述词，点击🔃按钮可生成！');
+    const AIOutput = atom('👑输入描述词，点击🔃按钮可生成！');
     const { t } = useTranslation();
     const block = new BaseBlock();
     block.supportAI = Object.keys(CNModelName) as any[];
     return (
         <section class="flex flex-1 select-text flex-col gap-1 overflow-hidden p-2">
-            <div class="flex ">
+            <div class="my-2 flex overflow-hidden rounded-md">
                 <Select each={Presets.description} onChange={(text) => preInput(text)}></Select>
                 <textarea
                     class="w-full flex-1  rounded-lg bg-slate-800  px-4 text-sm outline-none"

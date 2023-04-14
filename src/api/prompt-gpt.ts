@@ -19,19 +19,20 @@ export class PromptGPT {
     textToText(text: string, length = 20, notify: Notify) {
         return this.query(
             {
-                prompt: `一句描述${text}的画作的专业评价语句，${length} 词以上，发挥想象力扩展文字，英文，直接描述不要输出多余的话，不要引号`,
+                prompt: `Below is a highly advanced image description that enriches the expressiveness of the text and converts it into a descriptive text that retains more key information. It should contain quality description, style description, subject description, detail description, with a minimum of ${length} vocabulary words.combine them to one english row text output. input:  ${text}`,
                 id: '0',
             },
             notify
         );
     }
+
     /** 基础描述文本生成 Tags 组     */
     @checkInput
     @UploadResult
     textToTags(text: string, length = 20, notify: Notify) {
         return this.query(
             {
-                prompt: `获取一句描述${text}的画作的专业评价语句中的关键词，${length} 关键词以上，发挥想象，英文，不要引号，直接描述不要输出多余的话，不要开头的 Key Words`,
+                prompt: `下面将会给出非常高级的图片描述，丰富这段文本的表现力并转化为保留较多关键信息的关键词组，按照画面质量描述与风格词汇、主体描述、细节描述的顺序以逗号分隔，最少 ${length} 个词汇，英文小写输出，合并为一行:${text}`,
                 id: '0',
             },
             notify

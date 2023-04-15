@@ -4,6 +4,7 @@ dist_site
 visualizer
 story/story.index.json
 .env
+.env_code
 .netlify
 sync
-test
+deno.lock

@@ -1,0 +1,13 @@
+{
+  "tasks": {
+    "dev": "deno run --watch --allow-net --allow-env main.ts"
+  },
+  "imports": {
+    "koa": "https://esm.sh/koa",
+    "koa-router": "https://esm.sh/koa-router",
+    "@koa/cors": "https://esm.sh/@koa/cors",
+    "koa-bodyparser": "https://esm.sh/koa-bodyparser",
+    "koa-logger": "https://esm.sh/koa-logger",
+    "koa-proxies": "https://esm.sh/koa-proxies"
+  }
+}

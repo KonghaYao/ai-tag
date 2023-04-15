@@ -20,6 +20,8 @@ tagsRouter.get("/search", async (ctx) => {
   ctx.set("Cache-Control", "public, max-age=86400, s-maxage=3600");
   ctx.body = JSON.stringify(res);
 });
+
+// 服务器状况
 tagsRouter.get("/search/stat", async (ctx) => {
   const res = await Promise.all(clientPool.map((i) => i.getStats()));
   ctx.body = JSON.stringify(res);

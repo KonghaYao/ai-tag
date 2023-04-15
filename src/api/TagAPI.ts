@@ -7,7 +7,7 @@ export class TagAPI {
     /** 搜索 Tags 的接口，请勿乱用 */
     static async searchTags(q: string, r18Mode = false) {
         return fetch(
-            'https://search-tag.deno.dev/tags?' +
+            'https://tag-server.deno.dev/tags/search?' +
                 qs.stringify({
                     text: q,
                     options: !r18Mode

@@ -80,7 +80,7 @@ export const StatusPage = () => {
 
     const SearchEngine = resource<typeof defaultEngineMessage>(
         () => {
-            return fetch('https://able-hare-95.deno.dev/meili/stats').then((res) => res.json());
+            return fetch('https://tag-server.deno.dev/tags/search/stat').then((res) => res.json());
         },
         { immediately: !isServer, initValue: defaultEngineMessage }
     );
@@ -111,12 +111,12 @@ export const StatusPage = () => {
                     </section>
                     <section>
                         <div class="pt-12 text-2xl">搜索引擎</div>
-                        <nav class="flex justify-evenly gap-2">
+                        <nav class="flex flex-wrap justify-evenly gap-2">
                             <For each={SearchEngine()}>
                                 {(item, index) => {
                                     return (
                                         <div class="">
-                                            <div class="text-xl">{index()}号机</div>
+                                            <div class="text-xl">{index() + 1}号机</div>
                                             <nav>词条：{item.indexes.tags.numberOfDocuments} </nav>
                                             <nav>状态：正常 </nav>
                                         </div>

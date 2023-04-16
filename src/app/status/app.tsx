@@ -6,10 +6,6 @@ const defaultValue = {
     pageviews: { value: 10, change: 10 },
     totaltime: { value: 992, change: 992 },
     uniques: { value: 1, change: 1 },
-    timeArea: {
-        pageviews: [] as { t: string; y: number }[],
-        sessions: [] as { t: string; y: number }[],
-    },
 };
 const defaultEngineMessage = [
     {
@@ -30,7 +26,7 @@ export const StatusPage = () => {
     const data = resource<typeof defaultValue>(
         () => {
             return fetch(
-                `/.netlify/functions/status?start_at=${lastDay()}&end_at=${Date.now()}&unit=day`
+                `https://tag-server.deno.dev/site/stat?start_at=${lastDay()}&end_at=${Date.now()}&unit=day`
             ).then((res) => res.json());
         },
         {

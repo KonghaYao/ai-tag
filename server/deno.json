@@ -1,6 +1,7 @@
 {
   "tasks": {
-    "dev": "deno run --watch --allow-net --allow-env main.ts"
+    "dev": "deno run --watch --allow-net --allow-env main.ts",
+    "d": "deployctl deploy --project=tag-server main.ts"
   },
   "imports": {
     "koa": "https://esm.sh/koa",

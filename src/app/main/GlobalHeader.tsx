@@ -4,10 +4,12 @@ import { Notice } from '../../utils/notice';
 import { FloatPanelWithAnimate } from '@cn-ui/core';
 import { GlobalData } from '../../store/GlobalData';
 import { WebViewLink } from '../../Panels/Webview';
+
 export function GlobalHeader(props: { title?: string }) {
     const { r18Mode } = GlobalData.getApp('data');
     const { visibleId } = GlobalData.getApp('side-app');
     const { t } = useTranslation();
+
     return (
         <header
             class={`sticky top-0 z-40 flex items-baseline rounded-lg  bg-slate-800 px-4 py-2 text-xl font-bold text-white`}

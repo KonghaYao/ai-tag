@@ -9,7 +9,7 @@ import { Notice } from '../../utils/notice';
 import { initGalleryStore } from '../../store/GalleryStore';
 import { GlobalData } from '../../store/GlobalData';
 import { ScrollLoading } from './ScrollLoading';
-import { For } from 'solid-js';
+import { For, Show } from 'solid-js';
 
 export const CategoriesBar = () => {
     const { categories } = GlobalData.getApp('gallery');
@@ -49,7 +49,7 @@ export const GalleryRoot = () => {
 
     const showSearch = atom(false);
 
-    const { page, changePage, updateCate } = GlobalData.getApp('gallery');
+    const { page, changePage, updateCate, visibleCate } = GlobalData.getApp('gallery');
     updateCate();
     const { ScrollEvent } = ScrollLoading(() => changePage(page() + 1));
     return (
@@ -84,6 +84,12 @@ export const GalleryRoot = () => {
                         </a>
                     </span>
                     <nav class="flex gap-2">
+                        <div
+                            class="font-icon cursor-pointer px-2"
+                            onclick={() => visibleCate((i) => !i)}
+                        >
+                            🎹
+                        </div>
                         <FloatPanelWithAnimate
                             disabled={showSearch}
                             animateProps={{
@@ -100,6 +106,7 @@ export const GalleryRoot = () => {
                         >
                             <div class="font-icon cursor-pointer px-2">🔍</div>
                         </FloatPanelWithAnimate>
+
                         <div
                             class="font-icon cursor-pointer px-2"
                             onclick={() => visibleId('uploader')}
@@ -109,7 +116,9 @@ export const GalleryRoot = () => {
                     </nav>
                 </div>
             </header>
-            <CategoriesBar></CategoriesBar>
+            <Show when={visibleCate()}>
+                <CategoriesBar></CategoriesBar>
+            </Show>
 
             <Gallery></Gallery>
         </main>

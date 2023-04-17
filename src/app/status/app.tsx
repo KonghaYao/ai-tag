@@ -9,6 +9,7 @@ const defaultValue = {
 };
 
 import { MeiliStat } from './MeiliStat';
+import { Webview } from '../../Panels/Webview';
 export const StatusPage = () => {
     const lastDay = () => Date.now() - 1000 * 60 * 60 * 24;
     const data = resource<typeof defaultValue>(
@@ -38,13 +39,23 @@ export const StatusPage = () => {
                         <ItemBlock val={data().uniques}>访客</ItemBlock>
                         <ItemBlock val={data().totaltime}>停留时间</ItemBlock>
                     </nav>
-
                     <MeiliStat></MeiliStat>
+                    <GithubRepoStats></GithubRepoStats>
                 </main>
             </nav>
         </section>
     );
 };
+
+const GithubRepoStats = () => {
+    return (
+        <iframe
+            class="min-h-[60vh] rounded-lg"
+            src="https://repo-tracker.com/r/gh/KonghaYao/ai-tag"
+        ></iframe>
+    );
+};
+
 const Charts = lazy(async () => {
     /** @ts-ignore */
     await import(/* @vite-ignore */ 'https://unpkg.com/echarts');

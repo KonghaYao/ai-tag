@@ -84,6 +84,7 @@ export const initGalleryStore = ExposeToGlobal('gallery', () => {
         getViewer,
         categories,
         updateCate,
+        visibleCate: atom(false),
         replaceImages,
     };
 });

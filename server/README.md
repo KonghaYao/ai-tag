@@ -7,6 +7,7 @@
 1. Deno 平台+ Typescript
 2. 使用服务器框架为 Koa
 3. 保密的部分为 .env_code 文件夹
+4. 有一部分每天定时执行的代码放在 Cloudflare 了，它们有 KV😂
 
 ```sh
 deno task dev

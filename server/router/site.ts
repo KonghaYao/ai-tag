@@ -45,5 +45,6 @@ SiteRouter.get("/active", async (ctx) => {
       referrer: "https://analytics.umami.is/share/7vG3EWy6X6ZE8B68",
     },
   ).then((res) => res.json());
+  // 即时反馈，不添加缓存
   ctx.body = JSON.stringify(active);
 });

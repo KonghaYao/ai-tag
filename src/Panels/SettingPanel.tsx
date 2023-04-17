@@ -1,6 +1,5 @@
 import { For } from 'solid-js';
 import { useTranslation } from '../i18n';
-import { Panel } from '../components/Panel';
 import { UploadButton } from '../components/UploadButton';
 import { GlobalData } from '../store/GlobalData';
 
@@ -10,17 +9,16 @@ export const SettingPanel = () => {
     const { sideAppMode } = GlobalData.getApp('side-app');
 
     const { t } = useTranslation();
+    // 在这里可以批量添加 bool 类型的变量
     const list = [
-        { title: t('settingPanel.lists.teen'), bind: r18Mode.reflux(!r18Mode(), (i) => !i) },
+        {
+            title: t('settingPanel.lists.teen'),
+            bind: r18Mode.reflux(!r18Mode(), (i: boolean) => !i),
+        },
         { title: t('settingPanel.lists.number'), bind: showCount },
         { title: t('settingPanel.lists.sideAPP'), bind: sideAppMode },
-        { title: t('settingPanel.lists.defaultFont'), bind: defaultFont },
-        { title: t('settingPanel.lists.iconBtn'), bind: iconBtn },
     ];
-    const NumberList = [
-        { title: t('settingPanel.lists.everyTimeTags'), bind: tagsPerPage },
-        { title: t('settingPanel.lists.maxEm'), bind: MaxEmphasize },
-    ];
+    const NumberList = [{ title: t('settingPanel.lists.maxEm'), bind: MaxEmphasize }];
 
     return (
         <>

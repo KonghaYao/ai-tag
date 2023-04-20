@@ -7,7 +7,7 @@ enum PromptType {
 }
 
 export const PromptStore = () => {
-    const searchText = atom('');
+    const searchText = atom('portrait');
     const PromptType = atom<number>(1);
 
     const data = resource(

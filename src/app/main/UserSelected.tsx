@@ -45,7 +45,7 @@ export const UserSelected = () => {
             <HeaderFirst></HeaderFirst>
             <TagsRow usersCollection={usersCollection}></TagsRow>
             {usersCollection().length === 0 && (
-                <span class="top-12f pointer-events-none absolute w-full whitespace-pre-wrap text-center font-light text-sky-500">
+                <span class="pointer-events-none absolute top-12 w-full whitespace-pre-wrap text-center font-light text-sky-500">
                     {t('userSelect.hint.add')}
                 </span>
             )}

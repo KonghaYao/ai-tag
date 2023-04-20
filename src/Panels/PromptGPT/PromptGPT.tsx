@@ -31,6 +31,7 @@ export const PromptGPT = () => {
     const activeId = atom('AI 助手');
     const isShowing = createSelector(activeId);
     const { r18Mode } = GlobalData.getApp('data');
+    const { visibleId } = GlobalData.getApp('side-app');
     return (
         <>
             <header class="py-2 text-center text-lg text-white" title="AI 辅助加强文本">
@@ -53,6 +54,9 @@ export const PromptGPT = () => {
                             );
                         }}
                     </TabsHeader>
+                    <div class="cursor-pointer" onclick={() => visibleId('prompt-store')}>
+                        🏪
+                    </div>
                     <InputOpenAIToken class="float-right"></InputOpenAIToken>
                 </nav>
                 <Tab id="AI 助手" class="flex-1">

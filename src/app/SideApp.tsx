@@ -21,6 +21,7 @@ export type PanelIds =
     | 'home'
     | 'news'
     | 'emoji'
+    | 'prompt-store'
     // gallery 的 panel
     | 'detail'
     | 'backup';
@@ -33,6 +34,7 @@ import { GlobalData } from '../store/GlobalData';
 import { Panel } from '../components/Panel';
 import { Atom, useBreakpoints } from '@cn-ui/use';
 import { Emoji } from '../Panels/Emoji';
+import { PromptStore } from '../Panels/PromptStore';
 export const SideApp = (props: { defaultPanel?: '' | PanelIds; children?: JSXElement }) => {
     const { sideAppMode, visibleId, extraPanels, isOpened } = GlobalData.getApp('side-app')!;
 
@@ -87,6 +89,9 @@ export const SideApp = (props: { defaultPanel?: '' | PanelIds; children?: JSXEle
                         </Panel>
                         <Panel id="emoji">
                             <Emoji></Emoji>
+                        </Panel>
+                        <Panel id="prompt-store">
+                            <PromptStore></PromptStore>
                         </Panel>
 
                         <For each={[...extraPanels().entries()]}>

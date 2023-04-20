@@ -1,4 +1,5 @@
-import { MeiliSearch, qs, Router } from "../deps.ts";
+import { qs, Router } from "../deps.ts";
+export { MeiliSearch } from "https://esm.sh/meilisearch@0.32.0";
 import MeiliConfig from "../.env_code/meiliConfig.json" assert { type: "json" };
 import { RandomPick } from "./RandomPick.ts";
 

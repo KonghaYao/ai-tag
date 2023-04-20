@@ -8,3 +8,4 @@ story/story.index.json
 .netlify
 sync
 deno.lock
+temp

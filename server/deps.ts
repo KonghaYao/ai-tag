@@ -5,4 +5,3 @@ export { default as bodyParser } from "https://esm.sh/koa-bodyparser@4.4.0";
 export { default as logger } from "https://esm.sh/koa-logger@3.2.1";
 export { default as proxy } from "https://esm.sh/koa-proxies@0.12.3";
 export { default as qs } from "https://esm.sh/qs@6.11.1";
-export * from "https://esm.sh/meilisearch@0.32.0";

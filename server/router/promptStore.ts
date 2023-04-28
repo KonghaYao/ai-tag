@@ -14,7 +14,7 @@ PromptStoreRouter.get("/search", async (ctx) => {
 
   const res = await client.queryObject({
     text:
-      `select prompt from prompts where fts @@ to_tsquery($2) and  type = $1  limit 10  ; `,
+      `select prompt from prompts where fts @@ to_tsquery($2) and  type = $1  limit 5  ; `,
     args: [data.type ?? "1", data.q],
   });
 
@@ -28,7 +28,7 @@ PromptStoreRouter.get("/random", async (ctx) => {
   const res = await client
     .queryObject`SELECT prompt FROM prompts WHERE type = ${
     data.type ?? 1
-  } and id>${Math.floor(Math.random() * 1500000)} limit 10`;
+  } and id>${Math.floor(Math.random() * 1500000)} limit 5`;
   ctx.body = JSON.stringify(res.rows);
 });
 export { PromptStoreRouter };

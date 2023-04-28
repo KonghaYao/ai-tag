@@ -5,7 +5,7 @@ export const PromptStoreAPI = {
         );
     },
     random(type: number) {
-        return fetch(`https://prompt-database.deno.dev/search?type=${type}`).then((res) =>
+        return fetch(`https://prompt-database.deno.dev/random?type=${type}`).then((res) =>
             res.json()
         );
     },

@@ -6,8 +6,6 @@ import { GlobalData } from '../../../../store/GlobalData';
 
 /** 主页面板的直接展示，免得打开太麻烦 */
 export const MainFloat = () => {
-    const { iconBtn } = GlobalData.getApp('data');
-    const { visibleId } = GlobalData.getApp('side-app');
     const { t } = useTranslation();
 
     return (

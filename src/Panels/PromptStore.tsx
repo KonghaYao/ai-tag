@@ -1,7 +1,7 @@
 import { DebounceAtom, asyncLock, atom, reflect, resource } from '@cn-ui/reactive';
 import { PromptStoreAPI } from '../api/prompt-store';
 import { For } from 'solid-js';
-enum PromptType {
+enum PromptTypeEnum {
     'Mid Journey',
     'Stable Diffusion',
 }
@@ -44,6 +44,9 @@ export const PromptStore = () => {
                 >
                     🎲
                 </button>
+            </nav>
+            <nav class="flex gap-2 px-2 text-sm">
+                <div>1,506,000 条</div>
             </nav>
             <nav class="bg-green-800 text-center text-slate-100">
                 仅支持英文，选中文本，拖进编辑器即可🚀！

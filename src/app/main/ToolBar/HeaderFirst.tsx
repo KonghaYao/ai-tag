@@ -71,6 +71,15 @@ export function HeaderFirst() {
             <span
                 class={'btn font-icon text-sm ' + ToolBarColor.pick()}
                 onClick={() => {
+                    visibleId('prompt-store');
+                }}
+                title="魔咒数据库"
+            >
+                🏪
+            </span>
+            <span
+                class={'btn font-icon text-sm ' + ToolBarColor.pick()}
+                onClick={() => {
                     visibleId('emoji');
                 }}
                 title="添加分隔符到末尾"

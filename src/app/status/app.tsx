@@ -1,5 +1,5 @@
 import { resource } from '@cn-ui/reactive';
-import { JSXElement, Show, lazy, onMount } from 'solid-js';
+import type { JSXElement } from 'solid-js';
 import { isServer } from 'solid-js/web';
 const defaultValue = {
     bounces: { value: 0, change: 0 },
@@ -56,45 +56,6 @@ const GithubRepoStats = () => {
     );
 };
 
-const Charts = lazy(async () => {
-    /** @ts-ignore */
-    await import(/* @vite-ignore */ 'https://unpkg.com/echarts');
-    return {
-        default(props: { x: string[]; y: number[] }) {
-            let container: HTMLDivElement;
-
-            onMount(() => {
-                /** @ts-ignore */
-                var myChart = echarts.init(container);
-                var option;
-
-                option = {
-                    xAxis: {
-                        type: 'category',
-                        data: props.x,
-                    },
-                    yAxis: {
-                        type: 'value',
-                    },
-                    tooltip: {
-                        trigger: 'item',
-                        formatter: '{b} : {c}',
-                    },
-                    series: [
-                        {
-                            data: props.y,
-                            type: 'line',
-                        },
-                    ],
-                };
-
-                option && myChart.setOption(option);
-            });
-
-            return <div style="width: 600px;height:400px;" ref={container!}></div>;
-        },
-    };
-});
 const ItemBlock = (props: { val: { value: number; change: number }; children: JSXElement }) => {
     return (
         <div>

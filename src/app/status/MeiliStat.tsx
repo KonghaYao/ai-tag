@@ -2,6 +2,7 @@ import { reflect, resource } from '@cn-ui/reactive';
 import { For } from 'solid-js';
 import { isServer } from 'solid-js/web';
 import { AV } from '../../api/cloud';
+import { Line } from './charts';
 const defaultEngineMessage: MeiliStat[] = [];
 
 interface Usage {
@@ -53,12 +54,21 @@ interface MeiliStat {
     };
     usage: Usage;
 }
+
+function getTotalData(inputData: MeiliStat[]) {
+    const used = inputData.reduce((a, i) => a + i.usage.search_request_count.current, 0);
+    const total = inputData.reduce((a, i) => a + i.usage.search_request_count.limit, 0);
+    const per = (used * 100) / (total || 1);
+    return { used, total, per };
+}
+
 export function MeiliStat() {
     const SearchEngine = resource<typeof defaultEngineMessage>(
         () => {
             return new AV.Query('stats')
                 .limit(1)
                 .equalTo('from', 'meili')
+                .addDescending('createdAt')
                 .find()
                 .then((res) => res[0].toJSON().data)
                 .then<MeiliStat[]>((res) => {
@@ -74,11 +84,28 @@ export function MeiliStat() {
         },
         { immediately: !isServer, initValue: defaultEngineMessage }
     );
+    const lineChartData = resource(
+        () =>
+            new AV.Query('stats')
+                .limit(7)
+                .equalTo('from', 'meili')
+                .addDescending('createdAt')
+                .find()
+                .then((res) =>
+                    res
+                        .reverse()
+                        .map((i) =>
+                            JSON.parse(i.toJSON().data).flatMap((i: any[]) => {
+                                if (!i) return [];
+                                return i;
+                            })
+                        )
+                        .map((i, index) => ({ index, ...getTotalData(i) }))
+                ),
+        { initValue: [] }
+    );
     const Count = reflect(() => {
-        const used = SearchEngine().reduce((a, i) => a + i.usage.search_request_count.current, 0);
-        const total = SearchEngine().reduce((a, i) => a + i.usage.search_request_count.limit, 0);
-        const per = (used * 100) / (total || 1);
-        return { used, total, per };
+        return getTotalData(SearchEngine());
     });
     return (
         <section>
@@ -88,6 +115,7 @@ export function MeiliStat() {
                     <img src="https://img.shields.io/badge/PowerBy-MeiliSearch-ff69b4" alt="" />
                 </a>
             </header>
+            <Line data={lineChartData()} x="index" y="used"></Line>
             <ul class="flex flex-col justify-evenly gap-2">
                 <aside class="grid grid-flow-col">
                     <label>

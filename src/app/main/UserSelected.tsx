@@ -122,7 +122,7 @@ export const TagsRow: Component<{ usersCollection: Atom<ITagData[]> }> = (props)
             }}
         >
             <SortableList
-                class="scroll-box flex flex-wrap gap-2 overflow-y-auto overflow-x-hidden p-2 text-sm"
+                class="scroll-box flex flex-wrap content-baseline gap-2 overflow-y-auto overflow-x-hidden p-2  text-sm"
                 style={{
                     'max-height': '40vh',
                     'min-height': '20vh',

@@ -40,19 +40,9 @@ export const StatusPage = () => {
                         <ItemBlock val={data().totaltime}>停留时间</ItemBlock>
                     </nav>
                     <MeiliStat></MeiliStat>
-                    <GithubRepoStats></GithubRepoStats>
                 </main>
             </nav>
         </section>
-    );
-};
-
-const GithubRepoStats = () => {
-    return (
-        <iframe
-            class="min-h-[60vh] rounded-lg"
-            src="https://repo-tracker.com/r/gh/KonghaYao/ai-tag"
-        ></iframe>
     );
 };
 

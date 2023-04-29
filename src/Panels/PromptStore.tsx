@@ -10,6 +10,7 @@ export const PromptStore = () => {
     const searchText = atom('portrait');
     const PromptType = atom<number>(1);
 
+    const length = atom('');
     const data = usePagination(
         (page, maxPage) => {
             maxPage(Infinity);
@@ -17,10 +18,11 @@ export const PromptStore = () => {
                 q: searchText(),
                 type: PromptType(),
                 limit: 5,
+                length: length(),
                 offset: page * 5,
             });
         },
-        { initValue: [] }
+        { initValue: [], deps: [length] }
     );
 
     return (
@@ -57,6 +59,19 @@ export const PromptStore = () => {
                     <span>{data.currentPage()}</span>
                     <button onclick={() => data.next()}>▶️</button>
                 </aside>
+                <select
+                    class="bg-slate-700"
+                    value={length()}
+                    onchange={(e) => {
+                        length((e.target as any).value);
+                    }}
+                >
+                    <For each={PromptStoreAPI.length}>
+                        {(item) => {
+                            return <option value={item[1]}>{item[0]}</option>;
+                        }}
+                    </For>
+                </select>
             </nav>
             <nav class="bg-green-800 text-center text-slate-100">
                 仅支持英文，选中文本，拖进编辑器即可🚀！

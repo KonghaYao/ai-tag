@@ -5,6 +5,7 @@ export const PromptStoreAPI = {
         q: string;
         type: number;
         limit: string | number;
+        length: string;
         offset: string | number;
     }) {
         return fetch(
@@ -12,4 +13,12 @@ export const PromptStoreAPI = {
         ).then((res) => res.json());
     },
     random(type: number) {},
+    length: [
+        ['所有', ''],
+        ['超短', 'veryshort'],
+        ['短', 'short'],
+        ['中', 'mid'],
+        ['长', 'long'],
+        ['超长', 'verylong'],
+    ] as [string, string][],
 };

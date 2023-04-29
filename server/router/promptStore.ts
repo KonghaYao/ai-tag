@@ -8,13 +8,33 @@ const client = new Client(
 );
 await client.connect();
 
+const getLengthSQL = (name) => {
+  switch (name) {
+    case "veryshort":
+      return "and length(prompt)<100 ";
+    case "short":
+      return "and length(prompt)<200 and length(prompt)>=100";
+    case "mid":
+      return "and length(prompt)<300 and length(prompt)>=200";
+    case "long":
+      return "and length(prompt)<400 and length(prompt)>=300";
+    case "verylong":
+      return "and length(prompt)>=400";
+
+    default:
+      return "";
+  }
+};
+
 // 搜索词汇
 PromptStoreRouter.get("/search", async (ctx) => {
   const data = qs.parse(ctx.querystring);
 
   const res = await client.queryObject({
     text:
-      `select prompt from prompts where fts @@ to_tsquery($2) and  type = $1 limit $3 offset $4 ; `,
+      `select prompt from prompts where fts @@ to_tsquery($2) and  type = $1  ${
+        getLengthSQL(data.length)
+      } limit $3 offset $4 ; `,
     args: [data.type ?? "1", data.q, data.limit ?? "5", data.offset ?? "0"],
   });
 

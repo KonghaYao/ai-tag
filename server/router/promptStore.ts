@@ -14,8 +14,8 @@ PromptStoreRouter.get("/search", async (ctx) => {
 
   const res = await client.queryObject({
     text:
-      `select prompt from prompts where fts @@ to_tsquery($2) and  type = $1  limit 5  ; `,
-    args: [data.type ?? "1", data.q],
+      `select prompt from prompts where fts @@ to_tsquery($2) and  type = $1 limit $3 offset $4 ; `,
+    args: [data.type ?? "1", data.q, data.limit ?? "5", data.offset ?? "0"],
   });
 
   ctx.set("Cache-Control", "public, max-age=86400, s-maxage=3600");

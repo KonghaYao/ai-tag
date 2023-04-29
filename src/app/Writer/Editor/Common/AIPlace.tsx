@@ -60,7 +60,7 @@ export const AIPlace = (props: {
                     <input
                         class=" px-2"
                         type="range"
-                        min="20"
+                        min="5"
                         max="50"
                         step="1"
                         value={length()}

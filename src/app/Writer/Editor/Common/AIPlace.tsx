@@ -58,11 +58,11 @@ export const AIPlace = (props: {
                 >
                     <div class="flex-none">长度 {length()}</div>
                     <input
-                        class=" px-2"
+                        class="w-full px-2"
                         type="range"
-                        min="5"
-                        max="50"
-                        step="1"
+                        min="20"
+                        max="80"
+                        step="10"
                         value={length()}
                         oninput={(e) => {
                             length(parseInt((e.target as any).value));

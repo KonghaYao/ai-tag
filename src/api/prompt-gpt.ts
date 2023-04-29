@@ -19,7 +19,7 @@ export class PromptGPT {
     textToText(text: string, length = 20, notify: Notify) {
         return this.query(
             {
-                prompt: `Below is a highly advanced image description that enriches the expressiveness of the text and converts it into a descriptive text that retains more key information. It should contain quality description, style description, subject description, detail description, with a minimum of ${length} vocabulary words.combine them to one english row text output. input:  ${text}`,
+                prompt: `Below is a highly advanced image description that enriches the expressiveness of the text and converts it into a descriptive text that retains more key information. It should contain quality description, style description, subject description, detail description, .combine them to one english row text output within ${length} words. input:  ${text}`,
                 id: '0',
             },
             notify
@@ -32,7 +32,7 @@ export class PromptGPT {
     textToTags(text: string, length = 20, notify: Notify) {
         return this.query(
             {
-                prompt: `下面将会给出非常高级的图片描述，丰富这段文本的表现力并转化为保留较多关键信息的关键词组，按照画面质量描述与风格词汇、主体描述、细节描述的顺序以逗号分隔，最少 ${length} 个词汇，英文小写输出，合并为一行:${text}`,
+                prompt: `下面将会给出非常高级的图片描述，丰富这段文本的表现力并转化为保留较多关键信息的关键词组，按照画面质量描述与风格词汇、主体描述、细节描述的顺序以逗号分隔， ${length} 词左右，英文小写输出，合并为一行:${text}`,
                 id: '0',
             },
             notify
@@ -55,7 +55,7 @@ export class PromptGPT {
     StyleTags(text: string, length = 20, notify: Notify) {
         return this.query(
             {
-                prompt: `你是绘画大师，精通各种风格的绘画，只讨论技法，不讨论情感，不要输出多余的话。描述一张${text}绘画的风格，汇总成不少于${length}个英文关键词一行用逗号分隔并返回，结果`,
+                prompt: `你是绘画大师，精通各种风格的绘画，只讨论技法，不讨论情感，不要输出多余的话。描述一张${text}绘画的风格，汇总成${length}个左右英文关键词一行用逗号分隔并返回，结果`,
                 id: '0',
             },
             notify

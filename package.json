@@ -44,7 +44,7 @@
         "@astrojs/sitemap": "^1.2.1",
         "@astrojs/solid-js": "^2.1.0",
         "@astrojs/tailwind": "^3.1.1",
-        "@chinese-fonts/jxzk": "^1.1.0",
+        "@chinese-fonts/jxzk": "^1.2.0",
         "@cn-ui/animate": "^1.0.5",
         "@cn-ui/core": "^1.7.1",
         "@cn-ui/headless": "^1.12.0",

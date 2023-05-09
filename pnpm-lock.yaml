@@ -11,8 +11,8 @@ dependencies:
     specifier: ^3.1.1
     version: registry.npmmirror.com/@astrojs/tailwind@3.1.1(astro@2.1.7)(tailwindcss@3.2.7)
   '@chinese-fonts/jxzk':
-    specifier: ^1.1.0
-    version: registry.npmmirror.com/@chinese-fonts/jxzk@1.1.0
+    specifier: ^1.2.0
+    version: 1.2.0
   '@cn-ui/animate':
     specifier: ^1.0.5
     version: registry.npmmirror.com/@cn-ui/animate@1.0.5(@cn-ui/transition@1.7.4)(@cn-ui/use@2.0.4)(solid-js@1.6.15)
@@ -470,6 +470,10 @@ packages:
       '@babel/helper-string-parser': 7.19.4
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
+    dev: false
+
+  /@chinese-fonts/jxzk@1.2.0:
+    resolution: {integrity: sha512-E1J6Cm8+NVhxffVHQsY2fLwKIfIdwjlGbxlXpH6vj6Fg5Q9UXocYkdGXJdQNGjrCNjZKgLECsD4p+8I+pGjg9A==}
     dev: false
 
   /@cn-ui/core@1.7.1(@fontsource/material-icons-rounded@4.5.4)(@solidjs/router@0.5.1)(solid-js@1.6.15)(tailwindcss@3.2.7):
@@ -1821,12 +1825,6 @@ packages:
       '@babel/helper-string-parser': registry.npmmirror.com/@babel/helper-string-parser@7.19.4
       '@babel/helper-validator-identifier': registry.npmmirror.com/@babel/helper-validator-identifier@7.19.1
       to-fast-properties: registry.npmmirror.com/to-fast-properties@2.0.0
-
-  registry.npmmirror.com/@chinese-fonts/jxzk@1.1.0:
-    resolution: {integrity: sha512-w2deiHESbTW3LYk66aT5KinwWfshb5D7/IUzbAhfouUTufG+VFBvvaCd5cZLzQdwGAj+ojcUb4LpUoJGUYTDUg==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/@chinese-fonts/jxzk/-/jxzk-1.1.0.tgz}
-    name: '@chinese-fonts/jxzk'
-    version: 1.1.0
-    dev: false
 
   registry.npmmirror.com/@cn-ui/animate@1.0.5(@cn-ui/transition@1.7.4)(@cn-ui/use@2.0.4)(solid-js@1.6.15):
     resolution: {integrity: sha512-xPA689p11U9AABjL67xvCW88MBJpLqo0DvMlrpKbjJFIz8fDkl8DJlJwwK5NoewECKLtVkJ2h848nv9BYWBFPQ==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/@cn-ui/animate/-/animate-1.0.5.tgz}

@@ -7,7 +7,7 @@ export const TalkDefault = () => {
 
     return (
         <section class="flex flex-col border-slate-500" ref={store.scrollContainer}>
-            <ActiveUser></ActiveUser>
+            {/* <ActiveUser></ActiveUser> */}
             <InputArea></InputArea>
             <CommentList></CommentList>
         </section>

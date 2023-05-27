@@ -3,13 +3,13 @@ import { qs, Router } from "../deps.ts";
 import { Client } from "https://deno.land/x/postgres@v0.17.0/mod.ts";
 const PromptStoreRouter = new Router();
 
+console.log(Deno.env.get("POSTGRES_URL"));
 const client = new Client(
   Deno.env.get("POSTGRES_URL"),
 );
-
-(async () => {
+export const init = async () => {
   await client.connect();
-});
+};
 
 const getLengthSQL = (name: string) => {
   switch (name) {

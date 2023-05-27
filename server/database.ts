@@ -1,5 +1,5 @@
 import { bodyParser, cors, Koa, logger, proxy, Router } from "./deps.ts";
-import { PromptStoreRouter } from "./router/promptStore.ts";
+import { init, PromptStoreRouter } from "./router/promptStore.ts";
 
 const app = new Koa();
 const router = new Router();
@@ -18,6 +18,9 @@ app.use(logger())
   )
   .use(router.routes()).use(router.allowedMethods());
 
-app.listen(80, () => {
-  console.log("服务启动了");
-});
+(async () => {
+  await init();
+  app.listen(80, () => {
+    console.log("服务启动了");
+  });
+})();

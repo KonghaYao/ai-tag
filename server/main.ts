@@ -1,11 +1,10 @@
 import { bodyParser, cors, Koa, logger, proxy, Router } from "./deps.ts";
-import { SiteRouter } from "./router/site.ts";
 import { tagsRouter } from "./router/tags.ts";
 
 const app = new Koa();
 const router = new Router();
-router.use("/tags", tagsRouter.routes(), tagsRouter.allowedMethods())
-  .use("/site", SiteRouter.routes(), SiteRouter.allowedMethods())
+router
+  .use("/tags", tagsRouter.routes(), tagsRouter.allowedMethods())
   .get(
     "/",
     (ctx) => {

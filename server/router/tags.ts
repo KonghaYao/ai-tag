@@ -1,7 +1,7 @@
 import { qs, Router } from "../deps.ts";
-export { MeiliSearch } from "https://esm.sh/meilisearch@0.32.0";
 import MeiliConfig from "../.env_code/meiliConfig.json" assert { type: "json" };
 import { RandomPick } from "./RandomPick.ts";
+import MeiliSearch from "https://esm.sh/meilisearch@0.32.0";
 
 const tagsRouter = new Router();
 

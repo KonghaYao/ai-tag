@@ -6,9 +6,12 @@ const PromptStoreRouter = new Router();
 const client = new Client(
   Deno.env.get("POSTGRES_URL"),
 );
-await client.connect();
 
-const getLengthSQL = (name) => {
+(async () => {
+  await client.connect();
+});
+
+const getLengthSQL = (name: string) => {
   switch (name) {
     case "veryshort":
       return "and length(prompt)<100 ";
@@ -33,7 +36,7 @@ PromptStoreRouter.get("/search", async (ctx) => {
   const res = await client.queryObject({
     text:
       `select prompt from prompts where fts @@ to_tsquery($2) and  type = $1  ${
-        getLengthSQL(data.length)
+        getLengthSQL(data.length as string)
       } limit $3 offset $4 ; `,
     args: [data.type ?? "1", data.q, data.limit ?? "5", data.offset ?? "0"],
   });

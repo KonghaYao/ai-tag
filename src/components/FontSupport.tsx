@@ -20,7 +20,10 @@ export const FontSupport: Component<{ show?: boolean | Atom<boolean>; delay?: nu
     return (
         <>
             <Show when={show()}>
-                <link rel="stylesheet" href="/font/result.css"></link>
+                <link
+                    rel="stylesheet"
+                    href="https://ik.imagekit.io/chinesefonts/packages/jxzk/dist/%E6%B1%9F%E8%A5%BF%E6%8B%99%E6%A5%B7/result.css"
+                ></link>
             </Show>
             <link
                 rel="stylesheet"

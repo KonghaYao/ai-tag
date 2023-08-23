@@ -22,7 +22,7 @@ export const FontSupport: Component<{ show?: boolean | Atom<boolean>; delay?: nu
             <Show when={show()}>
                 <link
                     rel="stylesheet"
-                    href="https://ik.imagekit.io/chinesefonts/packages/jxzk/dist/%E6%B1%9F%E8%A5%BF%E6%8B%99%E6%A5%B7/result.css"
+                    href="https://192960944.r.cdn36.com/chinesefonts1/packages/jxzk/dist/江西拙楷/result.css"
                 ></link>
             </Show>
             <link

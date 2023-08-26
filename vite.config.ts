@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
                     if (id === 'viewerjs') {
                         return {
                             external: true,
-                            id: 'https://unpkg.com/viewerjs@1.11.4/dist/viewer.esm.js',
+                            id: 'https://cdn.jsdelivr.net/npm/viewerjs@1.11.4/dist/viewer.esm.min.js',
                         };
                     }
                 },

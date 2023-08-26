@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
                     if (id === 'viewerjs') {
                         return {
                             external: true,
-                            id: 'https://cdn.jsdelivr.net/npm/viewerjs@1.11.2/dist/viewer.esm.min.js',
+                            id: 'https://unpkg.com/viewerjs@1.11.4/dist/viewer.esm.js',
                         };
                     }
                 },
@@ -27,7 +27,7 @@ export default defineConfig(({ mode }) => {
                 },
             },
             mode === 'analyze' &&
-                (visualizer({ open: true, filename: 'visualizer/stat.html' }) as any),
+            (visualizer({ open: true, filename: 'visualizer/stat.html' }) as any),
         ],
         server: {
             port: 3000,

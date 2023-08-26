@@ -6,7 +6,6 @@ import { GlobalData } from './GlobalData';
 import { CombineMagic } from '../utils/CombineMagic';
 import { Notice } from '../utils/notice';
 import { useTranslation } from '../i18n';
-export const cdn = 'https://cdn.jsdelivr.net/npm';
 
 const useOwnAtom = () => {
     // 添加去重功能的 Atom，实现较拉😂
@@ -33,7 +32,6 @@ const useOwnAtom = () => {
 };
 
 export type ITagStore = ReturnType<typeof initGlobalTags>;
-import qs from 'qs';
 import { localSync } from '../utils/localSync';
 import { TagAPI } from '../api/TagAPI';
 /** 加载 Tag 数据库,  */

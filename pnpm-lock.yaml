@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@astrojs/sitemap':
     specifier: ^1.2.1
@@ -128,8 +132,8 @@ dependencies:
     specifier: ^4.1.2
     version: registry.npmmirror.com/unist-util-visit@4.1.2
   viewerjs:
-    specifier: ^1.11.3
-    version: registry.npmmirror.com/viewerjs@1.11.3
+    specifier: ^1.11.4
+    version: 1.11.4
 
 devDependencies:
   '@netlify/functions':
@@ -1254,6 +1258,10 @@ packages:
       browserslist: 4.21.5
       escalade: 3.1.1
       picocolors: 1.0.0
+    dev: false
+
+  /viewerjs@1.11.4:
+    resolution: {integrity: sha512-/mnqMIwt5Bi9j59+48OqQtqgOx8oh186Xshdr/dqqBrakMSMlLt/jmeNHBod0PvOkesZf66ivQbWmtWYBlKetg==}
     dev: false
 
   /web-streams-polyfill@3.2.1:
@@ -6365,12 +6373,6 @@ packages:
       is-buffer: registry.npmmirror.com/is-buffer@2.0.5
       unist-util-stringify-position: registry.npmmirror.com/unist-util-stringify-position@3.0.3
       vfile-message: registry.npmmirror.com/vfile-message@3.1.4
-    dev: false
-
-  registry.npmmirror.com/viewerjs@1.11.3:
-    resolution: {integrity: sha512-efG3U61Umuj/1x6JAtdvnY9m407C/RkrkFilsMcLEWKDivpjNU3/FeL+feCY1Vkur9aQeBJ+z6K4CCPP7hv6vA==, registry: https://registry.npmjs.org/, tarball: https://registry.npmmirror.com/viewerjs/-/viewerjs-1.11.3.tgz}
-    name: viewerjs
-    version: 1.11.3
     dev: false
 
   registry.npmmirror.com/vite-plugin-solid@2.6.1(solid-js@1.6.15)(vite@3.2.5):

@@ -8,15 +8,23 @@ export const InstructGPT = (_prompt: string, token: string) => {
         },
         body: JSON.stringify({
             // davinci 比 turbo 模型要快不少，而且质量不会差
-            model: 'text-davinci-003',
             temperature: 0.9,
             max_tokens: 150,
             top_p: 1,
             frequency_penalty: 0,
             presence_penalty: 0.6,
-            stop: ['\n提问:', '\nAI:'],
-            prompt: `\n提问:` + _prompt + `\nAI:`,
+            "model": "gpt-3.5-turbo",
+            "messages": [
+                {
+                    "role": "system",
+                    "content": "You are an helpful artist assistant."
+                },
+                {
+                    "role": "user",
+                    "content": _prompt
+                }
+            ],
             stream: true,
         }),
-    });
+    })
 };

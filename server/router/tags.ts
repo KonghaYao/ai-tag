@@ -1,12 +1,16 @@
-import { Application, Router, helpers } from "https://deno.land/x/oak/mod.ts";
-import MeiliConfig from "../.env_code/meiliConfig.json" assert { type: "json" };
+import { Application, Router, helpers } from "https://deno.land/x/oak@v12.6.2/mod.ts";
 import { RandomPick } from "./RandomPick.ts";
 import MeiliSearch from "https://esm.sh/meilisearch@0.32.0";
 
 const tagsRouter = new Router();
 
 // Meilisearch 是分布式的结构😂
-const clientPool = MeiliConfig.map((i) => {
+const clientPool = [{
+    
+        host: Deno.env.get("MEILISEARCH_HOST"),
+        apiKey: Deno.env.get("MEILISEARCH_API_KEY"),
+      
+}].map((i) => {
     return new MeiliSearch(i);
 });
 

@@ -1,4 +1,4 @@
-import { Application, Router } from "https://deno.land/x/oak/mod.ts";
+import { Application, Router } from "https://deno.land/x/oak@v12.6.2/mod.ts";
 import { CORS as cors } from "https://deno.land/x/oak_cors@v0.1.1/mod.ts";
 import logger from "https://deno.land/x/oak_logger/mod.ts";
 import { tagsRouter } from './router/tags.ts'

@@ -54,7 +54,7 @@
         "@cn-ui/use": "^2.0.4",
         "@solidjs/router": "^0.5.1",
         "@tsndr/cloudflare-worker-jwt": "^2.2.1",
-        "astro": "^2.1.7",
+        "astro": "^4.16.18",
         "comlink": "^4.4.1",
         "copy-to-clipboard": "^3.3.3",
         "file-saver": "^2.0.5",

@@ -26,7 +26,6 @@ export interface IGlobalData extends IStoreData {
 export const Data = createContext<IGlobalData & ReturnType<typeof initGlobalTags>>();
 import type { IPromptData } from 'promptor';
 import { Message, MessageHint } from '../../components/MessageHInt';
-import { Background } from '../../components/Background';
 import { DropReceiver } from '@cn-ui/headless';
 import { GlobalHeader } from './GlobalHeader';
 import { TranslationPanel } from '../../plugins/globalTranslate/TranslationPanel';
@@ -52,8 +51,6 @@ export const Main = () => {
                         'opacity-90': !!backgroundImage(),
                     }}
                 >
-                    {/* <Background image={backgroundImage()}></Background> */}
-
                     <main
                         id="main-panel"
                         class=" flex h-full  w-full max-w-4xl flex-1 flex-col overflow-visible px-2 pt-2 text-gray-400 sm:px-4 sm:pt-4"
@@ -62,7 +59,6 @@ export const Main = () => {
                         <UserSelected></UserSelected>
                         <SearchBox></SearchBox>
                     </main>
-                    {/* <SideApp></SideApp> */}
                     <MessageHint></MessageHint>
                 </section>
             </DropReceiver>

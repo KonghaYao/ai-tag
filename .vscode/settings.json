@@ -1,4 +1,10 @@
 {
     "deno.enable": true,
-    "deno.enablePaths": ["/server"]
+    "deno.enablePaths": [
+        "/server"
+    ],
+    "i18n-ally.localesPaths": [
+        "locales",
+        "src/i18n"
+    ]
 }

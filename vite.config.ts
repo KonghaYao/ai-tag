@@ -27,13 +27,14 @@ export default defineConfig(({ mode }) => {
                 },
             },
             mode === 'analyze' &&
-            (visualizer({ open: true, filename: 'visualizer/stat.html' }) as any),
+                (visualizer({ open: true, filename: 'visualizer/stat.html' }) as any),
         ],
         server: {
             port: 3000,
             proxy: {
                 // 配合 netlify 的云函数
 
+                '/.netlify/functions/ai': 'http://localhost:9999/.netlify/functions/ai',
                 '/.netlify/functions/upload_auth':
                     'http://localhost:9999/.netlify/functions/upload_auth',
                 '/.netlify/functions/status': 'http://localhost:9999/.netlify/functions/status',

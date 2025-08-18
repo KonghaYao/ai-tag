@@ -6,7 +6,7 @@ import { nanoid } from 'nanoid';
 import { WriterContext } from './WriterContext';
 import { GlobalHeader } from '../main/GlobalHeader';
 import { BaseBlock, Article, createBlockByType, TextBlock, TagsBlock } from './interface';
-import { Message, MessageHint } from '../../components/MessageHInt';
+import { MessageHint } from '../../components/MessageHInt';
 import copy from 'copy-to-clipboard';
 import { Notice } from '../../utils/notice';
 import { Header } from './Header';

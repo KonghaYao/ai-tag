@@ -72,7 +72,7 @@ export const TextToText = () => {
                 <Select each={Presets.description} onChange={(text) => preInput(text)}></Select>
                 <textarea
                     class="w-full flex-1  rounded-lg bg-slate-800  px-4 text-sm outline-none"
-                    placeholder="输入你想画的东西,不用太长，可以中文😄"
+                    placeholder="直接输入你想画的东西, 不用太长，快速创建模板😄"
                     cols="2"
                     value={preInput()}
                     onchange={(e) => preInput((e.target as any).value)}
@@ -86,7 +86,7 @@ export const TextToText = () => {
                     title="导入编辑区的文本"
                     class="my-2 w-full flex-1 cursor-pointer rounded-md p-1 transition-colors hover:bg-slate-700"
                 >
-                    导入魔咒
+                    从左侧导入魔咒
                 </button>
                 <button
                     title="拼接文本到你的编辑区"

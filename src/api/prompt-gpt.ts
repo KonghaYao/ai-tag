@@ -89,17 +89,12 @@ export class PromptGPT {
         return this.ownKey ? InstructGPT : DefaultGPT;
     }
     async query(data: { prompt: string; id: string }, notify: Notify) {
-        let allText = '';
-
         return this.GPT(data.prompt, this.ownKey).then(async (res) => {
-            const stream = res.body;
-            for await (const text of readStreamAsTextLines(stream!)) {
-                if (!text) continue;
-                allText += text;
-                notify(allText, 50);
-            }
-            return allText;
-        });
+            return res.text()
+        }).then(res => {
+            notify(res, 100);
+            return res;
+        })
     }
 }
 export const GlobalGPT = new PromptGPT();

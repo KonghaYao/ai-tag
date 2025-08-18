@@ -10,8 +10,7 @@ export const DefaultGPT = async (_prompt: string) => {
         import.meta.env.PUBLIC_JWT_PROMPT
     );
     return fetch(
-        'https://prompt-gpt.deno.dev/ai',
-        // 'https://civitai.deno.dev/ai',
+        '/.netlify/functions/ai',
         {
             method: 'POST',
             headers: {

@@ -13,7 +13,7 @@ export const InstructGPT = (_prompt: string, token: string) => {
             top_p: 1,
             frequency_penalty: 0,
             presence_penalty: 0.6,
-            "model": "gpt-3.5-turbo",
+            "model": "gpt-4o-mini",
             "messages": [
                 {
                     "role": "system",

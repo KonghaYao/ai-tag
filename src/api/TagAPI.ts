@@ -6,7 +6,7 @@ import { loadTags, searchTags as localSearchTags } from '../components/LocalSear
 /** 所有的 Tags 操作聚合到这里 */
 export class TagAPI {
     /** 搜索 Tags 的接口，请勿乱用 */
-    static async searchTags(q: string, r18Mode = false) {
+    static async searchTags(q: string, r18Mode: boolean) {
         await loadTags(); // 确保本地标签数据已加载
         const results = await localSearchTags(q, r18Mode);
         return results as ITagData[];

@@ -15,7 +15,7 @@ export const TagsSearch = (props: { userCollection: Atom<ITagData[]> }) => {
         async () => {
             const [originText, q] = splitTextToAutoComplete(text());
             if (!prompt) return [];
-            return TagAPI.searchTags(q, r18Mode()).then((res) =>
+            return TagAPI.searchTags(q, !r18Mode()).then((res) =>
                 res.map((i) => ({ ...i, originText }))
             );
         },

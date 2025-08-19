@@ -52,7 +52,7 @@ export function initGlobalTags(data: IStoreData) {
         Message.success('恢复成功');
     };
     const searchText = atom('');
-    const result = resource(() => TagAPI.searchTags(searchText(), data.r18Mode()), {
+    const result = resource(() => TagAPI.searchTags(searchText(), !data.r18Mode()), {
         initValue: [],
         immediately: false,
         deps: [searchText],
